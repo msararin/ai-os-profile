@@ -37,29 +37,40 @@ export default function HomePage() {
           <h2 className="text-2xl font-semibold tracking-tight text-foreground">
             Executive Summary
           </h2>
-          <div className="mt-8 grid gap-6 sm:grid-cols-3">
+          <div className="mt-8 grid gap-6 sm:grid-cols-2">
             <Card className="border-border bg-card">
               <CardHeader className="pb-3">
                 <CardTitle className="text-base font-medium text-primary">
-                  What this IS
+                  What this is
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-sm text-muted-foreground">
-                  A curated portfolio surface demonstrating governance maturity
-                  and system design.
+                  A portfolio case study on designing AI orchestration with governance discipline: source of truth, role boundaries, human review gates, and execution visibility.
                 </p>
               </CardContent>
             </Card>
             <Card className="border-border bg-card">
               <CardHeader className="pb-3">
                 <CardTitle className="text-base font-medium text-primary">
-                  What this is NOT
+                  What this proves
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-sm text-muted-foreground">
-                  A dispatcher or AI cockpit with live backend integration.
+                  That AI-assisted work systems can be designed with the same discipline as enterprise software: documented decisions, version-controlled truth, scoped roles, and review gates before anything is treated as committed.
+                </p>
+              </CardContent>
+            </Card>
+            <Card className="border-border bg-card">
+              <CardHeader className="pb-3">
+                <CardTitle className="text-base font-medium text-primary">
+                  What this is not
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground">
+                  A production-ready cockpit, an autonomous AI operating system, or a live dispatcher with backend integration. Operating reality is honestly labeled.
                 </p>
               </CardContent>
             </Card>
@@ -71,8 +82,7 @@ export default function HomePage() {
               </CardHeader>
               <CardContent>
                 <p className="text-sm text-muted-foreground">
-                  AI work without governance creates drift, false confidence,
-                  and unreviewable output.
+                  AI work without governance creates drift, false confidence, and unreviewable output. This system shows how to keep AI fast without losing control of truth.
                 </p>
               </CardContent>
             </Card>
@@ -210,12 +220,15 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Governance Thesis */}
+      {/* Core Operating Beliefs */}
       <section className="border-t border-border py-16">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
           <h2 className="text-2xl font-semibold tracking-tight text-foreground">
-            Governance Thesis
+            Core Operating Beliefs
           </h2>
+          <p className="mt-2 text-sm text-muted-foreground">
+            The principles this system is governed by, in plain language.
+          </p>
           <div className="mt-8 space-y-6">
             <div className="flex gap-4">
               <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary/10 text-sm font-semibold text-primary">
@@ -223,10 +236,10 @@ export default function HomePage() {
               </div>
               <div>
                 <h3 className="font-medium text-foreground">
-                  Source of truth matters
+                  Source of truth must be committed
                 </h3>
                 <p className="mt-1 text-sm text-muted-foreground">
-                  Only committed knowledge becomes truth.
+                  Only what is committed to KB and Git counts as truth. Anything in chat, in a UI, or in someone&apos;s memory is not truth yet.
                 </p>
               </div>
             </div>
@@ -239,8 +252,7 @@ export default function HomePage() {
                   Status must be actionable
                 </h3>
                 <p className="mt-1 text-sm text-muted-foreground">
-                  Every flag has owner, action, review, state — otherwise it is
-                  documentation trail, not feedback loop.
+                  A status flag is only useful if it tells you the owner, the next action, the review trigger, and whether it is open or resolved. Anything less is just a label.
                 </p>
               </div>
             </div>
@@ -253,12 +265,19 @@ export default function HomePage() {
                   AI output is not truth until reviewed and committed
                 </h3>
                 <p className="mt-1 text-sm text-muted-foreground">
-                  Generated content requires human review before becoming
-                  canonical.
+                  AI helps fast. But its output is a draft until a human reviews it and a commit makes it durable.
                 </p>
               </div>
             </div>
           </div>
+        </div>
+      </section>
+      {/* Internal Mode Hint */}
+      <section className="pb-4">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+          <p className="text-xs text-muted-foreground">
+            For technical reviewers: switch the top-right toggle to Internal to see workstream status, backlog snapshot, and operating discipline. (Internal view is being filled in iteratively — current state may show partial content.)
+          </p>
         </div>
       </section>
       {/* MCP Footnote */}

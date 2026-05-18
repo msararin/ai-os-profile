@@ -34,7 +34,7 @@ export function SiteHeader() {
             </Link>
           ))}
         </nav>
-        <ViewToggle />
+        <ViewToggle prominent={pathname === "/"} />
       </div>
     </header>
   )
