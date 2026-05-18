@@ -42,7 +42,7 @@ export default function ArchitecturePage() {
                     Robert / GPT
                   </span>
                   <span className="rounded-md bg-background px-2 py-1 text-xs font-medium text-foreground shadow-sm">
-                    Chatbox AI / Opus
+                    Hermes + Opus + custom MCP*
                   </span>
                 </div>
               </div>
@@ -206,6 +206,11 @@ export default function ArchitecturePage() {
                 </div>
               </div>
             </div>
+
+            {/* MCP Footnote */}
+            <p className="mt-4 text-xs italic text-muted-foreground">
+              *Current operational trial surface. MCP is used as a read-only context bridge for controlled context retrieval. It is not yet approved as an autonomous production workflow.
+            </p>
 
             {/* Cross-cutting */}
             <div className="mt-6 rounded-lg border border-dashed border-border bg-muted/30 p-4">
@@ -394,7 +399,7 @@ export default function ArchitecturePage() {
                 </tr>
                 <tr>
                   <td className="whitespace-nowrap px-4 py-3 text-sm font-medium text-foreground">
-                    Chatbox AI / Opus
+                    Hermes + Opus + custom MCP*
                   </td>
                   <td className="px-4 py-3 text-sm text-muted-foreground">
                     Long reasoning, decision packs, prompt generation.

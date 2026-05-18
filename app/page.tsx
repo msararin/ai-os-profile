@@ -59,7 +59,7 @@ export default function HomePage() {
               </CardHeader>
               <CardContent>
                 <p className="text-sm text-muted-foreground">
-                  A production-ready dispatcher or live AI cockpit.
+                  A dispatcher or AI cockpit with live backend integration.
                 </p>
               </CardContent>
             </Card>
