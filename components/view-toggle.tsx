@@ -26,11 +26,18 @@ export function useView() {
   return useContext(ViewContext)
 }
 
-export function ViewToggle() {
+export function ViewToggle({ prominent = false }: { prominent?: boolean }) {
   const { view, setView } = useView()
 
   return (
-    <div className="flex items-center gap-1 rounded-md border border-border bg-muted p-0.5 text-xs">
+    <div
+      className={cn(
+        "flex items-center gap-1 rounded-md border p-0.5 text-xs",
+        prominent
+          ? "border-primary/30 bg-accent shadow-sm"
+          : "border-border bg-muted"
+      )}
+    >
       <button
         onClick={() => setView("external")}
         className={cn(
