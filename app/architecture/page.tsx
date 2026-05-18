@@ -402,7 +402,7 @@ export default function ArchitecturePage() {
                     Hermes + Opus + custom MCP*
                   </td>
                   <td className="px-4 py-3 text-sm text-muted-foreground">
-                    Long reasoning, decision packs, prompt generation.
+                    Context-aware operator surface — Active trial — structured context pull, task continuity, governance-aware operation.
                   </td>
                 </tr>
                 <tr>
@@ -411,14 +411,6 @@ export default function ArchitecturePage() {
                   </td>
                   <td className="px-4 py-3 text-sm text-muted-foreground">
                     Execution routing and task packaging layer.
-                  </td>
-                </tr>
-                <tr>
-                  <td className="whitespace-nowrap px-4 py-3 text-sm font-medium text-foreground">
-                    Hermes
-                  </td>
-                  <td className="px-4 py-3 text-sm text-muted-foreground">
-                    Lightweight planning / handoff runner (parked-but-usable).
                   </td>
                 </tr>
                 <tr>
@@ -440,6 +432,10 @@ export default function ArchitecturePage() {
               </tbody>
             </table>
           </div>
+          {/* MCP Footnote for Glossary */}
+          <p className="mt-4 text-xs italic text-muted-foreground">
+            *Current operational trial surface. MCP is used as a read-only context bridge for controlled context retrieval. It is not yet approved as an autonomous production workflow.
+          </p>
         </div>
       </section>
     </PageLayout>

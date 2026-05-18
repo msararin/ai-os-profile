@@ -261,6 +261,14 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+      {/* MCP Footnote */}
+      <section className="pb-8">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+          <p className="text-xs italic text-muted-foreground">
+            *Current operational trial surface. MCP is used as a read-only context bridge for controlled context retrieval. It is not yet approved as an autonomous production workflow.
+          </p>
+        </div>
+      </section>
     </PageLayout>
   )
 }
