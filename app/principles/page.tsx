@@ -6,42 +6,42 @@ const principles = [
     number: 1,
     title: "Governed execution over rushed execution",
     description:
-      "System thinking and design discipline take precedence over operational speed. Rushed execution without governance creates technical debt and architectural drift.",
+      "Speed without governance creates rework and false confidence. Every AI-assisted output passes through a review gate before it counts as truth.",
     highlight: false,
   },
   {
     number: 2,
     title: "Single source of truth",
     description:
-      "Robert KB + Git serves as the canonical reference for all decisions, documentation, and version control. No shadow systems, no undocumented changes.",
+      "Robert KB and Git are the only places truth lives. UI surfaces, chat history, and AI memory are temporary — only what is committed counts.",
     highlight: false,
   },
   {
     number: 3,
     title: "Tools change; discipline doesn't",
     description:
-      "AI tools, frameworks, and platforms will evolve. The governance principles that guide their use must remain stable and adaptable.",
+      "AI tools change every quarter. The principles for using them — review gates, source of truth, scoped roles — must outlast any specific tool or vendor.",
     highlight: false,
   },
   {
     number: 4,
     title: "Depth control by design",
     description:
-      "Internal and external visibility layers are intentional. Not everything needs to be public, but the boundary must be explicit.",
+      "Internal complexity stays internal. External views show only what's audience-appropriate. The line between the two is intentional, not accidental.",
     highlight: false,
   },
   {
     number: 5,
     title: "Demonstrate maturity, not readiness",
     description:
-      "This system demonstrates governance maturity and system thinking. It does not claim operational or production readiness where none exists.",
+      "This system shows how AI work can be governed. It does not claim to be production-ready, autonomous, or live-deployed. Operating reality is labeled honestly.",
     highlight: true,
   },
   {
     number: 6,
     title: "Sustainable operating model",
     description:
-      "The system is designed to be operable by one person first, then scalable later. Complexity that cannot be maintained becomes risk.",
+      "Designed for one person to run before scaling. Complexity that cannot be maintained by the operator becomes liability, not leverage.",
     highlight: false,
   },
 ]
