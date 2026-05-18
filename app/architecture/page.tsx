@@ -1,6 +1,27 @@
 import { PageLayout } from "@/components/page-layout"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 
+function FlowArrow({ label }: { label: string }) {
+  return (
+    <div className="flex flex-col items-center gap-1">
+      <svg
+        className="h-6 w-6 text-muted-foreground"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        strokeWidth={2}
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M19 14l-7 7m0 0l-7-7m7 7V3"
+        />
+      </svg>
+      <span className="text-xs italic text-muted-foreground">{label}</span>
+    </div>
+  )
+}
+
 export default function ArchitecturePage() {
   return (
     <PageLayout>
@@ -46,24 +67,15 @@ export default function ArchitecturePage() {
                   </span>
                 </div>
               </div>
+              <p className="mt-4 border-t border-primary/20 pt-3 text-xs italic text-muted-foreground">
+                Hermes operates as a context-aware operator surface. MCP is the
+                read-only bridge for context retrieval — not an autonomous
+                execution path.
+              </p>
             </div>
 
-            {/* Arrow */}
-            <div className="flex justify-center">
-              <svg
-                className="h-6 w-6 text-muted-foreground"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={2}
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M19 14l-7 7m0 0l-7-7m7 7V3"
-                />
-              </svg>
-            </div>
+            {/* Arrow: Executive → Routing */}
+            <FlowArrow label="Strategic intent + scope" />
 
             {/* Layer 2 */}
             <div className="rounded-lg border border-border bg-card p-6">
@@ -89,49 +101,8 @@ export default function ArchitecturePage() {
               </div>
             </div>
 
-            {/* Arrow */}
-            <div className="flex justify-center">
-              <svg
-                className="h-6 w-6 text-muted-foreground"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={2}
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M19 14l-7 7m0 0l-7-7m7 7V3"
-                />
-              </svg>
-            </div>
-
-            {/* Human Review Gate */}
-            <div className="rounded-lg border-2 border-dashed border-amber-500/50 bg-amber-500/5 p-4 text-center">
-              <p className="text-sm font-medium text-amber-700">
-                Human Review Gate
-              </p>
-              <p className="mt-1 text-xs text-muted-foreground">
-                Strategic intervention point for high-risk decisions
-              </p>
-            </div>
-
-            {/* Arrow */}
-            <div className="flex justify-center">
-              <svg
-                className="h-6 w-6 text-muted-foreground"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={2}
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M19 14l-7 7m0 0l-7-7m7 7V3"
-                />
-              </svg>
-            </div>
+            {/* Arrow: Routing → Execution */}
+            <FlowArrow label="Routed task + capability match" />
 
             {/* Layer 3 */}
             <div className="rounded-lg border border-border bg-card p-6">
@@ -163,22 +134,22 @@ export default function ArchitecturePage() {
               </div>
             </div>
 
-            {/* Arrow */}
-            <div className="flex justify-center">
-              <svg
-                className="h-6 w-6 text-muted-foreground"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={2}
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M19 14l-7 7m0 0l-7-7m7 7V3"
-                />
-              </svg>
+            {/* Arrow: Execution → Source-of-Truth */}
+            <FlowArrow label="Reviewed artifact (commit gate)" />
+
+            {/* Human Review Gate (between Execution and Source-of-Truth) */}
+            <div className="rounded-lg border-2 border-dashed border-amber-500/60 bg-amber-500/5 p-4 text-center">
+              <p className="text-sm font-semibold text-amber-700">
+                Human Review Gate
+              </p>
+              <p className="mt-1 text-xs text-muted-foreground">
+                Checkpoint, not a layer — every artifact passes here before it
+                is treated as committed truth.
+              </p>
             </div>
+
+            {/* Arrow into Layer 4 */}
+            <FlowArrow label="Committed truth" />
 
             {/* Layer 4 */}
             <div className="rounded-lg border border-primary/30 bg-primary/5 p-6">
