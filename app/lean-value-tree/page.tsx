@@ -2,46 +2,84 @@
 
 import { PageLayout } from "@/components/page-layout"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
 import { useView } from "@/components/view-toggle"
 
-const lvtLayers = [
+type LvtLayer = {
+  layer: number
+  name: string
+  objective: string
+  metric: string
+  status: "Active" | "Drafted" | "Planned"
+  evidence: string
+  nextMove: string
+}
+
+const lvtLayers: LvtLayer[] = [
   {
     layer: 1,
     name: "Strategic Control",
-    objective: "One source of truth, clear decisions",
-    internal: "Metrics and key results — TBD, in development.",
+    objective:
+      "Maintain decision authority and scope discipline across AI-assisted work",
+    metric: "Decisions logged in KB / total decisions made",
+    status: "Active",
+    evidence: "Robert KB decision logs, cockpit governance v0.3 + R1",
+    nextMove: "Continue weekly KB decision audit",
   },
   {
     layer: 2,
     name: "Execution Leverage",
-    objective: "Tasks → routed outputs without manual orchestration",
-    internal: "Metrics and key results — TBD, in development.",
+    objective: "Increase output per hour without losing review discipline",
+    metric: "Reviewed artifacts shipped per week",
+    status: "Active",
+    evidence: "optimize-worker routing, Codex execution, Hermes review gate",
+    nextMove: "Validate Streamlit harness stays as test surface, not cockpit",
   },
   {
     layer: 3,
     name: "Workforce Efficiency",
-    objective: "Right AI worker, right job, right cost",
-    internal: "Metrics and key results — TBD, in development.",
+    objective:
+      "Operate as a one-person system with AI leverage, before scaling",
+    metric: "Tasks routed without human re-routing",
+    status: "Drafted",
+    evidence: "optimize-worker capability registry, role definitions in KB",
+    nextMove: "Define worker capability boundaries more strictly",
   },
   {
     layer: 4,
     name: "Portfolio Proof",
-    objective: "Convert AI OS work into visible evidence",
-    internal: "Metrics and key results — TBD, in development.",
+    objective: "Demonstrate governance maturity through visible artifacts",
+    metric: "Public-facing artifacts that pass external review",
+    status: "Drafted",
+    evidence: "This profile site (ai-os-profile), KB structure",
+    nextMove: "Complete cockpit patch sequence 1-7, then external review",
   },
   {
     layer: 5,
     name: "Opportunity Intelligence",
-    objective: "Identify what is worth building or selling",
-    internal: "Metrics and key results — TBD, in development.",
+    objective: "Detect money-creation triggers and route to right module",
+    metric: "Triggers detected → modules activated → outcomes",
+    status: "Planned",
+    evidence: "Supernova 10-module design, trigger criteria drafted",
+    nextMove: "Activate first Supernova module on next real trigger",
   },
   {
     layer: 6,
     name: "Monetization",
-    objective: "Turn clarity + AI capability into income",
-    internal: "Metrics and key results — TBD, in development.",
+    objective: "Convert governance maturity into sustainable revenue",
+    metric: "Revenue events tied to AI OS leverage",
+    status: "Planned",
+    evidence: "TBD — pending Supernova first signal",
+    nextMove:
+      "Design first revenue experiment after Portfolio Proof completes",
   },
 ]
+
+const statusBadgeClass: Record<LvtLayer["status"], string> = {
+  Active: "bg-emerald-500/10 text-emerald-700",
+  Drafted: "bg-orange-500/10 text-orange-700",
+  Planned: "bg-muted-foreground/20 text-muted-foreground",
+}
 
 export default function LeanValueTreePage() {
   const { view } = useView()
@@ -84,11 +122,14 @@ export default function LeanValueTreePage() {
       <section className="border-t border-border bg-muted/30 py-12">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
           <h2 className="text-2xl font-semibold tracking-tight text-foreground">
-            {view === "external" ? "Strategic Layers" : "Strategic Layers (Internal View)"}
+            {view === "external"
+              ? "Strategic Layers"
+              : "Strategic Layers (Internal View)"}
           </h2>
           {view === "internal" && (
             <p className="mt-2 text-sm text-muted-foreground">
-              Detailed metrics and objects per layer — TBD, in development.
+              Each layer shows objective, metric, status, evidence, and next
+              move — manually curated snapshot.
             </p>
           )}
           <div className="mt-8 space-y-4">
@@ -104,17 +145,42 @@ export default function LeanValueTreePage() {
                     </div>
                     {/* Content */}
                     <div className="flex-1 p-4 sm:p-6">
-                      <h3 className="font-semibold text-foreground">
-                        {item.name}
-                      </h3>
-                      <p className="mt-1 text-sm text-muted-foreground">
-                        {item.objective}
-                      </p>
-                      {view === "internal" && (
-                        <p className="mt-3 rounded bg-muted/50 px-3 py-2 text-xs text-muted-foreground">
-                          {item.internal}
-                        </p>
-                      )}
+                      <div className="flex flex-wrap items-start justify-between gap-2">
+                        <h3 className="font-semibold text-foreground">
+                          {item.name}
+                        </h3>
+                        <Badge
+                          variant="secondary"
+                          className={statusBadgeClass[item.status]}
+                        >
+                          {item.status}
+                        </Badge>
+                      </div>
+                      <dl className="mt-3 grid grid-cols-1 gap-x-6 gap-y-2 text-sm sm:grid-cols-[8rem_1fr]">
+                        <dt className="font-medium text-foreground">
+                          Objective
+                        </dt>
+                        <dd className="text-muted-foreground">
+                          {item.objective}
+                        </dd>
+
+                        <dt className="font-medium text-foreground">Metric</dt>
+                        <dd className="text-muted-foreground">{item.metric}</dd>
+
+                        <dt className="font-medium text-foreground">
+                          Evidence
+                        </dt>
+                        <dd className="text-muted-foreground">
+                          {item.evidence}
+                        </dd>
+
+                        <dt className="font-medium text-foreground">
+                          Next move
+                        </dt>
+                        <dd className="text-muted-foreground">
+                          {item.nextMove}
+                        </dd>
+                      </dl>
                     </div>
                   </div>
                 </CardContent>
@@ -132,11 +198,12 @@ export default function LeanValueTreePage() {
               {view === "external" ? (
                 <>
                   Toggle to <span className="font-medium">Internal</span> view
-                  (top-right) to see additional development notes.
+                  (top-right) for additional operating notes.
                 </>
               ) : (
                 <>
-                  Internal view shows work-in-progress details. Toggle to{" "}
+                  Internal view shows the same five fields per layer with the
+                  internal-mode heading. Toggle to{" "}
                   <span className="font-medium">External</span> for the public
                   summary.
                 </>
