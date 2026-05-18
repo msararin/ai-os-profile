@@ -41,7 +41,7 @@ export function ViewToggle({ prominent = false }: { prominent?: boolean }) {
       <button
         onClick={() => setView("external")}
         className={cn(
-          "rounded px-2 py-1 font-medium transition-colors",
+          "rounded px-2 py-1 font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-1",
           view === "external"
             ? "bg-background text-foreground shadow-sm"
             : "text-muted-foreground hover:text-foreground"
@@ -52,7 +52,7 @@ export function ViewToggle({ prominent = false }: { prominent?: boolean }) {
       <button
         onClick={() => setView("internal")}
         className={cn(
-          "rounded px-2 py-1 font-medium transition-colors",
+          "rounded px-2 py-1 font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-1",
           view === "internal"
             ? "bg-background text-foreground shadow-sm"
             : "text-muted-foreground hover:text-foreground"

@@ -24,7 +24,7 @@ export function SiteHeader() {
               key={item.href}
               href={item.href}
               className={cn(
-                "px-2 py-1 text-sm font-medium transition-colors hover:text-primary sm:px-3",
+                "rounded px-2 py-1 text-sm font-medium transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-1 sm:px-3",
                 pathname === item.href
                   ? "text-primary"
                   : "text-muted-foreground"
