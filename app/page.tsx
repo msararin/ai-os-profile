@@ -1,10 +1,61 @@
+"use client"
+
 import Link from "next/link"
 import { PageLayout } from "@/components/page-layout"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
+import { useView } from "@/components/view-toggle"
+
+const workstreams = [
+  {
+    name: "optimize-worker",
+    status: "Active",
+    owner: "Lyn+Codex",
+    nextAction: "Decide if Streamlit harness keeps growing or freezes",
+    badgeClass: "bg-emerald-500/10 text-emerald-700",
+  },
+  {
+    name: "Hermes + MCP",
+    status: "Active trial",
+    owner: "Lyn",
+    nextAction: "Continue context-bridge use, watch for autonomy creep",
+    badgeClass: "bg-teal-500/10 text-teal-700",
+  },
+  {
+    name: "Supernova",
+    status: "Drafted",
+    owner: "Lyn",
+    nextAction: "10 trigger-activated modules; activate per money trigger",
+    badgeClass: "bg-orange-500/10 text-orange-700",
+  },
+  {
+    name: "Big Crew",
+    status: "Planned",
+    owner: "Lyn",
+    nextAction: "Define scope after Supernova validates revenue path",
+    badgeClass: "bg-muted-foreground/20 text-muted-foreground",
+  },
+  {
+    name: "Investment Team",
+    status: "Planned",
+    owner: "Lyn",
+    nextAction: "Defer until Supernova produces first signal",
+    badgeClass: "bg-muted-foreground/20 text-muted-foreground",
+  },
+]
+
+const backlogSnapshot = [
+  ["Patch 3 internal mode workstream snapshot", "IN PROGRESS"],
+  ["Patch 4 architecture page", "PLANNED"],
+  ["Patch 5 LVT page", "PLANNED"],
+  ["Patch 6 principles page", "PLANNED"],
+  ["Patch 7 final consistency audit", "PLANNED"],
+]
 
 export default function HomePage() {
+  const { view } = useView()
+
   return (
     <PageLayout>
       {/* Hero Section */}
@@ -31,6 +82,8 @@ export default function HomePage() {
         </div>
       </section>
 
+      {view === "external" ? (
+        <>
       {/* Executive Summary */}
       <section className="py-16">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
@@ -272,14 +325,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-      {/* Internal Mode Hint */}
-      <section className="pb-4">
-        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-          <p className="text-xs text-muted-foreground">
-            For technical reviewers: switch the top-right toggle to Internal to see workstream status, backlog snapshot, and operating discipline. (Internal view is being filled in iteratively — current state may show partial content.)
-          </p>
-        </div>
-      </section>
       {/* MCP Footnote */}
       <section className="pb-8">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
@@ -288,6 +333,114 @@ export default function HomePage() {
           </p>
         </div>
       </section>
+        </>
+      ) : (
+        <>
+          {/* Workstream Status */}
+          <section className="py-16">
+            <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+              <h2 className="text-2xl font-semibold tracking-tight text-foreground">
+                Workstream Status
+              </h2>
+              <div className="mt-8 overflow-hidden rounded-lg border border-border bg-card">
+                <table className="min-w-full divide-y divide-border">
+                  <thead className="bg-muted/50">
+                    <tr>
+                      <th
+                        scope="col"
+                        className="px-4 py-3 text-left text-sm font-medium text-foreground"
+                      >
+                        Workstream
+                      </th>
+                      <th
+                        scope="col"
+                        className="px-4 py-3 text-left text-sm font-medium text-foreground"
+                      >
+                        Status
+                      </th>
+                      <th
+                        scope="col"
+                        className="px-4 py-3 text-left text-sm font-medium text-foreground"
+                      >
+                        Owner
+                      </th>
+                      <th
+                        scope="col"
+                        className="px-4 py-3 text-left text-sm font-medium text-foreground"
+                      >
+                        Next action
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-border">
+                    {workstreams.map((workstream) => (
+                      <tr key={workstream.name}>
+                        <td className="whitespace-nowrap px-4 py-3 text-sm font-medium text-foreground">
+                          {workstream.name}
+                        </td>
+                        <td className="px-4 py-3 text-sm">
+                          <Badge
+                            variant="secondary"
+                            className={workstream.badgeClass}
+                          >
+                            {workstream.status}
+                          </Badge>
+                        </td>
+                        <td className="whitespace-nowrap px-4 py-3 text-sm text-muted-foreground">
+                          {workstream.owner}
+                        </td>
+                        <td className="px-4 py-3 text-sm text-muted-foreground">
+                          {workstream.nextAction}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </section>
+
+          {/* Backlog Snapshot */}
+          <section className="border-t border-border bg-muted/30 py-16">
+            <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+              <h2 className="text-2xl font-semibold tracking-tight text-foreground">
+                Cockpit patch sequence — manually curated snapshot, not live.
+              </h2>
+              <div className="mt-8 space-y-3">
+                {backlogSnapshot.map(([label, status]) => (
+                  <div
+                    key={label}
+                    className="flex flex-col gap-2 rounded-lg border border-border bg-card px-4 py-3 sm:flex-row sm:items-center sm:justify-between"
+                  >
+                    <p className="text-sm font-medium text-foreground">
+                      {label}
+                    </p>
+                    <Badge
+                      variant="secondary"
+                      className={
+                        status === "IN PROGRESS"
+                          ? "bg-emerald-500/10 text-emerald-700"
+                          : "bg-muted-foreground/20 text-muted-foreground"
+                      }
+                    >
+                      {status}
+                    </Badge>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          {/* Operating Discipline Note */}
+          <section className="border-t border-border py-12">
+            <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+              <p className="text-sm italic text-muted-foreground">
+                Internal view shows a manually-curated snapshot of workstream status, not live data. Updates happen when the cockpit is patched. Source of truth remains Robert KB + Git — this view is a read surface, not a control plane.
+              </p>
+            </div>
+          </section>
+        </>
+      )}
     </PageLayout>
   )
 }
