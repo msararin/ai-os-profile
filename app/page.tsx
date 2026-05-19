@@ -46,11 +46,11 @@ const workstreams = [
 ]
 
 const backlogSnapshot = [
-  ["Patch 3 internal mode workstream snapshot", "IN PROGRESS"],
-  ["Patch 4 architecture page", "PLANNED"],
-  ["Patch 5 LVT page", "PLANNED"],
-  ["Patch 6 principles page", "PLANNED"],
-  ["Patch 7 final consistency audit", "PLANNED"],
+  ["Patch 3 internal mode workstream snapshot", "COMPLETE"],
+  ["Patch 4 architecture page", "COMPLETE"],
+  ["Patch 5 LVT page", "COMPLETE"],
+  ["Patch 6 principles page", "COMPLETE"],
+  ["Patch 7 final consistency audit", "COMPLETE"],
 ]
 
 export default function HomePage() {
@@ -404,7 +404,7 @@ export default function HomePage() {
           <section className="border-t border-border bg-muted/30 py-16">
             <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
               <h2 className="text-2xl font-semibold tracking-tight text-foreground">
-                Cockpit patch sequence — manually curated snapshot, not live.
+                Cockpit patch sequence — completed validation snapshot, not live.
               </h2>
               <div className="mt-8 space-y-3">
                 {backlogSnapshot.map(([label, status]) => (
@@ -418,8 +418,10 @@ export default function HomePage() {
                     <Badge
                       variant="secondary"
                       className={
-                        status === "IN PROGRESS"
+                        status === "COMPLETE"
                           ? "bg-emerald-500/10 text-emerald-700"
+                          : status === "IN PROGRESS"
+                          ? "bg-amber-500/10 text-amber-700"
                           : "bg-muted-foreground/20 text-muted-foreground"
                       }
                     >
