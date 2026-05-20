@@ -67,8 +67,24 @@ If `ViewProvider` location ever needs to change, the regression test MUST verify
 
 ### System State (Home, External)
 2 columns, 6 items each:
-- Current State: 6 items (5 Existing + 1 Drafted)
-- To-Be State: 6 items (3 Planned + 3 TBD)
+- Current State: 6 items (6 Existing)
+- To-Be State: 6 items (2 Planned + 4 Parked/TBD)
+
+Current State must include public-safe AIOS fallback + benchmark status:
+- Robert KB + Git = source of truth
+- Cockpit governance principles v0.3 + R1 committed
+- AI OS architecture direction locked
+- Execution surfaces exist (optimize-worker, Hermes, Codex)
+- Fallback routing policy active; Hermes is not a single point of failure
+- Benchmark trace is a centralized Definition of Done gate
+
+To-Be State must include:
+- Public-facing AI Orchestration Governance profile
+- Architecture, principles, LVT shown clearly
+- Provider/model expansion waits for benchmark evidence unless Lyn overrides
+- No new provider API key needed now
+- Future parked slice: automate benchmark_trace.json and collect at least 5 traces
+- Only then consider a read-only telemetry dashboard
 
 ### Core Operating Beliefs (Home, External)
 3 numbered items, exact titles:
@@ -151,7 +167,7 @@ Closing quote: `"AI orchestration is program management. Tools change. Governanc
 
 ### Top-Right Metadata Block (every page)
 ```
-Last updated: 2026-05-18 21:00 ICT
+Last updated: 2026-05-20 08:15 ICT
 Source: Robert KB + Git
 Version: v1.1 rescue draft
 ```
@@ -185,6 +201,20 @@ External / Internal button group, top-right of header. External = default. State
 5. `next-env.d.ts` modified locally (auto-managed by Next, ignore)
 
 These are NOT v2.0.0 blockers. They are v3.0.0 cleanup targets.
+
+## v2.x Status Patch: Fallback + Benchmark
+
+Public-safe status added 2026-05-20:
+
+- AIOS fallback routing policy exists.
+- Hermes is not treated as a single point of failure.
+- Fallback routing is based on task type, failure mode, risk level, and available worker/model.
+- No new provider API key is needed now.
+- Provider/model expansion is blocked until benchmark evidence exists unless Lyn overrides.
+- Benchmark trace is now a centralized Definition of Done gate.
+- Future parked item: automate `benchmark_trace.json`, collect at least 5 routed traces, then consider a read-only telemetry dashboard.
+
+This is a content/status patch only. It does not add a provider integration, API key, runtime config, database, auth, or telemetry dashboard.
 
 ## Regression Test Gate
 

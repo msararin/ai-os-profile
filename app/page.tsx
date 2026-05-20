@@ -12,14 +12,14 @@ const workstreams = [
     name: "optimize-worker",
     status: "Active",
     owner: "Lyn+Codex",
-    nextAction: "Decide if Streamlit harness keeps growing or freezes",
+    nextAction: "Keep benchmark_trace.json automation parked until a thin slice is chosen",
     badgeClass: "bg-emerald-500/10 text-emerald-700",
   },
   {
-    name: "Hermes + MCP",
-    status: "Active trial",
+    name: "Fallback routing",
+    status: "Policy active",
     owner: "Lyn",
-    nextAction: "Continue context-bridge use, watch for autonomy creep",
+    nextAction: "Route by task type, failure mode, risk, and available worker/model",
     badgeClass: "bg-teal-500/10 text-teal-700",
   },
   {
@@ -179,14 +179,6 @@ export default function HomePage() {
                       Drafted
                     </Badge>
                     <span className="text-muted-foreground">
-                      Lean Value Tree v0.1 drafted
-                    </span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <Badge variant="secondary" className="mt-0.5 shrink-0 bg-primary/10 text-primary">
-                      Existing
-                    </Badge>
-                    <span className="text-muted-foreground">
                       AI OS architecture direction locked
                     </span>
                   </li>
@@ -199,11 +191,19 @@ export default function HomePage() {
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <Badge variant="secondary" className="mt-0.5 shrink-0 bg-amber-500/10 text-amber-700">
-                      Drafted
+                    <Badge variant="secondary" className="mt-0.5 shrink-0 bg-primary/10 text-primary">
+                      Existing
                     </Badge>
                     <span className="text-muted-foreground">
-                      Profile site in progress
+                      Fallback routing policy active; Hermes is not a single point of failure
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <Badge variant="secondary" className="mt-0.5 shrink-0 bg-primary/10 text-primary">
+                      Existing
+                    </Badge>
+                    <span className="text-muted-foreground">
+                      Benchmark trace is a centralized Definition of Done gate
                     </span>
                   </li>
                 </ul>
@@ -239,31 +239,31 @@ export default function HomePage() {
                       Planned
                     </Badge>
                     <span className="text-muted-foreground">
-                      Internal/external depth control
+                      Provider/model expansion waits for benchmark evidence unless Lyn overrides
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
                     <Badge variant="secondary" className="mt-0.5 shrink-0 bg-muted-foreground/20 text-muted-foreground">
-                      TBD
+                      Parked
                     </Badge>
                     <span className="text-muted-foreground">
-                      Active cockpit
+                      No new provider API key needed now
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
                     <Badge variant="secondary" className="mt-0.5 shrink-0 bg-muted-foreground/20 text-muted-foreground">
-                      TBD
+                      Parked
                     </Badge>
                     <span className="text-muted-foreground">
-                      Backend proxy, Opus integration
+                      Automate benchmark_trace.json and collect at least 5 routed traces
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
                     <Badge variant="secondary" className="mt-0.5 shrink-0 bg-muted-foreground/20 text-muted-foreground">
-                      TBD
+                      Parked
                     </Badge>
                     <span className="text-muted-foreground">
-                      Supernova demo, monetization tracking
+                      Read-only telemetry dashboard only after benchmark trace evidence exists
                     </span>
                   </li>
                 </ul>
