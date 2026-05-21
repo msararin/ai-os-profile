@@ -1,8 +1,9 @@
-# ai-os-profile — v2.0.0 Spec Lock
+# ai-os-profile — v2.1 Spec Lock
 
 ## Status
 
 LOCKED 2026-05-19 by Lyn approval after live visual + functional review.
+UPDATED 2026-05-21 by Lyn approval for Patch 2 homepage positioning, Learning evidence dates, and public toggle removal.
 
 This document is the canonical reference for v2.0.0 of `msararin/ai-os-profile`. Any change to this site MUST either:
 1. Pass the v2 regression test (`scripts/regression-v2.sh` in this repo) → minor patch within v2.x
@@ -24,7 +25,7 @@ Mixed external-first. Portfolio case study on AI orchestration governance. NOT a
 
 ## Site Structure
 
-4 pages + persistent header/footer + External/Internal mode toggle.
+5 pages + persistent header/footer. The public profile no longer exposes the External/Internal mode toggle.
 
 ### Pages
 
@@ -33,12 +34,13 @@ Mixed external-first. Portfolio case study on AI orchestration governance. NOT a
 | `/`                 | AI Orchestration Governance | `app/page.tsx` (client, has Internal branch) |
 | `/architecture`     | 4-Layer Architecture   | `app/architecture/page.tsx` (server)       |
 | `/lean-value-tree`  | Lean Value Tree        | `app/lean-value-tree/page.tsx` (client)    |
+| `/achievement-learning` | Achievement & Learning | `app/achievement-learning/page.tsx` (server) |
 | `/principles`       | Governance Principles  | `app/principles/page.tsx` (server)         |
 
 ### Shared Components
 
 - `components/page-layout.tsx` — header + metadata + main + footer shell (client, NO ViewProvider)
-- `components/site-header.tsx` — sticky nav + ViewToggle (client)
+- `components/site-header.tsx` — sticky nav, no public mode toggle (client)
 - `components/site-footer.tsx` — 3-column metadata + copyright line (server)
 - `components/page-metadata.tsx` — top-right block (server)
 - `components/view-toggle.tsx` — ViewProvider + ViewToggle button group (client)
@@ -54,16 +56,22 @@ If `ViewProvider` location ever needs to change, the regression test MUST verify
 
 ### Hero (Home)
 - H1: `AI Orchestration Governance`
-- Subtitle: `A portfolio case study on designing governance, visibility, and decision flow for AI-assisted work systems.`
-- Tagline: `Tools change. Governance discipline doesn't.`
+- Subtitle: `Tools change. Governance discipline doesn't.`
+- Hero hook: `AIOS is a working evidence trail for human-led AI work governance.`
 - 2 CTAs: `View Architecture` (filled), `View Principles` (outline)
 
-### Executive Summary (Home, External)
-4 cards, exact titles:
-1. `What this is`
-2. `What this proves`
-3. `What this is not`
-4. `Why it matters`
+### What Makes This Different? (Home)
+The old `Executive Summary` card grid is removed in v2.1.
+
+5 differentiation cards, exact titles:
+1. `Separate role, model, provider, and cost`
+2. `Benchmark trace as Definition of Done gate`
+3. `Learning from failure with policy response`
+4. `Human review gates where risk matters`
+5. `Privacy-first curated context`
+
+Portfolio disclaimer must remain visible:
+`This is a portfolio case study, not a production product.`
 
 ### System State (Home, External)
 2 columns, 6 items each:
@@ -92,8 +100,10 @@ To-Be State must include:
 2. `Status must be actionable`
 3. `AI output is not truth until reviewed and committed`
 
-### Internal View (Home, Internal)
-Three sections in this order:
+### Cockpit Evidence (Home)
+Patch 1 internal content is now public-safe cockpit evidence. It is reachable without a site-wide mode toggle through the Home page sidebar menu.
+
+Sections:
 
 **Section 1: Workstream Status table** — 5 rows, 4 columns (Workstream / Status / Owner / Next action)
 - optimize-worker (Active, green, Lyn+Codex)
@@ -110,8 +120,14 @@ Three sections in this order:
 - Patch 6 principles page
 - Patch 7 final consistency audit
 
-**Section 3: Operating discipline note** — italic small text:
-`Internal view shows a manually-curated snapshot of workstream status, not live data. Updates happen when the cockpit is patched. Source of truth remains Robert KB + Git — this view is a read surface, not a control plane.`
+**Section 3: Operating discipline note** — italic small text includes:
+`Source of truth remains Robert KB + Git. This view is a read surface, not a control plane.`
+
+### Achievement & Learning Page
+Learning Curve subheading:
+`May 18–21, 2026 | 5 phases, 6 milestones, evidence-backed commits`
+
+5 phase cards show date badges. 6 milestone cards show date badges and evidence references.
 
 ### Architecture Page
 4 layers in order with exact tag wording:
@@ -179,10 +195,10 @@ NOTE: `Version: v1.1 rescue draft` is locked content from the original brief. Th
 `© 2026 AI Orchestration Governance — A portfolio case study by Lyn (msararin). Source of truth: Robert KB + Git.`
 
 ### Navigation (every page)
-4 tabs in order: `Home | Architecture | LVT | Principles`
+5 tabs in order: `Home | Architecture | LVT | Learning | Principles`
 
 ### Toggle (every page)
-External / Internal button group, top-right of header. External = default. State persists across navigation (because ViewProvider is at root).
+No External/Internal button group appears in the public header as of v2.1. `ViewProvider` remains mounted at root for legacy page compatibility, but the public profile should not expose mode-switching controls in `components/site-header.tsx`.
 
 ## Tech Stack (locked)
 

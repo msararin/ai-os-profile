@@ -75,7 +75,7 @@ export function CockpitSidebar({
     <aside className="border-b border-border bg-muted/30 lg:w-72 lg:shrink-0 lg:border-b-0 lg:border-r">
       <div className="mx-auto max-w-5xl px-4 py-4 sm:px-6 lg:sticky lg:top-14 lg:mx-0 lg:max-w-none lg:px-6 lg:py-8">
         <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-          Internal Cockpit
+          Cockpit Menu
         </p>
         <nav className="mt-4 flex gap-2 overflow-x-auto pb-1 lg:flex-col lg:overflow-visible lg:pb-0">
           {sections.map((section) => {

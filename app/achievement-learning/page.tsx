@@ -23,7 +23,7 @@ export default function AchievementLearningPage() {
             Learning Curve
           </h2>
           <p className="mt-2 text-sm text-muted-foreground">
-            Five phases from chaos to governed execution.
+            May 18–21, 2026 | 5 phases, 6 milestones, evidence-backed commits
           </p>
           <div className="mt-8 space-y-6">
             {learningPhases.map((phase) => (
@@ -35,11 +35,17 @@ export default function AchievementLearningPage() {
                     </CardTitle>
                     <Badge
                       variant="secondary"
-                      className={`${phase.badgeClass} w-fit`}
+                      className="w-fit bg-muted text-xs text-muted-foreground"
                     >
-                      {phase.status}
+                      {phase.date}
                     </Badge>
                   </div>
+                  <Badge
+                    variant="secondary"
+                    className={`${phase.badgeClass} w-fit`}
+                  >
+                      {phase.status}
+                  </Badge>
                 </CardHeader>
                 <CardContent>
                   <p className="text-sm font-medium text-foreground">
@@ -107,13 +113,24 @@ export default function AchievementLearningPage() {
             {milestones.map((milestone) => (
               <Card key={milestone.id} className="border-border bg-card">
                 <CardHeader className="pb-3">
-                  <CardTitle className="text-base font-medium text-primary">
-                    {milestone.title}
-                  </CardTitle>
+                  <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                    <CardTitle className="text-base font-medium text-primary">
+                      {milestone.title}
+                    </CardTitle>
+                    <Badge
+                      variant="secondary"
+                      className="w-fit bg-muted text-xs text-muted-foreground"
+                    >
+                      {milestone.date}
+                    </Badge>
+                  </div>
                 </CardHeader>
                 <CardContent>
                   <p className="text-sm text-muted-foreground">
                     {milestone.description}
+                  </p>
+                  <p className="mt-2 text-xs text-muted-foreground">
+                    Evidence: {milestone.evidence}
                   </p>
                 </CardContent>
               </Card>
@@ -163,6 +180,7 @@ const learningPhases = [
   {
     id: 1,
     title: "Phase 1: Tool Chaos",
+    date: "May 18, 2026",
     challenge: "Scattered AI tools, no governance, output treated as truth",
     solution: "Established Robert KB + Git as canonical source of truth",
     status: "Resolved",
@@ -171,6 +189,7 @@ const learningPhases = [
   {
     id: 2,
     title: "Phase 2: Source of Truth Protocol",
+    date: "May 18, 2026",
     challenge: "AI output drift, no version control, unreviewable changes",
     solution: "Created commit-before-truth protocol, review gates, Git integration",
     status: "Active",
@@ -179,6 +198,7 @@ const learningPhases = [
   {
     id: 3,
     title: "Phase 3: Execution Governance",
+    date: "May 19-20, 2026",
     challenge: "Fast execution without traceability, no Definition of Done",
     solution: "Introduced benchmark trace, role boundaries, task packet workflow",
     status: "Active",
@@ -187,6 +207,7 @@ const learningPhases = [
   {
     id: 4,
     title: "Phase 4: Fallback & Resilience",
+    date: "May 20-21, 2026",
     challenge: "402 incident exposed single point of failure",
     solution: "Implemented fallback routing policy, profile-based routing, smoke tests",
     status: "Smoke-proven",
@@ -195,6 +216,7 @@ const learningPhases = [
   {
     id: 5,
     title: "Phase 5: Portfolio Positioning",
+    date: "May 21, 2026 (ongoing)",
     challenge: "Internal complexity not portfolio-ready",
     solution: "v2.0.0 spec lock, regression gate, public-safe profile, honest labeling",
     status: "In Progress",
@@ -206,37 +228,49 @@ const milestones = [
   {
     id: 1,
     title: "402 Incident Recovery",
+    date: "May 20-21, 2026",
     description:
       "HTTP 402 credit exhaustion led to fallback routing policy and documented route hygiene.",
+    evidence: "commits a2d0522 → 8900af0",
   },
   {
     id: 2,
     title: "Benchmark Trace as DoD Gate",
+    date: "May 19-20, 2026",
     description:
       "Centralized Definition of Done: routed tasks record model, validation, and execution evidence where available.",
+    evidence: "commit 4433b1d",
   },
   {
     id: 3,
     title: "Profile-Based Routing Smoke Test",
+    date: "May 21, 2026",
     description:
       "openrouter-sonnet-kb-stage-manager profile proven for bounded KB stage-manager work.",
+    evidence: "commit bcfa934",
   },
   {
     id: 4,
     title: "v2.0.0 Spec Lock + Regression Gate",
+    date: "May 19, 2026",
     description:
       "Regression test established as a gate; no v2.x patch bypasses validation.",
+    evidence: "commit 886a687",
   },
   {
     id: 5,
     title: "Hermes Session Continuity Contract",
+    date: "May 21, 2026",
     description:
       "Codified memory hierarchy: session, KB, Git, and trace each have defined authority.",
+    evidence: "commit 1a9ae62",
   },
   {
     id: 6,
     title: "Worker Routing Policy Clarified",
+    date: "May 21, 2026",
     description:
       "Hermes acts as stage manager, not UI implementer. Implementation tasks route to Codex by default.",
+    evidence: "commit bea29be",
   },
 ]

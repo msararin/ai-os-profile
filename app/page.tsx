@@ -10,7 +10,39 @@ import {
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { useView } from "@/components/view-toggle"
+
+const differentiationClaims = [
+  {
+    id: 1,
+    title: "Separate role, model, provider, and cost",
+    description:
+      "AIOS separates who does the work (role) from which model executes it from how much it costs. Most tools conflate these, making cost and traceability unclear.",
+  },
+  {
+    id: 2,
+    title: "Benchmark trace as Definition of Done gate",
+    description:
+      "Tasks aren't complete until benchmark trace is recorded. This isn't telemetry after the fact; it's a gate before commit.",
+  },
+  {
+    id: 3,
+    title: "Learning from failure with policy response",
+    description:
+      "When a 402 incident occurred, the response was a documented fallback routing policy and smoke test, not silent fixes.",
+  },
+  {
+    id: 4,
+    title: "Human review gates where risk matters",
+    description:
+      "AI helps fast. But outputs pass through human review gates for money, privacy, reputation, and irreversible decisions.",
+  },
+  {
+    id: 5,
+    title: "Privacy-first curated context",
+    description:
+      "AI workers consume only curated, approved context. Full KB access is not given; context is allowlisted and leak-scanned.",
+  },
+]
 
 const workstreams = [
   {
@@ -73,7 +105,7 @@ const proofItems = [
 ]
 
 const decisionItems = [
-  "Internal view is a manually-curated read surface, not a live control plane.",
+  "Cockpit evidence is manually curated, not live operational data.",
   "Provider/model expansion waits for benchmark evidence unless Lyn overrides.",
   "MCP remains a controlled read-only context bridge until production approval.",
 ]
@@ -85,7 +117,6 @@ const nextActionItems = [
 ]
 
 export default function HomePage() {
-  const { view } = useView()
   const [activeSection, setActiveSection] =
     useState<CockpitSectionId>("system-status")
 
@@ -98,11 +129,10 @@ export default function HomePage() {
             AI Orchestration Governance
           </h1>
           <p className="mt-4 max-w-2xl text-pretty text-lg text-muted-foreground">
-            A portfolio case study on designing governance, visibility, and
-            decision flow for AI-assisted work systems.
-          </p>
-          <p className="mt-2 text-sm font-medium text-primary">
             Tools change. Governance discipline doesn&apos;t.
+          </p>
+          <p className="mt-2 max-w-2xl text-pretty text-lg font-medium text-primary">
+            AIOS is a working evidence trail for human-led AI work governance.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Button asChild>
@@ -115,64 +145,36 @@ export default function HomePage() {
         </div>
       </section>
 
-      {view === "external" ? (
-        <>
-      {/* Executive Summary */}
+      {/* Differentiation */}
       <section className="py-16">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
           <h2 className="text-2xl font-semibold tracking-tight text-foreground">
-            Executive Summary
+            What Makes This Different?
           </h2>
-          <div className="mt-8 grid gap-6 sm:grid-cols-2">
-            <Card className="border-border bg-card">
-              <CardHeader className="pb-3">
-                <CardTitle className="text-base font-medium text-primary">
-                  What this is
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground">
-                  A portfolio case study on designing AI orchestration with governance discipline: source of truth, role boundaries, human review gates, and execution visibility.
-                </p>
-              </CardContent>
-            </Card>
-            <Card className="border-border bg-card">
-              <CardHeader className="pb-3">
-                <CardTitle className="text-base font-medium text-primary">
-                  What this proves
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground">
-                  That AI-assisted work systems can be designed with the same discipline as enterprise software: documented decisions, version-controlled truth, scoped roles, and review gates before anything is treated as committed.
-                </p>
-              </CardContent>
-            </Card>
-            <Card className="border-border bg-card">
-              <CardHeader className="pb-3">
-                <CardTitle className="text-base font-medium text-primary">
-                  What this is not
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground">
-                  A production-ready cockpit, an autonomous AI operating system, or a live dispatcher with backend integration. Operating reality is honestly labeled.
-                </p>
-              </CardContent>
-            </Card>
-            <Card className="border-border bg-card">
-              <CardHeader className="pb-3">
-                <CardTitle className="text-base font-medium text-primary">
-                  Why it matters
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground">
-                  AI work without governance creates drift, false confidence, and unreviewable output. This system shows how to keep AI fast without losing control of truth.
-                </p>
-              </CardContent>
-            </Card>
+          <p className="mt-4 max-w-3xl text-sm text-muted-foreground">
+            Most AI tools focus on building agents or automating workflows.
+            AIOS focuses on a harder problem: How do you govern AI work when
+            multiple models, roles, and costs interact?
+          </p>
+          <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {differentiationClaims.map((claim) => (
+              <Card key={claim.id} className="border-border bg-card">
+                <CardHeader className="pb-3">
+                  <CardTitle className="text-base font-medium text-primary">
+                    {claim.title}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm text-muted-foreground">
+                    {claim.description}
+                  </p>
+                </CardContent>
+              </Card>
+            ))}
           </div>
+          <p className="mt-8 text-sm italic text-muted-foreground">
+            This is a portfolio case study, not a production product.
+          </p>
         </div>
       </section>
 
@@ -366,9 +368,17 @@ export default function HomePage() {
           </p>
         </div>
       </section>
-        </>
-      ) : (
-        <div className="border-t border-border lg:flex">
+
+      <section className="border-t border-border bg-muted/30">
+        <div className="mx-auto max-w-5xl px-4 pt-16 sm:px-6 lg:px-8">
+          <h2 className="text-2xl font-semibold tracking-tight text-foreground">
+            Cockpit Evidence
+          </h2>
+          <p className="mt-2 text-sm text-muted-foreground">
+            Public-safe operating evidence from the AIOS cockpit.
+          </p>
+        </div>
+        <div className="mt-8 border-t border-border lg:flex">
           <CockpitSidebar
             activeSection={activeSection}
             onSectionChange={setActiveSection}
@@ -388,7 +398,7 @@ export default function HomePage() {
             </div>
           </section>
         </div>
-      )}
+      </section>
     </PageLayout>
   )
 }
@@ -415,7 +425,7 @@ function InternalSystemStatus() {
     <div>
       <SectionHeading
         title="System Status"
-        description="Current internal operating state for the cockpit."
+        description="Current operating state for the public cockpit evidence view."
       />
       <div className="mt-8 grid gap-4 sm:grid-cols-2">
         {systemStatusItems.map(([label, value]) => (

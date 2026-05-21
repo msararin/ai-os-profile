@@ -3,7 +3,6 @@
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
-import { ViewToggle } from "./view-toggle"
 
 const navigation = [
   { name: "Home", href: "/" },
@@ -18,7 +17,7 @@ export function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="mx-auto flex min-h-14 max-w-5xl items-center justify-between gap-3 px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto flex min-h-14 max-w-5xl items-center justify-center px-4 sm:px-6 lg:px-8">
         <nav className="flex min-w-0 items-center gap-1 overflow-x-auto sm:gap-4">
           {navigation.map((item) => (
             <Link
@@ -35,7 +34,6 @@ export function SiteHeader() {
             </Link>
           ))}
         </nav>
-        <ViewToggle prominent={pathname === "/"} />
       </div>
     </header>
   )
