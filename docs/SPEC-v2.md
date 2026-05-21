@@ -3,7 +3,7 @@
 ## Status
 
 LOCKED 2026-05-19 by Lyn approval after live visual + functional review.
-UPDATED 2026-05-21 by Lyn approval for Patch 2 homepage positioning, Learning evidence dates, and public toggle removal.
+UPDATED 2026-05-21 by Lyn approval for Patch 2 homepage positioning, Learning evidence dates, public toggle removal, and Workstreams IA separation.
 
 This document is the canonical reference for v2.0.0 of `msararin/ai-os-profile`. Any change to this site MUST either:
 1. Pass the v2 regression test (`scripts/regression-v2.sh` in this repo) → minor patch within v2.x
@@ -25,17 +25,18 @@ Mixed external-first. Portfolio case study on AI orchestration governance. NOT a
 
 ## Site Structure
 
-5 pages + persistent header/footer. The public profile no longer exposes the External/Internal mode toggle.
+6 pages + persistent header/footer. The public profile no longer exposes the External/Internal mode toggle.
 
 ### Pages
 
 | Path                | Title                  | Component                                  |
 |---------------------|------------------------|--------------------------------------------|
-| `/`                 | AI Orchestration Governance | `app/page.tsx` (client, has Internal branch) |
+| `/`                 | AI Orchestration Governance | `app/page.tsx` (server) |
 | `/architecture`     | 4-Layer Architecture   | `app/architecture/page.tsx` (server)       |
 | `/lean-value-tree`  | Lean Value Tree        | `app/lean-value-tree/page.tsx` (client)    |
 | `/achievement-learning` | Achievement & Learning | `app/achievement-learning/page.tsx` (server) |
 | `/principles`       | Governance Principles  | `app/principles/page.tsx` (server)         |
+| `/workstreams`      | Workstreams            | `app/workstreams/page.tsx` (server)        |
 
 ### Shared Components
 
@@ -58,7 +59,7 @@ If `ViewProvider` location ever needs to change, the regression test MUST verify
 - H1: `AI Orchestration Governance`
 - Subtitle: `Tools change. Governance discipline doesn't.`
 - Hero hook: `AIOS is a working evidence trail for human-led AI work governance.`
-- 2 CTAs: `View Architecture` (filled), `View Principles` (outline)
+- 2 CTAs: `View Architecture` (filled), `View Workstreams` (outline)
 
 ### What Makes This Different? (Home)
 The old `Executive Summary` card grid is removed in v2.1.
@@ -73,55 +74,45 @@ The old `Executive Summary` card grid is removed in v2.1.
 Portfolio disclaimer must remain visible:
 `This is a portfolio case study, not a production product.`
 
-### System State (Home, External)
-2 columns, 6 items each:
-- Current State: 6 items (6 Existing)
-- To-Be State: 6 items (2 Planned + 4 Parked/TBD)
+### Evidence Anchors (Home)
+Short proof anchors explain the operating discipline without turning the homepage into a status dashboard.
 
-Current State must include public-safe AIOS fallback + benchmark status:
-- Robert KB + Git = source of truth
-- Cockpit governance principles v0.3 + R1 committed
-- AI OS architecture direction locked
-- Execution surfaces exist (optimize-worker, Hermes, Codex)
-- Fallback routing policy active; Hermes is not a single point of failure
-- Benchmark trace is a centralized Definition of Done gate
+3 cards, exact titles:
+1. `Failure became policy`
+2. `Completion requires trace`
+3. `Context is intentionally bounded`
 
-To-Be State must include:
-- Public-facing AI Orchestration Governance profile
-- Architecture, principles, LVT shown clearly
-- Provider/model expansion waits for benchmark evidence unless Lyn overrides
-- No new provider API key needed now
-- Future parked slice: automate benchmark_trace.json and collect at least 5 traces
-- Only then consider a read-only telemetry dashboard
+### System State (Home)
+Compact summary only. Must not duplicate the Workstreams page.
 
-### Core Operating Beliefs (Home, External)
-3 numbered items, exact titles:
-1. `Source of truth must be committed`
-2. `Status must be actionable`
-3. `AI output is not truth until reviewed and committed`
+4 cards, exact titles:
+1. `Source of truth`
+2. `Governance`
+3. `Routing`
+4. `Proof level`
 
-### Cockpit Evidence (Home)
-Patch 1 internal content is now public-safe cockpit evidence. It is reachable without a site-wide mode toggle through the Home page sidebar menu.
+### Workstreams Page
+Actionable operating status lives on `/workstreams`, not on the Home page.
 
-Sections:
+Required table columns:
+- Workstream
+- Status
+- Owner / role
+- Next action
+- Gate decision
+- Blocker / risk
+- Proof / evidence
 
-**Section 1: Workstream Status table** — 5 rows, 4 columns (Workstream / Status / Owner / Next action)
-- optimize-worker (Active, green, Lyn+Codex)
-- Hermes + MCP (Active trial, teal, Lyn)
-- Supernova (Drafted, orange, Lyn)
-- Big Crew (Planned, gray, Lyn)
-- Investment Team (Planned, gray, Lyn)
+Required workstreams:
+- optimize-worker
+- Fallback routing
+- Profile positioning
+- Supernova
+- Big Crew
+- Researcher
+- Investment Team
 
-**Section 2: Cockpit patch sequence** — heading: `Cockpit patch sequence — completed validation snapshot, not live.`
-5 rows, all `COMPLETE` with green badge:
-- Patch 3 internal mode workstream snapshot
-- Patch 4 architecture page
-- Patch 5 LVT page
-- Patch 6 principles page
-- Patch 7 final consistency audit
-
-**Section 3: Operating discipline note** — italic small text includes:
-`Source of truth remains Robert KB + Git. This view is a read surface, not a control plane.`
+The page must stay public-safe and state that it is not live telemetry or a production control plane.
 
 ### Achievement & Learning Page
 Learning Curve subheading:
@@ -195,7 +186,7 @@ NOTE: `Version: v1.1 rescue draft` is locked content from the original brief. Th
 `© 2026 AI Orchestration Governance — A portfolio case study by Lyn (msararin). Source of truth: Robert KB + Git.`
 
 ### Navigation (every page)
-5 tabs in order: `Home | Architecture | LVT | Learning | Principles`
+6 tabs in order: `Home | Architecture | LVT | Learning | Principles | Workstreams`
 
 ### Toggle (every page)
 No External/Internal button group appears in the public header as of v2.1. `ViewProvider` remains mounted at root for legacy page compatibility, but the public profile should not expose mode-switching controls in `components/site-header.tsx`.

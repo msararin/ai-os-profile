@@ -1,0 +1,212 @@
+import { PageLayout } from "@/components/page-layout"
+import { Badge } from "@/components/ui/badge"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+
+const workstreams = [
+  {
+    name: "optimize-worker",
+    status: "Active",
+    owner: "Lyn + Codex",
+    nextAction: "Keep benchmark trace automation parked until a thin slice is chosen.",
+    gateDecision: "Proceed only when scope is narrow and validation is explicit.",
+    blockerRisk: "Automation can create false confidence if trace quality is unclear.",
+    proofLevel: "Documented",
+    evidence: "Benchmark trace workflow and regression gate",
+    badgeClass: "bg-emerald-500/10 text-emerald-700",
+  },
+  {
+    name: "Fallback routing",
+    status: "Policy active",
+    owner: "Lyn",
+    nextAction: "Route work by task type, failure mode, risk, and available worker/model.",
+    gateDecision: "Use fallback route when primary surface is blocked or uneconomical.",
+    blockerRisk: "Cost and token evidence remain incomplete in some surfaces.",
+    proofLevel: "Smoke-proven",
+    evidence: "Fallback routing policy + smoke test",
+    badgeClass: "bg-teal-500/10 text-teal-700",
+  },
+  {
+    name: "Profile positioning",
+    status: "Active",
+    owner: "Lyn + Codex",
+    nextAction: "Keep homepage focused on differentiation; avoid internal dashboard drift.",
+    gateDecision: "Public copy must remain portfolio-safe and evidence-backed.",
+    blockerRisk: "Overclaiming maturity or exposing raw private context would weaken trust.",
+    proofLevel: "Regression-gated",
+    evidence: "v2.1 IA regression checks",
+    badgeClass: "bg-primary/10 text-primary",
+  },
+  {
+    name: "Supernova",
+    status: "Drafted",
+    owner: "Lyn",
+    nextAction: "Activate modules only when a real trigger justifies the work.",
+    gateDecision: "Defer until the trigger is concrete and reviewable.",
+    blockerRisk: "Premature activation would expand scope without evidence.",
+    proofLevel: "Documented",
+    evidence: "Draft module plan",
+    badgeClass: "bg-orange-500/10 text-orange-700",
+  },
+  {
+    name: "Big Crew",
+    status: "Started",
+    owner: "Lyn + Codex",
+    nextAction: "Keep Big Crew usage bounded to implementation and verification tasks with explicit handoff.",
+    gateDecision: "Use for scoped execution only; do not expand into autonomous staffing.",
+    blockerRisk: "Parallel work can blur ownership if files, roles, and review gates are not explicit.",
+    proofLevel: "Documented",
+    evidence: "Patch 1 and Patch 2 implementation handoffs",
+    badgeClass: "bg-primary/10 text-primary",
+  },
+  {
+    name: "Researcher",
+    status: "Started",
+    owner: "Lyn + Researcher",
+    nextAction: "Use for bounded positioning and claim-safety briefs before public copy changes.",
+    gateDecision: "Research output informs copy; Robert/Lyn still gate claims before implementation.",
+    blockerRisk: "Broad research can drift into market sizing or unsupported uniqueness claims.",
+    proofLevel: "Documented",
+    evidence: "Homepage differentiation brief",
+    badgeClass: "bg-primary/10 text-primary",
+  },
+  {
+    name: "Investment Team",
+    status: "Planned",
+    owner: "Lyn",
+    nextAction: "Defer until Supernova produces a first useful signal.",
+    gateDecision: "No active build until there is a bounded investment workflow.",
+    blockerRisk: "Domain risk is high without review criteria and evidence capture.",
+    proofLevel: "Planned",
+    evidence: "Planning notes only",
+    badgeClass: "bg-muted-foreground/20 text-muted-foreground",
+  },
+]
+
+export default function WorkstreamsPage() {
+  return (
+    <PageLayout>
+      <section className="border-b border-border bg-background">
+        <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
+          <h1 className="text-balance text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">
+            Workstreams
+          </h1>
+          <p className="mt-4 max-w-3xl text-pretty text-lg text-muted-foreground">
+            Actionable operating status for the AIOS work system: owner, next
+            action, gate decision, risk, and proof level.
+          </p>
+          <p className="mt-4 max-w-3xl text-sm italic text-muted-foreground">
+            This page is manually curated and public-safe. It is not live
+            telemetry or a production control plane.
+          </p>
+        </div>
+      </section>
+
+      <section className="py-16">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <div className="overflow-x-auto rounded-lg border border-border bg-card">
+            <table className="min-w-[1080px] divide-y divide-border">
+              <thead className="bg-muted/50">
+                <tr>
+                  {[
+                    "Workstream",
+                    "Status",
+                    "Owner / role",
+                    "Next action",
+                    "Gate decision",
+                    "Blocker / risk",
+                    "Proof / evidence",
+                  ].map((heading) => (
+                    <th
+                      key={heading}
+                      scope="col"
+                      className="px-4 py-3 text-left text-sm font-medium text-foreground"
+                    >
+                      {heading}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-border">
+                {workstreams.map((workstream) => (
+                  <tr key={workstream.name} className="align-top">
+                    <td className="whitespace-nowrap px-4 py-4 text-sm font-medium text-foreground">
+                      {workstream.name}
+                    </td>
+                    <td className="px-4 py-4 text-sm">
+                      <Badge
+                        variant="secondary"
+                        className={workstream.badgeClass}
+                      >
+                        {workstream.status}
+                      </Badge>
+                    </td>
+                    <td className="whitespace-nowrap px-4 py-4 text-sm text-muted-foreground">
+                      {workstream.owner}
+                    </td>
+                    <td className="max-w-60 px-4 py-4 text-sm text-muted-foreground">
+                      {workstream.nextAction}
+                    </td>
+                    <td className="max-w-56 px-4 py-4 text-sm text-muted-foreground">
+                      {workstream.gateDecision}
+                    </td>
+                    <td className="max-w-56 px-4 py-4 text-sm text-muted-foreground">
+                      {workstream.blockerRisk}
+                    </td>
+                    <td className="max-w-52 px-4 py-4 text-sm text-muted-foreground">
+                      <span className="font-medium text-foreground">
+                        {workstream.proofLevel}
+                      </span>
+                      <span className="block pt-1">{workstream.evidence}</span>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section className="border-t border-border bg-muted/30 py-16">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl font-semibold tracking-tight text-foreground">
+            Reading Rules
+          </h2>
+          <div className="mt-8 grid gap-6 md:grid-cols-3">
+            {readingRules.map((rule) => (
+              <Card key={rule.title} className="border-border bg-card">
+                <CardHeader className="pb-3">
+                  <CardTitle className="text-base font-medium text-primary">
+                    {rule.title}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm text-muted-foreground">
+                    {rule.description}
+                  </p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+    </PageLayout>
+  )
+}
+
+const readingRules = [
+  {
+    title: "Status is not completion",
+    description:
+      "A workstream can be active while still requiring a gate decision before its output counts.",
+  },
+  {
+    title: "Proof level matters",
+    description:
+      "Documented, smoke-proven, and regression-gated mean different things; the page labels them separately.",
+  },
+  {
+    title: "No private raw context",
+    description:
+      "The table shows public-safe operating status, not raw KB material, keys, logs, or private traces.",
+  },
+]

@@ -10,6 +10,7 @@ const navigation = [
   { name: "LVT", href: "/lean-value-tree" },
   { name: "Learning", href: "/achievement-learning" },
   { name: "Principles", href: "/principles" },
+  { name: "Workstreams", href: "/workstreams" },
 ]
 
 export function SiteHeader() {
