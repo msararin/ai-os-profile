@@ -209,11 +209,13 @@ absent "Header Internal button" "Internal"                                      
 check "Footer last updated"    "Last updated: 2026-05-18 21:00 ICT"                                       "components/site-footer.tsx"
 check "Footer source"          "Source: Robert KB + Git"                                                  "components/site-footer.tsx"
 check "Footer version"         "Version: v1.1 rescue draft"                                               "components/site-footer.tsx"
+check "Footer release"         "Release: v3.1.0"                                                          "components/site-footer.tsx"
 check "Footer copyright line"  "© 2026 AI Orchestration Governance"                                       "components/site-footer.tsx"
 check "Footer credits Lyn"     "by Lyn (msararin)"                                                        "components/site-footer.tsx"
 check "Metadata last updated"  "Last updated: 2026-05-18 21:00 ICT"                                       "components/page-metadata.tsx"
 check "Metadata source"        "Source: Robert KB + Git"                                                  "components/page-metadata.tsx"
 check "Metadata version"       "Version: v1.1 rescue draft"                                               "components/page-metadata.tsx"
+check "Metadata release"       "Release: v3.1.0"                                                          "components/page-metadata.tsx"
 
 echo
 echo "============================================================"

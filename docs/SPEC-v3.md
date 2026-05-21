@@ -228,6 +228,7 @@ Closing quote: `"AI orchestration is program management. Tools change. Governanc
 Last updated: 2026-05-20 08:15 ICT
 Source: Robert KB + Git
 Version: v1.1 rescue draft
+Release: v3.1.0
 ```
 
 NOTE: `Version: v1.1 rescue draft` is locked content from the original brief. The repo Git tag `v3.1.0` is the release version. These are intentionally separate. Do NOT change the in-page version string without updating this spec.
@@ -235,6 +236,8 @@ NOTE: `Version: v1.1 rescue draft` is locked content from the original brief. Th
 ### Footer (every page)
 3 columns same as metadata block PLUS bottom line:
 `© 2026 AI Orchestration Governance — A portfolio case study by Lyn (msararin). Source of truth: Robert KB + Git.`
+
+The footer must also show `Release: v3.1.0` so the deployed public site visibly identifies the release.
 
 ### Navigation (every page)
 7 tabs in order: `Home | Architecture | LVT | Learning | Principles | Workstreams | Org & Roles`

@@ -4,6 +4,7 @@ export function PageMetadata() {
       <p>Last updated: 2026-05-18 21:00 ICT</p>
       <p>Source: Robert KB + Git</p>
       <p>Version: v1.1 rescue draft</p>
+      <p>Release: v3.1.0</p>
     </div>
   )
 }
