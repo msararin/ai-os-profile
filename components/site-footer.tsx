@@ -3,7 +3,7 @@ export function SiteFooter() {
     <footer className="mt-auto border-t border-border bg-background">
       <div className="mx-auto max-w-5xl px-4 py-6 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center justify-between gap-2 text-sm text-muted-foreground sm:flex-row">
-          <p>Last updated: 2026-05-20 08:15 ICT</p>
+          <p>Last updated: 2026-05-18 21:00 ICT</p>
           <p>Source: Robert KB + Git</p>
           <p>Version: v1.1 rescue draft</p>
         </div>

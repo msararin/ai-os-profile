@@ -1,7 +1,12 @@
 "use client"
 
+import { useState } from "react"
 import Link from "next/link"
 import { PageLayout } from "@/components/page-layout"
+import {
+  CockpitSidebar,
+  type CockpitSectionId,
+} from "@/components/cockpit-sidebar"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -16,10 +21,10 @@ const workstreams = [
     badgeClass: "bg-emerald-500/10 text-emerald-700",
   },
   {
-    name: "Fallback routing",
+    name: "Hermes + MCP",
     status: "Policy active",
     owner: "Lyn",
-    nextAction: "Route by task type, failure mode, risk, and available worker/model",
+    nextAction: "Route with fallback policy by task type, failure mode, risk, and available worker/model",
     badgeClass: "bg-teal-500/10 text-teal-700",
   },
   {
@@ -53,8 +58,36 @@ const backlogSnapshot = [
   ["Patch 7 final consistency audit", "COMPLETE"],
 ]
 
+const systemStatusItems = [
+  ["Source of truth", "Robert KB + Git remain canonical"],
+  ["Governance", "Review gates and commit-before-truth protocol active"],
+  ["Routing", "Fallback routing policy active; Hermes is not a single point of failure"],
+  ["Definition of Done", "Benchmark trace records execution evidence when tasks route"],
+]
+
+const proofItems = [
+  ["Documented", "Architecture, LVT, and principles are published as portfolio-safe pages"],
+  ["Tabletop-tested", "Role boundaries and routing decisions are captured before execution"],
+  ["Smoke-proven", "Fallback profile routing has passed bounded task smoke checks"],
+  ["Regression-gated", "v2.x cockpit changes run the regression script when available"],
+]
+
+const decisionItems = [
+  "Internal view is a manually-curated read surface, not a live control plane.",
+  "Provider/model expansion waits for benchmark evidence unless Lyn overrides.",
+  "MCP remains a controlled read-only context bridge until production approval.",
+]
+
+const nextActionItems = [
+  "Complete Lyn visual review on the v2.1 navigation cleanup.",
+  "Record validation evidence in the benchmark trace after approval.",
+  "Keep benchmark_trace.json automation parked until a thin slice is chosen.",
+]
+
 export default function HomePage() {
   const { view } = useView()
+  const [activeSection, setActiveSection] =
+    useState<CockpitSectionId>("system-status")
 
   return (
     <PageLayout>
@@ -335,114 +368,236 @@ export default function HomePage() {
       </section>
         </>
       ) : (
-        <>
-          {/* Workstream Status */}
-          <section className="py-16">
-            <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-              <h2 className="text-2xl font-semibold tracking-tight text-foreground">
-                Workstream Status
-              </h2>
-              <div className="mt-8 overflow-hidden rounded-lg border border-border bg-card">
-                <table className="min-w-full divide-y divide-border">
-                  <thead className="bg-muted/50">
-                    <tr>
-                      <th
-                        scope="col"
-                        className="px-4 py-3 text-left text-sm font-medium text-foreground"
-                      >
-                        Workstream
-                      </th>
-                      <th
-                        scope="col"
-                        className="px-4 py-3 text-left text-sm font-medium text-foreground"
-                      >
-                        Status
-                      </th>
-                      <th
-                        scope="col"
-                        className="px-4 py-3 text-left text-sm font-medium text-foreground"
-                      >
-                        Owner
-                      </th>
-                      <th
-                        scope="col"
-                        className="px-4 py-3 text-left text-sm font-medium text-foreground"
-                      >
-                        Next action
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-border">
-                    {workstreams.map((workstream) => (
-                      <tr key={workstream.name}>
-                        <td className="whitespace-nowrap px-4 py-3 text-sm font-medium text-foreground">
-                          {workstream.name}
-                        </td>
-                        <td className="px-4 py-3 text-sm">
-                          <Badge
-                            variant="secondary"
-                            className={workstream.badgeClass}
-                          >
-                            {workstream.status}
-                          </Badge>
-                        </td>
-                        <td className="whitespace-nowrap px-4 py-3 text-sm text-muted-foreground">
-                          {workstream.owner}
-                        </td>
-                        <td className="px-4 py-3 text-sm text-muted-foreground">
-                          {workstream.nextAction}
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
+        <div className="border-t border-border lg:flex">
+          <CockpitSidebar
+            activeSection={activeSection}
+            onSectionChange={setActiveSection}
+          />
+          <section className="flex-1 py-12 lg:py-16">
+            <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+              {activeSection === "system-status" ? (
+                <InternalSystemStatus />
+              ) : null}
+              {activeSection === "workstreams" ? <InternalWorkstreams /> : null}
+              {activeSection === "patch-history" ? (
+                <InternalPatchHistory />
+              ) : null}
+              {activeSection === "evidence" ? <InternalEvidence /> : null}
+              {activeSection === "decisions" ? <InternalDecisions /> : null}
+              {activeSection === "next-actions" ? <InternalNextActions /> : null}
             </div>
           </section>
-
-          {/* Backlog Snapshot */}
-          <section className="border-t border-border bg-muted/30 py-16">
-            <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-              <h2 className="text-2xl font-semibold tracking-tight text-foreground">
-                Cockpit patch sequence — completed validation snapshot, not live.
-              </h2>
-              <div className="mt-8 space-y-3">
-                {backlogSnapshot.map(([label, status]) => (
-                  <div
-                    key={label}
-                    className="flex flex-col gap-2 rounded-lg border border-border bg-card px-4 py-3 sm:flex-row sm:items-center sm:justify-between"
-                  >
-                    <p className="text-sm font-medium text-foreground">
-                      {label}
-                    </p>
-                    <Badge
-                      variant="secondary"
-                      className={
-                        status === "COMPLETE"
-                          ? "bg-emerald-500/10 text-emerald-700"
-                          : status === "IN PROGRESS"
-                          ? "bg-amber-500/10 text-amber-700"
-                          : "bg-muted-foreground/20 text-muted-foreground"
-                      }
-                    >
-                      {status}
-                    </Badge>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </section>
-
-          {/* Operating Discipline Note */}
-          <section className="border-t border-border py-12">
-            <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-              <p className="text-sm italic text-muted-foreground">
-                Internal view shows a manually-curated snapshot of workstream status, not live data. Updates happen when the cockpit is patched. Source of truth remains Robert KB + Git — this view is a read surface, not a control plane.
-              </p>
-            </div>
-          </section>
-        </>
+        </div>
       )}
     </PageLayout>
+  )
+}
+
+function SectionHeading({
+  title,
+  description,
+}: {
+  title: string
+  description: string
+}) {
+  return (
+    <div>
+      <h2 className="text-2xl font-semibold tracking-tight text-foreground">
+        {title}
+      </h2>
+      <p className="mt-2 text-sm text-muted-foreground">{description}</p>
+    </div>
+  )
+}
+
+function InternalSystemStatus() {
+  return (
+    <div>
+      <SectionHeading
+        title="System Status"
+        description="Current internal operating state for the cockpit."
+      />
+      <div className="mt-8 grid gap-4 sm:grid-cols-2">
+        {systemStatusItems.map(([label, value]) => (
+          <Card key={label} className="border-border bg-card">
+            <CardHeader className="pb-3">
+              <CardTitle className="text-base font-medium text-primary">
+                {label}
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-sm text-muted-foreground">{value}</p>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+function InternalWorkstreams() {
+  return (
+    <div>
+      <SectionHeading
+        title="Workstream Status"
+        description="Manually-curated ownership, status, and next-action snapshot."
+      />
+      <div className="mt-8 overflow-x-auto rounded-lg border border-border bg-card">
+        <table className="min-w-full divide-y divide-border">
+          <thead className="bg-muted/50">
+            <tr>
+              <th
+                scope="col"
+                className="px-4 py-3 text-left text-sm font-medium text-foreground"
+              >
+                Workstream
+              </th>
+              <th
+                scope="col"
+                className="px-4 py-3 text-left text-sm font-medium text-foreground"
+              >
+                Status
+              </th>
+              <th
+                scope="col"
+                className="px-4 py-3 text-left text-sm font-medium text-foreground"
+              >
+                Owner
+              </th>
+              <th
+                scope="col"
+                className="px-4 py-3 text-left text-sm font-medium text-foreground"
+              >
+                Next action
+              </th>
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-border">
+            {workstreams.map((workstream) => (
+              <tr key={workstream.name}>
+                <td className="whitespace-nowrap px-4 py-3 text-sm font-medium text-foreground">
+                  {workstream.name}
+                </td>
+                <td className="px-4 py-3 text-sm">
+                  <Badge
+                    variant="secondary"
+                    className={workstream.badgeClass}
+                  >
+                    {workstream.status}
+                  </Badge>
+                </td>
+                <td className="whitespace-nowrap px-4 py-3 text-sm text-muted-foreground">
+                  {workstream.owner}
+                </td>
+                <td className="px-4 py-3 text-sm text-muted-foreground">
+                  {workstream.nextAction}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  )
+}
+
+function InternalPatchHistory() {
+  return (
+    <div>
+      <SectionHeading
+        title="Cockpit patch sequence — completed validation snapshot, not live."
+        description="Completed validation snapshot, not live backlog data."
+      />
+      <div className="mt-8 space-y-3">
+        {backlogSnapshot.map(([label, status]) => (
+          <div
+            key={label}
+            className="flex flex-col gap-2 rounded-lg border border-border bg-card px-4 py-3 sm:flex-row sm:items-center sm:justify-between"
+          >
+            <p className="text-sm font-medium text-foreground">{label}</p>
+            <Badge
+              variant="secondary"
+              className={
+                status === "COMPLETE"
+                  ? "bg-emerald-500/10 text-emerald-700"
+                  : status === "IN PROGRESS"
+                  ? "bg-amber-500/10 text-amber-700"
+                  : "bg-muted-foreground/20 text-muted-foreground"
+              }
+            >
+              {status}
+            </Badge>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+function InternalEvidence() {
+  return (
+    <div>
+      <SectionHeading
+        title="Evidence / Proof"
+        description="Proof levels used to avoid overclaiming maturity."
+      />
+      <div className="mt-8 grid gap-4 sm:grid-cols-2">
+        {proofItems.map(([label, value]) => (
+          <Card key={label} className="border-border bg-card">
+            <CardHeader className="pb-3">
+              <CardTitle className="text-base font-medium text-primary">
+                {label}
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-sm text-muted-foreground">{value}</p>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+function InternalDecisions() {
+  return (
+    <div>
+      <SectionHeading
+        title="Run Log / Decisions"
+        description="Operating notes that frame how the cockpit should be read."
+      />
+      <Card className="mt-8 border-border bg-card">
+        <CardContent>
+          <ul className="space-y-3 text-sm text-muted-foreground">
+            {decisionItems.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+        </CardContent>
+      </Card>
+      <p className="mt-6 text-sm italic text-muted-foreground">
+        Source of truth remains Robert KB + Git. This view is a read surface, not a control plane.
+      </p>
+    </div>
+  )
+}
+
+function InternalNextActions() {
+  return (
+    <div>
+      <SectionHeading
+        title="Next Actions"
+        description="Review-ready actions after the v2.1 navigation cleanup."
+      />
+      <Card className="mt-8 border-border bg-card">
+        <CardContent>
+          <ul className="space-y-3 text-sm text-muted-foreground">
+            {nextActionItems.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+        </CardContent>
+      </Card>
+    </div>
   )
 }
