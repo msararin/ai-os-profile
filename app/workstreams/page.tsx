@@ -45,14 +45,17 @@ const workstreams = [
   {
     name: "Supernova",
     description:
-      "Opportunity and monetization intelligence lane for future business decisions.",
-    status: "Drafted",
+      "Opportunity and monetization intelligence lane with a first version complete, before POC validation.",
+    status: "First version done",
     owner: "Lyn",
-    nextAction: "Activate modules only when a real trigger justifies the work.",
-    gateDecision: "Defer until the trigger is concrete and reviewable.",
-    blockerRisk: "Premature activation would expand scope without evidence.",
+    nextAction:
+      "Define the first POC trigger and evidence requirement before treating it as operational.",
+    gateDecision:
+      "Do not claim POC or operating usefulness until a concrete run is reviewed.",
+    blockerRisk:
+      "A completed first version can be mistaken for validated business evidence.",
     proofLevel: "Documented",
-    evidence: "Draft module plan",
+    evidence: "First version exists; POC not yet run",
     badgeClass: "bg-orange-500/10 text-orange-700",
   },
   {

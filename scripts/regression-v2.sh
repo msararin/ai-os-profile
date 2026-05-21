@@ -97,6 +97,7 @@ check "Workstream optimize-worker"    '"optimize-worker"'                       
 check "Workstream fallback routing"   '"Fallback routing"'                                                 "app/workstreams/page.tsx"
 check "Workstream profile positioning" '"Profile positioning"'                                             "app/workstreams/page.tsx"
 check "Workstream Supernova"          '"Supernova"'                                                        "app/workstreams/page.tsx"
+check "Supernova first version"        "First version exists; POC not yet run"                             "app/workstreams/page.tsx"
 check "Workstream Big Crew"           '"Big Crew"'                                                         "app/workstreams/page.tsx"
 check "Workstream Researcher"         '"Researcher"'                                                       "app/workstreams/page.tsx"
 check "Workstream Investment Team"    '"Investment Team"'                                                  "app/workstreams/page.tsx"
