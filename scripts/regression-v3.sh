@@ -1,16 +1,16 @@
 #!/usr/bin/env bash
-# regression-v2.sh — Locked-spec content checks for ai-os-profile v2.x
+# regression-v3.sh — Locked-spec content checks for ai-os-profile v3.x
 #
-# Usage:    bash scripts/regression-v2.sh
+# Usage:    bash scripts/regression-v3.sh
 # Exit 0    all checks pass → safe to commit
 # Exit 1    one or more checks failed → DO NOT COMMIT, revert or fix
 #
-# This script enforces docs/SPEC-v2.md. It does NOT verify visual layout —
+# This script enforces docs/SPEC-v3.md. It does NOT verify visual layout —
 # that requires human review or screenshot diffing.
 #
 # Each check greps a single locked phrase against a single source file.
-# When the spec evolves, update BOTH this file AND docs/SPEC-v2.md, then
-# bump the site version (v2.1.0 / v3.0.0).
+# When the spec evolves, update BOTH this file AND docs/SPEC-v3.md, then
+# bump the site version (v3.1.0 / v4.0.0).
 
 set -u
 
@@ -50,7 +50,7 @@ absent() {
 
 echo
 echo "============================================================"
-echo " ai-os-profile v2.x regression test"
+echo " ai-os-profile v3.x regression test"
 echo "============================================================"
 
 echo
@@ -63,7 +63,7 @@ check "view-toggle defines ViewProvider"         "export function ViewProvider" 
 check "view-toggle defines useView hook"         "export function useView"                  "components/view-toggle.tsx"
 
 echo
-echo "[2/8] Home page (v2.1 public homepage content)"
+echo "[2/8] Home page (v3.0 public homepage content)"
 check "Hero H1"               "AI Orchestration Governance"                                                "app/page.tsx"
 check "Hero hook"             "AIOS is a working evidence trail for human-led AI work governance"          "app/page.tsx"
 check "Tagline"               "Tools change. Governance discipline doesn"                                 "app/page.tsx"
@@ -234,7 +234,7 @@ else
   echo
   echo " 🚫 DO NOT COMMIT. Either:"
   echo "    1. Revert your changes and re-run."
-  echo "    2. If spec is intentionally evolving, update docs/SPEC-v2.md AND this script,"
-  echo "       then bump the version (v2.1.0 / v3.0.0) before re-running."
+  echo "    2. If spec is intentionally evolving, update docs/SPEC-v3.md AND this script,"
+  echo "       then bump the version (v3.1.0 / v4.0.0) before re-running."
   exit 1
 fi

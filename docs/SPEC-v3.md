@@ -1,23 +1,24 @@
-# ai-os-profile — v2.1 Spec Lock
+# ai-os-profile — v3.0 Spec Lock
 
 ## Status
 
 LOCKED 2026-05-19 by Lyn approval after live visual + functional review.
 UPDATED 2026-05-21 by Lyn approval for Patch 2 homepage positioning, Learning evidence dates, public toggle removal, Workstreams IA separation, and Org & Roles policy separation.
+PROMOTED 2026-05-21 to v3.0.0 after Workstreams, Org & Roles, and Supernova first-version status were regression-gated and build-verified.
 
-This document is the canonical reference for v2.0.0 of `msararin/ai-os-profile`. Any change to this site MUST either:
-1. Pass the v2 regression test (`scripts/regression-v2.sh` in this repo) → minor patch within v2.x
-2. OR be tagged as v2.1+, v3.0+ with this document updated FIRST
+This document is the canonical reference for v3.0.0 of `msararin/ai-os-profile`. Any change to this site MUST either:
+1. Pass the v3 regression test (`scripts/regression-v3.sh` in this repo) → minor patch within v3.x
+2. OR be tagged as v3.1+, v4.0+ with this document updated FIRST
 
-Source of truth: this file + Git tag `v2.0.0` + commit `886a687`.
+Source of truth: this file + Git tag `v3.0.0` + release commit.
 
 ## Anchor Commit
 
 `886a687` — `fix: update Internal view backlog snapshot to COMPLETE for patches 3-7`
 Branch: `main`
-Tag: `v2.0.0`
+Tag: `v3.0.0`
 Repo: `https://github.com/msararin/ai-os-profile`
-Commit chain since `ada0f86` (Initial v0): 16 commits.
+Commit chain extends the v2.0.0 baseline and promotes the public IA split into the active spec.
 
 ## Audience
 
@@ -54,7 +55,7 @@ Mixed external-first. Portfolio case study on AI orchestration governance. NOT a
 
 If `ViewProvider` location ever needs to change, the regression test MUST verify Internal toggle still re-renders content on the Home page.
 
-## Locked Content (must not change without v2.1+ bump)
+## Locked Content (must not change without v3.1+ bump)
 
 ### Hero (Home)
 - H1: `AI Orchestration Governance`
@@ -63,7 +64,7 @@ If `ViewProvider` location ever needs to change, the regression test MUST verify
 - 2 CTAs: `View Architecture` (filled), `View Workstreams` (outline)
 
 ### What Makes This Different? (Home)
-The old `Executive Summary` card grid is removed in v2.1.
+The old `Executive Summary` card grid is removed in v3.0.
 
 5 differentiation cards, exact titles:
 1. `Separate role, model, provider, and cost`
@@ -113,7 +114,7 @@ Required workstreams:
 - Researcher
 - Investment Team
 
-Each workstream must include a short public-safe description. Big Crew and Researcher are `Started`, not merely planned, because Patch 1/Patch 2 execution handoffs and the homepage differentiation brief already exist.
+Each workstream must include a short public-safe description. Big Crew and Researcher are `Started`, not merely planned, because Patch 1/Patch 2 execution handoffs and the homepage differentiation brief already exist. Supernova must state that its first version exists while POC validation has not yet run.
 
 The page must stay public-safe and state that it is not live telemetry or a production control plane.
 
@@ -217,7 +218,7 @@ Source: Robert KB + Git
 Version: v1.1 rescue draft
 ```
 
-NOTE: `Version: v1.1 rescue draft` is locked content from the original brief. The repo Git tag `v2.0.0` is the release version. These are intentionally separate. Do NOT change the in-page version string without updating this spec.
+NOTE: `Version: v1.1 rescue draft` is locked content from the original brief. The repo Git tag `v3.0.0` is the release version. These are intentionally separate. Do NOT change the in-page version string without updating this spec.
 
 ### Footer (every page)
 3 columns same as metadata block PLUS bottom line:
@@ -227,7 +228,7 @@ NOTE: `Version: v1.1 rescue draft` is locked content from the original brief. Th
 7 tabs in order: `Home | Architecture | LVT | Learning | Principles | Workstreams | Org & Roles`
 
 ### Toggle (every page)
-No External/Internal button group appears in the public header as of v2.1. `ViewProvider` remains mounted at root for legacy page compatibility, but the public profile should not expose mode-switching controls in `components/site-header.tsx`.
+No External/Internal button group appears in the public header as of v3.0. `ViewProvider` remains mounted at root for legacy page compatibility, but the public profile should not expose mode-switching controls in `components/site-header.tsx`.
 
 ## Tech Stack (locked)
 
@@ -235,9 +236,9 @@ No External/Internal button group appears in the public header as of v2.1. `View
 - Tailwind 4
 - shadcn/ui + Radix primitives
 - Static export friendly (no server data)
-- `typescript.ignoreBuildErrors: true` in `next.config.mjs` — KNOWN DEBT, allowed in v2.0.0, MUST be removed before v3.0.0
+- `typescript.ignoreBuildErrors: true` in `next.config.mjs` — KNOWN DEBT, allowed in v3.0.0, MUST be removed before v4.0.0
 
-## Known Tech Debt (allowed in v2.x)
+## Known Tech Debt (allowed in v3.x)
 
 1. `typescript.ignoreBuildErrors: true` in `next.config.mjs`
 2. `Last updated` and `Version` strings hardcoded in 2 components (`page-metadata.tsx`, `site-footer.tsx`) — not centralized
@@ -245,9 +246,9 @@ No External/Internal button group appears in the public header as of v2.1. `View
 4. `pnpm-workspace.yaml` untracked (auto-generated, harmless)
 5. `next-env.d.ts` modified locally (auto-managed by Next, ignore)
 
-These are NOT v2.0.0 blockers. They are v3.0.0 cleanup targets.
+These are NOT v3.0.0 blockers. They are v4.0.0 cleanup targets.
 
-## v2.x Status Patch: Fallback + Benchmark
+## v3.0 Status Patch: Public IA + Fallback + Benchmark
 
 Public-safe status added 2026-05-20:
 
@@ -263,7 +264,7 @@ This is a content/status patch only. It does not add a provider integration, API
 
 ## Regression Test Gate
 
-`scripts/regression-v2.sh` — must pass for any v2.x patch. Bumping to v3.0.0 requires either:
+`scripts/regression-v3.sh` — must pass for any v3.x patch. Bumping to v4.0.0 requires either:
 - All checks updated to new spec, OR
 - Explicit decision logged in `KB:03_ai_skill_lab/supernova/supernova_decision_log_*.md`
 
@@ -274,22 +275,23 @@ This is a content/status patch only. It does not add a provider integration, API
 | 2026-05-18 | Lyn      | Patches 1, 1.1, 2 approved (B1–B12 audit pass)    | iter-2/3/4 screenshots    |
 | 2026-05-19 | Lyn      | Patches 3-7 approved + Internal toggle fix accepted | Live review + browser test|
 | 2026-05-19 | Lyn      | v2.0.0 LOCK                                        | This document             |
+| 2026-05-21 | Lyn      | v3.0.0 IA promotion requested                      | Workstreams + Org & Roles + KB update |
 
 ## Change Procedure
 
-To modify v2.0.0:
+To modify v3.0.0:
 
-1. **Spec change first.** Edit this document on a feature branch. Bump version (v2.1.0 / v3.0.0).
-2. **Update regression test.** Modify `scripts/regression-v2.sh` to match new spec.
+1. **Spec change first.** Edit this document on a feature branch. Bump version (v3.1.0 / v4.0.0).
+2. **Update regression test.** Modify `scripts/regression-v3.sh` to match new spec.
 3. **Implement code change.**
-4. **Run regression test:** `bash scripts/regression-v2.sh` → must PASS.
+4. **Run regression test:** `bash scripts/regression-v3.sh` → must PASS.
 5. **Build verify:** `npx --no-install next build` → must PASS.
 6. **Commit + tag.** Push to main + tag new version.
 7. **Update KB decision log** at `~/robert-knowledge-base/03_ai_skill_lab/supernova/supernova_decision_log_<date>.md`.
 
-NO v2.x patch may bypass step 4. Regression test failure = revert.
+NO v3.x patch may bypass step 4. Regression test failure = revert.
 
-## Files at Tag v2.0.0
+## Files at Tag v3.0.0
 
 ```
 ai-os-profile/
@@ -308,9 +310,9 @@ ai-os-profile/
 │   ├── view-toggle.tsx     ← ViewProvider + ViewToggle exports
 │   └── ui/...
 ├── docs/
-│   └── SPEC-v2.md          ← THIS DOCUMENT
+│   └── SPEC-v3.md          ← THIS DOCUMENT
 ├── scripts/
-│   └── regression-v2.sh    ← REGRESSION TEST GATE
+│   └── regression-v3.sh    ← REGRESSION TEST GATE
 ├── package.json
 ├── next.config.mjs
 └── README.md

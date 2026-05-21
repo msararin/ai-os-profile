@@ -39,7 +39,7 @@ const workstreams = [
     gateDecision: "Public copy must remain portfolio-safe and evidence-backed.",
     blockerRisk: "Overclaiming maturity or exposing raw private context would weaken trust.",
     proofLevel: "Regression-gated",
-    evidence: "v2.1 IA regression checks",
+    evidence: "v3.0 IA regression checks",
     badgeClass: "bg-primary/10 text-primary",
   },
   {
