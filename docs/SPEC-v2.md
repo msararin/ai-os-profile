@@ -3,7 +3,7 @@
 ## Status
 
 LOCKED 2026-05-19 by Lyn approval after live visual + functional review.
-UPDATED 2026-05-21 by Lyn approval for Patch 2 homepage positioning, Learning evidence dates, public toggle removal, and Workstreams IA separation.
+UPDATED 2026-05-21 by Lyn approval for Patch 2 homepage positioning, Learning evidence dates, public toggle removal, Workstreams IA separation, and Org & Roles policy separation.
 
 This document is the canonical reference for v2.0.0 of `msararin/ai-os-profile`. Any change to this site MUST either:
 1. Pass the v2 regression test (`scripts/regression-v2.sh` in this repo) → minor patch within v2.x
@@ -25,7 +25,7 @@ Mixed external-first. Portfolio case study on AI orchestration governance. NOT a
 
 ## Site Structure
 
-6 pages + persistent header/footer. The public profile no longer exposes the External/Internal mode toggle.
+7 pages + persistent header/footer. The public profile no longer exposes the External/Internal mode toggle.
 
 ### Pages
 
@@ -37,6 +37,7 @@ Mixed external-first. Portfolio case study on AI orchestration governance. NOT a
 | `/achievement-learning` | Achievement & Learning | `app/achievement-learning/page.tsx` (server) |
 | `/principles`       | Governance Principles  | `app/principles/page.tsx` (server)         |
 | `/workstreams`      | Workstreams            | `app/workstreams/page.tsx` (server)        |
+| `/org-roles`        | Org Chart & Role Policy | `app/org-roles/page.tsx` (server)         |
 
 ### Shared Components
 
@@ -112,7 +113,44 @@ Required workstreams:
 - Researcher
 - Investment Team
 
+Each workstream must include a short public-safe description. Big Crew and Researcher are `Started`, not merely planned, because Patch 1/Patch 2 execution handoffs and the homepage differentiation brief already exist.
+
 The page must stay public-safe and state that it is not live telemetry or a production control plane.
+
+### Org & Roles Page
+Org chart, role responsibility, task routing, and budget policy live on `/org-roles`, not on the Home page and not mixed into Workstreams.
+
+Required sections:
+- `Operating Org Chart`
+- `Role & Responsibility Policy`
+- `Budget Policy`
+- `Task Routing Policy`
+
+Org chart must show:
+- Lyn / Robert as executive review and protected decision gate
+- Robert and Hermes as peers via KB
+- Robert KB + Git as shared source of truth
+- Codex, Big Crew, Researcher, Supernova, Investment Team, optimize-worker, and Fallback routing as routed operating lanes
+
+Role policy must include public-safe rows for:
+- Robert / Lyn
+- Hermes
+- Codex
+- Big Crew
+- Researcher
+- Supernova
+- Investment Team
+- optimize-worker
+
+Budget policy must include:
+- `Role first, model second`
+- `Cheap/local first`
+- `Senior synthesis`
+- `Executive escalation`
+- `Implementation lane`
+- `No senior delegation without a named decision`
+
+The page must avoid production-readiness claims and must not expose raw private KB content.
 
 ### Achievement & Learning Page
 Learning Curve subheading:
@@ -186,7 +224,7 @@ NOTE: `Version: v1.1 rescue draft` is locked content from the original brief. Th
 `© 2026 AI Orchestration Governance — A portfolio case study by Lyn (msararin). Source of truth: Robert KB + Git.`
 
 ### Navigation (every page)
-6 tabs in order: `Home | Architecture | LVT | Learning | Principles | Workstreams`
+7 tabs in order: `Home | Architecture | LVT | Learning | Principles | Workstreams | Org & Roles`
 
 ### Toggle (every page)
 No External/Internal button group appears in the public header as of v2.1. `ViewProvider` remains mounted at root for legacy page compatibility, but the public profile should not expose mode-switching controls in `components/site-header.tsx`.

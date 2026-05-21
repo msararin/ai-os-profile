@@ -5,6 +5,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 const workstreams = [
   {
     name: "optimize-worker",
+    description:
+      "Execution support layer for routing experiments, benchmark traces, and structured workflow automation.",
     status: "Active",
     owner: "Lyn + Codex",
     nextAction: "Keep benchmark trace automation parked until a thin slice is chosen.",
@@ -16,6 +18,8 @@ const workstreams = [
   },
   {
     name: "Fallback routing",
+    description:
+      "Policy lane for choosing a safe alternate route when the primary worker or model is blocked.",
     status: "Policy active",
     owner: "Lyn",
     nextAction: "Route work by task type, failure mode, risk, and available worker/model.",
@@ -27,6 +31,8 @@ const workstreams = [
   },
   {
     name: "Profile positioning",
+    description:
+      "Public portfolio framing that turns operating evidence into clear, safe claims.",
     status: "Active",
     owner: "Lyn + Codex",
     nextAction: "Keep homepage focused on differentiation; avoid internal dashboard drift.",
@@ -38,6 +44,8 @@ const workstreams = [
   },
   {
     name: "Supernova",
+    description:
+      "Opportunity and monetization intelligence lane for future business decisions.",
     status: "Drafted",
     owner: "Lyn",
     nextAction: "Activate modules only when a real trigger justifies the work.",
@@ -49,6 +57,8 @@ const workstreams = [
   },
   {
     name: "Big Crew",
+    description:
+      "Scoped execution crew for implementation, architecture review, QA, and release readiness.",
     status: "Started",
     owner: "Lyn + Codex",
     nextAction: "Keep Big Crew usage bounded to implementation and verification tasks with explicit handoff.",
@@ -60,6 +70,8 @@ const workstreams = [
   },
   {
     name: "Researcher",
+    description:
+      "Bounded evidence scanner for market context, claim safety, and external practice checks.",
     status: "Started",
     owner: "Lyn + Researcher",
     nextAction: "Use for bounded positioning and claim-safety briefs before public copy changes.",
@@ -71,6 +83,8 @@ const workstreams = [
   },
   {
     name: "Investment Team",
+    description:
+      "Planned specialist lane for investment workflows after scope and review criteria are defined.",
     status: "Planned",
     owner: "Lyn",
     nextAction: "Defer until Supernova produces a first useful signal.",
@@ -129,8 +143,13 @@ export default function WorkstreamsPage() {
               <tbody className="divide-y divide-border">
                 {workstreams.map((workstream) => (
                   <tr key={workstream.name} className="align-top">
-                    <td className="whitespace-nowrap px-4 py-4 text-sm font-medium text-foreground">
-                      {workstream.name}
+                    <td className="max-w-64 px-4 py-4 text-sm">
+                      <p className="font-medium text-foreground">
+                        {workstream.name}
+                      </p>
+                      <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
+                        {workstream.description}
+                      </p>
                     </td>
                     <td className="px-4 py-4 text-sm">
                       <Badge

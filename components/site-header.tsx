@@ -11,6 +11,7 @@ const navigation = [
   { name: "Learning", href: "/achievement-learning" },
   { name: "Principles", href: "/principles" },
   { name: "Workstreams", href: "/workstreams" },
+  { name: "Org & Roles", href: "/org-roles" },
 ]
 
 export function SiteHeader() {
