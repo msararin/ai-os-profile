@@ -1,22 +1,23 @@
-# ai-os-profile — v3.0 Spec Lock
+# ai-os-profile — v3.1 Spec Lock
 
 ## Status
 
 LOCKED 2026-05-19 by Lyn approval after live visual + functional review.
 UPDATED 2026-05-21 by Lyn approval for Patch 2 homepage positioning, Learning evidence dates, public toggle removal, Workstreams IA separation, and Org & Roles policy separation.
 PROMOTED 2026-05-21 to v3.0.0 after Workstreams, Org & Roles, and Supernova first-version status were regression-gated and build-verified.
+PROMOTED 2026-05-21 to v3.1.0 as Patch 2 compliance reconciliation: homepage differentiation, Learning dates/evidence, and public toggle removal are explicitly treated as implemented release requirements.
 
-This document is the canonical reference for v3.0.0 of `msararin/ai-os-profile`. Any change to this site MUST either:
+This document is the canonical reference for v3.1.0 of `msararin/ai-os-profile`. Any change to this site MUST either:
 1. Pass the v3 regression test (`scripts/regression-v3.sh` in this repo) → minor patch within v3.x
-2. OR be tagged as v3.1+, v4.0+ with this document updated FIRST
+2. OR be tagged as v3.2+, v4.0+ with this document updated FIRST
 
-Source of truth: this file + Git tag `v3.0.0` + release commit.
+Source of truth: this file + Git tag `v3.1.0` + release commit.
 
 ## Anchor Commit
 
 `886a687` — `fix: update Internal view backlog snapshot to COMPLETE for patches 3-7`
 Branch: `main`
-Tag: `v3.0.0`
+Tag: `v3.1.0`
 Repo: `https://github.com/msararin/ai-os-profile`
 Commit chain extends the v2.0.0 baseline and promotes the public IA split into the active spec.
 
@@ -55,7 +56,7 @@ Mixed external-first. Portfolio case study on AI orchestration governance. NOT a
 
 If `ViewProvider` location ever needs to change, the regression test MUST verify Internal toggle still re-renders content on the Home page.
 
-## Locked Content (must not change without v3.1+ bump)
+## Locked Content (must not change without v3.2+ bump)
 
 ### Hero (Home)
 - H1: `AI Orchestration Governance`
@@ -64,7 +65,7 @@ If `ViewProvider` location ever needs to change, the regression test MUST verify
 - 2 CTAs: `View Architecture` (filled), `View Workstreams` (outline)
 
 ### What Makes This Different? (Home)
-The old `Executive Summary` card grid is removed in v3.0.
+The old `Executive Summary` card grid is removed in v3.1.
 
 5 differentiation cards, exact titles:
 1. `Separate role, model, provider, and cost`
@@ -159,6 +160,17 @@ Learning Curve subheading:
 
 5 phase cards show date badges. 6 milestone cards show date badges and evidence references.
 
+### Patch 2 Compliance Lock
+The v3.1 release explicitly treats the Patch 2 handoff requirements as implemented:
+- Homepage Hook 2 is present.
+- `What Makes This Different?` is present.
+- 5 safe differentiation claims are visible.
+- Risky claims are absent from the Home page.
+- Learning dates are visible.
+- Learning milestone evidence references are visible.
+- Public External/Internal toggle is removed from the header.
+- `Executive Summary` is absent from the Home page.
+
 ### Architecture Page
 4 layers in order with exact tag wording:
 1. Executive Layer — `Robert / GPT`, `Hermes + Opus + custom MCP*`
@@ -218,7 +230,7 @@ Source: Robert KB + Git
 Version: v1.1 rescue draft
 ```
 
-NOTE: `Version: v1.1 rescue draft` is locked content from the original brief. The repo Git tag `v3.0.0` is the release version. These are intentionally separate. Do NOT change the in-page version string without updating this spec.
+NOTE: `Version: v1.1 rescue draft` is locked content from the original brief. The repo Git tag `v3.1.0` is the release version. These are intentionally separate. Do NOT change the in-page version string without updating this spec.
 
 ### Footer (every page)
 3 columns same as metadata block PLUS bottom line:
@@ -228,7 +240,7 @@ NOTE: `Version: v1.1 rescue draft` is locked content from the original brief. Th
 7 tabs in order: `Home | Architecture | LVT | Learning | Principles | Workstreams | Org & Roles`
 
 ### Toggle (every page)
-No External/Internal button group appears in the public header as of v3.0. `ViewProvider` remains mounted at root for legacy page compatibility, but the public profile should not expose mode-switching controls in `components/site-header.tsx`.
+No External/Internal button group appears in the public header as of v3.1. `ViewProvider` remains mounted at root for legacy page compatibility, but the public profile should not expose mode-switching controls in `components/site-header.tsx`.
 
 ## Tech Stack (locked)
 
@@ -276,6 +288,7 @@ This is a content/status patch only. It does not add a provider integration, API
 | 2026-05-19 | Lyn      | Patches 3-7 approved + Internal toggle fix accepted | Live review + browser test|
 | 2026-05-19 | Lyn      | v2.0.0 LOCK                                        | This document             |
 | 2026-05-21 | Lyn      | v3.0.0 IA promotion requested                      | Workstreams + Org & Roles + KB update |
+| 2026-05-21 | Lyn      | v3.1.0 Patch 2 compliance reconciliation requested | Patch 2 handoff treated as release requirement |
 
 ## Change Procedure
 
