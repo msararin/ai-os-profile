@@ -11,20 +11,23 @@ RUN apk add --no-cache \
 
 WORKDIR /app
 
+# Enable pnpm via Corepack (bundled with the Node image)
+RUN corepack enable
+
 # Copy package files
-COPY package*.json ./
+COPY package.json pnpm-lock.yaml ./
 
 # Install dependencies (including devDependencies for build)
-RUN npm ci
+RUN pnpm install --frozen-lockfile
 
 # Copy application code
 COPY . .
 
 # Build Next.js app
-RUN npm run build
+RUN pnpm build
 
 # Prune devDependencies after build (optimize image size)
-RUN npm prune --production
+RUN pnpm prune --prod
 
 # Create data directory for SQLite
 RUN mkdir -p /data
@@ -41,4 +44,4 @@ HEALTHCHECK --interval=30s --timeout=3s --start-period=40s \
   CMD node -e "require('http').get('http://localhost:3000/api/health', (r) => {process.exit(r.statusCode === 200 ? 0 : 1)})"
 
 # Start application
-CMD ["npm", "start"]
+CMD ["pnpm", "start"]
