@@ -1,6 +1,6 @@
 # Dockerfile for AIOS Observability (ai-os-profile + SQLite)
 
-FROM node:20-alpine
+FROM node:22-alpine
 
 # Install SQLite (better-sqlite3 requires it)
 RUN apk add --no-cache \
