@@ -1,8 +1,9 @@
 import { NextRequest, NextResponse } from "next/server"
 import { join } from "path"
+import { existsSync } from "fs"
 
 // Path to optimize-worker SQLite DB
-const DB_PATH = join(
+const DB_PATH = process.env.DATABASE_PATH || join(
   process.env.OPTIMIZE_WORKER_PATH || "/Users/apple/projects/optimize-worker",
   "observability/aios_observability.sqlite"
 )
@@ -18,6 +19,13 @@ const TIME_WINDOW_SQL: Record<TimeWindow, string> = {
 
 export async function GET(request: NextRequest) {
   try {
+    // Mode A fallback: Check if DATABASE_PATH is set and DB file exists
+    if (!process.env.DATABASE_PATH || !existsSync(DB_PATH)) {
+      return NextResponse.json({
+        status: "not_connected",
+        message: "Observability runtime not connected in Mode A. Telemetry DB will be enabled in a later deployment slice."
+      })
+    }
     // Dynamic import to handle missing better-sqlite3
     let Database
     try {

@@ -78,6 +78,7 @@ export default function ObservabilityPage() {
   const [timeWindow, setTimeWindow] = useState("24h")
   const [loading, setLoading] = useState(false)
   const [lastRefresh, setLastRefresh] = useState<Date | null>(null)
+  const [dbStatus, setDbStatus] = useState<"connected" | "not_connected">("connected")
 
   // Data states
   const [statusData, setStatusData] = useState<StatusCount[]>([])
@@ -101,14 +102,22 @@ export default function ObservabilityPage() {
     setLoading(true)
     try {
       const response = await fetch(`/api/observability?timeWindow=${timeWindow}`)
-      
+
       if (!response.ok) {
         throw new Error(`API returned ${response.status}`)
       }
-      
+
       const data = await response.json()
-      
-      // Update all data states
+
+      // Check for Mode A not_connected status
+      if (data.status === "not_connected") {
+        setDbStatus("not_connected")
+        setLastRefresh(new Date())
+        return
+      }
+
+      // DB is connected, update all data states
+      setDbStatus("connected")
       setStatusData(data.statusData || [])
       setFailureModes(data.failureModes || [])
       setNextActions(data.nextActions || [])
@@ -119,7 +128,7 @@ export default function ObservabilityPage() {
       setBenchmarkValidity(data.benchmarkValidity || {})
       setCostCoverage(data.costCoverage || [])
       setWorkerStatus(data.workerStatus || [])
-      
+
       setLastRefresh(new Date())
     } catch (error) {
       console.error("Failed to refresh data:", error)
@@ -189,25 +198,53 @@ export default function ObservabilityPage() {
       {/* Status Banner */}
       <section className="border-b border-border bg-muted/30">
         <div className="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
-          <Alert>
-            <Info className="h-4 w-4" />
-            <AlertDescription className="text-sm">
-              <strong>Observability v0.1 Status:</strong>
-              <ul className="mt-1 ml-4 list-disc space-y-1">
-                <li>✅ Local model traces proven (Ollama)</li>
-                <li>⚠️ Remote paid provider cost capture not proven yet</li>
-                <li>⚠️ Currently includes synthetic test traces (trace-example-*)</li>
-                <li>📍 Data source: optimize-worker SQLite observability store</li>
-              </ul>
-            </AlertDescription>
-          </Alert>
+          {dbStatus === "not_connected" ? (
+            <Alert>
+              <Info className="h-4 w-4" />
+              <AlertDescription className="text-sm">
+                <strong>Mode A Status:</strong> Web surface online; observability runtime pending.
+                <p className="mt-1">
+                  Telemetry database will be enabled in a later deployment slice.
+                </p>
+              </AlertDescription>
+            </Alert>
+          ) : (
+            <Alert>
+              <Info className="h-4 w-4" />
+              <AlertDescription className="text-sm">
+                <strong>Observability v0.1 Status:</strong>
+                <ul className="mt-1 ml-4 list-disc space-y-1">
+                  <li>✅ Local model traces proven (Ollama)</li>
+                  <li>⚠️ Remote paid provider cost capture not proven yet</li>
+                  <li>⚠️ Currently includes synthetic test traces (trace-example-*)</li>
+                  <li>📍 Data source: optimize-worker SQLite observability store</li>
+                </ul>
+              </AlertDescription>
+            </Alert>
+          )}
         </div>
       </section>
 
       {/* Main Content */}
       <section className="py-8">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-8">
-          
+
+          {dbStatus === "not_connected" ? (
+            <Card>
+              <CardContent className="pt-6">
+                <div className="text-center py-12">
+                  <p className="text-lg text-muted-foreground">
+                    Web surface online; observability runtime pending.
+                  </p>
+                  <p className="text-sm text-muted-foreground mt-2">
+                    Telemetry data and metrics will be available in a later deployment slice.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+          ) : (
+            <>
+
           {/* METRIC 1: Source-Label Integrity (MOVED TO TOP) */}
           <Card>
             <CardHeader>
@@ -524,6 +561,9 @@ export default function ObservabilityPage() {
               </CollapsibleContent>
             </Card>
           </Collapsible>
+
+          </>
+          )}
 
         </div>
       </section>
