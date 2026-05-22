@@ -23,3 +23,25 @@ out
 docs
 PATCHES_3_TO_7_BRIEF.md
 pnpm-workspace.yaml
+
+# Environment files (all variants)
+.env
+.env.*
+!.env.example
+
+# Secrets and keys
+*.pem
+*.key
+*.csv
+
+# Runtime databases
+*.sqlite
+*.db
+
+# Runtime data directories
+backups/
+exports/
+data/
+
+# TypeScript build cache
+tsconfig.tsbuildinfo
