@@ -193,6 +193,65 @@ export default function ArchitecturePage() {
                 layer
               </p>
             </div>
+
+            {/* Observability Layer */}
+            <div className="mt-4 rounded-lg border border-primary/30 bg-primary/5 p-6">
+              <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+                <div>
+                  <div className="flex items-center gap-2">
+                    <span className="flex h-6 w-6 items-center justify-center rounded bg-primary text-xs font-semibold text-primary-foreground">
+                      E
+                    </span>
+                    <h3 className="font-semibold text-foreground">
+                      AIOS Observability Layer
+                    </h3>
+                  </div>
+                  <p className="mt-2 max-w-3xl text-sm text-muted-foreground">
+                    Captures execution traces, routing decisions, cost/usage
+                    evidence, reliability signals, and deployment readiness
+                    checks. In Phase 1, telemetry production and store behavior
+                    remain implemented in optimize-worker while AIOS owns the
+                    governance meaning of the evidence.
+                  </p>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  <span className="rounded-md bg-background px-2 py-1 text-xs font-medium text-foreground shadow-sm">
+                    Governance evidence
+                  </span>
+                  <span className="rounded-md bg-background px-2 py-1 text-xs font-medium text-foreground shadow-sm">
+                    Phase 1 implementation
+                  </span>
+                </div>
+              </div>
+              <div className="mt-4 grid gap-3 border-t border-primary/20 pt-4 sm:grid-cols-3">
+                <div>
+                  <p className="text-xs font-semibold uppercase text-foreground">
+                    Surface
+                  </p>
+                  <p className="mt-1 text-xs text-muted-foreground">
+                    ai-os-profile remains the deployable cockpit and app
+                    surface.
+                  </p>
+                </div>
+                <div>
+                  <p className="text-xs font-semibold uppercase text-foreground">
+                    Foundation
+                  </p>
+                  <p className="mt-1 text-xs text-muted-foreground">
+                    AWS foundation is ready, but the app is not deployed there.
+                  </p>
+                </div>
+                <div>
+                  <p className="text-xs font-semibold uppercase text-foreground">
+                    Gate
+                  </p>
+                  <p className="mt-1 text-xs text-muted-foreground">
+                    Deployment waits for the SQLite runtime contract; refactor
+                    work is paused pending regression strategy.
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -381,7 +440,9 @@ export default function ArchitecturePage() {
                     optimize-worker
                   </td>
                   <td className="px-4 py-3 text-sm text-muted-foreground">
-                    Execution routing and task packaging layer.
+                    Execution routing and task packaging layer. In Phase 1, it
+                    also implements telemetry production and store behavior for
+                    observability evidence.
                   </td>
                 </tr>
                 <tr>
@@ -397,7 +458,19 @@ export default function ArchitecturePage() {
                     ai-os-profile
                   </td>
                   <td className="px-4 py-3 text-sm text-muted-foreground">
-                    Curated external visibility layer (this site).
+                    Curated external visibility layer and deployable cockpit/app
+                    surface (this site).
+                  </td>
+                </tr>
+                <tr>
+                  <td className="whitespace-nowrap px-4 py-3 text-sm font-medium text-foreground">
+                    AIOS Observability Layer
+                  </td>
+                  <td className="px-4 py-3 text-sm text-muted-foreground">
+                    Governance evidence layer for traces, routing decisions,
+                    cost/usage evidence, reliability signals, and deployment
+                    readiness checks. Not a claim that AWS app deployment is
+                    complete.
                   </td>
                 </tr>
               </tbody>
