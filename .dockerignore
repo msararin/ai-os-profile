@@ -1,0 +1,25 @@
+# Dependencies
+node_modules
+npm-debug.log
+
+# Next.js
+.next
+out
+
+# Misc
+.DS_Store
+*.log
+.env*.local
+
+# Git
+.git
+.gitignore
+
+# IDE
+.vscode
+.idea
+
+# Docs (not needed in container)
+docs
+PATCHES_3_TO_7_BRIEF.md
+pnpm-workspace.yaml
