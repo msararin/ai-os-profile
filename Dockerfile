@@ -14,8 +14,8 @@ WORKDIR /app
 # Enable pnpm via Corepack (bundled with the Node image)
 RUN corepack enable
 
-# Copy package files
-COPY package.json pnpm-lock.yaml ./
+# Copy package files and pnpm build-script approval config
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 
 # Install dependencies (including devDependencies for build)
 RUN pnpm install --frozen-lockfile

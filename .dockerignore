@@ -22,7 +22,6 @@ out
 # Docs (not needed in container)
 docs
 PATCHES_3_TO_7_BRIEF.md
-pnpm-workspace.yaml
 
 # Environment files (all variants)
 .env
