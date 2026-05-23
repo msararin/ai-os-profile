@@ -1,3 +1,5 @@
+import { PageLayout } from "@/components/page-layout"
+
 export default function KnowledgeSharingPage() {
   const linkedInPosts = [
     {
@@ -48,34 +50,36 @@ export default function KnowledgeSharingPage() {
   ];
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <div className="mb-8">
-        <h1 className="text-4xl font-bold mb-4">Knowledge Sharing</h1>
-        <p className="text-muted-foreground text-lg">
-          Insights, learnings, and thoughts shared on LinkedIn
-        </p>
-      </div>
+    <PageLayout>
+      <div className="container mx-auto px-4 py-8">
+        <div className="mb-8">
+          <h1 className="text-4xl font-bold mb-4">Knowledge Sharing</h1>
+          <p className="text-muted-foreground text-lg">
+            Insights, learnings, and thoughts shared on LinkedIn
+          </p>
+        </div>
 
-      <div className="grid gap-8">
-        {linkedInPosts.map((post, index) => (
-          <div key={post.urn} className="border rounded-lg p-4 bg-card">
-            <h2 className="text-xl font-semibold mb-4">
-              Post {index + 1}
-            </h2>
-            <div className="flex justify-center">
-              <iframe
-                src={`https://www.linkedin.com/embed/feed/update/${post.urn}`}
-                height={post.height}
-                width={504}
-                frameBorder="0"
-                allowFullScreen
-                title={post.title}
-                className="max-w-full"
-              />
+        <div className="grid gap-8">
+          {linkedInPosts.map((post, index) => (
+            <div key={post.urn} className="border rounded-lg p-4 bg-card">
+              <h2 className="text-xl font-semibold mb-4">
+                Post {index + 1}
+              </h2>
+              <div className="flex justify-center">
+                <iframe
+                  src={`https://www.linkedin.com/embed/feed/update/${post.urn}`}
+                  height={post.height}
+                  width={504}
+                  frameBorder="0"
+                  allowFullScreen
+                  title={post.title}
+                  className="max-w-full"
+                />
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
-    </div>
+    </PageLayout>
   );
 }
