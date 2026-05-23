@@ -9,6 +9,7 @@ const navigation = [
   { name: "Architecture", href: "/architecture" },
   { name: "LVT", href: "/lean-value-tree" },
   { name: "Learning", href: "/achievement-learning" },
+  { name: "Knowledge Sharing", href: "/knowledge-sharing" },
   { name: "Principles", href: "/principles" },
   { name: "Workstreams", href: "/workstreams" },
   { name: "Org & Roles", href: "/org-roles" },
