@@ -4,45 +4,60 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* Warm off-white / soft ivory background */
-  --background: #FAFAF7;
-  --foreground: #1F2937;
+  /* สีมงคลวันศุกร์ - Classic Blue + Mint Teal */
+  /* Off-white background (reduces eye strain) */
+  --background: #FAFAFA;
+  --foreground: #2D3748;
+  
   /* Card styling */
   --card: #FFFFFF;
-  --card-foreground: #1F2937;
+  --card-foreground: #2D3748;
   --popover: #FFFFFF;
-  --popover-foreground: #1F2937;
-  /* Deep teal accent as primary */
-  --primary: #0D7377;
+  --popover-foreground: #2D3748;
+  
+  /* Primary: Classic Blue (Trust & Governance) */
+  --primary: #1F3A60;
   --primary-foreground: #FFFFFF;
-  /* Soft secondary */
-  --secondary: #F3F4F6;
-  --secondary-foreground: #1F2937;
-  /* Muted warm gray */
-  --muted: #F3F4F6;
-  --muted-foreground: #6B7280;
-  /* Accent - muted emerald */
-  --accent: #E8F5F5;
-  --accent-foreground: #0D7377;
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.577 0.245 27.325);
-  --border: #E5E7EB;
-  --input: #E5E7EB;
-  --ring: #0D7377;
-  --chart-1: #0D7377;
-  --chart-2: #14919B;
-  --chart-3: #1F2937;
-  --chart-4: #6B7280;
-  --chart-5: #9CA3AF;
+  
+  /* Secondary: Pastel Blue (Clarity) */
+  --secondary: #E6EEF8;
+  --secondary-foreground: #1F3A60;
+  
+  /* Muted: Slate Blue */
+  --muted: #E6EEF8;
+  --muted-foreground: #4A5568;
+  
+  /* Accent: Mint Teal (Innovation & Action - สีมงคลการเงิน) */
+  --accent: #E8F9F6;
+  --accent-foreground: #00B494;
+  
+  /* Destructive */
+  --destructive: #DC2626;
+  --destructive-foreground: #FFFFFF;
+  
+  /* Borders & Inputs */
+  --border: #E6EEF8;
+  --input: #E6EEF8;
+  --ring: #00B494;
+  
+  /* Charts */
+  --chart-1: #1F3A60;
+  --chart-2: #00B494;
+  --chart-3: #4A6984;
+  --chart-4: #3CD070;
+  --chart-5: #718096;
+  
   --radius: 0.5rem;
-  --sidebar: #FAFAF7;
-  --sidebar-foreground: #1F2937;
-  --sidebar-primary: #0D7377;
+  
+  /* Sidebar */
+  --sidebar: #FAFAFA;
+  --sidebar-foreground: #2D3748;
+  --sidebar-primary: #1F3A60;
   --sidebar-primary-foreground: #FFFFFF;
-  --sidebar-accent: #E8F5F5;
-  --sidebar-accent-foreground: #0D7377;
-  --sidebar-border: #E5E7EB;
-  --sidebar-ring: #0D7377;
+  --sidebar-accent: #E8F9F6;
+  --sidebar-accent-foreground: #00B494;
+  --sidebar-border: #E6EEF8;
+  --sidebar-ring: #00B494;
 }
 
 .dark {

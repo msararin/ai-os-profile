@@ -19,12 +19,17 @@ export default function HomePage() {
               Personal Portfolio
             </Badge>
           </div>
-          <p className="text-xl text-muted-foreground mt-4 max-w-3xl">
-            Applied AI Governance & Human-AI Operating Systems
+          <p className="text-2xl font-semibold text-primary mt-4">
+            I build structure where transformation is messy.
           </p>
           <p className="text-lg text-muted-foreground mt-3 max-w-3xl">
-            Senior Transformation Program Manager specializing in AI/data delivery governance, 
-            human-AI workflow design, and enterprise technology modernization.
+            Business-Technology-AI Bridge: a transformation leader who turns ambiguous goals 
+            into executable systems of work across business, technology, data, governance, and adoption.
+          </p>
+          <p className="text-base text-muted-foreground mt-3 max-w-3xl">
+            15+ years across financial services, consulting, cloud migration governance, digital lending, 
+            core banking modernization, and multi-region delivery. My work sits at the intersection of 
+            business, technology, data, governance, and execution.
           </p>
           
           {/* Employment Status */}
