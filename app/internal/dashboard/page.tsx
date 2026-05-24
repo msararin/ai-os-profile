@@ -138,9 +138,20 @@ export default function InternalDashboardPage() {
                 <a 
                   href="/internal/performance" 
                   className="block p-4 rounded-lg border border-border hover:border-accent-foreground/50 transition-colors"
-                >\n                  <h3 className="font-medium mb-1">Multi-Agent Performance</h3>
+                >
+                  <h3 className="font-medium mb-1">Multi-Agent Performance</h3>
                   <p className="text-sm text-muted-foreground">
                     Real production data: 2.3x speed, 653% ROI, $1.36/deliverable
+                  </p>
+                </a>
+
+                <a 
+                  href="/internal/architecture" 
+                  className="block p-4 rounded-lg border border-border hover:border-[#1F3A60]/50 transition-colors"
+                >
+                  <h3 className="font-medium mb-1">🎯 Architecture Principles</h3>
+                  <p className="text-sm text-muted-foreground">
+                    Thin-slice, privacy, multi-agent, metadata-first, observable validation
                   </p>
                 </a>
 
