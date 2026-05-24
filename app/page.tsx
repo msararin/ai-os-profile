@@ -15,7 +15,7 @@ export default function HomePage() {
             Sararin Malaithong
           </h1>
           <p className="text-xl text-muted-foreground mb-6">
-            AI/Data Transformation Governance Portfolio
+            AI Operating System Showcase + Transformation Governance Portfolio
           </p>
           
           <p className="text-2xl font-semibold text-primary mt-6 mb-4">
@@ -24,20 +24,15 @@ export default function HomePage() {
           
           <div className="space-y-4 text-base text-muted-foreground max-w-3xl">
             <p>
-              My work sits at the intersection of business, technology, data, governance, and execution. 
-              I help turn ambiguous transformation goals into executable systems of work: clear ownership, 
-              decision rhythm, delivery visibility, risk controls, and measurable readiness.
+              This portfolio demonstrates a working AI Operating System (AIOS) for governed transformation work. 
+              It shows architecture, governance, cost awareness, learning loops, and evidence discipline—not just theory.
             </p>
             
             <p>
-              My career started in data reliability and system validation, then evolved into digital lending, 
-              core banking modernization, cloud governance, and multi-region transformation delivery.
-            </p>
-            
-            <p>
-              Today, I apply the same governance discipline to AI/data transformation: workflow design, 
-              human review, decision traceability, source-of-truth control, privacy boundaries, and 
-              operational adoption.
+              I'm a transformation and program governance leader with 15+ years turning ambiguous goals into 
+              executable systems. My background: data reliability → banking modernization → cloud governance → 
+              AI orchestration. Today I build and govern AI systems that prove governance can enable speed, 
+              not only control it.
             </p>
           </div>
           
@@ -51,14 +46,67 @@ export default function HomePage() {
 
           <div className="mt-8 flex gap-4 flex-wrap">
             <Button asChild size="lg">
-              <Link href="/portfolio">View Portfolio</Link>
+              <Link href="/architecture">View AIOS Architecture</Link>
+            </Button>
+            <Button asChild variant="outline" size="lg">
+              <Link href="/achievements">See Measured Results</Link>
             </Button>
             <Button asChild variant="outline" size="lg">
               <Link href="/about">About Me</Link>
             </Button>
-            <Button asChild variant="outline" size="lg">
-              <Link href="/contact">Contact & Resume</Link>
-            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* AIOS Showcase */}
+      <section className="py-12">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl font-semibold mb-2">AI Operating System (AIOS)</h2>
+          <p className="text-base text-muted-foreground mb-8 max-w-3xl">
+            A working system for AI-enabled transformation governance. Not a product—a proof-of-concept 
+            demonstrating how AI work can be traceable, governable, and evidence-based.
+          </p>
+          
+          <div className="grid md:grid-cols-2 gap-6">
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-base">4-Layer Architecture</CardTitle>
+              </CardHeader>
+              <CardContent className="text-sm text-muted-foreground">
+                Strategic intent → Routing & orchestration → Specialized execution → Knowledge/truth storage. 
+                Separates "what to do" from "how to do it" with clear ownership at each layer.
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-base">Governance & Quality Gates</CardTitle>
+              </CardHeader>
+              <CardContent className="text-sm text-muted-foreground">
+                Human-in-the-loop review, benchmark trace discipline, evidence standards for metrics, 
+                and anti-fatigue design. Governance that enables speed by reducing ambiguity.
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-base">Cost & Usage Awareness</CardTitle>
+              </CardHeader>
+              <CardContent className="text-sm text-muted-foreground">
+                Real-time budget tracking, model cost comparison, usage visibility with date/scope context. 
+                Proves governance includes fiscal discipline, not just process compliance.
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-base">Learning & Improvement Loop</CardTitle>
+              </CardHeader>
+              <CardContent className="text-sm text-muted-foreground">
+                Daily headline feedback (what worked → continue, what failed → stop), knowledge capture 
+                with metadata-first search, and harness/memory improvement. System learns from execution.
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>
@@ -67,10 +115,11 @@ export default function HomePage() {
       <section className="py-12 bg-muted/30">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
-            <h2 className="text-2xl font-semibold mb-4">About This Portfolio</h2>
+            <h2 className="text-2xl font-semibold mb-4">What This Portfolio Is</h2>
             <p className="text-base text-muted-foreground mb-6">
-              This portfolio is a personal professional evidence trail. It contains anonymized case studies, 
-              selected governance patterns, and applied AI workflow experiments.
+              This is a personal professional evidence trail. It contains anonymized case studies, 
+              selected governance patterns, and applied AI workflow experiments. The AIOS is a working 
+              proof-of-concept, not a commercial product.
             </p>
             <p className="text-base text-foreground font-medium">
               This is not a consulting storefront, not a startup pitch, and not a public dump of internal systems.
@@ -125,16 +174,6 @@ export default function HomePage() {
           
           <div className="grid md:grid-cols-2 gap-4">
             <Link 
-              href="/portfolio" 
-              className="block p-6 rounded-lg border border-border hover:border-primary transition-colors"
-            >
-              <h3 className="font-semibold mb-2">Portfolio Dashboard</h3>
-              <p className="text-sm text-muted-foreground">
-                Public view of selected AI systems, governance patterns, and case studies.
-              </p>
-            </Link>
-
-            <Link 
               href="/architecture" 
               className="block p-6 rounded-lg border border-border hover:border-primary transition-colors"
             >
@@ -145,12 +184,22 @@ export default function HomePage() {
             </Link>
 
             <Link 
-              href="/knowledge-sharing" 
+              href="/achievements" 
               className="block p-6 rounded-lg border border-border hover:border-primary transition-colors"
             >
-              <h3 className="font-semibold mb-2">Writing & Thought Leadership</h3>
+              <h3 className="font-semibold mb-2">Measured Results</h3>
               <p className="text-sm text-muted-foreground">
-                Public posts and reflections on AI transformation, delivery governance, and systems thinking.
+                Evidence-backed performance improvements with date context, baselines, and scope.
+              </p>
+            </Link>
+
+            <Link 
+              href="/portfolio" 
+              className="block p-6 rounded-lg border border-border hover:border-primary transition-colors"
+            >
+              <h3 className="font-semibold mb-2">Portfolio & Case Studies</h3>
+              <p className="text-sm text-muted-foreground">
+                Selected AI systems, governance patterns, and anonymized transformation work.
               </p>
             </Link>
 
@@ -160,7 +209,7 @@ export default function HomePage() {
             >
               <h3 className="font-semibold mb-2">Professional Background</h3>
               <p className="text-sm text-muted-foreground">
-                Experience in transformation program management, financial services, and enterprise delivery.
+                15+ years: data reliability → banking → cloud governance → AI orchestration. Why I can govern AI transformation.
               </p>
             </Link>
           </div>
