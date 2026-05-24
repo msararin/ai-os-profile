@@ -8,6 +8,8 @@ const roleFit = [
     governance: 5,
     technical: 4,
     learning: 5,
+    aiEngineering: 3,
+    aiGovernance: 4.5,
     uniqueValue: "Bridges AI hype ↔ implementation reality",
     positioning: "I help organizations move AI from experiment to execution by connecting business goals, data readiness, technical constraints, and governance frameworks—drawing from my data systems foundation and active AI engineering upskilling.",
     why: [
@@ -15,27 +17,16 @@ const roleFit = [
       "Technical foundation: SQL, ETL, data validation (millions of records)",
       "Active AI upskilling: RAG architecture, agentic workflows, Python automation",
       "Proven learning pattern: Data/QA → Banking → Cloud → AI Engineering"
-    ]
-  },
-  {
-    title: "AI Deployment Strategist",
-    governance: 5,
-    technical: 4,
-    learning: 5,
-    uniqueValue: "Designs deployment for organizational readiness",
-    positioning: "I design deployment strategies that bridge technical capability and organizational readiness, with hands-on learning in RAG architecture, prompt orchestration, and multi-region delivery experience.",
-    why: [
-      "Multi-region delivery coordination experience",
-      "System thinking: from SQL/COBOL batch flows to AI workflows",
-      "Learning RAG prototyping, context governance, retrieval permissions",
-      "Understands both technical constraints AND organizational change"
-    ]
+    ],
+    evidence: "Evidence: Built personal AI orchestration lab using KB + Git as source of truth, with role-based agent workflows, benchmark trace discipline (1,750x performance improvement, 100% test accuracy), and deployment experiments. See /internal/architecture for thin-slice methodology and /internal/showcase for measured results."
   },
   {
     title: "Manager, Strategy & Transformation Office",
     governance: 5,
     technical: 4,
-    learning: 4,
+    learning: 5,
+    aiEngineering: 3,
+    aiGovernance: 4.5,
     uniqueValue: "Transforms strategy into executable systems",
     positioning: "I structure transformation as executable systems, not PowerPoint strategy—combining technical foundation in data systems with 15+ years of program governance and current AI engineering growth.",
     why: [
@@ -43,35 +34,25 @@ const roleFit = [
       "Built reusable frameworks (test-data pipelines, governance templates)",
       "Technical credibility: not just coordinating, but understanding constraints",
       "CCoE governance: turned cloud ambition into decision-ready roadmaps"
-    ]
+    ],
+    evidence: "Current lab artifacts: AI workflow governance notes, agent role contracts, source-of-truth rules, benchmark telemetry design, multi-agent orchestration (2.3x efficiency gain, 653% ROI). Documented thin-slice engineering approach with observable validation."
   },
   {
-    title: "Business Transformation Consultant",
+    title: "Technology Enablement / AI Governance Lead",
     governance: 5,
     technical: 4,
-    learning: 4,
-    uniqueValue: "Consulting with technical credibility",
-    positioning: "I advise on business-technology transformation with a technical foundation, not just frameworks—I grew FROM SQL/ETL/system analysis INTO consulting, giving me implementation credibility.",
-    why: [
-      "Grew from hands-on SQL/data validation into program leadership",
-      "Credibility with both business AND engineering stakeholders",
-      "Proven across banking, cloud, digital transformation domains",
-      "Can design AND validate technical feasibility of transformation strategies"
-    ]
-  },
-  {
-    title: "Technology Enablement Lead",
-    governance: 4,
-    technical: 5,
     learning: 5,
+    aiEngineering: 3,
+    aiGovernance: 4.5,
     uniqueValue: "Creates reusable frameworks, not just training",
     positioning: "I enable technology adoption by creating reusable systems and frameworks teams can independently operate—from test-data pipelines to cloud governance templates to AI architecture patterns.",
     why: [
       "Built ETL test frameworks for core accounting migration",
       "Created governance templates (cloud, data, AI workflow patterns)",
-      "Current: RAG architecture prototyping, automation design",
+      "Current: 3-layer privacy architecture (85% KB auto-protected), metadata-first search (0.027s latency)",
       "Pattern: learn fundamentals → create reusable systems → enable teams"
-    ]
+    ],
+    evidence: "See /internal/architecture for documented patterns: thin-slice harness engineering, CEO escalation tiers, observable validation systems. Real implementation, not theory."
   }
 ]
 
@@ -108,14 +89,19 @@ export default function RoleFitPage() {
           <Card className="border-primary/30">
             <CardContent className="pt-6">
               <p className="text-base text-foreground font-medium mb-3">
-                I'm a technology program leader with a technical foundation in data systems, 
-                proven governance expertise, and active AI engineering upskilling.
+                I'm not positioning myself as a pure AI engineer. I'm positioning myself as a{" "}
+                <span className="text-primary font-semibold">transformation leader with enough technical depth to govern AI delivery responsibly</span>, 
+                challenge implementation assumptions, and translate between business, data, engineering, and governance.
               </p>
-              <p className="text-sm text-muted-foreground">
+              <p className="text-sm text-muted-foreground mb-3">
                 I grew from SQL/ETL/data validation into program leadership, and I'm now expanding 
                 into AI transformation—learning RAG architecture, agentic workflows, and automation 
                 design hands-on. My value is bridging business goals, technical constraints, and 
                 governance frameworks to make transformation actually executable.
+              </p>
+              <p className="text-xs text-muted-foreground italic border-l-2 border-primary/30 pl-3">
+                Evidence: Personal AI orchestration lab with KB memory (1,750x improvement), multi-agent systems (2.3x efficiency), 
+                3-layer privacy architecture. See /internal/architecture and /internal/showcase for measured results.
               </p>
             </CardContent>
           </Card>
@@ -185,18 +171,32 @@ export default function RoleFitPage() {
                   </div>
 
                   {/* Fit Scores */}
-                  <div className="grid grid-cols-3 gap-4 mt-4">
+                  <div className="grid grid-cols-2 gap-4 mt-4">
                     <div>
-                      <div className="text-xs text-muted-foreground mb-1">Governance</div>
+                      <div className="text-xs text-muted-foreground mb-1">Governance Expertise</div>
                       <StarRating count={role.governance} />
                     </div>
                     <div>
-                      <div className="text-xs text-muted-foreground mb-1">Technical</div>
-                      <StarRating count={role.technical} />
+                      <div className="text-xs text-muted-foreground mb-1">Learning Velocity</div>
+                      <StarRating count={role.learning} />
                     </div>
                     <div>
-                      <div className="text-xs text-muted-foreground mb-1">Learning</div>
-                      <StarRating count={role.learning} />
+                      <div className="text-xs text-muted-foreground mb-1">Technical Depth</div>
+                      <StarRating count={role.technical} />
+                      <span className="text-xs text-muted-foreground italic">(solid, not deep engineer)</span>
+                    </div>
+                    <div>
+                      <div className="text-xs text-muted-foreground mb-1">AI Engineering</div>
+                      <StarRating count={role.aiEngineering} />
+                      <span className="text-xs text-muted-foreground italic">(growing, lab-stage)</span>
+                    </div>
+                    <div className="col-span-2">
+                      <div className="text-xs text-muted-foreground mb-1">AI Delivery Governance <span className="text-primary font-semibold">(Sweet Spot!)</span></div>
+                      <div className="flex items-center gap-2">
+                        <StarRating count={Math.floor(role.aiGovernance)} />
+                        <span className="text-sm font-medium text-primary">★</span>
+                        <span className="text-xs text-muted-foreground">{role.aiGovernance}/5</span>
+                      </div>
                     </div>
                   </div>
                 </CardHeader>
@@ -222,6 +222,16 @@ export default function RoleFitPage() {
                         ))}
                       </ul>
                     </div>
+
+                    {/* Evidence Anchor */}
+                    {role.evidence && (
+                      <div className="bg-primary/5 border border-primary/20 rounded-md p-3">
+                        <h4 className="text-xs font-medium text-primary mb-1.5">📊 Evidence Anchor</h4>
+                        <p className="text-xs text-muted-foreground">
+                          {role.evidence}
+                        </p>
+                      </div>
+                    )}
                   </div>
                 </CardContent>
               </Card>
