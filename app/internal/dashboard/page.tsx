@@ -126,10 +126,19 @@ export default function InternalDashboardPage() {
                 </a>
 
                 <a 
-                  href="/internal/performance" 
-                  className="block p-4 rounded-lg border border-border hover:border-accent-foreground/50 transition-colors bg-accent/20"
+                  href="/internal/showcase" 
+                  className="block p-4 rounded-lg border-2 border-[#00B494] hover:bg-[#00B494]/10 transition-colors"
                 >
-                  <h3 className="font-medium mb-1">Multi-Agent Performance 🏆</h3>
+                  <h3 className="font-medium mb-1 text-[#00B494]">⭐ Performance Showcase</h3>
+                  <p className="text-sm text-muted-foreground">
+                    Executive-grade proof: 1,750x speedup, 100% accuracy, 0 violations
+                  </p>
+                </a>
+
+                <a 
+                  href="/internal/performance" 
+                  className="block p-4 rounded-lg border border-border hover:border-accent-foreground/50 transition-colors"
+                >\n                  <h3 className="font-medium mb-1">Multi-Agent Performance</h3>
                   <p className="text-sm text-muted-foreground">
                     Real production data: 2.3x speed, 653% ROI, $1.36/deliverable
                   </p>
