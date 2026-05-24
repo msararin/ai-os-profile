@@ -77,7 +77,7 @@ const architecturePrinciples = [
     tiers: [
       { tier: "Tier 1", handler: "Specialist Agents", scope: "Docs, bugs, content, UI implementation" },
       { tier: "Tier 2", handler: "Opus (Architecture)", scope: "Design reviews, planning, medium risk (<$5)" },
-      { tier: "Tier 3", handler: "CEO (Lyn)", scope: "Strategy, budget >$25, high risk, final approval" }
+      { tier: "Tier 3", handler: "CEO (Lyn)", scope: "Strategy, budget over $25, high risk, final approval" }
     ]
   }
 ]
@@ -406,7 +406,7 @@ export default function ArchitecturePage() {
               <CardContent className="space-y-3 text-sm">
                 <div className="flex gap-2">
                   <span className="text-amber-600">•</span>
-                  <span>Large monolithic tasks (>60 min) → timeouts, lost work</span>
+                  <span>Large monolithic tasks (&gt;60 min) &rarr; timeouts, lost work</span>
                 </div>
                 <div className="flex gap-2">
                   <span className="text-amber-600">•</span>
