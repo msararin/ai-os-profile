@@ -1,9 +1,24 @@
+"use client"
+
+import { useSession } from "next-auth/react"
 import { PageLayout } from "@/components/page-layout"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 
 export default function InternalDashboardPage() {
+  const { data: session, status } = useSession()
+
+  if (status === "loading") {
+    return (
+      <PageLayout>
+        <div className="flex items-center justify-center min-h-screen">
+          <p className="text-muted-foreground">Loading...</p>
+        </div>
+      </PageLayout>
+    )
+  }
+
   return (
     <PageLayout>
       {/* Header */}
@@ -30,7 +45,7 @@ export default function InternalDashboardPage() {
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
           <Alert className="mb-6 bg-primary/5 border-primary/20">
             <AlertDescription>
-              🔒 This is an access-controlled internal space. Not part of the public portfolio.
+              🔒 Authenticated as: <span className="font-medium">{session?.user?.email}</span>
             </AlertDescription>
           </Alert>
 
