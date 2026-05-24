@@ -3,296 +3,200 @@ import { PageLayout } from "@/components/page-layout"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-
-const differentiationClaims = [
-  {
-    id: 1,
-    title: "AI worker routing",
-    description:
-      "Route tasks to different models based on complexity, cost, and capability—not one model for everything.",
-  },
-  {
-    id: 2,
-    title: "Human review gates",
-    description:
-      "AI helps fast, but outputs pass through human gates for money, privacy, reputation, and irreversible decisions.",
-  },
-  {
-    id: 3,
-    title: "Benchmark traces",
-    description:
-      "Tasks produce benchmark evidence before they're marked done—not just completion signals.",
-  },
-  {
-    id: 4,
-    title: "Git/artifact anchors",
-    description:
-      "Work is linked to commits, files, and artifacts—making claims verifiable, not just verbal.",
-  },
-  {
-    id: 5,
-    title: "Private/public curation discipline",
-    description:
-      "AI workers consume curated, approved context only—no unrestricted access to personal or employer-sensitive data.",
-  },
-  {
-    id: 6,
-    title: "Cost-aware model routing",
-    description:
-      "Separate role, model, provider, and cost so execution is traceable and cost is not conflated with quality.",
-  },
-]
-
-const proofCase = {
-  title: "CI/CD + Benchmark Trace Proof",
-  summary:
-    "CI/CD deployment preflight task caught scope creep before it reached production.",
-  steps: [
-    {
-      label: "Task started",
-      description: "Add CI deployment preflight workflow",
-    },
-    {
-      label: "Initial commit",
-      description: "Included 8 out-of-scope files (ESLint setup, API rename, fonts, types)",
-    },
-    {
-      label: "Benchmark trace caught violation",
-      description: "Governance review detected scope creep before push",
-    },
-    {
-      label: "Corrective action",
-      description: "Commit amended to include only 2 intended files (CI workflow + docs)",
-    },
-    {
-      label: "Result",
-      description: "Deployment guardrail shipped with clean release discipline",
-    },
-  ],
-  claimAllowed: "Benchmark traces help catch scope creep and prevent unsafe releases.",
-  claimNotAllowed: [
-    "This proves model cost optimization.",
-    "This proves deployment is fully automated.",
-    "This proves end-to-end production safety.",
-  ],
-}
-
-const benchmarkValue = [
-  {
-    title: "Catching scope creep",
-    description: "Detect when work includes unintended changes before commit/push.",
-  },
-  {
-    title: "Preventing false claims",
-    description: "Distinguish process proof from cost proof, execution proof from quality proof.",
-  },
-  {
-    title: "Linking work to artifacts",
-    description: "Anchor claims to commit hashes, file paths, validation logs.",
-  },
-  {
-    title: "Comparing quality over time",
-    description: "Track whether governance discipline improves or degrades across tasks.",
-  },
-]
-
-const systemState = [
-  ["Source of truth", "Robert KB + Git remain canonical."],
-  ["Governance", "Human review gates protect money, privacy, reputation, and irreversible decisions."],
-  ["Routing", "Fallback routing policy exists so one worker or model is not a single point of failure."],
-  ["Proof level", "Current profile is documented, smoke-proven in selected flows, and regression-gated."],
-]
+import { Alert, AlertDescription } from "@/components/ui/alert"
 
 export default function HomePage() {
   return (
     <PageLayout>
+      {/* Hero Section */}
       <section className="border-b border-border bg-background">
-        <div className="mx-auto max-w-5xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
-          <h1 className="text-balance text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">
-            AI Operating Systems That Turn AI Work Into Governed, Traceable Delivery Evidence
-          </h1>
-          <p className="mt-4 max-w-2xl text-pretty text-lg text-muted-foreground">
-            Lyn builds AI operating systems—not just prompts and tools. AIOS routes work across models, enforces human review gates, and produces benchmark traces that anchor claims to commits and artifacts.
+        <div className="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
+          <div className="flex items-center gap-3 mb-4">
+            <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
+              Sararin Muangsiri
+            </h1>
+            <Badge variant="outline" className="text-sm">
+              Personal Portfolio
+            </Badge>
+          </div>
+          <p className="text-xl text-muted-foreground mt-4 max-w-3xl">
+            Applied AI Governance & Human-AI Operating Systems
           </p>
-          <p className="mt-2 max-w-2xl text-pretty text-base text-muted-foreground italic">
-            This is governed, traceable AI execution—not generic AI prompting.
+          <p className="text-lg text-muted-foreground mt-3 max-w-3xl">
+            Senior Transformation Program Manager specializing in AI/data delivery governance, 
+            human-AI workflow design, and enterprise technology modernization.
           </p>
-          <div className="mt-8 flex flex-wrap gap-3">
+          
+          {/* Employment Status */}
+          <Alert className="mt-6 max-w-3xl border-primary/30 bg-primary/5">
+            <AlertDescription className="text-base">
+              <strong>Currently exploring senior roles</strong> in AI/data transformation, 
+              delivery governance, and enterprise technology programs.
+            </AlertDescription>
+          </Alert>
+
+          <div className="mt-8 flex gap-4">
             <Button asChild size="lg">
-              <Link href="#proof-case">View Proof Case</Link>
+              <Link href="/portfolio">View Portfolio</Link>
             </Button>
-            <Button variant="outline" asChild>
-              <Link href="/architecture">View Architecture</Link>
-            </Button>
-            <Button variant="outline" asChild>
-              <Link href="/workstreams">View Workstreams</Link>
+            <Button asChild variant="outline" size="lg">
+              <Link href="/about">About Me</Link>
             </Button>
           </div>
         </div>
       </section>
 
-      <section className="py-16">
+      {/* What This Is / Is Not */}
+      <section className="py-12 bg-muted/30">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-semibold tracking-tight text-foreground">
-            What Makes This Different From Generic AI Usage?
-          </h2>
-          <p className="mt-4 max-w-3xl text-sm text-muted-foreground">
-            Most AI tools focus on building agents or automating workflows.
-            AIOS focuses on a harder problem: How do you govern AI work when
-            multiple models, roles, and costs interact—and how do you prove the system works?
-          </p>
-          <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {differentiationClaims.map((claim) => (
-              <Card key={claim.id} className="border-border bg-card">
-                <CardHeader className="pb-3">
-                  <CardTitle className="text-base font-medium text-primary">
-                    {claim.title}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-muted-foreground">
-                    {claim.description}
-                  </p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-          <p className="mt-8 text-sm italic text-muted-foreground">
-            This is a portfolio case study, not a production product.
-          </p>
-        </div>
-      </section>
-
-      <section id="proof-case" className="border-t border-border bg-muted/30 py-16">
-        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-semibold tracking-tight text-foreground">
-            {proofCase.title}
-          </h2>
-          <p className="mt-2 max-w-3xl text-base text-muted-foreground">
-            {proofCase.summary}
-          </p>
-          <div className="mt-8 space-y-4">
-            {proofCase.steps.map((step, idx) => (
-              <Card key={idx} className="border-border bg-card">
-                <CardHeader className="pb-3">
-                  <div className="flex items-start gap-4">
-                    <Badge
-                      variant="secondary"
-                      className="mt-1 shrink-0 bg-primary/10 text-primary"
-                    >
-                      {idx + 1}
-                    </Badge>
-                    <div>
-                      <CardTitle className="text-base font-medium">
-                        {step.label}
-                      </CardTitle>
-                      <p className="mt-1 text-sm text-muted-foreground">
-                        {step.description}
-                      </p>
-                    </div>
-                  </div>
-                </CardHeader>
-              </Card>
-            ))}
-          </div>
-          <div className="mt-8 space-y-4">
-            <Card className="border-green-500/20 bg-green-500/5">
-              <CardHeader className="pb-3">
-                <CardTitle className="text-base font-medium text-green-700 dark:text-green-400">
-                  ✓ Claim allowed
+          <h2 className="text-2xl font-semibold mb-6">About This Portfolio</h2>
+          
+          <div className="grid md:grid-cols-2 gap-6">
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-lg flex items-center gap-2">
+                  <span className="text-green-600">✓</span> What This Is
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-sm text-muted-foreground">
-                  {proofCase.claimAllowed}
-                </p>
+                <ul className="space-y-3 text-sm text-muted-foreground">
+                  <li>• Personal professional portfolio showcasing AI governance capabilities</li>
+                  <li>• Selected experiments from my applied AI learning practice</li>
+                  <li>• Evidence of how I structure complex AI/data delivery work</li>
+                  <li>• Bridge between transformation program management and AI orchestration</li>
+                </ul>
               </CardContent>
             </Card>
-            <Card className="border-red-500/20 bg-red-500/5">
-              <CardHeader className="pb-3">
-                <CardTitle className="text-base font-medium text-red-700 dark:text-red-400">
-                  ✗ Claims NOT allowed
+
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-lg flex items-center gap-2">
+                  <span className="text-red-600">✗</span> What This Is NOT
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <ul className="space-y-1 text-sm text-muted-foreground">
-                  {proofCase.claimNotAllowed.map((claim, idx) => (
-                    <li key={idx}>• {claim}</li>
-                  ))}
+                <ul className="space-y-3 text-sm text-muted-foreground">
+                  <li>• Not a consulting storefront or client services business</li>
+                  <li>• Not a startup seeking funding or customers</li>
+                  <li>• Not a full operational system dump (internal sections are auth-protected)</li>
+                  <li>• Not claims that every experiment is production-ready</li>
                 </ul>
               </CardContent>
             </Card>
           </div>
+
+          <p className="mt-6 text-sm text-muted-foreground italic max-w-3xl">
+            I build and study how AI can work as part of a governed delivery system — not just as a chatbot, 
+            but as a structured team of roles, workflows, decision gates, and evidence trails. This site 
+            documents selected case studies and delivery patterns from my personal AI workflow practice.
+          </p>
         </div>
       </section>
 
-      <section className="border-t border-border py-16">
+      {/* Core Capabilities */}
+      <section className="py-12">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-semibold tracking-tight text-foreground">
-            What Benchmark/Governance Data Is Useful For
-          </h2>
-          <p className="mt-2 max-w-3xl text-sm text-muted-foreground">
-            Collected benchmark and governance traces are not just telemetry—they're decision input.
-          </p>
-          <div className="mt-8 grid gap-6 md:grid-cols-2">
-            {benchmarkValue.map((item) => (
-              <Card key={item.title} className="border-border bg-card">
-                <CardHeader className="pb-3">
-                  <CardTitle className="text-base font-medium text-primary">
-                    {item.title}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-muted-foreground">
-                    {item.description}
-                  </p>
-                </CardContent>
-              </Card>
-            ))}
+          <h2 className="text-2xl font-semibold mb-8">Core Capabilities</h2>
+          
+          <div className="grid md:grid-cols-3 gap-6">
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-base">AI Orchestration</CardTitle>
+              </CardHeader>
+              <CardContent className="text-sm text-muted-foreground">
+                Design and govern multi-agent AI systems with role-based routing, 
+                decision gates, and cost-aware model selection.
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-base">Delivery Governance</CardTitle>
+              </CardHeader>
+              <CardContent className="text-sm text-muted-foreground">
+                Build governance frameworks for AI-enabled delivery: benchmark traces, 
+                source-of-truth principles, and stakeholder-safe controls.
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-base">Enterprise Transformation</CardTitle>
+              </CardHeader>
+              <CardContent className="text-sm text-muted-foreground">
+                Bridge program management expertise with hands-on AI systems understanding 
+                to lead transformation at scale.
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>
 
-      <section className="border-t border-border bg-muted/30 py-16">
+      {/* Quick Links */}
+      <section className="py-12 bg-muted/30">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-semibold tracking-tight text-foreground">
-            System State
-          </h2>
-          <p className="mt-2 max-w-3xl text-sm text-muted-foreground">
-            Compact summary only. Actionable workstream status lives on the
-            Workstreams page.
-          </p>
-          <div className="mt-8 grid gap-4 sm:grid-cols-2">
-            {systemState.map(([label, value]) => (
-              <Card key={label} className="border-border bg-card">
-                <CardHeader className="pb-3">
-                  <CardTitle className="text-base font-medium text-primary">
-                    {label}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-muted-foreground">{value}</p>
-                </CardContent>
-              </Card>
-            ))}
+          <h2 className="text-2xl font-semibold mb-6">Explore</h2>
+          
+          <div className="grid md:grid-cols-2 gap-4">
+            <Link 
+              href="/portfolio" 
+              className="block p-6 rounded-lg border border-border hover:border-primary transition-colors"
+            >
+              <h3 className="font-semibold mb-2">Portfolio Dashboard</h3>
+              <p className="text-sm text-muted-foreground">
+                Public view of selected AI systems, governance patterns, and case studies.
+              </p>
+            </Link>
+
+            <Link 
+              href="/architecture" 
+              className="block p-6 rounded-lg border border-border hover:border-primary transition-colors"
+            >
+              <h3 className="font-semibold mb-2">System Architecture</h3>
+              <p className="text-sm text-muted-foreground">
+                4-layer AI orchestration architecture: strategic intent, routing, execution, and truth storage.
+              </p>
+            </Link>
+
+            <Link 
+              href="/knowledge-sharing" 
+              className="block p-6 rounded-lg border border-border hover:border-primary transition-colors"
+            >
+              <h3 className="font-semibold mb-2">Writing & Thought Leadership</h3>
+              <p className="text-sm text-muted-foreground">
+                Public posts and reflections on AI transformation, delivery governance, and systems thinking.
+              </p>
+            </Link>
+
+            <Link 
+              href="/about" 
+              className="block p-6 rounded-lg border border-border hover:border-primary transition-colors"
+            >
+              <h3 className="font-semibold mb-2">Professional Background</h3>
+              <p className="text-sm text-muted-foreground">
+                Experience in transformation program management, financial services, and enterprise delivery.
+              </p>
+            </Link>
           </div>
         </div>
       </section>
 
-      <section className="border-t border-border py-16">
-        <div className="mx-auto max-w-5xl px-4 text-center sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-semibold tracking-tight text-foreground">
-            View How AI Work Becomes Traceable Delivery Evidence
-          </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-sm text-muted-foreground">
-            Explore the architecture, review benchmark traces, and see how governance gates work.
+      {/* Footer CTA */}
+      <section className="py-12 border-t border-border">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-2xl font-semibold mb-4">Interested in working together?</h2>
+          <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
+            I'm actively exploring senior roles in AI/data transformation, delivery governance, 
+            and enterprise technology modernization.
           </p>
-          <div className="mt-8 flex flex-wrap justify-center gap-3">
+          <div className="flex gap-4 justify-center">
             <Button asChild size="lg">
-              <Link href="/architecture">View Architecture</Link>
+              <Link href="https://www.linkedin.com/in/msararin" target="_blank">
+                Connect on LinkedIn
+              </Link>
             </Button>
-            <Button variant="outline" asChild>
-              <Link href="/workstreams">View Workstreams</Link>
+            <Button asChild variant="outline" size="lg">
+              <Link href="/about">View Full Profile</Link>
             </Button>
           </div>
         </div>
