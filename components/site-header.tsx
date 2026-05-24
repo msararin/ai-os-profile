@@ -6,13 +6,12 @@ import { cn } from "@/lib/utils"
 
 const navigation = [
   { name: "Home", href: "/" },
-  { name: "Architecture", href: "/architecture" },
-  { name: "LVT", href: "/lean-value-tree" },
-  { name: "Learning", href: "/achievement-learning" },
+  { name: "About", href: "/about" },
+  { name: "Portfolio", href: "/portfolio" },
+  { name: "Role Fit", href: "/role-fit" },
   { name: "Knowledge Sharing", href: "/knowledge-sharing" },
-  { name: "Principles", href: "/principles" },
-  { name: "Workstreams", href: "/workstreams" },
-  { name: "Org & Roles", href: "/org-roles" },
+  { name: "Contact", href: "/contact" },
+  { name: "Internal", href: "/internal/dashboard" },
 ]
 
 export function SiteHeader() {

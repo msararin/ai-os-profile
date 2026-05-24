@@ -47,12 +47,12 @@ export default function ContactPage() {
               </CardHeader>
               <CardContent>
                 <a 
-                  href="https://www.linkedin.com/in/sararin-malaithong"
+                  href="https://www.linkedin.com/in/msararin/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-primary hover:underline text-base"
                 >
-                  linkedin.com/in/sararin-malaithong
+                  linkedin.com/in/msararin
                 </a>
                 <p className="text-sm text-muted-foreground mt-2">
                   Connect for opportunities
