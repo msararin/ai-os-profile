@@ -1,10 +1,11 @@
 "use client"
 
-import { useSession } from "next-auth/react"
+import { useSession, signOut } from "next-auth/react"
 import { PageLayout } from "@/components/page-layout"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Alert, AlertDescription } from "@/components/ui/alert"
+import { Button } from "@/components/ui/button"
 
 export default function InternalDashboardPage() {
   const { data: session, status } = useSession()
@@ -33,9 +34,17 @@ export default function InternalDashboardPage() {
                 Operational cockpit for AI workflow governance
               </p>
             </div>
-            <Badge variant="outline" className="text-xs">
-              Auth Protected
-            </Badge>
+            <div className="flex items-center gap-3">
+              <Badge variant="outline" className="text-xs">
+                Auth Protected
+              </Badge>
+              <Button 
+                variant="outline" 
+                onClick={() => signOut()}
+              >
+                Sign Out
+              </Button>
+            </div>
           </div>
         </div>
       </section>
