@@ -8,6 +8,8 @@ import { Button } from "@/components/ui/button"
 
 export default function SignInPage() {
   const handleSignIn = async () => {
+    console.log('[SignIn] Sign-in initiated by user')
+    console.log('[SignIn] Redirecting to Google OAuth')
     await signIn("google", { callbackUrl: "/internal/dashboard" })
   }
 

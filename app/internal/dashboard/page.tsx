@@ -40,7 +40,13 @@ export default function InternalDashboardPage() {
               </Badge>
               <Button 
                 variant="outline" 
-                onClick={() => signOut()}
+                onClick={() => {
+                  console.log('[Dashboard] Sign-out initiated by user')
+                  signOut({ 
+                    callbackUrl: '/',
+                    redirect: true 
+                  })
+                }}
               >
                 Sign Out
               </Button>
@@ -119,6 +125,16 @@ export default function InternalDashboardPage() {
                   </p>
                 </a>
 
+                <a 
+                  href="/internal/performance" 
+                  className="block p-4 rounded-lg border border-border hover:border-accent-foreground/50 transition-colors bg-accent/20"
+                >
+                  <h3 className="font-medium mb-1">Multi-Agent Performance 🏆</h3>
+                  <p className="text-sm text-muted-foreground">
+                    Real production data: 2.3x speed, 653% ROI, $1.36/deliverable
+                  </p>
+                </a>
+
                 <div className="block p-4 rounded-lg border border-border opacity-50">
                   <h3 className="font-medium mb-1">Model Routing</h3>
                   <p className="text-sm text-muted-foreground">
@@ -130,13 +146,6 @@ export default function InternalDashboardPage() {
                   <h3 className="font-medium mb-1">Benchmark Traces</h3>
                   <p className="text-sm text-muted-foreground">
                     Task completion evidence (Coming soon)
-                  </p>
-                </div>
-
-                <div className="block p-4 rounded-lg border border-border opacity-50">
-                  <h3 className="font-medium mb-1">KB Explorer</h3>
-                  <p className="text-sm text-muted-foreground">
-                    Knowledge base structure (Coming soon)
                   </p>
                 </div>
               </div>
