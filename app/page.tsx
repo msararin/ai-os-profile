@@ -49,12 +49,15 @@ export default function HomePage() {
             </AlertDescription>
           </Alert>
 
-          <div className="mt-8 flex gap-4">
+          <div className="mt-8 flex gap-4 flex-wrap">
             <Button asChild size="lg">
               <Link href="/portfolio">View Portfolio</Link>
             </Button>
             <Button asChild variant="outline" size="lg">
               <Link href="/about">About Me</Link>
+            </Button>
+            <Button asChild variant="outline" size="lg">
+              <Link href="/contact">Contact & Resume</Link>
             </Button>
           </div>
         </div>
