@@ -68,7 +68,8 @@ export default function ContactPage() {
             </CardHeader>
             <CardContent>
               <p className="text-sm text-muted-foreground mb-4">
-                Download my complete professional background and experience.
+                Download my complete professional background and experience. This is a generic version — 
+                I'm happy to customize based on your specific role requirements.
               </p>
               <Button asChild size="lg">
                 <a href="/resume/Sararin-Malaithong-Resume.pdf" download>
@@ -76,7 +77,10 @@ export default function ContactPage() {
                 </a>
               </Button>
               <p className="text-xs text-muted-foreground mt-3">
-                Last updated: May 2026
+                Generic version • Last updated: May 2026
+              </p>
+              <p className="text-xs text-primary mt-2">
+                💡 Want a customized version for your role? <a href="mailto:msararin@gmail.com" className="underline">Let me know</a>
               </p>
             </CardContent>
           </Card>
