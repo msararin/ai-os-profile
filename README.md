@@ -2,7 +2,7 @@
 
 [![Deployment Preflight](https://github.com/msararin/ai-os-profile/actions/workflows/deployment-preflight.yml/badge.svg)](https://github.com/msararin/ai-os-profile/actions/workflows/deployment-preflight.yml)
 
-**Sararin Muangsiri's AI/Data Transformation Governance Portfolio**
+**Sararin Malaithong's AI/Data Transformation Governance Portfolio**
 
 Personal professional portfolio showcasing AI governance capabilities, anonymized case studies, and applied AI workflow experiments.
 
@@ -181,7 +181,7 @@ Nova Orbit Labs → Separate company/lab identity (use carefully)
 
 ## 📝 License
 
-This is a personal portfolio project. Content and design © 2026 Sararin Muangsiri.
+This is a personal portfolio project. Content and design © 2026 Sararin Malaithong.
 
 ---
 

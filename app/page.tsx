@@ -12,7 +12,7 @@ export default function HomePage() {
       <section className="border-b border-border bg-background">
         <div className="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
           <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl mb-2">
-            Sararin Muangsiri
+            Sararin Malaithong
           </h1>
           <p className="text-xl text-muted-foreground mb-6">
             AI/Data Transformation Governance Portfolio
