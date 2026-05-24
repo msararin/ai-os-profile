@@ -4,23 +4,29 @@ import { Badge } from "@/components/ui/badge"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 
 export default function InternalUsagePage() {
-  // Mock data - in production this would come from actual tracking
+  // REAL data from OpenRouter - May 20-24, 2026
   const sessionStats = {
+    period: "May 20-24, 2026",
+    days: 4,
     date: "2026-05-24",
+    totalSpend: 349.73,
+    todaySpend: 108.18,
+    creditLimit: 400.00,
+    usagePercent: 87,
     tokensUsed: 122800,
     tokensBudget: 1000000,
-    estimatedCost: 4.00,
     checkpointCost: 30.00,
     stopCost: 50.00,
   }
 
-  const costPercentage = (sessionStats.estimatedCost / sessionStats.checkpointCost) * 100
   const tokenPercentage = (sessionStats.tokensUsed / sessionStats.tokensBudget) * 100
+  const todayPercentage = (sessionStats.todaySpend / sessionStats.checkpointCost) * 100
 
   const getAlertLevel = () => {
-    if (sessionStats.estimatedCost >= sessionStats.checkpointCost) return "error"
-    if (sessionStats.estimatedCost >= 25) return "warning"
-    if (sessionStats.estimatedCost >= 15) return "info"
+    // Using TODAY's spend for session alerts
+    if (sessionStats.todaySpend >= sessionStats.checkpointCost) return "error"
+    if (sessionStats.todaySpend >= 25) return "warning"
+    if (sessionStats.todaySpend >= 15) return "info"
     return "success"
   }
 
@@ -37,7 +43,7 @@ export default function InternalUsagePage() {
                 Usage & Budget Tracking
               </h1>
               <p className="mt-3 text-lg text-muted-foreground">
-                Token usage, cost tracking, and budget checkpoints
+                Period: {sessionStats.period} ({sessionStats.days} days)
               </p>
             </div>
             <Badge variant="outline" className="text-xs">
@@ -53,7 +59,7 @@ export default function InternalUsagePage() {
           {alertLevel === "success" && (
             <Alert className="mb-6 bg-green-50 border-green-200">
               <AlertDescription className="text-green-800">
-                ✅ Well under budget checkpoint (${sessionStats.estimatedCost.toFixed(2)} / $
+                ✅ Well under budget checkpoint (${sessionStats.todaySpend.toFixed(2)} / $
                 {sessionStats.checkpointCost})
               </AlertDescription>
             </Alert>
@@ -62,7 +68,7 @@ export default function InternalUsagePage() {
           {alertLevel === "info" && (
             <Alert className="mb-6 bg-blue-50 border-blue-200">
               <AlertDescription className="text-blue-800">
-                ℹ️ Approaching $15 info threshold (${sessionStats.estimatedCost.toFixed(2)} / $
+                ℹ️ Approaching $15 info threshold (${sessionStats.todaySpend.toFixed(2)} / $
                 {sessionStats.checkpointCost})
               </AlertDescription>
             </Alert>
@@ -71,7 +77,7 @@ export default function InternalUsagePage() {
           {alertLevel === "warning" && (
             <Alert className="mb-6 bg-amber-50 border-amber-200">
               <AlertDescription className="text-amber-800">
-                ⚠️ Warning: Approaching checkpoint (${sessionStats.estimatedCost.toFixed(2)} / $
+                ⚠️ Warning: Approaching checkpoint (${sessionStats.todaySpend.toFixed(2)} / $
                 {sessionStats.checkpointCost})
               </AlertDescription>
             </Alert>
@@ -80,7 +86,7 @@ export default function InternalUsagePage() {
           {alertLevel === "error" && (
             <Alert className="mb-6 bg-red-50 border-red-200">
               <AlertDescription className="text-red-800">
-                🚨 CHECKPOINT REACHED: ${sessionStats.estimatedCost.toFixed(2)} / $
+                🚨 CHECKPOINT REACHED: ${sessionStats.todaySpend.toFixed(2)} / $
                 {sessionStats.checkpointCost} - Review before continuing
               </AlertDescription>
             </Alert>
@@ -96,16 +102,16 @@ export default function InternalUsagePage() {
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold">
-                  ${sessionStats.estimatedCost.toFixed(2)}
+                  ${sessionStats.todaySpend.toFixed(2)}
                 </div>
                 <div className="mt-1 h-2 bg-secondary rounded-full overflow-hidden">
                   <div 
                     className="h-full bg-primary transition-all" 
-                    style={{ width: `${Math.min(costPercentage, 100)}%` }}
+                    style={{ width: `${Math.min(todayPercentage, 100)}%` }}
                   />
                 </div>
                 <p className="text-xs text-muted-foreground mt-1">
-                  {costPercentage.toFixed(1)}% of checkpoint
+                  {todayPercentage.toFixed(1)}% of checkpoint
                 </p>
               </CardContent>
             </Card>
@@ -150,7 +156,7 @@ export default function InternalUsagePage() {
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold text-green-600">
-                  ${(sessionStats.checkpointCost - sessionStats.estimatedCost).toFixed(2)}
+                  ${(sessionStats.checkpointCost - sessionStats.todaySpend).toFixed(2)}
                 </div>
                 <p className="text-xs text-muted-foreground mt-1">
                   To checkpoint
@@ -268,7 +274,7 @@ export default function InternalUsagePage() {
                 <ul className="space-y-2 text-sm text-muted-foreground">
                   <li>✅ CI/CD fixed (Node 22 + better-sqlite3)</li>
                   <li>✅ KB Phase 2 complete (54 files)</li>
-                  <li>✅ Design system applied (สีมงคลวันศุกร์)</li>
+                  <li>✅ Design system applied (Classic Blue + Mint Teal)</li>
                   <li>✅ Homepage + About + Portfolio pages</li>
                   <li>✅ Robert's positioning critique integrated</li>
                   <li>✅ Critical name fix (Sararin Malaithong)</li>

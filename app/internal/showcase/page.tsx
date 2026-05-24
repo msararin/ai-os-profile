@@ -93,10 +93,13 @@ export default function ShowcasePage() {
             <Card className="bg-white border-none shadow-lg hover:shadow-xl hover:border-[#00B494] hover:border-2 transition-all duration-300">
               <CardContent className="pt-8 pb-8 text-center">
                 <div className="text-[#00B494] text-5xl font-bold mb-3">
-                  1,750x
+                  1,400×
                 </div>
                 <div className="text-[#1F3A60] text-lg font-medium mb-2">
                   Faster Search
+                </div>
+                <div className="text-sm text-muted-foreground">
+                  KB Memory: 37.5s → 0.027s
                 </div>
                 <div className="text-sm text-muted-foreground">
                   KB Memory benchmark (MCP)

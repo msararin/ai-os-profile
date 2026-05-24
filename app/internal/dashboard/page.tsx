@@ -221,7 +221,7 @@ export default function InternalDashboardPage() {
                 <CardTitle className="text-sm">Design System</CardTitle>
               </CardHeader>
               <CardContent className="text-sm text-muted-foreground space-y-1">
-                <div>สีมงคลวันศุกร์ palette</div>
+                <div>Classic Blue + Mint Teal palette</div>
                 <div>Classic Blue #1F3A60 (primary)</div>
                 <div>Mint Teal #00B494 (accent)</div>
                 <div>Pastel Blue #E6EEF8 (secondary)</div>
