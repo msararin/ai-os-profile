@@ -6,14 +6,14 @@ import { cn } from "@/lib/utils"
 
 const navigation = [
   { name: "Home", href: "/" },
-  { name: "About", href: "/about" },
-  { name: "Architecture", href: "/architecture" },
-  { name: "Portfolio", href: "/portfolio" },
+  { name: "AI Operating System", href: "/ai-operating-system" },
+  { name: "Org Roles", href: "/org-roles" },
+  { name: "How We Build", href: "/how-we-build" },
   { name: "Achievements", href: "/achievements" },
-  { name: "Role Fit", href: "/role-fit" },
-  { name: "Knowledge Sharing", href: "/knowledge-sharing" },
-  { name: "Contact", href: "/contact" },
-  { name: "Internal", href: "/internal/dashboard" },
+  { name: "Architecture", href: "/architecture" },
+  { name: "LVT", href: "/lean-value-tree" },
+  { name: "Workstreams", href: "/workstreams" },
+  { name: "About SARARIN", href: "/about" },
 ]
 
 export function SiteHeader() {
