@@ -14,8 +14,8 @@ export default function HomePage() {
           <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl mb-2">
             Sararin Malaithong
           </h1>
-          <p className="text-xl text-muted-foreground mb-6">
-            AI Operating System Showcase + Transformation Governance Portfolio
+          <p className="text-lg text-muted-foreground mb-6 max-w-4xl">
+            A live AI Operating System showcase — showing how I structure AI work with governance, role routing, evidence discipline, and measurable delivery practices, not just AI outputs.
           </p>
           
           <p className="text-2xl font-semibold text-primary mt-6 mb-4">
