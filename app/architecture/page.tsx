@@ -38,6 +38,137 @@ export default function ArchitecturePage() {
         </div>
       </section>
 
+      {/* Control Plane Thinking */}
+      <section className="border-b border-border bg-muted/30 py-12">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+          <div className="mb-8">
+            <h2 className="text-2xl font-semibold tracking-tight text-foreground">
+              Control Plane Thinking
+            </h2>
+            <p className="mt-2 text-muted-foreground">
+              A personal AI Operating System case study applying enterprise-grade
+              control-plane concepts.
+            </p>
+          </div>
+
+          <div className="space-y-6">
+            <div>
+              <h3 className="text-lg font-medium text-foreground">
+                Maturity Framing
+              </h3>
+              <p className="mt-2 text-sm text-muted-foreground">
+                This is not an enterprise platform at scale. It's a demonstration of
+                enterprise-grade <span className="italic">thinking</span> applied to a
+                personal AI Operating System. The concepts (control plane, trust layer,
+                evidence discipline) are borrowed from production systems, but adapted
+                to single-operator scale with explicit maturity status tracking.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="text-lg font-medium text-foreground">
+                Cross-Cutting Capabilities
+              </h3>
+              <p className="mt-2 text-sm text-muted-foreground">
+                Beyond the 4-layer architecture, these capabilities span multiple
+                layers:
+              </p>
+              <div className="mt-4 overflow-x-auto">
+                <table className="w-full border-collapse text-sm">
+                  <thead>
+                    <tr className="border-b border-border bg-muted/50">
+                      <th className="px-4 py-2 text-left font-medium text-foreground">
+                        Capability
+                      </th>
+                      <th className="px-4 py-2 text-left font-medium text-foreground">
+                        Status
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr className="border-b border-border">
+                      <td className="px-4 py-3 text-muted-foreground">
+                        Observability
+                      </td>
+                      <td className="px-4 py-3">
+                        <span className="inline-flex items-center rounded-md bg-yellow-500/10 px-2 py-1 text-xs font-medium text-yellow-700 dark:text-yellow-400">
+                          In Progress
+                        </span>
+                      </td>
+                    </tr>
+                    <tr className="border-b border-border">
+                      <td className="px-4 py-3 text-muted-foreground">
+                        Cost / Budget Control
+                      </td>
+                      <td className="px-4 py-3">
+                        <span className="inline-flex items-center rounded-md bg-green-500/10 px-2 py-1 text-xs font-medium text-green-700 dark:text-green-400">
+                          Current
+                        </span>
+                      </td>
+                    </tr>
+                    <tr className="border-b border-border">
+                      <td className="px-4 py-3 text-muted-foreground">
+                        Traceability
+                      </td>
+                      <td className="px-4 py-3">
+                        <span className="inline-flex items-center rounded-md bg-yellow-500/10 px-2 py-1 text-xs font-medium text-yellow-700 dark:text-yellow-400">
+                          In Progress
+                        </span>
+                      </td>
+                    </tr>
+                    <tr className="border-b border-border">
+                      <td className="px-4 py-3 text-muted-foreground">
+                        Privacy / Security
+                      </td>
+                      <td className="px-4 py-3">
+                        <span className="inline-flex items-center rounded-md bg-green-500/10 px-2 py-1 text-xs font-medium text-green-700 dark:text-green-400">
+                          Current
+                        </span>
+                      </td>
+                    </tr>
+                    <tr className="border-b border-border">
+                      <td className="px-4 py-3 text-muted-foreground">
+                        Fallback / Resilience
+                      </td>
+                      <td className="px-4 py-3">
+                        <span className="inline-flex items-center rounded-md bg-blue-500/10 px-2 py-1 text-xs font-medium text-blue-700 dark:text-blue-400">
+                          Planned
+                        </span>
+                      </td>
+                    </tr>
+                    <tr className="border-b border-border">
+                      <td className="px-4 py-3 text-muted-foreground">
+                        Anti-Fatigue Design
+                      </td>
+                      <td className="px-4 py-3">
+                        <span className="inline-flex items-center rounded-md bg-green-500/10 px-2 py-1 text-xs font-medium text-green-700 dark:text-green-400">
+                          Current
+                        </span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="px-4 py-3 text-muted-foreground">
+                        Source-of-Truth Discipline
+                      </td>
+                      <td className="px-4 py-3">
+                        <span className="inline-flex items-center rounded-md bg-green-500/10 px-2 py-1 text-xs font-medium text-green-700 dark:text-green-400">
+                          Current
+                        </span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p className="mt-3 text-xs italic text-muted-foreground">
+                Status badges reflect implementation maturity, not aspirational goals.
+                "Current" means working and in use. "In Progress" means partially
+                implemented. "Planned" means designed but not built.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Architecture Diagram */}
       <section className="py-12">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
