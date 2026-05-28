@@ -11,13 +11,20 @@ const navigation = [
   { name: "How We Build", href: "/how-we-build" },
   { name: "Achievements", href: "/achievements" },
   { name: "Architecture", href: "/architecture" },
+  { name: "Knowledge Sharing", href: "/knowledge-sharing" },
   { name: "LVT", href: "/lean-value-tree" },
   { name: "Workstreams", href: "/workstreams" },
   { name: "About SARARIN", href: "/about" },
 ]
 
+const internalNavigation = [
+  { name: "Internal Access", href: "/internal/dashboard" },
+  { name: "Internal: Signal Studio Drafts", href: "/internal/knowledge-sharing-drafts" },
+]
+
 export function SiteHeader() {
   const pathname = usePathname()
+  const showInternalNavigation = pathname.startsWith("/internal")
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -37,6 +44,20 @@ export function SiteHeader() {
               {item.name}
             </Link>
           ))}
+          {internalNavigation
+            .filter((item) => item.href === "/internal/dashboard" || showInternalNavigation)
+            .map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={cn(
+                  "rounded border border-yellow-500/30 bg-yellow-500/10 px-2 py-1 text-sm font-medium text-yellow-700 transition-colors hover:bg-yellow-500/15 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-500 focus-visible:ring-offset-1 dark:text-yellow-400 sm:px-3",
+                  pathname === item.href && "bg-yellow-500/20"
+                )}
+              >
+                {item.name}
+              </Link>
+            ))}
         </nav>
       </div>
     </header>
