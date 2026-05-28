@@ -1,11 +1,392 @@
 "use client"
 
+import type { ReactNode } from "react"
 import { useSession, signOut } from "next-auth/react"
 import { PageLayout } from "@/components/page-layout"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { Button } from "@/components/ui/button"
+
+const reviewQueue = [
+  {
+    item: "Signal Studio v0.6 pilot",
+    status: "Review pending",
+    nextDecision: "Decide whether v0.6 needs structure/spec changes before implementation.",
+    blockerRisk: "Pilot should not expand into CMS, browser editor, or save behavior.",
+  },
+  {
+    item: "Knowledge Sharing public archive check",
+    status: "Needs browser review",
+    nextDecision: "Confirm the public archive is visible and remains separate from internal drafts.",
+    blockerRisk: "Public route must not expose Signal Studio draft packages.",
+  },
+  {
+    item: "Budget Burn Daily Report",
+    status: "Pending source confirmation",
+    nextDecision: "Confirm report source and display expectations before creating any budget page.",
+    blockerRisk: "Do not invent spend, burn, or target values.",
+  },
+  {
+    item: "Export behavior verification",
+    status: "Not verified",
+    nextDecision: "Verify Markdown export before claiming export behavior is complete.",
+    blockerRisk: "Visible controls are not the same as verified export behavior.",
+  },
+  {
+    item: "Git dirty-state cleanup",
+    status: "Decision needed",
+    nextDecision: "Choose the scoped commit set after Lyn review; do not stage broadly.",
+    blockerRisk: "Dirty tree includes unrelated historical/untracked files.",
+  },
+]
+
+const workstreamSnapshot = [
+  {
+    lane: "Signal Studio",
+    currentStatus: "Internal draft review surface exists",
+    nextMilestone: "v0.6 pilot structure/spec decision",
+    owner: "Lyn + Codex",
+  },
+  {
+    lane: "Knowledge Sharing",
+    currentStatus: "Public archive restored",
+    nextMilestone: "Browser-visible archive preservation check",
+    owner: "Lyn",
+  },
+  {
+    lane: "Observability",
+    currentStatus: "Regression evidence is local/manual",
+    nextMilestone: "Confirm latest durable report and stale/current labels",
+    owner: "Lyn + Codex",
+  },
+  {
+    lane: "Budget / Cost",
+    currentStatus: "Pending Budget Burn Daily Report",
+    nextMilestone: "Confirm source before surfacing values",
+    owner: "Lyn",
+  },
+  {
+    lane: "Dashboard / Internal Cockpit",
+    currentStatus: "Phase 1 IA dashboard summary",
+    nextMilestone: "Lyn browser review of protected cockpit",
+    owner: "Codex",
+  },
+  {
+    lane: "Release / Publish",
+    currentStatus: "No production publish in this task",
+    nextMilestone: "Scoped review decision before any publish path",
+    owner: "Lyn",
+  },
+  {
+    lane: "Backlog",
+    currentStatus: "Pending source confirmation",
+    nextMilestone: "Confirm source before adding counts or separate backlog page",
+    owner: "Lyn",
+  },
+]
+
+const observabilitySnapshot = [
+  {
+    metric: "Build status",
+    status: "Pending current run",
+    evidence: "Validated by pnpm build during this task",
+    lastUpdated: "2026-05-27",
+  },
+  {
+    metric: "Route regression",
+    status: "Pending current run",
+    evidence: "Local curl route table",
+    lastUpdated: "2026-05-27",
+  },
+  {
+    metric: "Internal auth boundary",
+    status: "Auth protected",
+    evidence: "Middleware protects /internal/* and redirects unauthenticated users",
+    lastUpdated: "2026-05-27",
+  },
+  {
+    metric: "Public/private boundary",
+    status: "Must remain separated",
+    evidence: "/knowledge-sharing is public archive; Signal Studio drafts stay internal",
+    lastUpdated: "2026-05-27",
+  },
+  {
+    metric: "Latest regression report",
+    status: "Pending source confirmation",
+    evidence: "Use durable report file when selected by review owner",
+    lastUpdated: "Not verified",
+  },
+  {
+    metric: "Stale/current status",
+    status: "Mixed",
+    evidence: "Dashboard is a manual snapshot, not live telemetry",
+    lastUpdated: "2026-05-27",
+  },
+]
+
+const budgetSnapshot = [
+  {
+    metric: "Daily budget burn",
+    value: "Pending Budget Burn Daily Report",
+    target: "Not verified",
+    status: "Pending source confirmation",
+    action: "Confirm report source before showing values.",
+  },
+  {
+    metric: "Current spend",
+    value: "Not verified",
+    target: "Not verified",
+    status: "Do not claim",
+    action: "Do not invent spend numbers.",
+  },
+  {
+    metric: "Budget target",
+    value: "Not verified",
+    target: "Pending review owner input",
+    status: "Pending",
+    action: "Wait for verified budget baseline.",
+  },
+  {
+    metric: "Cost evidence",
+    value: "Pending source confirmation",
+    target: "Evidence-backed only",
+    status: "Pending",
+    action: "Link or summarize only after source is confirmed.",
+  },
+]
+
+const guardrails = [
+  "No production publish",
+  "No safe-publish live run",
+  "No real Visual Gemini image generation",
+  "No DOCX/Google Docs/CMS implementation",
+  "No git add . or git add -A",
+  "No external /knowledge-sharing promotion",
+  "No canonical role map update",
+  "No browser editor/save button",
+]
+
+function SectionIntro({
+  title,
+  description,
+  badge,
+}: {
+  title: string
+  description: string
+  badge: string
+}) {
+  return (
+    <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
+      <div>
+        <CardTitle>{title}</CardTitle>
+        <p className="mt-2 text-sm text-muted-foreground">{description}</p>
+      </div>
+      <Badge variant="outline" className="w-fit">
+        {badge}
+      </Badge>
+    </div>
+  )
+}
+
+function TableHeader({ headings }: { headings: string[] }) {
+  return (
+    <thead className="bg-muted/50">
+      <tr>
+        {headings.map((heading) => (
+          <th
+            key={heading}
+            scope="col"
+            className="px-4 py-3 text-left text-sm font-medium text-foreground"
+          >
+            {heading}
+          </th>
+        ))}
+      </tr>
+    </thead>
+  )
+}
+
+function TableShell({ children }: { children: ReactNode }) {
+  return (
+    <div className="overflow-x-auto rounded-lg border border-border">
+      <table className="min-w-[960px] divide-y divide-border">{children}</table>
+    </div>
+  )
+}
+
+function TableCell({
+  children,
+  className = "",
+}: {
+  children: ReactNode
+  className?: string
+}) {
+  return (
+    <td className={`max-w-72 px-4 py-4 text-sm text-muted-foreground ${className}`}>
+      {children}
+    </td>
+  )
+}
+
+function StatusBadge({ children }: { children: ReactNode }) {
+  return (
+    <Badge variant="secondary" className="whitespace-nowrap">
+      {children}
+    </Badge>
+  )
+}
+
+function InternalIaSections() {
+  return (
+    <div className="mb-8 grid gap-6">
+      <Card>
+        <CardHeader>
+          <SectionIntro
+            title="Review Queue"
+            description="Current staging review queue. This is review visibility, not a new source-of-truth workflow system."
+            badge="Internal only"
+          />
+        </CardHeader>
+        <CardContent>
+          <TableShell>
+            <TableHeader
+              headings={["Item", "Status", "Next Decision", "Blocker / Risk"]}
+            />
+            <tbody className="divide-y divide-border">
+              {reviewQueue.map((item) => (
+                <tr key={item.item} className="align-top">
+                  <TableCell className="font-medium text-foreground">
+                    {item.item}
+                  </TableCell>
+                  <TableCell>
+                    <StatusBadge>{item.status}</StatusBadge>
+                  </TableCell>
+                  <TableCell>{item.nextDecision}</TableCell>
+                  <TableCell>{item.blockerRisk}</TableCell>
+                </tr>
+              ))}
+            </tbody>
+          </TableShell>
+        </CardContent>
+      </Card>
+
+      <Card>
+        <CardHeader>
+          <SectionIntro
+            title="Workstream Snapshot"
+            description="Phase 1 internal IA lane summary. Backlog counts stay pending until a verified source exists."
+            badge="Manual snapshot"
+          />
+        </CardHeader>
+        <CardContent>
+          <TableShell>
+            <TableHeader
+              headings={["Lane", "Current status", "Next milestone", "Owner"]}
+            />
+            <tbody className="divide-y divide-border">
+              {workstreamSnapshot.map((lane) => (
+                <tr key={lane.lane} className="align-top">
+                  <TableCell className="font-medium text-foreground">
+                    {lane.lane}
+                  </TableCell>
+                  <TableCell>{lane.currentStatus}</TableCell>
+                  <TableCell>{lane.nextMilestone}</TableCell>
+                  <TableCell className="whitespace-nowrap">
+                    {lane.owner}
+                  </TableCell>
+                </tr>
+              ))}
+            </tbody>
+          </TableShell>
+        </CardContent>
+      </Card>
+
+      <Card>
+        <CardHeader>
+          <SectionIntro
+            title="Observability Snapshot"
+            description="Local staging evidence summary for review readiness. This section summarizes checks and does not create a new observability surface."
+            badge="Evidence summary"
+          />
+        </CardHeader>
+        <CardContent>
+          <TableShell>
+            <TableHeader
+              headings={["Metric", "Status", "Evidence", "Last Updated"]}
+            />
+            <tbody className="divide-y divide-border">
+              {observabilitySnapshot.map((metric) => (
+                <tr key={metric.metric} className="align-top">
+                  <TableCell className="font-medium text-foreground">
+                    {metric.metric}
+                  </TableCell>
+                  <TableCell>{metric.status}</TableCell>
+                  <TableCell>{metric.evidence}</TableCell>
+                  <TableCell className="whitespace-nowrap">
+                    {metric.lastUpdated}
+                  </TableCell>
+                </tr>
+              ))}
+            </tbody>
+          </TableShell>
+        </CardContent>
+      </Card>
+
+      <Card>
+        <CardHeader>
+          <SectionIntro
+            title="Budget Snapshot"
+            description="Budget visibility without invented spend values. All budget numbers remain pending until the Budget Burn Daily Report is verified."
+            badge="No invented numbers"
+          />
+        </CardHeader>
+        <CardContent>
+          <TableShell>
+            <TableHeader
+              headings={["Metric", "Value", "Target / Expected", "Status", "Action"]}
+            />
+            <tbody className="divide-y divide-border">
+              {budgetSnapshot.map((metric) => (
+                <tr key={metric.metric} className="align-top">
+                  <TableCell className="font-medium text-foreground">
+                    {metric.metric}
+                  </TableCell>
+                  <TableCell>{metric.value}</TableCell>
+                  <TableCell>{metric.target}</TableCell>
+                  <TableCell>{metric.status}</TableCell>
+                  <TableCell>{metric.action}</TableCell>
+                </tr>
+              ))}
+            </tbody>
+          </TableShell>
+        </CardContent>
+      </Card>
+
+      <Card>
+        <CardHeader>
+          <SectionIntro
+            title="Guardrails / Do Not Do Now"
+            description="Explicit non-goals for this staging review lane."
+            badge="Guardrails"
+          />
+        </CardHeader>
+        <CardContent>
+          <div className="grid gap-3 sm:grid-cols-2">
+            {guardrails.map((guardrail) => (
+              <div
+                key={guardrail}
+                className="rounded-lg border border-border p-4 text-sm text-muted-foreground"
+              >
+                {guardrail}
+              </div>
+            ))}
+          </div>
+        </CardContent>
+      </Card>
+    </div>
+  )
+}
 
 export default function InternalDashboardPage() {
   const { data: session, status } = useSession()
@@ -108,6 +489,8 @@ export default function InternalDashboardPage() {
             </Card>
           </div>
 
+          <InternalIaSections />
+
           {/* Quick Links */}
           <Card>
             <CardHeader>
@@ -152,6 +535,18 @@ export default function InternalDashboardPage() {
                   <h3 className="font-medium mb-1">🎯 Architecture Principles</h3>
                   <p className="text-sm text-muted-foreground">
                     Thin-slice, privacy, multi-agent, metadata-first, observable validation
+                  </p>
+                </a>
+
+                <a
+                  href="/internal/knowledge-sharing-drafts"
+                  className="block p-4 rounded-lg border border-yellow-500/40 bg-yellow-500/10 hover:bg-yellow-500/15 transition-colors"
+                >
+                  <h3 className="font-medium mb-1 text-yellow-700 dark:text-yellow-400">
+                    Internal: Signal Studio Drafts
+                  </h3>
+                  <p className="text-sm text-muted-foreground">
+                    Internal review surface for draft knowledge-sharing packages
                   </p>
                 </a>
 

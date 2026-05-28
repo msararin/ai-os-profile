@@ -24,6 +24,12 @@ export default function InternalKnowledgeSharingDraftsPage() {
       <div className="container mx-auto px-4 py-8 max-w-5xl">
         {/* Header */}
         <div className="mb-8">
+          <a
+            href="/internal/dashboard"
+            className="mb-4 inline-flex text-sm font-medium text-primary hover:underline"
+          >
+            Back to Internal Dashboard
+          </a>
           <h1 className="text-4xl font-bold mb-4">
             Signal Studio — Draft Content Packages
           </h1>
@@ -33,19 +39,30 @@ export default function InternalKnowledgeSharingDraftsPage() {
           <p className="text-sm text-yellow-600 dark:text-yellow-500 mt-2">
             🔒 Internal only — Drafts under review
           </p>
+          <p className="text-sm text-muted-foreground mt-3">
+            Draft bank baseline: 2026-05-24. Review surface updated: 2026-05-27. 26–27 May lessons not yet fully ingested.
+          </p>
+          <div className="mt-4 rounded border border-yellow-500/30 bg-yellow-50 p-3 text-sm text-yellow-900 dark:bg-yellow-950 dark:text-yellow-100">
+            <strong>Known pending ingestion:</strong> 26–27 May staging review lessons, Knowledge Sharing preservation check, internal navigation blocker, export behavior verification, and budget burn report.
+          </div>
         </div>
 
         {/* Draft count */}
-        <div className="mb-6 p-4 bg-blue-50 dark:bg-blue-950 rounded-lg flex items-center justify-between">
-          <p className="text-sm">
-            <strong>Total drafts:</strong> {signalStudioDrafts.length}
+        <div className="mb-6 p-4 bg-blue-50 dark:bg-blue-950 rounded-lg">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <p className="text-sm">
+              <strong>Total drafts:</strong> {signalStudioDrafts.length}
+            </p>
+            <button
+              onClick={handleExportAll}
+              className="px-4 py-2 text-sm bg-blue-600 hover:bg-blue-700 text-white rounded transition-colors"
+            >
+              📥 Export All to Markdown
+            </button>
+          </div>
+          <p className="mt-3 text-xs text-blue-900 dark:text-blue-100">
+            Markdown export controls present — behavior pending verification.
           </p>
-          <button
-            onClick={handleExportAll}
-            className="px-4 py-2 text-sm bg-blue-600 hover:bg-blue-700 text-white rounded transition-colors"
-          >
-            📥 Export All to Markdown
-          </button>
         </div>
 
         {/* Draft cards */}
