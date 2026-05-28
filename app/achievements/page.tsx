@@ -7,7 +7,7 @@ import { Badge } from "@/components/ui/badge"
 import { ChevronDown, ChevronRight } from "lucide-react"
 
 export default function AchievementsPage() {
-  const [expandedDays, setExpandedDays] = useState<Set<string>>(new Set(['2026-05-28']))
+  const [expandedDays, setExpandedDays] = useState<Set<string>>(new Set(['2026-05-28', '2026-05-26', '2026-05-25']))
 
   const toggleDay = (date: string) => {
     const newExpanded = new Set(expandedDays)
@@ -20,6 +20,33 @@ export default function AchievementsPage() {
   }
 
   const achievements = [
+    {
+      date: '2026-05-28',
+      headline: 'Post-Release Freshness Governance — Proof Ledger Corrected',
+      summary: 'Converted Achievements from a thin milestone note into a current proof ledger and kept Signal Studio as the internal learning pipeline.',
+      proofType: 'PR update, content freshness correction, local validation',
+      evidenceReference: 'PR #4, commit 362921d, current freshness correction branch',
+      status: 'Review candidate, not yet production merged',
+      publicSafeResult: 'Visitors see current evidence dates, proof-backed release context, and clear separation between external proof and internal learning.',
+      caveat: 'This correction remains in PR review until merged; production may still show older metadata until PR #4 and this follow-up are deployed.',
+      details: {
+        whyItMatters: 'A proof page loses credibility when it looks stale after production work. The correction makes freshness itself part of the release discipline.',
+        evidence: [
+          'PR #4 opened for Achievements and Signal Studio freshness',
+          'Commit 362921d updated Achievements, Signal Studio, shared page metadata, and footer metadata',
+          'Current follow-up removes reliance on a single proof item and expands 25-28 May evidence',
+          'Stale global metadata search was run across app/components/content/lib/docs and corrected where user-facing freshness belongs'
+        ],
+        skillsDemonstrated: [
+          'Post-release evidence hygiene',
+          'Page-specific freshness metadata instead of misleading global timestamps',
+          'Claims separation: external proof in Achievements, internal learning in Signal Studio',
+          'Public/private content boundary review'
+        ],
+        impact: 'Turns freshness from cosmetic copy into an operating habit: proof-backed work gets recorded, internal learning stays protected, and stale metadata is treated as a release-risk signal.'
+      },
+      tags: ['Freshness', 'Proof Ledger', 'Governance', 'Review']
+    },
     {
       date: '2026-05-28',
       headline: 'AI OS Profile v0.2 Production Release — Proof-Backed Public/Internal Boundary',
@@ -48,17 +75,216 @@ export default function AchievementsPage() {
       tags: ['Production Release', 'Governance', 'Boundary Proof', 'Impact']
     },
     {
-      date: '2026-05-25',
-      headline: 'Public Website Governance Recovery — First Impression Stabilized',
-      summary: 'Converted confusing portfolio into clearer AIOS-first showcase through audit, quality gates, scoped patching, and deployment discipline',
+      date: '2026-05-28',
+      headline: 'Freeze Readiness and Repo Hygiene — Clean Candidate Prepared',
+      summary: 'Added validation helpers, parked untracked evidence outside the repo, created the local freeze tag, and kept the working tree clean before PR release review.',
+      proofType: 'commit, freeze tag, readiness report, clean-tree proof',
+      evidenceReference: 'commit 8ccf898, tag prod-freeze-aios-profile-2026-05-28-v0-2, parked evidence path, PR #3',
+      status: 'Used for v0.2 release review',
+      publicSafeResult: 'Release review had a clean candidate, explicit helper scripts, and parked evidence instead of mixed working-tree artifacts.',
+      caveat: 'Parked evidence is outside the repo and not rendered publicly.',
       details: {
-        whyItMatters: 'Reputation risk: visitors couldn\'t understand "what this site is about" in 30 seconds. Fixed through governance discipline, not panic patches.',
+        whyItMatters: 'Production releases need more than a successful build. They need clean source control, repeatable checks, and evidence that review artifacts were not accidentally shipped.',
+        evidence: [
+          'Commit 8ccf898 added scripts/local-staging-regression-check.sh, scripts/validate-classifier.sh, and types/better-sqlite3.d.ts',
+          'Local freeze tag prod-freeze-aios-profile-2026-05-28-v0-2 was created for the approved candidate',
+          '32 untracked evidence/artifact files were parked outside the repo before freeze review',
+          'Freeze candidate proceeded through PR #3 instead of direct main push'
+        ],
+        skillsDemonstrated: [
+          'Clean-tree release discipline',
+          'Freeze tag and rollback-point thinking',
+          'Evidence preservation without production pollution',
+          'Scoped commits and explicit staging'
+        ],
+        impact: 'Reduced release ambiguity: reviewers could inspect a clean candidate with validation helpers committed and non-release evidence kept out of production.'
+      },
+      tags: ['Freeze', 'Repo Hygiene', 'Validation', 'Release']
+    },
+    {
+      date: '2026-05-28',
+      headline: 'Public Safety and Observability Boundary — Output Reduced and Caveated',
+      summary: 'Caveated achievements, simplified public IA, and reduced observability output so public routes do not expose private operational detail.',
+      proofType: 'commits, route boundary review',
+      evidenceReference: 'commits e71c652 and 53e800d',
+      status: 'Merged into v0.2 freeze candidate',
+      publicSafeResult: 'Public pages explain the operating model without exposing raw logs, private paths, sensitive metrics, or internal draft surfaces.',
+      caveat: 'Observability remains intentionally minimal until a fuller protected/internal observability model is approved.',
+      details: {
+        whyItMatters: 'A public AIOS case study must show maturity without leaking the working system behind it.',
+        evidence: [
+          'Commit e71c652 simplified public navigation and profile hubs',
+          'Commit 53e800d caveated achievements and limited observability output',
+          'Route checks confirmed public routes remained 200 and internal routes redirected to auth',
+          'Knowledge Sharing boundary checks confirmed Signal Studio draft content was not exposed publicly'
+        ],
+        skillsDemonstrated: [
+          'Public-safe technical storytelling',
+          'Information architecture as operating-model clarity',
+          'Private path and sensitive metric reduction',
+          'Claims caveating on proof surfaces'
+        ],
+        impact: 'Improved credibility by making the site easier to understand while avoiding overclaiming or leaking internal operating data.'
+      },
+      tags: ['Public Safety', 'Observability', 'IA', 'Boundary']
+    },
+    {
+      date: '2026-05-28',
+      headline: 'Auth-Protected Internal Review Recovery — Local Review Without Production Bypass',
+      summary: 'Recovered internal review access through scoped auth fixes and explicit development-only local review mode while keeping production auth protected.',
+      proofType: 'commits, manual incognito OAuth proof, route checks',
+      evidenceReference: 'commits 5de2bd2 and 83cf72c, prior manual incognito proof',
+      status: 'Manual proof accepted; automation gap documented',
+      publicSafeResult: 'Internal Dashboard and Signal Studio can be reviewed by authorized users, while unauthenticated production visitors are redirected to auth.',
+      caveat: 'AUTH_PROOF_GAP remains for shell automation when OAuth env values are not loaded.',
+      details: {
+        whyItMatters: 'Internal proof surfaces only matter if reviewers can reach them without weakening production security.',
+        evidence: [
+          'Commit 5de2bd2 recovered internal access with safe local review mode',
+          'Commit 83cf72c updated internal dashboard and Signal Studio review surface',
+          'Manual incognito OAuth proof was accepted for /internal/dashboard and /internal/knowledge-sharing-drafts',
+          'Production route checks showed internal routes redirecting to /auth/signin with callback URLs'
+        ],
+        skillsDemonstrated: [
+          'Development-only bypass design with production guardrails',
+          'OAuth incident triage without hardcoding secrets',
+          'Callback preservation for protected internal routes',
+          'Clear documentation of automation proof gaps'
+        ],
+        impact: 'Unblocked Lyn review of protected work while preserving the site boundary: public proof stays public, internal operations stay behind auth.'
+      },
+      tags: ['Auth', 'Internal Review', 'Security', 'Signal Studio']
+    },
+    {
+      date: '2026-05-27',
+      headline: 'Signal Studio Learning Backlog — Internal Lessons Parked Before Public Claims',
+      summary: 'Captured 26-27 May staging review lessons as internal learning backlog instead of promoting unreviewed draft content to public pages.',
+      proofType: 'git history, internal page status',
+      evidenceReference: 'commit 83cf72c previous internal status copy',
+      status: 'Internal learning record, not public proof claim',
+      publicSafeResult: 'The public site avoids unreviewed Signal Studio claims while the internal page tracks pending lessons for later review.',
+      caveat: 'This is intentionally not framed as a production achievement; it belongs to the internal learning pipeline.',
+      details: {
+        whyItMatters: 'Not every useful workday creates external proof. Some days create learning patterns that should be reviewed before public reuse.',
+        evidence: [
+          'Git history for commit 83cf72c recorded: "Review surface updated: 2026-05-27"',
+          'The same internal status noted 26-27 May lessons were not yet fully ingested',
+          'Pending lessons included staging review, Knowledge Sharing preservation, internal navigation blocker, export behavior verification, and budget burn report',
+          'Current Signal Studio page keeps that backlog internal and marks 28 May release learning as pending migration'
+        ],
+        skillsDemonstrated: [
+          'Learning capture before publication',
+          'Public/private boundary discipline',
+          'Claims-safety review before turning lessons into external content',
+          'Signal Studio separation from Achievements'
+        ],
+        impact: 'Protects credibility by routing unreviewed operational lessons into Signal Studio instead of presenting them as external achievements.'
+      },
+      tags: ['Learning', 'Signal Studio', 'Claims Safety', 'Internal']
+    },
+    {
+      date: '2026-05-26',
+      headline: 'Signal Studio Draft Surface — Learning-to-Content Pipeline Created',
+      summary: 'Created the protected draft surface, export tooling, and draft data structure for turning AIOS lessons into reviewed public-safe content candidates.',
+      proofType: 'commits, internal route, tracked proposal doc',
+      evidenceReference: 'commits 9734b39 and 4ae8516, docs/planning/SIGNAL_STUDIO_V0_1_ROLE_MAP_PROPOSAL.md',
+      status: 'Internal draft/review surface',
+      publicSafeResult: 'Knowledge Sharing remains public archive only; Signal Studio draft packages remain protected under /internal/*.',
+      caveat: 'Draft records are not automatically publishable; Lyn/Robert review is required before public use.',
+      details: {
+        whyItMatters: 'The site needs a disciplined path from learning to content without leaking drafts or overclaiming.',
+        evidence: [
+          'Commit 9734b39 added internal knowledge-sharing draft surface v0.5',
+          'Commit 4ae8516 implemented earlier draft content surface v0.3',
+          'content/signal-studio-drafts.ts defines draft records, evidence notes, public-safe claims, caveats, do-not-use lists, and review fields',
+          'docs/planning/SIGNAL_STUDIO_V0_1_ROLE_MAP_PROPOSAL.md defines Signal Studio roles as proposal, not canonical truth'
+        ],
+        skillsDemonstrated: [
+          'Learning pipeline design',
+          'Bilingual content review structure',
+          'Evidence reviewer and claims-safety workflow',
+          'Manual publishing gates'
+        ],
+        impact: 'Created a repeatable internal mechanism to convert AIOS work into publishable insights only after evidence and reputation-risk review.'
+      },
+      tags: ['Signal Studio', 'Learning Pipeline', 'Content Governance', 'Internal']
+    },
+    {
+      date: '2026-05-26',
+      headline: 'Safe Publish Governance — 8-Gate Release Discipline Designed',
+      summary: 'Documented and validated a staged safe-publish protocol with dry-run behavior, classifier validation, strategic gates, and no-force-push release discipline.',
+      proofType: 'documented milestone, validation results, commit',
+      evidenceReference: 'commit 44079bf, docs/planning/SAFE_PUBLISH_IMPLEMENTATION_MILESTONE.md',
+      status: 'Design and dry-run validated; live safe-publish not used for this release',
+      publicSafeResult: 'Demonstrates release governance maturity without claiming auto-publish is approved or active.',
+      caveat: 'safe-publish was intentionally not run during the v0.2 production release path.',
+      details: {
+        whyItMatters: 'Release governance is part of the AI operating system, not an afterthought.',
+        evidence: [
+          'Commit 44079bf added Safe Publish Governance v0.1.3 implementation milestone',
+          'Milestone records 8 automated safety gates and dry-run mode',
+          'Classifier validation recorded 23/23 PASS',
+          'Strategic content gate correctly blocked architecture page changes in dry-run validation'
+        ],
+        skillsDemonstrated: [
+          'Risk-based approval workflow design',
+          'Dry-run-first deployment governance',
+          'Classifier validation and pattern-order bug detection',
+          'No-force-push policy and staging-first discipline'
+        ],
+        impact: 'Shows how governance enables safer speed: mechanical release checks are automated while strategic judgment remains human-gated.'
+      },
+      tags: ['Release Governance', 'Safe Publish', 'Validation', 'Controls']
+    },
+    {
+      date: '2026-05-26',
+      headline: 'Architecture Visual Upgrade — Control Plane Thinking Made Public-Safe',
+      summary: 'Added Control Plane Thinking to the architecture page so the public AIOS case study explains routing, governance, evidence, and human decision flow more clearly.',
+      proofType: 'commit, public route content',
+      evidenceReference: 'commit 511024c',
+      status: 'Public case-study artifact',
+      publicSafeResult: 'Architecture maturity is explained as a public-safe operating model rather than private implementation detail.',
+      caveat: 'The page frames architecture as case-study evidence, not a claim of enterprise production scale.',
+      details: {
+        whyItMatters: 'Architecture is easier to trust when visitors can see the control logic, not just broad AI language.',
+        evidence: [
+          'Commit 511024c added the Control Plane Thinking section to app/architecture/page.tsx',
+          'The section fits the AIOS public case-study layer requested in the IA restructure',
+          'Subsequent route checks kept /architecture public and /internal/* protected'
+        ],
+        skillsDemonstrated: [
+          'Systems thinking',
+          'AI governance communication',
+          'Evidence-routing and human-in-the-loop framing',
+          'Public-safe architecture explanation'
+        ],
+        impact: 'Improves the public proof that Sararin understands AI-enabled work as governed flow: decisions, evidence, controls, routing, and review.'
+      },
+      tags: ['Architecture', 'Control Plane', 'AIOS', 'Public Proof']
+    },
+    {
+      date: '2026-05-25',
+      headline: 'Public AIOS Showcase — First Impression and Navigation Stabilized',
+      summary: 'Converted a confusing portfolio impression into an AIOS-first case study with clearer Home positioning, bridge navigation, and public AIOS routes.',
+      proofType: 'commits, public route structure, quality gates',
+      evidenceReference: 'commits d9a4f2b, 2c83242, e81e89d, aff957a, f9afebd, eb7d8d3, 470b446',
+      status: 'Public case-study baseline',
+      publicSafeResult: 'Visitors can understand the site as a public AIOS case study rather than a generic portfolio.',
+      caveat: 'Impact is a clarity/governance improvement, not a business outcome metric.',
+      details: {
+        whyItMatters: 'Reputation risk: visitors could not quickly understand what the site was about. The fix made the AIOS operating method the first-viewport story.',
         evidence: [
           'Commit d9a4f2b deployed and verified live',
+          'Commit 470b446 added the 5-layer enforcement framework',
+          'Commit 283c665 completed the May 2026 achievements evidence bank',
+          'Commit aff957a added AIOS and How We Build public pages',
+          'Commit f9afebd populated the How We Build page',
+          'Commit e81e89d added bridge navigation for the AIOS showcase flow',
+          'Commit 2c83242 refined Home hero AIOS showcase positioning',
+          'Commit eb7d8d3 restored the Architecture link in top navigation',
           'Home balance improved: 60/40 → 70/30 AIOS/Lyn',
           '30-second clarity test passed',
-          'All 8 quality gates passed',
-          'Governance framework: 4 docs, 21.3KB (web-governance-discipline.md, must-preserve-registry.md, pre-change-gate-template.md, public-facing-quality-gate.md)'
+          'Governance docs tracked under docs/governance/'
         ],
         skillsDemonstrated: [
           'AI governance: 5-layer enforcement (Memory → Checklist → Source-of-truth → Automated → Human gate)',
@@ -339,15 +565,26 @@ export default function AchievementsPage() {
                       </ul>
                     </div>
 
-                    {/* Skills Demonstrated */}
+                    {/* Public-Safe Result */}
                     <div>
-                      <h3 className="text-lg font-semibold text-[#1F3A60] mb-2">Skills Demonstrated</h3>
-                      <ul className="list-disc list-inside space-y-1 text-sm text-muted-foreground">
-                        {achievement.details.skillsDemonstrated.map((skill, idx) => (
-                          <li key={idx}>{skill}</li>
-                        ))}
-                      </ul>
+                      <h3 className="text-lg font-semibold text-[#1F3A60] mb-2">Public-Safe Result</h3>
+                      {"publicSafeResult" in achievement && achievement.publicSafeResult ? (
+                        <p className="text-sm text-muted-foreground">{achievement.publicSafeResult}</p>
+                      ) : (
+                        <ul className="list-disc list-inside space-y-1 text-sm text-muted-foreground">
+                          {achievement.details.skillsDemonstrated.map((skill, idx) => (
+                            <li key={idx}>{skill}</li>
+                          ))}
+                        </ul>
+                      )}
                     </div>
+
+                    {"caveat" in achievement && achievement.caveat && (
+                      <div>
+                        <h3 className="text-lg font-semibold text-[#1F3A60] mb-2">Caveat / Status</h3>
+                        <p className="text-sm text-muted-foreground">{achievement.caveat}</p>
+                      </div>
+                    )}
 
                     {/* Impact */}
                     <div className="pt-4 border-t border-border">
@@ -371,7 +608,7 @@ export default function AchievementsPage() {
           <div className="grid md:grid-cols-4 gap-6">
             <Card className="text-center">
               <CardContent className="pt-6">
-                <div className="text-3xl font-bold text-[#1F3A60]">8</div>
+                <div className="text-3xl font-bold text-[#1F3A60]">16</div>
                 <div className="text-sm text-muted-foreground mt-2">Proof-Backed Milestones</div>
               </CardContent>
             </Card>

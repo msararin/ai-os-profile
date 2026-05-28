@@ -75,6 +75,10 @@ export default function KnowledgeSharingPage() {
             privacy settings, or network restrictions, this archive still preserves the intended
             public Knowledge Sharing area and each card identifies the post date.
           </p>
+          <p className="mt-3 text-sm font-medium text-muted-foreground">
+            Archive freshness: public LinkedIn posts through 24 May 2026. Internal Signal Studio
+            drafts and learning records are not exposed on this public page.
+          </p>
         </section>
 
         <div className="grid gap-8">

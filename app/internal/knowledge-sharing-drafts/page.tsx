@@ -98,12 +98,16 @@ export default function InternalKnowledgeSharingDraftsPage() {
         <div className="mb-8 rounded-lg border bg-muted/30 p-4">
           <h2 className="text-base font-semibold">End-of-day freshness habit</h2>
           <ul className="mt-2 list-disc space-y-1 pl-5 text-sm text-muted-foreground">
-            <li>Sweep today&apos;s work touching ai-os-profile.</li>
-            <li>Identify proof-backed achievements for the public Achievements page.</li>
-            <li>Identify reusable learnings for Signal Studio.</li>
-            <li>Update Achievements for external proof and Signal Studio for internal learning.</li>
-            <li>Do not publish unverified claims.</li>
+            <li>What proof was created today?</li>
+            <li>What changed externally?</li>
+            <li>What learning should go to Signal Studio?</li>
+            <li>What is public-safe?</li>
+            <li>What remains internal?</li>
           </ul>
+          <p className="mt-3 text-xs text-muted-foreground">
+            Update Achievements only for proof-backed external impact. Keep reusable patterns,
+            draft angles, and unreviewed lessons in Signal Studio until claims are reviewed.
+          </p>
         </div>
 
         {/* Draft cards */}
