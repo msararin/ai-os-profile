@@ -7,7 +7,7 @@ import { Badge } from "@/components/ui/badge"
 import { ChevronDown, ChevronRight } from "lucide-react"
 
 export default function AchievementsPage() {
-  const [expandedDays, setExpandedDays] = useState<Set<string>>(new Set(['2026-05-25']))
+  const [expandedDays, setExpandedDays] = useState<Set<string>>(new Set(['2026-05-28']))
 
   const toggleDay = (date: string) => {
     const newExpanded = new Set(expandedDays)
@@ -20,6 +20,33 @@ export default function AchievementsPage() {
   }
 
   const achievements = [
+    {
+      date: '2026-05-28',
+      headline: 'AI OS Profile v0.2 Production Release — Proof-Backed Public/Internal Boundary',
+      summary: 'Merged and production-verified the AIOS profile release through PR review, freeze tagging, Vercel deployment, route checks, and accepted manual auth proof.',
+      proofType: 'PR merge, freeze tag, Vercel status, live route verification',
+      evidenceReference: 'PR #3, merge d7ab867, freeze tag prod-freeze-aios-profile-2026-05-28-v0-2, sararin.ai live route checks',
+      status: 'Production verified 28 May 2026',
+      details: {
+        whyItMatters: 'The site now demonstrates a current, governed release instead of stale portfolio claims. Public proof, protected internal surfaces, and release evidence are aligned.',
+        evidence: [
+          'PR #3 merged to main with merge commit d7ab867758d89d5d610b7a7bff89a8341825d5ee',
+          'Freeze tag prod-freeze-aios-profile-2026-05-28-v0-2 points to approved candidate 8ccf898',
+          'Deployment Preflight passed on PR head 3644cee after checkout history fix',
+          'Vercel statuses succeeded for ai-os-profile and v0-ai-os-profile',
+          'Production routes verified on sararin.ai: public routes returned 200; internal routes redirected to auth with callback URLs',
+          'AUTH_PROOF_GAP accepted based on prior manual incognito OAuth proof'
+        ],
+        skillsDemonstrated: [
+          'Release governance through freeze tag, PR review, checks, and production verification',
+          'Public/private boundary validation for Knowledge Sharing and internal Signal Studio surfaces',
+          'Evidence-aware content governance: proof page updated after deployment, not left stale',
+          'Rollback readiness: Vercel rollback first, Git revert path documented if source rollback is needed'
+        ],
+        impact: 'Established current production proof that the AIOS profile is live, governed, and boundary-aware while keeping unpublished Signal Studio learning records internal.'
+      },
+      tags: ['Production Release', 'Governance', 'Boundary Proof', 'Impact']
+    },
     {
       date: '2026-05-25',
       headline: 'Public Website Governance Recovery — First Impression Stabilized',
@@ -203,6 +230,12 @@ export default function AchievementsPage() {
             <p className="text-xl text-white/85 max-w-3xl mx-auto">
               Public-safe evidence of what was built, what is proven, what is caveated, and what remains internal.
             </p>
+            <p className="mt-4 text-sm font-medium text-white/80">
+              Evidence updated: 28 May 2026 · Production verified: 28 May 2026
+            </p>
+            <p className="mt-2 text-sm text-white/75">
+              Latest validated milestone: AI OS Profile v0.2 production release, 28 May 2026
+            </p>
           </div>
         </div>
       </section>
@@ -214,6 +247,9 @@ export default function AchievementsPage() {
             <p className="text-sm text-muted-foreground">
               <strong>Format:</strong> what was built → why it matters → evidence/artifacts → status/caveat → public-safe result.
               Internal measurements are summarized only when the evidence package is ready for public use.
+            </p>
+            <p className="mt-2 text-sm text-muted-foreground">
+              This page records external/professional proof and impact. Internal learning patterns and reusable draft ideas stay in protected Signal Studio until claims are reviewed.
             </p>
           </div>
 
@@ -249,6 +285,22 @@ export default function AchievementsPage() {
                       <p className="text-sm text-muted-foreground mt-2">
                         {achievement.summary}
                       </p>
+                      {"proofType" in achievement && achievement.proofType && (
+                        <div className="mt-3 grid gap-2 text-xs text-muted-foreground sm:grid-cols-3">
+                          <div>
+                            <span className="font-medium text-foreground">Proof type:</span>{" "}
+                            {achievement.proofType}
+                          </div>
+                          <div>
+                            <span className="font-medium text-foreground">Status:</span>{" "}
+                            {achievement.status}
+                          </div>
+                          <div>
+                            <span className="font-medium text-foreground">Reference:</span>{" "}
+                            {achievement.evidenceReference}
+                          </div>
+                        </div>
+                      )}
                     </div>
                   </div>
                   <div className="flex gap-2 flex-wrap justify-end">
@@ -315,24 +367,24 @@ export default function AchievementsPage() {
       {/* Summary Stats */}
       <section className="py-12 bg-muted/30">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-semibold mb-6 text-center">May 2026 Summary</h2>
+          <h2 className="text-2xl font-semibold mb-6 text-center">May 2026 Proof Summary</h2>
           <div className="grid md:grid-cols-4 gap-6">
             <Card className="text-center">
               <CardContent className="pt-6">
-                <div className="text-3xl font-bold text-[#1F3A60]">7</div>
-                <div className="text-sm text-muted-foreground mt-2">Major Achievements</div>
+                <div className="text-3xl font-bold text-[#1F3A60]">8</div>
+                <div className="text-sm text-muted-foreground mt-2">Proof-Backed Milestones</div>
               </CardContent>
             </Card>
             <Card className="text-center">
               <CardContent className="pt-6">
-                <div className="text-3xl font-bold text-[#00B494]">Scoped</div>
-                <div className="text-sm text-muted-foreground mt-2">KB Benchmark Evidence</div>
+                <div className="text-3xl font-bold text-[#00B494]">Live</div>
+                <div className="text-sm text-muted-foreground mt-2">Production Verified</div>
               </CardContent>
             </Card>
             <Card className="text-center">
               <CardContent className="pt-6">
-                <div className="text-3xl font-bold text-[#1F3A60]">Lab</div>
-                <div className="text-sm text-muted-foreground mt-2">Multi-Agent Validation</div>
+                <div className="text-3xl font-bold text-[#1F3A60]">Protected</div>
+                <div className="text-sm text-muted-foreground mt-2">Internal Routes</div>
               </CardContent>
             </Card>
             <Card className="text-center">
