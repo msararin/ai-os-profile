@@ -22,30 +22,32 @@ export default function AchievementsPage() {
   const achievements = [
     {
       date: '2026-05-28',
-      headline: 'Post-Release Freshness Governance — Proof Ledger Corrected',
-      summary: 'Converted Achievements from a thin milestone note into a current proof ledger and kept Signal Studio as the internal learning pipeline.',
-      proofType: 'PR update, content freshness correction, local validation',
-      evidenceReference: 'PR #4, commit 362921d, current freshness correction branch',
-      status: 'Review candidate, not yet production merged',
-      publicSafeResult: 'Visitors see current evidence dates, proof-backed release context, and clear separation between external proof and internal learning.',
-      caveat: 'This correction remains in PR review until merged; production may still show older metadata until PR #4 and this follow-up are deployed.',
+      headline: 'Knowledge Sharing Archive Refreshed Through May 28',
+      summary: 'Added the May 28 LinkedIn archive item and verified the public Knowledge Sharing route with a local smoke benchmark.',
+      proofType: 'content freshness update, PR review, local route benchmark',
+      evidenceReference: 'PR #5, commit 94c6001, merge commit 47c6c8f',
+      status: 'Merged to main after CI and Vercel checks passed',
+      publicSafeResult: 'Visitors see the latest public LinkedIn archive item without exposing internal Signal Studio drafts or learning records.',
+      caveat: 'This is a public content freshness benchmark, not a claim about multi-agent work, production governance maturity, or business impact.',
       details: {
-        whyItMatters: 'A proof page loses credibility when it looks stale after production work. The correction makes freshness itself part of the release discipline.',
+        whyItMatters: 'A public knowledge-sharing archive needs to stay current and verifiable. The update proves the page can accept a new public post, render successfully, and keep internal learning material out of the public route.',
         evidence: [
-          'PR #4 opened for Achievements and Signal Studio freshness',
-          'Commit 362921d updated Achievements, Signal Studio, shared page metadata, and footer metadata',
-          'Current follow-up removes reliance on a single proof item and expands 25-28 May evidence',
-          'Stale global metadata search was run across app/components/content/lib/docs and corrected where user-facing freshness belongs'
+          'Commit 94c6001 added LinkedIn URN urn:li:share:7465789008669782016 to app/knowledge-sharing/page.tsx',
+          'Archive freshness text changed from through 24 May 2026 to through 28 May 2026',
+          'Local smoke benchmark: GET /knowledge-sharing returned 200 in 150ms on the Next.js dev server',
+          'Rendered HTML check found the May 28 date label, the new LinkedIn URN, height 1833, and the 28 May freshness text',
+          'Internal draft markers were not found in the rendered public route',
+          'PR #5 checks passed: Lint, typecheck, build, and Vercel preview/status checks'
         ],
         skillsDemonstrated: [
-          'Post-release evidence hygiene',
-          'Page-specific freshness metadata instead of misleading global timestamps',
-          'Claims separation: external proof in Achievements, internal learning in Signal Studio',
-          'Public/private content boundary review'
+          'Freshness maintenance for public content',
+          'Route-level smoke benchmarking before merge',
+          'Public/private boundary check for Knowledge Sharing vs. Signal Studio',
+          'Evidence-first PR merge discipline'
         ],
-        impact: 'Turns freshness from cosmetic copy into an operating habit: proof-backed work gets recorded, internal learning stays protected, and stale metadata is treated as a release-risk signal.'
+        impact: 'Keeps the public archive current with a concrete route benchmark while avoiding inflated claims about internal systems or multi-agent collaboration.'
       },
-      tags: ['Freshness', 'Proof Ledger', 'Governance', 'Review']
+      tags: ['Freshness', 'Benchmark', 'Knowledge Sharing', 'Public Safe']
     },
     {
       date: '2026-05-28',
