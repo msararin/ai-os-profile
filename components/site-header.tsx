@@ -7,14 +7,9 @@ import { cn } from "@/lib/utils"
 const navigation = [
   { name: "Home", href: "/" },
   { name: "AI Operating System", href: "/ai-operating-system" },
-  { name: "Org Roles", href: "/org-roles" },
-  { name: "How We Build", href: "/how-we-build" },
-  { name: "Achievements", href: "/achievements" },
-  { name: "Architecture", href: "/architecture" },
   { name: "Knowledge Sharing", href: "/knowledge-sharing" },
-  { name: "LVT", href: "/lean-value-tree" },
-  { name: "Workstreams", href: "/workstreams" },
-  { name: "About SARARIN", href: "/about" },
+  { name: "Achievements", href: "/achievements" },
+  { name: "About Sararin", href: "/about" },
 ]
 
 const internalNavigation = [
@@ -28,8 +23,8 @@ export function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="mx-auto flex min-h-14 max-w-5xl items-center justify-center px-4 sm:px-6 lg:px-8">
-        <nav className="flex min-w-0 items-center gap-1 overflow-x-auto sm:gap-4">
+      <div className="mx-auto flex min-h-14 max-w-6xl items-center justify-center px-4 sm:px-6 lg:px-8">
+        <nav className="flex min-w-0 items-center gap-1 overflow-x-auto sm:gap-3">
           {navigation.map((item) => (
             <Link
               key={item.href}

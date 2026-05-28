@@ -1,6 +1,40 @@
 import { PageLayout } from "@/components/page-layout"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
+import Link from "next/link"
+
+const aiosSections = [
+  {
+    title: "Executive Summary",
+    href: "/ai-operating-system",
+    description: "What this case study is, why it exists, and how the AIOS is framed.",
+  },
+  {
+    title: "Lean Value Tree",
+    href: "/lean-value-tree",
+    description: "Strategy-to-execution logic connecting value, work, and proof.",
+  },
+  {
+    title: "Org Roles",
+    href: "/org-roles",
+    description: "Role boundaries for humans, AI workers, review, and escalation.",
+  },
+  {
+    title: "Workstreams",
+    href: "/workstreams",
+    description: "Current operating lanes, status, owners, and next actions.",
+  },
+  {
+    title: "How We Build",
+    href: "/how-we-build",
+    description: "Delivery method, gates, review loops, and evidence discipline.",
+  },
+  {
+    title: "Architecture",
+    href: "/architecture",
+    description: "System structure, boundaries, and public-safe technical view.",
+  },
+]
 
 function FlowArrow({ label }: { label: string }) {
   return (
@@ -33,9 +67,38 @@ export default function AIOperatingSystemPage() {
             AI Operating System
           </h1>
           <p className="mt-3 max-w-2xl text-lg text-muted-foreground">
-            A personal AI control plane for governed, measurable, and traceable
-            AI workflow execution.
+            A public-facing case study of Sararin's AI-enabled working method:
+            governance, evidence, decision flow, routing discipline, and
+            practical execution.
           </p>
+        </div>
+      </section>
+
+      <section className="border-b border-border bg-muted/30 py-10">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+          <h2 className="text-xl font-semibold tracking-tight text-foreground">
+            AIOS Case Study Map
+          </h2>
+          <p className="mt-2 max-w-3xl text-sm text-muted-foreground">
+            These public pages group the current AIOS artifacts without crowding
+            the top navigation.
+          </p>
+          <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {aiosSections.map((section) => (
+              <Link
+                key={section.href}
+                href={section.href}
+                className="rounded-lg border border-border bg-card p-4 transition-colors hover:border-primary"
+              >
+                <h3 className="text-sm font-semibold text-foreground">
+                  {section.title}
+                </h3>
+                <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
+                  {section.description}
+                </p>
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -50,6 +113,11 @@ export default function AIOperatingSystemPage() {
             workforce allocation, governance gates, evidence capture, and
             execution traceability. It answers three questions: What work needs
             doing? Who should do it? How do we know it was done correctly?
+          </p>
+          <p className="mt-4 max-w-3xl text-sm text-muted-foreground">
+            Public pages show proof and method. Protected internal pages hold
+            operating surfaces such as review queues, budget/backlog context,
+            and draft work that is not public-ready.
           </p>
         </div>
       </section>
