@@ -2,6 +2,12 @@ import { PageLayout } from "@/components/page-layout"
 
 const linkedInPosts = [
   {
+    urn: "urn:li:share:7465789008669782016",
+    height: 1833,
+    title: "LinkedIn Post - May 28, 2026",
+    date: "May 28, 2026",
+  },
+  {
     urn: "urn:li:share:7463991112739827712",
     height: 1825,
     title: "LinkedIn Post - May 24, 2026",
@@ -76,7 +82,7 @@ export default function KnowledgeSharingPage() {
             public Knowledge Sharing area and each card identifies the post date.
           </p>
           <p className="mt-3 text-sm font-medium text-muted-foreground">
-            Archive freshness: public LinkedIn posts through 24 May 2026. Internal Signal Studio
+            Archive freshness: public LinkedIn posts through 28 May 2026. Internal Signal Studio
             drafts and learning records are not exposed on this public page.
           </p>
         </section>
