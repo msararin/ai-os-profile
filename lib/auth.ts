@@ -1,6 +1,10 @@
 import NextAuth from "next-auth"
 import Google from "next-auth/providers/google"
 
+const googleClientId = process.env.AUTH_GOOGLE_ID ?? process.env.GOOGLE_CLIENT_ID
+const googleClientSecret = process.env.AUTH_GOOGLE_SECRET ?? process.env.GOOGLE_CLIENT_SECRET
+const authSecret = process.env.AUTH_SECRET ?? process.env.NEXTAUTH_SECRET
+
 // Dynamically load allowed emails on each check to avoid stale cache
 function getAllowedEmails(): string[] {
   const emails = process.env.INTERNAL_ALLOWED_EMAILS?.split(',').map(e => e.trim().toLowerCase()) || []
@@ -11,8 +15,8 @@ function getAllowedEmails(): string[] {
 export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [
     Google({
-      clientId: process.env.GOOGLE_CLIENT_ID!,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+      clientId: googleClientId!,
+      clientSecret: googleClientSecret!,
       // Force consent screen on every sign-in to ensure fresh OAuth flow
       authorization: {
         params: {
@@ -90,6 +94,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     strategy: 'jwt',
     maxAge: 7 * 24 * 60 * 60, // 7 days
   },
+  secret: authSecret,
   cookies: {
     sessionToken: {
       name: `next-auth.session-token`,
@@ -101,5 +106,5 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       },
     },
   },
-  debug: process.env.NODE_ENV === 'development',
+  debug: process.env.AUTH_DEBUG === 'true',
 })

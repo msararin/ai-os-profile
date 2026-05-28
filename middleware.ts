@@ -1,9 +1,10 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 import { auth } from '@/lib/auth'
+import { isLocalInternalReviewAccessEnabled } from '@/lib/local-internal-review'
 
-// Paths that require authentication
 const protectedPaths = ['/internal']
+const localReviewCookie = 'local-internal-review'
 
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
@@ -14,6 +15,18 @@ export async function middleware(request: NextRequest) {
 
   if (isProtectedPath) {
     console.log(`[Middleware] ${timestamp} - Protected path accessed: ${pathname}`)
+
+    if (isLocalInternalReviewAccessEnabled()) {
+      console.log(`[Middleware] Local internal review access enabled for development: ${pathname}`)
+      const response = NextResponse.next()
+      response.cookies.set(localReviewCookie, '1', {
+        httpOnly: false,
+        sameSite: 'lax',
+        secure: false,
+        path: '/internal',
+      })
+      return response
+    }
     
     // Log all cookies for debugging
     const cookies = request.cookies.getAll()
@@ -34,6 +47,12 @@ export async function middleware(request: NextRequest) {
     // Session exists and email was already validated in auth.ts signIn callback
     // If user got a session, they passed the email allowlist check
     console.log(`[Middleware] ✅ Authorized access: ${session.user?.email} → ${pathname}`)
+    const response = NextResponse.next()
+    response.cookies.set(localReviewCookie, '', {
+      maxAge: 0,
+      path: '/internal',
+    })
+    return response
   }
 
   return NextResponse.next()
