@@ -1,3 +1,4 @@
+import Link from "next/link"
 import { PageLayout } from "@/components/page-layout"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -14,6 +15,73 @@ export default function AboutPage() {
           <p className="mt-3 max-w-2xl text-lg text-muted-foreground">
             Business-Technology-AI Bridge: I turn ambiguous transformation goals into executable systems of work.
           </p>
+        </div>
+      </section>
+
+      <section className="border-b border-border bg-muted/30 py-10">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+          <h2 className="text-xl font-semibold tracking-tight text-foreground">
+            About Sararin
+          </h2>
+          <p className="mt-2 max-w-3xl text-sm text-muted-foreground">
+            Profile, transformation leadership, and AI Business Partner role fit.
+          </p>
+          <div className="mt-6 grid gap-4 sm:grid-cols-2">
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-base">
+                  Profile / Transformation Leadership
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground">
+                  Career evidence across data reliability, banking
+                  modernization, cloud governance, and AI-enabled operating
+                  discipline.
+                </p>
+              </CardContent>
+            </Card>
+            <Link
+              href="/role-fit"
+              className="rounded-lg border border-border bg-card p-6 transition-colors hover:border-primary"
+            >
+              <h3 className="text-base font-semibold text-foreground">
+                Role Fit / AI Business Partner
+              </h3>
+              <p className="mt-2 text-sm text-muted-foreground">
+                Why Sararin fits roles that bridge business problems,
+                technology delivery, AI adoption, and governance.
+              </p>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-10">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+          <Card className="border-primary/30 bg-primary/5">
+            <CardHeader>
+              <CardTitle className="text-lg">Role: AI Business Partner</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-3 text-sm text-muted-foreground">
+              <p>
+                Sararin bridges business problems, technology delivery, AI
+                adoption, and governance. The value is not pure AI engineering;
+                it is making AI usable, governable, and valuable inside real
+                organizations.
+              </p>
+              <p>
+                The fit comes from transformation delivery, program management,
+                enterprise constraints, stakeholder alignment, controls,
+                operational readiness, and evidence discipline.
+              </p>
+              <p>
+                The AIOS work demonstrates hands-on AI governance, workflow
+                design, routing discipline, evidence tracking, and
+                human-in-the-loop review.
+              </p>
+            </CardContent>
+          </Card>
         </div>
       </section>
 

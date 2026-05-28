@@ -7,10 +7,17 @@ import { Alert, AlertDescription } from "@/components/ui/alert"
 import { Button } from "@/components/ui/button"
 
 export default function SignInPage() {
+  const getCallbackUrl = () => {
+    const callbackUrl = new URLSearchParams(window.location.search).get("callbackUrl")
+    return callbackUrl?.startsWith("/internal/")
+      ? callbackUrl
+      : "/internal/dashboard"
+  }
+
   const handleSignIn = async () => {
     console.log('[SignIn] Sign-in initiated by user')
     console.log('[SignIn] Redirecting to Google OAuth')
-    await signIn("google", { callbackUrl: "/internal/dashboard" })
+    await signIn("google", { callbackUrl: getCallbackUrl() })
   }
 
   return (

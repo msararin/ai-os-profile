@@ -18,7 +18,7 @@ const roleFit = [
       "Active AI upskilling: RAG architecture, agentic workflows, Python automation",
       "Proven learning pattern: Data/QA → Banking → Cloud → AI Engineering"
     ],
-    evidence: "Evidence: Built personal AI orchestration lab using KB + Git as source of truth, with role-based agent workflows, benchmark trace discipline (1,750x performance improvement, 100% test accuracy), and deployment experiments. See /internal/architecture for thin-slice methodology and /internal/showcase for measured results."
+    evidence: "Evidence: Built a personal AI orchestration lab using KB + Git as source of truth, with role-based agent workflows, benchmark trace discipline, and deployment experiments. Detailed lab measurements stay internal until source, benchmark, and caveat are ready for public use."
   },
   {
     title: "Manager, Strategy & Transformation Office",
@@ -35,7 +35,7 @@ const roleFit = [
       "Technical credibility: not just coordinating, but understanding constraints",
       "CCoE governance: turned cloud ambition into decision-ready roadmaps"
     ],
-    evidence: "Current lab artifacts: AI workflow governance notes, agent role contracts, source-of-truth rules, benchmark telemetry design, multi-agent orchestration (2.3x efficiency gain, 653% ROI). Documented thin-slice engineering approach with observable validation."
+    evidence: "Current lab artifacts: AI workflow governance notes, agent role contracts, source-of-truth rules, benchmark telemetry design, and multi-agent orchestration notes. Documented thin-slice engineering approach with observable validation."
   },
   {
     title: "Technology Enablement / AI Governance Lead",
@@ -49,10 +49,10 @@ const roleFit = [
     why: [
       "Built ETL test frameworks for core accounting migration",
       "Created governance templates (cloud, data, AI workflow patterns)",
-      "Current: 3-layer privacy architecture (85% KB auto-protected), metadata-first search (0.027s latency)",
+      "Current: layered privacy architecture, metadata-first search, and benchmark review discipline",
       "Pattern: learn fundamentals → create reusable systems → enable teams"
     ],
-    evidence: "See /internal/architecture for documented patterns: thin-slice harness engineering, CEO escalation tiers, observable validation systems. Real implementation, not theory."
+    evidence: "Documented patterns include thin-slice harness engineering, escalation tiers, and observable validation systems. Real implementation, not theory."
   }
 ]
 
@@ -75,10 +75,10 @@ export default function RoleFitPage() {
       <section className="border-b border-border bg-background">
         <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6 lg:px-8">
           <h1 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-            How I Fit Your Role
+            Role Fit: AI Business Partner
           </h1>
           <p className="mt-3 max-w-2xl text-lg text-muted-foreground">
-            Governance + Technical depth. Not just coordination—I build understanding.
+            Business problem framing, technology delivery, AI adoption, and governance in one operating role.
           </p>
         </div>
       </section>
@@ -90,18 +90,16 @@ export default function RoleFitPage() {
             <CardContent className="pt-6">
               <p className="text-base text-foreground font-medium mb-3">
                 I'm not positioning myself as a pure AI engineer. I'm positioning myself as a{" "}
-                <span className="text-primary font-semibold">transformation leader with enough technical depth to govern AI delivery responsibly</span>, 
-                challenge implementation assumptions, and translate between business, data, engineering, and governance.
+                <span className="text-primary font-semibold">business and technology partner who makes AI usable, governable, and valuable in real organizations</span>.
               </p>
               <p className="text-sm text-muted-foreground mb-3">
-                I grew from SQL/ETL/data validation into program leadership, and I'm now expanding 
-                into AI transformation—learning RAG architecture, agentic workflows, and automation 
-                design hands-on. My value is bridging business goals, technical constraints, and 
-                governance frameworks to make transformation actually executable.
+                I bridge business problems, technology delivery, AI adoption, and governance. My background in
+                program management and transformation delivery helps me work with enterprise constraints:
+                risk, adoption, stakeholder alignment, controls, operational readiness, and delivery evidence.
               </p>
               <p className="text-xs text-muted-foreground italic border-l-2 border-primary/30 pl-3">
-                Evidence: Personal AI orchestration lab with KB memory (1,750x improvement), multi-agent systems (2.3x efficiency), 
-                3-layer privacy architecture. See /internal/architecture and /internal/showcase for measured results.
+                Evidence: Personal AI orchestration lab with KB memory work, multi-agent systems, 
+                and layered privacy architecture. Detailed lab measurements stay internal until the evidence package is public-ready.
               </p>
             </CardContent>
           </Card>
