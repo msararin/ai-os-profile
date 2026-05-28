@@ -9,6 +9,18 @@ import {
 } from "@/content/export-drafts";
 
 export default function InternalKnowledgeSharingDraftsPage() {
+  const documentedRecords = signalStudioDrafts.length;
+  const pendingReview = signalStudioDrafts.filter((draft) =>
+    ["captured", "draft", "needs_review"].includes(draft.status)
+  ).length;
+  const publicSafeCandidates = signalStudioDrafts.filter(
+    (draft) =>
+      draft.publicRiskLevel === "low" &&
+      draft.recommendedChannel.some((channel) =>
+        ["linkedin", "knowledge_sharing", "thai_social"].includes(channel)
+      )
+  ).length;
+
   const handleExportDraft = (draft: typeof signalStudioDrafts[0]) => {
     const markdown = exportDraftToMarkdown(draft);
     downloadMarkdown(markdown, `${draft.id}-draft.md`);
@@ -34,24 +46,24 @@ export default function InternalKnowledgeSharingDraftsPage() {
             Signal Studio — Draft Content Packages
           </h1>
           <p className="text-muted-foreground text-lg">
-            Internal draft surface for AIOS learning notes → LinkedIn, Thai social, Knowledge Sharing
+            Internal learning pipeline for AIOS lessons → reviewed public-safe content candidates
           </p>
           <p className="text-sm text-yellow-600 dark:text-yellow-500 mt-2">
             🔒 Internal only — Drafts under review
           </p>
           <p className="text-sm text-muted-foreground mt-3">
-            Draft bank baseline: 2026-05-24. Review surface updated: 2026-05-27. 26–27 May lessons not yet fully ingested.
+            Draft bank baseline: 2026-05-24. Review surface updated: 2026-05-28. 28 May production release learning is captured as status and pending draft migration.
           </p>
           <div className="mt-4 rounded border border-yellow-500/30 bg-yellow-50 p-3 text-sm text-yellow-900 dark:bg-yellow-950 dark:text-yellow-100">
-            <strong>Known pending ingestion:</strong> 26–27 May staging review lessons, Knowledge Sharing preservation check, internal navigation blocker, export behavior verification, and budget burn report.
+            <strong>Current separation rule:</strong> Achievements records external proof and impact. Signal Studio captures internal learning patterns, reusable insights, and claims-safety review before anything becomes public.
           </div>
         </div>
 
-        {/* Draft count */}
+        {/* Learning status */}
         <div className="mb-6 p-4 bg-blue-50 dark:bg-blue-950 rounded-lg">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <p className="text-sm">
-              <strong>Total drafts:</strong> {signalStudioDrafts.length}
+              <strong>Learning records identified:</strong> {signalStudioDrafts.length}
             </p>
             <button
               onClick={handleExportAll}
@@ -60,8 +72,41 @@ export default function InternalKnowledgeSharingDraftsPage() {
               📥 Export All to Markdown
             </button>
           </div>
+          <div className="mt-4 grid gap-3 sm:grid-cols-4">
+            <div className="rounded bg-white/70 p-3 text-xs text-blue-950 dark:bg-black/20 dark:text-blue-100">
+              <div className="font-semibold">Documented records</div>
+              <div className="mt-1 text-lg font-bold">{documentedRecords}</div>
+            </div>
+            <div className="rounded bg-white/70 p-3 text-xs text-blue-950 dark:bg-black/20 dark:text-blue-100">
+              <div className="font-semibold">Pending review</div>
+              <div className="mt-1 text-lg font-bold">{pendingReview}</div>
+            </div>
+            <div className="rounded bg-white/70 p-3 text-xs text-blue-950 dark:bg-black/20 dark:text-blue-100">
+              <div className="font-semibold">Public-safe candidates</div>
+              <div className="mt-1 text-lg font-bold">{publicSafeCandidates}</div>
+            </div>
+            <div className="rounded bg-white/70 p-3 text-xs text-blue-950 dark:bg-black/20 dark:text-blue-100">
+              <div className="font-semibold">Pending migration</div>
+              <div className="mt-1 text-lg font-bold">1</div>
+            </div>
+          </div>
           <p className="mt-3 text-xs text-blue-900 dark:text-blue-100">
-            Markdown export controls present — behavior pending verification.
+            Pending migration: convert the 28 May production release proof into reusable learning patterns after Lyn/Robert review. Markdown export controls remain internal review tooling.
+          </p>
+        </div>
+
+        <div className="mb-8 rounded-lg border bg-muted/30 p-4">
+          <h2 className="text-base font-semibold">End-of-day freshness habit</h2>
+          <ul className="mt-2 list-disc space-y-1 pl-5 text-sm text-muted-foreground">
+            <li>What proof was created today?</li>
+            <li>What changed externally?</li>
+            <li>What learning should go to Signal Studio?</li>
+            <li>What is public-safe?</li>
+            <li>What remains internal?</li>
+          </ul>
+          <p className="mt-3 text-xs text-muted-foreground">
+            Update Achievements only for proof-backed external impact. Keep reusable patterns,
+            draft angles, and unreviewed lessons in Signal Studio until claims are reviewed.
           </p>
         </div>
 
