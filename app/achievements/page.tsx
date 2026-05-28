@@ -46,25 +46,25 @@ export default function AchievementsPage() {
     },
     {
       date: '2026-05-24',
-      headline: 'Performance Proven: 1,400× KB Speedup + 2.3× Multi-Agent Efficiency',
-      summary: 'Two major systems optimized with measured, evidence-backed results demonstrating AIOS governance capability',
+      headline: 'Performance Evidence Hardened for AIOS Lab Systems',
+      summary: 'Two lab systems were optimized with measured results, source references, and visible caveats before any public claim is reused',
       details: {
-        whyItMatters: 'Proves AIOS isn\'t theory—real systems with measurable improvements, evidence-backed claims, and production deployment.',
+        whyItMatters: 'Shows AIOS is being validated through real lab systems while keeping public claims tied to evidence, scope, and caveats.',
         evidence: [
-          'KB Memory: 37.5s → 0.027s (1,400×), 100% test accuracy, evaluation/phase-4a-test-results.json',
-          'Multi-Agent: 90min → 18.5min (2.3×), 50% cost reduction ($2.71 → $1.36/deliverable)',
-          'ROI: 653% (cost savings + time value)',
+          'KB memory benchmark documented with baseline, same-task comparison, source file, and limited-scope caveat',
+          'Multi-agent comparison documented as a lab run, not a general performance guarantee',
+          'Cost notes retained internally until benchmark context is ready for public use',
           'Production: MCP server deployed, zero rework in 12 hours',
-          'Parallel execution: 7 concurrent workstreams, $9.50 total delegated cost'
+          'Parallel execution evidence kept with source traces and review notes'
         ],
         skillsDemonstrated: [
           'Thin-slice validation methodology (4 → 54 → 365 files)',
-          '3-layer privacy enforcement (85% auto-protected)',
+          'Layered privacy enforcement with automatic protection rules',
           'Measured burn rates with OpenRouter billing (May 20-24)',
           'Multi-agent orchestration (3-agent parallel batches)',
           'Evidence-backed performance claims (baseline, date, source, caveat)'
         ],
-        impact: 'Demonstrates technical capability + governance discipline. Not just "fast" but "provably fast with proper measurement."'
+        impact: 'Demonstrates technical capability + governance discipline: measured claims stay scoped until the evidence package is ready for public use.'
       },
       tags: ['Performance', 'Evidence', 'Production', 'AIOS']
     },
@@ -93,12 +93,12 @@ export default function AchievementsPage() {
     },
     {
       date: '2026-05-21',
-      headline: 'Budget Crisis Recovery: $100 Burn in <12 Hours',
+      headline: 'Budget Crisis Recovery: Cost Governance Added',
       summary: 'Discovered Sonnet overuse causing rapid budget burn. Implemented role-first routing and cost-aware model selection to prevent recurrence.',
       details: {
         whyItMatters: 'Budget governance failure exposed need for cost control discipline. Fixed through routing rules, not just "be careful."',
         evidence: [
-          'Budget burn: USD $100 in <12 hours (Sonnet default)',
+          'Budget burn identified from Sonnet default usage',
           'Hard rule implemented: NO Sonnet default, role-first routing required',
           'Manual 11-point checklist before delegate_task',
           'Enforcement: Manual 1-2wk before automation',
@@ -117,16 +117,16 @@ export default function AchievementsPage() {
     },
     {
       date: '2026-05-20',
-      headline: 'Knowledge Base Phase 5 Complete: 1,750× → 1,400× Speed (Corrected with Evidence)',
-      summary: 'Completed KB memory optimization with evidence-backed metrics. Corrected initial 1,750× claim to accurate 1,400× with full evidence standard.',
+      headline: 'Knowledge Base Phase 5 Complete: Metric Corrected with Evidence',
+      summary: 'Completed KB memory optimization and corrected the public claim only after reviewing benchmark scope, source, and caveat.',
       details: {
         whyItMatters: 'Evidence discipline matters more than impressive numbers. Corrected metric with baseline, date, source, caveat visible.',
         evidence: [
-          'Corrected: 1,750× → 1,400× (37.5s → 0.027s)',
+          'Corrected the speed claim after benchmark review',
           'Evidence source: evaluation/phase-4a-test-results.json',
           'Date measured: May 24, 2026',
-          'Caveat: 54 HOT/WARM files only (not full 365-file KB)',
-          'Baseline: Manual grep/browse averaged 37.5s',
+          'Caveat: HOT/WARM subset only, not the full KB',
+          'Baseline: Manual grep/browse comparison documented',
           'Same task: Metadata-first search on identical query set'
         ],
         skillsDemonstrated: [
@@ -149,8 +149,8 @@ export default function AchievementsPage() {
           'Domain: sararin.ai (registered, HTTPS via Vercel)',
           'Auth: NextAuth.js 5 beta + Google OAuth',
           'Access control: Public portfolio / Internal auth-protected / Secrets never rendered',
-          'Internal pages: /internal/dashboard, /internal/architecture, /internal/showcase, /internal/usage',
-          'Path-based routing: /internal/* requires auth',
+          'Internal pages protected behind authenticated routes',
+          'Path-based routing requires auth for internal surfaces',
           'Email allowlist: Configured in INTERNAL_ALLOWED_EMAILS'
         ],
         skillsDemonstrated: [
@@ -167,14 +167,14 @@ export default function AchievementsPage() {
     {
       date: '2026-05-18',
       headline: 'Multi-Agent Orchestration: 3-Agent Parallel Execution Framework',
-      summary: 'Built and validated multi-agent system with role-based routing, parallel execution, and measured efficiency gains',
+      summary: 'Built and validated multi-agent system with role-based routing, parallel execution, and scoped lab measurements',
       details: {
-        whyItMatters: 'Proves multi-agent orchestration capability with real efficiency gains and cost tracking.',
+        whyItMatters: 'Shows multi-agent orchestration capability with source-tracked lab evidence and review discipline.',
         evidence: [
           'Architecture: Robert (router/reviewer) → Optimize Worker (execution) → Quality gates',
           'Parallel execution: Up to 3 concurrent subagents',
-          'Measured speed: 2.3× faster (90min → 18.5min average)',
-          'Cost reduction: 50% ($2.71 → $1.36 per deliverable)',
+          'Measured speed comparison retained with lab-run scope and source notes',
+          'Cost comparison retained internally until public benchmark context is ready',
           'Session logs: May 20-24 OpenRouter billing data',
           'Real workload: 7 concurrent workstreams executed'
         ],
@@ -185,7 +185,7 @@ export default function AchievementsPage() {
           'Performance measurement: Baseline vs. optimized comparison',
           'Quality preservation: Gates prevent speed → quality tradeoff'
         ],
-        impact: 'Multi-agent isn\'t just trend-chasing. Measured 2.3× speed + 50% cost reduction with evidence.'
+        impact: 'Multi-agent isn\'t just trend-chasing. The work is measured, scoped, and reviewed before claims are reused publicly.'
       },
       tags: ['Multi-Agent', 'Orchestration', 'Performance', 'AIOS']
     }
@@ -198,10 +198,10 @@ export default function AchievementsPage() {
         <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-5xl font-bold text-white mb-4">
-              May 2026 Achievements
+              Achievement Proof Gallery
             </h1>
             <p className="text-xl text-white/85 max-w-3xl mx-auto">
-              Evidence-backed progress: What we built, measured, and deployed this month
+              Public-safe evidence of what was built, what is proven, what is caveated, and what remains internal.
             </p>
           </div>
         </div>
@@ -212,8 +212,8 @@ export default function AchievementsPage() {
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
           <div className="mb-8 p-4 bg-muted/30 rounded-lg border border-border">
             <p className="text-sm text-muted-foreground">
-              <strong>Format:</strong> Headline → Why it matters → Evidence/artifacts → Skills demonstrated → Impact.
-              Each achievement is curated as professional evidence, not diary entries.
+              <strong>Format:</strong> what was built → why it matters → evidence/artifacts → status/caveat → public-safe result.
+              Internal measurements are summarized only when the evidence package is ready for public use.
             </p>
           </div>
 
@@ -325,20 +325,20 @@ export default function AchievementsPage() {
             </Card>
             <Card className="text-center">
               <CardContent className="pt-6">
-                <div className="text-3xl font-bold text-[#00B494]">1,400×</div>
-                <div className="text-sm text-muted-foreground mt-2">KB Speed Improvement</div>
+                <div className="text-3xl font-bold text-[#00B494]">Scoped</div>
+                <div className="text-sm text-muted-foreground mt-2">KB Benchmark Evidence</div>
               </CardContent>
             </Card>
             <Card className="text-center">
               <CardContent className="pt-6">
-                <div className="text-3xl font-bold text-[#1F3A60]">2.3×</div>
-                <div className="text-sm text-muted-foreground mt-2">Multi-Agent Efficiency</div>
+                <div className="text-3xl font-bold text-[#1F3A60]">Lab</div>
+                <div className="text-sm text-muted-foreground mt-2">Multi-Agent Validation</div>
               </CardContent>
             </Card>
             <Card className="text-center">
               <CardContent className="pt-6">
-                <div className="text-3xl font-bold text-[#00B494]">100%</div>
-                <div className="text-sm text-muted-foreground mt-2">Evidence-Backed Claims</div>
+                <div className="text-3xl font-bold text-[#00B494]">Reviewed</div>
+                <div className="text-sm text-muted-foreground mt-2">Evidence Claims</div>
               </CardContent>
             </Card>
           </div>
