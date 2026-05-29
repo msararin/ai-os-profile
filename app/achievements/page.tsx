@@ -486,10 +486,10 @@ export default function AchievementsPage() {
               Public-safe evidence of what was built, what is proven, what is caveated, and what remains internal.
             </p>
             <p className="mt-4 text-sm font-medium text-white/80">
-              Evidence updated: 28 May 2026 · Production verified: 28 May 2026
+              Evidence updated: 29 May 2026 · Production verified: 29 May 2026
             </p>
             <p className="mt-2 text-sm text-white/75">
-              Latest validated milestone: AI OS Profile v0.2 production release, 28 May 2026
+              Latest validated milestone: AIOS governance maturity update, 29 May 2026
             </p>
           </div>
         </div>

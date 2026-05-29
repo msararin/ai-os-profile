@@ -71,6 +71,19 @@ const boundaries = [
   "This is not presented as a live production governance system",
 ]
 
+function statusBadgeClass(status: string) {
+  switch (status) {
+    case "Current":
+      return "bg-green-500/10 text-green-700 dark:text-green-400"
+    case "In Progress":
+      return "bg-blue-500/10 text-blue-700 dark:text-blue-400"
+    case "Planned":
+      return "bg-muted text-muted-foreground"
+    default:
+      return "bg-muted text-muted-foreground"
+  }
+}
+
 export default function ArchitecturePage() {
   return (
     <PageLayout>
@@ -149,7 +162,9 @@ export default function ArchitecturePage() {
                           {capability}
                         </td>
                         <td className="px-4 py-3">
-                          <span className="inline-flex items-center rounded-md bg-muted px-2 py-1 text-xs font-medium text-foreground">
+                          <span
+                            className={`inline-flex items-center rounded-md px-2 py-1 text-xs font-medium ${statusBadgeClass(status)}`}
+                          >
                             {status}
                           </span>
                         </td>
