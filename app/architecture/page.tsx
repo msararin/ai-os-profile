@@ -1,4 +1,4 @@
-import { PageLayout } from "@/components/page-layout"
+import { SiteHeader } from "@/components/site-header"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 
 function FlowArrow({ label }: { label: string }) {
@@ -71,9 +71,59 @@ const boundaries = [
   "This is not presented as a live production governance system",
 ]
 
+function ArchitectureMetadata() {
+  return (
+    <div className="text-right text-xs text-muted-foreground leading-relaxed">
+      <p>Evidence updated: 2026-05-29</p>
+      <p>Source: Robert KB + Git</p>
+      <p>Page-specific evidence dates shown in context</p>
+      <p>Release: AIOS profile v0.2 + Governance layer update</p>
+    </div>
+  )
+}
+
+function ArchitectureFooter() {
+  return (
+    <footer className="mt-auto border-t border-border bg-background">
+      <div className="mx-auto max-w-5xl px-4 py-6 sm:px-6 lg:px-8">
+        <div className="flex flex-col items-center justify-between gap-2 text-sm text-muted-foreground sm:flex-row">
+          <p>Evidence updated: 2026-05-29</p>
+          <p>Source: Robert KB + Git</p>
+          <p>Page-specific evidence dates shown in context</p>
+          <p>Release: AIOS profile v0.2 + Governance layer update</p>
+        </div>
+        <p className="mt-4 border-t border-border pt-4 text-center text-xs text-muted-foreground">
+          © 2026 AI Orchestration Governance — A portfolio case study by Lyn
+          (msararin). Source of truth: Robert KB + Git.
+        </p>
+      </div>
+    </footer>
+  )
+}
+
+function statusBadgeClass(status: string) {
+  switch (status) {
+    case "Current":
+      return "bg-green-500/10 text-green-700 dark:text-green-400"
+    case "In Progress":
+      return "bg-blue-500/10 text-blue-700 dark:text-blue-400"
+    case "Planned":
+      return "bg-muted text-muted-foreground"
+    default:
+      return "bg-muted text-muted-foreground"
+  }
+}
+
 export default function ArchitecturePage() {
   return (
-    <PageLayout>
+    <div className="flex min-h-screen flex-col">
+      <SiteHeader />
+      <div className="mx-auto w-full max-w-5xl px-4 pt-4 sm:px-6 lg:px-8">
+        <div className="flex justify-end">
+          <ArchitectureMetadata />
+        </div>
+      </div>
+      <main className="flex-1">
       {/* Header */}
       <section className="border-b border-border bg-background">
         <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6 lg:px-8">
@@ -149,7 +199,9 @@ export default function ArchitecturePage() {
                           {capability}
                         </td>
                         <td className="px-4 py-3">
-                          <span className="inline-flex items-center rounded-md bg-muted px-2 py-1 text-xs font-medium text-foreground">
+                          <span
+                            className={`inline-flex items-center rounded-md px-2 py-1 text-xs font-medium ${statusBadgeClass(status)}`}
+                          >
                             {status}
                           </span>
                         </td>
@@ -543,6 +595,8 @@ export default function ArchitecturePage() {
           </Card>
         </div>
       </section>
-    </PageLayout>
+      </main>
+      <ArchitectureFooter />
+    </div>
   )
 }
