@@ -7,7 +7,7 @@ import { Badge } from "@/components/ui/badge"
 import { ChevronDown, ChevronRight } from "lucide-react"
 
 export default function AchievementsPage() {
-  const [expandedDays, setExpandedDays] = useState<Set<string>>(new Set(['2026-05-28', '2026-05-26', '2026-05-25']))
+  const [expandedDays, setExpandedDays] = useState<Set<string>>(new Set(['2026-05-29', '2026-05-28', '2026-05-26', '2026-05-25']))
 
   const toggleDay = (date: string) => {
     const newExpanded = new Set(expandedDays)
@@ -20,6 +20,34 @@ export default function AchievementsPage() {
   }
 
   const achievements = [
+    {
+      date: '2026-05-29',
+      headline: 'AIOS Governance Maturity — Budget-Aware Routing and Release Discipline',
+      summary: 'AIOS governance matured through budget-aware model routing, trigger-based release discipline, and regression-aware validation: updates are scoped narrowly, checked before implementation, and validated against known-good public surfaces so new portfolio proof does not break existing working features.',
+      proofType: 'manual governance review, scoped validation, public-safety check',
+      evidenceReference: 'Architecture governance review, achievement-page update, typecheck/build validation',
+      status: 'Manual release discipline accepted for review; not implemented as automation',
+      publicSafeResult: 'Compared with the prior reactive deployment/recovery loop, the current preflight flow caught internal-only budget evidence, corrected the repo target, narrowed implementation scope, and required validation before any push or deployment.',
+      caveat: 'This is governance maturity and checklist discipline, not a claim of implemented release automation, perfect prevention, or guaranteed breakage avoidance.',
+      details: {
+        whyItMatters: 'Budget, release, and regression controls are now treated as one operating discipline: estimate before action, route mechanical work to lower-cost workers, reserve strategic judgment for decision work, and checkpoint progress before spend or scope drifts.',
+        evidence: [
+          'Estimated-vs-actual spend review informs routing decisions before implementation begins',
+          'Lower-cost workers are preferred for mechanical tasks while strategic models are reserved for decision work',
+          'Release governance design was risk-reviewed, patched, and parked with explicit resume triggers instead of overbuilt prematurely',
+          'Manual preflight checklist discipline validates scope, public safety, and known-good routes before any push or deployment',
+          'Regression-aware validation protects achievements, knowledge-sharing, internal/auth boundaries, and production routes while adding new proof'
+        ],
+        skillsDemonstrated: [
+          'Budget-aware model routing',
+          'Trigger-based release discipline',
+          'Regression-aware validation',
+          'Evidence-first scope control'
+        ],
+        impact: 'Reduces fix-one-thing-break-another friction by making new proof pass through budget, release, and regression checks before it is treated as release-ready.'
+      },
+      tags: ['Governance', 'Budget Control', 'Validation', 'Release Discipline']
+    },
     {
       date: '2026-05-28',
       headline: 'Managed Multi-Agent Knowledge Workspace',
@@ -314,7 +342,7 @@ export default function AchievementsPage() {
         skillsDemonstrated: [
           'Thin-slice validation methodology (4 → 54 → 365 files)',
           'Layered privacy enforcement with automatic protection rules',
-          'Measured burn rates with OpenRouter billing (May 20-24)',
+          'Measured burn rates with provider billing review (May 20-24)',
           'Multi-agent orchestration (3-agent parallel batches)',
           'Evidence-backed performance claims (baseline, date, source, caveat)'
         ],
@@ -348,12 +376,12 @@ export default function AchievementsPage() {
     {
       date: '2026-05-21',
       headline: 'Budget Crisis Recovery: Cost Governance Added',
-      summary: 'Discovered Sonnet overuse causing rapid budget burn. Implemented role-first routing and cost-aware model selection to prevent recurrence.',
+      summary: 'Discovered premium-worker overuse causing rapid budget burn. Implemented role-first routing and cost-aware model selection to prevent recurrence.',
       details: {
         whyItMatters: 'Budget governance failure exposed need for cost control discipline. Fixed through routing rules, not just "be careful."',
         evidence: [
-          'Budget burn identified from Sonnet default usage',
-          'Hard rule implemented: NO Sonnet default, role-first routing required',
+          'Budget burn identified from premium-worker default usage',
+          'Hard rule implemented: no premium-worker default, role-first routing required',
           'Manual 11-point checklist before delegate_task',
           'Enforcement: Manual 1-2wk before automation',
           'Result: Usage optimization framework created (12.8KB USAGE_OPTIMIZATION_FRAMEWORK.md)'
@@ -429,13 +457,13 @@ export default function AchievementsPage() {
           'Parallel execution: Up to 3 concurrent subagents',
           'Measured speed comparison retained with lab-run scope and source notes',
           'Cost comparison retained internally until public benchmark context is ready',
-          'Session logs: May 20-24 OpenRouter billing data',
+          'Session logs: May 20-24 provider billing data',
           'Real workload: 7 concurrent workstreams executed'
         ],
         skillsDemonstrated: [
           'Agent orchestration: Role-based delegation',
           'Concurrency management: Max 3 parallel (delegation.max_concurrent_children)',
-          'Cost tracking: Real OpenRouter billing analysis',
+          'Cost tracking: real provider billing analysis',
           'Performance measurement: Baseline vs. optimized comparison',
           'Quality preservation: Gates prevent speed → quality tradeoff'
         ],
@@ -609,7 +637,7 @@ export default function AchievementsPage() {
           <div className="grid md:grid-cols-4 gap-6">
             <Card className="text-center">
               <CardContent className="pt-6">
-                <div className="text-3xl font-bold text-[#1F3A60]">16</div>
+                <div className="text-3xl font-bold text-[#1F3A60]">17</div>
                 <div className="text-sm text-muted-foreground mt-2">Proof-Backed Milestones</div>
               </CardContent>
             </Card>

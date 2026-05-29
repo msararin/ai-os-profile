@@ -22,18 +22,71 @@ function FlowArrow({ label }: { label: string }) {
   )
 }
 
+const principles = [
+  "Evidence-first",
+  "Fail-safe default: unclear/incomplete -> STOP",
+  "Human approval required for HIGH-risk",
+  "Rollback requires approval before Codex executes",
+  "15-minute checkpoint discipline",
+]
+
+const riskTiers = [
+  {
+    tier: "LOW",
+    meaning:
+      "Narrow, reversible, non-sensitive edits with clear validation and limited user-facing impact.",
+  },
+  {
+    tier: "MEDIUM",
+    meaning:
+      "Public-facing or strategic content changes that may need a human gate before release.",
+  },
+  {
+    tier: "HIGH",
+    meaning:
+      "Changes involving release controls, sensitive surfaces, broad scope, or meaningful rollback exposure.",
+  },
+  {
+    tier: "MUST STOP",
+    meaning:
+      "Ambiguous authority, incomplete evidence, sensitive material risk, or unclear production impact.",
+  },
+]
+
+const governancePatches = [
+  "Private/raw requires explicit approval and is not automation-safe",
+  "Codex prepares rollback; human approves before execution",
+  "MEDIUM public-facing strategic content may require human gate",
+  "Implementation phases are candidate proposals, not approved plans",
+]
+
+const boundaries = [
+  "Deployments require human direction and are never agent-only",
+  "No use of git add .",
+  "No use of git add -A",
+  "Codex does not hold final authority",
+  "No silent long-running sessions",
+  "No claim that a pre-push hook is present",
+  "Rollback is not self-executing",
+  "This is not presented as a live production governance system",
+]
+
 export default function ArchitecturePage() {
   return (
     <PageLayout>
       {/* Header */}
       <section className="border-b border-border bg-background">
         <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6 lg:px-8">
-          <h1 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-            4-Layer Architecture
+          <p className="text-sm font-medium uppercase tracking-wide text-muted-foreground">
+            AIOS architecture
+          </p>
+          <h1 className="mt-2 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+            Architecture
           </h1>
-          <p className="mt-3 max-w-2xl text-muted-foreground">
-            A layered approach to AI orchestration that separates strategic
-            intent, routing, execution, and truth storage.
+          <p className="mt-3 max-w-3xl text-muted-foreground">
+            A layered AI Operating System architecture that separates strategic
+            intent, routing, execution, human review, source-of-truth discipline,
+            and manual release governance.
           </p>
         </div>
       </section>
@@ -46,8 +99,8 @@ export default function ArchitecturePage() {
               Control Plane Thinking
             </h2>
             <p className="mt-2 text-muted-foreground">
-              A personal AI Operating System case study applying enterprise-grade
-              control-plane concepts.
+              A personal AI Operating System case study applying
+              enterprise-grade control-plane concepts at single-operator scale.
             </p>
           </div>
 
@@ -57,11 +110,11 @@ export default function ArchitecturePage() {
                 Maturity Framing
               </h3>
               <p className="mt-2 text-sm text-muted-foreground">
-                This is not an enterprise platform at scale. It's a demonstration of
-                enterprise-grade <span className="italic">thinking</span> applied to a
-                personal AI Operating System. The concepts (control plane, trust layer,
-                evidence discipline) are borrowed from production systems, but adapted
-                to single-operator scale with explicit maturity status tracking.
+                This is not an enterprise platform at scale. It is a public-safe
+                architecture story for governed AI-enabled work: human authority,
+                routing, execution guardrails, review checkpoints, and evidence
+                discipline. Release governance is described as design and manual
+                operating hygiene, not implemented full automation.
               </p>
             </div>
 
@@ -69,10 +122,6 @@ export default function ArchitecturePage() {
               <h3 className="text-lg font-medium text-foreground">
                 Cross-Cutting Capabilities
               </h3>
-              <p className="mt-2 text-sm text-muted-foreground">
-                Beyond the 4-layer architecture, these capabilities span multiple
-                layers:
-              </p>
               <div className="mt-4 overflow-x-auto">
                 <table className="w-full border-collapse text-sm">
                   <thead>
@@ -86,83 +135,32 @@ export default function ArchitecturePage() {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr className="border-b border-border">
-                      <td className="px-4 py-3 text-muted-foreground">
-                        Observability
-                      </td>
-                      <td className="px-4 py-3">
-                        <span className="inline-flex items-center rounded-md bg-yellow-500/10 px-2 py-1 text-xs font-medium text-yellow-700 dark:text-yellow-400">
-                          In Progress
-                        </span>
-                      </td>
-                    </tr>
-                    <tr className="border-b border-border">
-                      <td className="px-4 py-3 text-muted-foreground">
-                        Cost / Budget Control
-                      </td>
-                      <td className="px-4 py-3">
-                        <span className="inline-flex items-center rounded-md bg-green-500/10 px-2 py-1 text-xs font-medium text-green-700 dark:text-green-400">
-                          Current
-                        </span>
-                      </td>
-                    </tr>
-                    <tr className="border-b border-border">
-                      <td className="px-4 py-3 text-muted-foreground">
-                        Traceability
-                      </td>
-                      <td className="px-4 py-3">
-                        <span className="inline-flex items-center rounded-md bg-yellow-500/10 px-2 py-1 text-xs font-medium text-yellow-700 dark:text-yellow-400">
-                          In Progress
-                        </span>
-                      </td>
-                    </tr>
-                    <tr className="border-b border-border">
-                      <td className="px-4 py-3 text-muted-foreground">
-                        Privacy / Security
-                      </td>
-                      <td className="px-4 py-3">
-                        <span className="inline-flex items-center rounded-md bg-green-500/10 px-2 py-1 text-xs font-medium text-green-700 dark:text-green-400">
-                          Current
-                        </span>
-                      </td>
-                    </tr>
-                    <tr className="border-b border-border">
-                      <td className="px-4 py-3 text-muted-foreground">
-                        Fallback / Resilience
-                      </td>
-                      <td className="px-4 py-3">
-                        <span className="inline-flex items-center rounded-md bg-blue-500/10 px-2 py-1 text-xs font-medium text-blue-700 dark:text-blue-400">
-                          Planned
-                        </span>
-                      </td>
-                    </tr>
-                    <tr className="border-b border-border">
-                      <td className="px-4 py-3 text-muted-foreground">
-                        Anti-Fatigue Design
-                      </td>
-                      <td className="px-4 py-3">
-                        <span className="inline-flex items-center rounded-md bg-green-500/10 px-2 py-1 text-xs font-medium text-green-700 dark:text-green-400">
-                          Current
-                        </span>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="px-4 py-3 text-muted-foreground">
-                        Source-of-Truth Discipline
-                      </td>
-                      <td className="px-4 py-3">
-                        <span className="inline-flex items-center rounded-md bg-green-500/10 px-2 py-1 text-xs font-medium text-green-700 dark:text-green-400">
-                          Current
-                        </span>
-                      </td>
-                    </tr>
+                    {[
+                      ["Observability", "In Progress"],
+                      ["Cost / Budget Control", "Current"],
+                      ["Traceability", "In Progress"],
+                      ["Privacy / Security", "Current"],
+                      ["Fallback / Resilience", "Planned"],
+                      ["Anti-Fatigue Design", "Current"],
+                      ["Source-of-Truth Discipline", "Current"],
+                    ].map(([capability, status]) => (
+                      <tr key={capability} className="border-b border-border">
+                        <td className="px-4 py-3 text-muted-foreground">
+                          {capability}
+                        </td>
+                        <td className="px-4 py-3">
+                          <span className="inline-flex items-center rounded-md bg-muted px-2 py-1 text-xs font-medium text-foreground">
+                            {status}
+                          </span>
+                        </td>
+                      </tr>
+                    ))}
                   </tbody>
                 </table>
               </div>
               <p className="mt-3 text-xs italic text-muted-foreground">
-                Status badges reflect implementation maturity, not aspirational goals.
-                "Current" means working and in use. "In Progress" means partially
-                implemented. "Planned" means designed but not built.
+                Status badges reflect current maturity, not aspirational claims.
+                Planned means designed but not built.
               </p>
             </div>
           </div>
@@ -172,6 +170,17 @@ export default function ArchitecturePage() {
       {/* Architecture Diagram */}
       <section className="py-12">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+          <div className="mb-8">
+            <h2 className="text-2xl font-semibold tracking-tight text-foreground">
+              Layered Operating Flow
+            </h2>
+            <p className="mt-2 max-w-3xl text-muted-foreground">
+              The original AIOS flow remains the base. Release governance extends
+              the flow after source-of-truth review so implementation, validation,
+              and evidence stay under human-controlled release discipline.
+            </p>
+          </div>
+
           <div className="space-y-4">
             {/* Layer 1 */}
             <div className="rounded-lg border border-primary/30 bg-primary/5 p-6">
@@ -191,21 +200,15 @@ export default function ArchitecturePage() {
                 </div>
                 <div className="flex flex-wrap gap-2">
                   <span className="rounded-md bg-background px-2 py-1 text-xs font-medium text-foreground shadow-sm">
-                    Robert / GPT
+                    Human decision owner
                   </span>
                   <span className="rounded-md bg-background px-2 py-1 text-xs font-medium text-foreground shadow-sm">
-                    Hermes + Opus + custom MCP*
+                    Strategy review
                   </span>
                 </div>
               </div>
-              <p className="mt-4 border-t border-primary/20 pt-3 text-xs italic text-muted-foreground">
-                Hermes operates as a context-aware operator surface. MCP is the
-                read-only bridge for context retrieval — not an autonomous
-                execution path.
-              </p>
             </div>
 
-            {/* Arrow: Executive → Routing */}
             <FlowArrow label="Strategic intent + scope" />
 
             {/* Layer 2 */}
@@ -221,18 +224,21 @@ export default function ArchitecturePage() {
                     </h3>
                   </div>
                   <p className="mt-2 text-sm text-muted-foreground">
-                    Capability-based routing, worker allocation
+                    Capability-based routing, worker allocation, cost-aware task
+                    matching
                   </p>
                 </div>
                 <div className="flex flex-wrap gap-2">
                   <span className="rounded-md bg-muted px-2 py-1 text-xs font-medium text-foreground">
-                    optimize-worker
+                    Routing rules
+                  </span>
+                  <span className="rounded-md bg-muted px-2 py-1 text-xs font-medium text-foreground">
+                    Budget visibility
                   </span>
                 </div>
               </div>
             </div>
 
-            {/* Arrow: Routing → Execution */}
             <FlowArrow label="Routed task + capability match" />
 
             {/* Layer 3 */}
@@ -248,39 +254,35 @@ export default function ArchitecturePage() {
                     </h3>
                   </div>
                   <p className="mt-2 text-sm text-muted-foreground">
-                    AI workers, policy guardrails, testing & critique loops
+                    AI workers, policy guardrails, testing, critique loops, and
+                    scoped implementation work
                   </p>
                 </div>
                 <div className="flex flex-wrap gap-2">
                   <span className="rounded-md bg-muted px-2 py-1 text-xs font-medium text-foreground">
-                    Codex
+                    Bounded executors
                   </span>
                   <span className="rounded-md bg-muted px-2 py-1 text-xs font-medium text-foreground">
-                    Hermes
-                  </span>
-                  <span className="rounded-md bg-muted px-2 py-1 text-xs font-medium text-muted-foreground">
-                    local agents
+                    Guardrails
                   </span>
                 </div>
               </div>
             </div>
 
-            {/* Arrow: Execution → Source-of-Truth */}
-            <FlowArrow label="Reviewed artifact (commit gate)" />
+            <FlowArrow label="Reviewed artifact candidate" />
 
-            {/* Human Review Gate (between Execution and Source-of-Truth) */}
+            {/* Human Review Gate */}
             <div className="rounded-lg border-2 border-dashed border-amber-500/60 bg-amber-500/5 p-4 text-center">
               <p className="text-sm font-semibold text-amber-700">
                 Human Review Gate
               </p>
               <p className="mt-1 text-xs text-muted-foreground">
-                Checkpoint, not a layer — every artifact passes here before it
-                is treated as committed truth.
+                Checkpoint, not a layer. Every artifact is reviewed before it is
+                treated as committed truth or release-ready work.
               </p>
             </div>
 
-            {/* Arrow into Layer 4 */}
-            <FlowArrow label="Committed truth" />
+            <FlowArrow label="Reviewed truth" />
 
             {/* Layer 4 */}
             <div className="rounded-lg border border-primary/30 bg-primary/5 p-6">
@@ -295,7 +297,8 @@ export default function ArchitecturePage() {
                     </h3>
                   </div>
                   <p className="mt-2 text-sm text-muted-foreground">
-                    Committed KB (glossary + index), decision logs
+                    Committed knowledge, decision logs, reviewed evidence, and
+                    source-of-truth discipline
                   </p>
                 </div>
                 <div className="flex flex-wrap gap-2">
@@ -303,314 +306,241 @@ export default function ArchitecturePage() {
                     Privacy-first
                   </span>
                   <span className="rounded-md bg-background px-2 py-1 text-xs font-medium text-foreground shadow-sm">
-                    Committed KB protocol
+                    Reviewed records
                   </span>
                 </div>
               </div>
             </div>
 
-            {/* MCP Footnote */}
-            <p className="mt-4 text-xs italic text-muted-foreground">
-              *Current operational trial surface. MCP is used as a read-only context bridge for controlled context retrieval. It is not yet approved as an autonomous production workflow.
-            </p>
+            <FlowArrow label="Governed release candidate" />
 
-            {/* Cross-cutting */}
+            {/* Layer 5 */}
+            <div className="rounded-lg border border-emerald-500/40 bg-emerald-500/5 p-6">
+              <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+                <div>
+                  <div className="flex items-center gap-2">
+                    <span className="flex h-6 w-6 items-center justify-center rounded bg-emerald-600 text-xs font-semibold text-white">
+                      5
+                    </span>
+                    <h3 className="font-semibold text-foreground">
+                      Agentic Release Governance Control
+                    </h3>
+                  </div>
+                  <p className="mt-2 text-sm text-muted-foreground">
+                    Applies manual release discipline, risk framing, checkpoint
+                    cadence, and stop conditions before work proceeds.
+                  </p>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  <span className="rounded-md bg-background px-2 py-1 text-xs font-medium text-foreground shadow-sm">
+                    Risk review
+                  </span>
+                  <span className="rounded-md bg-background px-2 py-1 text-xs font-medium text-foreground shadow-sm">
+                    Manual preflight
+                  </span>
+                </div>
+              </div>
+              <p className="mt-4 border-t border-emerald-500/20 pt-3 text-xs italic text-muted-foreground">
+                This is release governance design and current manual discipline,
+                not a claim that release governance has been implemented as full
+                automation.
+              </p>
+            </div>
+
+            <FlowArrow label="Scoped implementation + validation" />
+
+            {/* Supporting operational flow */}
+            <div className="grid gap-4 sm:grid-cols-2">
+              <div className="rounded-lg border border-border bg-card p-6">
+                <div className="flex items-center gap-2">
+                  <span className="flex h-6 w-6 items-center justify-center rounded bg-muted text-xs font-semibold text-muted-foreground">
+                    S1
+                  </span>
+                  <h3 className="font-semibold text-foreground">
+                    Codex Release Engineering
+                  </h3>
+                </div>
+                <p className="mt-2 text-sm text-muted-foreground">
+                  Prepares scoped repo edits, validation outputs, rollback
+                  materials, and review-ready evidence for human decision.
+                </p>
+              </div>
+              <div className="rounded-lg border border-border bg-card p-6">
+                <div className="flex items-center gap-2">
+                  <span className="flex h-6 w-6 items-center justify-center rounded bg-muted text-xs font-semibold text-muted-foreground">
+                    S2
+                  </span>
+                  <h3 className="font-semibold text-foreground">
+                    CI/CD + GitHub + Vercel
+                  </h3>
+                </div>
+                <p className="mt-2 text-sm text-muted-foreground">
+                  Provides repository, build, check, and preview surfaces under
+                  explicit human-controlled release flow.
+                </p>
+              </div>
+            </div>
+
+            <FlowArrow label="Evidence capture + review trace" />
+
+            {/* Layer 6 */}
+            <div className="rounded-lg border border-primary/30 bg-primary/5 p-6">
+              <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+                <div>
+                  <div className="flex items-center gap-2">
+                    <span className="flex h-6 w-6 items-center justify-center rounded bg-primary text-xs font-semibold text-primary-foreground">
+                      6
+                    </span>
+                    <h3 className="font-semibold text-foreground">
+                      Evidence / Audit Layer
+                    </h3>
+                  </div>
+                  <p className="mt-2 max-w-3xl text-sm text-muted-foreground">
+                    Captures validation outputs, diffs, status snapshots, review
+                    notes, routing decisions, and decision records for
+                    traceability.
+                  </p>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  <span className="rounded-md bg-background px-2 py-1 text-xs font-medium text-foreground shadow-sm">
+                    Audit evidence
+                  </span>
+                  <span className="rounded-md bg-background px-2 py-1 text-xs font-medium text-foreground shadow-sm">
+                    Review trace
+                  </span>
+                </div>
+              </div>
+            </div>
+
             <div className="mt-6 rounded-lg border border-dashed border-border bg-muted/30 p-4">
               <p className="text-center text-sm text-muted-foreground">
                 <span className="font-medium text-foreground">
                   Cross-cutting:
                 </span>{" "}
-                Backlog & Visibility surface — control surface across every
-                layer
+                budget visibility, privacy boundaries, regression awareness,
+                and source-of-truth discipline across every layer.
               </p>
             </div>
+          </div>
+        </div>
+      </section>
 
-            {/* Observability Layer */}
-            <div className="mt-4 rounded-lg border border-primary/30 bg-primary/5 p-6">
-              <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-                <div>
-                  <div className="flex items-center gap-2">
-                    <span className="flex h-6 w-6 items-center justify-center rounded bg-primary text-xs font-semibold text-primary-foreground">
-                      E
-                    </span>
-                    <h3 className="font-semibold text-foreground">
-                      AIOS Observability Layer
-                    </h3>
-                  </div>
-                  <p className="mt-2 max-w-3xl text-sm text-muted-foreground">
-                    Captures execution traces, routing decisions, cost/usage
-                    evidence, reliability signals, and deployment readiness
-                    checks. In Phase 1, telemetry production and store behavior
-                    remain implemented in optimize-worker while AIOS owns the
-                    governance meaning of the evidence.
-                  </p>
+      {/* Governance Detail */}
+      <section className="border-t border-border bg-muted/30 py-12">
+        <div className="mx-auto grid max-w-5xl gap-8 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
+          <div>
+            <h2 className="text-2xl font-semibold tracking-tight text-foreground">
+              Governance Principles
+            </h2>
+            <div className="mt-4 space-y-3">
+              {principles.map((principle) => (
+                <div
+                  key={principle}
+                  className="rounded-lg border border-border bg-background p-4 text-sm text-foreground"
+                >
+                  {principle}
                 </div>
-                <div className="flex flex-wrap gap-2">
-                  <span className="rounded-md bg-background px-2 py-1 text-xs font-medium text-foreground shadow-sm">
-                    Governance evidence
-                  </span>
-                  <span className="rounded-md bg-background px-2 py-1 text-xs font-medium text-foreground shadow-sm">
-                    Phase 1 implementation
-                  </span>
-                </div>
-              </div>
-              <div className="mt-4 grid gap-3 border-t border-primary/20 pt-4 sm:grid-cols-3">
-                <div>
-                  <p className="text-xs font-semibold uppercase text-foreground">
-                    Surface
-                  </p>
-                  <p className="mt-1 text-xs text-muted-foreground">
-                    ai-os-profile remains the deployable cockpit and app
-                    surface.
-                  </p>
-                </div>
-                <div>
-                  <p className="text-xs font-semibold uppercase text-foreground">
-                    Foundation
-                  </p>
-                  <p className="mt-1 text-xs text-muted-foreground">
-                    AWS foundation is ready, but the app is not deployed there.
-                  </p>
-                </div>
-                <div>
-                  <p className="text-xs font-semibold uppercase text-foreground">
-                    Gate
-                  </p>
-                  <p className="mt-1 text-xs text-muted-foreground">
-                    Deployment waits for the SQLite runtime contract; refactor
-                    work is paused pending regression strategy.
-                  </p>
-                </div>
-              </div>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <h2 className="text-2xl font-semibold tracking-tight text-foreground">
+              Risk Tiers
+            </h2>
+            <div className="mt-4 space-y-3">
+              {riskTiers.map((risk) => (
+                <Card key={risk.tier}>
+                  <CardHeader className="pb-2">
+                    <CardTitle className="text-base">{risk.tier}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-sm text-muted-foreground">
+                      {risk.meaning}
+                    </p>
+                  </CardContent>
+                </Card>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
-      {/* Six Design Choices */}
-      <section className="border-t border-border bg-muted/30 py-12">
-        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-semibold tracking-tight text-foreground">
-            Six Design Choices
-          </h2>
-          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            <Card className="border-border bg-card">
-              <CardHeader className="pb-2">
-                <div className="flex items-center gap-2">
-                  <span className="flex h-5 w-5 items-center justify-center rounded bg-primary/10 text-xs font-semibold text-primary">
-                    1
-                  </span>
-                  <CardTitle className="text-sm font-medium">
-                    Optimization & Routing
-                  </CardTitle>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground">
-                  Match capability to task
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-border bg-card">
-              <CardHeader className="pb-2">
-                <div className="flex items-center gap-2">
-                  <span className="flex h-5 w-5 items-center justify-center rounded bg-primary/10 text-xs font-semibold text-primary">
-                    2
-                  </span>
-                  <CardTitle className="text-sm font-medium">
-                    Policy & Guardrails
-                  </CardTitle>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground">
-                  Boundaries before behavior
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-border bg-card">
-              <CardHeader className="pb-2">
-                <div className="flex items-center gap-2">
-                  <span className="flex h-5 w-5 items-center justify-center rounded bg-primary/10 text-xs font-semibold text-primary">
-                    3
-                  </span>
-                  <CardTitle className="text-sm font-medium">
-                    Backlog & Visibility
-                  </CardTitle>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground">
-                  Control surface, not admin
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-border bg-card">
-              <CardHeader className="pb-2">
-                <div className="flex items-center gap-2">
-                  <span className="flex h-5 w-5 items-center justify-center rounded bg-primary/10 text-xs font-semibold text-primary">
-                    4
-                  </span>
-                  <CardTitle className="text-sm font-medium">
-                    Knowledge Base Governance
-                  </CardTitle>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground">
-                  Truth lives in committed knowledge
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-border bg-card">
-              <CardHeader className="pb-2">
-                <div className="flex items-center gap-2">
-                  <span className="flex h-5 w-5 items-center justify-center rounded bg-primary/10 text-xs font-semibold text-primary">
-                    5
-                  </span>
-                  <CardTitle className="text-sm font-medium">
-                    Testing Discipline
-                  </CardTitle>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground">
-                  Critique, regression, gates at every layer
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-border bg-card">
-              <CardHeader className="pb-2">
-                <div className="flex items-center gap-2">
-                  <span className="flex h-5 w-5 items-center justify-center rounded bg-primary/10 text-xs font-semibold text-primary">
-                    6
-                  </span>
-                  <CardTitle className="text-sm font-medium">
-                    Human Review Gate
-                  </CardTitle>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground">
-                  Last line before truth commits
-                </p>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Why This Way */}
       <section className="border-t border-border py-12">
-        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-          <blockquote className="border-l-4 border-primary pl-6">
-            <p className="text-lg font-medium text-foreground">
-              &ldquo;AI orchestration is program management. Tools change.
-              Governance discipline doesn&apos;t.&rdquo;
-            </p>
-          </blockquote>
+        <div className="mx-auto grid max-w-5xl gap-8 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
+          <div>
+            <h2 className="text-2xl font-semibold tracking-tight text-foreground">
+              Governance Patches
+            </h2>
+            <ul className="mt-4 space-y-3">
+              {governancePatches.map((patch) => (
+                <li
+                  key={patch}
+                  className="rounded-lg border border-border bg-card p-4 text-sm text-muted-foreground"
+                >
+                  {patch}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h2 className="text-2xl font-semibold tracking-tight text-foreground">
+              Boundaries
+            </h2>
+            <ul className="mt-4 space-y-3">
+              {boundaries.map((boundary) => (
+                <li
+                  key={boundary}
+                  className="rounded-lg border border-border bg-card p-4 text-sm text-muted-foreground"
+                >
+                  {boundary}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </section>
 
-      {/* Component Glossary */}
       <section className="border-t border-border bg-muted/30 py-12">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-semibold tracking-tight text-foreground">
-            Component Glossary
-          </h2>
-          <div className="mt-8 overflow-hidden rounded-lg border border-border bg-card">
-            <table className="min-w-full divide-y divide-border">
-              <thead className="bg-muted/50">
-                <tr>
-                  <th
-                    scope="col"
-                    className="px-4 py-3 text-left text-sm font-medium text-foreground"
-                  >
-                    Component
-                  </th>
-                  <th
-                    scope="col"
-                    className="px-4 py-3 text-left text-sm font-medium text-foreground"
-                  >
-                    Definition
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-border">
-                <tr>
-                  <td className="whitespace-nowrap px-4 py-3 text-sm font-medium text-foreground">
-                    Robert KB + Git
-                  </td>
-                  <td className="px-4 py-3 text-sm text-muted-foreground">
-                    Source of truth. Master archive of decisions.
-                  </td>
-                </tr>
-                <tr>
-                  <td className="whitespace-nowrap px-4 py-3 text-sm font-medium text-foreground">
-                    Robert / GPT
-                  </td>
-                  <td className="px-4 py-3 text-sm text-muted-foreground">
-                    Executive orchestrator and reviewer.
-                  </td>
-                </tr>
-                <tr>
-                  <td className="whitespace-nowrap px-4 py-3 text-sm font-medium text-foreground">
-                    Hermes + Opus + custom MCP*
-                  </td>
-                  <td className="px-4 py-3 text-sm text-muted-foreground">
-                    Context-aware operator surface — Active trial — structured context pull, task continuity, governance-aware operation.
-                  </td>
-                </tr>
-                <tr>
-                  <td className="whitespace-nowrap px-4 py-3 text-sm font-medium text-foreground">
-                    optimize-worker
-                  </td>
-                  <td className="px-4 py-3 text-sm text-muted-foreground">
-                    Execution routing and task packaging layer. In Phase 1, it
-                    also implements telemetry production and store behavior for
-                    observability evidence.
-                  </td>
-                </tr>
-                <tr>
-                  <td className="whitespace-nowrap px-4 py-3 text-sm font-medium text-foreground">
-                    Codex
-                  </td>
-                  <td className="px-4 py-3 text-sm text-muted-foreground">
-                    Bounded implementation executor for repo edits.
-                  </td>
-                </tr>
-                <tr>
-                  <td className="whitespace-nowrap px-4 py-3 text-sm font-medium text-foreground">
-                    ai-os-profile
-                  </td>
-                  <td className="px-4 py-3 text-sm text-muted-foreground">
-                    Curated external visibility layer and deployable cockpit/app
-                    surface (this site).
-                  </td>
-                </tr>
-                <tr>
-                  <td className="whitespace-nowrap px-4 py-3 text-sm font-medium text-foreground">
-                    AIOS Observability Layer
-                  </td>
-                  <td className="px-4 py-3 text-sm text-muted-foreground">
-                    Governance evidence layer for traces, routing decisions,
-                    cost/usage evidence, reliability signals, and deployment
-                    readiness checks. Not a claim that AWS app deployment is
-                    complete.
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          {/* MCP Footnote for Glossary */}
-          <p className="mt-4 text-xs italic text-muted-foreground">
-            *Current operational trial surface. MCP is used as a read-only context bridge for controlled context retrieval. It is not yet approved as an autonomous production workflow.
-          </p>
+          <Card>
+            <CardHeader>
+              <CardTitle>Governance Discipline</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <dl className="grid gap-4 text-sm sm:grid-cols-2">
+                <div>
+                  <dt className="font-medium text-foreground">Design phase</dt>
+                  <dd className="mt-1 text-muted-foreground">Complete</dd>
+                </div>
+                <div>
+                  <dt className="font-medium text-foreground">
+                    Operational status
+                  </dt>
+                  <dd className="mt-1 text-muted-foreground">
+                    NOT yet implemented as automation
+                  </dd>
+                </div>
+                <div>
+                  <dt className="font-medium text-foreground">
+                    Current practice
+                  </dt>
+                  <dd className="mt-1 text-muted-foreground">
+                    Manual governance hygiene
+                  </dd>
+                </div>
+                <div>
+                  <dt className="font-medium text-foreground">
+                    Resume criteria
+                  </dt>
+                  <dd className="mt-1 text-muted-foreground">
+                    Implementation proceeds only if operational trigger occurs
+                  </dd>
+                </div>
+              </dl>
+            </CardContent>
+          </Card>
         </div>
       </section>
     </PageLayout>
