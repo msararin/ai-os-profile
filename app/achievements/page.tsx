@@ -22,32 +22,31 @@ export default function AchievementsPage() {
   const achievements = [
     {
       date: '2026-05-28',
-      headline: 'Knowledge Sharing Archive Refreshed Through May 28',
-      summary: 'Added the May 28 LinkedIn archive item and verified the public Knowledge Sharing route with a local smoke benchmark.',
-      proofType: 'content freshness update, PR review, local route benchmark',
-      evidenceReference: 'PR #5, commit 94c6001, merge commit 47c6c8f',
-      status: 'Merged to main after CI and Vercel checks passed',
-      publicSafeResult: 'Visitors see the latest public LinkedIn archive item without exposing internal Signal Studio drafts or learning records.',
-      caveat: 'This is a public content freshness benchmark, not a claim about multi-agent work, production governance maturity, or business impact.',
+      headline: 'Managed Multi-Agent Knowledge Workspace',
+      summary: 'Validated a practical operating model for multiple AI tools, agents, and models to work from shared knowledge while preserving source-of-truth, privacy, and review boundaries.',
+      proofType: 'operating-model proof, PR review, public-boundary correction',
+      evidenceReference: 'PR #6, commits 86b47e2 and 655a658, production /achievements verification',
+      status: 'Public copy corrected and production-verified after merge',
+      publicSafeResult: 'The page now explains managed knowledge work without exposing internal route paths or turning internal drafts into official records.',
+      caveat: 'This is an operating-model proof, not a claim of enterprise-scale automation, production autonomy, or business impact.',
       details: {
-        whyItMatters: 'A public knowledge-sharing archive needs to stay current and verifiable. The update proves the page can accept a new public post, render successfully, and keep internal learning material out of the public route.',
+        whyItMatters: 'The work showed how Codex, Risa/Hermes, Robert, and human approval can cooperate through clear roles: shared context for alignment, proposal files for safe drafting, evidence packets for review, stop conditions for uncertainty, and release gates before promotion.',
         evidence: [
-          'Commit 94c6001 added LinkedIn URN urn:li:share:7465789008669782016 to app/knowledge-sharing/page.tsx',
-          'Archive freshness text changed from through 24 May 2026 to through 28 May 2026',
-          'Local smoke benchmark: GET /knowledge-sharing returned 200 in 150ms on the Next.js dev server',
-          'Rendered HTML check found the May 28 date label, the new LinkedIn URN, height 1833, and the 28 May freshness text',
-          'Internal draft markers were not found in the rendered public route',
-          'PR #5 checks passed: Lint, typecheck, build, and Vercel preview/status checks'
+          'PR #6 corrected the Achievements proof language and public-boundary copy',
+          'Commit 86b47e2 reframed the May 28 item around benchmark-backed public proof',
+          'Commit 655a658 removed literal internal route markers from public copy',
+          'Production /achievements verification confirmed the corrected headline and boundary-safe wording rendered publicly',
+          'Fresh render checks confirmed protected draft markers were absent from the public Achievements page'
         ],
         skillsDemonstrated: [
-          'Freshness maintenance for public content',
-          'Route-level smoke benchmarking before merge',
-          'Public/private boundary check for Knowledge Sharing vs. Signal Studio',
-          'Evidence-first PR merge discipline'
+          'Source-of-truth discipline across shared context, proposals, and release gates',
+          'Privacy boundary review before public promotion',
+          'Fallback-safe workflow design when one tool or agent becomes unstable',
+          'Evidence-first review using evidence packets, stop conditions, and explicit human approval'
         ],
-        impact: 'Keeps the public archive current with a concrete route benchmark while avoiding inflated claims about internal systems or multi-agent collaboration.'
+        impact: 'The practical impact is safer tool fallback. When one agent becomes unstable, another can continue the workflow without silently changing the source of truth, exposing internal context, or turning drafts into official records.'
       },
-      tags: ['Freshness', 'Benchmark', 'Knowledge Sharing', 'Public Safe']
+      tags: ['Knowledge Workspace', 'Multi-Agent', 'Source of Truth', 'Public Safe']
     },
     {
       date: '2026-05-28',
