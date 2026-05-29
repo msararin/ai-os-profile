@@ -144,7 +144,7 @@ export default function AchievementsPage() {
         evidence: [
           'Commit 5de2bd2 recovered internal access with safe local review mode',
           'Commit 83cf72c updated internal dashboard and Signal Studio review surface',
-          'Manual incognito OAuth proof was accepted for /internal/dashboard and /internal/knowledge-sharing-drafts',
+          'Manual incognito OAuth proof was accepted for authenticated internal review surfaces',
           'Production route checks showed internal routes redirecting to /auth/signin with callback URLs'
         ],
         skillsDemonstrated: [
