@@ -15,7 +15,6 @@ type BacklogSource =
   | {
       status: "unavailable"
       loadedAt: string
-      reason: string
     }
 
 async function loadBacklogSource(): Promise<BacklogSource> {
@@ -30,14 +29,10 @@ async function loadBacklogSource(): Promise<BacklogSource> {
       markdown,
       loadedAt,
     }
-  } catch (error) {
-    const reason =
-      error instanceof Error ? error.message : "Unknown file loading error."
-
+  } catch {
     return {
       status: "unavailable",
       loadedAt,
-      reason,
     }
   }
 }
@@ -70,17 +65,17 @@ export default async function AIOSBacklogPage() {
 
         <div className="mt-8 grid gap-4 rounded-xl border bg-card p-5 text-sm shadow-sm md:grid-cols-2">
           <div>
-            <p className="font-semibold text-foreground">Source path</p>
+            <p className="font-semibold text-foreground">Source reference</p>
             <p className="mt-1 break-all font-mono text-xs text-muted-foreground">
-              {BACKLOG_SOURCE_PATH}
+              Local-only allowlisted Robert KB backlog-distillation markdown file
             </p>
           </div>
           <div>
             <p className="font-semibold text-foreground">Source status</p>
             <p className="mt-1 text-muted-foreground">
               {source.status === "live"
-                ? "Live KB markdown loaded at request time."
-                : "Live KB markdown unavailable in this runtime."}
+                ? "Local-only live KB markdown loaded at request time."
+                : "Local-only source unavailable by design in this deployed runtime."}
             </p>
           </div>
           <div>
@@ -112,11 +107,10 @@ export default async function AIOSBacklogPage() {
           </article>
         ) : (
           <div className="mt-6 rounded-xl border border-red-500/40 bg-red-500/10 p-5 text-sm text-foreground">
-            <p className="font-semibold">
-              Live KB file is not available in this runtime.
-            </p>
-            <p className="mt-2 break-all font-mono text-xs text-muted-foreground">
-              {source.reason}
+            <p className="font-semibold">Local-only source unavailable by design.</p>
+            <p className="mt-2 text-muted-foreground">
+              The deployed Vercel runtime cannot access Lyn&apos;s local Robert KB filesystem path.
+              Live KB read is local-only unless a safe export/sync layer is implemented.
             </p>
           </div>
         )}

@@ -149,13 +149,13 @@ export default function ArchitecturePage() {
                   </thead>
                   <tbody>
                     {[
-                      ["Observability", "In Progress"],
-                      ["Cost / Budget Control", "Current"],
+                      ["Observability", "Phase 1 / caveated"],
+                      ["Cost / Budget Control", "Pending verification"],
                       ["Traceability", "In Progress"],
-                      ["Privacy / Security", "Current"],
+                      ["Privacy / Security", "Manual discipline"],
                       ["Fallback / Resilience", "Planned"],
-                      ["Anti-Fatigue Design", "Current"],
-                      ["Source-of-Truth Discipline", "Current"],
+                      ["Anti-Fatigue Design", "Manual discipline"],
+                      ["Source-of-Truth Discipline", "Manual discipline"],
                     ].map(([capability, status]) => (
                       <tr key={capability} className="border-b border-border">
                         <td className="px-4 py-3 text-muted-foreground">
@@ -174,8 +174,8 @@ export default function ArchitecturePage() {
                 </table>
               </div>
               <p className="mt-3 text-xs italic text-muted-foreground">
-                Status badges reflect current maturity, not aspirational claims.
-                Planned means designed but not built.
+                Status badges are review labels, not live telemetry. Pending
+                verification means a release-time evidence check is still required.
               </p>
             </div>
           </div>
@@ -353,6 +353,12 @@ export default function ArchitecturePage() {
                   <span className="rounded-md bg-background px-2 py-1 text-xs font-medium text-foreground shadow-sm">
                     Manual preflight
                   </span>
+                  <span className="rounded-md bg-background px-2 py-1 text-xs font-medium text-foreground shadow-sm">
+                    Stop conditions
+                  </span>
+                  <span className="rounded-md bg-background px-2 py-1 text-xs font-medium text-foreground shadow-sm">
+                    Checkpoint cadence
+                  </span>
                 </div>
               </div>
               <p className="mt-4 border-t border-emerald-500/20 pt-3 text-xs italic text-muted-foreground">
@@ -372,7 +378,7 @@ export default function ArchitecturePage() {
                     S1
                   </span>
                   <h3 className="font-semibold text-foreground">
-                    Codex Release Engineering
+                    S1 — Codex Release Engineering
                   </h3>
                 </div>
                 <p className="mt-2 text-sm text-muted-foreground">
@@ -386,7 +392,7 @@ export default function ArchitecturePage() {
                     S2
                   </span>
                   <h3 className="font-semibold text-foreground">
-                    CI/CD + GitHub + Vercel
+                    S2 — CI/CD + GitHub + Vercel
                   </h3>
                 </div>
                 <p className="mt-2 text-sm text-muted-foreground">
@@ -394,6 +400,10 @@ export default function ArchitecturePage() {
                   explicit human-controlled release flow.
                 </p>
               </div>
+              <p className="mt-4 border-t border-border pt-3 text-xs italic text-muted-foreground">
+                These are support surfaces under human-controlled release flow,
+                not autonomous release authority.
+              </p>
             </div>
 
             <FlowArrow label="Evidence capture + review trace" />
@@ -407,7 +417,7 @@ export default function ArchitecturePage() {
                       6
                     </span>
                     <h3 className="font-semibold text-foreground">
-                      Evidence / Audit Layer
+                      Evidence / Audit / Observability Layer
                     </h3>
                   </div>
                   <p className="mt-2 max-w-3xl text-sm text-muted-foreground">
@@ -423,8 +433,42 @@ export default function ArchitecturePage() {
                   <span className="rounded-md bg-background px-2 py-1 text-xs font-medium text-foreground shadow-sm">
                     Review trace
                   </span>
+                  <span className="rounded-md bg-background px-2 py-1 text-xs font-medium text-foreground shadow-sm">
+                    Validation outputs
+                  </span>
+                  <span className="rounded-md bg-background px-2 py-1 text-xs font-medium text-foreground shadow-sm">
+                    Routing decisions
+                  </span>
+                  <span className="rounded-md bg-background px-2 py-1 text-xs font-medium text-foreground shadow-sm">
+                    Decision records
+                  </span>
+                  <span className="rounded-md bg-background px-2 py-1 text-xs font-medium text-foreground shadow-sm">
+                    Observability
+                  </span>
                 </div>
               </div>
+            </div>
+
+            <FlowArrow label="Governance meaning of operational evidence" />
+
+            <div className="rounded-lg border border-primary/30 bg-primary/5 p-6">
+              <div className="flex items-center gap-2">
+                <span className="flex h-6 w-6 items-center justify-center rounded bg-primary text-xs font-semibold text-primary-foreground">
+                  O
+                </span>
+                <h3 className="font-semibold text-foreground">
+                  AIOS Observability Layer
+                </h3>
+              </div>
+              <p className="mt-2 max-w-3xl text-sm text-muted-foreground">
+                Captures execution traces, routing decisions, cost/usage evidence,
+                reliability signals, and deployment readiness checks.
+              </p>
+              <p className="mt-3 text-xs italic text-muted-foreground">
+                In Phase 1, telemetry production and store behavior remain implemented
+                in optimize-worker while AIOS owns the governance meaning of the evidence.
+                This does not imply a full production observability platform exists.
+              </p>
             </div>
 
             <div className="mt-6 rounded-lg border border-dashed border-border bg-muted/30 p-4">

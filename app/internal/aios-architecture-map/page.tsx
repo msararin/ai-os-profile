@@ -63,6 +63,11 @@ const systemLayers = [
     items: ["Truth record", "Build and typecheck", "Route checks", "Review evidence"],
   },
   {
+    title: "AIOS Observability Layer",
+    owner: "AIOS governance + optimize-worker Phase 1",
+    items: ["Execution traces", "Routing decisions", "Cost/usage evidence", "Deployment readiness"],
+  },
+  {
     title: "Public / Internal Surface Layer",
     owner: "ai-os-profile",
     items: ["Internal review pages", "Curated public proof", "No approval by dashboard", "No raw secrets"],
@@ -252,6 +257,23 @@ export default function AIOSArchitectureMapPage() {
         </div>
 
         <div className="mt-6 grid gap-6 lg:grid-cols-2">
+          <Card className="gap-4 border-primary/30 py-5 lg:col-span-2">
+            <CardHeader className="px-5">
+              <CardTitle>AIOS Observability Layer</CardTitle>
+            </CardHeader>
+            <CardContent className="px-5 text-sm text-muted-foreground">
+              <p>
+                Captures execution traces, routing decisions, cost/usage evidence, reliability signals,
+                and deployment readiness checks.
+              </p>
+              <p className="mt-2">
+                In Phase 1, telemetry production and store behavior remain implemented in optimize-worker
+                while AIOS owns the governance meaning of the evidence. This is not a claim that a full
+                production observability platform exists.
+              </p>
+            </CardContent>
+          </Card>
+
           <Card className="gap-4 py-5">
             <CardHeader className="px-5">
               <CardTitle>Business / Money Path</CardTitle>
