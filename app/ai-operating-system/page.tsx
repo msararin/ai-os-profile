@@ -1,6 +1,7 @@
 import { PageLayout } from "@/components/page-layout"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
+import { AIOSInteractionExplainer } from "@/components/aios-interaction-explainer"
 import Link from "next/link"
 
 const aiosSections = [
@@ -143,6 +144,8 @@ export default function AIOperatingSystemPage() {
           </Link>
         </div>
       </section>
+
+      <AIOSInteractionExplainer />
 
       {/* AI Workforce Organization */}
       <section className="border-t border-border py-12">
