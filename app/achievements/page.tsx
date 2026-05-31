@@ -22,6 +22,36 @@ export default function AchievementsPage() {
   const achievements = [
     {
       date: '2026-05-31',
+      headline: 'AIOS Multi-Session Repo Coordination Pattern',
+      summary: 'Identified that AIOS work now behaves like a multi-session delivery system rather than a single chat. Added a pre-action coordination rule requiring repo, branch, scope, WIP ownership, and release permissions to be declared before writer actions.',
+      proofType: 'documented operating pattern, scoped governance commit',
+      evidenceReference: 'AIOS retro pattern index RP-007, commit 38fe3c0',
+      status: 'Manual governance discipline documented; lightweight preflight automation remains parked pending separate approval',
+      publicSafeResult: 'Parallel work is allowed only with explicit boundaries. A dirty worktree now routes to ownership and scope classification before another writer continues.',
+      caveat: 'This is a pre-action coordination rule and manual governance pattern. It is not a claim of fully automated multi-agent enforcement, automatic session coordination, branch-protection enforcement, or reduced need for human review.',
+      details: {
+        whyItMatters: 'Even with one human operator, multiple AI sessions and release surfaces can create the same coordination risks as a small delivery team. Explicit ownership prevents one session from staging another session’s work or treating technical ability as release approval.',
+        evidence: [
+          'RP-007 | Coordinate multi-session repo work was added to the AIOS retro pattern index in commit 38fe3c0',
+          'The pattern requires one writer per repo while allowing bounded read-only review',
+          'Each repo session must declare repo, branch, git status, task track, mode, WIP owner, intended and forbidden files, permissions, and stop conditions',
+          'Dirty worktrees default to HOLD until ownership and intended scope are classified',
+          'Push ranges must be checked before push, and direct push to main still requires explicit approval',
+          'Provider-routing work requires key/profile preflight before any provider call'
+        ],
+        skillsDemonstrated: [
+          'Multi-session delivery coordination',
+          'Repo safety and WIP ownership discipline',
+          'Scoped parallel work with explicit boundaries',
+          'Push-range review before release actions',
+          'Provider-routing preflight discipline'
+        ],
+        impact: 'The operating rule makes safe parallelism explicit: main not protected does not mean direct push is approved, and scope gate is more important than technical capability.'
+      },
+      tags: ['Multi-Session', 'Repo Safety', 'WIP Ownership', 'Release Governance']
+    },
+    {
+      date: '2026-05-31',
       headline: 'AIOS Trust Repair + OpenRouter Key Routing Hardening',
       summary: 'Repaired AIOS trust surfaces by replacing stale or unverifiable status claims with evidence-aware labels, then traced an OpenRouter/Gemini failure to incorrect key selection rather than account budget exhaustion. Added explicit OpenRouter profile selection, masked diagnostics, fail-fast behavior, and tests in optimize-worker.',
       proofType: 'PR merge, production route checks, scoped provider-routing proof',
@@ -522,7 +552,7 @@ export default function AchievementsPage() {
               Evidence updated: 31 May 2026 · Production trust repair verified: 31 May 2026
             </p>
             <p className="mt-2 text-sm text-white/75">
-              Latest validated milestone: AIOS trust repair and provider-routing hardening, 31 May 2026
+              Latest validated milestone: AIOS multi-session repo coordination pattern, 31 May 2026
             </p>
           </div>
         </div>
