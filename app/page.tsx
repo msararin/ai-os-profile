@@ -73,8 +73,8 @@ export default function HomePage() {
               <CardTitle className="text-base">Layered Architecture</CardTitle>
               </CardHeader>
               <CardContent className="text-sm text-muted-foreground">
-                Strategic intent → routing → scoped implementation → knowledge/truth storage → manual release governance → evidence and observability.
-                Human approval remains the release boundary.
+                Executive &amp; Intent → Routing &amp; Governance → Execution &amp; Validation →
+                Evidence, State &amp; Business Runway. Human approval remains the release boundary.
               </CardContent>
             </Card>
 
@@ -179,7 +179,8 @@ export default function HomePage() {
             >
               <h3 className="font-semibold mb-2">System Architecture</h3>
               <p className="text-sm text-muted-foreground">
-                4-layer AI orchestration architecture: strategic intent, routing, execution, and truth storage.
+                Four-group executive map: Executive &amp; Intent, Routing &amp; Governance,
+                Execution &amp; Validation, and Evidence, State &amp; Business Runway.
               </p>
             </Link>
 

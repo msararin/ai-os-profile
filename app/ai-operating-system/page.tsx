@@ -36,27 +36,6 @@ const aiosSections = [
   },
 ]
 
-function FlowArrow({ label }: { label: string }) {
-  return (
-    <div className="flex flex-col items-center gap-1">
-      <svg
-        className="h-6 w-6 text-muted-foreground"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-        strokeWidth={2}
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M19 14l-7 7m0 0l-7-7m7 7V3"
-        />
-      </svg>
-      <span className="text-xs italic text-muted-foreground">{label}</span>
-    </div>
-  )
-}
-
 export default function AIOperatingSystemPage() {
   return (
     <PageLayout>
@@ -126,287 +105,42 @@ export default function AIOperatingSystemPage() {
       <section className="border-t border-border bg-muted/30 py-12">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
           <h2 className="text-2xl font-semibold tracking-tight text-foreground">
-            Layered Architecture
+            Architecture Summary
           </h2>
-          <p className="mt-3 text-sm text-muted-foreground">
-            A layered approach that separates strategic intent, routing,
-            execution, and truth storage.
+          <p className="mt-3 max-w-3xl text-sm text-muted-foreground">
+            The AIOS public architecture is organized into four executive groups. The detailed map
+            keeps governance, evidence, durable state, and business runway visible without turning
+            this overview into a dashboard or operations manual.
           </p>
 
-          <div className="mt-8 space-y-4">
-            {/* Layer 1: Executive */}
-            <div className="rounded-lg border border-primary/30 bg-primary/5 p-6">
-              <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-                <div>
-                  <div className="flex items-center gap-2">
-                    <span className="flex h-6 w-6 items-center justify-center rounded bg-primary text-xs font-semibold text-primary-foreground">
-                      1
-                    </span>
-                    <h3 className="font-semibold text-foreground">
-                      Executive Layer
-                    </h3>
-                  </div>
-                  <p className="mt-2 text-sm text-muted-foreground">
-                    Strategic intent, decision authority, scope control
-                  </p>
-                </div>
-                <div className="flex flex-wrap gap-2">
-                  <span className="rounded-md bg-background px-2 py-1 text-xs font-medium text-foreground shadow-sm">
-                    Robert / GPT
-                  </span>
-                  <span className="rounded-md bg-background px-2 py-1 text-xs font-medium text-foreground shadow-sm">
-                    Hermes + Opus + custom MCP*
-                  </span>
-                </div>
+          <div className="mt-6 grid gap-3 sm:grid-cols-2">
+            {[
+              "Executive & Intent",
+              "Routing & Governance",
+              "Execution & Validation",
+              "Evidence, State & Business Runway",
+            ].map((group) => (
+              <div
+                key={group}
+                className="rounded-lg border border-border bg-background p-4 text-sm font-medium text-foreground"
+              >
+                {group}
               </div>
-              <p className="mt-4 border-t border-primary/20 pt-3 text-xs italic text-muted-foreground">
-                Hermes operates as a context-aware operator surface. MCP is the
-                read-only bridge for context retrieval — not an autonomous
-                execution path.
-              </p>
-            </div>
-
-            <FlowArrow label="Strategic intent + scope" />
-
-            {/* Layer 2: Routing */}
-            <div className="rounded-lg border border-border bg-card p-6">
-              <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-                <div>
-                  <div className="flex items-center gap-2">
-                    <span className="flex h-6 w-6 items-center justify-center rounded bg-muted text-xs font-semibold text-muted-foreground">
-                      2
-                    </span>
-                    <h3 className="font-semibold text-foreground">
-                      Routing Layer
-                    </h3>
-                  </div>
-                  <p className="mt-2 text-sm text-muted-foreground">
-                    Capability-based routing, worker allocation
-                  </p>
-                </div>
-                <div className="flex flex-wrap gap-2">
-                  <span className="rounded-md bg-muted px-2 py-1 text-xs font-medium text-foreground">
-                    optimize-worker
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            <FlowArrow label="Routed task + capability match" />
-
-            {/* Layer 3: Execution */}
-            <div className="rounded-lg border border-border bg-card p-6">
-              <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-                <div>
-                  <div className="flex items-center gap-2">
-                    <span className="flex h-6 w-6 items-center justify-center rounded bg-muted text-xs font-semibold text-muted-foreground">
-                      3
-                    </span>
-                    <h3 className="font-semibold text-foreground">
-                      Execution Layer
-                    </h3>
-                  </div>
-                  <p className="mt-2 text-sm text-muted-foreground">
-                    AI workers, policy guardrails, testing & critique loops
-                  </p>
-                </div>
-                <div className="flex flex-wrap gap-2">
-                  <span className="rounded-md bg-muted px-2 py-1 text-xs font-medium text-foreground">
-                    Codex
-                  </span>
-                  <span className="rounded-md bg-muted px-2 py-1 text-xs font-medium text-foreground">
-                    Hermes
-                  </span>
-                  <span className="rounded-md bg-muted px-2 py-1 text-xs font-medium text-muted-foreground">
-                    local agents
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            <FlowArrow label="Reviewed artifact (commit gate)" />
-
-            {/* Human Review Gate */}
-            <div className="rounded-lg border-2 border-dashed border-amber-500/60 bg-amber-500/5 p-4 text-center">
-              <p className="text-sm font-semibold text-amber-700">
-                Human Review Gate
-              </p>
-              <p className="mt-1 text-xs text-muted-foreground">
-                Checkpoint, not a layer — every artifact passes here before it
-                is treated as committed truth.
-              </p>
-            </div>
-
-            <FlowArrow label="Committed truth" />
-
-            {/* Layer 4: Source of Truth */}
-            <div className="rounded-lg border border-primary/30 bg-primary/5 p-6">
-              <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-                <div>
-                  <div className="flex items-center gap-2">
-                    <span className="flex h-6 w-6 items-center justify-center rounded bg-primary text-xs font-semibold text-primary-foreground">
-                      4
-                    </span>
-                    <h3 className="font-semibold text-foreground">
-                      Source-of-Truth Layer
-                    </h3>
-                  </div>
-                  <p className="mt-2 text-sm text-muted-foreground">
-                    Committed KB (glossary + index), decision logs
-                  </p>
-                </div>
-                <div className="flex flex-wrap gap-2">
-                  <span className="rounded-md bg-background px-2 py-1 text-xs font-medium text-foreground shadow-sm">
-                    Privacy-first
-                  </span>
-                  <span className="rounded-md bg-background px-2 py-1 text-xs font-medium text-foreground shadow-sm">
-                    Committed KB protocol
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            <FlowArrow label="Governed release candidate" />
-
-            <div className="rounded-lg border border-emerald-500/40 bg-emerald-500/5 p-6">
-              <h3 className="font-semibold text-foreground">
-                Agentic Release Governance Control
-              </h3>
-              <p className="mt-2 text-sm text-muted-foreground">
-                Applies manual release discipline, risk framing, checkpoint cadence,
-                and stop conditions before work proceeds.
-              </p>
-              <div className="mt-3 flex flex-wrap gap-2">
-                {["Risk review", "Manual preflight", "Stop conditions", "Checkpoint cadence"].map((label) => (
-                  <span key={label} className="rounded-md bg-background px-2 py-1 text-xs font-medium text-foreground shadow-sm">
-                    {label}
-                  </span>
-                ))}
-              </div>
-              <p className="mt-4 border-t border-emerald-500/20 pt-3 text-xs italic text-muted-foreground">
-                This is release governance design and current manual discipline, not a claim that
-                release governance has been implemented as full automation.
-              </p>
-            </div>
-
-            <FlowArrow label="Scoped implementation + validation" />
-
-            <div className="grid gap-4 sm:grid-cols-2">
-              <div className="rounded-lg border border-border bg-card p-6">
-                <h3 className="font-semibold text-foreground">S1 — Codex Release Engineering</h3>
-                <p className="mt-2 text-sm text-muted-foreground">
-                  Prepares scoped repo edits, validation outputs, rollback materials, and review-ready
-                  evidence for human decision.
-                </p>
-              </div>
-              <div className="rounded-lg border border-border bg-card p-6">
-                <h3 className="font-semibold text-foreground">S2 — CI/CD + GitHub + Vercel</h3>
-                <p className="mt-2 text-sm text-muted-foreground">
-                  Provides repository, build, check, and preview surfaces under explicit human-controlled
-                  release flow.
-                </p>
-              </div>
-              <p className="text-xs italic text-muted-foreground sm:col-span-2">
-                These are support surfaces under human-controlled release flow, not autonomous release authority.
-              </p>
-            </div>
-
-            <FlowArrow label="Evidence capture + review trace" />
-
-            <div className="rounded-lg border border-primary/30 bg-primary/5 p-6">
-              <h3 className="font-semibold text-foreground">
-                Evidence / Audit / Observability Layer
-              </h3>
-              <p className="mt-2 text-sm text-muted-foreground">
-                Captures validation outputs, diffs, status snapshots, review notes, routing decisions,
-                and decision records for traceability.
-              </p>
-              <div className="mt-3 flex flex-wrap gap-2">
-                {["Audit evidence", "Review trace", "Validation outputs", "Routing decisions", "Decision records", "Observability"].map((label) => (
-                  <span key={label} className="rounded-md bg-background px-2 py-1 text-xs font-medium text-foreground shadow-sm">
-                    {label}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            {/* MCP Footnote */}
-            <p className="mt-4 text-xs italic text-muted-foreground">
-              *Current operational trial surface. MCP is used as a read-only
-              context bridge for controlled context retrieval. It is not yet
-              approved as an autonomous production workflow.
-            </p>
-
-            {/* Cross-cutting */}
-            <div className="mt-6 rounded-lg border border-dashed border-border bg-muted/30 p-4">
-              <p className="text-center text-sm text-muted-foreground">
-                <span className="font-medium text-foreground">
-                  Cross-cutting:
-                </span>{" "}
-                Backlog & Visibility surface — control surface across every
-                layer
-              </p>
-            </div>
-
-            {/* Observability Layer */}
-            <div className="mt-4 rounded-lg border border-primary/30 bg-primary/5 p-6">
-              <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-                <div>
-                  <div className="flex items-center gap-2">
-                    <span className="flex h-6 w-6 items-center justify-center rounded bg-primary text-xs font-semibold text-primary-foreground">
-                      E
-                    </span>
-                    <h3 className="font-semibold text-foreground">
-                      AIOS Observability Layer
-                    </h3>
-                  </div>
-                  <p className="mt-2 max-w-3xl text-sm text-muted-foreground">
-                    Captures execution traces, routing decisions, cost/usage
-                    evidence, reliability signals, and deployment readiness
-                    checks. In Phase 1, telemetry production and store behavior
-                    remain implemented in optimize-worker while AIOS owns the
-                    governance meaning of the evidence.
-                  </p>
-                </div>
-                <div className="flex flex-wrap gap-2">
-                  <span className="rounded-md bg-background px-2 py-1 text-xs font-medium text-foreground shadow-sm">
-                    Governance evidence
-                  </span>
-                  <span className="rounded-md bg-background px-2 py-1 text-xs font-medium text-foreground shadow-sm">
-                    Phase 1 implementation
-                  </span>
-                </div>
-              </div>
-              <div className="mt-4 grid gap-3 border-t border-primary/20 pt-4 sm:grid-cols-3">
-                <div>
-                  <p className="text-xs font-semibold uppercase text-foreground">
-                    Surface
-                  </p>
-                  <p className="mt-1 text-xs text-muted-foreground">
-                    ai-os-profile remains the deployable cockpit and app
-                    surface.
-                  </p>
-                </div>
-                <div>
-                  <p className="text-xs font-semibold uppercase text-foreground">
-                    Foundation
-                  </p>
-                  <p className="mt-1 text-xs text-muted-foreground">
-                    AWS foundation is ready, but the app is not deployed there.
-                  </p>
-                </div>
-                <div>
-                  <p className="text-xs font-semibold uppercase text-foreground">
-                    Gate
-                  </p>
-                  <p className="mt-1 text-xs text-muted-foreground">
-                    Deployment waits for the SQLite runtime contract; refactor
-                    work is paused pending regression strategy.
-                  </p>
-                </div>
-              </div>
-            </div>
+            ))}
           </div>
+
+          <p className="mt-5 max-w-3xl text-xs leading-5 text-muted-foreground">
+            Evidence, Audit &amp; Observability is one review layer. Phase 1 telemetry production and
+            store behavior remain implemented in optimize-worker while AIOS owns the governance meaning
+            of the evidence. This is not a full production observability platform.
+          </p>
+
+          <Link
+            href="/architecture"
+            className="mt-6 inline-flex text-sm font-semibold text-primary hover:underline"
+          >
+            View the full executive architecture map →
+          </Link>
         </div>
       </section>
 
@@ -974,7 +708,7 @@ export default function AIOperatingSystemPage() {
                 </tr>
                 <tr>
                   <td className="whitespace-nowrap px-4 py-3 text-sm font-medium text-foreground">
-                    AIOS Observability Layer
+                    Evidence, Audit &amp; Observability
                   </td>
                   <td className="px-4 py-3 text-sm text-muted-foreground">
                     Governance evidence layer for traces, routing decisions,
