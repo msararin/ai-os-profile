@@ -80,8 +80,8 @@ const workstreamSnapshot = [
   },
   {
     lane: "Backlog",
-    currentStatus: "Pending source confirmation",
-    nextMilestone: "Confirm source before adding counts or separate backlog page",
+    currentStatus: "Live read-only KB review surface available",
+    nextMilestone: "Review the bounded classification proposal; do not infer execution approval",
     owner: "Lyn",
   },
 ]
@@ -275,7 +275,7 @@ function InternalIaSections() {
         <CardHeader>
           <SectionIntro
             title="Workstream Snapshot"
-            description="Phase 1 internal IA lane summary. Backlog counts stay pending until a verified source exists."
+            description="Phase 1 internal IA lane summary. The backlog review surface reads the verified KB file live; counts remain intentionally out of scope."
             badge="Manual snapshot"
           />
         </CardHeader>
@@ -547,6 +547,30 @@ export default function InternalDashboardPage() {
                   </h3>
                   <p className="text-sm text-muted-foreground">
                     Internal review surface for draft knowledge-sharing packages
+                  </p>
+                </a>
+
+                <a
+                  href="/internal/aios-backlog"
+                  className="block p-4 rounded-lg border border-yellow-500/40 bg-yellow-500/10 hover:bg-yellow-500/15 transition-colors"
+                >
+                  <h3 className="font-medium mb-1 text-yellow-700 dark:text-yellow-400">
+                    Internal: AIOS Backlog Review
+                  </h3>
+                  <p className="text-sm text-muted-foreground">
+                    Live read-only view of the bounded KB backlog classification proposal
+                  </p>
+                </a>
+
+                <a
+                  href="/internal/aios-architecture-map"
+                  className="block p-4 rounded-lg border border-yellow-500/40 bg-yellow-500/10 hover:bg-yellow-500/15 transition-colors"
+                >
+                  <h3 className="font-medium mb-1 text-yellow-700 dark:text-yellow-400">
+                    Internal: AIOS Architecture Map
+                  </h3>
+                  <p className="text-sm text-muted-foreground">
+                    Experimental big-picture map of decision, execution, evidence, and business layers
                   </p>
                 </a>
 
