@@ -70,11 +70,11 @@ export default function HomePage() {
           <div className="grid md:grid-cols-2 gap-6">
             <Card>
               <CardHeader>
-                <CardTitle className="text-base">4-Layer Architecture</CardTitle>
+              <CardTitle className="text-base">Layered Architecture</CardTitle>
               </CardHeader>
               <CardContent className="text-sm text-muted-foreground">
-                Strategic intent → Routing & orchestration → Specialized execution → Knowledge/truth storage. 
-                Separates "what to do" from "how to do it" with clear ownership at each layer.
+                Strategic intent → routing → scoped implementation → knowledge/truth storage → manual release governance → evidence and observability.
+                Human approval remains the release boundary.
               </CardContent>
             </Card>
 
@@ -93,8 +93,8 @@ export default function HomePage() {
                 <CardTitle className="text-base">Cost & Usage Awareness</CardTitle>
               </CardHeader>
               <CardContent className="text-sm text-muted-foreground">
-                Real-time budget tracking, model cost comparison, usage visibility with date/scope context. 
-                Proves governance includes fiscal discipline, not just process compliance.
+                Cost and usage evidence is quarantined unless explicitly verified as of a named source and timestamp.
+                Budget checkpoints remain pending verified policy and telemetry integration.
               </CardContent>
             </Card>
 

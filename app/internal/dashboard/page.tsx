@@ -90,26 +90,26 @@ const observabilitySnapshot = [
   {
     metric: "Build status",
     status: "Pending current run",
-    evidence: "Validated by pnpm build during this task",
-    lastUpdated: "2026-05-27",
+    evidence: "Historical snapshot, not live. Re-run validation before relying on status.",
+    lastUpdated: "Historical snapshot: 2026-05-27",
   },
   {
     metric: "Route regression",
     status: "Pending current run",
-    evidence: "Local curl route table",
-    lastUpdated: "2026-05-27",
+    evidence: "Historical snapshot, not live. Re-run route checks before relying on status.",
+    lastUpdated: "Historical snapshot: 2026-05-27",
   },
   {
     metric: "Internal auth boundary",
     status: "Auth protected",
-    evidence: "Middleware protects /internal/* and redirects unauthenticated users",
-    lastUpdated: "2026-05-27",
+    evidence: "Historical snapshot, not live. Middleware boundary requires release-time verification.",
+    lastUpdated: "Historical snapshot: 2026-05-27",
   },
   {
     metric: "Public/private boundary",
     status: "Must remain separated",
-    evidence: "/knowledge-sharing is public archive; Signal Studio drafts stay internal",
-    lastUpdated: "2026-05-27",
+    evidence: "Historical snapshot, not live. Public/private scan requires release-time verification.",
+    lastUpdated: "Historical snapshot: 2026-05-27",
   },
   {
     metric: "Latest regression report",
@@ -119,9 +119,9 @@ const observabilitySnapshot = [
   },
   {
     metric: "Stale/current status",
-    status: "Mixed",
-    evidence: "Dashboard is a manual snapshot, not live telemetry",
-    lastUpdated: "2026-05-27",
+    status: "Historical snapshot, not live",
+    evidence: "Dashboard is a release-time snapshot, not live telemetry.",
+    lastUpdated: "Historical snapshot: 2026-05-27",
   },
 ]
 
@@ -306,8 +306,8 @@ function InternalIaSections() {
         <CardHeader>
           <SectionIntro
             title="Observability Snapshot"
-            description="Local staging evidence summary for review readiness. This section summarizes checks and does not create a new observability surface."
-            badge="Evidence summary"
+            description="Historical snapshot, not live. Re-run release-time checks before relying on any operational status."
+            badge="Pending verification"
           />
         </CardHeader>
         <CardContent>
@@ -337,7 +337,7 @@ function InternalIaSections() {
         <CardHeader>
           <SectionIntro
             title="Budget Snapshot"
-            description="Budget visibility without invented spend values. All budget numbers remain pending until the Budget Burn Daily Report is verified."
+            description="Budget numbers pending verified Budget Burn Daily Report. No screenshot observation or manual note is presented as live source-backed telemetry."
             badge="No invented numbers"
           />
         </CardHeader>
@@ -467,9 +467,9 @@ export default function InternalDashboardPage() {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold text-green-600">Live</div>
+                <div className="text-2xl font-bold text-amber-600">Pending verification</div>
                 <p className="text-xs text-muted-foreground mt-1">
-                  Vercel production
+                  Release-time status only; verify deployment before relying on it
                 </p>
               </CardContent>
             </Card>
@@ -504,7 +504,7 @@ export default function InternalDashboardPage() {
                 >
                   <h3 className="font-medium mb-1">Usage & Budget Tracking</h3>
                   <p className="text-sm text-muted-foreground">
-                    Token usage, cost tracking, budget checkpoints
+                    Trust-quarantined usage, cost, and checkpoint review
                   </p>
                 </a>
 
@@ -514,7 +514,7 @@ export default function InternalDashboardPage() {
                 >
                   <h3 className="font-medium mb-1 text-[#00B494]">⭐ Performance Showcase</h3>
                   <p className="text-sm text-muted-foreground">
-                    Executive-grade proof: 1,750x speedup, 100% accuracy, 0 violations
+                    Historical benchmark candidates with evidence and verification gaps
                   </p>
                 </a>
 
@@ -524,7 +524,7 @@ export default function InternalDashboardPage() {
                 >
                   <h3 className="font-medium mb-1">Multi-Agent Performance</h3>
                   <p className="text-sm text-muted-foreground">
-                    Real production data: 2.3x speed, 653% ROI, $1.36/deliverable
+                    Pending verification; no current production metric claim
                   </p>
                 </a>
 
@@ -558,7 +558,7 @@ export default function InternalDashboardPage() {
                     Internal: AIOS Backlog Review
                   </h3>
                   <p className="text-sm text-muted-foreground">
-                    Live read-only view of the bounded KB backlog classification proposal
+                    Local-only live KB review where the allowlisted filesystem source is available
                   </p>
                 </a>
 

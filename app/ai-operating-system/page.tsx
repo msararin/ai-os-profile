@@ -122,11 +122,11 @@ export default function AIOperatingSystemPage() {
         </div>
       </section>
 
-      {/* 4-Layer Architecture */}
+      {/* Layered Architecture */}
       <section className="border-t border-border bg-muted/30 py-12">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
           <h2 className="text-2xl font-semibold tracking-tight text-foreground">
-            4-Layer Architecture
+            Layered Architecture
           </h2>
           <p className="mt-3 text-sm text-muted-foreground">
             A layered approach that separates strategic intent, routing,
@@ -263,6 +263,70 @@ export default function AIOperatingSystemPage() {
                     Committed KB protocol
                   </span>
                 </div>
+              </div>
+            </div>
+
+            <FlowArrow label="Governed release candidate" />
+
+            <div className="rounded-lg border border-emerald-500/40 bg-emerald-500/5 p-6">
+              <h3 className="font-semibold text-foreground">
+                Agentic Release Governance Control
+              </h3>
+              <p className="mt-2 text-sm text-muted-foreground">
+                Applies manual release discipline, risk framing, checkpoint cadence,
+                and stop conditions before work proceeds.
+              </p>
+              <div className="mt-3 flex flex-wrap gap-2">
+                {["Risk review", "Manual preflight", "Stop conditions", "Checkpoint cadence"].map((label) => (
+                  <span key={label} className="rounded-md bg-background px-2 py-1 text-xs font-medium text-foreground shadow-sm">
+                    {label}
+                  </span>
+                ))}
+              </div>
+              <p className="mt-4 border-t border-emerald-500/20 pt-3 text-xs italic text-muted-foreground">
+                This is release governance design and current manual discipline, not a claim that
+                release governance has been implemented as full automation.
+              </p>
+            </div>
+
+            <FlowArrow label="Scoped implementation + validation" />
+
+            <div className="grid gap-4 sm:grid-cols-2">
+              <div className="rounded-lg border border-border bg-card p-6">
+                <h3 className="font-semibold text-foreground">S1 — Codex Release Engineering</h3>
+                <p className="mt-2 text-sm text-muted-foreground">
+                  Prepares scoped repo edits, validation outputs, rollback materials, and review-ready
+                  evidence for human decision.
+                </p>
+              </div>
+              <div className="rounded-lg border border-border bg-card p-6">
+                <h3 className="font-semibold text-foreground">S2 — CI/CD + GitHub + Vercel</h3>
+                <p className="mt-2 text-sm text-muted-foreground">
+                  Provides repository, build, check, and preview surfaces under explicit human-controlled
+                  release flow.
+                </p>
+              </div>
+              <p className="text-xs italic text-muted-foreground sm:col-span-2">
+                These are support surfaces under human-controlled release flow, not autonomous release authority.
+              </p>
+            </div>
+
+            <FlowArrow label="Evidence capture + review trace" />
+
+            <div className="rounded-lg border border-primary/30 bg-primary/5 p-6">
+              <h3 className="font-semibold text-foreground">
+                Evidence / Audit / Observability Layer
+              </h3>
+              <p className="mt-2 text-sm text-muted-foreground">
+                Captures validation outputs, diffs, status snapshots, review notes, routing decisions,
+                and decision records for traceability.
+              </p>
+              <div className="mt-3 flex flex-wrap gap-2">
+                {["Audit evidence", "Review trace", "Validation outputs", "Routing decisions", "Decision records", "Observability"].map((label) => (
+                  <span key={label} className="rounded-md bg-background px-2 py-1 text-xs font-medium text-foreground shadow-sm">
+                    {label}
+                  </span>
+                ))}
               </div>
             </div>
 
@@ -547,7 +611,7 @@ export default function AIOperatingSystemPage() {
                   layer: 6,
                   name: "Monetization",
                   objective:
-                    "Convert governance maturity into sustainable revenue",
+                    "Explore whether governance maturity can support sustainable revenue",
                   status: "Planned",
                 },
               ].map((item) => (
