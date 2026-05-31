@@ -562,6 +562,18 @@ export default function InternalDashboardPage() {
                   </p>
                 </a>
 
+                <a
+                  href="/internal/aios-architecture-map"
+                  className="block p-4 rounded-lg border border-yellow-500/40 bg-yellow-500/10 hover:bg-yellow-500/15 transition-colors"
+                >
+                  <h3 className="font-medium mb-1 text-yellow-700 dark:text-yellow-400">
+                    Internal: AIOS Architecture Map
+                  </h3>
+                  <p className="text-sm text-muted-foreground">
+                    Experimental big-picture map of decision, execution, evidence, and business layers
+                  </p>
+                </a>
+
                 <div className="block p-4 rounded-lg border border-border opacity-50">
                   <h3 className="font-medium mb-1">Model Routing</h3>
                   <p className="text-sm text-muted-foreground">
