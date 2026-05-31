@@ -7,7 +7,7 @@ import { Badge } from "@/components/ui/badge"
 import { ChevronDown, ChevronRight } from "lucide-react"
 
 export default function AchievementsPage() {
-  const [expandedDays, setExpandedDays] = useState<Set<string>>(new Set(['2026-05-29', '2026-05-28', '2026-05-26', '2026-05-25']))
+  const [expandedDays, setExpandedDays] = useState<Set<string>>(new Set(['2026-05-31', '2026-05-29', '2026-05-28', '2026-05-26', '2026-05-25']))
 
   const toggleDay = (date: string) => {
     const newExpanded = new Set(expandedDays)
@@ -20,6 +20,39 @@ export default function AchievementsPage() {
   }
 
   const achievements = [
+    {
+      date: '2026-05-31',
+      headline: 'AIOS Trust Repair + OpenRouter Key Routing Hardening',
+      summary: 'Repaired AIOS trust surfaces by replacing stale or unverifiable status claims with evidence-aware labels, then traced an OpenRouter/Gemini failure to incorrect key selection rather than account budget exhaustion. Added explicit OpenRouter profile selection, masked diagnostics, fail-fast behavior, and tests in optimize-worker.',
+      proofType: 'PR merge, production route checks, scoped provider-routing proof',
+      evidenceReference: 'ai-os-profile PR #12, merge 922028a; optimize-worker local commit 1742d318',
+      status: 'Trust repair production-verified; provider-routing hardening proven locally and pending scoped review-branch push',
+      publicSafeResult: 'A controlled Gemini call succeeded after the routing repair with captured token and cost evidence, supporting the next architecture alignment direction: one canonical definition rendered across public and internal views.',
+      caveat: 'This is trust repair, provider-routing hardening, and architecture alignment direction. It is not a claim of full automated release governance, a full production observability platform, automated provider usage everywhere, proven revenue, or Gemini as source of truth.',
+      details: {
+        whyItMatters: 'Trust depends on showing only what the evidence supports. The repair removed false confidence from stale operational copy and treated a provider failure as a routing diagnosis problem before assuming the account budget was exhausted.',
+        evidence: [
+          'ai-os-profile PR #12, "Repair AIOS trust and architecture freshness wording," merged through the normal GitHub PR path at 922028aaff05966d8705adfc1994b98a58defd13',
+          'Production checks passed: lint/typecheck/build, Vercel ai-os-profile, and Vercel v0-ai-os-profile',
+          'Production routes verified: /, /ai-operating-system, /architecture, /architecture/system-health/observability, /achievements, and /knowledge-sharing returned 200; protected internal routes redirected 307 to auth',
+          'Trust repair relabeled stale status as historical or pending verification, removed unsupported budget/usage values, protected local-only KB limitations, and aligned architecture wording around manual governance, evidence, observability, and source-of-truth boundaries',
+          'optimize-worker local commit 1742d31837e28709f41b0a2b57e37d5d979f3e1d added explicit OpenRouter key-profile selection, masked no-network diagnostics, fail-fast behavior, and focused tests',
+          'No-network diagnostic selected profile=codex, env var=CODEX_OPENROUTER_API_KEY, masked fingerprint=sk-or-v1...652114, and provider_call_made=false',
+          'One controlled Gemini/OpenRouter call succeeded with google/gemini-3.5-flash: 978 prompt tokens, 3,091 completion tokens, 1,538 reasoning tokens, 4,069 total tokens, 0 cached tokens, and 0.029286 cost credits',
+          'Gemini advisory review recommended one canonical architecture definition, four compact public groups, nine expanded detailed layers, and shared rendering across public and internal views'
+        ],
+        skillsDemonstrated: [
+          'Source-of-truth discipline and stale-data trust repair',
+          'Evidence-aware handling of unverified budget and usage claims',
+          'Provider key-routing root-cause analysis',
+          'Masked preflight diagnostics without secret exposure',
+          'Controlled one-call verification with token and cost evidence',
+          'Architecture consolidation planning without treating advisory output as source of truth'
+        ],
+        impact: 'Improved credibility and review safety: public and internal surfaces state their evidence boundaries more clearly, while provider calls can be checked against an explicit key profile before execution.'
+      },
+      tags: ['Trust Repair', 'Provider Routing', 'Evidence', 'Architecture']
+    },
     {
       date: '2026-05-29',
       headline: 'AIOS Governance Maturity — Budget-Aware Routing and Release Discipline',
@@ -486,10 +519,10 @@ export default function AchievementsPage() {
               Public-safe evidence of what was built, what is proven, what is caveated, and what remains internal.
             </p>
             <p className="mt-4 text-sm font-medium text-white/80">
-              Evidence updated: 29 May 2026 · Production verified: 29 May 2026
+              Evidence updated: 31 May 2026 · Production trust repair verified: 31 May 2026
             </p>
             <p className="mt-2 text-sm text-white/75">
-              Latest validated milestone: AIOS governance maturity update, 29 May 2026
+              Latest validated milestone: AIOS trust repair and provider-routing hardening, 31 May 2026
             </p>
           </div>
         </div>
@@ -637,7 +670,7 @@ export default function AchievementsPage() {
           <div className="grid md:grid-cols-4 gap-6">
             <Card className="text-center">
               <CardContent className="pt-6">
-                <div className="text-3xl font-bold text-[#1F3A60]">17</div>
+                <div className="text-3xl font-bold text-[#1F3A60]">18</div>
                 <div className="text-sm text-muted-foreground mt-2">Proof-Backed Milestones</div>
               </CardContent>
             </Card>
