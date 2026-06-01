@@ -37,6 +37,105 @@ const aiosSections = [
   },
 ]
 
+const existingTools = [
+  {
+    name: "ChatGPT / GPT",
+    purpose: "Reasoning, synthesis, planning, and executive review support.",
+    contribution: "Configured with role boundaries, review gates, and source-of-truth rules.",
+  },
+  {
+    name: "Codex",
+    purpose: "Existing coding agent for bounded repository implementation.",
+    contribution: "Used with scoped tasks, stop conditions, validation steps, and Git discipline.",
+  },
+  {
+    name: "Claude Opus",
+    purpose: "External high-judgment reviewer for selected claims and architecture decisions.",
+    contribution: "Used as an independent skeptical critique step before relying on evidence.",
+  },
+  {
+    name: "Hermes Agent",
+    purpose: "Existing orchestration and stage-management tool.",
+    contribution: "Tested for profiles, routing continuity, handoffs, and context-access patterns.",
+  },
+  {
+    name: "OpenRouter / ChatX",
+    purpose: "Existing model-access routes.",
+    contribution: "Evaluated for provider routing, quota limits, cost visibility, and telemetry gaps.",
+  },
+  {
+    name: "Ollama",
+    purpose: "Existing local-model runtime.",
+    contribution: "Tested for bounded local execution and runtime evidence capture.",
+  },
+]
+
+const customizedSystems = [
+  {
+    name: "Robert KB + Git",
+    status: "Active",
+    description:
+      "Git-backed knowledge base and change history for reviewed decisions, evidence, and working context.",
+  },
+  {
+    name: "AIOS workflow",
+    status: "Working prototype",
+    description:
+      "Human-gated operating model coordinating planning, implementation, critique, validation, and release decisions.",
+  },
+  {
+    name: "Evidence classification",
+    status: "Used in audit",
+    description:
+      "Rules separating measured, derived, inferred, missing, invalid, and not-applicable evidence.",
+  },
+  {
+    name: "Validation gates",
+    status: "Active",
+    description:
+      "Bounded checks covering typecheck, lint, build, route smoke tests, boundary scans, and explicit-path Git staging.",
+  },
+  {
+    name: "Tool-routing rules",
+    status: "Partially proven",
+    description:
+      "Evolving guidance for matching tools and review depth to the task, risk, and evidence required.",
+  },
+]
+
+const locallyBuiltComponents = [
+  {
+    name: "Supernova",
+    status: "Under development",
+    description:
+      "Custom strategy and critique role for challenging assumptions, testing positioning, and translating technical work into business language.",
+  },
+  {
+    name: "Curated AI-readable context layer",
+    status: "Implemented",
+    description:
+      "Reviewed context subset that separates approved AI-readable material from broader working knowledge.",
+  },
+  {
+    name: "Custom read-only MCP server",
+    status: "Local smoke-tested prototype",
+    description:
+      "Allowlisted context retrieval with file listing, approved-file reads, keyword search, and protections against broad or unsafe access.",
+  },
+  {
+    name: "Evidence Inventory Snapshot",
+    status: "Implemented",
+    description:
+      "Public-safe historical measurement view with explicit caveats. It is not live telemetry.",
+  },
+  {
+    name: "Normalized receipt and reconciler",
+    status: "Future slice",
+    description:
+      "Proposed evidence-capture layer for timing, route, cost, validation, and human-gate reconciliation.",
+  },
+]
+
 export default function AIOperatingSystemPage() {
   return (
     <PageLayout>
@@ -99,6 +198,144 @@ export default function AIOperatingSystemPage() {
             operating surfaces such as review queues, budget/backlog context,
             and draft work that is not public-ready.
           </p>
+        </div>
+      </section>
+
+      <section className="border-t border-border bg-muted/30 py-12">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+          <Badge variant="outline">Recruiter-facing case study</Badge>
+          <h2 className="mt-3 text-2xl font-semibold tracking-tight text-foreground">
+            AI Delivery Measurement &amp; Governance
+          </h2>
+          <p className="mt-3 max-w-4xl text-sm leading-6 text-muted-foreground">
+            This project combines existing AI tools with customized governance, retrieval, review,
+            and validation components. The value is not the number of tools used. It is the
+            operating model that defines what each tool may do, what evidence should be retained,
+            and where human judgment remains required.
+          </p>
+
+          <Card className="mt-6 border-primary/30 bg-primary/5">
+            <CardHeader className="pb-2">
+              <CardTitle className="text-sm">What this demonstrates</CardTitle>
+            </CardHeader>
+            <CardContent className="text-sm leading-6 text-muted-foreground">
+              <p>
+                Sararin can structure ambiguous AI-adoption problems, assign bounded
+                responsibilities across tools, protect sensitive context, challenge weak evidence,
+                and ship validated improvements without overstating system maturity.
+              </p>
+              <ul className="mt-3 list-disc space-y-1 pl-5 text-xs leading-5">
+                <li>
+                  Coordinated existing AI tools without confusing configuration with custom
+                  development.
+                </li>
+                <li>
+                  Designed governance boundaries across source-of-truth, retrieval, validation, and
+                  human approval.
+                </li>
+                <li>
+                  Built public-safe evidence surfaces while clearly labeling what is measured,
+                  missing, or not proven.
+                </li>
+                <li>Preserved human approval where automation was not yet proven.</li>
+              </ul>
+            </CardContent>
+          </Card>
+
+          <div className="mt-8">
+            <h3 className="text-lg font-semibold tracking-tight text-foreground">
+              Existing tools selected and configured
+            </h3>
+            <p className="mt-2 max-w-3xl text-xs leading-5 text-muted-foreground">
+              These are third-party tools and access routes. They were selected, configured, tested,
+              and assigned bounded responsibilities; they were not built as part of this project.
+            </p>
+            <div className="mt-4 grid gap-3 md:grid-cols-2">
+              {existingTools.map((tool) => (
+                <Card key={tool.name}>
+                  <CardHeader className="pb-2">
+                    <div className="flex flex-wrap items-center justify-between gap-2">
+                      <CardTitle className="text-sm">{tool.name}</CardTitle>
+                      <Badge variant="outline">Existing tool</Badge>
+                    </div>
+                  </CardHeader>
+                  <CardContent className="space-y-2 text-xs leading-5 text-muted-foreground">
+                    <p>{tool.purpose}</p>
+                    <p>
+                      <span className="font-medium text-foreground">Project use:</span>{" "}
+                      {tool.contribution}
+                    </p>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-10">
+            <h3 className="text-lg font-semibold tracking-tight text-foreground">
+              Systems designed and customized
+            </h3>
+            <p className="mt-2 max-w-3xl text-xs leading-5 text-muted-foreground">
+              These working methods adapt existing tools into a controlled delivery process.
+            </p>
+            <div className="mt-4 grid gap-3 md:grid-cols-2">
+              {customizedSystems.map((system) => (
+                <Card key={system.name}>
+                  <CardHeader className="pb-2">
+                    <div className="flex flex-wrap items-center justify-between gap-2">
+                      <CardTitle className="text-sm">{system.name}</CardTitle>
+                      <Badge variant="outline">{system.status}</Badge>
+                    </div>
+                  </CardHeader>
+                  <CardContent className="text-xs leading-5 text-muted-foreground">
+                    {system.description}
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-10">
+            <h3 className="text-lg font-semibold tracking-tight text-foreground">
+              Components built locally
+            </h3>
+            <p className="mt-2 max-w-3xl text-xs leading-5 text-muted-foreground">
+              These components were designed or implemented as part of the AIOS prototype.
+            </p>
+            <div className="mt-4 grid gap-3 md:grid-cols-2">
+              {locallyBuiltComponents.map((component) => (
+                <Card key={component.name}>
+                  <CardHeader className="pb-2">
+                    <div className="flex flex-wrap items-center justify-between gap-2">
+                      <CardTitle className="text-sm">{component.name}</CardTitle>
+                      <Badge variant="outline">{component.status}</Badge>
+                    </div>
+                  </CardHeader>
+                  <CardContent className="text-xs leading-5 text-muted-foreground">
+                    {component.description}
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+
+          <Card className="mt-8 border-yellow-600/30 bg-yellow-50/60 dark:bg-yellow-950/10">
+            <CardHeader className="pb-2">
+              <CardTitle className="text-sm">Current maturity boundary</CardTitle>
+            </CardHeader>
+            <CardContent className="text-xs leading-5 text-muted-foreground">
+              The custom MCP layer is a local smoke-tested read-only prototype, not a production RAG
+              system. Vector search, embeddings, semantic retrieval, live telemetry, automated
+              approval, and enterprise-scale outcome claims remain outside the proven scope.
+            </CardContent>
+          </Card>
+
+          <Link
+            href="/architecture/system-health/observability"
+            className="mt-6 inline-flex text-sm font-semibold text-primary hover:underline"
+          >
+            View the evidence and observability appendix →
+          </Link>
         </div>
       </section>
 
