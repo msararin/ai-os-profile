@@ -56,6 +56,36 @@ const evidenceInventory = [
   },
 ]
 
+const historicalMeasurements = [
+  {
+    name: "Hermes main store",
+    period: "2026-05-09 to 2026-05-23",
+    sessions: "60",
+    apiCalls: "1,066",
+    inputTokens: "100,703,785",
+    outputTokens: "960,832",
+    derivedEstimatedCost: "Approximately $34",
+  },
+  {
+    name: "OpenRouter Sonnet stage-manager profile",
+    period: "2026-05-21 to 2026-05-31",
+    sessions: "90",
+    apiCalls: "2,688",
+    inputTokens: "56,018,396",
+    outputTokens: "1,907,692",
+    derivedEstimatedCost: "Approximately $381",
+  },
+]
+
+const performanceClaimLimits = [
+  "There is no clean structured pre-Hermes baseline.",
+  "The Hermes main store and stage-manager profile periods overlap.",
+  "The tasks in each period were not the same type of work.",
+  "Some routes have token records but not actual billed cost.",
+  "Historical records are not joined by normalized task ID across Hermes, OpenRouter, Codex, validation, and commits.",
+  "The current records cannot isolate model choice, stage-manager workflow, provider route, parallel execution, task complexity, validation discipline, or human review wait time.",
+]
+
 export default function ObservabilityPage() {
   return (
     <PageLayout>
@@ -164,6 +194,89 @@ export default function ObservabilityPage() {
               are intentionally excluded.
             </p>
           </div>
+
+          <div>
+            <div className="flex flex-wrap items-center gap-3">
+              <h2 className="text-xl font-semibold tracking-tight text-foreground">
+                Historical Measurement Snapshot
+              </h2>
+              <Badge variant="outline">Historical session inventory</Badge>
+              <Badge variant="outline">Derived estimates</Badge>
+            </div>
+            <p className="mt-2 max-w-4xl text-sm leading-6 text-muted-foreground">
+              Historical numbers exist, but they are not yet normalized into apples-to-apples
+              performance claims. These two inventories make the available evidence visible while
+              stating the limits directly.
+            </p>
+            <div className="mt-4 grid gap-3 lg:grid-cols-2">
+              {historicalMeasurements.map((measurement) => (
+                <Card key={measurement.name}>
+                  <CardHeader className="pb-2">
+                    <div className="flex flex-wrap items-start justify-between gap-2">
+                      <CardTitle className="text-sm">{measurement.name}</CardTitle>
+                      <Badge variant="outline" className="text-[10px]">
+                        Historical snapshot
+                      </Badge>
+                    </div>
+                    <p className="text-xs text-muted-foreground">{measurement.period}</p>
+                  </CardHeader>
+                  <CardContent>
+                    <dl className="grid grid-cols-2 gap-x-4 gap-y-2 text-xs leading-5">
+                      <div>
+                        <dt className="text-muted-foreground">Sessions</dt>
+                        <dd className="font-medium text-foreground">{measurement.sessions}</dd>
+                      </div>
+                      <div>
+                        <dt className="text-muted-foreground">API calls</dt>
+                        <dd className="font-medium text-foreground">{measurement.apiCalls}</dd>
+                      </div>
+                      <div>
+                        <dt className="text-muted-foreground">Input tokens</dt>
+                        <dd className="font-medium text-foreground">{measurement.inputTokens}</dd>
+                      </div>
+                      <div>
+                        <dt className="text-muted-foreground">Output tokens</dt>
+                        <dd className="font-medium text-foreground">{measurement.outputTokens}</dd>
+                      </div>
+                      <div>
+                        <dt className="text-muted-foreground">Derived estimated cost</dt>
+                        <dd className="font-medium text-foreground">
+                          {measurement.derivedEstimatedCost}
+                        </dd>
+                      </div>
+                      <div>
+                        <dt className="text-muted-foreground">Actual billed cost</dt>
+                        <dd className="font-medium text-foreground">Unavailable</dd>
+                      </div>
+                    </dl>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+            <p className="mt-4 max-w-4xl text-xs leading-5 text-muted-foreground">
+              These are historical session inventories and derived estimates. They are not
+              task-normalized cost, billed spend, or proof that one workflow was faster or cheaper
+              than another.
+            </p>
+          </div>
+
+          <Card className="border-yellow-600/30 bg-yellow-50/60 dark:bg-yellow-950/10">
+            <CardHeader>
+              <CardTitle className="text-base">Why this is not yet a performance claim</CardTitle>
+            </CardHeader>
+            <CardContent className="text-sm leading-6 text-muted-foreground">
+              <ul className="list-disc space-y-1 pl-5">
+                {performanceClaimLimits.map((limit) => (
+                  <li key={limit}>{limit}</li>
+                ))}
+              </ul>
+              <p className="mt-4 text-xs leading-5">
+                The current evidence supports historical measurement review and telemetry gap
+                analysis. It does not yet support claims such as “Codex is faster than Hermes,”
+                “multi-agent work reduced elapsed time,” or “this route reduced cost by X%.”
+              </p>
+            </CardContent>
+          </Card>
 
           <div className="grid gap-4 lg:grid-cols-3">
             <Card>
