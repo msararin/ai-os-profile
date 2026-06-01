@@ -29,6 +29,33 @@ const statusLabels = [
   },
 ]
 
+const evidenceInventory = [
+  {
+    value: "43",
+    label: "Reviewed benchmark trace records",
+    detail: "Historical JSONL audit inventory across three reviewed trace files.",
+    status: "Historical snapshot",
+  },
+  {
+    value: "19",
+    label: "Records marked invalid_missing_usage",
+    detail: "Honest evidence gaps where required usage receipts were absent or unusable.",
+    status: "Pending verification",
+  },
+  {
+    value: "60 + 90",
+    label: "Hermes session inventory records",
+    detail: "Two historical local session inventories. Not normalized task comparisons.",
+    status: "Historical snapshot",
+  },
+  {
+    value: "1",
+    label: "Controlled provider probe receipt",
+    detail: "Single retained receipt proving a capture path, not route-wide cost or performance.",
+    status: "Verified as of 2026-06-01",
+  },
+]
+
 export default function ObservabilityPage() {
   return (
     <PageLayout>
@@ -100,6 +127,44 @@ export default function ObservabilityPage() {
             </div>
           </div>
 
+          <div>
+            <div className="flex flex-wrap items-center gap-3">
+              <h2 className="text-xl font-semibold tracking-tight text-foreground">
+                Evidence Inventory Snapshot
+              </h2>
+              <Badge variant="outline">Historical audit only</Badge>
+              <Badge variant="outline">Not live</Badge>
+            </div>
+            <p className="mt-2 max-w-4xl text-sm leading-6 text-muted-foreground">
+              This public-safe snapshot summarizes a bounded historical evidence audit completed on
+              2026-06-01. These are inventory counts, not live metrics, current system-health
+              readings, cost claims, or normalized Hermes-vs-Codex performance comparisons.
+            </p>
+            <div className="mt-4 grid gap-3 sm:grid-cols-2">
+              {evidenceInventory.map((item) => (
+                <Card key={item.label}>
+                  <CardHeader className="pb-2">
+                    <div className="flex items-start justify-between gap-3">
+                      <CardTitle className="text-sm">{item.label}</CardTitle>
+                      <Badge variant="outline" className="shrink-0 text-[10px]">
+                        {item.status}
+                      </Badge>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-2xl font-semibold tracking-tight text-foreground">{item.value}</p>
+                    <p className="mt-2 text-xs leading-5 text-muted-foreground">{item.detail}</p>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+            <p className="mt-4 max-w-4xl text-xs leading-5 text-muted-foreground">
+              Inventory counts are curated for public review. Raw records, private notes, secret or
+              environment values, provider credentials, and unreconciled token or cost aggregates
+              are intentionally excluded.
+            </p>
+          </div>
+
           <div className="grid gap-4 lg:grid-cols-3">
             <Card>
               <CardHeader>
@@ -133,12 +198,13 @@ export default function ObservabilityPage() {
 
           <Card className="bg-muted/30">
             <CardHeader>
-              <CardTitle className="text-base">Parked future implementation</CardTitle>
+              <CardTitle className="text-base">Parked evidence follow-up</CardTitle>
             </CardHeader>
             <CardContent className="text-sm leading-6 text-muted-foreground">
-              A living dashboard may be considered later only after metric definitions,
-              source-of-truth location, data-capture method, and verification rules are approved. No
-              live dashboard is part of this page patch.
+              A small receipt and reconciliation slice may be reviewed later after metric
+              definitions, source-of-truth location, data-capture method, and verification rules are
+              approved. No live dashboard, API, telemetry system, or automated decision gate is part
+              of this page.
             </CardContent>
           </Card>
         </div>
