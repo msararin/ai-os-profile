@@ -80,39 +80,51 @@ export default function KnowledgeSharingPage() {
           </p>
         </div>
 
-        <section className="mb-8 rounded-lg border border-[#1F3A60]/20 bg-[#1F3A60]/5 p-5">
-          <h2 className="text-xl font-semibold text-[#1F3A60]">
-            Featured lesson: Observability is evidence, not a claim
-          </h2>
-          <p className="mt-3 text-sm text-muted-foreground">
-            AIOS observability work now shows what the data proves, what it does not prove, and what must
-            improve next. That means the team can say what it knows, what it does not know yet, and how to
-            get better without turning the page into a benchmark dashboard or a fake live-monitoring story.
+        <article className="mb-8 rounded-lg border border-[#1F3A60]/20 bg-card p-5 shadow-sm">
+          <div className="flex flex-col gap-2 border-b border-border pb-4">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#00B494]">
+              Public Lesson Archive
+            </p>
+            <h2 className="text-xl font-semibold text-[#1F3A60]">
+              Observability is evidence, not a claim
+            </h2>
+            <p className="text-sm text-muted-foreground">
+              Date: 2 Jun 2026 · Scope: AIOS observability / evidence discipline · Status: public-safe learning note
+            </p>
+          </div>
+          <p className="mt-4 text-sm text-muted-foreground">
+            AIOS observability work now shows what the data proves, what it does not prove, and what must improve next.
+            The team can say what it knows, what it does not know yet, and how to get better without turning the page
+            into a benchmark dashboard or a fake live-monitoring story.
           </p>
-          <div className="mt-4 grid gap-4 md:grid-cols-3">
+          <div className="mt-5 grid gap-4 md:grid-cols-3">
             <div className="rounded-md border bg-background p-4">
-              <h3 className="font-medium text-foreground">What we have</h3>
+              <h3 className="font-medium text-foreground">What this proves</h3>
               <p className="mt-2 text-sm text-muted-foreground">
                 A public-safe evidence surface, explicit under-construction status, and a clearer distinction between
                 evidence, observation, and decision proof.
               </p>
             </div>
             <div className="rounded-md border bg-background p-4">
-              <h3 className="font-medium text-foreground">What we know we do not know</h3>
+              <h3 className="font-medium text-foreground">What this does not prove</h3>
               <p className="mt-2 text-sm text-muted-foreground">
                 The data is not yet benchmark-ready, comparison-ready, or production-observability proof.
                 Join, routing, provenance, and decision metadata are still incomplete.
               </p>
             </div>
             <div className="rounded-md border bg-background p-4">
-              <h3 className="font-medium text-foreground">What to do better</h3>
+              <h3 className="font-medium text-foreground">How to do better</h3>
               <p className="mt-2 text-sm text-muted-foreground">
-                Keep improving joinability, provenance, and decision mapping, then use those records to explain
-                value before expanding any dashboard or comparison surface.
+                Keep improving joinability, provenance, and decision mapping, then use those records to explain value
+                before expanding any dashboard or comparison surface.
               </p>
             </div>
           </div>
-        </section>
+          <p className="mt-5 text-xs text-muted-foreground">
+            Lesson status: historically verified as a public-safe operating pattern. No comparison between providers
+            is made or implied here.
+          </p>
+        </article>
 
         <section className="mb-8 rounded-lg border bg-muted/30 p-4">
           <h2 className="text-lg font-semibold">LinkedIn knowledge sharing archive</h2>
@@ -122,8 +134,8 @@ export default function KnowledgeSharingPage() {
             public Knowledge Sharing area and each card identifies the post date.
           </p>
           <p className="mt-3 text-sm font-medium text-muted-foreground">
-            Archive freshness: public LinkedIn posts through 29 May 2026. Internal Signal Studio
-            drafts and learning records are not exposed on this public page.
+            Archive status: public LinkedIn posts through 29 May 2026. Internal Signal Studio drafts and learning
+            records are not exposed on this public page.
           </p>
         </section>
 
