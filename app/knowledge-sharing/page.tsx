@@ -1,5 +1,25 @@
 import { PageLayout } from "@/components/page-layout"
 
+const publicLessonPosts = [
+  {
+    id: "observability-lesson-2026-06-02",
+    date: "Jun 2, 2026",
+    title: "Observability is evidence, not a claim",
+    scope: "AIOS observability / evidence discipline",
+    status: "public-safe learning note",
+    summary:
+      "AIOS observability work now shows what the data proves, what it does not prove, and what must improve next.",
+    proves:
+      "A public-safe evidence surface, explicit under-construction status, and a clearer distinction between evidence, observation, and decision proof.",
+    doesNotProve:
+      "The data is not yet benchmark-ready, comparison-ready, or production-observability proof. Join, routing, provenance, and decision metadata are still incomplete.",
+    better:
+      "Keep improving joinability, provenance, and decision mapping, then use those records to explain value before expanding any dashboard or comparison surface.",
+    lessonStatus:
+      "Historically verified as a public-safe operating pattern. No comparison between providers is made or implied here.",
+  },
+]
+
 const linkedInPosts = [
   {
     urn: "urn:li:share:7465996088735604736",
@@ -80,51 +100,17 @@ export default function KnowledgeSharingPage() {
           </p>
         </div>
 
-        <article className="mb-8 rounded-lg border border-[#1F3A60]/20 bg-card p-5 shadow-sm">
-          <div className="flex flex-col gap-2 border-b border-border pb-4">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#00B494]">
-              Public Lesson Archive
-            </p>
-            <h2 className="text-xl font-semibold text-[#1F3A60]">
-              Observability is evidence, not a claim
-            </h2>
-            <p className="text-sm text-muted-foreground">
-              Date: 2 Jun 2026 · Scope: AIOS observability / evidence discipline · Status: public-safe learning note
-            </p>
-          </div>
-          <p className="mt-4 text-sm text-muted-foreground">
-            AIOS observability work now shows what the data proves, what it does not prove, and what must improve next.
-            The team can say what it knows, what it does not know yet, and how to get better without turning the page
-            into a benchmark dashboard or a fake live-monitoring story.
+        <section className="mb-8 rounded-lg border bg-muted/30 p-4">
+          <h2 className="text-lg font-semibold">Public lesson archive</h2>
+          <p className="mt-2 text-sm text-muted-foreground">
+            This section archives public lessons in the same page structure as the rest of Knowledge Sharing.
+            Each card captures a learning claim, what it proves, what it does not prove, and how to do better.
           </p>
-          <div className="mt-5 grid gap-4 md:grid-cols-3">
-            <div className="rounded-md border bg-background p-4">
-              <h3 className="font-medium text-foreground">What this proves</h3>
-              <p className="mt-2 text-sm text-muted-foreground">
-                A public-safe evidence surface, explicit under-construction status, and a clearer distinction between
-                evidence, observation, and decision proof.
-              </p>
-            </div>
-            <div className="rounded-md border bg-background p-4">
-              <h3 className="font-medium text-foreground">What this does not prove</h3>
-              <p className="mt-2 text-sm text-muted-foreground">
-                The data is not yet benchmark-ready, comparison-ready, or production-observability proof.
-                Join, routing, provenance, and decision metadata are still incomplete.
-              </p>
-            </div>
-            <div className="rounded-md border bg-background p-4">
-              <h3 className="font-medium text-foreground">How to do better</h3>
-              <p className="mt-2 text-sm text-muted-foreground">
-                Keep improving joinability, provenance, and decision mapping, then use those records to explain value
-                before expanding any dashboard or comparison surface.
-              </p>
-            </div>
-          </div>
-          <p className="mt-5 text-xs text-muted-foreground">
-            Lesson status: historically verified as a public-safe operating pattern. No comparison between providers
-            is made or implied here.
+          <p className="mt-3 text-sm font-medium text-muted-foreground">
+            Archive status: public learning notes through 2 Jun 2026. Internal Signal Studio drafts and learning
+            records are not exposed on this public page.
           </p>
-        </article>
+        </section>
 
         <section className="mb-8 rounded-lg border bg-muted/30 p-4">
           <h2 className="text-lg font-semibold">LinkedIn knowledge sharing archive</h2>
@@ -140,6 +126,41 @@ export default function KnowledgeSharingPage() {
         </section>
 
         <div className="grid gap-8">
+          {publicLessonPosts.map((post) => (
+            <article key={post.id} className="border rounded-lg p-4 bg-card">
+              <div className="flex items-center justify-between mb-4">
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#00B494]">
+                    Public Lesson Archive
+                  </p>
+                  <h2 className="text-lg font-medium text-foreground mt-1">
+                    {post.title}
+                  </h2>
+                  <p className="text-sm text-muted-foreground mt-1">
+                    {post.date} · Scope: {post.scope} · Status: {post.status}
+                  </p>
+                </div>
+              </div>
+              <div className="space-y-4 text-sm text-muted-foreground">
+                <p>{post.summary}</p>
+                <div className="grid gap-4 md:grid-cols-3">
+                  <div className="rounded-md border bg-background p-4">
+                    <h3 className="font-medium text-foreground">What this proves</h3>
+                    <p className="mt-2">{post.proves}</p>
+                  </div>
+                  <div className="rounded-md border bg-background p-4">
+                    <h3 className="font-medium text-foreground">What this does not prove</h3>
+                    <p className="mt-2">{post.doesNotProve}</p>
+                  </div>
+                  <div className="rounded-md border bg-background p-4">
+                    <h3 className="font-medium text-foreground">How to do better</h3>
+                    <p className="mt-2">{post.better}</p>
+                  </div>
+                </div>
+                <p className="text-xs">{post.lessonStatus}</p>
+              </div>
+            </article>
+          ))}
           {linkedInPosts.map((post) => (
             <article key={post.urn} className="border rounded-lg p-4 bg-card">
               <div className="flex items-center justify-between mb-4">
