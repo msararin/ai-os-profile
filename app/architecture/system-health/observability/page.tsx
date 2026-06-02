@@ -86,6 +86,40 @@ const performanceClaimLimits = [
   "The current records cannot isolate model choice, stage-manager workflow, provider route, parallel execution, task complexity, validation discipline, or human review wait time.",
 ]
 
+const evidenceValueSections = [
+  {
+    title: "What P1.1 proves",
+    source: "P1.1 evidence packet approved by Opus 4.7",
+    confidence: "High",
+    caveat: "This shows evidence discipline and blocker visibility, not benchmark superiority.",
+    decision: "Supports a proposal story that values honest evidence over decorative metrics.",
+    next: "Use the blockers to decide what data must be captured before any comparison.",
+  },
+  {
+    title: "What remains blocked",
+    source: "P1.1 new-record coverage and blocker matrix",
+    confidence: "High",
+    caveat:
+      "New-record join keys, routing metadata, usage provenance, and decision metadata are still incomplete.",
+    decision: "Blocks operational comparison, cost claims, and live performance interpretation.",
+    next: "Capture joinable IDs, routing provenance, and decision metadata on new records only.",
+  },
+  {
+    title: "Why this matters",
+    source: "Public-safe review surface for AIOS evidence discipline",
+    confidence: "Medium",
+    caveat: "This is a prototype surface under construction, not a customer proof or production dashboard.",
+    decision: "Helps a sponsor see how trace data turns into decision value.",
+    next: "Show what exists, what is missing, and which decision each gap still blocks.",
+  },
+]
+
+const futureComparisonGuidance = [
+  "ChatX remains rejected as a reliable baseline.",
+  "OpenRouter profile vs later Codex receipts remains a future candidate only.",
+  "No benchmark claim is made until joinability, routing provenance, usage provenance, and decision metadata are present.",
+]
+
 export default function ObservabilityPage() {
   return (
     <PageLayout>
@@ -104,7 +138,7 @@ export default function ObservabilityPage() {
             Public-safe review surface
           </Badge>
           <h1 className="mt-3 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-            Evidence &amp; Observability Review Surface
+            Evidence Discipline Review Surface
           </h1>
           <p className="mt-3 max-w-4xl text-muted-foreground">
             This page explains how AIOS evidence, validation outputs, review traces, and
@@ -132,6 +166,58 @@ export default function ObservabilityPage() {
               </CardContent>
             </Card>
           </div>
+
+          <Card className="border-sky-600/30 bg-sky-50/50 dark:bg-sky-950/10">
+            <CardHeader>
+              <CardTitle className="text-base">Evidence discipline surface (prototype)</CardTitle>
+            </CardHeader>
+            <CardContent className="text-sm leading-6 text-muted-foreground">
+              <p>
+                This under-construction surface shows value from the evidence work without
+                pretending to be a benchmark dashboard. It makes the current proof boundaries
+                visible so a sponsor can see what is real, what is missing, and what must be
+                collected next.
+              </p>
+              <p className="mt-3">
+                Proves process discipline and blocker visibility only - not model, cost, or
+                performance claims. Sample size n=3.
+              </p>
+              <p className="mt-3">
+                No comparison between providers is made or implied on this page.
+              </p>
+              <div className="mt-4 grid gap-4 lg:grid-cols-3">
+                {evidenceValueSections.map((section) => (
+                  <Card key={section.title} className="border-border/60 bg-background/80">
+                    <CardHeader className="pb-2">
+                      <CardTitle className="text-sm">{section.title}</CardTitle>
+                    </CardHeader>
+                    <CardContent className="space-y-2 text-xs leading-5 text-muted-foreground">
+                      <p>
+                        <span className="font-medium text-foreground">Evidence source:</span>{" "}
+                        {section.source}
+                      </p>
+                      <p>
+                        <span className="font-medium text-foreground">Confidence:</span>{" "}
+                        {section.confidence}
+                      </p>
+                      <p>
+                        <span className="font-medium text-foreground">Caveat:</span>{" "}
+                        {section.caveat}
+                      </p>
+                      <p>
+                        <span className="font-medium text-foreground">Decision:</span>{" "}
+                        {section.decision}
+                      </p>
+                      <p>
+                        <span className="font-medium text-foreground">Next unblock action:</span>{" "}
+                        {section.next}
+                      </p>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
         </div>
       </section>
 
@@ -311,13 +397,20 @@ export default function ObservabilityPage() {
 
           <Card className="bg-muted/30">
             <CardHeader>
-              <CardTitle className="text-base">Parked evidence follow-up</CardTitle>
+              <CardTitle className="text-base">Future comparison guidance</CardTitle>
             </CardHeader>
             <CardContent className="text-sm leading-6 text-muted-foreground">
-              A small receipt and reconciliation slice may be reviewed later after metric
-              definitions, source-of-truth location, data-capture method, and verification rules are
-              approved. No live dashboard, API, telemetry system, or automated decision gate is part
-              of this page.
+              <ul className="list-disc space-y-1 pl-5">
+                {futureComparisonGuidance.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+              <p className="mt-4">
+                A small receipt and reconciliation slice may be reviewed later after metric
+                definitions, source-of-truth location, data-capture method, and verification rules
+                are approved. No live dashboard, API, telemetry system, or automated decision gate
+                is part of this page.
+              </p>
             </CardContent>
           </Card>
         </div>
