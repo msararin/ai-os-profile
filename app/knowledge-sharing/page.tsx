@@ -22,6 +22,12 @@ const publicLessonPosts = [
 
 const linkedInPosts = [
   {
+    urn: "urn:li:share:7467215931073654784",
+    height: 1980,
+    title: "LinkedIn Post - Jun 2, 2026",
+    date: "Jun 2, 2026",
+  },
+  {
     urn: "urn:li:share:7465996088735604736",
     height: 1558,
     title: "LinkedIn Post - May 29, 2026",
