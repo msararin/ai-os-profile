@@ -7,7 +7,7 @@ import { Badge } from "@/components/ui/badge"
 import { ChevronDown, ChevronRight } from "lucide-react"
 
 export default function AchievementsPage() {
-  const [expandedDays, setExpandedDays] = useState<Set<string>>(new Set(['2026-05-31', '2026-05-29', '2026-05-28', '2026-05-26', '2026-05-25']))
+  const [expandedDays, setExpandedDays] = useState<Set<string>>(new Set(['2026-06-02', '2026-05-31', '2026-05-29', '2026-05-28', '2026-05-26', '2026-05-25']))
 
   const toggleDay = (date: string) => {
     const newExpanded = new Set(expandedDays)
@@ -20,6 +20,33 @@ export default function AchievementsPage() {
   }
 
   const achievements = [
+    {
+      date: '2026-06-02',
+      headline: 'Observability Evidence Surface — What We Know, What We Do Not Know',
+      summary: 'Turned observability into a public-safe evidence surface that shows what the current data proves, what it does not prove, and what must improve next. The page now surfaces both the signal and the gaps instead of hiding missingness.',
+      proofType: 'public-safe prototype surface, evidence/value readout',
+      evidenceReference: 'Observability page, P1.1 metrics and blocker matrix',
+      status: 'Public prototype approved; comparison and benchmark remain blocked',
+      publicSafeResult: 'We can show the value of data collection while being explicit about unknowns, blockers, and the next evidence step.',
+      caveat: 'This is evidence discipline and communication maturity, not benchmark proof, production monitoring, or model superiority.',
+      details: {
+        whyItMatters: 'The observability work now helps the team explain what the data supports and what it still cannot support. That gives sponsors a clearer view of what exists, what is missing, and why the next collection step matters.',
+        evidence: [
+          'Public observability surface frames the page as evidence discipline rather than live monitoring',
+          'The wording now says under construction / historically verified instead of stale or finished-by-default language',
+          'P1.1 metrics and blocker matrix show join, routing, provenance, validation, and decision gaps explicitly',
+          'Knowledge Sharing now archives the learning as a public lesson, keeping the narrative aligned across pages'
+        ],
+        skillsDemonstrated: [
+          'Evidence-first storytelling',
+          'Claim boundary control',
+          'Making unknowns visible without weakening credibility',
+          'Turning missingness into the next improvement path'
+        ],
+        impact: 'Improves the portfolio story because the site can now show what the data collection system proves, what it still cannot prove, and how the team is improving it.'
+      },
+      tags: ['Observability', 'Evidence', 'Governance', 'Public Proof']
+    },
     {
       date: '2026-05-31',
       headline: 'AIOS Multi-Session Repo Coordination Pattern',
