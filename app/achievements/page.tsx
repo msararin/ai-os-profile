@@ -22,13 +22,13 @@ export default function AchievementsPage() {
   const achievements = [
     {
       date: '2026-06-02',
-      headline: 'Observability Evidence Surface — What We Know, What We Do Not Know',
-      summary: 'Turned observability into a public-safe evidence surface that shows what the current data proves, what it does not prove, and what must improve next. The page now surfaces both the signal and the gaps instead of hiding missingness.',
+      headline: 'Evidence Discipline Milestone — Observability Lesson Made Public',
+      summary: 'Turned the current observability work into a public-safe evidence surface that shows what the data currently indicates, what it does not yet show, and what must improve next. The page now surfaces both the signal and the gaps instead of hiding missingness.',
       proofType: 'public-safe prototype surface, evidence/value readout',
       evidenceReference: 'Observability page, P1.1 metrics and blocker matrix',
       status: 'Public prototype approved; comparison and benchmark remain blocked',
       publicSafeResult: 'We can show the value of data collection while being explicit about unknowns, blockers, and the next evidence step.',
-      caveat: 'This is evidence discipline and communication maturity, not benchmark proof, production monitoring, or model superiority.',
+      caveat: 'Sample size is small. Join, routing, provenance, and decision metadata are still incomplete. No live observability platform, benchmark, or provider comparison is claimed.',
       details: {
         whyItMatters: 'The observability work now helps the team explain what the data supports and what it still cannot support. That gives sponsors a clearer view of what exists, what is missing, and why the next collection step matters.',
         evidence: [
