@@ -7,7 +7,7 @@ import { Badge } from "@/components/ui/badge"
 import { ChevronDown, ChevronRight } from "lucide-react"
 
 export default function AchievementsPage() {
-  const [expandedDays, setExpandedDays] = useState<Set<string>>(new Set(['2026-06-02', '2026-05-31', '2026-05-29', '2026-05-28', '2026-05-26', '2026-05-25']))
+  const [expandedDays, setExpandedDays] = useState<Set<string>>(new Set(['2026-06-02']))
 
   const toggleDay = (date: string) => {
     const newExpanded = new Set(expandedDays)
@@ -20,6 +20,36 @@ export default function AchievementsPage() {
   }
 
   const achievements = [
+    {
+      date: '2026-06-02',
+      headline: 'Validation-Led Data Protection Readiness Capability Built',
+      summary: 'Built a reusable validation-led data protection readiness skill pack covering sensitive-data taxonomy facilitation, custom recognizer proof-of-capability, validation methodology, claim-boundary discipline, and technical stakeholder Q&A readiness.',
+      proofType: 'skill development, reusable capability framework',
+      evidenceReference: 'KB achievement candidate 2026-06-02-validation-led-data-protection-readiness.md, commit 907bac9',
+      status: 'Completed for internal capability development; external use gated by discovery and alignment check',
+      publicSafeResult: 'Built reusable patterns for data protection readiness discussions while preserving clear boundaries: synthetic proof only, no production-readiness claim, no client-specific validation claim, and no compliance-by-default claim.',
+      caveat: 'This is a skill/capability achievement, not a production solution. It demonstrates reusable readiness patterns and validation discipline, not client-specific deployment readiness, production-grade capability, or compliance certification.',
+      details: {
+        whyItMatters: 'Enterprise AI adoption discussions often require data protection readiness capabilities. This achievement demonstrates the ability to facilitate taxonomy workshops, build custom recognizer proofs, maintain validation discipline, and prepare for technical stakeholder questions—while preserving professional boundaries that prevent overstatement of capability scope.',
+        evidence: [
+          'Built a synthetic custom-recognizer proof-of-capability',
+          'Built a taxonomy workshop dry run and decision-log structure',
+          'Built claim boundaries for safe / forbidden / validation-dependent statements',
+          'Built technical stakeholder Q&A preparation',
+          'Removed unsupported benchmark-style wording',
+          'Parked external material creation until discovery and alignment are complete'
+        ],
+        skillsDemonstrated: [
+          'Outcome-focused skill development',
+          'Validation-led discussion readiness',
+          'Claim-boundary discipline framework',
+          'Technical stakeholder Q&A preparation',
+          'Professional boundary preservation'
+        ],
+        impact: 'Improves readiness for enterprise AI/data-protection discussions with a confidence level of 0.82 for validation-led discussion, reflecting synthetic proof validation, internal capability development, and reusable pattern development—not production validation, client-specific validation, or compliance certification.'
+      },
+      tags: ['Skill Development', 'Data Protection', 'Validation', 'Enterprise AI', 'Governance']
+    },
     {
       date: '2026-06-02',
       headline: 'Evidence Discipline Milestone — Observability Lesson Made Public',
