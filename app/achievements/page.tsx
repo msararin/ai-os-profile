@@ -573,7 +573,7 @@ export default function AchievementsPage() {
 
           {achievements.map((achievement) => (
             <Card 
-              key={achievement.date} 
+              key={`${achievement.date}-${achievement.headline}`}
               className="mb-6 border-[#1F3A60]/20 hover:border-[#00B494] transition-colors"
             >
               {/* Day Header - Clickable */}
