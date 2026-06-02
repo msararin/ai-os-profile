@@ -80,6 +80,40 @@ export default function KnowledgeSharingPage() {
           </p>
         </div>
 
+        <section className="mb-8 rounded-lg border border-[#1F3A60]/20 bg-[#1F3A60]/5 p-5">
+          <h2 className="text-xl font-semibold text-[#1F3A60]">
+            Featured lesson: Observability is evidence, not a claim
+          </h2>
+          <p className="mt-3 text-sm text-muted-foreground">
+            AIOS observability work now shows what the data proves, what it does not prove, and what must
+            improve next. That means the team can say what it knows, what it does not know yet, and how to
+            get better without turning the page into a benchmark dashboard or a fake live-monitoring story.
+          </p>
+          <div className="mt-4 grid gap-4 md:grid-cols-3">
+            <div className="rounded-md border bg-background p-4">
+              <h3 className="font-medium text-foreground">What we have</h3>
+              <p className="mt-2 text-sm text-muted-foreground">
+                A public-safe evidence surface, explicit under-construction status, and a clearer distinction between
+                evidence, observation, and decision proof.
+              </p>
+            </div>
+            <div className="rounded-md border bg-background p-4">
+              <h3 className="font-medium text-foreground">What we know we do not know</h3>
+              <p className="mt-2 text-sm text-muted-foreground">
+                The data is not yet benchmark-ready, comparison-ready, or production-observability proof.
+                Join, routing, provenance, and decision metadata are still incomplete.
+              </p>
+            </div>
+            <div className="rounded-md border bg-background p-4">
+              <h3 className="font-medium text-foreground">What to do better</h3>
+              <p className="mt-2 text-sm text-muted-foreground">
+                Keep improving joinability, provenance, and decision mapping, then use those records to explain
+                value before expanding any dashboard or comparison surface.
+              </p>
+            </div>
+          </div>
+        </section>
+
         <section className="mb-8 rounded-lg border bg-muted/30 p-4">
           <h2 className="text-lg font-semibold">LinkedIn knowledge sharing archive</h2>
           <p className="mt-2 text-sm text-muted-foreground">
