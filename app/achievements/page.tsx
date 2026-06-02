@@ -22,6 +22,39 @@ export default function AchievementsPage() {
   const achievements = [
     {
       date: '2026-06-02',
+      headline: 'Historical Benchmark Evidence Reconciled Under Real-World Data Constraints',
+      summary: 'Turned a low-quality, fragmented historical evidence set into a normalized review corpus without overstating what the data can prove. Started from a surprising finding: the local observability SQLite slice contained only 10 records despite prior benchmark capture intent. Built a reconciliation path that normalized 149 supported records across disconnected historical sources while preserving missingness and routing assumptions into review.',
+      proofType: 'evidence quality, data engineering, decision support',
+      evidenceReference: 'KB achievement candidate 2026-06-02-historical-benchmark-evidence-reconciliation.md, Evidence Readiness Dashboard',
+      status: 'Completed for internal historical-corpus dry run; comparison readiness remains blocked',
+      publicSafeResult: 'Built a reviewable baseline from real messy evidence (10 SQLite records → 149 normalized records) with explicit boundaries: usable for internal evidence-quality review and future collection design, not yet valid for provider-versus-Codex comparison.',
+      caveat: 'This is an internal benchmark-readiness and evidence-quality achievement. It is not provider-versus-Codex comparison proof, model-superiority claim, cost-saving claim, production observability claim, or proof that inferred values are measured facts.',
+      details: {
+        whyItMatters: 'Real-world evidence collection produces sparse, heterogeneous data. This achievement demonstrates the ability to normalize what can be supported, preserve what remains unknown, and attach reviewable assumptions where a bounded working interpretation is useful—creating a better foundation for future benchmark collection without converting inference into measurement.',
+        evidence: [
+          'Reconciled historical evidence across SQLite, JSONL, CSV, and KB trace formats through a read-only normalization path',
+          'Normalized 149 records while leaving source files unchanged',
+          'Classified 117 records with model attribution and 101 records with token evidence',
+          'Rejected 20 unsupported rows rather than silently coercing them into benchmark evidence',
+          'Added explicit assumption records with source refs, source availability, accuracy confidence, remarks, validity period, reviewer status, and supersession support',
+          'Kept JSONL as canonical output with rebuildable SQLite for review',
+          'Preserved privacy boundaries by excluding raw prompt, raw response, private note body, and local user-path leakage',
+          'Evidence snapshot: Initial 10 SQLite records → 149 normalized corpus, 117 model-attributed, 101 with token evidence, 2 with actual cost, 146 unresolved joins, 0 comparison-ready cohorts'
+        ],
+        skillsDemonstrated: [
+          'Evidence normalization under real-world data constraints',
+          'Missingness preservation and explicit assumption management',
+          'Read-only reconciliation without source modification',
+          'Privacy boundary enforcement in evidence corpus',
+          'Rejection discipline (rejected 20 unsupported rows)',
+          'Future collection design informed by real gaps'
+        ],
+        impact: 'The resulting corpus is usable for internal evidence-quality review and informs future collection design. Real-world constraint learned: realistic records existed across sources with different schemas, different evidence grains, incomplete join IDs, and mixed provenance quality. The practical improvement was to normalize what can be supported, preserve what remains unknown, and attach reviewable assumptions where a bounded working interpretation is useful.'
+      },
+      tags: ['Evidence Quality', 'Data Engineering', 'Benchmark Readiness', 'Decision Support', 'AIOS Cockpit']
+    },
+    {
+      date: '2026-06-02',
       headline: 'Validation-Led Data Protection Readiness Capability Built',
       summary: 'Built a reusable validation-led data protection readiness skill pack covering sensitive-data taxonomy facilitation, custom recognizer proof-of-capability, validation methodology, claim-boundary discipline, and technical stakeholder Q&A readiness.',
       proofType: 'skill development, reusable capability framework',
