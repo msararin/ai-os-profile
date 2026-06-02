@@ -44,13 +44,13 @@ const evidenceInventory = [
   },
   {
     value: "60 + 90",
-    label: "Hermes session inventory records",
+    label: "Historical session inventory records",
     detail: "Two historical local session inventories. Not normalized task comparisons.",
     status: "Historical snapshot",
   },
   {
     value: "1",
-    label: "Controlled provider probe receipt",
+    label: "Controlled proof-of-capture receipt",
     detail: "Single retained receipt proving a capture path, not route-wide cost or performance.",
     status: "Verified as of 2026-06-01",
   },
@@ -58,7 +58,7 @@ const evidenceInventory = [
 
 const historicalMeasurements = [
   {
-    name: "Hermes main store",
+    name: "Historical session inventory A",
     period: "2026-05-09 to 2026-05-23",
     sessions: "60",
     apiCalls: "1,066",
@@ -67,7 +67,7 @@ const historicalMeasurements = [
     derivedEstimatedCost: "Approximately $34",
   },
   {
-    name: "OpenRouter Sonnet stage-manager profile",
+    name: "Historical session inventory B",
     period: "2026-05-21 to 2026-05-31",
     sessions: "90",
     apiCalls: "2,688",
@@ -284,15 +284,15 @@ export default function ObservabilityPage() {
           <div>
             <div className="flex flex-wrap items-center gap-3">
               <h2 className="text-xl font-semibold tracking-tight text-foreground">
-                Historical Measurement Snapshot
+                Historical Session Snapshot
               </h2>
               <Badge variant="outline">Historical session inventory</Badge>
               <Badge variant="outline">Derived estimates</Badge>
             </div>
             <p className="mt-2 max-w-4xl text-sm leading-6 text-muted-foreground">
               Historical numbers exist, but they are not yet normalized into apples-to-apples
-              performance claims. These two inventories make the available evidence visible while
-              stating the limits directly.
+              performance claims. These inventories make the available evidence visible while
+              stating the limits directly. Specific route labels remain in source-of-truth docs.
             </p>
             <div className="mt-4 grid gap-3 lg:grid-cols-2">
               {historicalMeasurements.map((measurement) => (
