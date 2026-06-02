@@ -1,25 +1,5 @@
 import { PageLayout } from "@/components/page-layout"
 
-const publicLessonPosts = [
-  {
-    id: "observability-lesson-2026-06-02",
-    date: "Jun 2, 2026",
-    title: "Observability is evidence, not a claim",
-    scope: "AIOS observability / evidence discipline",
-    status: "public-safe learning note",
-    summary:
-      "AIOS observability work now shows what the data proves, what it does not prove, and what must improve next.",
-    proves:
-      "A public-safe evidence surface, explicit under-construction status, and a clearer distinction between evidence, observation, and decision proof.",
-    doesNotProve:
-      "The data is not yet benchmark-ready, comparison-ready, or production-observability proof. Join, routing, provenance, and decision metadata are still incomplete.",
-    better:
-      "Keep improving joinability, provenance, and decision mapping, then use those records to explain value before expanding any dashboard or comparison surface.",
-    lessonStatus:
-      "Historically verified as a public-safe operating pattern. No comparison between providers is made or implied here.",
-  },
-]
-
 const linkedInPosts = [
   {
     urn: "urn:li:share:7467215931073654784",
@@ -107,18 +87,6 @@ export default function KnowledgeSharingPage() {
         </div>
 
         <section className="mb-8 rounded-lg border bg-muted/30 p-4">
-          <h2 className="text-lg font-semibold">Public lesson archive</h2>
-          <p className="mt-2 text-sm text-muted-foreground">
-            This section archives public lessons in the same page structure as the rest of Knowledge Sharing.
-            Each card captures a learning claim, what it proves, what it does not prove, and how to do better.
-          </p>
-          <p className="mt-3 text-sm font-medium text-muted-foreground">
-            Archive status: public learning notes through 2 Jun 2026. Internal Signal Studio drafts and learning
-            records are not exposed on this public page.
-          </p>
-        </section>
-
-        <section className="mb-8 rounded-lg border bg-muted/30 p-4">
           <h2 className="text-lg font-semibold">LinkedIn knowledge sharing archive</h2>
           <p className="mt-2 text-sm text-muted-foreground">
             Embedded LinkedIn posts are shown below. If an embed is blocked by the local browser,
@@ -126,47 +94,12 @@ export default function KnowledgeSharingPage() {
             public Knowledge Sharing area and each card identifies the post date.
           </p>
           <p className="mt-3 text-sm font-medium text-muted-foreground">
-            Archive status: public LinkedIn posts through 29 May 2026. Internal Signal Studio drafts and learning
+            Archive status: public LinkedIn posts through 2 Jun 2026. Internal Signal Studio drafts and learning
             records are not exposed on this public page.
           </p>
         </section>
 
         <div className="grid gap-8">
-          {publicLessonPosts.map((post) => (
-            <article key={post.id} className="border rounded-lg p-4 bg-card">
-              <div className="flex items-center justify-between mb-4">
-                <div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#00B494]">
-                    Public Lesson Archive
-                  </p>
-                  <h2 className="text-lg font-medium text-foreground mt-1">
-                    {post.title}
-                  </h2>
-                  <p className="text-sm text-muted-foreground mt-1">
-                    {post.date} · Scope: {post.scope} · Status: {post.status}
-                  </p>
-                </div>
-              </div>
-              <div className="space-y-4 text-sm text-muted-foreground">
-                <p>{post.summary}</p>
-                <div className="grid gap-4 md:grid-cols-3">
-                  <div className="rounded-md border bg-background p-4">
-                    <h3 className="font-medium text-foreground">What this proves</h3>
-                    <p className="mt-2">{post.proves}</p>
-                  </div>
-                  <div className="rounded-md border bg-background p-4">
-                    <h3 className="font-medium text-foreground">What this does not prove</h3>
-                    <p className="mt-2">{post.doesNotProve}</p>
-                  </div>
-                  <div className="rounded-md border bg-background p-4">
-                    <h3 className="font-medium text-foreground">How to do better</h3>
-                    <p className="mt-2">{post.better}</p>
-                  </div>
-                </div>
-                <p className="text-xs">{post.lessonStatus}</p>
-              </div>
-            </article>
-          ))}
           {linkedInPosts.map((post) => (
             <article key={post.urn} className="border rounded-lg p-4 bg-card">
               <div className="flex items-center justify-between mb-4">
