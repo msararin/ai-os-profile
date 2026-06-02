@@ -21,33 +21,6 @@ export default function AchievementsPage() {
 
   const achievements = [
     {
-      date: '2026-06-02',
-      headline: 'Observability Lesson Learned — Evidence First, Unknowns Explicit',
-      summary: 'Clarified that observability is a visible evidence surface, not a live benchmark or production monitoring claim. The team can now show what the data proves, what it does not prove, and what must be improved next.',
-      proofType: 'public-safe prototype surface, evidence discipline update',
-      evidenceReference: 'Observability page update and evidence-status wording revision',
-      status: 'Public prototype approved; benchmark and comparison remain blocked',
-      publicSafeResult: 'We can now explain what we know, what we do not know, and how to improve the evidence path without pretending to have a benchmark-ready system.',
-      caveat: 'This is a knowledge and governance achievement, not a claim of production observability maturity or comparative model superiority.',
-      details: {
-        whyItMatters: 'The observability work turned unknowns into explicit blockers. That helps the team communicate evidence quality, missingness, and next actions without overclaiming.',
-        evidence: [
-          'Public surface now frames observability as evidence discipline, not live monitoring',
-          'The page explains what P1.1 proves and what remains blocked',
-          'The under-construction / historically verified status avoids stale or fake-finished wording',
-          'Future comparison candidates remain explicitly gated behind join, routing, usage, and decision metadata'
-        ],
-        skillsDemonstrated: [
-          'Evidence-first storytelling',
-          'Claim boundary control',
-          'Knowing what the team does not know yet',
-          'Turning missingness into a next-action plan'
-        ],
-        impact: 'Improves the public story: AIOS is not pretending to be benchmark-ready; it is showing disciplined evidence construction and continuous improvement.'
-      },
-      tags: ['Observability', 'Evidence', 'Knowledge Sharing', 'Governance']
-    },
-    {
       date: '2026-05-31',
       headline: 'AIOS Multi-Session Repo Coordination Pattern',
       summary: 'Identified that AIOS work now behaves like a multi-session delivery system rather than a single chat. Added a pre-action coordination rule requiring repo, branch, scope, WIP ownership, and release permissions to be declared before writer actions.',
