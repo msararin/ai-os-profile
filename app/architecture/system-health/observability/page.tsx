@@ -54,6 +54,12 @@ const evidenceInventory = [
     detail: "Single retained receipt proving a capture path, not route-wide cost or performance.",
     status: "Verified as of 2026-06-01",
   },
+  {
+    value: "3",
+    label: "Evidence Readiness Readout",
+    detail: "Historical Codex receipts reviewed, classified as semi_structured backfill, and excluded by design. No usage/cost data invented.",
+    status: "Verified as of 2026-06-03",
+  },
 ]
 
 const historicalMeasurements = [
@@ -100,7 +106,7 @@ const evidenceValueSections = [
     source: "P1.1 new-record coverage and blocker matrix",
     confidence: "High",
     caveat:
-      "New-record join keys, routing metadata, usage provenance, and decision metadata are still incomplete.",
+      "New-record join keys, routing metadata, usage provenance, and decision metadata are still incomplete. Current historical records are not fixable into comparison evidence. They are ledger entries, not comparison candidates.",
     decision: "Blocks operational comparison, cost claims, and live performance interpretation.",
     next: "Capture joinable IDs, routing provenance, and decision metadata on new records only.",
   },
@@ -118,6 +124,7 @@ const futureComparisonGuidance = [
   "ChatX remains rejected as a reliable baseline.",
   "OpenRouter profile vs later Codex receipts remains a future candidate only.",
   "No benchmark claim is made until joinability, routing provenance, usage provenance, and decision metadata are present.",
+  "Future comparison must use new v0.7 receipts only. Historical backfill records remain excluded.",
 ]
 
 export default function ObservabilityPage() {
@@ -184,6 +191,11 @@ export default function ObservabilityPage() {
               </p>
               <p className="mt-3">
                 No comparison between providers is made or implied on this page.
+              </p>
+              <p className="mt-3">
+                <span className="font-medium text-foreground">Latest update (2026-06-03):</span>{" "}
+                Evidence Readiness layer is now operational as a JSONL readout. Schema v0.7 is implemented and frozen. 
+                Historical Codex receipts are classified as semi_structured backfill records and excluded from comparison by design.
               </p>
               <div className="mt-4 grid gap-4 lg:grid-cols-3">
                 {evidenceValueSections.map((section) => (
