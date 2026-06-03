@@ -7,7 +7,7 @@ import { Badge } from "@/components/ui/badge"
 import { ChevronDown, ChevronRight } from "lucide-react"
 
 export default function AchievementsPage() {
-  const [expandedDays, setExpandedDays] = useState<Set<string>>(new Set(['2026-06-02']))
+  const [expandedDays, setExpandedDays] = useState<Set<string>>(new Set(['2026-06-03']))
 
   const toggleDay = (date: string) => {
     const newExpanded = new Set(expandedDays)
@@ -20,6 +20,40 @@ export default function AchievementsPage() {
   }
 
   const achievements = [
+    {
+      date: '2026-06-03',
+      headline: 'AI Usage Ledger & Evidence Boundary Design',
+      summary: 'AI work now happens across multiple tools, sessions, models, and providers. Every session may consume tokens, cost, and attention, but not every session produces evidence strong enough for benchmark or routing decisions. Designed a governance layer that separates general AI usage, traceable evidence, dashboard-grade records, and future comparison-ready cohorts.',
+      proofType: 'evidence discipline, system architecture, governance design',
+      evidenceReference: 'docs/aios-evidence-layer-policy-v0.1.md, docs/aios-evidence-layer-receipt-schema-alignment.md',
+      status: 'Evidence discipline milestone released; schema implementation pending approval',
+      publicSafeResult: 'Designed boundaries between AI usage (happened), traceable evidence (structured), dashboard-grade records (validated), and comparison-ready cohorts (provenance complete). This prevents incomplete logs or weak telemetry from becoming overconfident benchmark claims.',
+      caveat: 'This is not benchmark proof, model superiority proof, cost-saving proof, or provider comparison. It is the evidence discipline needed before those claims can be trusted.',
+      details: {
+        whyItMatters: 'Real-world AI operations are distributed across ChatGPT, Codex, Hermes, OpenRouter, local workers, dashboards, and implementation sessions. Usage exists across all of them, but evidence quality is uneven. This governance layer helps us see what is known, what is missing, and what assumptions still need validation before using data for routing or performance decisions.',
+        evidence: [
+          'AIOS Evidence Layer Policy v0.1 documented (12KB policy)',
+          'Receipt schema alignment documented with OpenTelemetry GenAI conventions (vocabulary only, no infrastructure)',
+          'Three capture quality levels defined: structured (optimize-worker, instrumented), semi-structured (manual logs, session summaries), uncaptured (acknowledged but minimal)',
+          'Backfill policy established: CASE-002 and historical data labeled as historical/proxy/non-comparative, excluded from comparison cohort',
+          'Implementation priorities documented: P0 (local JSONL receipts), P0.5 (OTel naming vocabulary), P1 (SQLite read-only index, deferred), P2 (Phoenix local, deferred), P3 (Langfuse/LiteLLM, deferred)',
+          'Stop conditions enforced: no external observability tools, no paid SaaS, no dashboard project, no premature comparison claims',
+          'OpenRouter profile collector error-path validation passed (Phase 2a complete)',
+          'Success-path validation blocked by provider/key issue (Phase 2b deferred)',
+          'Future collection rules documented in evidence-aware workflow'
+        ],
+        skillsDemonstrated: [
+          'Evidence boundary design for distributed AI operations',
+          'Multi-level capture quality classification',
+          'OpenTelemetry GenAI semantic convention alignment (vocabulary only)',
+          'Backfill exclusion policy for non-comparison data',
+          'Conservative evidence discipline (defer tools until justified)',
+          'JSONL-first source-of-truth architecture'
+        ],
+        impact: 'The evidence layer now distinguishes between "AI work that happened" (usage ledger) and "evidence strong enough for comparison" (comparison-ready cohort). This prevents silent failures, invented zeros, and premature benchmark claims. The system can now acknowledge weakly captured sessions without treating them as comparison-ready, creating a foundation for future evidence-aware routing and performance decisions.'
+      },
+      tags: ['Evidence Discipline', 'System Architecture', 'Governance', 'AIOS Evidence Layer', 'OpenTelemetry']
+    },
     {
       date: '2026-06-02',
       headline: 'Historical Benchmark Evidence Reconciled Under Real-World Data Constraints',
