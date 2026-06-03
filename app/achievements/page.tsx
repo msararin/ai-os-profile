@@ -3,8 +3,9 @@
 import { useState } from "react"
 import { PageLayout } from "@/components/page-layout"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { ChevronDown, ChevronRight } from "lucide-react"
+import { ChevronDown, ChevronRight, Download } from "lucide-react"
 
 export default function AchievementsPage() {
   const [expandedDays, setExpandedDays] = useState<Set<string>>(new Set(['2026-06-03']))
@@ -17,6 +18,17 @@ export default function AchievementsPage() {
       newExpanded.add(date)
     }
     setExpandedDays(newExpanded)
+  }
+
+  const dryRunProfile = {
+    title: 'CASE-002 Retail Trustworthy Answers Dry-Run Kit',
+    description: 'Built a reusable simulated-company dry-run kit for Thai retail AI adoption, including legal/finance operating evidence, regulatory boundary references, synthetic artifacts, stakeholder reveals, and scored dry-run transcripts.',
+    boundary: 'Synthetic dry-run profile only. Not real company data, not client evidence, and not production compliance output.',
+    status: 'Completed local checkpoint',
+    readiness: 'Reusable dry-run kit ready',
+    retrieval: 'Held intentionally',
+    production: 'Not claimed',
+    buttonHref: '/case-002-dry-run-profile.pdf',
   }
 
   const achievements = [
@@ -679,6 +691,63 @@ export default function AchievementsPage() {
               Latest validated milestone: AIOS multi-session repo coordination pattern, 31 May 2026
             </p>
           </div>
+        </div>
+      </section>
+
+      {/* Featured Achievement */}
+      <section className="py-12 bg-muted/30">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+          <Card className="border-[#1F3A60]/20">
+            <CardHeader>
+              <div className="flex flex-wrap items-start justify-between gap-3">
+                <div>
+                  <div className="text-sm font-medium uppercase tracking-wide text-[#00B494]">
+                    Achievement Cockpit
+                  </div>
+                  <CardTitle className="mt-2 text-2xl text-[#1F3A60]">
+                    {dryRunProfile.title}
+                  </CardTitle>
+                </div>
+                <Badge variant="outline" className="bg-[#00B494]/10 text-[#00B494] border-[#00B494]/30">
+                  {dryRunProfile.readiness}
+                </Badge>
+              </div>
+            </CardHeader>
+            <CardContent className="space-y-5">
+              <p className="text-base text-muted-foreground">
+                {dryRunProfile.description}
+              </p>
+              <div className="grid gap-3 text-sm text-muted-foreground sm:grid-cols-2">
+                <div>
+                  <span className="font-medium text-foreground">Status:</span>{" "}
+                  {dryRunProfile.status}
+                </div>
+                <div>
+                  <span className="font-medium text-foreground">Retrieval/red-team:</span>{" "}
+                  {dryRunProfile.retrieval}
+                </div>
+                <div className="sm:col-span-2">
+                  <span className="font-medium text-foreground">Boundary:</span>{" "}
+                  {dryRunProfile.boundary}
+                </div>
+                <div>
+                  <span className="font-medium text-foreground">Production/client readiness:</span>{" "}
+                  {dryRunProfile.production}
+                </div>
+              </div>
+              <div className="flex flex-wrap items-center gap-3">
+                <Button asChild size="lg">
+                  <a href={dryRunProfile.buttonHref} download>
+                    <Download className="mr-2 h-4 w-4" />
+                    Download Dry-Run Profile
+                  </a>
+                </Button>
+                <p className="text-xs text-muted-foreground">
+                  Synthetic company profile used to test workflow, routing, and auditability. Not real customer or company data.
+                </p>
+              </div>
+            </CardContent>
+          </Card>
         </div>
       </section>
 
