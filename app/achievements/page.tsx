@@ -20,18 +20,39 @@ export default function AchievementsPage() {
     setExpandedDays(newExpanded)
   }
 
-  const dryRunProfile = {
-    title: 'CASE-002 Retail Trustworthy Answers Dry-Run Kit',
-    description: 'Built a reusable simulated-company dry-run kit for Thai retail AI adoption, including legal/finance operating evidence, regulatory boundary references, synthetic artifacts, stakeholder reveals, and scored dry-run transcripts.',
-    boundary: 'Synthetic dry-run profile only. Not real company data, not client evidence, and not production compliance output.',
-    status: 'Completed local checkpoint',
-    readiness: 'Reusable dry-run kit ready',
-    retrieval: 'Held intentionally',
-    production: 'Not claimed',
-    buttonHref: '/case-002-dry-run-profile.pdf',
-  }
-
   const achievements = [
+    {
+      date: '2026-06-03',
+      headline: 'CASE-002 Retail Trustworthy Answers Dry-Run Kit',
+      summary: 'Built a reusable simulated-company dry-run kit for Thai retail AI adoption, including legal/finance operating evidence, regulatory boundary references, synthetic artifacts, stakeholder reveals, and scored dry-run transcripts.',
+      proofType: 'evidence-backed simulation, dry-run governance, synthetic operating artifacts',
+      evidenceReference: 'CASE-002 dry-run profile, Thai legal/finance evidence pack, scored dry-run transcripts',
+      status: 'Reusable dry-run kit ready; retrieval/red-team held intentionally',
+      publicSafeResult: 'A downloadable dry-run profile supports workflow, routing, and auditability testing without implying production, client, or compliance readiness.',
+      caveat: 'Synthetic dry-run profile only. Not real company data, not client evidence, and not production compliance output.',
+      downloadHref: '/case-002-dry-run-profile.pdf',
+      details: {
+        whyItMatters: 'This achievement shows that Thai retail AI adoption can be tested with a reusable simulated-company kit instead of a loose collection of notes. The kit combines regulatory boundaries, operating evidence, synthetic artifacts, stakeholder reveals, and scored transcripts so the system can be evaluated on routing and auditability, not just wording quality.',
+        evidence: [
+          'Thai regulatory boundary pack for PDPA, AI governance, tax, VAT, import, disclosure, accounting, and labor',
+          'Legal and finance operating evidence packs separated from authority sources',
+          'Snapshot-backed source register for the core boundary material',
+          'Synthetic legal and finance artifacts with route-only behavior',
+          'Stakeholder reveals for DPO, Legal, Finance, Tax, Internal Audit, Procurement, IT, Business Owner, CFO, and Compliance',
+          'Two scored dry-run transcripts, including the AP/vendor-master mismatch slice',
+          'Compact downloadable dry-run profile for cockpit use'
+        ],
+        skillsDemonstrated: [
+          'Evidence-backed simulation design',
+          'Boundary-safe workflow routing',
+          'Auditability and missing-facts handling',
+          'Synthetic company profile construction',
+          'Reusable dry-run kit packaging'
+        ],
+        impact: 'The kit can be reused to exercise future CASE-002 dry runs without rebuilding the evidence base. It supports local review, partner discussion, and internal capability demonstration while staying explicit about what it does not prove.'
+      },
+      tags: ['Evidence Discipline', 'Dry-Run Kit', 'AI Governance', 'Thai Retail', 'Legal/Finance Boundary']
+    },
     {
       date: '2026-06-03',
       headline: 'AI Usage Ledger & Evidence Boundary Design',
@@ -694,63 +715,6 @@ export default function AchievementsPage() {
         </div>
       </section>
 
-      {/* Featured Achievement */}
-      <section className="py-12 bg-muted/30">
-        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-          <Card className="border-[#1F3A60]/20">
-            <CardHeader>
-              <div className="flex flex-wrap items-start justify-between gap-3">
-                <div>
-                  <div className="text-sm font-medium uppercase tracking-wide text-[#00B494]">
-                    Achievement Cockpit
-                  </div>
-                  <CardTitle className="mt-2 text-2xl text-[#1F3A60]">
-                    {dryRunProfile.title}
-                  </CardTitle>
-                </div>
-                <Badge variant="outline" className="bg-[#00B494]/10 text-[#00B494] border-[#00B494]/30">
-                  {dryRunProfile.readiness}
-                </Badge>
-              </div>
-            </CardHeader>
-            <CardContent className="space-y-5">
-              <p className="text-base text-muted-foreground">
-                {dryRunProfile.description}
-              </p>
-              <div className="grid gap-3 text-sm text-muted-foreground sm:grid-cols-2">
-                <div>
-                  <span className="font-medium text-foreground">Status:</span>{" "}
-                  {dryRunProfile.status}
-                </div>
-                <div>
-                  <span className="font-medium text-foreground">Retrieval/red-team:</span>{" "}
-                  {dryRunProfile.retrieval}
-                </div>
-                <div className="sm:col-span-2">
-                  <span className="font-medium text-foreground">Boundary:</span>{" "}
-                  {dryRunProfile.boundary}
-                </div>
-                <div>
-                  <span className="font-medium text-foreground">Production/client readiness:</span>{" "}
-                  {dryRunProfile.production}
-                </div>
-              </div>
-              <div className="flex flex-wrap items-center gap-3">
-                <Button asChild size="lg">
-                  <a href={dryRunProfile.buttonHref} download>
-                    <Download className="mr-2 h-4 w-4" />
-                    Download Dry-Run Profile
-                  </a>
-                </Button>
-                <p className="text-xs text-muted-foreground">
-                  Synthetic company profile used to test workflow, routing, and auditability. Not real customer or company data.
-                </p>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-      </section>
-
       {/* Timeline */}
       <section className="py-16 bg-background">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
@@ -878,6 +842,17 @@ export default function AchievementsPage() {
                         {achievement.details.impact}
                       </p>
                     </div>
+
+                    {"downloadHref" in achievement && achievement.downloadHref && (
+                      <div className="flex justify-end pt-2">
+                        <Button asChild size="sm" variant="outline">
+                          <a href={achievement.downloadHref} download>
+                            <Download className="mr-2 h-4 w-4" />
+                            Download Dry-Run Profile
+                          </a>
+                        </Button>
+                      </div>
+                    )}
                   </div>
                 </CardContent>
               )}
