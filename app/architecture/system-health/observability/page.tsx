@@ -302,9 +302,9 @@ export default function ObservabilityPage() {
               <Badge variant="outline">Derived estimates</Badge>
             </div>
             <p className="mt-2 max-w-4xl text-sm leading-6 text-muted-foreground">
-              Historical numbers exist, but they are not yet normalized into apples-to-apples
-              performance claims. These inventories make the available evidence visible while
-              stating the limits directly. Specific route labels remain in source-of-truth docs.
+              Inventory A and Inventory B are historical usage inventories, not benchmark cohorts.
+              They show usage scale and telemetry gaps from overlapping local usage windows, but
+              they do not explain why the observed differences occurred.
             </p>
             <div className="mt-4 grid gap-3 lg:grid-cols-2">
               {historicalMeasurements.map((measurement) => (
@@ -352,9 +352,15 @@ export default function ObservabilityPage() {
               ))}
             </div>
             <p className="mt-4 max-w-4xl text-xs leading-5 text-muted-foreground">
-              These are historical session inventories and derived estimates. They are not
-              task-normalized cost, billed spend, or proof that one workflow was faster or cheaper
-              than another.
+              These snapshots should not be read as before/after evidence, Hermes-vs-Codex
+              comparison, provider efficiency proof, cost-saving evidence, or performance proof.
+              The date ranges overlap, tasks were not normalized, actual billed cost is
+              unavailable, and records do not reliably join session, task, route, model,
+              validation, and outcome. Observed differences are diagnostic signals only: Inventory
+              A has higher input-token volume, while Inventory B has more sessions, API calls,
+              output tokens, and a higher derived cost estimate. Their value is diagnostic: future
+              comparison requires v0.7 receipts, join keys, routing metadata, usage provenance,
+              pricing source, validation evidence, and decision metadata.
             </p>
           </div>
 
