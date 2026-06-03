@@ -129,7 +129,7 @@ export default function EvidenceReadinessPage() {
                   Evidence status
                 </p>
                 <p className="mt-1 text-lg font-semibold text-foreground">
-                  Under construction / historically verified
+                  Evidence Readiness layer operational / comparison blocked
                 </p>
                 <p className="mt-2 text-sm text-muted-foreground">
                   Source of truth: Robert KB + Git. Refresh cadence: manual
@@ -206,7 +206,7 @@ export default function EvidenceReadinessPage() {
             </CardHeader>
             <CardContent className="space-y-3 text-sm text-muted-foreground">
               <p>
-                As-of timestamp: <span className="font-medium text-foreground">2026-06-02 04:00 ICT</span>
+                As-of timestamp: <span className="font-medium text-foreground">2026-06-03</span>
               </p>
               <p>
                 Refresh cadence: <span className="font-medium text-foreground">manual release snapshot only</span>
@@ -224,9 +224,100 @@ export default function EvidenceReadinessPage() {
 
           <Card>
             <CardHeader>
+              <CardTitle>Latest Evidence Readiness Progress</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <p className="text-sm text-muted-foreground">
+                The readout now separates historical telemetry from comparison-ready evidence.
+              </p>
+              <div className="space-y-2 text-sm text-muted-foreground">
+                <p className="font-medium text-foreground">Completed:</p>
+                <ul className="space-y-1.5 pl-4">
+                  <li className="flex gap-2">
+                    <span className="mt-1 h-2 w-2 shrink-0 rounded-full bg-primary" />
+                    <span>Schema v0.7 implemented and frozen</span>
+                  </li>
+                  <li className="flex gap-2">
+                    <span className="mt-1 h-2 w-2 shrink-0 rounded-full bg-primary" />
+                    <span>JSONL readout tool created and working</span>
+                  </li>
+                  <li className="flex gap-2">
+                    <span className="mt-1 h-2 w-2 shrink-0 rounded-full bg-primary" />
+                    <span>Historical Codex receipts reclassified as semi_structured backfill records</span>
+                  </li>
+                  <li className="flex gap-2">
+                    <span className="mt-1 h-2 w-2 shrink-0 rounded-full bg-primary" />
+                    <span>3 historical receipts excluded from comparison by design</span>
+                  </li>
+                  <li className="flex gap-2">
+                    <span className="mt-1 h-2 w-2 shrink-0 rounded-full bg-primary" />
+                    <span>No usage or cost data was invented</span>
+                  </li>
+                  <li className="flex gap-2">
+                    <span className="mt-1 h-2 w-2 shrink-0 rounded-full bg-primary" />
+                    <span>Comparison remains blocked until future records meet evidence contract</span>
+                  </li>
+                </ul>
+              </div>
+              <div className="space-y-2 text-sm text-muted-foreground">
+                <p className="font-medium text-foreground">Current value:</p>
+                <ul className="space-y-1.5 pl-4">
+                  <li className="flex gap-2">
+                    <span className="mt-1 h-2 w-2 shrink-0 rounded-full bg-muted-foreground" />
+                    <span>Telemetry is no longer treated as automatically usable</span>
+                  </li>
+                  <li className="flex gap-2">
+                    <span className="mt-1 h-2 w-2 shrink-0 rounded-full bg-muted-foreground" />
+                    <span>Historical records clearly separated from future evidence cohorts</span>
+                  </li>
+                  <li className="flex gap-2">
+                    <span className="mt-1 h-2 w-2 shrink-0 rounded-full bg-muted-foreground" />
+                    <span>Missingness is visible instead of hidden</span>
+                  </li>
+                  <li className="flex gap-2">
+                    <span className="mt-1 h-2 w-2 shrink-0 rounded-full bg-muted-foreground" />
+                    <span>Fake completeness is prevented</span>
+                  </li>
+                </ul>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
               <CardTitle>Metric Summary</CardTitle>
             </CardHeader>
             <CardContent>
+              <div className="space-y-4 mb-6">
+                <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
+                  <div>
+                    <p className="text-xs uppercase tracking-wide text-muted-foreground">Total receipts</p>
+                    <p className="mt-1 text-2xl font-semibold text-foreground">3</p>
+                  </div>
+                  <div>
+                    <p className="text-xs uppercase tracking-wide text-muted-foreground">Dashboard-grade</p>
+                    <p className="mt-1 text-2xl font-semibold text-foreground">0</p>
+                  </div>
+                  <div>
+                    <p className="text-xs uppercase tracking-wide text-muted-foreground">Blocked state</p>
+                    <p className="mt-1 text-2xl font-semibold text-foreground">0</p>
+                  </div>
+                  <div>
+                    <p className="text-xs uppercase tracking-wide text-muted-foreground">Excluded</p>
+                    <p className="mt-1 text-2xl font-semibold text-foreground">3</p>
+                  </div>
+                  <div>
+                    <p className="text-xs uppercase tracking-wide text-muted-foreground">Comparison-ready</p>
+                    <p className="mt-1 text-2xl font-semibold text-foreground">0</p>
+                  </div>
+                </div>
+                <div className="rounded-lg border border-border bg-muted/20 p-4">
+                  <p className="text-xs uppercase tracking-wide text-muted-foreground">Top blocker</p>
+                  <p className="mt-1 text-sm text-foreground">
+                    Historical/semi_structured backfill records are not comparison candidates
+                  </p>
+                </div>
+              </div>
               <div className="overflow-x-auto">
                 <table className="w-full min-w-[960px] border-collapse text-sm">
                   <thead>
