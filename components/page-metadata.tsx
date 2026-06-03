@@ -1,11 +1,11 @@
 export function PageMetadata() {
   return (
     <div className="text-right text-xs text-muted-foreground leading-relaxed">
-      <p>Historical public snapshot: 2026-05-29</p>
-      <p>Evidence status: under construction / historically verified</p>
+      <p>Public proof surface</p>
+      <p>Page freshness is stated within each section where applicable</p>
       <p>Release scope: Architecture, Achievements, Knowledge Sharing</p>
       <p>Source: Robert KB + Git</p>
-      <p>Page-specific evidence dates shown in context</p>
+      <p>Evidence dates shown in page content where applicable</p>
       <p>Release: AIOS profile v0.2 + Governance layer update</p>
     </div>
   )
