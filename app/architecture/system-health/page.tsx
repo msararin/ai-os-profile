@@ -9,43 +9,41 @@ const surfaces = [
     status: "Available",
     href: "/architecture/system-health/observability",
     copy: [
-      "Reviews what telemetry can and cannot prove.",
-      "Shows how historical or semi-structured records are labeled before they are used as evidence.",
+      "Reviews what captured telemetry can and cannot support as evidence.",
       "Does not make benchmark, provider comparison, or cost-saving claims.",
     ],
   },
   {
     title: "Telemetry Inventory",
-    status: "Planned / not live",
+    status: "Under construction",
     copy: [
-      "Will summarize which records exist, which fields are missing, and which records are excluded from comparison.",
-      "Not yet a live telemetry dashboard.",
+      "Will summarize which records exist, which fields are missing, and which signals are excluded from comparison.",
+      "Not a live telemetry dashboard.",
     ],
   },
   {
     title: "Agent Orchestration Map",
-    status: "Map available / fallback labels / not live",
+    status: "Candidate — not yet released",
     href: "/architecture/system-health/agent-orchestration",
     copy: [
-      "Maps how AIOS work is routed, reviewed, gated, and improved across role lanes using fallback-safe labels.",
-      "It is not a live agent dashboard.",
+      "Maps how AIOS work is routed, reviewed, gated, parked, or improved across roles.",
+      "It is a map, not a live dashboard.",
     ],
   },
 ]
 
 const catches = [
-  "Which review surface is available now.",
-  "Which surfaces are still planned.",
+  "Which review surfaces are available, candidate, or under construction.",
   "Which signal boundaries are safe to show publicly.",
   "Which claims are not yet allowed.",
 ]
 
 const nonClaims = [
-  "No real-time uptime or latency monitoring.",
+  "No uptime or latency monitoring.",
   "No provider performance comparison.",
-  "No cost-saving claim.",
-  "No benchmark result.",
-  "No operational agent telemetry.",
+  "No cost-saving evidence.",
+  "No benchmark proof.",
+  "No autonomous orchestration.",
 ]
 
 export default function SystemHealthPage() {
@@ -56,8 +54,8 @@ export default function SystemHealthPage() {
           <div className="rounded-xl border-2 border-red-600 bg-red-50 p-4 text-red-950 shadow-sm dark:bg-red-950/40 dark:text-red-100">
             <p className="text-lg font-bold tracking-wide sm:text-xl">UNDER CONSTRUCTION</p>
             <p className="mt-2 max-w-4xl text-sm leading-6">
-              This section groups AIOS review surfaces for evidence, telemetry, and orchestration
-              state.
+              This section groups AIOS review surfaces for evidence discipline, telemetry
+              inventory, and orchestration visibility.
             </p>
           </div>
 
@@ -69,32 +67,40 @@ export default function SystemHealthPage() {
           </h1>
           <div className="mt-3 max-w-4xl space-y-3 text-sm leading-6 text-muted-foreground sm:text-base">
             <p>
-              This section groups AIOS review surfaces for evidence, telemetry, and orchestration
-              state.
+              This section groups AIOS review surfaces for evidence discipline, telemetry
+              inventory, and orchestration visibility.
             </p>
             <p>
-              It is not a live monitoring dashboard. It does not show real-time uptime, latency,
-              provider performance, cost savings, or benchmark results.
+              It is not a live monitoring dashboard. It does not show uptime, latency, provider
+              performance, cost-saving evidence, benchmark proof, or autonomous orchestration.
             </p>
             <p>
-              These surfaces are designed to clarify what signals exist, what they can support,
-              what remains missing, and which claims are not yet allowed.
+              These surfaces are being built from practical AIOS usage, including lessons from
+              routing work, evidence review, fallback labels, and human feedback loops.
             </p>
+            <p>Under construction, based on real AIOS usage learning.</p>
           </div>
 
           <div className="mt-6 grid gap-4 md:grid-cols-2">
             <Card>
               <CardHeader>
-                <CardTitle className="text-base">Current available surface</CardTitle>
+                <CardTitle className="text-base">Available surfaces</CardTitle>
               </CardHeader>
               <CardContent className="space-y-1 text-sm text-muted-foreground">
-                <p>Evidence Discipline Review Surface</p>
+                <p>Evidence Discipline</p>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-base">Candidate surfaces</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-1 text-sm text-muted-foreground">
                 <p>Agent Orchestration Map</p>
               </CardContent>
             </Card>
             <Card>
               <CardHeader>
-                <CardTitle className="text-base">Planned surfaces</CardTitle>
+                <CardTitle className="text-base">Planned / under construction</CardTitle>
               </CardHeader>
               <CardContent className="space-y-1 text-sm text-muted-foreground">
                 <p>Telemetry Inventory</p>
