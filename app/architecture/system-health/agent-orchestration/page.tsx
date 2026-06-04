@@ -94,7 +94,7 @@ const flowSteps = [
     icon: Hand,
     label: "Intake",
     owner: "Lyn / Robert",
-    sentence: "Task enters AIOS with purpose, risk, and expected output.",
+    sentence: "Example task enters AIOS with purpose, risk, and expected output.",
     artifact: "Intent",
   },
   {
@@ -152,7 +152,7 @@ const flowSteps = [
     icon: GitBranch,
     label: "Learn",
     owner: "Robert / KB",
-    sentence: "Feedback becomes a checklist, prompt, role rule, or follow-up.",
+    sentence: "Feedback becomes a prompt, role rule, KB note, or follow-up.",
     artifact: "Rule",
   },
 ]
@@ -387,8 +387,8 @@ export default function AgentOrchestrationMapPage() {
               </div>
               <p>
                 Rework is treated as an evidence signal. Repeated feedback should become a
-                checklist item, prompt update, role rule, KB note, or follow-up task. This does not
-                mean agents learn automatically.
+                prompt update, role rule, KB note, or follow-up task. This does not mean agents
+                learn automatically.
               </p>
             </CardContent>
           </Card>
