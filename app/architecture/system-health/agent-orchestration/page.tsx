@@ -46,46 +46,55 @@ const surfaceLanes = [
     lane: "Human Gate",
     owner: "Lyn / Rin 2.0",
     status: "Final approval",
+    purpose: "Sets the release decision and human boundary.",
   },
   {
     lane: "Executive Orchestration",
     owner: "Robert",
     status: "Context and review",
+    purpose: "Classifies work, checks claims, and keeps scope bounded.",
   },
   {
     lane: "Operator / Handoff",
     owner: "Risa / Hermes",
     status: "Stage management",
+    purpose: "Packages handoffs and keeps the worker lane clear.",
   },
   {
     lane: "Implementation Lane",
     owner: "Codex",
     status: "Scoped execution",
+    purpose: "Changes files, runs checks, and reports evidence.",
   },
   {
     lane: "Research Support",
     owner: "Researcher",
     status: "Evidence scan",
+    purpose: "Finds sources, receipts, and limits for claims.",
   },
   {
     lane: "Low-risk Support",
     owner: "Simple Task Supporter",
     status: "Contract confirmation pending",
+    purpose: "Handles simple support work only after boundary confirmation.",
   },
   {
     lane: "Engineering / Quality Role Group",
     owner: "Big Crew",
     status: "Registry confirmation required",
+    purpose: "Engineering review group; final role names stay unresolved.",
   },
   {
     lane: "Business / Opportunity Intelligence",
     owner: "Supernova",
     status: "10 verified roles",
+    purpose: "Frames opportunities, risks, options, and business evidence.",
   },
   {
     lane: "Future / Parked",
     owner: "Investment Team",
     status: "TBD / not countable",
+    purpose: "Acknowledged future lane with no countable registry yet.",
   },
 ]
 
@@ -114,8 +123,8 @@ const flowSteps = [
   {
     icon: Layers3,
     label: "Execute",
-    owner: "Codex / Researcher / Big Crew / Supernova",
-    sentence: "The selected lane creates the artifact or review input.",
+    owner: "Codex / Big Crew / Supernova / Researcher / Simple Task Supporter",
+    sentence: "The selected worker lane creates the artifact or review input.",
     artifact: "Output",
   },
   {
@@ -152,8 +161,36 @@ const flowSteps = [
     icon: GitBranch,
     label: "Learn",
     owner: "Robert / KB",
-    sentence: "Feedback becomes a prompt, role rule, KB note, or follow-up.",
+    sentence: "Lesson becomes checklist, prompt, or role rule update.",
     artifact: "Rule",
+  },
+]
+
+const controlGates = [
+  {
+    label: "Evidence gate",
+    owner: "Executor / Researcher",
+    sentence: "Receipts, artifacts, validation, and source notes are captured.",
+  },
+  {
+    label: "Review gate",
+    owner: "Robert / Reviewer",
+    sentence: "Scope, claims, Definition of Done, and risk are checked.",
+  },
+  {
+    label: "Lyn Gate",
+    owner: "Lyn",
+    sentence: "Lyn approves, revises, rejects, or parks the work.",
+  },
+  {
+    label: "Rework loop",
+    owner: "Robert / Worker lane",
+    sentence: "Feedback is classified, revised, checked, and captured.",
+  },
+  {
+    label: "Improvement output",
+    owner: "Robert / KB",
+    sentence: "The lesson becomes a checklist, prompt, role contract, or routing rule.",
   },
 ]
 
@@ -195,11 +232,12 @@ const catches = [
 ]
 
 const nonProofs = [
-  "live autonomous orchestration",
+  "live telemetry",
+  "autonomous orchestration",
   "real-time telemetry",
   "provider comparison",
   "benchmark performance",
-  "cost savings",
+  "cost-saving evidence",
   "production-grade observability",
   "final role-registry truth",
 ]
@@ -221,9 +259,9 @@ export default function AgentOrchestrationMapPage() {
             fallback-safe role labels.
           </p>
           <div className="mt-5 rounded-lg border border-amber-500/50 bg-amber-500/10 p-4 text-sm leading-6 text-muted-foreground">
-            This map is a visibility surface only. It does not represent live autonomous execution,
-            real-time telemetry, provider comparison, benchmark proof, cost-saving evidence, or
-            final role-registry truth. Source of truth remains the committed KB docs, git history,
+            This is a map, not a dashboard. It does not represent live telemetry, autonomous
+            orchestration, provider comparison, benchmark proof, cost-saving evidence, or final
+            role-registry truth. Source of truth remains the committed KB docs, git history,
             receipts, validation artifacts, and Lyn / Robert decisions.
           </div>
         </div>
@@ -254,7 +292,18 @@ export default function AgentOrchestrationMapPage() {
 
       <section className="border-t border-border bg-muted/30 py-10">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-xl font-semibold tracking-tight text-foreground">Agent surface map</h2>
+          <div className="flex flex-wrap items-end justify-between gap-3">
+            <div>
+              <Badge variant="outline">WHO</Badge>
+              <h2 className="mt-2 text-xl font-semibold tracking-tight text-foreground">
+                1. Who does what
+              </h2>
+              <p className="mt-2 max-w-3xl text-sm leading-6 text-muted-foreground">
+                Agent and role lanes show who owns routing, execution, evidence, and gates.
+              </p>
+            </div>
+            <Badge variant="secondary">Agent / role surface</Badge>
+          </div>
           <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {surfaceLanes.map((lane) => (
               <Card key={lane.lane} className="h-full">
@@ -263,6 +312,7 @@ export default function AgentOrchestrationMapPage() {
                 </CardHeader>
                 <CardContent className="space-y-3 text-sm text-muted-foreground">
                   <p className="font-medium text-foreground">{lane.owner}</p>
+                  <p>{lane.purpose}</p>
                   <Badge variant="secondary">{lane.status}</Badge>
                 </CardContent>
               </Card>
@@ -279,14 +329,16 @@ export default function AgentOrchestrationMapPage() {
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className="flex flex-wrap items-end justify-between gap-3">
             <div>
-              <h2 className="text-xl font-semibold tracking-tight text-foreground">
-                Visual orchestration flow
+              <Badge variant="outline">HOW</Badge>
+              <h2 className="mt-2 text-xl font-semibold tracking-tight text-foreground">
+                2. How work moves
               </h2>
               <p className="mt-2 max-w-3xl text-sm leading-6 text-muted-foreground">
-                Intake -&gt; Classify -&gt; Package -&gt; Execute -&gt; Evidence -&gt; Review -&gt; Lyn Gate -&gt; Outcome -&gt; Learn
+                Example task enters AIOS, gets classified, packaged, executed, reviewed, gated,
+                and converted into a learning artifact.
               </p>
             </div>
-            <Badge variant="outline">Infographic map</Badge>
+            <Badge variant="secondary">Orchestration flow</Badge>
           </div>
 
           <div className="mt-5 grid gap-3 md:grid-cols-3 xl:grid-cols-9">
@@ -347,7 +399,72 @@ export default function AgentOrchestrationMapPage() {
       </section>
 
       <section className="border-t border-border py-10">
-        <div className="mx-auto grid max-w-6xl gap-4 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-wrap items-end justify-between gap-3">
+            <div>
+              <Badge variant="outline">CONTROL</Badge>
+              <h2 className="mt-2 text-xl font-semibold tracking-tight text-foreground">
+                3. How control and learning work
+              </h2>
+              <p className="mt-2 max-w-3xl text-sm leading-6 text-muted-foreground">
+                Evidence, review, Lyn Gate, rework, and improvement outputs keep the map bounded.
+              </p>
+            </div>
+            <Badge variant="secondary">Human-feedback-driven improvement</Badge>
+          </div>
+
+          <div className="mt-5 grid gap-3 md:grid-cols-5">
+            {controlGates.map((gate) => (
+              <Card
+                key={gate.label}
+                className={
+                  gate.label === "Lyn Gate"
+                    ? "h-full border-amber-500 bg-amber-500/10"
+                    : "h-full"
+                }
+              >
+                <CardContent className="space-y-2 pt-5 text-sm text-muted-foreground">
+                  <p className="text-sm font-semibold text-foreground">{gate.label}</p>
+                  <p className="text-xs font-medium text-foreground">{gate.owner}</p>
+                  <p className="text-xs leading-5">{gate.sentence}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          <Card className="mt-4 border-primary/30 bg-primary/5">
+            <CardHeader>
+              <CardTitle>Human-feedback-driven improvement</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4 text-sm leading-6 text-muted-foreground">
+              <div className="grid gap-2 sm:grid-cols-5">
+                {[
+                  "Feedback classified",
+                  "Agent revises",
+                  "Repeated issue checked",
+                  "Lesson captured",
+                  "Rule updated",
+                ].map((step) => (
+                  <div
+                    key={step}
+                    className="rounded border border-border bg-background p-2 text-center text-xs font-medium text-foreground"
+                  >
+                    {step}
+                  </div>
+                ))}
+              </div>
+              <p>
+                Rework is treated as an evidence signal. Repeated feedback should become a
+                checklist, prompt update, role contract, routing rule, KB note, or follow-up task.
+                This does not mean agents learn automatically.
+              </p>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+
+      <section className="border-t border-border py-10">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <Card>
             <CardHeader>
               <CardTitle>Fallback / unresolved registry notes</CardTitle>
@@ -361,35 +478,6 @@ export default function AgentOrchestrationMapPage() {
                   </li>
                 ))}
               </ul>
-            </CardContent>
-          </Card>
-
-          <Card className="border-primary/30 bg-primary/5">
-            <CardHeader>
-              <CardTitle>Human-feedback-driven improvement</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4 text-sm leading-6 text-muted-foreground">
-              <div className="grid gap-2 sm:grid-cols-5">
-                {[
-                  "Lyn feedback",
-                  "Rework reason classified",
-                  "Agent revises",
-                  "Robert checks repeated issue",
-                  "Lesson captured",
-                ].map((step) => (
-                  <div
-                    key={step}
-                    className="rounded border border-border bg-background p-2 text-center text-xs font-medium text-foreground"
-                  >
-                    {step}
-                  </div>
-                ))}
-              </div>
-              <p>
-                Rework is treated as an evidence signal. Repeated feedback should become a
-                prompt update, role rule, KB note, or follow-up task. This does not mean agents
-                learn automatically.
-              </p>
             </CardContent>
           </Card>
         </div>
