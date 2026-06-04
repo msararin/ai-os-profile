@@ -31,6 +31,11 @@ const aiosSections = [
     description: "Delivery method, gates, review loops, and evidence discipline.",
   },
   {
+    title: "AI Agent Launch Checklist",
+    href: "/ai-agent-launch-checklist",
+    description: "Portfolio framework for AI launch-readiness, human gates, evidence, and rollback criteria.",
+  },
+  {
     title: "Architecture",
     href: "/architecture",
     description: "System structure, boundaries, and public-safe technical view.",
