@@ -24,10 +24,11 @@ const surfaces = [
   },
   {
     title: "Agent Orchestration Map",
-    status: "Planned / map only / not live",
+    status: "Map available / fallback labels / not live",
+    href: "/architecture/system-health/agent-orchestration",
     copy: [
-      "Will map how AIOS work is routed, blocked, parked, or escalated across roles.",
-      "Not yet an operational agent dashboard.",
+      "Maps how AIOS work is routed, reviewed, gated, and improved across role lanes using fallback-safe labels.",
+      "It is not a live agent dashboard.",
     ],
   },
 ]
@@ -86,8 +87,9 @@ export default function SystemHealthPage() {
               <CardHeader>
                 <CardTitle className="text-base">Current available surface</CardTitle>
               </CardHeader>
-              <CardContent className="text-sm text-muted-foreground">
-                Evidence Discipline Review Surface
+              <CardContent className="space-y-1 text-sm text-muted-foreground">
+                <p>Evidence Discipline Review Surface</p>
+                <p>Agent Orchestration Map</p>
               </CardContent>
             </Card>
             <Card>
@@ -96,7 +98,6 @@ export default function SystemHealthPage() {
               </CardHeader>
               <CardContent className="space-y-1 text-sm text-muted-foreground">
                 <p>Telemetry Inventory</p>
-                <p>Agent Orchestration Map</p>
               </CardContent>
             </Card>
           </div>
@@ -129,7 +130,7 @@ export default function SystemHealthPage() {
                     ))}
                     {surface.href ? (
                       <p className="pt-2 text-sm font-medium text-primary">
-                        Open Evidence Discipline Review Surface
+                        Open {surface.title}
                       </p>
                     ) : (
                       <p className="pt-2 text-sm font-medium text-muted-foreground">
