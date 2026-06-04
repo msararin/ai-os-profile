@@ -57,7 +57,7 @@ const architectureGroups = [
         title: "Evidence, Audit & Observability",
         detail: "Captures validation outputs, review traces, execution signals, cost/usage evidence, reliability signals, and deployment readiness checks.",
         labels: ["Evidence", "Review trace", "Reliability signals"],
-        href: "/architecture/system-health/observability",
+        href: "/architecture/system-health",
       },
       {
         title: "Source-of-Truth",
@@ -151,7 +151,7 @@ export default function ArchitecturePage() {
                           href={layer.href}
                           className="mt-3 inline-flex text-xs font-medium text-primary hover:underline"
                         >
-                          Read the observability boundary →
+                          View system health surfaces →
                         </Link>
                       ) : null}
                     </div>
