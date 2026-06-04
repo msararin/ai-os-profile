@@ -55,13 +55,14 @@ const publicWorkspaceDescriptions: Record<string, string> = {
   "JSONL Gate": "structured data trigger; not active",
   Closeout: "handoff and boundary records",
   "Approval Boundaries": "work that is not authorized yet",
-  "Big Crew": "workspace placeholder; member roster not public or final",
+  "Big Crew": "engineering team; roster not published",
   Supernova: "separate AIOS workstream; member details not shown here",
   "Evidence Gaps": "known missing or unresolved evidence",
 }
 
 const publicWorkspaceTitles: Record<string, string> = {
   "JSONL Gate": "Structured Data Gate",
+  "Big Crew": "Big Crew Engineering Team",
 }
 
 const publicCardTitles: Record<string, string> = {
@@ -69,7 +70,7 @@ const publicCardTitles: Record<string, string> = {
   c_jsonl_trigger_assessment: "Structured data trigger assessment",
   c_trigger_current_status: "Current structured-data trigger status",
   jsonl_schema_boundary: "Structured evidence index",
-  big_crew_workspace: "Big Crew workspace (member roster not public or final)",
+  big_crew_workspace: "Big Crew Engineering Team (roster not published)",
   supernova_workspace: "Supernova workspace (separate workstream)",
 }
 
@@ -83,7 +84,7 @@ const publicCardRemarks: Record<string, string> = {
   jsonl_schema_boundary:
     "A structured evidence index is not authorized now; any future version needs a separate decision packet.",
   big_crew_workspace:
-    "Show the workspace only. Final, partial, preview, or candidate member names are intentionally not rendered.",
+    "Engineering team workspace. Individual member names are not shown on this public page.",
   supernova_workspace: "Supernova remains separate from Big Crew; this page does not publish member details.",
 }
 
@@ -109,7 +110,7 @@ const publicTermDescriptions = [
   {
     term: "Big Crew",
     definition:
-      "A planned or unresolved workspace label. The public page does not show member names because the roster is not reconciled.",
+      "An engineering team in AIOS. The team exists, but individual member names are not published on this public page.",
   },
   {
     term: "Supernova",
@@ -161,6 +162,23 @@ function displayCardRemark(card: SnapshotCard) {
 
 function displayEvidenceState(value: string) {
   return value.replaceAll("_", " ")
+}
+
+function displayPublicEvidenceState(card: SnapshotCard) {
+  if (card.id === "big_crew_workspace" && card.value === "pending_registry_reconciliation") {
+    return "roster not published"
+  }
+
+  return displayEvidenceState(card.value)
+}
+
+function displayConfidence(confidence: SnapshotCard["confidence"]) {
+  return `evidence confidence: ${confidence}`
+}
+
+function displayLegendTerm(term: string) {
+  if (term === "confidence") return "evidence confidence"
+  return term
 }
 
 function displayTriggerState(value: string) {
@@ -223,10 +241,10 @@ function SnapshotCardView({ card }: { card: SnapshotCard }) {
         </div>
         <div className="flex flex-wrap gap-2">
           <Badge variant="outline" className={stateClassName(card.value)}>
-            {displayEvidenceState(card.value)}
+            {displayPublicEvidenceState(card)}
           </Badge>
           <Badge variant="outline" className={confidenceClassName(card.confidence)}>
-            {card.confidence}
+            {displayConfidence(card.confidence)}
           </Badge>
         </div>
       </div>
@@ -317,8 +335,9 @@ export default function PublicAIOSAgentReviewDashboardPage() {
             <CardHeader>
               <CardTitle>Evidence Workspaces</CardTitle>
               <p className="text-sm text-muted-foreground">
-              Snapshot 002 is rendered as evidence state, not as live operations data. Big Crew
-              and Supernova stay separate, and team member names are not published from this view.
+                Snapshot 002 is rendered as evidence state, not as live operations data. Big Crew
+                is shown as an engineering team, Supernova remains separate, and team member names
+                are not published from this view.
               </p>
             </CardHeader>
             <CardContent>
@@ -357,7 +376,7 @@ export default function PublicAIOSAgentReviewDashboardPage() {
                     <div className="flex flex-wrap items-start justify-between gap-2">
                       <p className="text-sm font-semibold text-foreground">{displayCardTitle(card)}</p>
                       <Badge variant="outline" className={stateClassName(card.value)}>
-                        {displayEvidenceState(card.value)}
+                        {displayPublicEvidenceState(card)}
                       </Badge>
                     </div>
                     <p className="mt-2 text-sm text-muted-foreground">{displayCardRemark(card)}</p>
@@ -379,7 +398,7 @@ export default function PublicAIOSAgentReviewDashboardPage() {
                 ))}
                 {dashboardLegend.map((item) => (
                   <div key={item.term} className="rounded-lg border p-3">
-                    <p className="font-mono text-sm font-semibold text-foreground">{item.term}</p>
+                    <p className="font-mono text-sm font-semibold text-foreground">{displayLegendTerm(item.term)}</p>
                     <p className="mt-1 text-sm text-muted-foreground">{item.definition}</p>
                   </div>
                 ))}
