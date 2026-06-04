@@ -47,6 +47,82 @@ const nonClaims = [
   "Autonomous orchestration",
 ]
 
+const publicWorkspaceDescriptions: Record<string, string> = {
+  "Planning / Contract": "evidence rules and data boundaries",
+  "Snapshot Cycle": "manual review captures",
+  "Decision / Gate": "human approval checkpoints",
+  "Prototype Spec": "read-only behavior rules",
+  "JSONL Gate": "structured data trigger; not active",
+  Closeout: "handoff and boundary records",
+  "Approval Boundaries": "work that is not authorized yet",
+  "Big Crew": "workspace placeholder; member roster not public or final",
+  Supernova: "separate AIOS workstream; member details not shown here",
+  "Evidence Gaps": "known missing or unresolved evidence",
+}
+
+const publicWorkspaceTitles: Record<string, string> = {
+  "JSONL Gate": "Structured Data Gate",
+}
+
+const publicCardTitles: Record<string, string> = {
+  data_team_rule: "Data Team First Rule (evidence review before decision)",
+  c_jsonl_trigger_assessment: "Structured data trigger assessment",
+  c_trigger_current_status: "Current structured-data trigger status",
+  jsonl_schema_boundary: "Structured evidence index",
+  big_crew_workspace: "Big Crew workspace (member roster not public or final)",
+  supernova_workspace: "Supernova workspace (separate workstream)",
+}
+
+const publicCardRemarks: Record<string, string> = {
+  data_team_rule:
+    "Dashboard and evidence questions are reviewed by the Data Team before they become decision requests.",
+  c_jsonl_trigger_assessment:
+    "A future structured evidence index was assessed and remains parked because the trigger is not met.",
+  c_trigger_current_status:
+    "Snapshot 002 is within the review window but does not meet the third-snapshot trigger required for automation review.",
+  jsonl_schema_boundary:
+    "A structured evidence index is not authorized now; any future version needs a separate decision packet.",
+  big_crew_workspace:
+    "Show the workspace only. Final, partial, preview, or candidate member names are intentionally not rendered.",
+  supernova_workspace: "Supernova remains separate from Big Crew; this page does not publish member details.",
+}
+
+const nameSensitiveWorkspaces = new Set(["Big Crew", "Supernova"])
+const nameSensitiveCardIds = new Set(["data_team_rule", "big_crew_workspace", "supernova_workspace"])
+const inactiveTriggerStates = new Set(["not_met", "not met"])
+
+const publicTermDescriptions = [
+  {
+    term: "Snapshot 002",
+    definition: "A manual evidence capture used for this public view. It is not a live data feed.",
+  },
+  {
+    term: "Automation data trigger",
+    definition:
+      "A rule for when evidence should move from manual snapshots toward a structured evidence index. It is not met here.",
+  },
+  {
+    term: "Structured evidence index",
+    definition:
+      "A future machine-readable evidence store, such as JSONL or a database. It is not implemented in this snapshot.",
+  },
+  {
+    term: "Big Crew",
+    definition:
+      "A planned or unresolved workspace label. The public page does not show member names because the roster is not reconciled.",
+  },
+  {
+    term: "Supernova",
+    definition:
+      "A separate AIOS workstream. It is intentionally not merged with Big Crew in this evidence view.",
+  },
+  {
+    term: "Data Team",
+    definition:
+      "The evidence-review function that proposes dashboard data interpretation before a human decision. Member names are not listed here.",
+  },
+]
+
 function groupCardsByWorkspace(cards: SnapshotCard[]) {
   return workspaceOrder
     .map((workspace) => ({
@@ -71,6 +147,41 @@ function confidenceClassName(confidence: SnapshotCard["confidence"]) {
   return "border-muted-foreground/40 text-muted-foreground"
 }
 
+function displayWorkspaceTitle(workspace: string) {
+  return publicWorkspaceTitles[workspace] ?? workspace
+}
+
+function displayCardTitle(card: SnapshotCard) {
+  return publicCardTitles[card.id] ?? card.label
+}
+
+function displayCardRemark(card: SnapshotCard) {
+  return publicCardRemarks[card.id] ?? card.remark
+}
+
+function displayEvidenceState(value: string) {
+  return value.replaceAll("_", " ")
+}
+
+function displayTriggerState(value: string) {
+  const displayValue = value.replaceAll("_", " ")
+  return inactiveTriggerStates.has(value) ? `${displayValue} (not active)` : displayValue
+}
+
+function isNameSensitiveCard(card: SnapshotCard) {
+  return nameSensitiveWorkspaces.has(card.workspace) || nameSensitiveCardIds.has(card.id)
+}
+
+function publicEvidenceFieldValue(card: SnapshotCard, field: string, value: string) {
+  if (!isNameSensitiveCard(card)) return value
+
+  if (["decisionUse", "missingFields", "sourcePath", "snapshotBy"].includes(field)) {
+    return "not published on public page"
+  }
+
+  return value
+}
+
 function Field({
   label,
   value,
@@ -93,10 +204,10 @@ function ProvenanceStrip() {
     <div className="rounded-lg border border-primary/30 bg-primary/5 p-4">
       <p className="text-sm font-semibold text-foreground">Snapshot provenance</p>
       <div className="mt-3 grid gap-3 text-sm sm:grid-cols-2 lg:grid-cols-4">
-        <Field label="Snapshot ID" value={snapshotMeta.snapshotId} />
+        <Field label="Evidence snapshot" value={`${snapshotMeta.snapshotId} (manual capture)`} />
         <Field label="Capture date" value={snapshotMeta.captureDate} />
-        <Field label="C trigger" value={snapshotMeta.cTrigger} />
-        <Field label="Snapshot count" value={snapshotMeta.snapshotCount} />
+        <Field label="Automation data trigger" value={displayTriggerState(snapshotMeta.cTrigger)} />
+        <Field label="Manual snapshot count" value={`${snapshotMeta.snapshotCount} required before automation review`} />
       </div>
     </div>
   )
@@ -107,12 +218,12 @@ function SnapshotCardView({ card }: { card: SnapshotCard }) {
     <div className="rounded-lg border bg-background p-4">
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div>
-          <p className="text-sm font-semibold text-foreground">{card.label}</p>
-          <p className="mt-1 text-sm text-muted-foreground">{card.remark}</p>
+          <p className="text-sm font-semibold text-foreground">{displayCardTitle(card)}</p>
+          <p className="mt-1 text-sm text-muted-foreground">{displayCardRemark(card)}</p>
         </div>
         <div className="flex flex-wrap gap-2">
           <Badge variant="outline" className={stateClassName(card.value)}>
-            {card.value}
+            {displayEvidenceState(card.value)}
           </Badge>
           <Badge variant="outline" className={confidenceClassName(card.confidence)}>
             {card.confidence}
@@ -121,15 +232,21 @@ function SnapshotCardView({ card }: { card: SnapshotCard }) {
       </div>
 
       <div className="mt-4 grid gap-3 border-t pt-4 md:grid-cols-2 xl:grid-cols-3">
-        <Field label="source_type" value={card.sourceType} />
-        <Field label="last_updated" value={card.lastUpdated} />
-        <Field label="decision_use" value={card.decisionUse} />
-        <Field label="missing_fields" value={card.missingFields} />
-        <Field label="refresh_cadence" value={card.refreshCadence} />
-        <Field label="source_path" value={card.sourcePath} className="xl:col-span-2" />
-        {card.snapshotBy && <Field label="snapshot_by" value={card.snapshotBy} />}
-        {card.snapshotAt && <Field label="snapshot_at" value={card.snapshotAt} />}
-        {card.snapshotTtl && <Field label="snapshot_ttl" value={card.snapshotTtl} />}
+        <Field label="Source type" value={card.sourceType} />
+        <Field label="Last updated" value={card.lastUpdated} />
+        <Field label="Decision use" value={publicEvidenceFieldValue(card, "decisionUse", card.decisionUse)} />
+        <Field label="Missing fields" value={publicEvidenceFieldValue(card, "missingFields", card.missingFields)} />
+        <Field label="Refresh cadence" value={card.refreshCadence} />
+        <Field
+          label="Source reference"
+          value={publicEvidenceFieldValue(card, "sourcePath", card.sourcePath)}
+          className="xl:col-span-2"
+        />
+        {card.snapshotBy && (
+          <Field label="Snapshot by" value={publicEvidenceFieldValue(card, "snapshotBy", card.snapshotBy)} />
+        )}
+        {card.snapshotAt && <Field label="Snapshot at" value={card.snapshotAt} />}
+        {card.snapshotTtl && <Field label="Snapshot TTL" value={card.snapshotTtl} />}
       </div>
     </div>
   )
@@ -200,8 +317,8 @@ export default function PublicAIOSAgentReviewDashboardPage() {
             <CardHeader>
               <CardTitle>Evidence Workspaces</CardTitle>
               <p className="text-sm text-muted-foreground">
-                Snapshot 002 is rendered as evidence state, not as live operations data. Big Crew
-                and Supernova stay separate because registry and workspace state must not be merged.
+              Snapshot 002 is rendered as evidence state, not as live operations data. Big Crew
+              and Supernova stay separate, and team member names are not published from this view.
               </p>
             </CardHeader>
             <CardContent>
@@ -209,7 +326,12 @@ export default function PublicAIOSAgentReviewDashboardPage() {
                 {workspaceGroups.map((group) => (
                   <AccordionItem key={group.workspace} value={group.workspace}>
                     <AccordionTrigger>
-                      <span>{group.workspace}</span>
+                      <span className="text-left">
+                        {displayWorkspaceTitle(group.workspace)}
+                        <span className="ml-1 font-normal text-muted-foreground">
+                          ({publicWorkspaceDescriptions[group.workspace]})
+                        </span>
+                      </span>
                     </AccordionTrigger>
                     <AccordionContent>
                       <div className="grid gap-3">
@@ -233,12 +355,12 @@ export default function PublicAIOSAgentReviewDashboardPage() {
                 {gapCards.map((card) => (
                   <div key={card.id} className="rounded-lg border bg-background/70 p-3">
                     <div className="flex flex-wrap items-start justify-between gap-2">
-                      <p className="text-sm font-semibold text-foreground">{card.label}</p>
+                      <p className="text-sm font-semibold text-foreground">{displayCardTitle(card)}</p>
                       <Badge variant="outline" className={stateClassName(card.value)}>
-                        {card.value}
+                        {displayEvidenceState(card.value)}
                       </Badge>
                     </div>
-                    <p className="mt-2 text-sm text-muted-foreground">{card.remark}</p>
+                    <p className="mt-2 text-sm text-muted-foreground">{displayCardRemark(card)}</p>
                   </div>
                 ))}
               </CardContent>
@@ -246,9 +368,15 @@ export default function PublicAIOSAgentReviewDashboardPage() {
 
             <Card>
               <CardHeader>
-                <CardTitle>Legend</CardTitle>
+                <CardTitle>Public Term Guide</CardTitle>
               </CardHeader>
               <CardContent className="grid gap-3">
+                {publicTermDescriptions.map((item) => (
+                  <div key={item.term} className="rounded-lg border p-3">
+                    <p className="text-sm font-semibold text-foreground">{item.term}</p>
+                    <p className="mt-1 text-sm text-muted-foreground">{item.definition}</p>
+                  </div>
+                ))}
                 {dashboardLegend.map((item) => (
                   <div key={item.term} className="rounded-lg border p-3">
                     <p className="font-mono text-sm font-semibold text-foreground">{item.term}</p>
