@@ -23,35 +23,36 @@ export default function AchievementsPage() {
   const achievements = [
     {
       date: '2026-06-03',
-      headline: 'CASE-002 Retail Trustworthy Answers Dry-Run Kit',
-      summary: 'Built a reusable simulated-company dry-run kit for Thai retail AI adoption, including legal/finance operating evidence, regulatory boundary references, synthetic artifacts, stakeholder reveals, and scored dry-run transcripts.',
-      proofType: 'evidence-backed simulation, dry-run governance, synthetic operating artifacts',
-      evidenceReference: 'CASE-002 dry-run profile, Thai legal/finance evidence pack, scored dry-run transcripts',
-      status: 'Reusable dry-run kit ready; retrieval/red-team held intentionally',
-      publicSafeResult: 'A downloadable dry-run profile supports workflow, routing, and auditability testing without implying production, client, or compliance readiness.',
-      caveat: 'Synthetic dry-run profile only. Not real company data, not client evidence, and not production compliance output.',
+      headline: 'Retail AI Trustworthy Answers Simulation Kit',
+      summary: 'Built a synthetic retail-company simulation that tests whether AI-assisted answers can cite evidence, respect legal and finance boundaries, ask for missing facts, and stay reviewable for business users.',
+      proofType: 'synthetic portfolio evidence, AI workflow governance, trustworthy-answer simulation',
+      evidenceReference: 'CASE-002 synthetic retail simulation profile, legal/finance evidence pack, scored review transcripts',
+      status: 'Recruiter-demo ready simulation artifact; not a client deliverable or commercial product',
+      publicSafeResult: 'A downloadable simulation profile shows how AI workflow governance, evidence-backed answers, and human-in-the-loop review can be tested before any real deployment claim is made.',
+      caveat: 'Synthetic simulation and portfolio evidence artifact only. Not a client engagement deliverable, not a commercial product, not real company data, not production compliance output, not benchmark proof, and not model-comparison evidence.',
       downloadHref: '/case-002-dry-run-profile.pdf',
       details: {
-        whyItMatters: 'This achievement shows that Thai retail AI adoption can be tested with a reusable simulated-company kit instead of a loose collection of notes. The kit combines regulatory boundaries, operating evidence, synthetic artifacts, stakeholder reveals, and scored transcripts so the system can be evaluated on routing and auditability, not just wording quality.',
+        whyItMatters: 'Retail AI adoption fails when answers sound confident but cannot show evidence, boundaries, or review paths. This simulation turns that risk into a testable portfolio artifact: a synthetic retail scenario where AI responses must connect business questions to supporting evidence, legal and finance constraints, missing facts, and human review.',
         evidence: [
-          'Thai regulatory boundary pack for PDPA, AI governance, tax, VAT, import, disclosure, accounting, and labor',
-          'Legal and finance operating evidence packs separated from authority sources',
-          'Snapshot-backed source register for the core boundary material',
-          'Synthetic legal and finance artifacts with route-only behavior',
-          'Stakeholder reveals for DPO, Legal, Finance, Tax, Internal Audit, Procurement, IT, Business Owner, CFO, and Compliance',
-          'Two scored dry-run transcripts, including the AP/vendor-master mismatch slice',
-          'Compact downloadable dry-run profile for cockpit use'
+          'Synthetic Thai retail scenario with legal, finance, tax, audit, procurement, IT, and business-owner perspectives',
+          'Evidence pack covering PDPA, AI governance, VAT, import, disclosure, accounting, labor, and finance-process boundaries',
+          'Source register and snapshot notes so claims can be traced instead of treated as generic AI output',
+          'Synthetic operating artifacts used to test whether answers route to the right evidence and review owner',
+          'Stakeholder prompts for DPO, Legal, Finance, Tax, Internal Audit, Procurement, IT, Business Owner, CFO, and Compliance',
+          'Scored review transcripts testing missing-fact handling, evidence use, and escalation behavior',
+          'Compact downloadable simulation profile for recruiter and portfolio review'
         ],
         skillsDemonstrated: [
-          'Evidence-backed simulation design',
-          'Boundary-safe workflow routing',
-          'Auditability and missing-facts handling',
-          'Synthetic company profile construction',
-          'Reusable dry-run kit packaging'
+          'AI-enabled workflow and process design',
+          'Business-to-technology translation for retail AI adoption',
+          'Evidence-backed answer design',
+          'Human-in-the-loop governance and escalation design',
+          'Auditability, missing-facts handling, and claim-boundary discipline',
+          'Synthetic portfolio artifact packaging'
         ],
-        impact: 'The kit can be reused to exercise future CASE-002 dry runs without rebuilding the evidence base. It supports local review, partner discussion, and internal capability demonstration while staying explicit about what it does not prove.'
+        impact: 'The simulation makes Lyn’s AI transformation capability easier to inspect: it shows how business-process questions can be converted into evidence-backed AI workflow tests before a team moves toward a real PoC, deployment, or adoption-metrics discussion.'
       },
-      tags: ['Evidence Discipline', 'Dry-Run Kit', 'AI Governance', 'Thai Retail', 'Legal/Finance Boundary']
+      tags: ['Evidence Discipline', 'AI Workflow Governance', 'Trustworthy Answers', 'Thai Retail', 'Human-in-the-Loop']
     },
     {
       date: '2026-06-03',
@@ -315,11 +316,11 @@ export default function AchievementsPage() {
         ],
         skillsDemonstrated: [
           'Release governance through freeze tag, PR review, checks, and production verification',
-          'Public/private boundary validation for Knowledge Sharing and internal Signal Studio surfaces',
+          'Public/private boundary validation for Knowledge Sharing and protected internal review surfaces',
           'Evidence-aware content governance: proof page updated after deployment, not left stale',
           'Rollback readiness: Vercel rollback first, Git revert path documented if source rollback is needed'
         ],
-        impact: 'Established current production proof that the AIOS profile is live, governed, and boundary-aware while keeping unpublished Signal Studio learning records internal.'
+        impact: 'Established current production proof that the AIOS profile is live, governed, and boundary-aware while keeping unpublished learning records internal.'
       },
       tags: ['Production Release', 'Governance', 'Boundary Proof', 'Impact']
     },
@@ -365,7 +366,7 @@ export default function AchievementsPage() {
           'Commit e71c652 simplified public navigation and profile hubs',
           'Commit 53e800d caveated achievements and limited observability output',
           'Route checks confirmed public routes remained 200 and internal routes redirected to auth',
-          'Knowledge Sharing boundary checks confirmed Signal Studio draft content was not exposed publicly'
+          'Knowledge Sharing boundary checks confirmed protected draft content was not exposed publicly'
         ],
         skillsDemonstrated: [
           'Public-safe technical storytelling',
@@ -384,13 +385,13 @@ export default function AchievementsPage() {
       proofType: 'commits, manual incognito OAuth proof, route checks',
       evidenceReference: 'commits 5de2bd2 and 83cf72c, prior manual incognito proof',
       status: 'Manual proof accepted; automation gap documented',
-      publicSafeResult: 'Internal Dashboard and Signal Studio can be reviewed by authorized users, while unauthenticated production visitors are redirected to auth.',
+      publicSafeResult: 'Protected internal review surfaces can be reviewed by authorized users, while unauthenticated production visitors are redirected to auth.',
       caveat: 'AUTH_PROOF_GAP remains for shell automation when OAuth env values are not loaded.',
       details: {
         whyItMatters: 'Internal proof surfaces only matter if reviewers can reach them without weakening production security.',
         evidence: [
           'Commit 5de2bd2 recovered internal access with safe local review mode',
-          'Commit 83cf72c updated internal dashboard and Signal Studio review surface',
+          'Commit 83cf72c updated internal dashboard and protected draft review surface',
           'Manual incognito OAuth proof was accepted for authenticated internal review surfaces',
           'Production route checks showed internal routes redirecting to /auth/signin with callback URLs'
         ],
@@ -402,16 +403,16 @@ export default function AchievementsPage() {
         ],
         impact: 'Unblocked Lyn review of protected work while preserving the site boundary: public proof stays public, internal operations stay behind auth.'
       },
-      tags: ['Auth', 'Internal Review', 'Security', 'Signal Studio']
+      tags: ['Auth', 'Internal Review', 'Security', 'Protected Review']
     },
     {
       date: '2026-05-27',
-      headline: 'Signal Studio Learning Backlog — Internal Lessons Parked Before Public Claims',
+      headline: 'Protected Learning Backlog — Internal Lessons Parked Before Public Claims',
       summary: 'Captured 26-27 May staging review lessons as internal learning backlog instead of promoting unreviewed draft content to public pages.',
       proofType: 'git history, internal page status',
       evidenceReference: 'commit 83cf72c previous internal status copy',
       status: 'Internal learning record, not public proof claim',
-      publicSafeResult: 'The public site avoids unreviewed Signal Studio claims while the internal page tracks pending lessons for later review.',
+      publicSafeResult: 'The public site avoids unreviewed draft claims while the protected internal page tracks pending lessons for later review.',
       caveat: 'This is intentionally not framed as a production achievement; it belongs to the internal learning pipeline.',
       details: {
         whyItMatters: 'Not every useful workday creates external proof. Some days create learning patterns that should be reviewed before public reuse.',
@@ -419,26 +420,26 @@ export default function AchievementsPage() {
           'Git history for commit 83cf72c recorded: "Review surface updated: 2026-05-27"',
           'The same internal status noted 26-27 May lessons were not yet fully ingested',
           'Pending lessons included staging review, Knowledge Sharing preservation, internal navigation blocker, export behavior verification, and budget burn report',
-          'Current Signal Studio page keeps that backlog internal and marks 28 May release learning as pending migration'
+          'Current protected review page keeps that backlog internal and marks 28 May release learning as pending migration'
         ],
         skillsDemonstrated: [
           'Learning capture before publication',
           'Public/private boundary discipline',
           'Claims-safety review before turning lessons into external content',
-          'Signal Studio separation from Achievements'
+          'Protected draft separation from Achievements'
         ],
-        impact: 'Protects credibility by routing unreviewed operational lessons into Signal Studio instead of presenting them as external achievements.'
+        impact: 'Protects credibility by routing unreviewed operational lessons into protected internal review instead of presenting them as external achievements.'
       },
-      tags: ['Learning', 'Signal Studio', 'Claims Safety', 'Internal']
+      tags: ['Learning', 'Protected Review', 'Claims Safety', 'Internal']
     },
     {
       date: '2026-05-26',
-      headline: 'Signal Studio Draft Surface — Learning-to-Content Pipeline Created',
+      headline: 'Protected Draft Surface — Learning-to-Content Pipeline Created',
       summary: 'Created the protected draft surface, export tooling, and draft data structure for turning AIOS lessons into reviewed public-safe content candidates.',
       proofType: 'commits, internal route, tracked proposal doc',
-      evidenceReference: 'commits 9734b39 and 4ae8516, docs/planning/SIGNAL_STUDIO_V0_1_ROLE_MAP_PROPOSAL.md',
+      evidenceReference: 'commits 9734b39 and 4ae8516, protected draft-pipeline role-map proposal',
       status: 'Internal draft/review surface',
-      publicSafeResult: 'Knowledge Sharing remains public archive only; Signal Studio draft packages remain protected under /internal/*.',
+      publicSafeResult: 'Knowledge Sharing remains public archive only; draft packages remain protected under /internal/*.',
       caveat: 'Draft records are not automatically publishable; Lyn/Robert review is required before public use.',
       details: {
         whyItMatters: 'The site needs a disciplined path from learning to content without leaking drafts or overclaiming.',
@@ -446,7 +447,7 @@ export default function AchievementsPage() {
           'Commit 9734b39 added internal knowledge-sharing draft surface v0.5',
           'Commit 4ae8516 implemented earlier draft content surface v0.3',
           'content/signal-studio-drafts.ts defines draft records, evidence notes, public-safe claims, caveats, do-not-use lists, and review fields',
-          'docs/planning/SIGNAL_STUDIO_V0_1_ROLE_MAP_PROPOSAL.md defines Signal Studio roles as proposal, not canonical truth'
+          'Protected draft-pipeline role-map proposal defines review roles as proposal, not canonical truth'
         ],
         skillsDemonstrated: [
           'Learning pipeline design',
@@ -456,7 +457,7 @@ export default function AchievementsPage() {
         ],
         impact: 'Created a repeatable internal mechanism to convert AIOS work into publishable insights only after evidence and reputation-risk review.'
       },
-      tags: ['Signal Studio', 'Learning Pipeline', 'Content Governance', 'Internal']
+      tags: ['Protected Drafts', 'Learning Pipeline', 'Content Governance', 'Internal']
     },
     {
       date: '2026-05-26',
@@ -706,10 +707,10 @@ export default function AchievementsPage() {
               Public-safe evidence of what was built, what is proven, what is caveated, and what remains internal.
             </p>
             <p className="mt-4 text-sm font-medium text-white/80">
-              Evidence updated: 31 May 2026 · Production trust repair verified: 31 May 2026
+              Evidence updated: 4 Jun 2026 · CASE-002 recruiter-demo freeze candidate
             </p>
             <p className="mt-2 text-sm text-white/75">
-              Latest validated milestone: AIOS multi-session repo coordination pattern, 31 May 2026
+              Latest validated milestone: recruiter-readable CASE-002 retail AI simulation, 4 Jun 2026
             </p>
           </div>
         </div>
@@ -724,7 +725,7 @@ export default function AchievementsPage() {
               Internal measurements are summarized only when the evidence package is ready for public use.
             </p>
             <p className="mt-2 text-sm text-muted-foreground">
-              This page records external/professional proof and impact. Internal learning patterns and reusable draft ideas stay in protected Signal Studio until claims are reviewed.
+              This page records external/professional proof and impact. Internal learning patterns and reusable draft ideas stay in protected review until claims are approved.
             </p>
           </div>
 
