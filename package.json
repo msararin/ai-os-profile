@@ -8,7 +8,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "check:public-dashboard-leakage": "node scripts/check-public-dashboard-leakage.mjs"
   },
   "dependencies": {
     "@auth/core": "^0.34.3",

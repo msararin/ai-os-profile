@@ -67,6 +67,7 @@ const publicWorkspaceTitles: Record<string, string> = {
 
 const publicCardTitles: Record<string, string> = {
   data_team_rule: "Data Team First Rule (evidence review before decision)",
+  lyn_b_selection_receipt: "Prototype option selection receipt",
   c_jsonl_trigger_assessment: "Structured data trigger assessment",
   c_trigger_current_status: "Current structured-data trigger status",
   jsonl_schema_boundary: "Structured evidence index",
@@ -77,6 +78,8 @@ const publicCardTitles: Record<string, string> = {
 const publicCardRemarks: Record<string, string> = {
   data_team_rule:
     "Dashboard and evidence questions are reviewed by the Data Team before they become decision requests.",
+  lyn_b_selection_receipt:
+    "An internal decision selected the read-only evidence surface before any public route work.",
   c_jsonl_trigger_assessment:
     "A future structured evidence index was assessed and remains parked because the trigger is not met.",
   c_trigger_current_status:
@@ -89,7 +92,12 @@ const publicCardRemarks: Record<string, string> = {
 }
 
 const nameSensitiveWorkspaces = new Set(["Big Crew", "Supernova"])
-const nameSensitiveCardIds = new Set(["data_team_rule", "big_crew_workspace", "supernova_workspace"])
+const nameSensitiveCardIds = new Set([
+  "data_team_rule",
+  "lyn_b_selection_receipt",
+  "big_crew_workspace",
+  "supernova_workspace",
+])
 const inactiveTriggerStates = new Set(["not_met", "not met"])
 
 const publicTermDescriptions = [
@@ -191,9 +199,17 @@ function isNameSensitiveCard(card: SnapshotCard) {
 }
 
 function publicEvidenceFieldValue(card: SnapshotCard, field: string, value: string) {
+  if (field === "sourcePath") {
+    return "internal evidence record (path not published)"
+  }
+
+  if (field === "snapshotBy") {
+    return "not published on public page"
+  }
+
   if (!isNameSensitiveCard(card)) return value
 
-  if (["decisionUse", "missingFields", "sourcePath", "snapshotBy"].includes(field)) {
+  if (["decisionUse", "missingFields", "sourcePath", "snapshotBy", "refreshCadence"].includes(field)) {
     return "not published on public page"
   }
 
@@ -254,7 +270,7 @@ function SnapshotCardView({ card }: { card: SnapshotCard }) {
         <Field label="Last updated" value={card.lastUpdated} />
         <Field label="Decision use" value={publicEvidenceFieldValue(card, "decisionUse", card.decisionUse)} />
         <Field label="Missing fields" value={publicEvidenceFieldValue(card, "missingFields", card.missingFields)} />
-        <Field label="Refresh cadence" value={card.refreshCadence} />
+        <Field label="Refresh cadence" value={publicEvidenceFieldValue(card, "refreshCadence", card.refreshCadence)} />
         <Field
           label="Source reference"
           value={publicEvidenceFieldValue(card, "sourcePath", card.sourcePath)}
