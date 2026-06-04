@@ -563,14 +563,26 @@ export default function InternalDashboardPage() {
                 </a>
 
                 <a
+                  href="/internal/aios-agent-review-dashboard"
+                  className="block p-4 rounded-lg border border-amber-500/40 bg-amber-500/10 hover:bg-amber-500/15 transition-colors"
+                >
+                  <h3 className="font-medium mb-1 text-amber-700 dark:text-amber-400">
+                    Prototype: Agent Review (Snapshot 002, read-only)
+                  </h3>
+                  <p className="text-sm text-muted-foreground">
+                    Early read-only surface for manual evidence capture visibility; not analytics or telemetry
+                  </p>
+                </a>
+
+                <a
                   href="/internal/aios-architecture-map"
                   className="block p-4 rounded-lg border border-yellow-500/40 bg-yellow-500/10 hover:bg-yellow-500/15 transition-colors"
                 >
                   <h3 className="font-medium mb-1 text-yellow-700 dark:text-yellow-400">
-                    Internal: AIOS Architecture Map
+                    Internal: Business Goal & Evidence Map
                   </h3>
                   <p className="text-sm text-muted-foreground">
-                    Experimental big-picture map of decision, execution, evidence, and business layers
+                    Decision-focused view of business gaps, backlog priorities, and guild ownership
                   </p>
                 </a>
 

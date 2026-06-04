@@ -57,3 +57,6 @@ jobs:
 
       - name: Build
         run: pnpm build
+
+      - name: Public dashboard leakage check
+        run: pnpm check:public-dashboard-leakage

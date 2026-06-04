@@ -36,6 +36,11 @@ const aiosSections = [
     description: "Portfolio framework for AI launch-readiness, human gates, evidence, and rollback criteria.",
   },
   {
+    title: "Agent Review Evidence Dashboard",
+    href: "/ai-operating-system/agent-review-dashboard",
+    description: "Public evidence snapshot showing manual evidence, confidence, missing states, and explicit gaps.",
+  },
+  {
     title: "Architecture",
     href: "/architecture",
     description: "System structure, boundaries, and public-safe technical view.",
