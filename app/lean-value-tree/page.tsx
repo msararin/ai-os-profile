@@ -24,7 +24,7 @@ const lvtLayers: LvtLayer[] = [
       "Maintain decision authority and scope discipline across AI-assisted work",
     metric: "Decisions logged in KB / total decisions made",
     status: "Active",
-    evidence: "Robert KB decision logs, cockpit governance v0.3 + R1",
+    evidence: "Robert(GPT) KB decision logs, cockpit governance v0.3 + R1",
     nextMove: "Continue weekly KB decision audit",
   },
   {

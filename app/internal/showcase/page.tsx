@@ -11,7 +11,7 @@ const demonstrated = [
 const evidence = [
   "Historical benchmark notes and local validation artifacts may exist in the private working context.",
   "Release-time build, typecheck, route, and boundary scans provide app-level validation evidence.",
-  "Robert/Lyn review remains required before benchmark claims are treated as decision-ready proof.",
+  "Robert(GPT)/Lyn review remains required before benchmark claims are treated as decision-ready proof.",
 ]
 
 const unverified = [

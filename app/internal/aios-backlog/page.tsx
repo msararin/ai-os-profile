@@ -67,7 +67,7 @@ export default async function AIOSBacklogPage() {
           <div>
             <p className="font-semibold text-foreground">Source reference</p>
             <p className="mt-1 break-all font-mono text-xs text-muted-foreground">
-              Local-only allowlisted Robert KB backlog-distillation markdown file
+              Local-only allowlisted Robert(GPT) KB backlog-distillation markdown file
             </p>
           </div>
           <div>
@@ -95,7 +95,7 @@ export default async function AIOSBacklogPage() {
         <div className="mt-6 rounded-xl border border-yellow-500/40 bg-yellow-500/10 p-4 text-sm text-foreground">
           <p className="font-semibold">Read-only warning</p>
           <p className="mt-1">
-            Robert KB markdown + Git remain source of truth.
+            Robert(GPT) KB markdown + Git remain source of truth.
           </p>
         </div>
 
@@ -109,7 +109,7 @@ export default async function AIOSBacklogPage() {
           <div className="mt-6 rounded-xl border border-red-500/40 bg-red-500/10 p-5 text-sm text-foreground">
             <p className="font-semibold">Local-only source unavailable by design.</p>
             <p className="mt-2 text-muted-foreground">
-              The deployed Vercel runtime cannot access Lyn&apos;s local Robert KB filesystem path.
+              The deployed Vercel runtime cannot access Lyn&apos;s local Robert(GPT) KB filesystem path.
               Live KB read is local-only unless a safe export/sync layer is implemented.
             </p>
           </div>

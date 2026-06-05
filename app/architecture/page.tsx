@@ -61,7 +61,7 @@ const architectureGroups = [
       },
       {
         title: "Source-of-Truth",
-        detail: "Robert KB + Git remain the durable truth record. Public and internal pages are presentation or review surfaces only.",
+        detail: "Robert(GPT) KB + Git remain the durable truth record. Public and internal pages are presentation or review surfaces only.",
         labels: ["Reviewed records", "Decision history", "Truth boundary"],
       },
       {

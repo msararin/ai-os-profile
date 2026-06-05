@@ -3,7 +3,7 @@
 **Status:** Proposal — NOT canonical source of truth yet  
 **Created:** 2026-05-26  
 **Author:** Risa (Signal Studio v0.5 implementation)  
-**Review required:** Lyn / Robert before integrating into KB canonical docs
+**Review required:** Lyn / Robert(GPT) before integrating into KB canonical docs
 
 ---
 
@@ -39,13 +39,13 @@ Define Signal Studio as a separate team from Supernova within the AIOS team-of-t
 
 | Role | Purpose | Trigger | Input | Output | Default model | Escalation | Stop condition |
 |------|---------|---------|-------|--------|---------------|------------|----------------|
-| **Signal Architect** | Frame personal branding / positioning / publishability decisions | Need to decide: what to share, where to share, how to position, whether publishable | Topic, evidence, audience, channel options, risk level | Positioning recommendation, channel fit, publishability decision, risk assessment | Sonnet worker | Escalate to Lyn/Robert for high reputation risk or public-facing claims | Stop when positioning is explicit, channel is clear, and risk is classified |
+| **Signal Architect** | Frame personal branding / positioning / publishability decisions | Need to decide: what to share, where to share, how to position, whether publishable | Topic, evidence, audience, channel options, risk level | Positioning recommendation, channel fit, publishability decision, risk assessment | Sonnet worker | Escalate to Lyn/Robert(GPT) for high reputation risk or public-facing claims | Stop when positioning is explicit, channel is clear, and risk is classified |
 | **Signal Publisher** | Draft bilingual content (English professional + Thai casual) with appropriate tone | Approved topic ready for drafting | Topic, evidence notes, positioning, target channel, tone requirements | English professional draft, Thai casual draft, LinkedIn angle, Thai social angle | Flash bulk drafting + Sonnet review | Escalate if tone/voice uncertain or if content touches sensitive topics | Stop when both drafts are complete, tone is appropriate, and bilingual quality passes review |
-| **Evidence Reviewer** | Verify claims-safety, evidence integrity, public/private boundary | Draft content ready for claims review | Draft content, evidence notes, source material, public risk level | Claims-safety assessment, public-safe claims list, needs-caveat list, do-not-use list, public risk level | Sonnet worker | Escalate to Lyn/Robert for medium/high public risk or unverified metrics | Stop when every claim is classified as public-safe, needs-caveat, or do-not-use |
+| **Evidence Reviewer** | Verify claims-safety, evidence integrity, public/private boundary | Draft content ready for claims review | Draft content, evidence notes, source material, public risk level | Claims-safety assessment, public-safe claims list, needs-caveat list, do-not-use list, public risk level | Sonnet worker | Escalate to Lyn/Robert(GPT) for medium/high public risk or unverified metrics | Stop when every claim is classified as public-safe, needs-caveat, or do-not-use |
 | **Visual Architect** | Design infographic prompts and visual briefs for Visual Gemini | Approved content ready for visual handoff | Draft content, positioning, target platform, evidence notes | Infographic prompt, visual brief, visual status, allowed text guidance, what-not-to-show guidance | Sonnet worker | Escalate if visual contains metrics, internal data, or reputation-sensitive claims | Stop when visual prompt is clear, claims-safe, and ready for Visual Gemini generation |
 | **Channel Strategist** | Recommend publishing channel and timing | Content ready for channel decision | Draft content, positioning, evidence level, audience, available channels | Recommended channel (LinkedIn / Thai social / Knowledge Sharing / Park), timing recommendation, cross-posting logic | Sonnet worker | Escalate for high-stakes public content or first-time channel use | Stop when channel is explicit, timing is clear, and cross-posting rules are defined |
 | **Release Coordinator** | Coordinate publication workflow and status updates | Approved content ready to publish | Draft content, channel, timing, visual status, approval status | Publication plan, status updates, post-publish validation, rollback criteria | Sonnet worker | Escalate to Lyn for final publication approval (manual gate) | Stop when content is published OR parked with reason documented |
-| **Brand Continuity Guardian** | Maintain voice consistency, prevent overclaiming, protect reputation | Any public-facing content before publish | Draft content, past published content, brand guidelines, claims-safety notes | Consistency check, overclaiming flags, reputation risk assessment, revision recommendations | Sonnet worker | Escalate to Lyn/Robert for potential reputation damage or brand misalignment | Stop when content aligns with established voice and does not overclaim |
+| **Brand Continuity Guardian** | Maintain voice consistency, prevent overclaiming, protect reputation | Any public-facing content before publish | Draft content, past published content, brand guidelines, claims-safety notes | Consistency check, overclaiming flags, reputation risk assessment, revision recommendations | Sonnet worker | Escalate to Lyn/Robert(GPT) for potential reputation damage or brand misalignment | Stop when content aligns with established voice and does not overclaim |
 
 ---
 
@@ -114,9 +114,9 @@ Define Signal Studio as a separate team from Supernova within the AIOS team-of-t
 **Proposed hierarchy:**
 
 ```
-Human Release Gate (Lyn/Robert)
+Human Release Gate (Lyn/Robert(GPT))
 ↓
-Orchestration Brain (Robert)
+Orchestration Brain (Robert(GPT))
 ↓
 Memory Layer (KB)
 ↓
@@ -128,9 +128,9 @@ Dispatch Layer
 ```
 
 **Signal Studio's relationship to other teams:**
-- Reports to Orchestration Brain (Robert) for task dispatch
+- Reports to Orchestration Brain (Robert(GPT)) for task dispatch
 - Uses Memory Layer (KB) for evidence retrieval and brand continuity
-- Escalates to Human Release Gate (Lyn/Robert) for high-risk content
+- Escalates to Human Release Gate (Lyn/Robert(GPT)) for high-risk content
 - Does NOT make money/business decisions (that's Supernova's domain)
 - Does NOT make technical/engineering decisions (that's Big Crew's domain)
 
@@ -138,7 +138,7 @@ Dispatch Layer
 
 ## Release Rule
 
-Signal Studio v0.1 output is draft until reviewed by Robert and gated by Lyn when required.
+Signal Studio v0.1 output is draft until reviewed by Robert(GPT) and gated by Lyn when required.
 
 **Manual gates:**
 - All public-facing content requires Lyn final approval
@@ -161,14 +161,14 @@ Signal Studio v0.1 output is draft until reviewed by Robert and gated by Lyn whe
 - Option B: Add Signal Studio section to `/Users/apple/robert-knowledge-base/03_ai_skill_lab/team-of-team-orchestration/team-orchestration-overview.md`
 - Option C: Create new `/Users/apple/robert-knowledge-base/03_ai_skill_lab/personal-branding/` directory
 
-**Decision needed:** Lyn/Robert must approve location before creating canonical file
+**Decision needed:** Lyn/Robert(GPT) must approve location before creating canonical file
 
 ---
 
 ## Next Steps
 
 1. ✅ Signal Studio role map proposal created (this document)
-2. ⏸️ Lyn/Robert review proposal
+2. ⏸️ Lyn/Robert(GPT) review proposal
 3. ⏸️ Approve canonical location
 4. ⏸️ Create canonical Signal Studio role registry
 5. ⏸️ Update team orchestration overview to reference Signal Studio
@@ -176,4 +176,4 @@ Signal Studio v0.1 output is draft until reviewed by Robert and gated by Lyn whe
 
 ---
 
-**Status:** PROPOSAL — awaiting Lyn/Robert review before integrating into canonical KB docs
+**Status:** PROPOSAL — awaiting Lyn/Robert(GPT) review before integrating into canonical KB docs

@@ -68,7 +68,7 @@
 ✅ Identify files touched vs not touched  
 ✅ Run validation after change  
 ✅ Pass public-facing quality gate  
-✅ Get human release approval (Lyn/Robert)  
+✅ Get human release approval (Lyn/Robert(GPT))
 
 ---
 
@@ -85,7 +85,7 @@
 7. ✅ Validation run passed
 8. ✅ Changed files listed
 9. ✅ Rollback path known
-10. ✅ Lyn/Robert release gate passed
+10. ✅ Lyn/Robert(GPT) release gate passed
 
 **Then and only then:** Commit and deploy.
 
@@ -137,7 +137,7 @@
    ↓
 4. Automated gate (scripts, future)
    ↓
-5. Human release gate (Lyn/Robert approval)
+5. Human release gate (Lyn/Robert(GPT) approval)
 ```
 
 **All 5 layers required for durable discipline.**

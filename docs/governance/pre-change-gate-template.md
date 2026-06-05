@@ -3,7 +3,7 @@
 
 **Purpose:** Declare intent before implementation  
 **Enforcement:** No edit without completed report  
-**Review:** Lyn/Robert must approve before proceed
+**Review:** Lyn/Robert(GPT) must approve before proceed
 
 ---
 
@@ -11,7 +11,7 @@
 
 ### Change ID
 **Date:** [YYYY-MM-DD]  
-**Requestor:** [Lyn / Robert / Self-identified issue]  
+**Requestor:** [Lyn / Robert(GPT) / Self-identified issue]
 **Change type:** [PATCH / FIX / NEW / REFACTOR]
 
 ---
@@ -195,7 +195,7 @@ curl https://sararin.ai/ (check live)
 - [ ] This change is within my judgment scope
 - [ ] This change requires Lyn review
 
-**Lyn/Robert approval:**
+**Lyn/Robert(GPT) approval:**
 - [ ] ✅ APPROVED - Proceed with change
 - [ ] ⏸️ HOLD - Needs revision (specify below)
 - [ ] ❌ BLOCK - Do not proceed (specify below)

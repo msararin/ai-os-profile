@@ -129,13 +129,13 @@ Required sections:
 - `Task Routing Policy`
 
 Org chart must show:
-- Lyn / Robert as executive review and protected decision gate
-- Robert and Hermes as peers via KB
-- Robert KB + Git as shared source of truth
+- Lyn / Robert(GPT) as executive review and protected decision gate
+- Robert(GPT) and Hermes as peers via KB
+- Robert(GPT) KB + Git as shared source of truth
 - Codex, Big Crew, Researcher, Supernova, Investment Team, optimize-worker, and Fallback routing as routed operating lanes
 
 Role policy must include public-safe rows for:
-- Robert / Lyn
+- Robert(GPT) / Lyn
 - Hermes
 - Codex
 - Big Crew
@@ -173,7 +173,7 @@ The v3.1 release explicitly treats the Patch 2 handoff requirements as implement
 
 ### Architecture Page
 4 layers in order with exact tag wording:
-1. Executive Layer — `Robert / GPT`, `Hermes + Opus + custom MCP*`
+1. Executive Layer — `Robert(GPT)`, `Hermes + Opus + custom MCP*`
 2. Routing Layer — `optimize-worker`
 3. Execution Layer — `Codex`, `Hermes`, `local agents`
 4. Source-of-Truth Layer — `Privacy-first`, `Committed KB protocol`
@@ -226,7 +226,7 @@ Closing quote: `"AI orchestration is program management. Tools change. Governanc
 ### Top-Right Metadata Block (every page)
 ```
 Last updated: 2026-05-20 08:15 ICT
-Source: Robert KB + Git
+Source: Robert(GPT) KB + Git
 Version: v1.1 rescue draft
 Release: v3.1.0
 ```
@@ -235,7 +235,7 @@ NOTE: `Version: v1.1 rescue draft` is locked content from the original brief. Th
 
 ### Footer (every page)
 3 columns same as metadata block PLUS bottom line:
-`© 2026 AI Orchestration Governance — A portfolio case study by Lyn (msararin). Source of truth: Robert KB + Git.`
+`© 2026 AI Orchestration Governance — A portfolio case study by Lyn (msararin). Source of truth: Robert(GPT) KB + Git.`
 
 The footer must also show `Release: v3.1.0` so the deployed public site visibly identifies the release.
 

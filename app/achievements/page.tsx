@@ -279,7 +279,7 @@ export default function AchievementsPage() {
       publicSafeResult: 'The page now explains managed knowledge work without exposing internal route paths or turning internal drafts into official records.',
       caveat: 'This is an operating-model proof, not a claim of enterprise-scale automation, production autonomy, or business impact.',
       details: {
-        whyItMatters: 'The work showed how Codex, Risa/Hermes, Robert, and human approval can cooperate through clear roles: shared context for alignment, proposal files for safe drafting, evidence packets for review, stop conditions for uncertainty, and release gates before promotion.',
+        whyItMatters: 'The work showed how Codex, Risa/Hermes, Robert(GPT), and human approval can cooperate through clear roles: shared context for alignment, proposal files for safe drafting, evidence packets for review, stop conditions for uncertainty, and release gates before promotion.',
         evidence: [
           'PR #6 corrected the Achievements proof language and public-boundary copy',
           'Commit 86b47e2 reframed the May 28 item around benchmark-backed public proof',
@@ -440,7 +440,7 @@ export default function AchievementsPage() {
       evidenceReference: 'commits 9734b39 and 4ae8516, protected draft-pipeline role-map proposal',
       status: 'Internal draft/review surface',
       publicSafeResult: 'Knowledge Sharing remains public archive only; draft packages remain protected under /internal/*.',
-      caveat: 'Draft records are not automatically publishable; Lyn/Robert review is required before public use.',
+      caveat: 'Draft records are not automatically publishable; Lyn/Robert(GPT) review is required before public use.',
       details: {
         whyItMatters: 'The site needs a disciplined path from learning to content without leaking drafts or overclaiming.',
         evidence: [
@@ -674,7 +674,7 @@ export default function AchievementsPage() {
       details: {
         whyItMatters: 'Shows multi-agent orchestration capability with source-tracked lab evidence and review discipline.',
         evidence: [
-          'Architecture: Robert (router/reviewer) → Optimize Worker (execution) → Quality gates',
+          'Architecture: Robert(GPT) (router/reviewer) → Optimize Worker (execution) → Quality gates',
           'Parallel execution: Up to 3 concurrent subagents',
           'Measured speed comparison retained with lab-run scope and source notes',
           'Cost comparison retained internally until public benchmark context is ready',

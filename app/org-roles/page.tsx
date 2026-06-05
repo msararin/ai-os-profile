@@ -5,7 +5,7 @@ import Link from "next/link"
 
 const rolePolicies = [
   {
-    role: "Robert / Lyn",
+    role: "Robert(GPT) / Lyn",
     responsibility:
       "Executive review, taste, risk appetite, and final approval for public, money, legal, privacy, reputation, health, career, and major architecture decisions.",
     owns: "Final gate and protected decisions",
@@ -106,7 +106,7 @@ const taskPolicies = [
   },
   {
     task: "Money, legal, privacy, reputation, health, career, or major architecture",
-    route: "Robert / Lyn",
+    route: "Robert(GPT) / Lyn",
     rule: "Stop for executive review; no delegated role owns the final decision.",
   },
 ]
@@ -179,7 +179,7 @@ export default function OrgRolesPage() {
               <div className="flex justify-center">
                 <div className="w-full max-w-sm rounded border border-primary/30 bg-primary/10 p-4 text-center">
                   <p className="text-sm font-semibold text-primary">
-                    Lyn / Robert
+                    Lyn / Robert(GPT)
                   </p>
                   <p className="mt-1 text-xs text-muted-foreground">
                     Executive review and protected decisions
@@ -192,7 +192,7 @@ export default function OrgRolesPage() {
               <div className="grid gap-4 md:grid-cols-[1fr_auto_1fr] md:items-center">
                 <div className="rounded border border-border bg-background p-4 text-center">
                   <p className="text-sm font-semibold text-foreground">
-                    Robert
+                    Robert(GPT)
                   </p>
                   <p className="mt-1 text-xs text-muted-foreground">
                     Personal AI context layer and KB continuity
@@ -215,7 +215,7 @@ export default function OrgRolesPage() {
 
               <div className="rounded border border-dashed border-border bg-muted/30 p-4 text-center">
                 <p className="text-sm font-semibold text-foreground">
-                  Robert KB + Git
+                  Robert(GPT) KB + Git
                 </p>
                 <p className="mt-1 text-xs text-muted-foreground">
                   Shared source of truth for decisions, evidence, and handoffs

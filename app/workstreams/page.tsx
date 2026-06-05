@@ -79,7 +79,7 @@ const workstreams = [
     status: "Started",
     owner: "Lyn + Researcher",
     nextAction: "Use for bounded positioning and claim-safety briefs before public copy changes.",
-    gateDecision: "Research output informs copy; Robert/Lyn still gate claims before implementation.",
+    gateDecision: "Research output informs copy; Robert(GPT)/Lyn still gate claims before implementation.",
     blockerRisk: "Broad research can drift into market sizing or unsupported uniqueness claims.",
     proofLevel: "Documented",
     evidence: "Homepage differentiation brief",

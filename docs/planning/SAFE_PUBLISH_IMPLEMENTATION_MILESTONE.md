@@ -62,7 +62,7 @@
 
 **Test 2: Strategic content (app/architecture/page.tsx)**
 - Gate 3: ❌ FAILED (strategic content detected — correct behavior)
-- Message: "Require Robert gate (strategic risk assessment)"
+- Message: "Require Robert(GPT) gate (strategic risk assessment)"
 - Result: Aborted (as designed) ✅
 
 ---
@@ -81,7 +81,7 @@
 
 **✅ Strategic gate triggers correctly:**
 - Architecture page changes detected
-- Robert gate requirement enforced
+- Robert(GPT) gate requirement enforced
 - Public/private boundary protection
 
 **✅ No force push:**
@@ -184,7 +184,7 @@ This implementation demonstrates **release governance maturity** applied at pers
 
 **Strategic content detection:**
 - Path-based + content-based checks
-- Architecture page changes trigger Robert gate
+- Architecture page changes trigger Robert(GPT) gate
 - AIOS positioning keywords in Home page diffs
 - Proof page changes require evidence review
 

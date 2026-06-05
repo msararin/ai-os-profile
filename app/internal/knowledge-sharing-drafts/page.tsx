@@ -91,7 +91,7 @@ export default function InternalKnowledgeSharingDraftsPage() {
             </div>
           </div>
           <p className="mt-3 text-xs text-blue-900 dark:text-blue-100">
-            Pending migration: convert the 28 May production release proof into reusable learning patterns after Lyn/Robert review. Markdown export controls remain internal review tooling.
+            Pending migration: convert the 28 May production release proof into reusable learning patterns after Lyn/Robert(GPT) review. Markdown export controls remain internal review tooling.
           </p>
         </div>
 

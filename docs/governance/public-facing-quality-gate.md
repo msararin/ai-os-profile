@@ -3,7 +3,7 @@
 
 **Purpose:** Verify change meets discipline contract  
 **Enforcement:** All checks must pass before deploy  
-**Authority:** Lyn/Robert release gate required
+**Authority:** Lyn/Robert(GPT) release gate required
 
 ---
 
@@ -159,7 +159,7 @@ Check each performance/ROI/speed/cost claim:
 
 ## GATE 8: Human Release Approval
 
-**Lyn/Robert final review:**
+**Lyn/Robert(GPT) final review:**
 
 - [ ] Change aligns with mission
 - [ ] No reputation risk detected
@@ -208,7 +208,7 @@ Check each performance/ROI/speed/cost claim:
 1. ✅ All 8 gates passed
 2. ✅ Live site verified working
 3. ✅ No regression detected
-4. ✅ Lyn/Robert release approval obtained
+4. ✅ Lyn/Robert(GPT) release approval obtained
 5. ✅ Pre-change report filed
 6. ✅ Post-deploy verification completed
 7. ✅ KB updated (if applicable)
@@ -224,7 +224,7 @@ Check each performance/ROI/speed/cost claim:
 - **Commit:** [SHA]
 - **Date:** [YYYY-MM-DD]
 - **All gates:** PASS
-- **Approved by:** [Lyn / Robert]
+- **Approved by:** [Lyn / Robert(GPT)]
 
 **Failed deploys (learn from):**
 - [Record failures here with reason + fix]

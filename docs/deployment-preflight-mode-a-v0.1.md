@@ -950,7 +950,7 @@ Checks:
 6. Run `pnpm exec tsc --noEmit`
 7. Run `pnpm build`
 
-This is intentionally a deployment pain reducer, not an auto-deployment system. It catches package, lint, type, and build failures before release while preserving Lyn/Robert approval gates for real deployment.
+This is intentionally a deployment pain reducer, not an auto-deployment system. It catches package, lint, type, and build failures before release while preserving Lyn/Robert(GPT) approval gates for real deployment.
 
 ### Local Validation Evidence
 
@@ -989,7 +989,7 @@ Git / artifact path = committed proof anchor
 For this CI/CD v0.1 task:
 - SQLite raw runtime evidence: not used, because no existing optimize-worker observability flow naturally captured this task.
 - Runtime evidence: local command output from install/lint/typecheck/build.
-- KB reviewed interpretation: benchmark JSONL trace under Robert KB benchmark traces.
+- KB reviewed interpretation: benchmark JSONL trace under Robert(GPT) KB benchmark traces.
 - Git/artifact proof anchor: this document and workflow file in the ai-os-profile commit.
 
 ### Claim Boundary

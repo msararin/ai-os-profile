@@ -71,7 +71,7 @@ const blockedDecisions = [
   {
     title: "Benchmark claim",
     detail: "Blocked. This surface is evidence readiness only and does not prove model superiority or ROI.",
-    owner: "Lyn / Robert review gate",
+    owner: "Lyn / Robert(GPT) review gate",
     next: "Keep the claim boundary fixed to readiness and missingness.",
   },
   {
@@ -132,7 +132,7 @@ export default function EvidenceReadinessPage() {
                   Evidence Readiness layer operational / comparison blocked
                 </p>
                 <p className="mt-2 text-sm text-muted-foreground">
-                  Source of truth: Robert KB + Git. Refresh cadence: manual
+                  Source of truth: Robert(GPT) KB + Git. Refresh cadence: manual
                   snapshot only.
                 </p>
               </CardContent>
@@ -415,7 +415,7 @@ export default function EvidenceReadinessPage() {
                   metadata through to the receipt.
                 </p>
                 <p>
-                  Review gate: Robert / Opus boundary review for any public
+                  Review gate: Robert(GPT) / Opus boundary review for any public
                   claim, then Lyn for final strategic approval.
                 </p>
               </CardContent>

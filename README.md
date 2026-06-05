@@ -125,7 +125,7 @@ Open [http://localhost:3000](http://localhost:3000) to see the result.
 - ✅ สีมงคลวันศุกร์ design system applied
 - ✅ `/about` page with 5-pillar career story
 - ✅ `/portfolio` page with anonymized case studies
-- ✅ Robert's positioning critique integrated
+- ✅ Robert(GPT)'s positioning critique integrated
 - ✅ NextAuth.js foundation (auth layer)
 
 **2026-05-23:**
@@ -159,7 +159,7 @@ INTERNAL_ALLOWED_EMAILS=msararin@gmail.com
 
 - [Design System](./docs/DESIGN_SYSTEM.md) - Color palette, typography, components
 - [Technical Architecture](./docs/sararin-labs-technical-architecture.md) - 3-tier auth model
-- [Robert's Review](./ROBERT_REVIEW_ACTIONS.md) - Positioning critique & actions
+- [Robert(GPT)'s Review](./ROBERT_REVIEW_ACTIONS.md) - Positioning critique & actions
 
 ---
 

@@ -91,7 +91,7 @@ const existingTools = [
 
 const customizedSystems = [
   {
-    name: "Robert KB + Git",
+    name: "Robert(GPT) KB + Git",
     status: "Active",
     description:
       "Git-backed knowledge base and change history for reviewed decisions, evidence, and working context.",
@@ -446,7 +446,7 @@ export default function AIOperatingSystemPage() {
               <div className="flex justify-center">
                 <div className="w-full max-w-sm rounded border border-primary/30 bg-primary/10 p-4 text-center">
                   <p className="text-sm font-semibold text-primary">
-                    Lyn / Robert
+                    Lyn / Robert(GPT)
                   </p>
                   <p className="mt-1 text-xs text-muted-foreground">
                     Executive review and protected decisions
@@ -459,7 +459,7 @@ export default function AIOperatingSystemPage() {
               <div className="grid gap-4 md:grid-cols-[1fr_auto_1fr] md:items-center">
                 <div className="rounded border border-border bg-background p-4 text-center">
                   <p className="text-sm font-semibold text-foreground">
-                    Robert
+                    Robert(GPT)
                   </p>
                   <p className="mt-1 text-xs text-muted-foreground">
                     Personal AI context layer and KB continuity
@@ -482,7 +482,7 @@ export default function AIOperatingSystemPage() {
 
               <div className="rounded border border-dashed border-border bg-muted/30 p-4 text-center">
                 <p className="text-sm font-semibold text-foreground">
-                  Robert KB + Git
+                  Robert(GPT) KB + Git
                 </p>
                 <p className="mt-1 text-xs text-muted-foreground">
                   Shared source of truth for decisions, evidence, and handoffs
@@ -941,7 +941,7 @@ export default function AIOperatingSystemPage() {
               <tbody className="divide-y divide-border">
                 <tr>
                   <td className="whitespace-nowrap px-4 py-3 text-sm font-medium text-foreground">
-                    Robert KB + Git
+                    Robert(GPT) KB + Git
                   </td>
                   <td className="px-4 py-3 text-sm text-muted-foreground">
                     Source of truth. Master archive of decisions.
@@ -949,7 +949,7 @@ export default function AIOperatingSystemPage() {
                 </tr>
                 <tr>
                   <td className="whitespace-nowrap px-4 py-3 text-sm font-medium text-foreground">
-                    Robert / GPT
+                    Robert(GPT)
                   </td>
                   <td className="px-4 py-3 text-sm text-muted-foreground">
                     Executive orchestrator and reviewer.

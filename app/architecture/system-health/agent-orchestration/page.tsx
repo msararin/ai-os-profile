@@ -50,7 +50,7 @@ const surfaceLanes = [
   },
   {
     lane: "Executive Orchestration",
-    owner: "Robert",
+    owner: "Robert(GPT)",
     status: "Context and review",
     purpose: "Classifies work, checks claims, and keeps scope bounded.",
   },
@@ -102,15 +102,15 @@ const flowSteps = [
   {
     icon: Hand,
     label: "Intake",
-    owner: "Lyn / Robert",
+    owner: "Lyn / Robert(GPT)",
     sentence: "Example task enters AIOS with purpose, risk, and expected output.",
     artifact: "Intent",
   },
   {
     icon: Route,
     label: "Classify",
-    owner: "Robert",
-    sentence: "Robert identifies task type, risk level, and safest lane.",
+    owner: "Robert(GPT)",
+    sentence: "Robert(GPT) identifies task type, risk level, and safest lane.",
     artifact: "Lane",
   },
   {
@@ -137,7 +137,7 @@ const flowSteps = [
   {
     icon: CheckCircle2,
     label: "Review",
-    owner: "Robert / Reviewer",
+    owner: "Robert(GPT) / Reviewer",
     sentence: "Output is checked for DoD, claims, and boundary risk.",
     artifact: "DoD",
   },
@@ -152,7 +152,7 @@ const flowSteps = [
   {
     icon: Archive,
     label: "Outcome",
-    owner: "Robert / Codex",
+    owner: "Robert(GPT) / Codex",
     sentence: "Work is committed, published, revised, stopped, or archived.",
     artifact: "State",
     emphasis: "outcome",
@@ -160,7 +160,7 @@ const flowSteps = [
   {
     icon: GitBranch,
     label: "Learn",
-    owner: "Robert / KB",
+    owner: "Robert(GPT) / KB",
     sentence: "Lesson becomes checklist, prompt, or role rule update.",
     artifact: "Rule",
   },
@@ -174,7 +174,7 @@ const controlGates = [
   },
   {
     label: "Review gate",
-    owner: "Robert / Reviewer",
+    owner: "Robert(GPT) / Reviewer",
     sentence: "Scope, claims, Definition of Done, and risk are checked.",
   },
   {
@@ -184,12 +184,12 @@ const controlGates = [
   },
   {
     label: "Rework loop",
-    owner: "Robert / Worker lane",
+    owner: "Robert(GPT) / Worker lane",
     sentence: "Feedback is classified, revised, checked, and captured.",
   },
   {
     label: "Improvement output",
-    owner: "Robert / KB",
+    owner: "Robert(GPT) / KB",
     sentence: "The lesson becomes a checklist, prompt, role contract, or routing rule.",
   },
 ]
@@ -262,7 +262,7 @@ export default function AgentOrchestrationMapPage() {
             This is a map, not a dashboard. It does not represent live telemetry, autonomous
             orchestration, provider comparison, benchmark proof, cost-saving evidence, or final
             role-registry truth. Source of truth remains the committed KB docs, git history,
-            receipts, validation artifacts, and Lyn / Robert decisions.
+            receipts, validation artifacts, and Lyn / Robert(GPT) decisions.
           </div>
         </div>
       </section>
