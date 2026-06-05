@@ -9,6 +9,7 @@ const aiosSections = [
     title: "Executive Summary",
     href: "/ai-operating-system",
     description: "What this case study is, why it exists, and how the AIOS is framed.",
+    isRecommendedStart: true,
   },
   {
     title: "Lean Value Tree",
@@ -172,16 +173,37 @@ export default function AIOperatingSystemPage() {
             These public pages group the current AIOS artifacts without crowding
             the top navigation.
           </p>
+          <p className="mt-1 max-w-3xl text-sm text-muted-foreground">
+            Choose a path below to explore the AIOS case study.
+          </p>
           <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {aiosSections.map((section) => (
               <Link
                 key={section.href}
                 href={section.href}
-                className="rounded-lg border border-border bg-card p-4 transition-colors hover:border-primary"
+                className="group flex min-h-[96px] flex-col rounded-lg border border-border bg-card p-4 transition-colors hover:border-primary/70 hover:bg-background/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
               >
-                <h3 className="text-sm font-semibold text-foreground">
-                  {section.title}
-                </h3>
+                <div className="flex items-start justify-between gap-3">
+                  <div className="min-w-0">
+                    <h3 className="text-sm font-semibold text-foreground">
+                      {section.title}
+                    </h3>
+                    {section.isRecommendedStart ? (
+                      <Badge
+                        variant="outline"
+                        className="mt-2 border-border bg-transparent px-2 py-0 text-[10px] font-medium text-muted-foreground"
+                      >
+                        Start here
+                      </Badge>
+                    ) : null}
+                  </div>
+                  <span
+                    aria-hidden="true"
+                    className="shrink-0 text-sm text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:text-primary"
+                  >
+                    →
+                  </span>
+                </div>
                 <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
                   {section.description}
                 </p>
