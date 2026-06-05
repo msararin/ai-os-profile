@@ -85,6 +85,12 @@ export default function ArchitecturePage() {
     <PageLayout>
       <section className="border-b border-border bg-background">
         <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
+          <Link
+            href="/ai-operating-system#case-study-map"
+            className="mb-5 inline-flex text-sm font-medium text-primary hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+          >
+            ← Back to AIOS Case Study Map
+          </Link>
           <p className="text-sm font-medium uppercase tracking-wide text-muted-foreground">
             AIOS architecture
           </p>

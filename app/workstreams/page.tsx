@@ -1,6 +1,7 @@
 import { PageLayout } from "@/components/page-layout"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import Link from "next/link"
 
 const workstreams = [
   {
@@ -104,6 +105,12 @@ export default function WorkstreamsPage() {
     <PageLayout>
       <section className="border-b border-border bg-background">
         <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
+          <Link
+            href="/ai-operating-system#case-study-map"
+            className="mb-5 inline-flex text-sm font-medium text-primary hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+          >
+            ← Back to AIOS Case Study Map
+          </Link>
           <h1 className="text-balance text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">
             Workstreams
           </h1>

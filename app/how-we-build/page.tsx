@@ -1,6 +1,7 @@
 import { PageLayout } from "@/components/page-layout"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
+import Link from "next/link"
 
 export default function HowWeBuildPage() {
   return (
@@ -8,6 +9,12 @@ export default function HowWeBuildPage() {
       {/* Header */}
       <section className="border-b border-border bg-background">
         <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6 lg:px-8">
+          <Link
+            href="/ai-operating-system#case-study-map"
+            className="mb-5 inline-flex text-sm font-medium text-primary hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+          >
+            ← Back to AIOS Case Study Map
+          </Link>
           <h1 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
             How We Build
           </h1>

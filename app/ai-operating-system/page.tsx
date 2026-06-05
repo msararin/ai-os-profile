@@ -6,42 +6,50 @@ import Link from "next/link"
 
 const aiosSections = [
   {
+    order: "01",
     title: "Executive Summary",
     href: "/ai-operating-system",
     description: "What this case study is, why it exists, and how the AIOS is framed.",
     isRecommendedStart: true,
   },
   {
+    order: "02",
     title: "Lean Value Tree",
     href: "/lean-value-tree",
     description: "Strategy-to-execution logic connecting value, work, and proof.",
   },
   {
-    title: "Org Roles",
-    href: "/org-roles",
-    description: "Role boundaries for humans, AI workers, review, and escalation.",
-  },
-  {
-    title: "Workstreams",
-    href: "/workstreams",
-    description: "Current operating lanes, status, owners, and next actions.",
-  },
-  {
+    order: "03",
     title: "How We Build",
     href: "/how-we-build",
     description: "Delivery method, gates, review loops, and evidence discipline.",
   },
   {
-    title: "AI Agent Launch Checklist",
-    href: "/ai-agent-launch-checklist",
-    description: "Portfolio framework for AI launch-readiness, human gates, evidence, and rollback criteria.",
+    order: "04",
+    title: "Org Roles",
+    href: "/org-roles",
+    description: "Role boundaries for humans, AI workers, review, and escalation.",
   },
   {
+    order: "05",
+    title: "Workstreams",
+    href: "/workstreams",
+    description: "Current operating lanes, status, owners, and next actions.",
+  },
+  {
+    order: "06",
     title: "Agent Review Evidence Dashboard",
     href: "/ai-operating-system/agent-review-dashboard",
     description: "Public evidence snapshot showing manual evidence, confidence, missing states, and explicit gaps.",
   },
   {
+    order: "07",
+    title: "AI Agent Launch Checklist",
+    href: "/ai-agent-launch-checklist",
+    description: "Portfolio framework for AI launch-readiness, human gates, evidence, and rollback criteria.",
+  },
+  {
+    order: "08",
     title: "Architecture",
     href: "/architecture",
     description: "System structure, boundaries, and public-safe technical view.",
@@ -164,7 +172,7 @@ export default function AIOperatingSystemPage() {
         </div>
       </section>
 
-      <section className="border-b border-border bg-muted/30 py-10">
+      <section id="case-study-map" className="border-y border-primary/20 bg-primary/5 py-10">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
           <h2 className="text-xl font-semibold tracking-tight text-foreground">
             AIOS Case Study Map
@@ -184,7 +192,11 @@ export default function AIOperatingSystemPage() {
                 className="group flex min-h-[96px] flex-col rounded-lg border border-border bg-card p-4 transition-colors hover:border-primary/70 hover:bg-background/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
               >
                 <div className="flex items-start justify-between gap-3">
-                  <div className="min-w-0">
+                  <div className="flex min-w-0 gap-3">
+                    <span className="pt-0.5 text-xs font-semibold tabular-nums text-muted-foreground/60">
+                      {section.order}
+                    </span>
+                    <div className="min-w-0">
                     <h3 className="text-sm font-semibold text-foreground">
                       {section.title}
                     </h3>
@@ -196,6 +208,7 @@ export default function AIOperatingSystemPage() {
                         Start here
                       </Badge>
                     ) : null}
+                    </div>
                   </div>
                   <span
                     aria-hidden="true"

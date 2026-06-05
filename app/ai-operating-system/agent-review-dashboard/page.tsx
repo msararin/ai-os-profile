@@ -311,8 +311,11 @@ export default function PublicAIOSAgentReviewDashboardPage() {
 
       <section className="border-b border-border bg-background">
         <div className="mx-auto w-full max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
-          <Link href="/ai-operating-system" className="text-sm font-medium text-primary hover:underline">
-            AI Operating System
+          <Link
+            href="/ai-operating-system#case-study-map"
+            className="text-sm font-medium text-primary hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+          >
+            ← Back to AIOS Case Study Map
           </Link>
 
           <div className="mt-5 flex flex-wrap items-center gap-3">
