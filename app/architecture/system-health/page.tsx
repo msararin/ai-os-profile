@@ -22,6 +22,15 @@ const surfaces = [
     ],
   },
   {
+    title: "AIOS Monitoring",
+    status: "Under construction — static snapshot",
+    href: "/architecture/system-health/monitoring",
+    copy: [
+      "Shows exported pass, fail, downgraded, and not-started states from AIOS enforcement records.",
+      "Static review surface only; not a realtime agent tracker or production monitoring dashboard.",
+    ],
+  },
+  {
     title: "Agent Orchestration Map",
     status: "Candidate — not yet released",
     href: "/architecture/system-health/agent-orchestration",
@@ -36,6 +45,7 @@ const catches = [
   "Which review surfaces are available, candidate, or under construction.",
   "Which signal boundaries are safe to show publicly.",
   "Which claims are not yet allowed.",
+  "Whether exported AIOS task records are pass, fail, downgraded, or not started.",
 ]
 
 const nonClaims = [
@@ -44,6 +54,7 @@ const nonClaims = [
   "No cost-saving evidence.",
   "No benchmark proof.",
   "No autonomous orchestration.",
+  "No realtime agent tracking.",
 ]
 
 export default function SystemHealthPage() {
@@ -88,6 +99,7 @@ export default function SystemHealthPage() {
               </CardHeader>
               <CardContent className="space-y-1 text-sm text-muted-foreground">
                 <p>Evidence Discipline</p>
+                <p>AIOS Monitoring static snapshot</p>
               </CardContent>
             </Card>
             <Card>
