@@ -23,7 +23,7 @@ export default function AchievementsPage() {
   const achievements = [
     {
       date: '2026-06-07',
-      headline: 'AIOS Orchestration Enforcement - Fake Orchestration Audit Guardrail',
+      headline: 'AIOS Orchestration Enforcement — When Governance Exists but Is Not Yet Enforced',
       summary: 'Converted a fake-orchestration failure into enforceable audit discipline: role and model labels now require route evidence, provider receipts, role-dependency records, and closeout validation before they can be treated as AIOS proof.',
       proofType: 'governance enforcement, audit guardrail, cockpit evidence discipline',
       evidenceReference: 'AIOS_FAKE_ORCHESTRATION_SONNET_REVIEW_2026-06-07 receipts, Sonnet reviewer result, .codex/aios-closeout-check.sh narrow-exclusion patch',
