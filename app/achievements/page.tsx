@@ -8,7 +8,7 @@ import { Badge } from "@/components/ui/badge"
 import { ChevronDown, ChevronRight, Download } from "lucide-react"
 
 export default function AchievementsPage() {
-  const [expandedDays, setExpandedDays] = useState<Set<string>>(new Set(['2026-06-03']))
+  const [expandedDays, setExpandedDays] = useState<Set<string>>(new Set(['2026-06-07']))
 
   const toggleDay = (date: string) => {
     const newExpanded = new Set(expandedDays)
@@ -21,6 +21,38 @@ export default function AchievementsPage() {
   }
 
   const achievements = [
+    {
+      date: '2026-06-07',
+      headline: 'AIOS Orchestration Enforcement - Fake Orchestration Audit Guardrail',
+      summary: 'Converted a fake-orchestration failure into enforceable audit discipline: role and model labels now require route evidence, provider receipts, role-dependency records, and closeout validation before they can be treated as AIOS proof.',
+      proofType: 'governance enforcement, audit guardrail, cockpit evidence discipline',
+      evidenceReference: 'AIOS_FAKE_ORCHESTRATION_SONNET_REVIEW_2026-06-07 receipts, Sonnet reviewer result, .codex/aios-closeout-check.sh narrow-exclusion patch',
+      status: 'Internal cockpit achievement recorded; enforcement patch validated locally',
+      publicSafeResult: 'The cockpit can show that AIOS now has a concrete guardrail against fake orchestration claims: input packets are separated from promoted outputs, while real output claims remain auditable.',
+      caveat: 'This is an enforcement and audit-readiness achievement. It is not a claim of autonomous orchestration, complete live telemetry, complete token/cost benchmarking, or production-grade multi-agent automation.',
+      details: {
+        whyItMatters: 'AI orchestration becomes unreliable when role names such as Sonnet, Opus, Researcher, or Big Crew appear in artifacts without evidence that those workers were actually routed. This update turns that failure mode into a cockpit-visible control: if the work is not routed, receipted, and observable, it is draft work only.',
+        evidence: [
+          'OpenRouter Sonnet reviewer call completed with provider receipt and saved review result',
+          'Reviewer verdict: APPROVE WITH SMALL PATCH for the enforcement pattern',
+          'AIOS preflight created route-ledger, role-dependency-matrix, telemetry-receipt, and stop-condition-checklist before closeout',
+          'Closeout checker now excludes only known input/instruction packets from final-claim scanning',
+          'The broad *_packet.md exclusion was rejected to avoid hiding future output claims',
+          'Regression check passed: policy words inside review_packet.md no longer trigger a false positive',
+          'Regression check passed: the same Researcher output claim in a promoted output file still fails without source-register.md',
+          'Final closeout validation passed for the Sonnet review task'
+        ],
+        skillsDemonstrated: [
+          'AI orchestration claim-boundary enforcement',
+          'Receipt-first model/provider governance',
+          'False-positive versus false-negative audit design',
+          'Role dependency and closeout validation discipline',
+          'Cockpit-safe achievement wording without autonomous-orchestration overclaim'
+        ],
+        impact: 'The cockpit now captures a real governance improvement: AIOS can detect and downgrade fake orchestration instead of letting role labels become proof. This protects trust in future achievement, monitoring, and agent-review surfaces.'
+      },
+      tags: ['AIOS Governance', 'Orchestration Enforcement', 'Audit Guardrail', 'Evidence Discipline', 'Cockpit']
+    },
     {
       date: '2026-06-03',
       headline: 'Retail AI Trustworthy Answers Simulation Kit',
