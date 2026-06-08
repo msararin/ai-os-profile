@@ -8,7 +8,7 @@ import { Badge } from "@/components/ui/badge"
 import { ChevronDown, ChevronRight, Download } from "lucide-react"
 
 export default function AchievementsPage() {
-  const [expandedDays, setExpandedDays] = useState<Set<string>>(new Set(['2026-06-07']))
+  const [expandedDays, setExpandedDays] = useState<Set<string>>(new Set(['2026-06-08']))
 
   const toggleDay = (date: string) => {
     const newExpanded = new Set(expandedDays)
@@ -21,6 +21,38 @@ export default function AchievementsPage() {
   }
 
   const achievements = [
+    {
+      date: '2026-06-08',
+      headline: 'AIOS Monitoring Snapshot Synthetic Proof Drill',
+      summary: 'Moved AIOS monitoring snapshot governance from data contracts and readiness notes into executable synthetic control: a validator, unit tests, synthetic integrated proof drill, CASE-003 synthetic pilot fixture, and artifact sanitization planning boundary.',
+      proofType: 'synthetic governance proof, executable validation, monitoring snapshot control',
+      evidenceReference: 'optimize-worker commit 51b351f, synthetic proof drill packets, CASE-003 synthetic pilot fixture closeout, artifact sanitization gate',
+      status: 'Synthetic integrated proof drill completed; real CASE-003 execution remains blocked',
+      publicSafeResult: 'AIOS has passed a synthetic integrated proof drill for monitoring snapshot governance. The validator can check schema, evidence status, missingness, public/private path violations, quarantined artifact exclusion, and rejected-row reporting against synthetic fixture rows.',
+      caveat: 'Synthetic governance proof only. Not real CASE-003 execution, not Benchmark Dataset v0.1, not production/live monitoring, not a public dashboard monitoring claim, and not benchmark, cost-saving, or model-comparison proof.',
+      details: {
+        whyItMatters: 'AIOS governance needs executable controls, not only documentation. This milestone proves that the monitoring snapshot chain can accept clean synthetic rows, limit claims when telemetry is missing, reject reported-only evidence marked as benchmark usable, exclude quarantined artifacts, and close the work with monitor status before any real CASE-003 data is used.',
+        evidence: [
+          'optimize-worker commit 51b351f added the synthetic-only monitoring snapshot validator',
+          'Unit tests passed: 9 monitoring snapshot validator tests',
+          'Synthetic integrated proof drill covered work-package intake, route/role receipts, telemetry separation, source/human-gate receipts, monitoring snapshot validation, rejected/excluded row handling, and monitor status closeout',
+          'CASE-003 synthetic pilot fixture execution completed with PASS_WITH_WARNINGS: 4 rows checked, 2 accepted, 1 rejected, 1 excluded',
+          'CASE-003 synthetic pilot closeout gate returned APPROVE_CASE003_SYNTHETIC_PILOT_COMPLETE',
+          'Artifact-specific verification/sanitization gate returned APPROVE_ARTIFACT_SANITIZATION_PLAN',
+          'No real CASE-003 artifacts were used, no Benchmark Dataset v0.1 was exported, and no live/production monitoring claim was made'
+        ],
+        skillsDemonstrated: [
+          'Executable AIOS governance validation',
+          'Synthetic fixture design for positive and negative controls',
+          'Evidence-status and missingness validation',
+          'Public/private path boundary enforcement',
+          'Quarantined artifact exclusion and rejected-row reporting',
+          'Monitor-status closeout discipline'
+        ],
+        impact: 'The monitoring snapshot chain now has a working synthetic validator and proof-drill evidence. This makes the next CASE-003 gates safer because real artifact use must pass sanitization and planning boundaries instead of being treated as proof by default.'
+      },
+      tags: ['AIOS Monitoring', 'Synthetic Proof Drill', 'Executable Governance', 'CASE-003', 'Evidence Discipline']
+    },
     {
       date: '2026-06-07',
       headline: 'AIOS Orchestration Enforcement — When Governance Exists but Is Not Yet Enforced',
