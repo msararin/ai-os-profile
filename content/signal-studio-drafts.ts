@@ -224,7 +224,7 @@ Color: static (gray/blue) vs. living (green gradient, upward arrows)`,
     visualStatus: "draft_prompt",
 
     evidenceNote:
-      "AIOS Living Dashboard principle documented in Robert(GPT) KB. Metrics engine parked with DoR. Conceptual only (not live yet).",
+      "AIOS Living Dashboard principle documented in GPT KB. Metrics engine parked with DoR. Conceptual only (not live yet).",
     sourceMaterial: [
       "Living Dashboard principle (KB)",
       "parked metrics-engine backlog",
@@ -273,11 +273,11 @@ Most people think a passing build is a green light to deploy. But some changes s
 
 AIOS Safe Publish Protocol has 8 automated gates. Most changes pass all 8 and deploy automatically. But strategic content—architecture pages, positioning changes, public claims—triggers Gate 3: Strategic Stop.
 
-Gate 3 doesn't fail the build. It pauses and asks for human approval. Robert(GPT) (executive reviewer) evaluates positioning, claims-safety, and public/private boundaries before approving.
+Gate 3 doesn't fail the build. It pauses and asks for human approval. GPT (executive reviewer) evaluates positioning, claims-safety, and public/private boundaries before approving.
 
 **What happened**
 
-Architecture Visual Upgrade Phase 1 triggered Gate 3. Robert(GPT) reviewed, approved positioning, and Lyn performed a controlled manual publish. Live verification passed 7/7 routes.
+Architecture Visual Upgrade Phase 1 triggered Gate 3. GPT reviewed, approved positioning, and Sararin performed a controlled manual publish. Live verification passed 7/7 routes.
 
 The gate worked exactly as designed: automation for speed, human judgment for strategy.
 
@@ -291,11 +291,11 @@ Governance isn't bureaucracy when it knows what to automate and what to pause fo
 
 AIOS Safe Publish Protocol มี 8 gates อัตโนมัติ งานส่วนใหญ่ผ่านทั้ง 8 และ deploy อัตโนมัติ แต่ strategic content — architecture page, positioning change, public claim — จะ trigger Gate 3: Strategic Stop
 
-Gate 3 ไม่ใช่ fail build มันหยุดและถาม human approval Robert(GPT) (executive reviewer) ดู positioning, claims-safety, public/private boundary ก่อน approve
+Gate 3 ไม่ใช่ fail build มันหยุดและถาม human approval GPT (executive reviewer) ดู positioning, claims-safety, public/private boundary ก่อน approve
 
 **เกิดอะไรขึ้น**
 
-Architecture Visual Upgrade Phase 1 trigger Gate 3 Robert(GPT) review แล้ว approve positioning ริน publish manual แบบ controlled Live verification ผ่าน 7/7 routes
+Architecture Visual Upgrade Phase 1 trigger Gate 3 GPT review แล้ว approve positioning ริน publish manual แบบ controlled Live verification ผ่าน 7/7 routes
 
 Gate ทำงานตามที่ออกแบบไว้พอดี: automation เพื่อความเร็ว human judgment เพื่อ strategy
 
@@ -319,17 +319,17 @@ Color: green (automation) → yellow (strategic stop) → green (approved publis
     visualStatus: "draft_prompt",
 
     evidenceNote:
-      "Architecture Phase 1 triggered Gate 3, Robert(GPT) approved, Lyn published manually, 7/7 live routes verified. Commit 511024c.",
+      "Architecture Phase 1 triggered Gate 3, GPT approved, Sararin published manually, 7/7 live routes verified. Commit 511024c.",
     sourceMaterial: [
       "Safe Publish Protocol v0.1.3",
       "Architecture Phase 1 closeout",
       "commit 511024c",
-      "Robert(GPT) gate approval (documented)",
+      "GPT gate approval (documented)",
     ],
     publicSafeClaim: [
       "Strategic gate triggered as designed",
       "7/7 live routes verified",
-      "Robert(GPT) gate approval process operational",
+      "GPT gate approval process operational",
     ],
     needsCaveat: [
       "Personal AIOS case study, not enterprise platform",

@@ -91,7 +91,7 @@ const existingTools = [
 
 const customizedSystems = [
   {
-    name: "Robert(GPT) KB + Git",
+    name: "GPT KB + Git",
     status: "Active",
     description:
       "Git-backed knowledge base and change history for reviewed decisions, evidence, and working context.",
@@ -446,7 +446,7 @@ export default function AIOperatingSystemPage() {
               <div className="flex justify-center">
                 <div className="w-full max-w-sm rounded border border-primary/30 bg-primary/10 p-4 text-center">
                   <p className="text-sm font-semibold text-primary">
-                    Lyn / Robert(GPT)
+                    Sararin / GPT
                   </p>
                   <p className="mt-1 text-xs text-muted-foreground">
                     Executive review and protected decisions
@@ -459,7 +459,7 @@ export default function AIOperatingSystemPage() {
               <div className="grid gap-4 md:grid-cols-[1fr_auto_1fr] md:items-center">
                 <div className="rounded border border-border bg-background p-4 text-center">
                   <p className="text-sm font-semibold text-foreground">
-                    Robert(GPT)
+                    GPT
                   </p>
                   <p className="mt-1 text-xs text-muted-foreground">
                     Personal AI context layer and KB continuity
@@ -482,7 +482,7 @@ export default function AIOperatingSystemPage() {
 
               <div className="rounded border border-dashed border-border bg-muted/30 p-4 text-center">
                 <p className="text-sm font-semibold text-foreground">
-                  Robert(GPT) KB + Git
+                  GPT KB + Git
                 </p>
                 <p className="mt-1 text-xs text-muted-foreground">
                   Shared source of truth for decisions, evidence, and handoffs
@@ -689,42 +689,42 @@ export default function AIOperatingSystemPage() {
               {
                 name: "optimize-worker",
                 status: "Active",
-                owner: "Lyn + Codex",
+                owner: "Sararin + Codex",
                 next: "Keep benchmark trace automation parked until a thin slice is chosen.",
                 proof: "Documented",
               },
               {
                 name: "Fallback routing",
                 status: "Policy active",
-                owner: "Lyn",
+                owner: "Sararin",
                 next: "Route work by task type, failure mode, risk, and available worker/model.",
                 proof: "Smoke-proven",
               },
               {
                 name: "Profile positioning",
                 status: "Active",
-                owner: "Lyn + Codex",
+                owner: "Sararin + Codex",
                 next: "Keep homepage focused on differentiation; avoid internal dashboard drift.",
                 proof: "Regression-gated",
               },
               {
                 name: "Supernova",
                 status: "First version done",
-                owner: "Lyn",
+                owner: "Sararin",
                 next: "Define the first POC trigger and evidence requirement before treating it as operational.",
                 proof: "Documented",
               },
               {
                 name: "Big Crew",
                 status: "Started",
-                owner: "Lyn + Codex",
+                owner: "Sararin + Codex",
                 next: "Keep Big Crew usage bounded to implementation and verification tasks with explicit handoff.",
                 proof: "Documented",
               },
               {
                 name: "Researcher",
                 status: "Started",
-                owner: "Lyn + Researcher",
+                owner: "Sararin + Researcher",
                 next: "Use for bounded positioning and claim-safety briefs before public copy changes.",
                 proof: "Documented",
               },
@@ -941,7 +941,7 @@ export default function AIOperatingSystemPage() {
               <tbody className="divide-y divide-border">
                 <tr>
                   <td className="whitespace-nowrap px-4 py-3 text-sm font-medium text-foreground">
-                    Robert(GPT) KB + Git
+                    GPT KB + Git
                   </td>
                   <td className="px-4 py-3 text-sm text-muted-foreground">
                     Source of truth. Master archive of decisions.
@@ -949,7 +949,7 @@ export default function AIOperatingSystemPage() {
                 </tr>
                 <tr>
                   <td className="whitespace-nowrap px-4 py-3 text-sm font-medium text-foreground">
-                    Robert(GPT)
+                    GPT
                   </td>
                   <td className="px-4 py-3 text-sm text-muted-foreground">
                     Executive orchestrator and reviewer.

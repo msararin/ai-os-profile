@@ -113,9 +113,9 @@ export const latestActionDecision = {
   why:
     "Preflight, closeout, monitor checks, cost-cap gating, provider receipts, role dependency checks, and role-review receipts are represented at file/script level.",
   ownerToUnblock:
-    "Data Team for the full aggregation contract; Visual/UX for presentation clarity; Big Crew QA for final local-candidate gate; Robert/Lyn for commit decision.",
+    "Data Team for the full aggregation contract; Visual/UX for presentation clarity; Big Crew QA for final local-candidate gate; GPT/Sararin for commit decision.",
   nextAllowedAction:
-    "Apply this consolidation patch, rerun validation, then request Robert/Lyn gate on whether the local candidate can be committed.",
+    "Apply this consolidation patch, rerun validation, then request GPT/Sararin gate on whether the local candidate can be committed.",
   notAllowedYet:
     "Do not claim monitoring complete, start CASE-003 rerun, commit, push, deploy, create internal monitoring, or claim live telemetry.",
 }
@@ -207,7 +207,7 @@ export const aiosMonitoringRecords: AiosMonitoringRecord[] = [
       "Preflight blocked the provider route before call because cost cap evidence was missing.",
     blockReason: "Provider-route work must fail before execution when a cost cap is missing.",
     missingEvidence: ["cost-cap-receipt.md"],
-    unblockOwner: "Routing layer / Robert-Lyn cost gate",
+    unblockOwner: "Routing layer / GPT-Sararin cost gate",
     unblockAction: "Create and approve a pre-call cost cap receipt before provider execution.",
     nextAllowedAction: "Prepare cost-cap receipt and rerun provider preflight.",
     notAllowedYet: "Do not call OpenRouter, Opus, Sonnet, or any paid provider.",
@@ -366,7 +366,7 @@ export const aiosMonitoringRecords: AiosMonitoringRecord[] = [
     blockReason:
       "Page is not commit-ready until Data Team, UX, and QA findings are reflected.",
     missingEvidence: ["consolidation patch validation"],
-    unblockOwner: "Codex/local executor for patch; Robert/Lyn for final gate",
+    unblockOwner: "Codex/local executor for patch; GPT/Sararin for final gate",
     unblockAction:
       "Patch schema, first-screen decision guidance, unblock guidance, and overclaim wording.",
     nextAllowedAction: "Apply consolidation patch and validate the public route.",
@@ -424,7 +424,7 @@ export const aiosMonitoringRecords: AiosMonitoringRecord[] = [
     evidenceSummary: "No fresh AIOS-routed CASE-003 phase evidence exists yet.",
     blockReason: "CASE-003 remains parked until monitoring baseline and Phase 0 route packet are accepted.",
     missingEvidence: ["Phase 0 route ledger", "role dependency matrix", "source/register plan if needed"],
-    unblockOwner: "Robert/Lyn and routing layer",
+    unblockOwner: "GPT/Sararin and routing layer",
     unblockAction: "Approve Phase 0 execution packet after monitoring consolidation gate.",
     nextAllowedAction: "Prepare Phase 0 execution packet only after this page candidate is gated.",
     notAllowedYet: "Do not start CASE-003 rerun or claim prior artifacts as fresh AIOS proof.",
@@ -552,7 +552,7 @@ export const governanceEnforcementChecks = [
     control: "Human gate separated from model telemetry",
     status: "PASS",
     evidence: "stop-condition-checklist.md",
-    meaning: "Robert/Lyn approval cannot be logged as model output or provider telemetry.",
+    meaning: "GPT/Sararin approval cannot be logged as model output or provider telemetry.",
     failureMeaning: "Gate record must be corrected before proof claim.",
   },
   {
@@ -652,7 +652,7 @@ export const phaseAgentActivity = [
     worker: "not started",
     status: "PARKED",
     output: "fresh Phase 0 route packet pending",
-    nextGate: "Start only after monitoring consolidation and Robert/Lyn gate.",
+    nextGate: "Start only after monitoring consolidation and GPT/Sararin gate.",
   },
 ]
 
@@ -674,7 +674,7 @@ export const statusDefinitions = [
   },
   { status: "FAIL", definition: "Required evidence is missing or a stop condition triggered." },
   { status: "DOWNGRADED", definition: "Work is useful but not valid AIOS proof." },
-  { status: "ESCALATE", definition: "Robert/Lyn or reviewer gate is required before proceeding." },
+  { status: "ESCALATE", definition: "GPT/Sararin or reviewer gate is required before proceeding." },
   { status: "PARKED", definition: "Intentionally not started, paused, or blocked pending gate." },
 ]
 

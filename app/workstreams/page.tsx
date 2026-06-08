@@ -9,7 +9,7 @@ const workstreams = [
     description:
       "Execution support layer for routing experiments, benchmark traces, and structured workflow automation.",
     status: "Active",
-    owner: "Lyn + Codex",
+    owner: "Sararin + Codex",
     nextAction: "Keep benchmark trace automation parked until a thin slice is chosen.",
     gateDecision: "Proceed only when scope is narrow and validation is explicit.",
     blockerRisk: "Automation can create false confidence if trace quality is unclear.",
@@ -22,7 +22,7 @@ const workstreams = [
     description:
       "Policy lane for choosing a safe alternate route when the primary worker or model is blocked.",
     status: "Policy active",
-    owner: "Lyn",
+    owner: "Sararin",
     nextAction: "Route work by task type, failure mode, risk, and available worker/model.",
     gateDecision: "Use fallback route when primary surface is blocked or uneconomical.",
     blockerRisk: "Cost and token evidence remain incomplete in some surfaces.",
@@ -35,7 +35,7 @@ const workstreams = [
     description:
       "Public portfolio framing that turns operating evidence into clear, safe claims.",
     status: "Active",
-    owner: "Lyn + Codex",
+    owner: "Sararin + Codex",
     nextAction: "Keep homepage focused on differentiation; avoid internal dashboard drift.",
     gateDecision: "Public copy must remain portfolio-safe and evidence-backed.",
     blockerRisk: "Overclaiming maturity or exposing raw private context would weaken trust.",
@@ -48,7 +48,7 @@ const workstreams = [
     description:
       "Opportunity and monetization intelligence lane with a first version complete, before POC validation.",
     status: "First version done",
-    owner: "Lyn",
+    owner: "Sararin",
     nextAction:
       "Define the first POC trigger and evidence requirement before treating it as operational.",
     gateDecision:
@@ -64,7 +64,7 @@ const workstreams = [
     description:
       "Scoped execution crew for implementation, architecture review, QA, and release readiness.",
     status: "Started",
-    owner: "Lyn + Codex",
+    owner: "Sararin + Codex",
     nextAction: "Keep Big Crew usage bounded to implementation and verification tasks with explicit handoff.",
     gateDecision: "Use for scoped execution only; do not expand into autonomous staffing.",
     blockerRisk: "Parallel work can blur ownership if files, roles, and review gates are not explicit.",
@@ -77,9 +77,9 @@ const workstreams = [
     description:
       "Bounded evidence scanner for market context, claim safety, and external practice checks.",
     status: "Started",
-    owner: "Lyn + Researcher",
+    owner: "Sararin + Researcher",
     nextAction: "Use for bounded positioning and claim-safety briefs before public copy changes.",
-    gateDecision: "Research output informs copy; Robert(GPT)/Lyn still gate claims before implementation.",
+    gateDecision: "Research output informs copy; GPT/Sararin still gate claims before implementation.",
     blockerRisk: "Broad research can drift into market sizing or unsupported uniqueness claims.",
     proofLevel: "Documented",
     evidence: "Homepage differentiation brief",
@@ -90,7 +90,7 @@ const workstreams = [
     description:
       "Planned specialist lane for investment workflows after scope and review criteria are defined.",
     status: "Planned",
-    owner: "Lyn",
+    owner: "Sararin",
     nextAction: "Defer until Supernova produces a first useful signal.",
     gateDecision: "No active build until there is a bounded investment workflow.",
     blockerRisk: "Domain risk is high without review criteria and evidence capture.",

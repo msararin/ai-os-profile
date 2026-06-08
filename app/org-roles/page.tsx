@@ -5,12 +5,12 @@ import Link from "next/link"
 
 const rolePolicies = [
   {
-    role: "Robert(GPT) / Lyn",
+    role: "GPT / Sararin",
     responsibility:
       "Executive review, taste, risk appetite, and final approval for public, money, legal, privacy, reputation, health, career, and major architecture decisions.",
     owns: "Final gate and protected decisions",
     doesNotOwn: "Routine execution or broad staffing before evidence exists",
-    budget: "Lyn-gated",
+    budget: "Sararin-gated",
     escalation: "Stop and ask when the decision is high-risk or hard to reverse.",
   },
   {
@@ -20,7 +20,7 @@ const rolePolicies = [
     owns: "Routing discipline, validation summaries, and KB sync",
     doesNotOwn: "UI/code implementation or autonomous final approval",
     budget: "Cheap/local first",
-    escalation: "Route to Codex, Big Crew, Researcher, Supernova, or Lyn when scope requires it.",
+    escalation: "Route to Codex, Big Crew, Researcher, Supernova, or Sararin when scope requires it.",
   },
   {
     role: "Codex",
@@ -36,7 +36,7 @@ const rolePolicies = [
     responsibility:
       "Scoped product, architecture, engineering, QA, review, and release-readiness work.",
     owns: "Role-specific critique, implementation support, QA findings, and release recommendations",
-    doesNotOwn: "Autonomous staffing, final release approval, or Lyn-protected decisions",
+    doesNotOwn: "Autonomous staffing, final release approval, or Sararin-protected decisions",
     budget: "Senior synthesis only",
     escalation: "Use senior model review only for named decisions with clear expected value.",
   },
@@ -61,7 +61,7 @@ const rolePolicies = [
   {
     role: "Investment Team",
     responsibility:
-      "Planned investment advisory lane after Lyn defines scope, criteria, and evidence requirements.",
+      "Planned investment advisory lane after Sararin defines scope, criteria, and evidence requirements.",
     owns: "TBD investment workflow once scoped",
     doesNotOwn: "Live investment action, recommendations, or decisions today",
     budget: "Not active",
@@ -87,7 +87,7 @@ const taskPolicies = [
   {
     task: "Architecture or release critique",
     route: "Big Crew",
-    rule: "Use role-specific review for a named decision, then Lyn gates the final call.",
+    rule: "Use role-specific review for a named decision, then Sararin gates the final call.",
   },
   {
     task: "External evidence scan",
@@ -106,7 +106,7 @@ const taskPolicies = [
   },
   {
     task: "Money, legal, privacy, reputation, health, career, or major architecture",
-    route: "Robert(GPT) / Lyn",
+    route: "GPT / Sararin",
     rule: "Stop for executive review; no delegated role owns the final decision.",
   },
 ]
@@ -128,7 +128,7 @@ const budgetTiers = [
     tier: "Tier 3",
     name: "Executive escalation",
     description:
-      "Reserved for rare foundation decisions and Lyn-protected categories; requires an explicit gate.",
+      "Reserved for rare foundation decisions and Sararin-protected categories; requires an explicit gate.",
   },
   {
     tier: "Tier 4",
@@ -179,7 +179,7 @@ export default function OrgRolesPage() {
               <div className="flex justify-center">
                 <div className="w-full max-w-sm rounded border border-primary/30 bg-primary/10 p-4 text-center">
                   <p className="text-sm font-semibold text-primary">
-                    Lyn / Robert(GPT)
+                    Sararin / GPT
                   </p>
                   <p className="mt-1 text-xs text-muted-foreground">
                     Executive review and protected decisions
@@ -192,7 +192,7 @@ export default function OrgRolesPage() {
               <div className="grid gap-4 md:grid-cols-[1fr_auto_1fr] md:items-center">
                 <div className="rounded border border-border bg-background p-4 text-center">
                   <p className="text-sm font-semibold text-foreground">
-                    Robert(GPT)
+                    GPT
                   </p>
                   <p className="mt-1 text-xs text-muted-foreground">
                     Personal AI context layer and KB continuity
@@ -215,7 +215,7 @@ export default function OrgRolesPage() {
 
               <div className="rounded border border-dashed border-border bg-muted/30 p-4 text-center">
                 <p className="text-sm font-semibold text-foreground">
-                  Robert(GPT) KB + Git
+                  GPT KB + Git
                 </p>
                 <p className="mt-1 text-xs text-muted-foreground">
                   Shared source of truth for decisions, evidence, and handoffs

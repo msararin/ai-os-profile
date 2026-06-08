@@ -82,7 +82,7 @@ export default function AchievementsPage() {
           'Auditability, missing-facts handling, and claim-boundary discipline',
           'Synthetic portfolio artifact packaging'
         ],
-        impact: 'The simulation makes Lyn’s AI transformation capability easier to inspect: it shows how business-process questions can be converted into evidence-backed AI workflow tests before a team moves toward a real PoC, deployment, or adoption-metrics discussion.'
+        impact: 'The simulation makes Sararin’s AI transformation capability easier to inspect: it shows how business-process questions can be converted into evidence-backed AI workflow tests before a team moves toward a real PoC, deployment, or adoption-metrics discussion.'
       },
       tags: ['Evidence Discipline', 'AI Workflow Governance', 'Trustworthy Answers', 'Thai Retail', 'Human-in-the-Loop']
     },
@@ -311,7 +311,7 @@ export default function AchievementsPage() {
       publicSafeResult: 'The page now explains managed knowledge work without exposing internal route paths or turning internal drafts into official records.',
       caveat: 'This is an operating-model proof, not a claim of enterprise-scale automation, production autonomy, or business impact.',
       details: {
-        whyItMatters: 'The work showed how Codex, Risa/Hermes, Robert(GPT), and human approval can cooperate through clear roles: shared context for alignment, proposal files for safe drafting, evidence packets for review, stop conditions for uncertainty, and release gates before promotion.',
+        whyItMatters: 'The work showed how Codex, Hermes, GPT, and human approval can cooperate through clear roles: shared context for alignment, proposal files for safe drafting, evidence packets for review, stop conditions for uncertainty, and release gates before promotion.',
         evidence: [
           'PR #6 corrected the Achievements proof language and public-boundary copy',
           'Commit 86b47e2 reframed the May 28 item around benchmark-backed public proof',
@@ -433,7 +433,7 @@ export default function AchievementsPage() {
           'Callback preservation for protected internal routes',
           'Clear documentation of automation proof gaps'
         ],
-        impact: 'Unblocked Lyn review of protected work while preserving the site boundary: public proof stays public, internal operations stay behind auth.'
+        impact: 'Unblocked Sararin review of protected work while preserving the site boundary: public proof stays public, internal operations stay behind auth.'
       },
       tags: ['Auth', 'Internal Review', 'Security', 'Protected Review']
     },
@@ -472,7 +472,7 @@ export default function AchievementsPage() {
       evidenceReference: 'commits 9734b39 and 4ae8516, protected draft-pipeline role-map proposal',
       status: 'Internal draft/review surface',
       publicSafeResult: 'Knowledge Sharing remains public archive only; draft packages remain protected under /internal/*.',
-      caveat: 'Draft records are not automatically publishable; Lyn/Robert(GPT) review is required before public use.',
+      caveat: 'Draft records are not automatically publishable; Sararin/GPT review is required before public use.',
       details: {
         whyItMatters: 'The site needs a disciplined path from learning to content without leaking drafts or overclaiming.',
         evidence: [
@@ -564,7 +564,7 @@ export default function AchievementsPage() {
           'Commit e81e89d added bridge navigation for the AIOS showcase flow',
           'Commit 2c83242 refined Home hero AIOS showcase positioning',
           'Commit eb7d8d3 restored the Architecture link in top navigation',
-          'Home balance improved: 60/40 → 70/30 AIOS/Lyn',
+          'Home balance improved: 60/40 → 70/30 AIOS/Sararin',
           '30-second clarity test passed',
           'Governance docs tracked under docs/governance/'
         ],
@@ -706,7 +706,7 @@ export default function AchievementsPage() {
       details: {
         whyItMatters: 'Shows multi-agent orchestration capability with source-tracked lab evidence and review discipline.',
         evidence: [
-          'Architecture: Robert(GPT) (router/reviewer) → Optimize Worker (execution) → Quality gates',
+          'Architecture: GPT (router/reviewer) → Optimize Worker (execution) → Quality gates',
           'Parallel execution: Up to 3 concurrent subagents',
           'Measured speed comparison retained with lab-run scope and source notes',
           'Cost comparison retained internally until public benchmark context is ready',

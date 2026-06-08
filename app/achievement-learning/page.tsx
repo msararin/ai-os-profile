@@ -94,7 +94,7 @@ export default function AchievementLearningPage() {
               <CardContent>
                 <ul className="space-y-2 text-sm text-muted-foreground">
                   <li>Governed workflow with review gates</li>
-                  <li>Robert(GPT) KB + Git = source of truth</li>
+                  <li>GPT KB + Git = source of truth</li>
                   <li>Benchmark trace as Definition of Done</li>
                   <li>Fallback routing policy active</li>
                 </ul>
@@ -182,7 +182,7 @@ const learningPhases = [
     title: "Phase 1: Tool Chaos",
     date: "May 18, 2026",
     challenge: "Scattered AI tools, no governance, output treated as truth",
-    solution: "Established Robert(GPT) KB + Git as canonical source of truth",
+    solution: "Established GPT KB + Git as canonical source of truth",
     status: "Resolved",
     badgeClass: "bg-emerald-500/10 text-emerald-700",
   },

@@ -6,17 +6,17 @@ const aiosLayerSteps = [
   {
     label: "Human Decision",
     caption:
-      "Lyn defines intent, priority, risk appetite, and approval boundaries.",
+      "Sararin defines intent, priority, risk appetite, and approval boundaries.",
   },
   {
     label: "Executive Orchestration",
     caption:
-      "Robert(GPT) frames tradeoffs, protects context, and reviews evidence.",
+      "GPT frames tradeoffs, protects context, and reviews evidence.",
   },
   {
     label: "Stage Management",
     caption:
-      "Risa coordinates execution through Codex and delegated specialist workers.",
+      "Hermes coordinates execution through Codex and delegated specialist workers.",
   },
   {
     label: "Agentic Release Governance Control",
@@ -35,7 +35,7 @@ const aiosLayerSteps = [
   },
   {
     label: "Source-of-Truth",
-    caption: "Validated decisions update Robert(GPT) KB and Git records.",
+    caption: "Validated decisions update GPT KB and Git records.",
   },
   {
     label: "Business Runway / Capability",
@@ -150,7 +150,7 @@ export function AIOSInteractionExplainer() {
               <div className="border-t border-border pt-4 text-xs leading-5 text-muted-foreground">
                 <p>Manual governance support, not full automation.</p>
                 <p>Public page is a presentation surface, not source of truth.</p>
-                <p>Robert(GPT) KB + Git remain durable truth records.</p>
+                <p>GPT KB + Git remain durable truth records.</p>
               </div>
             </div>
           </div>

@@ -13,7 +13,7 @@ const principles = [
     number: 2,
     title: "Single source of truth",
     description:
-      "Robert(GPT) KB and Git are the only places truth lives. UI surfaces, chat history, and AI memory are temporary — only what is committed counts.",
+      "GPT KB and Git are the only places truth lives. UI surfaces, chat history, and AI memory are temporary — only what is committed counts.",
     highlight: false,
   },
   {

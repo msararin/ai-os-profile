@@ -149,7 +149,7 @@ export default function ObservabilityPage() {
           </h1>
           <p className="mt-3 max-w-4xl text-muted-foreground">
             This page explains how AIOS evidence, validation outputs, review traces, and
-            observability signals support human review. It does not replace Lyn/Robert(GPT) approval,
+            observability signals support human review. It does not replace Sararin/GPT approval,
             and it does not act as a live production monitoring system.
           </p>
 
@@ -398,7 +398,7 @@ export default function ObservabilityPage() {
                 <CardTitle className="text-base">Source-of-truth boundary</CardTitle>
               </CardHeader>
               <CardContent className="text-sm leading-6 text-muted-foreground">
-                Robert(GPT) KB + Git remain the durable source of truth. ai-os-profile presents a
+                GPT KB + Git remain the durable source of truth. ai-os-profile presents a
                 curated, public-safe explanation for review and portfolio communication.
               </CardContent>
             </Card>
@@ -407,7 +407,7 @@ export default function ObservabilityPage() {
                 <CardTitle className="text-base">Human review gate</CardTitle>
               </CardHeader>
               <CardContent className="text-sm leading-6 text-muted-foreground">
-                Lyn/Robert(GPT) review remains the human decision gate. This page can support a
+                Sararin/GPT review remains the human decision gate. This page can support a
                 decision, but it cannot approve or release work.
               </CardContent>
             </Card>

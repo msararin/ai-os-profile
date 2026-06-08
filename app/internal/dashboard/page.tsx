@@ -36,7 +36,7 @@ const reviewQueue = [
   {
     item: "Git dirty-state cleanup",
     status: "Decision needed",
-    nextDecision: "Choose the scoped commit set after Lyn review; do not stage broadly.",
+    nextDecision: "Choose the scoped commit set after Sararin review; do not stage broadly.",
     blockerRisk: "Dirty tree includes unrelated historical/untracked files.",
   },
 ]
@@ -46,43 +46,43 @@ const workstreamSnapshot = [
     lane: "Signal Studio",
     currentStatus: "Internal draft review surface exists",
     nextMilestone: "v0.6 pilot structure/spec decision",
-    owner: "Lyn + Codex",
+    owner: "Sararin + Codex",
   },
   {
     lane: "Knowledge Sharing",
     currentStatus: "Public archive restored",
     nextMilestone: "Browser-visible archive preservation check",
-    owner: "Lyn",
+    owner: "Sararin",
   },
   {
     lane: "Observability",
     currentStatus: "Regression evidence is local/manual",
     nextMilestone: "Confirm latest durable report and stale/current labels",
-    owner: "Lyn + Codex",
+    owner: "Sararin + Codex",
   },
   {
     lane: "Budget / Cost",
     currentStatus: "Pending Budget Burn Daily Report",
     nextMilestone: "Confirm source before surfacing values",
-    owner: "Lyn",
+    owner: "Sararin",
   },
   {
     lane: "Dashboard / Internal Cockpit",
     currentStatus: "Phase 1 IA dashboard summary",
-    nextMilestone: "Lyn browser review of protected cockpit",
+    nextMilestone: "Sararin browser review of protected cockpit",
     owner: "Codex",
   },
   {
     lane: "Release / Publish",
     currentStatus: "No production publish in this task",
     nextMilestone: "Scoped review decision before any publish path",
-    owner: "Lyn",
+    owner: "Sararin",
   },
   {
     lane: "Backlog",
     currentStatus: "Live read-only KB review surface available",
     nextMilestone: "Review the bounded classification proposal; do not infer execution approval",
-    owner: "Lyn",
+    owner: "Sararin",
   },
 ]
 

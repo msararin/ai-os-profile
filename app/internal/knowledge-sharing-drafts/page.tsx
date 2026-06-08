@@ -91,7 +91,7 @@ export default function InternalKnowledgeSharingDraftsPage() {
             </div>
           </div>
           <p className="mt-3 text-xs text-blue-900 dark:text-blue-100">
-            Pending migration: convert the 28 May production release proof into reusable learning patterns after Lyn/Robert(GPT) review. Markdown export controls remain internal review tooling.
+            Pending migration: convert the 28 May production release proof into reusable learning patterns after Sararin/GPT review. Markdown export controls remain internal review tooling.
           </p>
         </div>
 
@@ -297,7 +297,7 @@ export default function InternalKnowledgeSharingDraftsPage() {
                           <li>Target platform: LinkedIn, Thai social media</li>
                           <li>Allowed text: Keep minimal, use in image only if critical</li>
                           <li>What NOT to show: Internal metrics, private paths, unverified claims</li>
-                          <li>Visual generation: Only after claims-safety passed and Lyn approval</li>
+                          <li>Visual generation: Only after claims-safety passed and Sararin approval</li>
                         </ul>
                       </div>
                     </div>

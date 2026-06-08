@@ -6,12 +6,12 @@ export function SiteFooter() {
           <p>Evidence-backed public archive</p>
           <p>Page freshness is stated within each section where applicable</p>
           <p>Release scope: Architecture, Achievements, Knowledge Sharing</p>
-          <p>Source: Robert(GPT) KB + Git</p>
+          <p>Source: GPT KB + Git</p>
           <p>Evidence dates shown in page content where applicable</p>
           <p>Release: AIOS profile v0.2 + Governance layer update</p>
         </div>
         <p className="mt-4 border-t border-border pt-4 text-center text-xs text-muted-foreground">
-          © 2026 AI Orchestration Governance — A portfolio case study by Lyn (msararin). Source of truth: Robert(GPT) KB + Git.
+          © 2026 AI Orchestration Governance — A portfolio case study by Sararin (msararin). Source of truth: GPT KB + Git.
         </p>
       </div>
     </footer>

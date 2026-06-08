@@ -81,7 +81,7 @@ export default function AIAgentLaunchChecklistPage() {
             AI Agent Launch Checklist
           </h1>
           <p className="mt-3 max-w-3xl text-lg text-muted-foreground">
-            A recruiter-readable artifact showing how Lyn structures AI
+            A recruiter-readable artifact showing how Sararin structures AI
             launch-readiness thinking before a team moves from idea to PoC,
             pilot, or workflow adoption.
           </p>
