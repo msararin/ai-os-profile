@@ -771,10 +771,10 @@ export default function AchievementsPage() {
               Public-safe evidence of what was built, what is proven, what is caveated, and what remains internal.
             </p>
             <p className="mt-4 text-sm font-medium text-white/80">
-              Evidence updated: 4 Jun 2026 · CASE-002 recruiter-demo freeze candidate
+              Evidence updated: 8 Jun 2026 · AIOS monitoring snapshot synthetic proof drill
             </p>
             <p className="mt-2 text-sm text-white/75">
-              Latest validated milestone: recruiter-readable CASE-002 retail AI simulation, 4 Jun 2026
+              Latest validated milestone: synthetic monitoring snapshot governance proof, 8 Jun 2026
             </p>
           </div>
         </div>
