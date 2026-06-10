@@ -113,11 +113,42 @@ export const latestActionDecision = {
   why:
     "The implementation gate is bounded to the committed dashboard data contract v0.3 and must preserve blocked actions, evidence gaps, and public-safe caveats.",
   ownerToUnblock:
-    "Owner approval remains required for push, production/live/public-proof claims, CASE-003 execution, real data ingestion, derivative authorization, benchmark export, and any expanded dashboard scope.",
+    "Owner approval remains required for future route changes that need a new push, production/live/public-proof claims, CASE-003 execution, real data ingestion, derivative authorization, benchmark export, and any expanded dashboard scope.",
   nextAllowedAction:
-    "Validate this under-construction public surface locally, then decide whether the bounded route/page patch is ready for an internal commit. Do not push.",
+    "No push is currently needed for this verified route. Future changes require a new push readiness gate.",
   notAllowedYet:
-    "Do not claim production readiness, live monitoring readiness, public proof readiness, CASE-003 execution, real data ingestion, derivative authorization, Benchmark Dataset v0.1 export, deploy, or push.",
+    "Do not claim production readiness, live monitoring readiness, public proof readiness, CASE-003 execution, real data ingestion, derivative authorization, Benchmark Dataset v0.1 export, or deploy a future route change without a new readiness gate.",
+}
+
+export const currentRemoteVerifiedState = {
+  title: "Current remote-verified state",
+  verifiedRoute: "sararin.ai/architecture/system-health/monitoring",
+  status: "Remote route verified on sararin.ai",
+  dashboardBoundary: "Dashboard is public under-construction only.",
+  latestVerifiedState:
+    "Latest verified state includes the gap-closure evidence view, current-vs-legacy visibility, Controls moved to DONE_USED_ONCE, Gaps still unproven, compact evidence rows, benchmark baseline metrics, and bounded Opus critic wording.",
+  pushStatus:
+    "No push is currently needed for this verified route. Future changes require a new push readiness gate.",
+  proofBoundary:
+    "This is not production readiness, live monitoring readiness, public proof readiness, CASE-003 execution, real data ingestion, derivative authorization, benchmark export, benchmark completion, or full multi-model proof.",
+}
+
+export const currentVsLegacyExplanation = {
+  title: "Current state vs historical snapshot",
+  current:
+    "The current section reflects the latest verified dashboard state for the public route. It is the owner-facing answer for what is true now.",
+  historical:
+    "The historical section preserves older public-safe monitoring records for context. It may include historical parked/deferred states and should not be read as the current gap-closure register.",
+  overrideRule:
+    "Historical statuses do not override the current remote-verified state. CASE-specific execution statuses are separate from the NO_PARK_MODE gap-closure register.",
+}
+
+export const legacyMonitoringSnapshotBoundary = {
+  title: "Historical / legacy monitoring snapshot",
+  caveat:
+    "This section preserves older public-safe monitoring records for context. It may include historical parked/deferred states and should not be read as the current gap-closure register.",
+  case003Clarification:
+    "CASE-003 remains not started / awaiting a separate owner gate. This is a CASE-specific execution status, not a parked unresolved governance gap and not a contradiction of NO_PARK_MODE.",
 }
 
 export const publicUnderConstructionGate = {
@@ -171,7 +202,7 @@ export const publicUnderConstructionGate = {
     "No external reviewer was run for this local implementation patch.",
   ],
   blockedActions: [
-    "push",
+    "future push without a new push readiness gate",
     "production readiness claim",
     "live monitoring readiness claim",
     "public proof readiness claim",
@@ -194,7 +225,7 @@ export const publicUnderConstructionGate = {
       "Run local validation and create the required Downloads HTML review report before any commit decision.",
   },
   nextAllowedAction:
-    "Validate the bounded public under-construction surface and prepare an explicit-path commit if validation passes. Do not push.",
+    "No push is currently needed for this verified route. Future changes require a new push readiness gate.",
 }
 
 export const compactEvidenceRows = [
@@ -291,7 +322,7 @@ export const compactEvidenceRows = [
     proofClaim: "OWNER_APPROVAL_IS_NOT_PROOF",
     downgradeApplied: "PUBLIC_PROOF_NOT_CLAIMED",
     ownerGateStatus: "OWNER_APPROVED_BOUNDED_SCOPE",
-    nextAction: "Report validation and commit readiness; do not push.",
+    nextAction: "No push is currently needed for this verified route; future changes require a new push readiness gate.",
   },
 ] as const
 
@@ -950,7 +981,8 @@ export const aiosMonitoringRecords: AiosMonitoringRecord[] = [
     nextGate: "Create Phase 0 execution packet under the new enforcement rules.",
     missingFields: ["route ledger", "role dependency matrix", "telemetry receipt", "monitor status"],
     evidenceSummary: "No fresh AIOS-routed CASE-003 phase evidence exists yet.",
-    blockReason: "CASE-003 remains parked until monitoring baseline and Phase 0 route packet are accepted.",
+    blockReason:
+      "CASE-003 remains not started and awaiting a separate owner gate. This is a CASE-specific execution status, not a parked unresolved governance gap.",
     missingEvidence: ["Phase 0 route ledger", "role dependency matrix", "source/register plan if needed"],
     unblockOwner: "GPT/Sararin and routing layer",
     unblockAction: "Approve Phase 0 execution packet after monitoring consolidation gate.",
@@ -1180,7 +1212,8 @@ export const phaseAgentActivity = [
     worker: "not started",
     status: "PARKED",
     output: "fresh Phase 0 route packet pending",
-    nextGate: "Start only after monitoring consolidation and GPT/Sararin gate.",
+    nextGate:
+      "Await a separate CASE-003 owner gate; this is CASE-specific status, not a NO_PARK_MODE gap closure status.",
   },
 ]
 
@@ -1203,7 +1236,11 @@ export const statusDefinitions = [
   { status: "FAIL", definition: "Required evidence is missing or a stop condition triggered." },
   { status: "DOWNGRADED", definition: "Work is useful but not valid AIOS proof." },
   { status: "ESCALATE", definition: "GPT/Sararin or reviewer gate is required before proceeding." },
-  { status: "PARKED", definition: "Intentionally not started, paused, or blocked pending gate." },
+  {
+    status: "PARKED",
+    definition:
+      "Historical or CASE-specific not-started status pending a separate gate; this does not override the current NO_PARK_MODE gap-closure register.",
+  },
 ]
 
 export const claimStatusDefinitions = [
@@ -1264,8 +1301,9 @@ export const deferredForV02 = [
   },
   {
     item: "CASE-003 fresh rerun",
-    status: "parked",
-    meaning: "CASE-003 should not restart until the monitoring consolidation and role-chain gates are accepted.",
+    status: "not started / separate owner gate required",
+    meaning:
+      "CASE-003 should not restart until a separate owner gate authorizes a fresh route packet. This is CASE-specific execution status, not global gap parking.",
   },
 ]
 

@@ -12,6 +12,8 @@ import {
   compactEvidenceRows,
   controlsMovedToDoneUsedOnce,
   conceptLegend,
+  currentRemoteVerifiedState,
+  currentVsLegacyExplanation,
   dashboardProofBoundary,
   dataVisualizerQualityRules,
   deferredForV02,
@@ -20,6 +22,7 @@ import {
   gapsStillUnproven,
   governanceEnforcementChecks,
   latestActionDecision,
+  legacyMonitoringSnapshotBoundary,
   monitoringUxVerdict,
   orchestrationRealityChecks,
   phaseAgentActivity,
@@ -48,7 +51,7 @@ const summaryCards = [
   { label: "Pass", value: String(aiosMonitoringSummary.passCount) },
   { label: "Pass with caveat", value: String(aiosMonitoringSummary.passWithCaveatCount) },
   { label: "Fail", value: String(aiosMonitoringSummary.failCount) },
-  { label: "Parked", value: String(aiosMonitoringSummary.parkedCount) },
+  { label: "Legacy CASE-specific parked", value: String(aiosMonitoringSummary.parkedCount) },
 ]
 
 const evidenceHeadings = [
@@ -139,6 +142,73 @@ export default function AiosMonitoringPage() {
               confidential workflow details.
             </p>
           </div>
+
+          <Card className="mt-6 border-emerald-600/40 bg-emerald-50/50 dark:bg-emerald-950/10">
+            <CardHeader>
+              <CardTitle className="text-base">{currentRemoteVerifiedState.title}</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4 text-sm leading-6 text-muted-foreground">
+              <p className="text-base font-semibold leading-7 text-foreground">
+                {currentRemoteVerifiedState.status}
+              </p>
+              <div className="grid gap-3 md:grid-cols-2">
+                <div className="rounded-lg border border-border bg-background p-4">
+                  <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
+                    Verified route
+                  </p>
+                  <p className="mt-1 break-words font-semibold text-foreground">
+                    {currentRemoteVerifiedState.verifiedRoute}
+                  </p>
+                </div>
+                <div className="rounded-lg border border-border bg-background p-4">
+                  <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
+                    Current boundary
+                  </p>
+                  <p className="mt-1 font-semibold text-foreground">
+                    {currentRemoteVerifiedState.dashboardBoundary}
+                  </p>
+                </div>
+                <div className="rounded-lg border border-border bg-background p-4">
+                  <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
+                    Push status
+                  </p>
+                  <p className="mt-1 font-semibold text-foreground">
+                    {currentRemoteVerifiedState.pushStatus}
+                  </p>
+                </div>
+                <div className="rounded-lg border border-border bg-background p-4">
+                  <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
+                    Not proof of
+                  </p>
+                  <p className="mt-1">{currentRemoteVerifiedState.proofBoundary}</p>
+                </div>
+              </div>
+              <p>
+                <span className="font-medium text-foreground">Latest verified state:</span>{" "}
+                {currentRemoteVerifiedState.latestVerifiedState}
+              </p>
+            </CardContent>
+          </Card>
+
+          <Card className="mt-6 border-blue-600/40 bg-blue-50/50 dark:bg-blue-950/10">
+            <CardHeader>
+              <CardTitle className="text-base">{currentVsLegacyExplanation.title}</CardTitle>
+            </CardHeader>
+            <CardContent className="grid gap-3 text-sm leading-6 text-muted-foreground md:grid-cols-3">
+              <div className="rounded-lg border border-border bg-background p-4">
+                <p className="font-semibold text-foreground">Current section</p>
+                <p className="mt-2">{currentVsLegacyExplanation.current}</p>
+              </div>
+              <div className="rounded-lg border border-border bg-background p-4">
+                <p className="font-semibold text-foreground">Historical section</p>
+                <p className="mt-2">{currentVsLegacyExplanation.historical}</p>
+              </div>
+              <div className="rounded-lg border border-border bg-background p-4">
+                <p className="font-semibold text-foreground">Override rule</p>
+                <p className="mt-2">{currentVsLegacyExplanation.overrideRule}</p>
+              </div>
+            </CardContent>
+          </Card>
 
           <Card className="mt-6 border-primary/40 bg-primary/5">
             <CardHeader>
@@ -782,6 +852,18 @@ export default function AiosMonitoringPage() {
             </CardContent>
           </Card>
 
+          <Card className="mt-6 border-slate-400/60 bg-slate-50 dark:bg-slate-900">
+            <CardHeader>
+              <CardTitle className="text-base">{legacyMonitoringSnapshotBoundary.title}</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-3 text-sm leading-6 text-muted-foreground">
+              <p className="font-semibold text-foreground">
+                {legacyMonitoringSnapshotBoundary.caveat}
+              </p>
+              <p>{legacyMonitoringSnapshotBoundary.case003Clarification}</p>
+            </CardContent>
+          </Card>
+
           <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
             {summaryCards.map((card) => (
               <Card key={card.label}>
@@ -797,7 +879,9 @@ export default function AiosMonitoringPage() {
 
           <Card className="mt-6 border-amber-600/40 bg-amber-50/50 dark:bg-amber-950/10">
             <CardHeader>
-              <CardTitle className="text-base">Snapshot metadata and coverage</CardTitle>
+              <CardTitle className="text-base">
+                Historical / legacy monitoring snapshot metadata and coverage
+              </CardTitle>
             </CardHeader>
             <CardContent className="space-y-2 text-sm leading-6 text-muted-foreground">
               <p>
@@ -838,7 +922,7 @@ export default function AiosMonitoringPage() {
                     "Are AIOS routing and enforcement policies being followed?",
                     "Are provider, model, token, cost, and receipt signals present or missing?",
                     "Are role boundaries and role-chain dependencies respected?",
-                    "Which claims are valid, downgraded, failed, escalated, or parked?",
+                    "Which historical claims are valid, downgraded, failed, escalated, or parked?",
                     "Which role owns the next unblock action?",
                     "What is missing before the next phase can safely proceed?",
                   ].map((item) => (
@@ -953,11 +1037,16 @@ export default function AiosMonitoringPage() {
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
           <Card className="mb-6 border-primary/30 bg-primary/5">
             <CardHeader>
-              <CardTitle className="text-base">AIOS governance status</CardTitle>
+              <CardTitle className="text-base">
+                Historical / legacy monitoring snapshot records
+              </CardTitle>
             </CardHeader>
             <CardContent className="space-y-3 text-sm leading-6 text-muted-foreground">
+              <p className="font-semibold text-foreground">
+                {legacyMonitoringSnapshotBoundary.caveat}
+              </p>
               <p>
-                <span className="font-medium text-foreground">Current layer status:</span>{" "}
+                <span className="font-medium text-foreground">Historical layer status:</span>{" "}
                 PASS_WITH_CAVEAT for script/file-level enforcement checks only.
               </p>
               <p>
@@ -1199,7 +1288,7 @@ export default function AiosMonitoringPage() {
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
           <Card>
             <CardHeader>
-              <CardTitle>Phase / agent activity</CardTitle>
+              <CardTitle>Historical / legacy phase and agent activity</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="overflow-x-auto rounded-lg border border-border">
@@ -1276,9 +1365,12 @@ export default function AiosMonitoringPage() {
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
           <Card>
             <CardHeader>
-              <CardTitle>Deferred / not complete yet</CardTitle>
+              <CardTitle>Historical deferred / not complete yet</CardTitle>
             </CardHeader>
-            <CardContent>
+            <CardContent className="space-y-3">
+              <p className="text-sm leading-6 text-muted-foreground">
+                {legacyMonitoringSnapshotBoundary.case003Clarification}
+              </p>
               <div className="overflow-x-auto rounded-lg border border-border">
                 <table className="min-w-[880px] divide-y divide-border">
                   <thead className="bg-muted/50">
@@ -1322,7 +1414,7 @@ export default function AiosMonitoringPage() {
             <CardHeader>
               <CardTitle className="text-base">Fail-closed render rule</CardTitle>
             </CardHeader>
-            <CardContent className="space-y-2 text-sm leading-6 text-muted-foreground">
+            <CardContent>
               <p>{aiosMonitoringSnapshotMeta.failClosedRule}</p>
               <p>
                 If this snapshot is missing, stale, malformed, or disconnected from enforcement
