@@ -295,6 +295,69 @@ export const compactEvidenceRows = [
   },
 ] as const
 
+export const controlsMovedToDoneUsedOnce = [
+  {
+    control: "route/model fit visibility",
+    evidence: "Routing Layer Check shows expected role, recommended worker/model, actual worker/model, routing verdict, evidence, and owner conclusion.",
+    boundary: "Used once in this workflow where evidence supports it; repeated effectiveness is not proven.",
+  },
+  {
+    control: "compact evidence rows",
+    evidence: "Five compact evidence rows were created for implementation, Data Visualizer / UX review, QA Visual review, Opus critic review, and owner monitoring.",
+    boundary: "Used once as proof-of-use visibility; this is not Benchmark Dataset v0.1 export or benchmark completion.",
+  },
+  {
+    control: "claim downgrade / proof visibility",
+    evidence: "Local-only validation, missing independent review, and MULTI_MODEL_PROOF_NOT_CLAIMED are visible.",
+    boundary: "Claims are downgraded where evidence is missing; this does not prove stronger orchestration.",
+  },
+  {
+    control: "owner-gate overuse tracking",
+    evidence: "Owner role is shown as monitor/challenge gate, not orchestration engine.",
+    boundary: "Used once in this workflow; owner-gate overuse reduction needs repeated workflow tracking.",
+  },
+  {
+    control: "bounded Opus critic route",
+    evidence: "Opus critic pass (single strong model, bounded scope) is recorded as CRITIC_PASS_COMPLETE.",
+    boundary: "This is bounded critic evidence only; this is not full multi-model proof. MULTI_MODEL_PROOF_NOT_CLAIMED remains the correct claim boundary.",
+  },
+] as const
+
+export const gapsStillUnproven = [
+  {
+    gap: "independent Data Visualizer review",
+    status: "REVIEW_NOT_RUN",
+    whyItMatters: "Owner-facing information hierarchy and enum translation still need independent visualizer review before claiming stronger UX proof.",
+  },
+  {
+    gap: "independent QA Visual review",
+    status: "REVIEW_NOT_RUN",
+    whyItMatters: "Overflow, collision, disclaimer visibility, and status clarity have local checks only, not independent QA Visual proof.",
+  },
+  {
+    gap: "repeated workflow effectiveness metrics",
+    status: "NOT_PROVEN",
+    whyItMatters: "Controls were used once, but repeated workflow evidence is required before treating them as effective.",
+  },
+  {
+    gap: "runtime routing telemetry",
+    status: "NOT_IMPLEMENTED",
+    whyItMatters: "The page shows declared static route/model evidence, not live runtime routing telemetry.",
+  },
+  {
+    gap: "screenshot-based overflow audit because Playwright was unavailable locally",
+    status: "NOT_RUN",
+    whyItMatters: "Local layout safeguards are present, but screenshot automation was unavailable for this gate.",
+  },
+] as const
+
+export const boundedOpusCriticVisibility = {
+  title: "Opus critic pass (single strong model, bounded scope)",
+  evidenceStatus: "CRITIC_PASS_COMPLETE",
+  boundary:
+    "This is bounded critic evidence only; this is not full multi-model proof. MULTI_MODEL_PROOF_NOT_CLAIMED remains the correct claim boundary.",
+}
+
 export const monitoringUxVerdict = {
   title: "Owner verdict",
   dashboardKind: "Public under-construction AIOS operating surface",

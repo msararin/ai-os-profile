@@ -7,14 +7,17 @@ import {
   aiosMonitoringSnapshotMeta,
   aiosMonitoringSummary,
   baselineMetrics,
+  boundedOpusCriticVisibility,
   claimStatusDefinitions,
   compactEvidenceRows,
+  controlsMovedToDoneUsedOnce,
   conceptLegend,
   dashboardProofBoundary,
   dataVisualizerQualityRules,
   deferredForV02,
   enforcementScorecard,
   enumTranslations,
+  gapsStillUnproven,
   governanceEnforcementChecks,
   latestActionDecision,
   monitoringUxVerdict,
@@ -354,6 +357,80 @@ export default function AiosMonitoringPage() {
                   </tbody>
                 </table>
               </div>
+            </CardContent>
+          </Card>
+
+          <Card className="mt-6 border-emerald-600/40 bg-emerald-50/50 dark:bg-emerald-950/10">
+            <CardHeader>
+              <CardTitle className="text-base">Controls moved to DONE_USED_ONCE</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4 text-sm leading-6 text-muted-foreground">
+              <p className="font-semibold text-foreground">
+                These controls were used once in this workflow where evidence supports it. This
+                does not mean repeated effectiveness is proven.
+              </p>
+              <div className="grid gap-3 md:grid-cols-2">
+                {controlsMovedToDoneUsedOnce.map((item) => (
+                  <div key={item.control} className="min-w-0 rounded-lg border border-border bg-background p-4">
+                    <p className="font-semibold text-foreground">{item.control}</p>
+                    <p className="mt-2">{item.evidence}</p>
+                    <p className="mt-2 text-xs font-medium text-muted-foreground">{item.boundary}</p>
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card className="mt-6 border-red-600/40 bg-red-50/60 dark:bg-red-950/10">
+            <CardHeader>
+              <CardTitle className="text-base">Gaps still unproven</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4 text-sm leading-6 text-muted-foreground">
+              <p className="font-semibold text-foreground">
+                These remain open proof gaps and must not be treated as completed.
+              </p>
+              <div className="overflow-x-auto rounded-lg border border-border">
+                <table className="min-w-[760px] divide-y divide-border bg-background">
+                  <thead className="bg-muted/50">
+                    <tr>
+                      {["Gap", "Status", "Why it matters"].map((heading) => (
+                        <th
+                          key={heading}
+                          scope="col"
+                          className="px-4 py-3 text-left text-sm font-medium text-foreground"
+                        >
+                          {heading}
+                        </th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-border">
+                    {gapsStillUnproven.map((gap) => (
+                      <tr key={gap.gap}>
+                        <td className="px-4 py-4 align-top font-medium text-foreground">
+                          {gap.gap}
+                        </td>
+                        <td className="px-4 py-4 align-top">
+                          <RawValue value={gap.status} />
+                        </td>
+                        <td className="px-4 py-4 align-top">{gap.whyItMatters}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card className="mt-6 border-blue-600/40 bg-blue-50/50 dark:bg-blue-950/10">
+            <CardHeader>
+              <CardTitle className="text-base">{boundedOpusCriticVisibility.title}</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-3 text-sm leading-6 text-muted-foreground">
+              <p className="font-semibold text-foreground">
+                Evidence status: {boundedOpusCriticVisibility.evidenceStatus}
+              </p>
+              <p>{boundedOpusCriticVisibility.boundary}</p>
             </CardContent>
           </Card>
 
