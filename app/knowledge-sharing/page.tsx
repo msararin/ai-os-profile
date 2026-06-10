@@ -160,6 +160,14 @@ export default function KnowledgeSharingPage() {
                 <h2 className="text-lg font-medium text-muted-foreground">
                   {post.date}
                 </h2>
+                <a
+                  href={`https://www.linkedin.com/feed/update/${post.urn}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-sm font-medium text-primary underline-offset-4 hover:underline"
+                >
+                  Open on LinkedIn
+                </a>
               </div>
               <div className="flex justify-center">
                 <iframe
