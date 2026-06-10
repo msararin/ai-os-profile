@@ -6,13 +6,23 @@ import {
   aiosMonitoringRuleGroups,
   aiosMonitoringSnapshotMeta,
   aiosMonitoringSummary,
+  baselineMetrics,
   claimStatusDefinitions,
+  compactEvidenceRows,
   conceptLegend,
+  dashboardProofBoundary,
+  dataVisualizerQualityRules,
   deferredForV02,
+  enforcementScorecard,
+  enumTranslations,
   governanceEnforcementChecks,
   latestActionDecision,
+  monitoringUxVerdict,
+  orchestrationRealityChecks,
   phaseAgentActivity,
+  proofLevelCards,
   publicUnderConstructionGate,
+  routingLayerChecks,
   statusDefinitions,
   statusFlow,
   tokenCostUsageVisibility,
@@ -55,9 +65,36 @@ const guidanceRecords = aiosMonitoringRecords.filter((record) =>
   ),
 )
 
+const scorecardTone: Record<string, string> = {
+  PASS: "border-emerald-600/40 bg-emerald-50 text-emerald-950 dark:bg-emerald-950/20 dark:text-emerald-100",
+  PARTIAL: "border-amber-600/40 bg-amber-50 text-amber-950 dark:bg-amber-950/20 dark:text-amber-100",
+  CLAIM_BLOCKED: "border-red-600/40 bg-red-50 text-red-950 dark:bg-red-950/20 dark:text-red-100",
+  NOT_RUN: "border-slate-400/60 bg-slate-50 text-slate-950 dark:bg-slate-900 dark:text-slate-100",
+}
+
 function StatusBadge({ status }: { status: AiosMonitorStatus }) {
   return (
     <span className={`inline-flex rounded-full px-2.5 py-1 text-xs font-semibold ${statusTone[status]}`}>
+      {status}
+    </span>
+  )
+}
+
+function RawValue({ value }: { value: string }) {
+  return (
+    <span className="mt-1 block max-w-full break-words font-mono text-[11px] leading-5 text-muted-foreground">
+      Raw value: {value}
+    </span>
+  )
+}
+
+function ScorePill({ status }: { status: string }) {
+  return (
+    <span
+      className={`inline-flex max-w-full rounded-full border px-2.5 py-1 text-xs font-semibold ${
+        scorecardTone[status] ?? scorecardTone.PARTIAL
+      }`}
+    >
       {status}
     </span>
   )
@@ -70,6 +107,9 @@ export default function AiosMonitoringPage() {
         <div className="mx-auto max-w-5xl px-4 py-8 sm:px-6 lg:px-8">
           <div className="rounded-xl border-2 border-red-600 bg-red-50 p-4 text-red-950 shadow-sm dark:bg-red-950/40 dark:text-red-100">
             <p className="text-lg font-bold tracking-wide sm:text-xl">UNDER CONSTRUCTION</p>
+            <p className="mt-2 max-w-4xl text-sm font-semibold leading-6">
+              {publicUnderConstructionGate.requiredDisclaimer}
+            </p>
             <p className="mt-2 max-w-4xl text-sm leading-6">
               This is a public-safe static AIOS monitoring review surface. It displays
               curated/exported enforcement status only. It is not live telemetry, not a production
@@ -96,6 +136,351 @@ export default function AiosMonitoringPage() {
               confidential workflow details.
             </p>
           </div>
+
+          <Card className="mt-6 border-primary/40 bg-primary/5">
+            <CardHeader>
+              <CardTitle className="text-base">{monitoringUxVerdict.title}</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4 text-sm leading-6 text-muted-foreground">
+              <p className="text-base font-semibold leading-7 text-foreground">
+                {monitoringUxVerdict.summary}
+              </p>
+              <div className="grid gap-3 md:grid-cols-2">
+                <div className="rounded-lg border border-border bg-background p-4">
+                  <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
+                    What is this page?
+                  </p>
+                  <p className="mt-1 font-semibold text-foreground">
+                    {monitoringUxVerdict.dashboardKind}
+                  </p>
+                </div>
+                <div className="rounded-lg border border-border bg-background p-4">
+                  <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
+                    Current proof level
+                  </p>
+                  <p className="mt-1 font-semibold text-foreground">
+                    {monitoringUxVerdict.proofLevelLabel}
+                  </p>
+                  <RawValue value={monitoringUxVerdict.proofLevelRaw} />
+                </div>
+                <div className="rounded-lg border border-border bg-background p-4">
+                  <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
+                    Enforced guardrails
+                  </p>
+                  <p className="mt-1">{monitoringUxVerdict.enforced}</p>
+                </div>
+                <div className="rounded-lg border border-border bg-background p-4">
+                  <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
+                    Improve next
+                  </p>
+                  <p className="mt-1">{monitoringUxVerdict.nextImprovement}</p>
+                </div>
+              </div>
+              <p>
+                <span className="font-medium text-foreground">Not claimed:</span>{" "}
+                {monitoringUxVerdict.notClaimed}
+              </p>
+            </CardContent>
+          </Card>
+
+          <Card className="mt-6 border-amber-600/40 bg-amber-50/50 dark:bg-amber-950/10">
+            <CardHeader>
+              <CardTitle className="text-base">Proof level</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-4">
+                {proofLevelCards.map((card) => (
+                  <div
+                    key={card.title}
+                    className="min-w-0 rounded-lg border border-border bg-background p-4"
+                  >
+                    <p className="text-sm font-semibold text-foreground">{card.title}</p>
+                    <p className="mt-2 break-words text-base font-semibold leading-6 text-foreground">
+                      {card.status}
+                    </p>
+                    <RawValue value={card.rawValue} />
+                    <p className="mt-3 text-sm leading-6 text-muted-foreground">{card.meaning}</p>
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card className="mt-6">
+            <CardHeader>
+              <CardTitle className="text-base">
+                Routing Layer Check: Right Role / Right Model / Right Task
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4 text-sm leading-6 text-muted-foreground">
+              <p>
+                This section is a declared static configuration view, not a runtime probe. It checks
+                whether the selected worker/model is appropriate for the task risk. Raw routing
+                values are shown as secondary evidence, not as the main owner-facing status.
+              </p>
+              <div className="overflow-x-auto rounded-lg border border-border">
+                <table className="min-w-[1120px] divide-y divide-border">
+                  <thead className="bg-muted/50">
+                    <tr>
+                      {[
+                        "Task / gate",
+                        "Task risk",
+                        "Expected role",
+                        "Recommended worker",
+                        "Actual worker",
+                        "Routing verdict",
+                        "Evidence / receipt",
+                        "Owner conclusion",
+                      ].map((heading) => (
+                        <th
+                          key={heading}
+                          scope="col"
+                          className="px-4 py-3 text-left text-sm font-medium text-foreground"
+                        >
+                          {heading}
+                        </th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-border bg-background">
+                    {routingLayerChecks.map((check) => (
+                      <tr key={check.taskGate}>
+                        <td className="px-4 py-4 align-top font-medium text-foreground">
+                          {check.taskGate}
+                        </td>
+                        <td className="px-4 py-4 align-top">{check.taskRisk}</td>
+                        <td className="px-4 py-4 align-top">{check.expectedRole}</td>
+                        <td className="px-4 py-4 align-top">{check.recommendedWorker}</td>
+                        <td className="px-4 py-4 align-top">{check.actualWorker}</td>
+                        <td className="px-4 py-4 align-top">
+                          <p className="font-medium text-foreground">{check.routingLabel}</p>
+                          <RawValue value={check.routingRaw} />
+                        </td>
+                        <td className="px-4 py-4 align-top">{check.evidenceStatus}</td>
+                        <td className="px-4 py-4 align-top">{check.conclusion}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card className="mt-6">
+            <CardHeader>
+              <CardTitle className="text-base">Orchestration reality check</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="grid gap-3 md:grid-cols-2">
+                {orchestrationRealityChecks.map((check) => (
+                  <div
+                    key={check.question}
+                    className="min-w-0 rounded-lg border border-border bg-background p-4 text-sm leading-6"
+                  >
+                    <p className="font-semibold text-foreground">{check.question}</p>
+                    <p className="mt-2 text-muted-foreground">{check.answer}</p>
+                    <RawValue value={check.rawValue} />
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card className="mt-6">
+            <CardHeader>
+              <CardTitle className="text-base">Compact evidence rows</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4 text-sm leading-6 text-muted-foreground">
+              <p>
+                These rows are the static proof-of-use record for this gap-closure workflow. They
+                combine route, role, reviewer, claim, downgrade, owner gate, and next-action
+                evidence in one compact row per task.
+              </p>
+              <div className="overflow-x-auto rounded-lg border border-border">
+                <table className="min-w-[1280px] divide-y divide-border">
+                  <thead className="bg-muted/50">
+                    <tr>
+                      {[
+                        "Task",
+                        "Risk",
+                        "Expected role",
+                        "Actual worker",
+                        "Model route",
+                        "Reviewer",
+                        "QA",
+                        "Claim / proof / downgrade",
+                        "Owner gate",
+                        "Next action",
+                      ].map((heading) => (
+                        <th
+                          key={heading}
+                          scope="col"
+                          className="px-4 py-3 text-left text-sm font-medium text-foreground"
+                        >
+                          {heading}
+                        </th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-border bg-background">
+                    {compactEvidenceRows.map((row) => (
+                      <tr key={row.taskId}>
+                        <td className="px-4 py-4 align-top">
+                          <p className="font-medium text-foreground">{row.taskName}</p>
+                          <RawValue value={row.taskId} />
+                        </td>
+                        <td className="px-4 py-4 align-top">{row.taskRisk}</td>
+                        <td className="px-4 py-4 align-top">{row.expectedRole}</td>
+                        <td className="px-4 py-4 align-top">{row.actualWorker}</td>
+                        <td className="px-4 py-4 align-top">
+                          <p className="font-medium text-foreground">
+                            {row.modelCandidateSelected}
+                          </p>
+                          <p className="mt-2">{row.fallbackCandidatesConsidered}</p>
+                          <p className="mt-2">{row.routingReason}</p>
+                        </td>
+                        <td className="px-4 py-4 align-top">{row.reviewerStatus}</td>
+                        <td className="px-4 py-4 align-top">{row.qaStatus}</td>
+                        <td className="px-4 py-4 align-top">
+                          <p className="font-medium text-foreground">{row.claimStatus}</p>
+                          <p className="mt-2 font-medium text-foreground">{row.proofClaim}</p>
+                          <p className="mt-2">{row.downgradeApplied}</p>
+                          <p className="mt-2 text-xs">{row.evidenceFile}</p>
+                        </td>
+                        <td className="px-4 py-4 align-top">{row.ownerGateStatus}</td>
+                        <td className="px-4 py-4 align-top">{row.nextAction}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card className="mt-6">
+            <CardHeader>
+              <CardTitle className="text-base">Enforcement scorecard</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="overflow-x-auto rounded-lg border border-border">
+                <table className="min-w-[760px] divide-y divide-border">
+                  <thead className="bg-muted/50">
+                    <tr>
+                      {["Control", "Status", "Owner-readable meaning"].map((heading) => (
+                        <th
+                          key={heading}
+                          scope="col"
+                          className="px-4 py-3 text-left text-sm font-medium text-foreground"
+                        >
+                          {heading}
+                        </th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-border bg-background text-sm leading-6 text-muted-foreground">
+                    {enforcementScorecard.map((row) => (
+                      <tr key={row.control}>
+                        <td className="px-4 py-4 align-top font-medium text-foreground">
+                          {row.control}
+                        </td>
+                        <td className="px-4 py-4 align-top">
+                          <ScorePill status={row.status} />
+                        </td>
+                        <td className="px-4 py-4 align-top">{row.meaning}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card className="mt-6">
+            <CardHeader>
+              <CardTitle className="text-base">Benchmark / baseline metrics</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4 text-sm leading-6 text-muted-foreground">
+              <p>
+                These are AIOS operating baseline metrics, not production monitoring metrics. They
+                show what should improve before stronger proof is claimed.
+              </p>
+              <p className="rounded-lg border border-amber-600/40 bg-amber-50 p-3 font-semibold text-amber-950 dark:bg-amber-950/20 dark:text-amber-100">
+                Collection only: no scoring, no export, no benchmark readiness signal, and no
+                benchmark completion claim.
+              </p>
+              <div className="grid gap-3 md:grid-cols-2">
+                {baselineMetrics.map(([metric, value]) => (
+                  <div key={metric} className="min-w-0 rounded-lg border border-border p-3">
+                    <p className="break-words font-mono text-xs text-muted-foreground">{metric}</p>
+                    <p className="mt-1 break-words font-semibold text-foreground">{value}</p>
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card className="mt-6">
+            <CardHeader>
+              <CardTitle className="text-base">Human-readable enum translation</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="grid gap-3 md:grid-cols-2">
+                {enumTranslations.map((item) => (
+                  <div key={item.rawValue} className="min-w-0 rounded-lg border border-border p-4">
+                    <p className="font-semibold text-foreground">{item.label}</p>
+                    <RawValue value={item.rawValue} />
+                    <p className="mt-3 text-sm leading-6 text-muted-foreground">{item.meaning}</p>
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card className="mt-6">
+            <CardHeader>
+              <CardTitle className="text-base">What this dashboard proves / does not prove</CardTitle>
+            </CardHeader>
+            <CardContent className="grid gap-4 md:grid-cols-2">
+              <div className="rounded-lg border border-border p-4">
+                <h2 className="text-sm font-semibold text-foreground">Proves</h2>
+                <ul className="mt-3 space-y-2 text-sm leading-6 text-muted-foreground">
+                  {dashboardProofBoundary.proves.map((item) => (
+                    <li key={item} className="flex gap-2">
+                      <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-600" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="rounded-lg border border-border p-4">
+                <h2 className="text-sm font-semibold text-foreground">Does not prove</h2>
+                <ul className="mt-3 space-y-2 text-sm leading-6 text-muted-foreground">
+                  {dashboardProofBoundary.doesNotProve.map((item) => (
+                    <li key={item} className="flex gap-2">
+                      <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-red-600" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card className="mt-6">
+            <CardHeader>
+              <CardTitle className="text-base">Data Visualizer quality rules</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <ul className="grid gap-2 text-sm leading-6 text-muted-foreground md:grid-cols-2">
+                {dataVisualizerQualityRules.map((rule) => (
+                  <li key={rule} className="flex gap-2">
+                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
+                    <span>{rule}</span>
+                  </li>
+                ))}
+              </ul>
+            </CardContent>
+          </Card>
 
           <Card className="mt-6 border-primary/30 bg-primary/5">
             <CardHeader>
@@ -238,6 +623,9 @@ export default function AiosMonitoringPage() {
                   <h2 className="text-sm font-semibold text-foreground">
                     Orchestration reality check
                   </h2>
+                  <p className="mt-2 text-xs text-muted-foreground">
+                    Declared static state, not a runtime orchestration probe.
+                  </p>
                   <dl className="mt-3 grid gap-2">
                     <div className="flex flex-wrap justify-between gap-2">
                       <dt>required</dt>

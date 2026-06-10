@@ -197,6 +197,394 @@ export const publicUnderConstructionGate = {
     "Validate the bounded public under-construction surface and prepare an explicit-path commit if validation passes. Do not push.",
 }
 
+export const compactEvidenceRows = [
+  {
+    taskId: "dashboard-ux-implementation",
+    taskName: "Dashboard UX implementation",
+    taskRisk: "LEVEL_2_HIGH_RISK public under-construction dashboard UX",
+    expectedRole: "Codex implementation executor",
+    actualWorker: "Codex local",
+    modelCandidateSelected: "Codex local",
+    fallbackCandidatesConsidered: "Data Visualizer, QA Visual Reviewer, Opus critic if available",
+    routingReason:
+      "Owner authorized bounded dashboard UX gap-closure scope. Codex is the correct worker for repo/page implementation.",
+    evidenceFile: "app/architecture/system-health/monitoring/page.tsx; lib/aios-monitoring-snapshot.ts",
+    reviewerStatus: "LOCAL_ONLY_VALIDATION",
+    qaStatus: "PENDING_LOCAL_VALIDATION",
+    claimStatus: "UNDER_CONSTRUCTION_PUBLIC_SURFACE",
+    proofClaim: "LOCAL_VALIDATION_ONLY",
+    downgradeApplied: "INDEPENDENT_UX_PROOF_NOT_CLAIMED",
+    ownerGateStatus: "OWNER_APPROVED_BOUNDED_SCOPE",
+    nextAction: "Run typecheck, build, route, disclaimer, claim, secret, and layout validation.",
+  },
+  {
+    taskId: "data-visualizer-ux-readability-review",
+    taskName: "Data Visualizer / UX readability review",
+    taskRisk: "LEVEL_2_HIGH_RISK owner-facing public surface readability",
+    expectedRole: "Data Visualizer / UX Readability Reviewer",
+    actualWorker: "Codex local applying committed Data Visualizer rules",
+    modelCandidateSelected: "Codex local checklist",
+    fallbackCandidatesConsidered: "Data Visualizer reviewer, UX Readability Reviewer, Opus critic",
+    routingReason:
+      "Independent Data Visualizer reviewer is not run in this local gate, so the page discloses local-only validation.",
+    evidenceFile: "Downloads HTML report; rendered route validation after local server check",
+    reviewerStatus: "REVIEW_NOT_RUN",
+    qaStatus: "LOCAL_ONLY_VALIDATION",
+    claimStatus: "LOCAL_VALIDATION_ONLY",
+    proofClaim: "INDEPENDENT_UX_PROOF_NOT_CLAIMED",
+    downgradeApplied: "INDEPENDENT_UX_PROOF_NOT_CLAIMED",
+    ownerGateStatus: "OWNER_MONITOR_NOT_ORCHESTRATION_ENGINE",
+    nextAction: "Keep Data Visualizer proof gap visible until an independent reviewer runs.",
+  },
+  {
+    taskId: "qa-visual-review",
+    taskName: "QA Visual review",
+    taskRisk: "LEVEL_2_HIGH_RISK visual readability and overflow check",
+    expectedRole: "QA Visual Reviewer",
+    actualWorker: "Codex local visual/layout validation",
+    modelCandidateSelected: "Codex local validation",
+    fallbackCandidatesConsidered: "QA Visual Reviewer, browser screenshot check, Opus if wording ambiguity remains",
+    routingReason:
+      "Independent QA Visual Reviewer is not run in this local gate; overflow and collision safeguards are checked locally.",
+    evidenceFile: "Downloads HTML report; local route visual/readability checks",
+    reviewerStatus: "REVIEW_NOT_RUN",
+    qaStatus: "LOCAL_ONLY_VALIDATION",
+    claimStatus: "LOCAL_VALIDATION_ONLY",
+    proofClaim: "INDEPENDENT_QA_PROOF_NOT_CLAIMED",
+    downgradeApplied: "INDEPENDENT_QA_PROOF_NOT_CLAIMED",
+    ownerGateStatus: "OWNER_MONITOR_NOT_ORCHESTRATION_ENGINE",
+    nextAction: "Use viewport/layout validation and keep independent QA proof unclaimed.",
+  },
+  {
+    taskId: "claim-boundary-opus-critic-review",
+    taskName: "Claim-boundary / Opus critic review if available",
+    taskRisk: "LEVEL_2_HIGH_RISK public claim wording and proof boundary",
+    expectedRole: "Opus critic / claim-boundary reviewer",
+    actualWorker: "OpenRouter Opus 4.7 critic pass",
+    modelCandidateSelected: "Opus critic pass (single strong model, bounded scope)",
+    fallbackCandidatesConsidered: "QA reviewer, Sonnet synthesis, Codex local claim scan",
+    routingReason:
+      "Opus was used as one bounded critic gate for wording and claim-boundary critique, not as multi-model orchestration proof.",
+    evidenceFile: "OPUS_CRITIC_REVIEW_RESULT.md and provider_receipt.json in the Downloads review packet",
+    reviewerStatus: "CRITIC_PASS_COMPLETE",
+    qaStatus: "LOCAL_CLAIM_SCAN_REQUIRED",
+    claimStatus: "CRITIC_EVIDENCE_ONLY",
+    proofClaim: "MULTI_MODEL_PROOF_NOT_CLAIMED",
+    downgradeApplied: "MULTI_MODEL_PROOF_NOT_CLAIMED",
+    ownerGateStatus: "OWNER_MONITOR_NOT_ORCHESTRATION_ENGINE",
+    nextAction: "Run Opus critic only if proportionate; otherwise keep local-only downgrade visible.",
+  },
+  {
+    taskId: "owner-monitoring",
+    taskName: "Owner monitoring",
+    taskRisk: "OWNER_DECISION_BOUNDARY",
+    expectedRole: "Lyn / Owner monitor",
+    actualWorker: "Lyn owner approval for bounded scope",
+    modelCandidateSelected: "Human owner gate",
+    fallbackCandidatesConsidered: "No model fallback for protected owner decisions",
+    routingReason:
+      "Owner approval covers bounded dashboard UX implementation only and does not authorize push or stronger claims.",
+    evidenceFile: "Owner instruction for this gate; Downloads HTML report",
+    reviewerStatus: "OWNER_MONITOR",
+    qaStatus: "NOT_APPLICABLE",
+    claimStatus: "OWNER_APPROVED_BOUNDED_SCOPE_ONLY",
+    proofClaim: "OWNER_APPROVAL_IS_NOT_PROOF",
+    downgradeApplied: "PUBLIC_PROOF_NOT_CLAIMED",
+    ownerGateStatus: "OWNER_APPROVED_BOUNDED_SCOPE",
+    nextAction: "Report validation and commit readiness; do not push.",
+  },
+] as const
+
+export const monitoringUxVerdict = {
+  title: "Owner verdict",
+  dashboardKind: "Public under-construction AIOS operating surface",
+  proofLevelLabel: "Local validation only",
+  proofLevelRaw: "LOCAL_VALIDATION_ONLY",
+  enforced:
+    "Claim boundary, owner gate, route status, blocked actions, evidence gaps, exact disclaimer, and local validation visibility.",
+  notClaimed:
+    "Production readiness, live monitoring readiness, public proof readiness, CASE-003 execution, real data ingestion, derivative authorization, benchmark export, and multi-model orchestration proof.",
+  nextImprovement:
+    "Add reviewer-gate evidence or external review coverage before claiming stronger proof.",
+  summary:
+    "Public under-construction AIOS operating surface. Current proof level: local Codex implementation validation only. Guardrails are active for claim boundary, owner gate, route status, blocked actions, and evidence gaps. External review was not run, so this page must not be treated as multi-model orchestration proof.",
+}
+
+export const proofLevelCards = [
+  {
+    title: "Local validation",
+    status: "Local validation only",
+    rawValue: "LOCAL_VALIDATION_ONLY",
+    meaning: "Codex local checks passed. This is useful implementation evidence, not independent proof.",
+  },
+  {
+    title: "Multi-model proof",
+    status: "Not claimed",
+    rawValue: "MULTI_MODEL_PROOF_NOT_CLAIMED",
+    meaning: "No external model/provider review is being presented as orchestration proof.",
+  },
+  {
+    title: "External review",
+    status: "Not run",
+    rawValue: "EXTERNAL_REVIEW_NOT_RUN",
+    meaning: "External reviewer coverage is currently 0%, so stronger proof remains blocked.",
+  },
+  {
+    title: "Public surface",
+    status: "Under construction only",
+    rawValue: "PUBLIC_UNDER_CONSTRUCTION_ONLY",
+    meaning: "The page can be reviewed publicly, but it is not production, live, or proof-ready.",
+  },
+]
+
+export const routingLayerChecks = [
+  {
+    taskGate: "Public dashboard UI patch",
+    taskRisk: "Public under-construction route/page patch",
+    expectedRole: "Implementation worker",
+    recommendedWorker: "Codex local",
+    actualWorker: "Codex local",
+    routingLabel: "Correct worker selected",
+    routingRaw: "ROUTE_MATCH",
+    evidenceStatus: "Local diff, typecheck, build, route HTTP check",
+    conclusion: "Correct worker for bounded repo/page implementation.",
+  },
+  {
+    taskGate: "Public claim boundary review",
+    taskRisk: "Public wording and claim safety",
+    expectedRole: "QA / reviewer",
+    recommendedWorker: "QA reviewer or Opus gate if stronger confidence is required",
+    actualWorker: "Codex local validation only",
+    routingLabel: "Local-only with downgrade",
+    routingRaw: "LOCAL_ONLY_JUSTIFIED_WITH_DOWNGRADE",
+    evidenceStatus: "Local scan and rendered disclaimer check; no external receipt",
+    conclusion: "Acceptable for under-construction local validation, but not independent proof.",
+  },
+  {
+    taskGate: "Multi-model orchestration proof",
+    taskRisk: "High-risk proof claim",
+    expectedRole: "External reviewer / provider receipt evidence",
+    recommendedWorker: "Opus gate / QA reviewer / Data Team if needed",
+    actualWorker: "Not run",
+    routingLabel: "Not claimed",
+    routingRaw: "DOWNGRADED_UNVERIFIED",
+    evidenceStatus: "No provider/model receipt",
+    conclusion:
+      "Multi-model proof claim is not allowed because external review was not run. The dashboard remains valid as an under-construction local-validation surface.",
+  },
+  {
+    taskGate: "Owner decision",
+    taskRisk: "Scope and push/deployment boundary",
+    expectedRole: "Lyn / Owner",
+    recommendedWorker: "Human owner gate",
+    actualWorker: "Owner approval recorded only for bounded public under-construction scope",
+    routingLabel: "Scope boundary approved",
+    routingRaw: "OWNER_APPROVED_SCOPE_BOUNDARY",
+    evidenceStatus: "Owner approval in task instruction; no production/live/public-proof approval",
+    conclusion: "Owner approves scope, not production/live/public-proof readiness.",
+  },
+]
+
+export const orchestrationRealityChecks = [
+  {
+    question: "Was orchestration required?",
+    answer: "Yes, for public-surface claim safety, but proportionate to the bounded patch.",
+    rawValue: "REQUIRED_FOR_HIGH_RISK",
+  },
+  {
+    question: "Was orchestration designed?",
+    answer: "Designed with constraints: local implementation plus visible downgrade for missing external review.",
+    rawValue: "DESIGNED_WITH_CONSTRAINTS",
+  },
+  {
+    question: "Who executed?",
+    answer: "Implementation worker: Codex local.",
+    rawValue: "CODEX_LOCAL",
+  },
+  {
+    question: "Was external review run?",
+    answer: "No. External reviewer was not run.",
+    rawValue: "EXTERNAL_REVIEW_NOT_RUN",
+  },
+  {
+    question: "Was QA independent or local-only?",
+    answer: "Local-only. QA was Codex validation, not independent reviewer proof.",
+    rawValue: "LOCAL_QA_ONLY",
+  },
+  {
+    question: "Was local-only execution justified?",
+    answer: "Yes for bounded under-construction UI work, with stronger proof blocked.",
+    rawValue: "LOCAL_ONLY_JUSTIFIED",
+  },
+  {
+    question: "Was the claim downgraded correctly?",
+    answer: "Yes. Multi-model proof is not claimed.",
+    rawValue: "MULTI_MODEL_PROOF_NOT_CLAIMED",
+  },
+  {
+    question: "What is Lyn's role?",
+    answer: "Owner monitor and challenge gate, not orchestration engine.",
+    rawValue: "OWNER_MONITOR_NOT_ORCHESTRATION_ENGINE",
+  },
+]
+
+export const enforcementScorecard = [
+  {
+    control: "Claim boundary enforced",
+    status: "PASS",
+    meaning: "The page says what it does not prove.",
+  },
+  {
+    control: "Exact disclaimer visible",
+    status: "PASS",
+    meaning: "The required sentence remains visible verbatim.",
+  },
+  {
+    control: "Route status captured",
+    status: "PASS",
+    meaning: "Local-only execution is disclosed and bounded.",
+  },
+  {
+    control: "Routing level captured",
+    status: "PASS",
+    meaning: "Public surface work is treated as high-risk.",
+  },
+  {
+    control: "Owner gate captured",
+    status: "PASS",
+    meaning: "Owner approval covers bounded under-construction scope only.",
+  },
+  {
+    control: "Blocked actions visible",
+    status: "PASS",
+    meaning: "Push, production, live, proof, CASE, real-data, derivative, and benchmark claims remain blocked unless separately approved.",
+  },
+  {
+    control: "Evidence gaps visible",
+    status: "PASS",
+    meaning: "Missing external review and missing stronger proof are visible.",
+  },
+  {
+    control: "Orchestration reality check visible",
+    status: "PASS",
+    meaning: "The page explains what happened and what did not happen.",
+  },
+  {
+    control: "External review coverage",
+    status: "NOT_RUN",
+    meaning: "No external reviewer was used for this implementation patch.",
+  },
+  {
+    control: "Independent QA coverage",
+    status: "NOT_RUN",
+    meaning: "QA is local Codex validation only.",
+  },
+  {
+    control: "Multi-model proof claim prevented",
+    status: "PASS",
+    meaning: "The page does not claim multi-model orchestration proof.",
+  },
+  {
+    control: "Production/live/public-proof claim blocked",
+    status: "PASS",
+    meaning: "The page remains under-construction only.",
+  },
+]
+
+export const baselineMetrics = [
+  ["compact_evidence_rows_created", "5"],
+  ["route_model_fit_visible", "yes"],
+  ["data_visualizer_review_status", "REVIEW_NOT_RUN"],
+  ["qa_visual_review_status", "REVIEW_NOT_RUN"],
+  ["opus_critic_review_status", "CRITIC_PASS_COMPLETE"],
+  ["reviewer_not_run_count", "2"],
+  ["local_only_validation_disclosed", "yes"],
+  ["claim_downgrade_applied", "yes"],
+  ["owner_gate_overuse_detected", "no"],
+  ["owner_5_second_verdict_clarity", "present"],
+  ["visual_overflow_defect_count", "0 observed after local layout safeguards"],
+  ["evidence_gap_visibility", "visible"],
+  ["forbidden_claim_scan_result", "pending local validation"],
+  ["proof_level", "LOCAL_VALIDATION_ONLY"],
+  ["external_review_coverage", "0%"],
+  ["independent_qa_coverage", "0%"],
+  ["local_validation_present", "yes"],
+  ["claim_boundary_enforced", "yes"],
+  ["evidence_gap_visible", "yes"],
+  ["route_status_visible", "yes"],
+  ["owner_gate_visible", "yes"],
+  ["public_surface_status", "PUBLIC_UNDER_CONSTRUCTION"],
+  [
+    "next_target",
+    "add reviewer-gate evidence or external review coverage before claiming stronger proof",
+  ],
+  ["benchmark_caption", "collection only; no scoring, no export, no readiness signal"],
+] as const
+
+export const enumTranslations = [
+  {
+    label: "Local-only justified",
+    rawValue: "LOCAL_ONLY_JUSTIFIED",
+    meaning:
+      "This task was handled locally because it was bounded and did not claim production, live, CASE, real-data, derivative, or benchmark readiness.",
+  },
+  {
+    label: "High-risk public surface",
+    rawValue: "LEVEL_2_HIGH_RISK",
+    meaning:
+      "Public surface work needs explicit boundaries, blocked actions, owner gate state, and claim-safety checks.",
+  },
+  {
+    label: "Public under construction",
+    rawValue: "PUBLIC_UNDER_CONSTRUCTION",
+    meaning: "The page can be public, but it must remain caveated and must not claim proof or readiness.",
+  },
+  {
+    label: "Local validation only",
+    rawValue: "LOCAL_VALIDATION_ONLY",
+    meaning:
+      "Build, typecheck, route check, and scans passed locally; no independent external proof is implied.",
+  },
+  {
+    label: "Downgraded unverified",
+    rawValue: "DOWNGRADED_UNVERIFIED",
+    meaning:
+      "Without role outputs or provider receipts, stronger orchestration claims must be blocked.",
+  },
+]
+
+export const dashboardProofBoundary = {
+  proves: [
+    "AIOS guardrail state can be displayed.",
+    "Claim boundary is visible.",
+    "Route status is visible.",
+    "Owner gate state is visible.",
+    "Evidence gaps are visible.",
+    "Local validation is separated from stronger proof.",
+  ],
+  doesNotProve: [
+    "Multi-model orchestration.",
+    "External QA.",
+    "Opus gate review.",
+    "Production monitoring.",
+    "Live monitoring.",
+    "Public proof readiness.",
+    "CASE-003 completion.",
+    "Benchmark readiness, benchmark completion, or benchmark export.",
+  ],
+}
+
+export const dataVisualizerQualityRules = [
+  "No overflowing status text.",
+  "No clipped enum labels.",
+  "No unreadable raw-value-first cards.",
+  "Owner-readable interpretation required.",
+  "Important status must be understandable within 5 seconds.",
+  "Tables must remain legible.",
+  "Dashboard should communicate meaning, not just surface raw fields.",
+  "A blocked claim must not look like a blocked task; separate task status, claim status, and evidence status in owner-facing UI.",
+]
+
 export const aiosMonitoringRecords: AiosMonitoringRecord[] = [
   {
     id: "AIOS-ENF-001",
