@@ -2,6 +2,18 @@ import { PageLayout } from "@/components/page-layout"
 
 const linkedInPosts = [
   {
+    urn: "urn:li:share:7470436211799576576",
+    height: 2106,
+    title: "LinkedIn Post - Jun 10, 2026",
+    date: "Jun 10, 2026",
+  },
+  {
+    urn: "urn:li:share:7470431486580654080",
+    height: 2085,
+    title: "LinkedIn Post - Jun 10, 2026",
+    date: "Jun 10, 2026",
+  },
+  {
     urn: "urn:li:share:7470341129100496896",
     height: 1804,
     title: "LinkedIn Post - Jun 10, 2026",
