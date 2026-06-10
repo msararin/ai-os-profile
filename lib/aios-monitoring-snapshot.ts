@@ -122,6 +122,8 @@ export const latestActionDecision = {
 
 export const publicUnderConstructionGate = {
   title: "Public under-construction dashboard implementation gate",
+  requiredDisclaimer:
+    "This page is an under-construction AIOS operating surface and does not indicate CASE-003 execution, real data ingestion, derivative creation, Benchmark Dataset v0.1 export, production monitoring, live monitoring, or public proof readiness.",
   contractVersion: "aios-monitoring-dashboard-data-contract-v0.3",
   contractStatus: "COMMITTED",
   implementationStatus: "PATCHED_UNDER_CONSTRUCTION",

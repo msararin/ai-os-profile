@@ -189,6 +189,9 @@ export default function AiosMonitoringPage() {
 
                 <div className="rounded-lg border border-border bg-background p-4">
                   <h2 className="text-sm font-semibold text-foreground">Claim boundary</h2>
+                  <p className="mt-3 font-medium text-foreground">
+                    {publicUnderConstructionGate.requiredDisclaimer}
+                  </p>
                   <p className="mt-3">{publicUnderConstructionGate.claimBoundary}</p>
                   <p className="mt-3">
                     <span className="font-medium text-foreground">public_claim_allowed:</span>{" "}
