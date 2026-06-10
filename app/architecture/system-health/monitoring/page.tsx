@@ -12,6 +12,7 @@ import {
   governanceEnforcementChecks,
   latestActionDecision,
   phaseAgentActivity,
+  publicUnderConstructionGate,
   statusDefinitions,
   statusFlow,
   tokenCostUsageVisibility,
@@ -125,6 +126,191 @@ export default function AiosMonitoringPage() {
                 <span className="font-medium text-foreground">Not allowed yet:</span>{" "}
                 {latestActionDecision.notAllowedYet}
               </p>
+            </CardContent>
+          </Card>
+
+          <Card className="mt-6 border-amber-600/50 bg-amber-50/70 dark:bg-amber-950/10">
+            <CardHeader>
+              <CardTitle className="text-base">{publicUnderConstructionGate.title}</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-5 text-sm leading-6 text-muted-foreground">
+              <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+                {[
+                  ["Contract", publicUnderConstructionGate.contractStatus],
+                  ["Implementation", publicUnderConstructionGate.implementationStatus],
+                  ["Public surface", publicUnderConstructionGate.publicSurfaceStatus],
+                  ["Claim", publicUnderConstructionGate.claimStatus],
+                ].map(([label, value]) => (
+                  <div key={label} className="rounded-lg border border-border bg-background p-3">
+                    <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
+                      {label}
+                    </p>
+                    <p className="mt-1 text-sm font-semibold text-foreground">{value}</p>
+                  </div>
+                ))}
+              </div>
+
+              <div className="grid gap-4 lg:grid-cols-2">
+                <div className="rounded-lg border border-border bg-background p-4">
+                  <h2 className="text-sm font-semibold text-foreground">Route and owner gate</h2>
+                  <dl className="mt-3 grid gap-2">
+                    <div className="flex flex-wrap justify-between gap-2">
+                      <dt>routing_level</dt>
+                      <dd className="font-medium text-foreground">
+                        {publicUnderConstructionGate.routingLevel}
+                      </dd>
+                    </div>
+                    <div className="flex flex-wrap justify-between gap-2">
+                      <dt>route_status</dt>
+                      <dd className="font-medium text-foreground">
+                        {publicUnderConstructionGate.routeStatus}
+                      </dd>
+                    </div>
+                    <div className="flex flex-wrap justify-between gap-2">
+                      <dt>reason_code</dt>
+                      <dd className="font-medium text-foreground">
+                        {publicUnderConstructionGate.reasonCode}
+                      </dd>
+                    </div>
+                    <div className="flex flex-wrap justify-between gap-2">
+                      <dt>owner_gate_required</dt>
+                      <dd className="font-medium text-foreground">
+                        {publicUnderConstructionGate.ownerGateRequired}
+                      </dd>
+                    </div>
+                    <div className="flex flex-wrap justify-between gap-2">
+                      <dt>owner_gate_status</dt>
+                      <dd className="font-medium text-foreground">
+                        {publicUnderConstructionGate.ownerGateStatus}
+                      </dd>
+                    </div>
+                  </dl>
+                </div>
+
+                <div className="rounded-lg border border-border bg-background p-4">
+                  <h2 className="text-sm font-semibold text-foreground">Claim boundary</h2>
+                  <p className="mt-3">{publicUnderConstructionGate.claimBoundary}</p>
+                  <p className="mt-3">
+                    <span className="font-medium text-foreground">public_claim_allowed:</span>{" "}
+                    {publicUnderConstructionGate.publicClaimAllowed}
+                  </p>
+                </div>
+              </div>
+
+              <div className="overflow-x-auto rounded-lg border border-border bg-background">
+                <table className="min-w-[880px] divide-y divide-border">
+                  <thead className="bg-muted/50">
+                    <tr>
+                      {["Role", "Worker", "Model/provider", "Receipt status", "Evidence status"].map(
+                        (heading) => (
+                          <th
+                            key={heading}
+                            scope="col"
+                            className="px-4 py-3 text-left text-sm font-medium text-foreground"
+                          >
+                            {heading}
+                          </th>
+                        ),
+                      )}
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-border">
+                    {publicUnderConstructionGate.roleWorkerModelEvidence.map((item) => (
+                      <tr key={item.role}>
+                        <td className="px-4 py-4 align-top font-medium text-foreground">
+                          {item.role}
+                        </td>
+                        <td className="px-4 py-4 align-top">{item.worker}</td>
+                        <td className="px-4 py-4 align-top">{item.modelProvider}</td>
+                        <td className="px-4 py-4 align-top">{item.receiptStatus}</td>
+                        <td className="px-4 py-4 align-top">{item.evidenceStatus}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+
+              <div className="grid gap-4 lg:grid-cols-2">
+                <div className="rounded-lg border border-border bg-background p-4">
+                  <h2 className="text-sm font-semibold text-foreground">
+                    Orchestration reality check
+                  </h2>
+                  <dl className="mt-3 grid gap-2">
+                    <div className="flex flex-wrap justify-between gap-2">
+                      <dt>required</dt>
+                      <dd className="font-medium text-foreground">
+                        {publicUnderConstructionGate.orchestrationReality.required}
+                      </dd>
+                    </div>
+                    <div className="flex flex-wrap justify-between gap-2">
+                      <dt>design</dt>
+                      <dd className="font-medium text-foreground">
+                        {publicUnderConstructionGate.orchestrationReality.designStatus}
+                      </dd>
+                    </div>
+                    <div className="flex flex-wrap justify-between gap-2">
+                      <dt>suitability</dt>
+                      <dd className="font-medium text-foreground">
+                        {publicUnderConstructionGate.orchestrationReality.suitabilityStatus}
+                      </dd>
+                    </div>
+                    <div className="flex flex-wrap justify-between gap-2">
+                      <dt>review</dt>
+                      <dd className="font-medium text-foreground">
+                        {publicUnderConstructionGate.orchestrationReality.reviewStatus}
+                      </dd>
+                    </div>
+                    <div className="flex flex-wrap justify-between gap-2">
+                      <dt>evidence</dt>
+                      <dd className="font-medium text-foreground">
+                        {publicUnderConstructionGate.orchestrationReality.evidenceStatus}
+                      </dd>
+                    </div>
+                    <div className="flex flex-wrap justify-between gap-2">
+                      <dt>false orchestration risk</dt>
+                      <dd className="font-medium text-foreground">
+                        {publicUnderConstructionGate.orchestrationReality.falseOrchestrationRisk}
+                      </dd>
+                    </div>
+                  </dl>
+                  <p className="mt-3">
+                    {publicUnderConstructionGate.orchestrationReality.downgradeReason}
+                  </p>
+                </div>
+
+                <div className="rounded-lg border border-border bg-background p-4">
+                  <h2 className="text-sm font-semibold text-foreground">Evidence gaps</h2>
+                  <ul className="mt-3 space-y-2">
+                    {publicUnderConstructionGate.evidenceGaps.map((gap) => (
+                      <li key={gap} className="flex gap-2">
+                        <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-amber-600" />
+                        <span>{gap}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+
+              <div className="grid gap-4 lg:grid-cols-2">
+                <div className="rounded-lg border border-border bg-background p-4">
+                  <h2 className="text-sm font-semibold text-foreground">Blocked actions</h2>
+                  <ul className="mt-3 space-y-2">
+                    {publicUnderConstructionGate.blockedActions.map((action) => (
+                      <li key={action} className="flex gap-2">
+                        <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-red-600" />
+                        <span>{action}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="rounded-lg border border-border bg-background p-4">
+                  <h2 className="text-sm font-semibold text-foreground">Next allowed action</h2>
+                  <p className="mt-3">{publicUnderConstructionGate.nextAllowedAction}</p>
+                  <p className="mt-3">
+                    {publicUnderConstructionGate.orchestrationReality.nextAction}
+                  </p>
+                </div>
+              </div>
             </CardContent>
           </Card>
 

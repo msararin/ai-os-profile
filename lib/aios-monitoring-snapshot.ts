@@ -88,20 +88,20 @@ export type AiosMonitoringRecord = {
 }
 
 export const aiosMonitoringSnapshotMeta = {
-  schemaVersion: "aios-monitoring-public-static-snapshot-v0.2",
+  schemaVersion: "aios-monitoring-public-static-snapshot-v0.3-under-construction",
   snapshotType: "public_safe_static_snapshot",
-  generatedAt: "2026-06-07T10:30:00Z",
+  generatedAt: "2026-06-10T14:30:00Z",
   freshnessTtlMinutes: 1440,
   source: "lib/aios-monitoring-snapshot.ts",
   sourceDescription:
-    "Curated public-safe static snapshot assembled from AIOS enforcement proof drills, routed Opus review receipt, Opus small patch receipt, and routed role-review outputs.",
+    "Curated public-safe static snapshot aligned to the AIOS monitoring dashboard data contract v0.3 under-construction boundary.",
   coverageScope:
-    "Covers selected tasks that passed through AIOS preflight, closeout, and monitor scripts. It does not cover bypassed, pre-enforcement, manually reconstructed, live runtime, or raw receipt records.",
+    "Covers selected public-safe status rows and the current under-construction dashboard implementation gate. It does not cover bypassed, pre-enforcement, manually reconstructed, live runtime, raw receipt, real-data, derivative, or benchmark records.",
   posture: "UNDER CONSTRUCTION / static review surface",
   boundary:
-    "This snapshot is not live runtime telemetry, not a production monitoring system, not realtime agent tracking, and not benchmark proof.",
+    "This snapshot is not live runtime telemetry, not a production monitoring system, not realtime agent tracking, not public proof, not CASE-003 execution, not real data ingestion, not derivative authorization, and not benchmark export.",
   dataContractBoundary:
-    "This is a v0.2 public-safe static snapshot model. It is not the full monitoring aggregation contract required for CASE-003 fresh rerun.",
+    "Public under-construction surface consuming the committed v0.3 dashboard data contract fields. It is not the full monitoring aggregation contract required for CASE-003 execution or any benchmark export.",
   failClosedRule:
     "If a required route, role matrix, telemetry, provider, source, or human-gate receipt is missing, the claim must downgrade or fail closed.",
 }
@@ -109,15 +109,90 @@ export const aiosMonitoringSnapshotMeta = {
 export const latestActionDecision = {
   currentLayerStatus: "PASS_WITH_CAVEAT" as AiosMonitorStatus,
   statusMeaning:
-    "Script/file-level enforcement checks and role-review routing have evidence, but the monitoring surface remains under construction and local-only.",
+    "The public surface is approved only as an under-construction review surface. It exposes route, owner gate, claim boundary, evidence gap, and orchestration reality states without claiming production or live monitoring readiness.",
   why:
-    "Preflight, closeout, monitor checks, cost-cap gating, provider receipts, role dependency checks, and role-review receipts are represented at file/script level.",
+    "The implementation gate is bounded to the committed dashboard data contract v0.3 and must preserve blocked actions, evidence gaps, and public-safe caveats.",
   ownerToUnblock:
-    "Data Team for the full aggregation contract; Visual/UX for presentation clarity; Big Crew QA for final local-candidate gate; GPT/Sararin for commit decision.",
+    "Owner approval remains required for push, production/live/public-proof claims, CASE-003 execution, real data ingestion, derivative authorization, benchmark export, and any expanded dashboard scope.",
   nextAllowedAction:
-    "Apply this consolidation patch, rerun validation, then request GPT/Sararin gate on whether the local candidate can be committed.",
+    "Validate this under-construction public surface locally, then decide whether the bounded route/page patch is ready for an internal commit. Do not push.",
   notAllowedYet:
-    "Do not claim monitoring complete, start CASE-003 rerun, commit, push, deploy, create internal monitoring, or claim live telemetry.",
+    "Do not claim production readiness, live monitoring readiness, public proof readiness, CASE-003 execution, real data ingestion, derivative authorization, Benchmark Dataset v0.1 export, deploy, or push.",
+}
+
+export const publicUnderConstructionGate = {
+  title: "Public under-construction dashboard implementation gate",
+  contractVersion: "aios-monitoring-dashboard-data-contract-v0.3",
+  contractStatus: "COMMITTED",
+  implementationStatus: "PATCHED_UNDER_CONSTRUCTION",
+  publicSurfaceStatus: "PUBLIC_UNDER_CONSTRUCTION",
+  routingLevel: "LEVEL_2_HIGH_RISK",
+  routeStatus: "LOCAL_ONLY_JUSTIFIED",
+  reasonCode: "OWNER_APPROVED_BOUNDED_PUBLIC_UNDER_CONSTRUCTION_PATCH",
+  ownerGateRequired: "yes",
+  ownerGateStatus: "OWNER_APPROVED",
+  claimStatus: "UNDER_CONSTRUCTION_PUBLIC_SURFACE",
+  publicClaimAllowed: "no",
+  claimBoundary:
+    "Public under-construction operating surface only. Not production, not live monitoring, not public proof, not CASE-003 execution, not real data ingestion, not derivative authorization, and not benchmark export.",
+  roleWorkerModelEvidence: [
+    {
+      role: "Implementation worker",
+      worker: "Codex local patch",
+      modelProvider: "local Codex session",
+      receiptStatus: "not_applicable",
+      evidenceStatus: "page/source diff and local validation only",
+    },
+    {
+      role: "External reviewer",
+      worker: "not run",
+      modelProvider: "not_applicable",
+      receiptStatus: "missing_with_reason",
+      evidenceStatus: "external review not required for bounded local route/page patch before commit readiness",
+    },
+    {
+      role: "Owner gate",
+      worker: "Lyn approval",
+      modelProvider: "not_applicable",
+      receiptStatus: "not_applicable",
+      evidenceStatus: "bounded public under-construction implementation scope approved",
+    },
+  ],
+  evidenceGaps: [
+    "No live telemetry feed is connected.",
+    "No production monitoring proof exists.",
+    "No public proof claim is authorized.",
+    "No CASE-003 execution evidence is present.",
+    "No real data ingestion evidence is present.",
+    "No derivative authorization evidence is present.",
+    "No Benchmark Dataset v0.1 export evidence is present.",
+    "No external reviewer was run for this local implementation patch.",
+  ],
+  blockedActions: [
+    "push",
+    "production readiness claim",
+    "live monitoring readiness claim",
+    "public proof readiness claim",
+    "CASE-003 execution",
+    "real data ingestion",
+    "derivative authorization",
+    "Benchmark Dataset v0.1 export",
+    "expanded dashboard scope without owner approval",
+  ],
+  orchestrationReality: {
+    required: "REQUIRED_FOR_HIGH_RISK",
+    designStatus: "DESIGNED_WITH_CONSTRAINTS",
+    suitabilityStatus: "APPROPRIATE_FOR_TASK_RISK",
+    reviewStatus: "REVIEWED_WITH_WARNINGS",
+    evidenceStatus: "LOCAL_ONLY_JUSTIFIED",
+    falseOrchestrationRisk: "LOW",
+    downgradeReason:
+      "This page may show governance state, but it must not present local implementation work as multi-model orchestration proof.",
+    nextAction:
+      "Run local validation and create the required Downloads HTML review report before any commit decision.",
+  },
+  nextAllowedAction:
+    "Validate the bounded public under-construction surface and prepare an explicit-path commit if validation passes. Do not push.",
 }
 
 export const aiosMonitoringRecords: AiosMonitoringRecord[] = [
