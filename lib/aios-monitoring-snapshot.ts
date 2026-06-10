@@ -115,7 +115,7 @@ export const latestActionDecision = {
   ownerToUnblock:
     "Owner approval remains required for future route changes that need a new push, production/live/public-proof claims, CASE-003 execution, real data ingestion, derivative authorization, benchmark export, and any expanded dashboard scope.",
   nextAllowedAction:
-    "No push is currently needed for this verified route. Future changes require a new push readiness gate.",
+    "No push is currently required to reflect the present under-construction state; any future change re-enters the push readiness gate.",
   notAllowedYet:
     "Do not claim production readiness, live monitoring readiness, public proof readiness, CASE-003 execution, real data ingestion, derivative authorization, Benchmark Dataset v0.1 export, or deploy a future route change without a new readiness gate.",
 }
@@ -123,12 +123,14 @@ export const latestActionDecision = {
 export const currentRemoteVerifiedState = {
   title: "Current remote-verified state",
   verifiedRoute: "sararin.ai/architecture/system-health/monitoring",
-  status: "Remote route verified on sararin.ai",
+  status: "Under-construction content verified at public route",
+  verificationScope:
+    "Remote-verified means the public route is reachable and the deployed build includes the expected under-construction dashboard content. It does not verify production monitoring, live telemetry, public proof, CASE-003 execution, real data ingestion, derivative authorization, benchmark export, benchmark completion, or full multi-model proof.",
   dashboardBoundary: "Dashboard is public under-construction only.",
   latestVerifiedState:
     "Latest verified state includes the gap-closure evidence view, current-vs-legacy visibility, Controls moved to DONE_USED_ONCE, Gaps still unproven, compact evidence rows, benchmark baseline metrics, and bounded Opus critic wording.",
   pushStatus:
-    "No push is currently needed for this verified route. Future changes require a new push readiness gate.",
+    "Current under-construction state already reflected in deployed build. Future changes require push readiness review.",
   proofBoundary:
     "This is not production readiness, live monitoring readiness, public proof readiness, CASE-003 execution, real data ingestion, derivative authorization, benchmark export, benchmark completion, or full multi-model proof.",
 }
@@ -145,10 +147,11 @@ export const currentVsLegacyExplanation = {
 
 export const legacyMonitoringSnapshotBoundary = {
   title: "Historical / legacy monitoring snapshot",
+  status: "historical/legacy, non-authoritative",
   caveat:
     "This section preserves older public-safe monitoring records for context. It may include historical parked/deferred states and should not be read as the current gap-closure register.",
   case003Clarification:
-    "CASE-003 remains not started / awaiting a separate owner gate. This is a CASE-specific execution status, not a parked unresolved governance gap and not a contradiction of NO_PARK_MODE.",
+    "CASE-003 awaits separate owner gate (execution status). This is CASE-specific workflow, distinct from NO_PARK_MODE governance.",
 }
 
 export const publicUnderConstructionGate = {
@@ -225,7 +228,7 @@ export const publicUnderConstructionGate = {
       "Run local validation and create the required Downloads HTML review report before any commit decision.",
   },
   nextAllowedAction:
-    "No push is currently needed for this verified route. Future changes require a new push readiness gate.",
+    "Current under-construction state already reflected in deployed build. Future changes require push readiness review.",
 }
 
 export const compactEvidenceRows = [
@@ -322,7 +325,8 @@ export const compactEvidenceRows = [
     proofClaim: "OWNER_APPROVAL_IS_NOT_PROOF",
     downgradeApplied: "PUBLIC_PROOF_NOT_CLAIMED",
     ownerGateStatus: "OWNER_APPROVED_BOUNDED_SCOPE",
-    nextAction: "No push is currently needed for this verified route; future changes require a new push readiness gate.",
+    nextAction:
+      "Current under-construction state already reflected in deployed build. Future changes require push readiness review.",
   },
 ] as const
 

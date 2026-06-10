@@ -167,6 +167,9 @@ export default function AiosMonitoringPage() {
                   <p className="mt-1 font-semibold text-foreground">
                     {currentRemoteVerifiedState.dashboardBoundary}
                   </p>
+                  <p className="mt-3 text-sm text-muted-foreground">
+                    {currentRemoteVerifiedState.verificationScope}
+                  </p>
                 </div>
                 <div className="rounded-lg border border-border bg-background p-4">
                   <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
@@ -857,6 +860,9 @@ export default function AiosMonitoringPage() {
               <CardTitle className="text-base">{legacyMonitoringSnapshotBoundary.title}</CardTitle>
             </CardHeader>
             <CardContent className="space-y-3 text-sm leading-6 text-muted-foreground">
+              <p className="font-mono text-xs uppercase tracking-wide text-muted-foreground">
+                Status: {legacyMonitoringSnapshotBoundary.status}
+              </p>
               <p className="font-semibold text-foreground">
                 {legacyMonitoringSnapshotBoundary.caveat}
               </p>
