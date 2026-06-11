@@ -62,6 +62,48 @@ const evidenceInventory = [
   },
 ]
 
+const currentVerdict = {
+  label: "Enforcement proof exists internally; public trace is incomplete",
+  code: "ENFORCEMENT_PROOF_EXISTS_INTERNAL_PUBLIC_TRACE_INCOMPLETE",
+  meaning:
+    "AIOS materially improved enforcement on June 9-11, 2026. This public page has not yet joined those internal proofs into a complete, traceable execution map.",
+  next:
+    "Integrate the newer enforcement packets into a public-safe role, model, task, receipt, and value view.",
+}
+
+const enforcementProgress = [
+  {
+    layer: "Enforcement rules",
+    status: "Improved",
+    evidence: "Canonical routing-fit, receipt, Agent-to-Task, QA, and downgrade rules now exist.",
+    publicState: "Needs summarized public trace.",
+  },
+  {
+    layer: "Internal proof packets",
+    status: "Exists",
+    evidence: "June 9-11 owner-review packets record checker, remediation, Opus critique, and skill audit evidence.",
+    publicState: "Not yet joined into this page.",
+  },
+  {
+    layer: "Public observability integration",
+    status: "Incomplete",
+    evidence: "This page still centers the June 1-3 evidence-readiness baseline.",
+    publicState: "Patch into role/model/task evidence map.",
+  },
+  {
+    layer: "Runtime automated enforcement",
+    status: "Partial",
+    evidence: "Checker and dispatcher exist for scoped flows; universal runtime enforcement is not claimed.",
+    publicState: "Keep visible as a limitation.",
+  },
+  {
+    layer: "Whole AIOS proof surface",
+    status: "Not claimed",
+    evidence: "Real data, benchmark export, production/live monitoring, and universal enforcement remain blocked.",
+    publicState: "Do not present as complete proof.",
+  },
+]
+
 const historicalMeasurements = [
   {
     name: "Historical session inventory A",
@@ -120,6 +162,129 @@ const evidenceValueSections = [
   },
 ]
 
+const enforcementMilestones = [
+  {
+    date: "June 9, 2026",
+    title: "Routing-fit and false-orchestration enforcement",
+    proof:
+      "CASE-003 gates gained model/role routing-fit preflight, why-not-routed analysis, Agent-to-Task requirements, and QA stop conditions.",
+    value:
+      "Prevents Codex-local work or role labels from being mistaken for orchestrated proof.",
+    boundary:
+      "Scoped to enforced gates and packets; not universal runtime automation.",
+  },
+  {
+    date: "June 9, 2026",
+    title: "Routing evidence checker and canonical enforcement",
+    proof:
+      "A routing evidence checker, negative fixtures, run-id binding, provider receipt rules, and canonical enforcement reference were recorded.",
+    value:
+      "Makes missing receipts, missing role execution evidence, obsolete policy use, and cross-artifact inconsistency easier to catch.",
+    boundary:
+      "Checker proof is checker-scope proof; it does not approve CASE execution or real-data workflows.",
+  },
+  {
+    date: "June 10, 2026",
+    title: "Cross-team remediation ownership",
+    proof:
+      "Data Visualizer, UX Readability, QA Visual Reviewer, Data Team, Researcher, Codex, Opus, Robert, and Lyn responsibilities were mapped.",
+    value:
+      "Turns dashboard quality into owner comprehension, claim separation, source readiness, and reviewer coverage instead of cosmetic polish.",
+    boundary:
+      "Remediation rules do not themselves patch this public page or prove live monitoring.",
+  },
+  {
+    date: "June 11, 2026",
+    title: "Receipted Opus critique for skill education audit",
+    proof:
+      "A local Codex audit received OpenRouter Opus 4.7 critique with returned model, token count, and actual provider cost recorded internally.",
+    value:
+      "Shows the receipt discipline expected when a page claims Opus review.",
+    boundary:
+      "Does not claim independent runtime execution by every AIOS role.",
+  },
+]
+
+const executionMap = [
+  {
+    task: "Historical evidence baseline",
+    expectedRole: "Data / Evidence Steward",
+    actualWorker: "Local evidence readout and KB checkpoint",
+    modelRoute: "Local / optimize-worker evidence tooling",
+    evidence: "Schema v0.7 and Evidence Readiness readout",
+    value: "Separates usable receipts from historical backfill.",
+    publicStatus: "Shown",
+  },
+  {
+    task: "False-orchestration detection",
+    expectedRole: "QA Sentinel + Stage Manager",
+    actualWorker: "Internal enforcement packets and checker",
+    modelRoute: "Codex-local implementation with Opus-reviewed gates where recorded",
+    evidence: "Routing evidence checker, negative fixtures, canonical rules",
+    value: "Downgrades unsupported role/model claims instead of decorating them.",
+    publicStatus: "Needs integration",
+  },
+  {
+    task: "Role/model/task visibility",
+    expectedRole: "PM Brain + Data Visualizer",
+    actualWorker: "Internal remediation rules",
+    modelRoute: "Local policy addendum; reviewer route required when public-sensitive",
+    evidence: "Model-role fit matrix and Data Visualizer/QA review rules",
+    value: "Shows who did what, which evidence exists, and what remains blocked.",
+    publicStatus: "Needs integration",
+  },
+  {
+    task: "Opus gate evidence",
+    expectedRole: "OpenRouter Opus 4.7 Reviewer",
+    actualWorker: "Only when provider receipt exists or boundary is disclosed",
+    modelRoute: "OpenRouter Opus for named critique/judge tasks",
+    evidence: "Provider receipt or explicit missing-field boundary",
+    value: "Prevents unreceipted senior-review claims.",
+    publicStatus: "Partially disclosed",
+  },
+  {
+    task: "Human decision gate",
+    expectedRole: "Robert / Lyn",
+    actualWorker: "Owner gate only when explicitly recorded",
+    modelRoute: "Human decision, separate from model telemetry",
+    evidence: "Approval, waiver, reject, or park record",
+    value: "Keeps money, privacy, public, architecture, and release decisions out of model authority.",
+    publicStatus: "Needs clearer board",
+  },
+]
+
+const valueSignals = [
+  {
+    signal: "Lower false-proof risk",
+    insight:
+      "The system now distinguishes policy existence, checker evidence, reviewer receipts, and runtime enforcement instead of collapsing all of them into a pass badge.",
+  },
+  {
+    signal: "Better owner comprehension",
+    insight:
+      "Data Visualizer and UX Readability rules require a five-second verdict, visible blocked actions, and task/claim/evidence separation.",
+  },
+  {
+    signal: "Cleaner model spend discipline",
+    insight:
+      "Opus is treated as a judge/escalation route with receipt expectations, not as a default worker for vague review.",
+  },
+  {
+    signal: "More useful public story",
+    insight:
+      "The page can now explain what AIOS improved, what value that creates, and exactly why whole-system proof is still blocked.",
+  },
+]
+
+const integrationBacklog = [
+  "Add a public-safe Agent-to-Task Execution Map for the June 9-11 enforcement packets.",
+  "Show Role View, Model View, and Task View without exposing private local paths.",
+  "Add receipt boundary labels for Opus, Sonnet, Codex-local, and human gates.",
+  "Separate task status, claim status, and evidence status in every row.",
+  "Link each value claim to the blocked action or decision it unlocks.",
+  "Keep runtime automation, live monitoring, real-data, benchmark export, and public-proof claims blocked until separate gates pass.",
+]
+
 const futureComparisonGuidance = [
   "ChatX remains rejected as a reliable baseline.",
   "OpenRouter profile vs later Codex receipts remains a future candidate only.",
@@ -149,8 +314,8 @@ export default function ObservabilityPage() {
           </h1>
           <p className="mt-3 max-w-4xl text-muted-foreground">
             This page explains how AIOS evidence, validation outputs, review traces, and
-            observability signals support human review. It does not replace Sararin/GPT approval,
-            and it does not act as a live production monitoring system.
+            observability signals support human review. It now needs to absorb the June 9-11
+            enforcement improvements: internal proof exists, but this public trace is not complete.
           </p>
 
           <div className="mt-6 grid gap-4 md:grid-cols-2">
@@ -197,6 +362,13 @@ export default function ObservabilityPage() {
                 Evidence Readiness layer is now operational as a JSONL readout. Schema v0.7 is implemented and frozen. 
                 Historical Codex receipts are classified as semi_structured backfill records and excluded from comparison by design.
               </p>
+              <p className="mt-3">
+                <span className="font-medium text-foreground">Enforcement update (June 9-11, 2026):</span>{" "}
+                AIOS enforcement advanced materially through routing-fit checks, false-orchestration detection,
+                receipt boundary rules, QA/Data Visualizer requirements, Codex authority limits, and human-gate
+                separation. Those proofs exist internally, but they are not yet fully integrated into this public
+                surface.
+              </p>
               <div className="mt-4 grid gap-4 lg:grid-cols-3">
                 {evidenceValueSections.map((section) => (
                   <Card key={section.title} className="border-border/60 bg-background/80">
@@ -235,6 +407,165 @@ export default function ObservabilityPage() {
 
       <section className="py-10">
         <div className="mx-auto grid max-w-5xl gap-8 px-4 sm:px-6 lg:px-8">
+          <Card className="border-emerald-600/30 bg-emerald-50/60 dark:bg-emerald-950/10">
+            <CardHeader>
+              <div className="flex flex-wrap items-center gap-3">
+                <CardTitle className="text-lg">Current owner verdict</CardTitle>
+                <Badge variant="outline">Internal proof exists</Badge>
+                <Badge variant="outline">Public trace incomplete</Badge>
+              </div>
+            </CardHeader>
+            <CardContent className="grid gap-4 text-sm leading-6 text-muted-foreground lg:grid-cols-[1.1fr_1fr]">
+              <div>
+                <p className="text-base font-medium text-foreground">{currentVerdict.label}</p>
+                <p className="mt-2 font-mono text-xs text-foreground">{currentVerdict.code}</p>
+                <p className="mt-3">{currentVerdict.meaning}</p>
+              </div>
+              <div className="border-l border-emerald-700/20 pl-4">
+                <p className="font-medium text-foreground">Next useful page improvement</p>
+                <p className="mt-2">{currentVerdict.next}</p>
+              </div>
+            </CardContent>
+          </Card>
+
+          <div>
+            <h2 className="text-xl font-semibold tracking-tight text-foreground">
+              Enforcement integration status
+            </h2>
+            <p className="mt-2 max-w-4xl text-sm leading-6 text-muted-foreground">
+              The public surface should show the maturity jump without implying the whole system is
+              fully runtime-enforced. The useful view is layered: rules, internal proof, public
+              integration, runtime automation, and whole-system proof are different states.
+            </p>
+            <div className="mt-4 grid gap-3">
+              {enforcementProgress.map((item) => (
+                <Card key={item.layer}>
+                  <CardContent className="grid gap-3 p-4 text-sm md:grid-cols-[0.8fr_0.6fr_1.5fr_1fr]">
+                    <div>
+                      <p className="font-medium text-foreground">{item.layer}</p>
+                    </div>
+                    <div>
+                      <Badge variant="outline">{item.status}</Badge>
+                    </div>
+                    <p className="leading-6 text-muted-foreground">{item.evidence}</p>
+                    <p className="leading-6 text-muted-foreground">{item.publicState}</p>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <h2 className="text-xl font-semibold tracking-tight text-foreground">
+              June 9-11 enforcement proof
+            </h2>
+            <p className="mt-2 max-w-4xl text-sm leading-6 text-muted-foreground">
+              These are the newer internal proof signals this page needs to integrate. They are
+              framed as enforcement improvement, not as live monitoring or universal runtime proof.
+            </p>
+            <div className="mt-4 grid gap-3 lg:grid-cols-2">
+              {enforcementMilestones.map((milestone) => (
+                <Card key={`${milestone.date}-${milestone.title}`}>
+                  <CardHeader className="pb-2">
+                    <div className="flex flex-wrap items-start justify-between gap-2">
+                      <CardTitle className="text-sm">{milestone.title}</CardTitle>
+                      <Badge variant="outline" className="text-[10px]">
+                        {milestone.date}
+                      </Badge>
+                    </div>
+                  </CardHeader>
+                  <CardContent className="space-y-2 text-xs leading-5 text-muted-foreground">
+                    <p>
+                      <span className="font-medium text-foreground">Proof:</span> {milestone.proof}
+                    </p>
+                    <p>
+                      <span className="font-medium text-foreground">Value:</span> {milestone.value}
+                    </p>
+                    <p>
+                      <span className="font-medium text-foreground">Boundary:</span>{" "}
+                      {milestone.boundary}
+                    </p>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <div className="flex flex-wrap items-center gap-3">
+              <h2 className="text-xl font-semibold tracking-tight text-foreground">
+                Public-safe Agent-to-Task map
+              </h2>
+              <Badge variant="outline">Integration backlog</Badge>
+            </div>
+            <p className="mt-2 max-w-4xl text-sm leading-6 text-muted-foreground">
+              This map is the IA this page should move toward: what task happened, which role was
+              expected, what worker or route is actually evidenced, what value it creates, and what
+              is still missing from the public trace.
+            </p>
+            <div className="mt-4 overflow-x-auto rounded-lg border">
+              <table className="min-w-[980px] text-left text-xs">
+                <thead className="bg-muted/60 text-foreground">
+                  <tr>
+                    <th className="px-4 py-3 font-medium">Task</th>
+                    <th className="px-4 py-3 font-medium">Expected role</th>
+                    <th className="px-4 py-3 font-medium">Observed worker / route</th>
+                    <th className="px-4 py-3 font-medium">Evidence</th>
+                    <th className="px-4 py-3 font-medium">Value</th>
+                    <th className="px-4 py-3 font-medium">Public status</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y">
+                  {executionMap.map((row) => (
+                    <tr key={row.task} className="align-top">
+                      <td className="px-4 py-3 font-medium text-foreground">{row.task}</td>
+                      <td className="px-4 py-3 text-muted-foreground">{row.expectedRole}</td>
+                      <td className="px-4 py-3 text-muted-foreground">
+                        <p>{row.actualWorker}</p>
+                        <p className="mt-1 text-[11px] text-muted-foreground">{row.modelRoute}</p>
+                      </td>
+                      <td className="px-4 py-3 text-muted-foreground">{row.evidence}</td>
+                      <td className="px-4 py-3 text-muted-foreground">{row.value}</td>
+                      <td className="px-4 py-3">
+                        <Badge variant="outline" className="text-[10px]">
+                          {row.publicStatus}
+                        </Badge>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div className="grid gap-4 lg:grid-cols-[1fr_1fr]">
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-base">Meaningful value created</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-3 text-sm leading-6 text-muted-foreground">
+                {valueSignals.map((item) => (
+                  <div key={item.signal}>
+                    <p className="font-medium text-foreground">{item.signal}</p>
+                    <p>{item.insight}</p>
+                  </div>
+                ))}
+              </CardContent>
+            </Card>
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-base">Public integration backlog</CardTitle>
+              </CardHeader>
+              <CardContent className="text-sm leading-6 text-muted-foreground">
+                <ul className="list-disc space-y-1 pl-5">
+                  {integrationBacklog.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </CardContent>
+            </Card>
+          </div>
+
           <div>
             <h2 className="text-xl font-semibold tracking-tight text-foreground">Evidence status</h2>
             <p className="mt-2 max-w-4xl text-sm leading-6 text-muted-foreground">
