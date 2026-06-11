@@ -2,6 +2,24 @@ import { PageLayout } from "@/components/page-layout"
 
 const linkedInPosts = [
   {
+    urn: "urn:li:share:7470732769804021760",
+    height: 2253,
+    title: "LinkedIn Post - Jun 11, 2026",
+    date: "Jun 11, 2026",
+  },
+  {
+    urn: "urn:li:share:7470728034589929472",
+    height: 1867,
+    title: "LinkedIn Post - Jun 11, 2026",
+    date: "Jun 11, 2026",
+  },
+  {
+    urn: "urn:li:share:7470439972764987393",
+    height: 2316,
+    title: "LinkedIn Post - Jun 11, 2026",
+    date: "Jun 11, 2026",
+  },
+  {
     urn: "urn:li:share:7470436211799576576",
     height: 2106,
     title: "LinkedIn Post - Jun 10, 2026",
@@ -148,7 +166,7 @@ export default function KnowledgeSharingPage() {
             public Knowledge Sharing area and each card identifies the post date.
           </p>
           <p className="mt-3 text-sm font-medium text-muted-foreground">
-            Archive status: public LinkedIn posts through 10 Jun 2026. Protected internal drafts and learning
+            Archive status: public LinkedIn posts through 11 Jun 2026. Protected internal drafts and learning
             records are not exposed on this public page.
           </p>
         </section>
