@@ -8,7 +8,7 @@ import { Badge } from "@/components/ui/badge"
 import { ChevronDown, ChevronRight, Download } from "lucide-react"
 
 export default function AchievementsPage() {
-  const [expandedDays, setExpandedDays] = useState<Set<string>>(new Set(['2026-06-10']))
+  const [expandedDays, setExpandedDays] = useState<Set<string>>(new Set(['2026-06-12']))
 
   const toggleDay = (date: string) => {
     const newExpanded = new Set(expandedDays)
@@ -21,6 +21,43 @@ export default function AchievementsPage() {
   }
 
   const achievements = [
+    {
+      date: '2026-06-12',
+      headline: 'Runtime Authority & Orchestration Evidence Dashboard',
+      summary: 'Deployed a public static insight dashboard that turns runtime authority validation evidence into an explainable system-health surface. The dashboard distinguishes validation evidence from orchestration proof, shows what runtime authority controls improve, exposes remaining orchestration and single-worker evidence gaps, and protects public claims from overclaiming.',
+      proofType: 'public-safe static evidence dashboard, runtime authority validation insight, orchestration evidence-gap surface',
+      evidenceReference: 'ai-os-profile commit 3dd4cbae8b1a1775fc6bfd93f22f11a9fc1a81b7; TASK_RUNTIME_AUTHORITY_EVIDENCE_PACKAGE_DEPLOYED_VERIFIED',
+      status: 'Completed / Deployed / Public-safe static insight dashboard',
+      publicSafeResult: 'Runtime Authority Evidence is live as a public-safe static insight dashboard. It explains what runtime authority validation improved, what evidence exists, and what orchestration proof is still missing. This strengthens the portfolio by turning governance controls into readable evidence, claim boundaries, and next instrumentation needs.',
+      caveat: 'Claim status: valid_static_evidence_dashboard, not_live_monitoring, not_production_readiness, not_full_orchestration_proof, orchestration_gap_visible. This is not live monitoring, production readiness, universal enforcement, CASE-003 execution, Benchmark Dataset v0.1 export, full orchestration proof, or a claim that orchestration is resolved.',
+      details: {
+        whyItMatters: 'AI governance should not stop at policy or diagrams. This dashboard shows what was validated, what improved, what is still not proven, and what evidence is required before stronger orchestration claims can be made. It moves AIOS from governance documentation toward evidence discipline by making validation evidence, missing execution provenance, downgrade boundaries, and next instrumentation needs visible.',
+        evidence: [
+          'Runtime Authority Evidence dashboard deployed live at /architecture/system-health/runtime-authority-evidence',
+          'New Runtime Authority Evidence route returns 200',
+          'Old internal-history route /architecture/system-health/window-b-runtime-authority-snapshot redirects safely to the new route',
+          'System Health hub links to Runtime Authority Evidence at /architecture/system-health',
+          '/workstreams includes Data Team with bounded evidence-structure and dashboard-readiness wording',
+          'Supernova status normalized to: First version complete; POC not yet validated.',
+          'Static dashboard disclaimer preserved',
+          'Business value: converts technical validation evidence into executive-readable system health insight',
+          'Business value: makes claim boundaries explicit, separates validation metrics from behavior and orchestration proof, and reduces overclaim risk',
+          'Business value: shows where runtime authority improves control behavior while making missing execution provenance visible',
+          'Supports AI governance, auditability, escalation, reviewer gates, and evidence discipline',
+          'No claim of live monitoring, production readiness, universal enforcement, CASE-003 execution, Benchmark Dataset export, full orchestration proof, or resolved orchestration'
+        ],
+        skillsDemonstrated: [
+          'Runtime authority evidence framing',
+          'Executive-readable system health communication',
+          'Validation metric versus behavior proof separation',
+          'Claim-boundary and overclaim-risk reduction',
+          'Orchestration evidence-gap surfacing',
+          'Public-safe governance dashboard packaging'
+        ],
+        impact: 'The achievement converts technical validation evidence into executive-readable system health insight, makes claim boundaries explicit, separates validation metrics from behavior and orchestration proof, shows where runtime authority improves control behavior, and makes missing execution provenance visible instead of hiding it.'
+      },
+      tags: ['Runtime Authority', 'System Health', 'Evidence Dashboard', 'AI Governance', 'Claim Boundary']
+    },
     {
       date: '2026-06-10',
       headline: 'AIOS Runtime Authority Boundary and Reviewer-Enforced Dashboard Gate',
@@ -63,7 +100,7 @@ export default function AchievementsPage() {
       evidenceReference: 'KB session update 2026-06-09-aios-case003-orchestration-achievement-and-skill-sync.md; Downloads packet AIOS_CASE003_9JUN_ORCHESTRATION_ACHIEVEMENT_KB_SYNC_2026-06-09',
       status: 'Owner-review evidence packet completed; CASE-003 execution and public proof remain blocked',
       publicSafeResult: 'AIOS now has clearer enforcement expectations for CASE-003-style work: role names are not enough, closeouts need route evidence, Agent-to-Task maps, QA validation, owner-readable summaries, and explicit blocked actions.',
-      caveat: 'Private/local owner-review record only. It does not authorize real derivative creation, real data ingestion, CASE-003 real pilot execution, CASE-003 fresh rerun, Benchmark Dataset v0.1 export, production/live monitoring claims, live dashboard readiness claims, or public-proof claims.',
+      caveat: 'Private/local owner-review record only. It does not authorize real derivative creation, real data ingestion, CASE-003 real pilot execution, CASE-003 fresh rerun, Benchmark Dataset v0.1 export, production/live monitoring readiness claims, or public-proof claims.',
       details: {
         whyItMatters: 'The failure mode was subtle: AIOS had multiple roles and governance rules, but work could still collapse into one worker acting as the whole system. The June 9 packet made that visible and added operating checks so future CASE-003 gates must show who did what, what evidence exists, what is only Codex-local, and which actions remain blocked.',
         evidence: [
@@ -356,7 +393,7 @@ export default function AchievementsPage() {
           'Production routes verified: /, /ai-operating-system, /architecture, /architecture/system-health/observability, /achievements, and /knowledge-sharing returned 200; protected internal routes redirected 307 to auth',
           'Trust repair relabeled stale status as historical or pending verification, removed unsupported budget/usage values, protected local-only KB limitations, and aligned architecture wording around manual governance, evidence, observability, and source-of-truth boundaries',
           'optimize-worker local commit 1742d31837e28709f41b0a2b57e37d5d979f3e1d added explicit OpenRouter key-profile selection, masked no-network diagnostics, fail-fast behavior, and focused tests',
-          'No-network diagnostic selected profile=codex, env var=CODEX_OPENROUTER_API_KEY, masked fingerprint=sk-or-v1...652114, and provider_call_made=false',
+          'No-network diagnostic selected the Codex OpenRouter profile, recorded only a masked fingerprint, and confirmed provider_call_made=false',
           'One controlled Gemini/OpenRouter call succeeded with google/gemini-3.5-flash: 978 prompt tokens, 3,091 completion tokens, 1,538 reasoning tokens, 4,069 total tokens, 0 cached tokens, and 0.029286 cost credits',
           'Gemini advisory review recommended one canonical architecture definition, four compact public groups, nine expanded detailed layers, and shared rendering across public and internal views'
         ],
@@ -838,10 +875,10 @@ export default function AchievementsPage() {
               Public-safe evidence of what was built, what is proven, what is caveated, and what remains internal.
             </p>
             <p className="mt-4 text-sm font-medium text-white/80">
-              Evidence updated: 10 Jun 2026 · AIOS runtime authority boundary and reviewer-enforced dashboard gate
+              Evidence updated: 12 Jun 2026 · Runtime Authority Evidence dashboard deployed
             </p>
             <p className="mt-2 text-sm text-white/75">
-              Latest validated milestone: reviewer-enforced runtime governance boundary, 10 Jun 2026
+              Latest validated milestone: Runtime Authority & Orchestration Evidence Dashboard deployed, 12 Jun 2026
             </p>
           </div>
         </div>
@@ -1000,7 +1037,7 @@ export default function AchievementsPage() {
           <div className="grid md:grid-cols-4 gap-6">
             <Card className="text-center">
               <CardContent className="pt-6">
-                <div className="text-3xl font-bold text-[#1F3A60]">18</div>
+                <div className="text-3xl font-bold text-[#1F3A60]">19</div>
                 <div className="text-sm text-muted-foreground mt-2">Proof-Backed Milestones</div>
               </CardContent>
             </Card>
