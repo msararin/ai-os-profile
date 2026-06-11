@@ -5,6 +5,15 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 
 const surfaces = [
   {
+    title: "Runtime Authority Evidence",
+    status: "Available — static insight dashboard",
+    href: "/architecture/system-health/runtime-authority-evidence",
+    copy: [
+      "Static insight dashboard showing validation evidence, enforcement improvement, and orchestration evidence gaps.",
+      "Not live monitoring, production readiness, or universal enforcement.",
+    ],
+  },
+  {
     title: "Evidence Discipline",
     status: "Available",
     href: "/architecture/system-health/observability",
@@ -36,7 +45,7 @@ const surfaces = [
     href: "/architecture/system-health/agent-orchestration",
     copy: [
       "Maps how AIOS work is routed, reviewed, gated, parked, or improved across roles.",
-      "It is a map, not a live dashboard.",
+      "It is a static map, not realtime telemetry.",
     ],
   },
 ]
@@ -66,7 +75,7 @@ export default function SystemHealthPage() {
             <p className="text-lg font-bold tracking-wide sm:text-xl">UNDER CONSTRUCTION</p>
             <p className="mt-2 max-w-4xl text-sm leading-6">
               This section groups AIOS review surfaces for evidence discipline, telemetry
-              inventory, and orchestration visibility.
+              inventory, runtime authority evidence, and orchestration visibility.
             </p>
           </div>
 
@@ -79,7 +88,7 @@ export default function SystemHealthPage() {
           <div className="mt-3 max-w-4xl space-y-3 text-sm leading-6 text-muted-foreground sm:text-base">
             <p>
               This section groups AIOS review surfaces for evidence discipline, telemetry
-              inventory, and orchestration visibility.
+              inventory, runtime authority evidence, and orchestration visibility.
             </p>
             <p>
               It is not a live monitoring dashboard. It does not show uptime, latency, provider
@@ -99,6 +108,7 @@ export default function SystemHealthPage() {
               </CardHeader>
               <CardContent className="space-y-1 text-sm text-muted-foreground">
                 <p>Evidence Discipline</p>
+                <p>Runtime Authority Evidence</p>
                 <p>AIOS Monitoring static snapshot</p>
               </CardContent>
             </Card>

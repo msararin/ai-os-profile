@@ -46,8 +46,8 @@ const workstreams = [
   {
     name: "Supernova",
     description:
-      "Opportunity and monetization intelligence lane with a first version complete, before POC validation.",
-    status: "First version done",
+      "Opportunity and monetization intelligence lane with a first version complete; POC not yet validated.",
+    status: "First version complete; POC not yet validated.",
     owner: "Sararin",
     nextAction:
       "Define the first POC trigger and evidence requirement before treating it as operational.",
@@ -58,6 +58,22 @@ const workstreams = [
     proofLevel: "Documented",
     evidence: "First version exists; POC not yet run",
     badgeClass: "bg-orange-500/10 text-orange-700",
+  },
+  {
+    name: "Data Team",
+    description:
+      "Evidence structure, aggregation logic, interpretation, and dashboard-readiness review lane.",
+    status: "Evidence lens active",
+    owner: "Sararin + Data Team",
+    nextAction:
+      "Keep evidence structure, aggregation logic, interpretation, and dashboard-readiness review explicit before stronger dashboard claims.",
+    gateDecision:
+      "Supports evidence quality and interpretation; does not act as final claim authority.",
+    blockerRisk:
+      "Dashboard metrics can be mistaken for behavior proof if aggregation gaps and evidence limits are hidden.",
+    proofLevel: "Documented",
+    evidence: "Runtime authority and monitoring evidence pages",
+    badgeClass: "bg-sky-500/10 text-sky-700",
   },
   {
     name: "Big Crew",
@@ -91,7 +107,7 @@ const workstreams = [
       "Planned specialist lane for investment workflows after scope and review criteria are defined.",
     status: "Planned",
     owner: "Sararin",
-    nextAction: "Defer until Supernova produces a first useful signal.",
+    nextAction: "Defer until Supernova completes POC validation or another bounded investment trigger is approved.",
     gateDecision: "No active build until there is a bounded investment workflow.",
     blockerRisk: "Domain risk is high without review criteria and evidence capture.",
     proofLevel: "Planned",

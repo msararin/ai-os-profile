@@ -20,19 +20,19 @@ const countCards = [
     status: "Gate owner",
   },
   {
-    label: "Known/planned AI work agents",
-    value: "21 working estimate, pending KB reconciliation",
-    status: "Fallback label",
+    label: "AI Workforce Source Status",
+    value: "Verified by workspace registry",
+    status: "No global count shown",
   },
   {
     label: "Big Crew",
-    value: "6 roles, registry confirmation required",
-    status: "Do not render role names",
+    value: "Engineering / QA workspace",
+    status: "Roster pending confirmation",
   },
   {
     label: "Supernova",
-    value: "10 verified roles",
-    status: "Registry verified",
+    value: "Business intelligence workspace",
+    status: "First version complete; POC not yet validated.",
   },
   {
     label: "Investment Team",
@@ -81,13 +81,13 @@ const surfaceLanes = [
   {
     lane: "Big Crew",
     owner: "Engineering / Quality role group",
-    status: "Registry confirmation required",
-    purpose: "Engineering review workspace; final role names stay unresolved.",
+    status: "Roster pending confirmation",
+    purpose: "Engineering review workspace; member names are withheld until the registry is confirmed.",
   },
   {
     lane: "Supernova",
     owner: "Business / Opportunity Intelligence workspace",
-    status: "10 verified roles",
+    status: "First version complete; POC not yet validated.",
     purpose: "Frames opportunities, risks, options, and business evidence.",
   },
   {
@@ -208,17 +208,40 @@ const supernovaRoles = [
 ]
 
 const fallbackNotes = [
-  "Known/planned AI work agents: 21 working estimate, pending KB reconciliation",
-  "Big Crew: 6 roles, registry confirmation required",
-  "Supernova: 10 verified roles",
+  "AIOS does not publish a global agent count until each workspace is backed by a committed registry or contract.",
+  "Big Crew: engineering / QA workspace; roster pending confirmation.",
+  "Supernova: first version complete; POC not yet validated.",
   "Simple Task Supporter: low-risk support lane, contract confirmation pending",
   "Investment Team: parked / TBD / not countable",
   "UX/UI: engineering capability tag, not separate role",
-  "Big Crew role names require confirmation.",
-  "21 is a working estimate pending KB reconciliation.",
+  "Big Crew role names remain hidden until source-of-truth confirmation is complete.",
   "Simple Task Supporter contract confirmation is pending.",
   "Investment Team is parked / TBD / not countable.",
   "UX/UI is a capability tag, not a separate role.",
+]
+
+const sourceBoundaries = [
+  {
+    title: "Big Crew source boundary",
+    summary: "Workspace is publishable; roster is not.",
+    detail:
+      "Big Crew is treated as an engineering / QA workspace because committed contracts define output behavior, but public roster names are withheld until the registry is confirmed.",
+    source: "team-of-team-orchestration/role-output-contracts.md",
+  },
+  {
+    title: "Supernova source boundary",
+    summary: "First version complete; POC not yet validated.",
+    detail:
+      "Supernova roles are shown because the committed registry defines the business / opportunity intelligence skeleton and its 10 role contracts. The first working version / operating concept exists, but POC validation and revenue-loop proof are not complete.",
+    source: "supernova/supernova-v1-role-registry.md",
+  },
+  {
+    title: "Global count boundary",
+    summary: "No global AI workforce count is shown.",
+    detail:
+      "The page avoids a single global agent count because some lanes are active, some are parked, and some are capability tags rather than standalone roles.",
+    source: "team-of-team-orchestration/specs/aios-agent-review-dashboard-data-contract-v0.1.md",
+  },
 ]
 
 const catches = [
@@ -261,7 +284,7 @@ export default function AgentOrchestrationMapPage() {
           <div className="mt-5 rounded-lg border border-amber-500/50 bg-amber-500/10 p-4 text-sm leading-6 text-muted-foreground">
             This is a map, not a dashboard. It does not represent live telemetry, autonomous
             orchestration, provider comparison, benchmark proof, cost-saving evidence, or final
-            role-registry truth. Source of truth remains the committed KB docs, git history,
+            role-registry truth. Source of truth remains committed KB docs, git history,
             receipts, validation artifacts, and Sararin / GPT decisions.
           </div>
         </div>
@@ -382,9 +405,11 @@ export default function AgentOrchestrationMapPage() {
       <section className="border-t border-border bg-muted/30 py-10">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <h2 className="text-xl font-semibold tracking-tight text-foreground">
-            Supernova verified role registry
+            Supernova role registry and POC boundary
           </h2>
-          <p className="mt-2 text-sm text-muted-foreground">Supernova: 10 verified roles</p>
+          <p className="mt-2 text-sm text-muted-foreground">
+            Supernova: first version complete; POC not yet validated.
+          </p>
           <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
             {supernovaRoles.map(([role, purpose]) => (
               <Card key={role} className="h-full">
@@ -407,10 +432,11 @@ export default function AgentOrchestrationMapPage() {
                 3. How control and learning work
               </h2>
               <p className="mt-2 max-w-3xl text-sm leading-6 text-muted-foreground">
-                Evidence, review, Sararin Gate, rework, and improvement outputs keep the map bounded.
+                Evidence, review, Sararin Gate, rework, enforcement rules, and improvement
+                outputs keep the map bounded.
               </p>
             </div>
-            <Badge variant="secondary">Human-feedback-driven improvement</Badge>
+            <Badge variant="secondary">Human feedback + rule enforcement</Badge>
           </div>
 
           <div className="mt-5 grid gap-3 md:grid-cols-5">
@@ -434,16 +460,16 @@ export default function AgentOrchestrationMapPage() {
 
           <Card className="mt-4 border-primary/30 bg-primary/5">
             <CardHeader>
-              <CardTitle>Human-feedback-driven improvement</CardTitle>
+              <CardTitle>Human feedback + rule enforcement</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4 text-sm leading-6 text-muted-foreground">
               <div className="grid gap-2 sm:grid-cols-5">
                 {[
                   "Feedback classified",
+                  "Rule impact checked",
                   "Agent revises",
-                  "Repeated issue checked",
-                  "Lesson captured",
-                  "Rule updated",
+                  "Guardrail updated",
+                  "Enforcement verified",
                 ].map((step) => (
                   <div
                     key={step}
@@ -455,8 +481,10 @@ export default function AgentOrchestrationMapPage() {
               </div>
               <p>
                 Rework is treated as an evidence signal. Repeated feedback should become a
-                checklist, prompt update, role contract, routing rule, KB note, or follow-up task.
-                This does not mean agents learn automatically.
+                checklist, prompt update, role contract, routing rule, stop condition, downgrade
+                rule, KB note, or follow-up task. A rule only counts as improved when it becomes
+                visible in a future check, route matrix, monitor status, or validation gate. This
+                does not mean agents learn automatically.
               </p>
             </CardContent>
           </Card>
@@ -467,9 +495,9 @@ export default function AgentOrchestrationMapPage() {
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <Card>
             <CardHeader>
-              <CardTitle>Fallback / unresolved registry notes</CardTitle>
+              <CardTitle>Source-truth and registry notes</CardTitle>
             </CardHeader>
-            <CardContent>
+            <CardContent className="space-y-5">
               <ul className="space-y-2 text-sm text-muted-foreground">
                 {fallbackNotes.map((item) => (
                   <li key={item} className="flex gap-2">
@@ -478,6 +506,24 @@ export default function AgentOrchestrationMapPage() {
                   </li>
                 ))}
               </ul>
+
+              <div className="grid gap-3 md:grid-cols-3">
+                {sourceBoundaries.map((boundary) => (
+                  <details
+                    key={boundary.title}
+                    className="rounded-lg border border-border bg-muted/30 p-4 text-sm"
+                  >
+                    <summary className="cursor-pointer font-semibold text-foreground">
+                      {boundary.title}
+                    </summary>
+                    <p className="mt-2 text-muted-foreground">{boundary.summary}</p>
+                    <p className="mt-3 leading-6 text-muted-foreground">{boundary.detail}</p>
+                    <p className="mt-3 text-xs font-medium text-muted-foreground">
+                      Source: {boundary.source}
+                    </p>
+                  </details>
+                ))}
+              </div>
             </CardContent>
           </Card>
         </div>

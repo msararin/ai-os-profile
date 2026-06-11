@@ -125,9 +125,15 @@ const customizedSystems = [
 const locallyBuiltComponents = [
   {
     name: "Supernova",
-    status: "Under development",
+    status: "First version complete; POC not yet validated.",
     description:
-      "Custom strategy and critique role for challenging assumptions, testing positioning, and translating technical work into business language.",
+      "Custom strategy and critique role with a first working version / operating concept, but it has not yet completed POC validation or revenue-loop proof.",
+  },
+  {
+    name: "Data Team",
+    status: "Evidence lens active",
+    description:
+      "Supports evidence structure, aggregation logic, interpretation, and dashboard-readiness review. It does not act as final claim authority.",
   },
   {
     name: "Curated AI-readable context layer",
@@ -497,6 +503,7 @@ export default function AIOperatingSystemPage() {
                   ["Big Crew", "Product, architecture, QA, review"],
                   ["Researcher", "Evidence scans and claim safety"],
                   ["Supernova", "Opportunity and monetization analysis"],
+                  ["Data Team", "Evidence structure and dashboard readiness"],
                   ["optimize-worker", "Routing and trace automation"],
                   ["Investment Team", "Planned specialist lane"],
                 ].map(([name, description]) => (
@@ -709,9 +716,16 @@ export default function AIOperatingSystemPage() {
               },
               {
                 name: "Supernova",
-                status: "First version done",
+                status: "First version complete; POC not yet validated.",
                 owner: "Sararin",
                 next: "Define the first POC trigger and evidence requirement before treating it as operational.",
+                proof: "Documented",
+              },
+              {
+                name: "Data Team",
+                status: "Evidence lens active",
+                owner: "Sararin + Data Team",
+                next: "Support evidence structure, aggregation logic, interpretation, and dashboard-readiness review without acting as final claim authority.",
                 proof: "Documented",
               },
               {
