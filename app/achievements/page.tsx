@@ -8,7 +8,7 @@ import { Badge } from "@/components/ui/badge"
 import { ChevronDown, ChevronRight, Download } from "lucide-react"
 
 export default function AchievementsPage() {
-  const [expandedDays, setExpandedDays] = useState<Set<string>>(new Set(['2026-06-08']))
+  const [expandedDays, setExpandedDays] = useState<Set<string>>(new Set(['2026-06-10']))
 
   const toggleDay = (date: string) => {
     const newExpanded = new Set(expandedDays)
@@ -21,6 +21,73 @@ export default function AchievementsPage() {
   }
 
   const achievements = [
+    {
+      date: '2026-06-10',
+      headline: 'AIOS Runtime Authority Boundary and Reviewer-Enforced Dashboard Gate',
+      summary: 'Closed the gap between policy-only orchestration and reviewer-enforced execution for one bounded dashboard gate: required reviewer policy, enforcement checker, cost-aware routing guardrail, tool-neutral runtime authority boundary, and public under-construction monitoring dashboard corrections were all recorded.',
+      proofType: 'reviewer-enforced governance milestone, public under-construction dashboard gate, runtime authority boundary',
+      evidenceReference: 'ai-os-profile commits 4d9f5dc, 210d8f2, 261f2a7, a77c80b, be5f3ac, 24a5713; KB commits 72deae9, b019f91, 04071ea, 97eaf9e, c68fbf6; 2026-06-10 runtime orchestration closeout',
+      status: 'Policy and reviewer enforcement milestone completed for one bounded dashboard gate; Runtime Ledger implementation remains blocked pending System-of-Record decision',
+      publicSafeResult: 'AIOS can now show a public under-construction monitoring surface that exposes current-vs-legacy state, gap-closure evidence, reviewer-gated corrections, and claim boundaries without presenting the dashboard as live telemetry or production proof.',
+      caveat: 'This is not full runtime orchestration, universal enforcement, Runtime Ledger implementation, CASE-003 execution, Benchmark Dataset v0.1 export, production readiness, live monitoring readiness, or public-proof readiness.',
+      details: {
+        whyItMatters: 'The important correction was authority, not another dashboard widget. AIOS now separates default execution from default authority: Codex can be a cost-efficient implementation worker, but reviewer-required gates must be backed by reviewer evidence, enforcement checks, and a tool-neutral Runtime Ledger Authority decision before runtime claims can mature.',
+        evidence: [
+          'Required reviewer execution policy committed in KB commit 72deae9',
+          'Required reviewer enforcement checker committed in KB commit b019f91',
+          'Cost-aware Codex default routing risk guardrail committed in KB commit 04071ea',
+          'Runtime orchestration evidence closeout recorded in KB commit 97eaf9e',
+          'Tool-neutral runtime authority boundary clarified in KB commit c68fbf6',
+          'Public monitoring dashboard route added as under-construction static review surface in ai-os-profile commit 4d9f5dc',
+          'Monitoring dashboard readiness and caveats made explicit in ai-os-profile commit 210d8f2',
+          'Dashboard gap-closure evidence and current-vs-legacy reviewer feedback patched through ai-os-profile commits 261f2a7, a77c80b, be5f3ac, and 24a5713',
+          'Runtime orchestration closeout recorded Opus maturity grade 2.4/5: policy-mature, runtime-immature'
+        ],
+        skillsDemonstrated: [
+          'Runtime authority boundary design',
+          'Reviewer-required gate enforcement',
+          'Cost-aware routing without granting default authority',
+          'Public-safe dashboard correction under under-construction boundaries',
+          'Tool-neutral capability-contract framing',
+          'Claim-boundary discipline after reviewer critique'
+        ],
+        impact: 'This milestone moved AIOS from "we have governance documents" toward "reviewer-required gates can fail closed." It makes the next step clearer: decide the Runtime Ledger Authority system of record before implementing Runtime Ledger v0.1 or making stronger runtime orchestration claims.'
+      },
+      tags: ['Runtime Authority', 'Reviewer Enforcement', 'Monitoring Dashboard', 'AIOS Governance', 'Claim Boundary']
+    },
+    {
+      date: '2026-06-09',
+      headline: 'CASE-003 Orchestration Enforcement and Skill Sync',
+      summary: 'Turned the single-worker queue failure into a stricter multi-agent evidence workflow: routing evidence, Agent-to-Task visibility, false-orchestration detection, role skill updates, QA/Data Visualizer enforcement, and parallel-delegation boundaries were packaged for owner review.',
+      proofType: 'private owner-review packet, orchestration enforcement, role skill synchronization',
+      evidenceReference: 'KB session update 2026-06-09-aios-case003-orchestration-achievement-and-skill-sync.md; Downloads packet AIOS_CASE003_9JUN_ORCHESTRATION_ACHIEVEMENT_KB_SYNC_2026-06-09',
+      status: 'Owner-review evidence packet completed; CASE-003 execution and public proof remain blocked',
+      publicSafeResult: 'AIOS now has clearer enforcement expectations for CASE-003-style work: role names are not enough, closeouts need route evidence, Agent-to-Task maps, QA validation, owner-readable summaries, and explicit blocked actions.',
+      caveat: 'Private/local owner-review record only. It does not authorize real derivative creation, real data ingestion, CASE-003 real pilot execution, CASE-003 fresh rerun, Benchmark Dataset v0.1 export, production/live monitoring claims, live dashboard readiness claims, or public-proof claims.',
+      details: {
+        whyItMatters: 'The failure mode was subtle: AIOS had multiple roles and governance rules, but work could still collapse into one worker acting as the whole system. The June 9 packet made that visible and added operating checks so future CASE-003 gates must show who did what, what evidence exists, what is only Codex-local, and which actions remain blocked.',
+        evidence: [
+          'Owner-readable Downloads packet created at AIOS_CASE003_9JUN_ORCHESTRATION_ACHIEVEMENT_KB_SYNC_2026-06-09',
+          'Executive visual summary, achievement record, retrospective, role skill updates, QA validation, monitor status, artifact integrity manifest, and HTML evidence index were packaged',
+          'Ten local HTML evidence files were copied into the packet under professional sequence names without overwriting originals',
+          'Codex/Risa skill updates captured: do not act as the whole AIOS, expose simulated roles, create Agent-to-Task maps, and provide next recommended action plus next prompt',
+          'QA skill updates captured: block missing HTML, missing Agent-to-Task maps, unverified agent claims, overclaim, source misalignment, and closeouts that require Lyn to infer the next step',
+          'Data Visualizer requirements captured for owner-readable HTML with state, next action, blocked actions, warnings, artifact readiness, and false-orchestration risk',
+          'Parallel-safe work rules captured: isolated packets only, no human-gated, real-data, derivative, benchmark, pilot, or public-patch tasks',
+          'Still-blocked actions were explicitly listed, including CASE-003 execution and Benchmark Dataset v0.1 export'
+        ],
+        skillsDemonstrated: [
+          'False-orchestration detection',
+          'Agent-to-Task execution mapping',
+          'Role skill synchronization across Codex, QA, Data Visualizer, PM, Data Team, Security, DeepSeek, Sonnet, and Opus boundaries',
+          'Owner-review packet organization',
+          'Parallel delegation assessment with blocked-action controls',
+          'CASE-003 claim-boundary discipline'
+        ],
+        impact: 'The operating system became more honest about orchestration. Future CASE-003 work has a stronger path to evidence-checked multi-agent execution, while blocked actions stay blocked until the right owner gate authorizes them.'
+      },
+      tags: ['CASE-003', 'Orchestration Enforcement', 'Agent-to-Task Map', 'Skill Sync', 'False-Orchestration Risk']
+    },
     {
       date: '2026-06-08',
       headline: 'AIOS Monitoring Snapshot Synthetic Proof Drill',
@@ -771,10 +838,10 @@ export default function AchievementsPage() {
               Public-safe evidence of what was built, what is proven, what is caveated, and what remains internal.
             </p>
             <p className="mt-4 text-sm font-medium text-white/80">
-              Evidence updated: 8 Jun 2026 · AIOS monitoring snapshot synthetic proof drill
+              Evidence updated: 10 Jun 2026 · AIOS runtime authority boundary and reviewer-enforced dashboard gate
             </p>
             <p className="mt-2 text-sm text-white/75">
-              Latest validated milestone: synthetic monitoring snapshot governance proof, 8 Jun 2026
+              Latest validated milestone: reviewer-enforced runtime governance boundary, 10 Jun 2026
             </p>
           </div>
         </div>
