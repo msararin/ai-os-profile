@@ -27,7 +27,7 @@ const principles = [
     number: 4,
     title: "Depth control by design",
     description:
-      "Internal complexity stays internal. External views show only what's audience-appropriate. The line between the two is intentional, not accidental.",
+      "Private complexity stays unpublished. Public views show only what's audience-appropriate. The line between the two is intentional, not accidental.",
     highlight: false,
   },
   {

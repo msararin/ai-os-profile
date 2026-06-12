@@ -63,10 +63,10 @@ const evidenceInventory = [
 ]
 
 const currentVerdict = {
-  label: "Enforcement proof exists internally; public trace is incomplete",
-  code: "ENFORCEMENT_PROOF_EXISTS_INTERNAL_PUBLIC_TRACE_INCOMPLETE",
+  label: "Enforcement proof exists privately; public trace is incomplete",
+  code: "ENFORCEMENT_PROOF_EXISTS_PRIVATE_PUBLIC_TRACE_INCOMPLETE",
   meaning:
-    "AIOS materially improved enforcement on June 9-11, 2026. This public page has not yet joined those internal proofs into a complete, traceable execution map.",
+    "AIOS materially improved enforcement on June 9-11, 2026. This public page has not yet joined those private proofs into a complete, traceable execution map.",
   next:
     "Integrate the newer enforcement packets into a public-safe role, model, task, receipt, and value view.",
 }
@@ -79,7 +79,7 @@ const enforcementProgress = [
     publicState: "Needs summarized public trace.",
   },
   {
-    layer: "Internal proof packets",
+    layer: "Private proof packets",
     status: "Exists",
     evidence: "June 9-11 owner-review packets record checker, remediation, Opus critique, and skill audit evidence.",
     publicState: "Not yet joined into this page.",
@@ -197,7 +197,7 @@ const enforcementMilestones = [
     date: "June 11, 2026",
     title: "Receipted Opus critique for skill education audit",
     proof:
-      "A local Codex audit received OpenRouter Opus 4.7 critique with returned model, token count, and actual provider cost recorded internally.",
+      "A local Codex audit received OpenRouter Opus 4.7 critique with returned model, token count, and actual provider cost recorded privately.",
     value:
       "Shows the receipt discipline expected when a page claims Opus review.",
     boundary:
@@ -218,7 +218,7 @@ const executionMap = [
   {
     task: "False-orchestration detection",
     expectedRole: "QA Sentinel + Stage Manager",
-    actualWorker: "Internal enforcement packets and checker",
+    actualWorker: "Private enforcement packets and checker",
     modelRoute: "Codex-local implementation with Opus-reviewed gates where recorded",
     evidence: "Routing evidence checker, negative fixtures, canonical rules",
     value: "Downgrades unsupported role/model claims instead of decorating them.",
@@ -227,7 +227,7 @@ const executionMap = [
   {
     task: "Role/model/task visibility",
     expectedRole: "PM Brain + Data Visualizer",
-    actualWorker: "Internal remediation rules",
+    actualWorker: "Private remediation rules",
     modelRoute: "Local policy addendum; reviewer route required when public-sensitive",
     evidence: "Model-role fit matrix and Data Visualizer/QA review rules",
     value: "Shows who did what, which evidence exists, and what remains blocked.",
@@ -315,7 +315,7 @@ export default function ObservabilityPage() {
           <p className="mt-3 max-w-4xl text-muted-foreground">
             This page explains how AIOS evidence, validation outputs, review traces, and
             observability signals support human review. It now needs to absorb the June 9-11
-            enforcement improvements: internal proof exists, but this public trace is not complete.
+            enforcement improvements: private proof exists, but this public trace is not complete.
           </p>
 
           <div className="mt-6 grid gap-4 md:grid-cols-2">
@@ -366,7 +366,7 @@ export default function ObservabilityPage() {
                 <span className="font-medium text-foreground">Enforcement update (June 9-11, 2026):</span>{" "}
                 AIOS enforcement advanced materially through routing-fit checks, false-orchestration detection,
                 receipt boundary rules, QA/Data Visualizer requirements, Codex authority limits, and human-gate
-                separation. Those proofs exist internally, but they are not yet fully integrated into this public
+                separation. Those proofs exist privately, but they are not yet fully integrated into this public
                 surface.
               </p>
               <div className="mt-4 grid gap-4 lg:grid-cols-3">
@@ -411,7 +411,7 @@ export default function ObservabilityPage() {
             <CardHeader>
               <div className="flex flex-wrap items-center gap-3">
                 <CardTitle className="text-lg">Current owner verdict</CardTitle>
-                <Badge variant="outline">Internal proof exists</Badge>
+                <Badge variant="outline">Private proof exists</Badge>
                 <Badge variant="outline">Public trace incomplete</Badge>
               </div>
             </CardHeader>
@@ -434,7 +434,7 @@ export default function ObservabilityPage() {
             </h2>
             <p className="mt-2 max-w-4xl text-sm leading-6 text-muted-foreground">
               The public surface should show the maturity jump without implying the whole system is
-              fully runtime-enforced. The useful view is layered: rules, internal proof, public
+              fully runtime-enforced. The useful view is layered: rules, private proof, public
               integration, runtime automation, and whole-system proof are different states.
             </p>
             <div className="mt-4 grid gap-3">
@@ -460,7 +460,7 @@ export default function ObservabilityPage() {
               June 9-11 enforcement proof
             </h2>
             <p className="mt-2 max-w-4xl text-sm leading-6 text-muted-foreground">
-              These are the newer internal proof signals this page needs to integrate. They are
+              These are the newer private proof signals this page needs to integrate. They are
               framed as enforcement improvement, not as live monitoring or universal runtime proof.
             </p>
             <div className="mt-4 grid gap-3 lg:grid-cols-2">

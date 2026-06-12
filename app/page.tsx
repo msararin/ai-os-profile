@@ -122,7 +122,7 @@ export default function HomePage() {
               proof-of-concept, not a commercial product.
             </p>
             <p className="text-base text-foreground font-medium">
-              This is not a consulting storefront, not a startup pitch, and not a public dump of internal systems.
+              This is not a consulting storefront, not a startup pitch, and not a public dump of private systems.
             </p>
           </div>
         </div>

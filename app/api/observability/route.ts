@@ -10,7 +10,7 @@ export async function GET() {
       surface: "public_safe_health",
       telemetry: "internal_only",
       message:
-        "Observability public endpoint is limited to safe health status. Detailed telemetry stays behind internal review workflows.",
+        "Observability public endpoint is limited to safe health status. Detailed telemetry is not exposed publicly.",
     })
   } catch (error) {
     console.error("Observability API error:", error)

@@ -1029,7 +1029,7 @@ export const conceptLegend = [
   {
     term: "Review Surface",
     definition:
-      "Public-safe visual layer that explains curated monitoring status without exposing raw receipts or internal task paths.",
+      "Public-safe visual layer that explains curated monitoring status without exposing raw receipts or private task paths.",
   },
 ]
 
@@ -1296,12 +1296,12 @@ export const deferredForV02 = [
     item: "Big Crew QA final local-candidate gate",
     status: "small patch required",
     meaning:
-      "QA review completed and requested narrower wording plus removal of internal-only public snapshot fields.",
+      "QA review completed and requested narrower wording plus removal of private-only public snapshot fields.",
   },
   {
-    item: "Internal detail surface",
+    item: "Private detail surface",
     status: "deferred",
-    meaning: "No internal monitoring console is promoted until auth/access boundary is reliable.",
+    meaning: "No private monitoring console is promoted as a public surface.",
   },
   {
     item: "CASE-003 fresh rerun",

@@ -217,7 +217,7 @@ const learningPhases = [
     id: 5,
     title: "Phase 5: Portfolio Positioning",
     date: "May 21, 2026 (ongoing)",
-    challenge: "Internal complexity not portfolio-ready",
+    challenge: "Private complexity not portfolio-ready",
     solution: "v2.0.0 spec lock, regression gate, public-safe profile, honest labeling",
     status: "In Progress",
     badgeClass: "bg-amber-500/10 text-amber-700",

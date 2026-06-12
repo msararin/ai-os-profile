@@ -36,7 +36,7 @@ const workstreams = [
       "Public portfolio framing that turns operating evidence into clear, safe claims.",
     status: "Active",
     owner: "Sararin + Codex",
-    nextAction: "Keep homepage focused on differentiation; avoid internal dashboard drift.",
+    nextAction: "Keep homepage focused on differentiation; avoid operations-dashboard drift.",
     gateDecision: "Public copy must remain portfolio-safe and evidence-backed.",
     blockerRisk: "Overclaiming maturity or exposing raw private context would weaken trust.",
     proofLevel: "Regression-gated",

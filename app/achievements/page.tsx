@@ -35,7 +35,7 @@ export default function AchievementsPage() {
         evidence: [
           'Runtime Authority Evidence dashboard deployed live at /architecture/system-health/runtime-authority-evidence',
           'New Runtime Authority Evidence route returns 200',
-          'Old internal-history route /architecture/system-health/window-b-runtime-authority-snapshot redirects safely to the new route',
+          'Old legacy-history route /architecture/system-health/window-b-runtime-authority-snapshot redirects safely to the new route',
           'System Health hub links to Runtime Authority Evidence at /architecture/system-health',
           '/workstreams includes Data Team with bounded evidence-structure and dashboard-readiness wording',
           'Supernova status normalized to: First version complete; POC not yet validated.',
@@ -163,7 +163,7 @@ export default function AchievementsPage() {
       summary: 'Converted a fake-orchestration failure into enforceable audit discipline: role and model labels now require route evidence, provider receipts, role-dependency records, and closeout validation before they can be treated as AIOS proof.',
       proofType: 'governance enforcement, audit guardrail, cockpit evidence discipline',
       evidenceReference: 'AIOS_FAKE_ORCHESTRATION_SONNET_REVIEW_2026-06-07 receipts, Sonnet reviewer result, .codex/aios-closeout-check.sh narrow-exclusion patch',
-      status: 'Internal cockpit achievement recorded; enforcement patch validated locally',
+      status: 'Cockpit achievement recorded; enforcement patch validated locally',
       publicSafeResult: 'The cockpit can show that AIOS now has a concrete guardrail against fake orchestration claims: input packets are separated from promoted outputs, while real output claims remain auditable.',
       caveat: 'This is an enforcement and audit-readiness achievement. It is not a claim of autonomous orchestration, complete live telemetry, complete token/cost benchmarking, or production-grade multi-agent automation.',
       details: {
@@ -262,9 +262,9 @@ export default function AchievementsPage() {
       summary: 'Turned a low-quality, fragmented historical evidence set into a normalized review corpus without overstating what the data can prove. Started from a surprising finding: the local observability SQLite slice contained only 10 records despite prior benchmark capture intent. Built a reconciliation path that normalized 149 supported records across disconnected historical sources while preserving missingness and routing assumptions into review.',
       proofType: 'evidence quality, data engineering, decision support',
       evidenceReference: 'KB achievement candidate 2026-06-02-historical-benchmark-evidence-reconciliation.md, Evidence Readiness Dashboard',
-      status: 'Completed for internal historical-corpus dry run; comparison readiness remains blocked',
-      publicSafeResult: 'Built a reviewable baseline from real messy evidence (10 SQLite records → 149 normalized records) with explicit boundaries: usable for internal evidence-quality review and future collection design, not yet valid for provider-versus-Codex comparison.',
-      caveat: 'This is an internal benchmark-readiness and evidence-quality achievement. It is not provider-versus-Codex comparison proof, model-superiority claim, cost-saving claim, production observability claim, or proof that inferred values are measured facts.',
+      status: 'Completed for private historical-corpus dry run; comparison readiness remains blocked',
+      publicSafeResult: 'Built a reviewable baseline from real messy evidence (10 SQLite records → 149 normalized records) with explicit boundaries: usable for private evidence-quality review and future collection design, not yet valid for provider-versus-Codex comparison.',
+      caveat: 'This is a private benchmark-readiness and evidence-quality achievement. It is not provider-versus-Codex comparison proof, model-superiority claim, cost-saving claim, production observability claim, or proof that inferred values are measured facts.',
       details: {
         whyItMatters: 'Real-world evidence collection produces sparse, heterogeneous data. This achievement demonstrates the ability to normalize what can be supported, preserve what remains unknown, and attach reviewable assumptions where a bounded working interpretation is useful—creating a better foundation for future benchmark collection without converting inference into measurement.',
         evidence: [
@@ -285,7 +285,7 @@ export default function AchievementsPage() {
           'Rejection discipline (rejected 20 unsupported rows)',
           'Future collection design informed by real gaps'
         ],
-        impact: 'The resulting corpus is usable for internal evidence-quality review and informs future collection design. Real-world constraint learned: realistic records existed across sources with different schemas, different evidence grains, incomplete join IDs, and mixed provenance quality. The practical improvement was to normalize what can be supported, preserve what remains unknown, and attach reviewable assumptions where a bounded working interpretation is useful.'
+        impact: 'The resulting corpus is usable for private evidence-quality review and informs future collection design. Real-world constraint learned: realistic records existed across sources with different schemas, different evidence grains, incomplete join IDs, and mixed provenance quality. The practical improvement was to normalize what can be supported, preserve what remains unknown, and attach reviewable assumptions where a bounded working interpretation is useful.'
       },
       tags: ['Evidence Quality', 'Data Engineering', 'Benchmark Readiness', 'Decision Support', 'AIOS Cockpit']
     },
@@ -295,7 +295,7 @@ export default function AchievementsPage() {
       summary: 'Built a reusable validation-led data protection readiness skill pack covering sensitive-data taxonomy facilitation, custom recognizer proof-of-capability, validation methodology, claim-boundary discipline, and technical stakeholder Q&A readiness.',
       proofType: 'skill development, reusable capability framework',
       evidenceReference: 'KB achievement candidate 2026-06-02-validation-led-data-protection-readiness.md, commit 907bac9',
-      status: 'Completed for internal capability development; external use gated by discovery and alignment check',
+      status: 'Completed for private capability development; external use gated by discovery and alignment check',
       publicSafeResult: 'Built reusable patterns for data protection readiness discussions while preserving clear boundaries: synthetic proof only, no production-readiness claim, no client-specific validation claim, and no compliance-by-default claim.',
       caveat: 'This is a skill/capability achievement, not a production solution. It demonstrates reusable readiness patterns and validation discipline, not client-specific deployment readiness, production-grade capability, or compliance certification.',
       details: {
@@ -315,7 +315,7 @@ export default function AchievementsPage() {
           'Technical stakeholder Q&A preparation',
           'Professional boundary preservation'
         ],
-        impact: 'Improves readiness for enterprise AI/data-protection discussions with a confidence level of 0.82 for validation-led discussion, reflecting synthetic proof validation, internal capability development, and reusable pattern development—not production validation, client-specific validation, or compliance certification.'
+        impact: 'Improves readiness for enterprise AI/data-protection discussions with a confidence level of 0.82 for validation-led discussion, reflecting synthetic proof validation, private capability development, and reusable pattern development - not production validation, client-specific validation, or compliance certification.'
       },
       tags: ['Skill Development', 'Data Protection', 'Validation', 'Enterprise AI', 'Governance']
     },
@@ -383,19 +383,19 @@ export default function AchievementsPage() {
       proofType: 'PR merge, production route checks, scoped provider-routing proof',
       evidenceReference: 'ai-os-profile PR #12, merge 922028a; optimize-worker local commit 1742d318',
       status: 'Trust repair production-verified; provider-routing hardening proven locally and pending scoped review-branch push',
-      publicSafeResult: 'A controlled Gemini call succeeded after the routing repair with captured token and cost evidence, supporting the next architecture alignment direction: one canonical definition rendered across public and internal views.',
+      publicSafeResult: 'A controlled Gemini call succeeded after the routing repair with captured token and cost evidence, supporting the next architecture alignment direction: one canonical definition rendered across public views.',
       caveat: 'This is trust repair, provider-routing hardening, and architecture alignment direction. It is not a claim of full automated release governance, a full production observability platform, automated provider usage everywhere, proven revenue, or Gemini as source of truth.',
       details: {
         whyItMatters: 'Trust depends on showing only what the evidence supports. The repair removed false confidence from stale operational copy and treated a provider failure as a routing diagnosis problem before assuming the account budget was exhausted.',
         evidence: [
           'ai-os-profile PR #12, "Repair AIOS trust and architecture freshness wording," merged through the normal GitHub PR path at 922028aaff05966d8705adfc1994b98a58defd13',
           'Production checks passed: lint/typecheck/build, Vercel ai-os-profile, and Vercel v0-ai-os-profile',
-          'Production routes verified: /, /ai-operating-system, /architecture, /architecture/system-health/observability, /achievements, and /knowledge-sharing returned 200; protected internal routes redirected 307 to auth',
+          'Production routes verified: /, /ai-operating-system, /architecture, /architecture/system-health/observability, /achievements, and /knowledge-sharing returned 200',
           'Trust repair relabeled stale status as historical or pending verification, removed unsupported budget/usage values, protected local-only KB limitations, and aligned architecture wording around manual governance, evidence, observability, and source-of-truth boundaries',
           'optimize-worker local commit 1742d31837e28709f41b0a2b57e37d5d979f3e1d added explicit OpenRouter key-profile selection, masked no-network diagnostics, fail-fast behavior, and focused tests',
           'No-network diagnostic selected the Codex OpenRouter profile, recorded only a masked fingerprint, and confirmed provider_call_made=false',
           'One controlled Gemini/OpenRouter call succeeded with google/gemini-3.5-flash: 978 prompt tokens, 3,091 completion tokens, 1,538 reasoning tokens, 4,069 total tokens, 0 cached tokens, and 0.029286 cost credits',
-          'Gemini advisory review recommended one canonical architecture definition, four compact public groups, nine expanded detailed layers, and shared rendering across public and internal views'
+          'Gemini advisory review recommended one canonical architecture definition, four compact public groups, nine expanded detailed layers, and shared rendering across public views'
         ],
         skillsDemonstrated: [
           'Source-of-truth discipline and stale-data trust repair',
@@ -405,7 +405,7 @@ export default function AchievementsPage() {
           'Controlled one-call verification with token and cost evidence',
           'Architecture consolidation planning without treating advisory output as source of truth'
         ],
-        impact: 'Improved credibility and review safety: public and internal surfaces state their evidence boundaries more clearly, while provider calls can be checked against an explicit key profile before execution.'
+        impact: 'Improved credibility and review safety: public surfaces state their evidence boundaries more clearly, while provider calls can be checked against an explicit key profile before execution.'
       },
       tags: ['Trust Repair', 'Provider Routing', 'Evidence', 'Architecture']
     },
@@ -416,7 +416,7 @@ export default function AchievementsPage() {
       proofType: 'manual governance review, scoped validation, public-safety check',
       evidenceReference: 'Architecture governance review, achievement-page update, typecheck/build validation',
       status: 'Manual release discipline accepted for review; not implemented as automation',
-      publicSafeResult: 'Compared with the prior reactive deployment/recovery loop, the current preflight flow caught internal-only budget evidence, corrected the repo target, narrowed implementation scope, and required validation before any push or deployment.',
+      publicSafeResult: 'Compared with the prior reactive deployment/recovery loop, the current preflight flow caught private budget evidence, corrected the repo target, narrowed implementation scope, and required validation before any push or deployment.',
       caveat: 'This is governance maturity and checklist discipline, not a claim of implemented release automation, perfect prevention, or guaranteed breakage avoidance.',
       details: {
         whyItMatters: 'Budget, release, and regression controls are now treated as one operating discipline: estimate before action, route mechanical work to lower-cost workers, reserve strategic judgment for decision work, and checkpoint progress before spend or scope drifts.',
@@ -425,7 +425,7 @@ export default function AchievementsPage() {
           'Lower-cost workers are preferred for mechanical tasks while strategic models are reserved for decision work',
           'Release governance design was risk-reviewed, patched, and parked with explicit resume triggers instead of overbuilt prematurely',
           'Manual preflight checklist discipline validates scope, public safety, and known-good routes before any push or deployment',
-          'Regression-aware validation protects achievements, knowledge-sharing, internal/auth boundaries, and production routes while adding new proof'
+          'Regression-aware validation protects achievements, knowledge-sharing, and production routes while adding new proof'
         ],
         skillsDemonstrated: [
           'Budget-aware model routing',
@@ -444,16 +444,16 @@ export default function AchievementsPage() {
       proofType: 'operating-model proof, PR review, public-boundary correction',
       evidenceReference: 'PR #6, commits 86b47e2 and 655a658, production /achievements verification',
       status: 'Public copy corrected and production-verified after merge',
-      publicSafeResult: 'The page now explains managed knowledge work without exposing internal route paths or turning internal drafts into official records.',
+      publicSafeResult: 'The page now explains managed knowledge work without exposing private route paths or turning drafts into official records.',
       caveat: 'This is an operating-model proof, not a claim of enterprise-scale automation, production autonomy, or business impact.',
       details: {
         whyItMatters: 'The work showed how Codex, Hermes, GPT, and human approval can cooperate through clear roles: shared context for alignment, proposal files for safe drafting, evidence packets for review, stop conditions for uncertainty, and release gates before promotion.',
         evidence: [
           'PR #6 corrected the Achievements proof language and public-boundary copy',
           'Commit 86b47e2 reframed the May 28 item around benchmark-backed public proof',
-          'Commit 655a658 removed literal internal route markers from public copy',
+          'Commit 655a658 removed literal private route markers from public copy',
           'Production /achievements verification confirmed the corrected headline and boundary-safe wording rendered publicly',
-          'Fresh render checks confirmed protected draft markers were absent from the public Achievements page'
+          'Fresh render checks confirmed draft markers were absent from the public Achievements page'
         ],
         skillsDemonstrated: [
           'Source-of-truth discipline across shared context, proposals, and release gates',
@@ -461,34 +461,33 @@ export default function AchievementsPage() {
           'Fallback-safe workflow design when one tool or agent becomes unstable',
           'Evidence-first review using evidence packets, stop conditions, and explicit human approval'
         ],
-        impact: 'The practical impact is safer tool fallback. When one agent becomes unstable, another can continue the workflow without silently changing the source of truth, exposing internal context, or turning drafts into official records.'
+        impact: 'The practical impact is safer tool fallback. When one agent becomes unstable, another can continue the workflow without silently changing the source of truth, exposing private context, or turning drafts into official records.'
       },
       tags: ['Knowledge Workspace', 'Multi-Agent', 'Source of Truth', 'Public Safe']
     },
     {
       date: '2026-05-28',
-      headline: 'AI OS Profile v0.2 Production Release — Proof-Backed Public/Internal Boundary',
-      summary: 'Merged and production-verified the AIOS profile release through PR review, freeze tagging, Vercel deployment, route checks, and accepted manual auth proof.',
+      headline: 'AI OS Profile v0.2 Production Release — Proof-Backed Public Boundary',
+      summary: 'Merged and production-verified the AIOS profile release through PR review, freeze tagging, Vercel deployment, and route checks.',
       proofType: 'PR merge, freeze tag, Vercel status, live route verification',
       evidenceReference: 'PR #3, merge d7ab867, freeze tag prod-freeze-aios-profile-2026-05-28-v0-2, sararin.ai live route checks',
       status: 'Production verified 28 May 2026',
       details: {
-        whyItMatters: 'The site now demonstrates a current, governed release instead of stale portfolio claims. Public proof, protected internal surfaces, and release evidence are aligned.',
+        whyItMatters: 'The site now demonstrates a current, governed release instead of stale portfolio claims. Public proof and release evidence are aligned.',
         evidence: [
           'PR #3 merged to main with merge commit d7ab867758d89d5d610b7a7bff89a8341825d5ee',
           'Freeze tag prod-freeze-aios-profile-2026-05-28-v0-2 points to approved candidate 8ccf898',
           'Deployment Preflight passed on PR head 3644cee after checkout history fix',
           'Vercel statuses succeeded for ai-os-profile and v0-ai-os-profile',
-          'Production routes verified on sararin.ai: public routes returned 200; internal routes redirected to auth with callback URLs',
-          'AUTH_PROOF_GAP accepted based on prior manual incognito OAuth proof'
+          'Production routes verified on sararin.ai: public routes returned 200'
         ],
         skillsDemonstrated: [
           'Release governance through freeze tag, PR review, checks, and production verification',
-          'Public/private boundary validation for Knowledge Sharing and protected internal review surfaces',
+          'Public boundary validation for Knowledge Sharing',
           'Evidence-aware content governance: proof page updated after deployment, not left stale',
           'Rollback readiness: Vercel rollback first, Git revert path documented if source rollback is needed'
         ],
-        impact: 'Established current production proof that the AIOS profile is live, governed, and boundary-aware while keeping unpublished learning records internal.'
+        impact: 'Established current production proof that the AIOS profile is live, governed, and boundary-aware.'
       },
       tags: ['Production Release', 'Governance', 'Boundary Proof', 'Impact']
     },
@@ -526,15 +525,15 @@ export default function AchievementsPage() {
       proofType: 'commits, route boundary review',
       evidenceReference: 'commits e71c652 and 53e800d',
       status: 'Merged into v0.2 freeze candidate',
-      publicSafeResult: 'Public pages explain the operating model without exposing raw logs, private paths, sensitive metrics, or internal draft surfaces.',
-      caveat: 'Observability remains intentionally minimal until a fuller protected/internal observability model is approved.',
+      publicSafeResult: 'Public pages explain the operating model without exposing raw logs, private paths, sensitive metrics, or unpublished draft surfaces.',
+      caveat: 'Observability remains intentionally minimal until a fuller public-safe observability model is approved.',
       details: {
         whyItMatters: 'A public AIOS case study must show maturity without leaking the working system behind it.',
         evidence: [
           'Commit e71c652 simplified public navigation and profile hubs',
           'Commit 53e800d caveated achievements and limited observability output',
-          'Route checks confirmed public routes remained 200 and internal routes redirected to auth',
-          'Knowledge Sharing boundary checks confirmed protected draft content was not exposed publicly'
+          'Route checks confirmed public routes remained available',
+          'Knowledge Sharing boundary checks confirmed draft content was not exposed publicly'
         ],
         skillsDemonstrated: [
           'Public-safe technical storytelling',
@@ -542,90 +541,9 @@ export default function AchievementsPage() {
           'Private path and sensitive metric reduction',
           'Claims caveating on proof surfaces'
         ],
-        impact: 'Improved credibility by making the site easier to understand while avoiding overclaiming or leaking internal operating data.'
+        impact: 'Improved credibility by making the site easier to understand while avoiding overclaiming or leaking private operating data.'
       },
       tags: ['Public Safety', 'Observability', 'IA', 'Boundary']
-    },
-    {
-      date: '2026-05-28',
-      headline: 'Auth-Protected Internal Review Recovery — Local Review Without Production Bypass',
-      summary: 'Recovered internal review access through scoped auth fixes and explicit development-only local review mode while keeping production auth protected.',
-      proofType: 'commits, manual incognito OAuth proof, route checks',
-      evidenceReference: 'commits 5de2bd2 and 83cf72c, prior manual incognito proof',
-      status: 'Manual proof accepted; automation gap documented',
-      publicSafeResult: 'Protected internal review surfaces can be reviewed by authorized users, while unauthenticated production visitors are redirected to auth.',
-      caveat: 'AUTH_PROOF_GAP remains for shell automation when OAuth env values are not loaded.',
-      details: {
-        whyItMatters: 'Internal proof surfaces only matter if reviewers can reach them without weakening production security.',
-        evidence: [
-          'Commit 5de2bd2 recovered internal access with safe local review mode',
-          'Commit 83cf72c updated internal dashboard and protected draft review surface',
-          'Manual incognito OAuth proof was accepted for authenticated internal review surfaces',
-          'Production route checks showed internal routes redirecting to /auth/signin with callback URLs'
-        ],
-        skillsDemonstrated: [
-          'Development-only bypass design with production guardrails',
-          'OAuth incident triage without hardcoding secrets',
-          'Callback preservation for protected internal routes',
-          'Clear documentation of automation proof gaps'
-        ],
-        impact: 'Unblocked Sararin review of protected work while preserving the site boundary: public proof stays public, internal operations stay behind auth.'
-      },
-      tags: ['Auth', 'Internal Review', 'Security', 'Protected Review']
-    },
-    {
-      date: '2026-05-27',
-      headline: 'Protected Learning Backlog — Internal Lessons Parked Before Public Claims',
-      summary: 'Captured 26-27 May staging review lessons as internal learning backlog instead of promoting unreviewed draft content to public pages.',
-      proofType: 'git history, internal page status',
-      evidenceReference: 'commit 83cf72c previous internal status copy',
-      status: 'Internal learning record, not public proof claim',
-      publicSafeResult: 'The public site avoids unreviewed draft claims while the protected internal page tracks pending lessons for later review.',
-      caveat: 'This is intentionally not framed as a production achievement; it belongs to the internal learning pipeline.',
-      details: {
-        whyItMatters: 'Not every useful workday creates external proof. Some days create learning patterns that should be reviewed before public reuse.',
-        evidence: [
-          'Git history for commit 83cf72c recorded: "Review surface updated: 2026-05-27"',
-          'The same internal status noted 26-27 May lessons were not yet fully ingested',
-          'Pending lessons included staging review, Knowledge Sharing preservation, internal navigation blocker, export behavior verification, and budget burn report',
-          'Current protected review page keeps that backlog internal and marks 28 May release learning as pending migration'
-        ],
-        skillsDemonstrated: [
-          'Learning capture before publication',
-          'Public/private boundary discipline',
-          'Claims-safety review before turning lessons into external content',
-          'Protected draft separation from Achievements'
-        ],
-        impact: 'Protects credibility by routing unreviewed operational lessons into protected internal review instead of presenting them as external achievements.'
-      },
-      tags: ['Learning', 'Protected Review', 'Claims Safety', 'Internal']
-    },
-    {
-      date: '2026-05-26',
-      headline: 'Protected Draft Surface — Learning-to-Content Pipeline Created',
-      summary: 'Created the protected draft surface, export tooling, and draft data structure for turning AIOS lessons into reviewed public-safe content candidates.',
-      proofType: 'commits, internal route, tracked proposal doc',
-      evidenceReference: 'commits 9734b39 and 4ae8516, protected draft-pipeline role-map proposal',
-      status: 'Internal draft/review surface',
-      publicSafeResult: 'Knowledge Sharing remains public archive only; draft packages remain protected under /internal/*.',
-      caveat: 'Draft records are not automatically publishable; Sararin/GPT review is required before public use.',
-      details: {
-        whyItMatters: 'The site needs a disciplined path from learning to content without leaking drafts or overclaiming.',
-        evidence: [
-          'Commit 9734b39 added internal knowledge-sharing draft surface v0.5',
-          'Commit 4ae8516 implemented earlier draft content surface v0.3',
-          'content/signal-studio-drafts.ts defines draft records, evidence notes, public-safe claims, caveats, do-not-use lists, and review fields',
-          'Protected draft-pipeline role-map proposal defines review roles as proposal, not canonical truth'
-        ],
-        skillsDemonstrated: [
-          'Learning pipeline design',
-          'Bilingual content review structure',
-          'Evidence reviewer and claims-safety workflow',
-          'Manual publishing gates'
-        ],
-        impact: 'Created a repeatable internal mechanism to convert AIOS work into publishable insights only after evidence and reputation-risk review.'
-      },
-      tags: ['Protected Drafts', 'Learning Pipeline', 'Content Governance', 'Internal']
     },
     {
       date: '2026-05-26',
@@ -668,7 +586,7 @@ export default function AchievementsPage() {
         evidence: [
           'Commit 511024c added the Control Plane Thinking section to app/architecture/page.tsx',
           'The section fits the AIOS public case-study layer requested in the IA restructure',
-          'Subsequent route checks kept /architecture public and /internal/* protected'
+          'Subsequent route checks kept /architecture public'
         ],
         skillsDemonstrated: [
           'Systems thinking',
@@ -812,28 +730,25 @@ export default function AchievementsPage() {
     },
     {
       date: '2026-05-19',
-      headline: 'Sararin.ai Domain Live: Auth-Protected Internal Cockpit Deployed',
-      summary: 'Public portfolio + internal AIOS cockpit live on sararin.ai with NextAuth.js + Google OAuth + email allowlist',
+      headline: 'Sararin.ai Domain Live: Public Portfolio Deployed',
+      summary: 'Public portfolio live on sararin.ai with Vercel deployment and HTTPS.',
       details: {
-        whyItMatters: 'Proves execution capability. Not just theory—working site with 3-tier access control.',
+        whyItMatters: 'Proves execution capability. Not just theory - working public site with deployment evidence.',
         evidence: [
           'Domain: sararin.ai (registered, HTTPS via Vercel)',
-          'Auth: NextAuth.js 5 beta + Google OAuth',
-          'Access control: Public portfolio / Internal auth-protected / Secrets never rendered',
-          'Internal pages protected behind authenticated routes',
-          'Path-based routing requires auth for internal surfaces',
-          'Email allowlist: Configured in INTERNAL_ALLOWED_EMAILS'
+          'Public portfolio route available',
+          'Secrets never rendered'
         ],
         skillsDemonstrated: [
-          'Full-stack deployment: Next.js 15 + Vercel + OAuth',
-          'Security design: 3-tier access, path-based control',
+          'Full-stack deployment: Next.js + Vercel',
+          'Public-safe site boundary',
           'Production deployment: CI/CD, environment variables, HTTPS',
           'Employer-safe positioning: "Personal portfolio" not "startup"',
-          'Privacy boundaries: Internal work stays internal'
+          'Privacy boundary discipline'
         ],
         impact: 'Portfolio is now live proof-of-execution, not just resume claims.'
       },
-      tags: ['Deployment', 'Production', 'Auth', 'Portfolio']
+      tags: ['Deployment', 'Production', 'Portfolio']
     },
     {
       date: '2026-05-18',
@@ -872,7 +787,7 @@ export default function AchievementsPage() {
               Achievement Proof Gallery
             </h1>
             <p className="text-xl text-white/85 max-w-3xl mx-auto">
-              Public-safe evidence of what was built, what is proven, what is caveated, and what remains internal.
+              Public-safe evidence of what was built, what is proven, what is caveated, and what is not published.
             </p>
             <p className="mt-4 text-sm font-medium text-white/80">
               Evidence updated: 12 Jun 2026 · Runtime Authority Evidence dashboard deployed
@@ -890,10 +805,10 @@ export default function AchievementsPage() {
           <div className="mb-8 p-4 bg-muted/30 rounded-lg border border-border">
             <p className="text-sm text-muted-foreground">
               <strong>Format:</strong> what was built → why it matters → evidence/artifacts → status/caveat → public-safe result.
-              Internal measurements are summarized only when the evidence package is ready for public use.
+              Detailed measurements are summarized only when the evidence package is ready for public use.
             </p>
             <p className="mt-2 text-sm text-muted-foreground">
-              This page records external/professional proof and impact. Internal learning patterns and reusable draft ideas stay in protected review until claims are approved.
+              This page records external/professional proof and impact. Draft learning patterns and reusable ideas stay unpublished until claims are approved.
             </p>
           </div>
 
@@ -1049,8 +964,8 @@ export default function AchievementsPage() {
             </Card>
             <Card className="text-center">
               <CardContent className="pt-6">
-                <div className="text-3xl font-bold text-[#1F3A60]">Protected</div>
-                <div className="text-sm text-muted-foreground mt-2">Internal Routes</div>
+                <div className="text-3xl font-bold text-[#1F3A60]">Public</div>
+                <div className="text-sm text-muted-foreground mt-2">Static Routes</div>
               </CardContent>
             </Card>
             <Card className="text-center">

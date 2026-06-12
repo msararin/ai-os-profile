@@ -14,8 +14,6 @@ import {
   type SnapshotCard,
 } from "@/lib/aios-agent-review-dashboard-snapshot"
 
-// Public-safe shell: do not migrate this route to PageLayout without re-review,
-// because PageLayout exposes Internal Access. Review/remove on Snapshot 003 or review-window expiry.
 const workspaceOrder = [
   "Planning / Contract",
   "Snapshot Cycle",
@@ -79,7 +77,7 @@ const publicCardRemarks: Record<string, string> = {
   data_team_rule:
     "Dashboard and evidence questions are reviewed by the Data Team before they become decision requests.",
   lyn_b_selection_receipt:
-    "An internal decision selected the read-only evidence surface before any public route work.",
+    "A private decision selected the read-only evidence surface before any public route work.",
   c_jsonl_trigger_assessment:
     "A future structured evidence index was assessed and remains parked because the trigger is not met.",
   c_trigger_current_status:
@@ -200,7 +198,7 @@ function isNameSensitiveCard(card: SnapshotCard) {
 
 function publicEvidenceFieldValue(card: SnapshotCard, field: string, value: string) {
   if (field === "sourcePath") {
-    return "internal evidence record (path not published)"
+    return "private evidence record (path not published)"
   }
 
   if (field === "snapshotBy") {

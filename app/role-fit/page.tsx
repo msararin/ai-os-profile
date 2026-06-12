@@ -18,7 +18,7 @@ const roleFit = [
       "Active AI upskilling: RAG architecture, agentic workflows, Python automation",
       "Proven learning pattern: Data/QA → Banking → Cloud → AI Engineering"
     ],
-    evidence: "Evidence: Built a personal AI orchestration lab using KB + Git as source of truth, with role-based agent workflows, benchmark trace discipline, and deployment experiments. Detailed lab measurements stay internal until source, benchmark, and caveat are ready for public use."
+    evidence: "Evidence: Built a personal AI orchestration lab using KB + Git as source of truth, with role-based agent workflows, benchmark trace discipline, and deployment experiments. Detailed lab measurements stay unpublished until source, benchmark, and caveat are ready for public use."
   },
   {
     title: "Manager, Strategy & Transformation Office",
@@ -99,7 +99,7 @@ export default function RoleFitPage() {
               </p>
               <p className="text-xs text-muted-foreground italic border-l-2 border-primary/30 pl-3">
                 Evidence: Personal AI orchestration lab with KB memory work, multi-agent systems, 
-                and layered privacy architecture. Detailed lab measurements stay internal until the evidence package is public-ready.
+                and layered privacy architecture. Detailed lab measurements stay unpublished until the evidence package is public-ready.
               </p>
             </CardContent>
           </Card>

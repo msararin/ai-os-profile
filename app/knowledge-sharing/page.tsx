@@ -172,7 +172,7 @@ export default function KnowledgeSharingPage() {
             public Knowledge Sharing area and each card identifies the post date.
           </p>
           <p className="mt-3 text-sm font-medium text-muted-foreground">
-            Archive status: public LinkedIn posts through 11 Jun 2026. Protected internal drafts and learning
+            Archive status: public LinkedIn posts through 11 Jun 2026. Drafts and learning
             records are not exposed on this public page.
           </p>
         </section>

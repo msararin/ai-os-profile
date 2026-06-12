@@ -90,8 +90,8 @@ const accessBoundaryLayers = [
     notShown: "Write controls or live execution state",
   },
   {
-    layer: "Internal Layer",
-    publicLabel: "Internal proof packets",
+    layer: "Private Layer",
+    publicLabel: "Private proof packets",
     visibility: "Private / summarized only",
     status: "Not exposed publicly",
     shown: "High-level gate and readiness language",
@@ -103,7 +103,7 @@ const accessBoundaryLayers = [
     visibility: "Public-safe summary",
     status: "Partial",
     shown: "Role boundaries and evidence gaps",
-    notShown: "Internal task payloads or execution receipts",
+    notShown: "Private task payloads or execution receipts",
   },
   {
     layer: "Memory Layer",

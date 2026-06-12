@@ -138,7 +138,7 @@ export default function AiosMonitoringPage() {
             </p>
             <p>
               The page is intentionally public-safe. It does not show local file paths, raw
-              receipts, secrets, provider keys, private cost detail, internal task logs, or
+              receipts, secrets, provider keys, private cost detail, private task logs, or
               confidential workflow details.
             </p>
           </div>

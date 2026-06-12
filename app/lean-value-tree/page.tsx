@@ -3,7 +3,6 @@
 import { PageLayout } from "@/components/page-layout"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { useView } from "@/components/view-toggle"
 import Link from "next/link"
 
 type LvtLayer = {
@@ -83,8 +82,6 @@ const statusBadgeClass: Record<LvtLayer["status"], string> = {
 }
 
 export default function LeanValueTreePage() {
-  const { view } = useView()
-
   return (
     <PageLayout>
       {/* Header */}
@@ -129,16 +126,8 @@ export default function LeanValueTreePage() {
       <section className="border-t border-border bg-muted/30 py-12">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
           <h2 className="text-2xl font-semibold tracking-tight text-foreground">
-            {view === "external"
-              ? "Strategic Layers"
-              : "Strategic Layers (Internal View)"}
+            Strategic Layers
           </h2>
-          {view === "internal" && (
-            <p className="mt-2 text-sm text-muted-foreground">
-              Each layer shows objective, metric, status, evidence, and next
-              move — manually curated snapshot.
-            </p>
-          )}
           <div className="mt-8 space-y-4">
             {lvtLayers.map((item) => (
               <Card key={item.layer} className="border-border bg-card">
@@ -197,28 +186,6 @@ export default function LeanValueTreePage() {
         </div>
       </section>
 
-      {/* View Note */}
-      <section className="border-t border-border py-12">
-        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-          <div className="rounded-lg border border-dashed border-border bg-muted/30 p-6 text-center">
-            <p className="text-sm text-muted-foreground">
-              {view === "external" ? (
-                <>
-                  Toggle to <span className="font-medium">Internal</span> view
-                  (top-right) for additional operating notes.
-                </>
-              ) : (
-                <>
-                  Internal view shows the same five fields per layer with the
-                  internal-mode heading. Toggle to{" "}
-                  <span className="font-medium">External</span> for the public
-                  summary.
-                </>
-              )}
-            </p>
-          </div>
-        </div>
-      </section>
     </PageLayout>
   )
 }

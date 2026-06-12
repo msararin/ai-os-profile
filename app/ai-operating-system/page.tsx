@@ -245,9 +245,9 @@ export default function AIOperatingSystemPage() {
             doing? Who should do it? How do we know it was done correctly?
           </p>
           <p className="mt-4 max-w-3xl text-sm text-muted-foreground">
-            Public pages show proof and method. Protected internal pages hold
-            operating surfaces such as review queues, budget/backlog context,
-            and draft work that is not public-ready.
+            Public pages show proof and method. Private operating notes,
+            budget/backlog context, and draft work stay unpublished until they
+            are public-ready.
           </p>
         </div>
       </section>
@@ -711,7 +711,7 @@ export default function AIOperatingSystemPage() {
                 name: "Profile positioning",
                 status: "Active",
                 owner: "Sararin + Codex",
-                next: "Keep homepage focused on differentiation; avoid internal dashboard drift.",
+                next: "Keep homepage focused on differentiation; avoid operations-dashboard drift.",
                 proof: "Regression-gated",
               },
               {

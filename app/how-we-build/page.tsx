@@ -61,7 +61,7 @@ export default function HowWeBuildPage() {
                 number: 4,
                 title: "Depth control by design",
                 description:
-                  "Internal complexity stays internal. External views show only what's audience-appropriate. The line between the two is intentional, not accidental.",
+                  "Private complexity stays unpublished. Public views show only what's audience-appropriate. The line between the two is intentional, not accidental.",
               },
               {
                 number: 5,
@@ -376,7 +376,7 @@ export default function HowWeBuildPage() {
               {
                 title: "Phase 5: Portfolio Positioning",
                 challenge:
-                  "Internal complexity and raw metrics not portfolio-ready",
+                  "Private complexity and raw metrics not portfolio-ready",
                 failed:
                   "Early attempts leaked private context or unsupported metrics to public pages",
                 worked:
@@ -465,7 +465,7 @@ export default function HowWeBuildPage() {
                   <li>• Fallback routing policy active</li>
                   <li>• Budget discipline: cheap-first, senior for decisions</li>
                   <li>
-                    • Privacy architecture: internal complexity stays internal
+                    • Privacy architecture: private complexity stays unpublished
                   </li>
                   <li>
                     • Evidence standard: baseline, date, scope, caveat, source
