@@ -57,6 +57,72 @@ const catches = [
   "Whether exported AIOS task records are pass, fail, downgraded, or not started.",
 ]
 
+const configurationSummary = [
+  {
+    label: "Stack info",
+    value: "Next.js public cockpit",
+    detail: "Static review pages with curated snapshots.",
+  },
+  {
+    label: "Access boundary",
+    value: "Public read-only",
+    detail: "No public write-back, execution control, or raw task payload.",
+  },
+  {
+    label: "Evidence status",
+    value: "Summarized only",
+    detail: "Detailed proof remains gated by public-safe review.",
+  },
+  {
+    label: "Next action",
+    value: "Keep boundary visible",
+    detail: "Use Monitoring for the detailed gate and blocked-action view.",
+  },
+]
+
+const accessBoundaryLayers = [
+  {
+    layer: "Public Surface",
+    publicLabel: "Public review surface",
+    visibility: "Public / read-only",
+    status: "Under construction",
+    shown: "Curated status, links, and claim boundaries",
+    notShown: "Write controls or live execution state",
+  },
+  {
+    layer: "Internal Layer",
+    publicLabel: "Internal proof packets",
+    visibility: "Private / summarized only",
+    status: "Not exposed publicly",
+    shown: "High-level gate and readiness language",
+    notShown: "Raw owner-review packets or local paths",
+  },
+  {
+    layer: "Worker Layer",
+    publicLabel: "Worker and route evidence",
+    visibility: "Public-safe summary",
+    status: "Partial",
+    shown: "Role boundaries and evidence gaps",
+    notShown: "Internal task payloads or execution receipts",
+  },
+  {
+    layer: "Memory Layer",
+    publicLabel: "Private memory",
+    visibility: "Private",
+    status: "Disabled on public surface",
+    shown: "No raw memory content",
+    notShown: "Private notes, task payloads, or personal memory",
+  },
+  {
+    layer: "Evidence Layer",
+    publicLabel: "Curated evidence snapshot",
+    visibility: "Public / read-only",
+    status: "Static snapshot",
+    shown: "Evidence status and limitations",
+    notShown: "Raw receipts, secrets, or unreviewed telemetry",
+  },
+]
+
 const nonClaims = [
   "No uptime or latency monitoring.",
   "No provider performance comparison.",
@@ -71,11 +137,13 @@ export default function SystemHealthPage() {
     <PageLayout>
       <section className="border-b border-border bg-background">
         <div className="mx-auto max-w-5xl px-4 py-10 sm:px-6 lg:px-8">
-          <div className="rounded-xl border-2 border-red-600 bg-red-50 p-4 text-red-950 shadow-sm dark:bg-red-950/40 dark:text-red-100">
-            <p className="text-lg font-bold tracking-wide sm:text-xl">UNDER CONSTRUCTION</p>
+          <div className="rounded-lg border border-primary/20 bg-primary/5 p-4 text-foreground shadow-sm">
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">
+              Public review surface
+            </p>
             <p className="mt-2 max-w-4xl text-sm leading-6">
-              This section groups AIOS review surfaces for evidence discipline, telemetry
-              inventory, runtime authority evidence, and orchestration visibility.
+              System Health is under construction and read-only. It summarizes public-safe
+              configuration, access boundaries, evidence status, and the next review action.
             </p>
           </div>
 
@@ -98,7 +166,6 @@ export default function SystemHealthPage() {
               These surfaces are being built from practical AIOS usage, including lessons from
               routing work, evidence review, fallback labels, and human feedback loops.
             </p>
-            <p>Under construction, based on real AIOS usage learning.</p>
           </div>
 
           <div className="mt-6 grid gap-4 md:grid-cols-2">
@@ -129,6 +196,72 @@ export default function SystemHealthPage() {
               </CardContent>
             </Card>
           </div>
+
+          <Card className="mt-6 border-primary/20 bg-primary/5">
+            <CardHeader>
+              <div className="flex flex-wrap items-center justify-between gap-2">
+                <CardTitle>System Configuration / Access Boundary</CardTitle>
+                <Badge variant="outline">Public-safe snapshot</Badge>
+              </div>
+            </CardHeader>
+            <CardContent className="space-y-5">
+              <div className="grid gap-3 md:grid-cols-4">
+                {configurationSummary.map((item) => (
+                  <div key={item.label} className="rounded-lg border bg-background p-3">
+                    <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
+                      {item.label}
+                    </p>
+                    <p className="mt-1 text-sm font-semibold text-foreground">{item.value}</p>
+                    <p className="mt-2 text-xs leading-5 text-muted-foreground">{item.detail}</p>
+                  </div>
+                ))}
+              </div>
+
+              <div className="overflow-x-auto rounded-lg border bg-background">
+                <table className="w-full min-w-[760px] text-left text-sm">
+                  <thead className="border-b bg-muted/50 text-xs uppercase tracking-wide text-muted-foreground">
+                    <tr>
+                      {["Layer", "Visibility", "Status", "Shown publicly", "Not shown"].map(
+                        (heading) => (
+                          <th key={heading} className="px-4 py-3 font-medium">
+                            {heading}
+                          </th>
+                        ),
+                      )}
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y">
+                    {accessBoundaryLayers.map((layer) => (
+                      <tr key={layer.layer} className="align-top">
+                        <td className="px-4 py-3">
+                          <p className="font-medium text-foreground">{layer.layer}</p>
+                          <p className="mt-1 text-xs text-muted-foreground">{layer.publicLabel}</p>
+                        </td>
+                        <td className="px-4 py-3 text-muted-foreground">{layer.visibility}</td>
+                        <td className="px-4 py-3">
+                          <Badge variant="secondary">{layer.status}</Badge>
+                        </td>
+                        <td className="px-4 py-3 text-muted-foreground">{layer.shown}</td>
+                        <td className="px-4 py-3 text-muted-foreground">{layer.notShown}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+
+              <p className="text-sm leading-6 text-muted-foreground">
+                Detailed gate, role, receipt, evidence-gap, blocked-action, and next-action
+                interpretation lives in{" "}
+                <Link
+                  href="/architecture/system-health/monitoring"
+                  className="font-medium text-primary hover:underline"
+                >
+                  AIOS Monitoring
+                </Link>
+                .
+              </p>
+            </CardContent>
+          </Card>
         </div>
       </section>
 
