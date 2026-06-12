@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Observability Value Reframe Patch v0.1 Report</title>
+    <style>
+      :root {
+        --classic-blue: #1f3a60;
+        --pastel-blue: #e6eef8;
+        --mint-teal: #00b494;
+        --text: #2d3748;
+        --muted: #4a5568;
+        --border: #d8e4f2;
+        --bg: #fafafa;
+        --card: #ffffff;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        line-height: 1.55;
+      }
+      main {
+        max-width: 1040px;
+        margin: 0 auto;
+        padding: 40px 20px;
+      }
+      h1,
+      h2,
+      h3 {
+        color: var(--classic-blue);
+        line-height: 1.2;
+      }
+      h1 {
+        font-size: 34px;
+        margin: 0 0 12px;
+      }
+      h2 {
+        margin-top: 32px;
+        border-top: 1px solid var(--border);
+        padding-top: 24px;
+        font-size: 22px;
+      }
+      h3 {
+        font-size: 17px;
+        margin-bottom: 8px;
+      }
+      p {
+        margin: 8px 0;
+      }
+      .hero,
+      .card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 18px;
+      }
+      .hero {
+        border-color: color-mix(in srgb, var(--classic-blue), white 70%);
+        background: color-mix(in srgb, var(--pastel-blue), white 45%);
+      }
+      .badge {
+        display: inline-block;
+        margin: 4px 6px 4px 0;
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        padding: 3px 9px;
+        color: var(--classic-blue);
+        font-size: 12px;
+        font-weight: 600;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 14px;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 12px;
+        background: var(--card);
+      }
+      th,
+      td {
+        border: 1px solid var(--border);
+        padding: 10px;
+        text-align: left;
+        vertical-align: top;
+        font-size: 14px;
+      }
+      th {
+        background: var(--pastel-blue);
+        color: var(--classic-blue);
+      }
+      ul {
+        padding-left: 20px;
+      }
+      code {
+        background: var(--pastel-blue);
+        border-radius: 4px;
+        padding: 1px 5px;
+      }
+      .pass {
+        color: #047857;
+        font-weight: 700;
+      }
+      .gap {
+        color: #92400e;
+        font-weight: 700;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <section class="hero">
+        <span class="badge">Patch v0.1</span>
+        <span class="badge">Public-safe</span>
+        <span class="badge">Visual verification pending</span>
+        <h1>Observability Value Reframe Patch</h1>
+        <p>
+          Reframed <code>/architecture/system-health/observability</code> from an
+          archive-heavy evidence page into a compact runtime enforcement value surface.
+        </p>
+        <p>
+          Commit hash: recorded after commit in the final handoff because the report is
+          generated before the Git object exists.
+        </p>
+      </section>
+
+      <h2>Files Changed</h2>
+      <ul>
+        <li><code>app/architecture/system-health/observability/page.tsx</code></li>
+        <li><code>docs/observability-value-reframe-report.html</code></li>
+      </ul>
+
+      <h2>Role Chain Executed</h2>
+      <ul>
+        <li>IA Reviewer: completed read-only audit and structure recommendation.</li>
+        <li>UI Reviewer: completed compact layout and design-system review.</li>
+        <li>Data Visualizer / Evidence Visualizer: completed enforcement matrix.</li>
+        <li>Supernova Value Assessor: completed before/after value scorecard.</li>
+        <li>Public Copy Reviewer: completed replacement wording and jargon reduction.</li>
+        <li>Codex Implementer: implemented after reviewer alignment.</li>
+        <li>Reviewer Gate: applied via content checks, targeted scan, and validation results.</li>
+      </ul>
+
+      <h2>IA Findings</h2>
+      <div class="card">
+        <p>
+          The previous page led with caveats and historical inventory. The new structure
+          leads with current purpose, current value, enforcement matrix, public-safe evidence
+          map, concrete checklist, boundary summary, and a collapsed historical archive.
+        </p>
+        <p>
+          Historical session data, evidence inventory, performance caveats, and future
+          comparison guidance were moved into a lower-page archive so they support provenance
+          without owning the page.
+        </p>
+      </div>
+
+      <h2>UI Findings</h2>
+      <div class="card">
+        <p>
+          The page now uses one top boundary callout, three compact value cards, a primary
+          matrix, a public-safe evidence map, a checklist, and a collapsed archive. Red
+          under-construction styling and nested proof cards were removed to preserve the
+          Classic Blue / Mint Teal / Pastel Blue cockpit tone.
+        </p>
+      </div>
+
+      <h2>Evidence Visualizer Matrix</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Layer</th>
+            <th>What exists</th>
+            <th>What it proves</th>
+            <th>What it blocks</th>
+            <th>Remaining gap</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Policy foundation</td>
+            <td>Routing-fit, receipt, QA, downgrade, authority, and human-gate controls.</td>
+            <td>Claimable evidence can be separated from draft or local work.</td>
+            <td>Unsupported orchestration, reviewer, model, cost, or production claims.</td>
+            <td>Public-safe rule-to-artifact links remain incomplete.</td>
+          </tr>
+          <tr>
+            <td>Registry foundation</td>
+            <td>Role, model, task, worker, receipt, and gate fields.</td>
+            <td>Expected role and observed worker can be separated.</td>
+            <td>Vague ownership claims.</td>
+            <td>Needs completed public-safe registry view.</td>
+          </tr>
+          <tr>
+            <td>Runtime ledger</td>
+            <td>Historical and enforcement records classified by evidence strength.</td>
+            <td>Captured, excluded, downgraded, and pending states are visible.</td>
+            <td>Benchmark, provider, speed, cost, and live-monitoring claims.</td>
+            <td>Cross-tool joins remain incomplete.</td>
+          </tr>
+          <tr>
+            <td>Checker layer</td>
+            <td>Routing evidence checker, fixtures, receipt rules, and references.</td>
+            <td>Scoped checks can catch missing evidence and inconsistency.</td>
+            <td>Checker evidence being treated as universal automation or owner approval.</td>
+            <td>Checker coverage is not universal.</td>
+          </tr>
+          <tr>
+            <td>Public cockpit</td>
+            <td>Curated public-safe cockpit route.</td>
+            <td>Decision value is visible without raw internal data.</td>
+            <td>Raw evidence exposure and public overclaiming.</td>
+            <td>More safe detail links are needed.</td>
+          </tr>
+          <tr>
+            <td>Cross-tool enforcement</td>
+            <td>Partial mapping across local work, checker records, receipts, and gates.</td>
+            <td>Claims can be downgraded unless evidence is joined.</td>
+            <td>Unreceipted reviewer claims and model-as-human authority.</td>
+            <td>Shared IDs, provenance, and decision metadata remain incomplete.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>Supernova Value Scorecard</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Dimension</th>
+            <th>Before</th>
+            <th>After</th>
+            <th>Result</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Value clarity</td><td>3</td><td>4</td><td class="pass">Pass</td></tr>
+          <tr><td>Recruiter readability</td><td>2</td><td>4</td><td class="pass">Pass</td></tr>
+          <tr><td>Business relevance</td><td>3</td><td>4</td><td class="pass">Pass</td></tr>
+          <tr><td>Evidence trust</td><td>3</td><td>4</td><td class="pass">Pass</td></tr>
+          <tr><td>Overclaim risk</td><td>3</td><td>2</td><td class="pass">Pass</td></tr>
+          <tr><td>Jargon risk</td><td>4</td><td>3</td><td class="pass">Pass</td></tr>
+        </tbody>
+      </table>
+
+      <h2>Copy Review Summary</h2>
+      <ul>
+        <li>Replaced archive-first framing with claim-boundary review value.</li>
+        <li>Removed repeated defensive disclaimers and kept one top boundary statement.</li>
+        <li>Replaced internal-proof wording with public-safe decision-input language.</li>
+        <li>Converted backlog prose into concrete next capture actions.</li>
+        <li>Collapsed historical session and comparison limits into archive content.</li>
+      </ul>
+
+      <h2>Validation Results</h2>
+      <ul>
+        <li><code>rtk pnpm typecheck</code>: <span class="pass">passed</span></li>
+        <li><code>rtk pnpm build</code>: <span class="pass">passed</span> with existing Next.js workspace-root warning</li>
+        <li><code>rtk pnpm check:public-dashboard-leakage</code>: <span class="pass">passed</span></li>
+        <li><code>rtk git diff --check</code>: <span class="pass">passed</span></li>
+        <li>Targeted auth/internal scan: <span class="pass">passed</span></li>
+        <li>Browser screenshot / Playwright / production visual verification: <span class="gap">not run</span></li>
+      </ul>
+
+      <h2>Allowed Claims</h2>
+      <ul>
+        <li>The observability page has been reframed as a public-safe runtime enforcement value surface.</li>
+        <li>The page explains what exists, what it proves, what it blocks, and what remains partial.</li>
+        <li>The page does not expose raw private records, receipts, credentials, or task payloads.</li>
+      </ul>
+
+      <h2>Blocked Claims</h2>
+      <ul>
+        <li>Fully browser-verified public UI.</li>
+        <li>Production visual verification complete.</li>
+        <li>Live telemetry, production monitoring, provider comparison, or full runtime automation.</li>
+        <li>Opus-reviewed patch.</li>
+      </ul>
+
+      <h2>Remaining Gaps</h2>
+      <ul>
+        <li>Browser screenshot verification was not completed.</li>
+        <li>Playwright visual regression was not completed.</li>
+        <li>Production visual verification was not completed.</li>
+      </ul>
+
+      <h2>Remaining Unrelated Git Changes</h2>
+      <p><code>TASK_RUNTIME_AUTHORITY_EVIDENCE_OWNER_REVIEW_PACKAGE.md</code> remains unrelated and must not be staged for this patch.</p>
+
+      <h2>Final Verdict</h2>
+      <p><strong>Final status:</strong> <code>PASS_WITH_VISUAL_VERIFICATION_GAP</code>.</p>
+    </main>
+  </body>
+</html>
