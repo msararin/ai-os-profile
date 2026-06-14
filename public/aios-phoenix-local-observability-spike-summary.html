@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Phoenix Local Observability Spike - Evidence-First Tool Adoption</title>
+  <style>
+    :root{color-scheme:light;--ink:#172033;--muted:#52647d;--line:#d8e0ea;--brand:#132238;--accent:#16834a;--warn:#b45309;--risk:#b91c1c;--bg:#f6f8fb}
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;line-height:1.55}
+    header{background:var(--brand);color:#fff;border-bottom:6px solid #42b883}
+    .wrap{max-width:1120px;margin:0 auto;padding:32px 22px}
+    h1{margin:0 0 10px;font-size:34px;line-height:1.12}
+    h2{margin:30px 0 12px;color:var(--brand);font-size:22px}
+    h3{margin:20px 0 8px;color:#26364d;font-size:17px}
+    p{margin:0 0 14px}
+    .subtitle{max-width:820px;color:#dbe7f6;font-size:17px}
+    .badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+    .badge{border:1px solid #b7e1c9;border-radius:999px;background:#e7f7ee;color:#145734;padding:5px 10px;font-size:13px;font-weight:700}
+    .badge.dark{border-color:#52647d;background:#26364d;color:#fff}
+    main{max-width:1120px;margin:0 auto;padding:30px 22px 56px}
+    .panel{margin:18px 0;padding:18px;border:1px solid var(--line);border-radius:8px;background:#fff;box-shadow:0 1px 2px rgba(18,34,56,.04)}
+    .warning{border-left:5px solid var(--warn);background:#fff8ed}
+    .safe{border-left:5px solid var(--accent)}
+    .blocked{border-left:5px solid var(--risk)}
+    .grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+    .metric{padding:14px;border:1px solid var(--line);border-radius:8px;background:#fff}
+    .metric strong{display:block;color:var(--brand);font-size:26px}
+    .metric span{color:var(--muted);font-size:13px}
+    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    table{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line)}
+    th,td{padding:10px;border:1px solid var(--line);vertical-align:top;text-align:left;font-size:14px}
+    th{background:#edf3f8;color:var(--brand)}
+    li{margin:5px 0}
+    footer{margin-top:30px;color:var(--muted);font-size:13px}
+    @media(max-width:800px){.grid,.two-col{grid-template-columns:1fr}h1{font-size:28px}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <h1>Phoenix Local Observability Spike - Evidence-First Tool Adoption</h1>
+      <p class="subtitle">How AIOS moved from policy-only governance toward local trace-backed evidence while keeping production, public benchmark, and runtime-enforcement claims blocked.</p>
+      <div class="badges">
+        <span class="badge">Accepted with caveats</span>
+        <span class="badge">SPIKE_ONLY</span>
+        <span class="badge">Internal evidence milestone</span>
+        <span class="badge dark">Next action: accept closeout and pause</span>
+      </div>
+    </div>
+  </header>
+  <main>
+    <section class="panel warning">
+      <h2>Clear Disclaimer</h2>
+      <p>This public-safe summary describes an internal owner-review closeout. It does not claim production readiness, public benchmark readiness, full runtime authority enforcement, actual multi-worker orchestration proof, all-13-smoke-pass, or production telemetry. Phoenix traces remain local SPIKE_ONLY evidence.</p>
+    </section>
+
+    <section class="panel">
+      <h2>Executive Summary</h2>
+      <p>AIOS completed an internal SPIKE_ONLY Phoenix local observability closeout with caveats. The work tested whether a local observability tool could improve evidence quality after AIOS had already built a no-platform baseline, fixture catalog, smoke-test catalog, benchmark matrix, checker/gate-runner, and claim-boundary controls.</p>
+      <p>The result was a measurable evidence lift: 9 of 23 observability parameters improved from the no-platform baseline to local SPIKE_ONLY trace-backed evidence. Smoke-test execution produced 12 PASS + 1 WARN, and controlled enforcement fixture coverage expanded from 10 to 12 fixtures with CLAIM_BLOCKED behavior added.</p>
+    </section>
+
+    <section class="grid" aria-label="Key metrics">
+      <div class="metric"><strong>0</strong><span>No-platform score 3 count</span></div>
+      <div class="metric"><strong>9/23</strong><span>Parameters improved after Phoenix local spike</span></div>
+      <div class="metric"><strong>12 + 1</strong><span>Smoke results: 12 PASS + 1 WARN</span></div>
+      <div class="metric"><strong>10 -&gt; 12</strong><span>Controlled enforcement fixtures</span></div>
+    </section>
+
+    <section class="panel">
+      <h2>Why We Did Not Install Phoenix Immediately</h2>
+      <p>AIOS did not start with the tool. It first defined what evidence would count: no-platform baseline, fixture catalog, 13-slot smoke-test catalog, 23-parameter benchmark matrix, checker/gate-runner v0.1, claim-boundary checks, public-safety checks, and provider-review gates with receipts retained in the internal evidence packet.</p>
+      <p>This avoided treating a dashboard or tool install as proof. Phoenix was used only after the evidence shape and claim boundaries were frozen.</p>
+    </section>
+
+    <section class="panel">
+      <h2>What Problems We Faced</h2>
+      <ul>
+        <li>A dashboard could be mistaken for a source of truth.</li>
+        <li>Local traces could be overread as production telemetry.</li>
+        <li>A 12 PASS + 1 WARN smoke result could be compressed into the unsafe claim that all 13 smoke tests passed.</li>
+        <li>Fixture-level evidence could be overread as full runtime authority enforcement.</li>
+        <li>Simulated Big Crew labels could be mistaken for independent multi-worker dispatch.</li>
+        <li>Tool adoption could consume time before proving evidence value.</li>
+      </ul>
+    </section>
+
+    <section class="panel">
+      <h2>Foundation Built Before The Tool</h2>
+      <div class="two-col">
+        <ul>
+          <li>No-platform fixture runner</li>
+          <li>Benchmark matrix across 23 observability parameters</li>
+          <li>Smoke-test catalog with 13 slots</li>
+          <li>Checker/gate-runner v0.1</li>
+        </ul>
+        <ul>
+          <li>Claim boundary manifests</li>
+          <li>Evidence manifest discipline</li>
+          <li>Public-safe summary separation</li>
+          <li>Provider-review gate sequence with internal receipts</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Before / After Comparison</h2>
+      <table>
+        <tr><th>Area</th><th>Before</th><th>After</th></tr>
+        <tr><td>Observability evidence level</td><td>No trace-backed parameter evidence.</td><td>9/23 parameters improved to local SPIKE_ONLY trace-backed evidence.</td></tr>
+        <tr><td>Smoke-test state</td><td>13 slots defined / NOT_RUN.</td><td>12 PASS + 1 WARN, all source-grounded; all-13-pass remains blocked.</td></tr>
+        <tr><td>Enforcement decision coverage</td><td>Limited fixture set.</td><td>12 controlled fixtures covering BLOCK, DOWNGRADE, SANITIZER_FAIL, WARN, CLAIM_BLOCKED.</td></tr>
+        <tr><td>Claim boundary discipline</td><td>Claim boundary existed mainly in documents/review.</td><td>Checker/gate-runner and fixture results actively block or downgrade unsafe claims in controlled scenarios.</td></tr>
+        <tr><td>Dashboard trust</td><td>Dashboard risked being an interpretation surface only.</td><td>Dashboard remains an interpretation surface; source evidence is trace, fixture, and checker output.</td></tr>
+        <tr><td>Reviewer discipline</td><td>Manual reviewer gates.</td><td>Provider-review gate sequence applied across baseline, spike, smoke, enforcement, and closeout, with receipts retained internally.</td></tr>
+        <tr><td>Cost/value</td><td>Risk of spending time/tools without evidence.</td><td>Bounded local spike showed measurable evidence lift before considering broader rollout.</td></tr>
+        <tr><td>Codex/tool workflow quality</td><td>Prompt-operated governance and manual handoff.</td><td>Checker/gate-runner package creates structured decisions and gate readiness, reducing manual ambiguity.</td></tr>
+      </table>
+    </section>
+
+    <section class="panel">
+      <h2>What Improved</h2>
+      <h3>What Phoenix Improved</h3>
+      <ul>
+        <li>Added local SPIKE_ONLY trace-backed evidence for approved fixtures.</li>
+        <li>Improved 9 of 23 observability parameters from the no-platform baseline.</li>
+        <li>Created a concrete comparison point between policy-only governance and trace-backed evidence.</li>
+        <li>Made tool value measurable before any broader rollout decision.</li>
+      </ul>
+      <h3>What Checker/Gate-Runner Improved</h3>
+      <ul>
+        <li>Converted narrative claim review into structured decisions.</li>
+        <li>Made unsafe claims visible as block/downgrade outcomes.</li>
+        <li>Reduced ambiguity for Codex by giving structured checker and gate outputs.</li>
+        <li>Preserved the distinction between evidence, interpretation, and claim.</li>
+      </ul>
+      <h3>What Smoke-Test Execution Improved</h3>
+      <ul>
+        <li>Moved smoke slots from defined/not-run status to source-grounded status.</li>
+        <li>Produced 12 PASS + 1 WARN.</li>
+        <li>Preserved the WARN as a safety boundary instead of overclaiming all-13-pass.</li>
+      </ul>
+      <h3>What Runtime Enforcement Fixture Expansion Improved</h3>
+      <ul>
+        <li>Expanded controlled fixtures from 10 to 12.</li>
+        <li>Added CLAIM_BLOCKED behavior.</li>
+        <li>Covered BLOCK, DOWNGRADE, SANITIZER_FAIL, WARN, and CLAIM_BLOCKED decisions.</li>
+        <li>Kept the result correctly bounded as controlled fixture-level evidence only.</li>
+      </ul>
+    </section>
+
+    <section class="panel">
+      <h2>Cost / Trust / Value Interpretation</h2>
+      <p>The Phoenix local spike made observability adoption more trustworthy because tool value was measured against a frozen no-platform baseline.</p>
+      <p>It was more cost-effective because AIOS avoided full platform rollout and tested only selected fixtures first.</p>
+      <p>It improved Codex workflow quality by giving Codex structured checker/gate outputs instead of relying only on narrative reports.</p>
+      <p>It improved claim safety by making unsupported claims visible and blocked.</p>
+      <p>It does not prove production readiness, full automation, or full runtime enforcement.</p>
+    </section>
+
+    <section class="two-col">
+      <div class="panel safe">
+        <h2>What This Proves</h2>
+        <ul>
+          <li>AIOS completed an internal SPIKE_ONLY Phoenix local observability closeout with caveats.</li>
+          <li>The spike produced local trace-backed evidence for approved fixtures.</li>
+          <li>9 of 23 observability parameters improved from the no-platform baseline.</li>
+          <li>Smoke-test execution produced 12 PASS + 1 WARN.</li>
+          <li>Controlled enforcement fixture coverage expanded from 10 to 12 fixtures.</li>
+          <li>CLAIM_BLOCKED behavior was added.</li>
+          <li>Provider-review gates completed with receipts retained in the internal packet.</li>
+        </ul>
+      </div>
+      <div class="panel blocked">
+        <h2>What This Does Not Prove</h2>
+        <ul>
+          <li>production readiness</li>
+          <li>public benchmark readiness</li>
+          <li>Benchmark Dataset v0.1 export</li>
+          <li>CASE-003 rerun or unfreeze</li>
+          <li>Langfuse evaluation</li>
+          <li>LangGraph migration</li>
+          <li>full observability rollout</li>
+          <li>full runtime authority enforcement</li>
+          <li>actual multi-worker runtime orchestration proof</li>
+          <li>all 13 smoke tests passed</li>
+          <li>Phoenix SPIKE_ONLY traces as production telemetry</li>
+          <li>dashboard as raw source of truth</li>
+          <li>simulated Big Crew as independent dispatch</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Next Recommended Actions</h2>
+      <ol>
+        <li>Accept closeout and pause.</li>
+        <li>Keep this public summary as sanitized, caveated portfolio material.</li>
+        <li>Keep benchmark readiness, Langfuse comparison, runtime supervisor work, and multi-worker orchestration proof as separate gated tasks.</li>
+      </ol>
+    </section>
+
+    <footer>
+      <p>Final boundary: this is an evidence-first tool adoption achievement. It shows that AIOS improved internal evidence quality before considering broader observability rollout. It does not promote Phoenix traces, dashboards, or controlled fixtures into production proof.</p>
+    </footer>
+  </main>
+</body>
+</html>

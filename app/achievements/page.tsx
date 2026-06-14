@@ -8,7 +8,7 @@ import { Badge } from "@/components/ui/badge"
 import { ChevronDown, ChevronRight, Download } from "lucide-react"
 
 export default function AchievementsPage() {
-  const [expandedDays, setExpandedDays] = useState<Set<string>>(new Set(['2026-06-12']))
+  const [expandedDays, setExpandedDays] = useState<Set<string>>(new Set(['2026-06-14']))
 
   const toggleDay = (date: string) => {
     const newExpanded = new Set(expandedDays)
@@ -21,6 +21,44 @@ export default function AchievementsPage() {
   }
 
   const achievements = [
+    {
+      date: '2026-06-14',
+      headline: 'Phoenix Local Observability Spike — Evidence-First Tool Adoption',
+      summary: 'Completed a bounded Phoenix local observability spike as an internal SPIKE_ONLY milestone, using a frozen no-platform baseline before adopting the tool. The work produced local trace-backed evidence for approved fixtures, improved 9 of 23 observability parameters, and preserved strict claim boundaries.',
+      proofType: 'internal evidence milestone, local observability spike, claim-boundary controlled closeout',
+      evidenceReference: 'Phoenix closeout package accepted with caveats; provider-review receipts retained in internal evidence packet; public-safe summary published without raw receipts or private paths',
+      status: 'Accepted with caveats / Public-safe cockpit summary live / Next action: accept closeout and pause',
+      publicSafeResult: 'AIOS can now show an evidence-first observability adoption story: it built baseline controls before using Phoenix, measured a local evidence lift, kept dashboard output as interpretation rather than source of truth, and blocked stronger runtime, production, benchmark, and orchestration claims.',
+      caveat: 'SPIKE_ONLY internal evidence milestone. This is not production readiness, public benchmark readiness, Benchmark Dataset v0.1 export, CASE-003 rerun or unfreeze, Langfuse evaluation, LangGraph migration, full observability rollout, full runtime authority enforcement, actual multi-worker runtime orchestration proof, all-13-smoke-pass, production telemetry, or proof that a dashboard is the raw source of truth.',
+      downloadHref: '/aios-phoenix-local-observability-spike-summary.html',
+      downloadLabel: 'Download Public-Safe Summary',
+      details: {
+        whyItMatters: 'The achievement shows disciplined tool adoption. AIOS did not install an observability platform and then infer value from the dashboard. It first built the no-platform baseline, fixture catalog, smoke-test catalog, benchmark matrix, checker/gate-runner, claim-boundary checks, public-safety checks, and provider-review gate sequence. Phoenix was then tested locally against that baseline, so the improvement could be measured and caveated.',
+        evidence: [
+          'Final accepted status: AIOS_PHOENIX_SPIKE_CLOSEOUT_ACCEPTED_WITH_CAVEATS',
+          'Final gate verdict recorded internally: APPROVE_INTERNAL_CLOSEOUT_WITH_CAVEATS',
+          'No-platform score 3 count: 0',
+          'Phoenix local SPIKE_ONLY score 3 count: 9 of 23 parameters',
+          'Improved observability parameters: P02, P04, P05, P07, P11, P13, P15, P16, and P22',
+          'Smoke-test execution recorded 13 source-grounded statuses: 12 PASS + 1 WARN',
+          'Controlled enforcement fixture coverage expanded from 10 to 12 fixtures',
+          'CLAIM_BLOCKED behavior was added',
+          'Controlled decision coverage includes BLOCK, DOWNGRADE, SANITIZER_FAIL, WARN, and CLAIM_BLOCKED',
+          'Phoenix SPIKE_ONLY trace-linked fixtures: 4; trace candidates: 8',
+          'Named model-review labels are backed by retained provider receipts in the internal packet; no raw receipt identifiers are published here'
+        ],
+        skillsDemonstrated: [
+          'Evidence-first observability adoption',
+          'Baseline-before-tool validation',
+          'Claim-boundary preservation for public surfaces',
+          'Smoke-test and fixture-result classification',
+          'Provider-review receipt discipline without public leakage',
+          'Cost-aware spike scoping before broader platform rollout'
+        ],
+        impact: 'The practical improvement is trust and cost control: AIOS measured local trace-backed evidence against a frozen baseline, avoided a full observability rollout before evidence value was proven, gave Codex structured checker/gate outputs instead of narrative-only governance, and kept unsupported claims visible as blocked.'
+      },
+      tags: ['Phoenix', 'Observability', 'Evidence Discipline', 'SPIKE_ONLY', 'Claim Boundary']
+    },
     {
       date: '2026-06-12',
       headline: 'Runtime Authority & Orchestration Evidence Dashboard',
@@ -790,10 +828,10 @@ export default function AchievementsPage() {
               Public-safe evidence of what was built, what is proven, what is caveated, and what is not published.
             </p>
             <p className="mt-4 text-sm font-medium text-white/80">
-              Evidence updated: 12 Jun 2026 · Runtime Authority Evidence dashboard deployed
+              Evidence updated: 14 Jun 2026 · Phoenix local observability spike accepted with caveats
             </p>
             <p className="mt-2 text-sm text-white/75">
-              Latest validated milestone: Runtime Authority & Orchestration Evidence Dashboard deployed, 12 Jun 2026
+              Latest validated milestone: Phoenix Local Observability Spike, 14 Jun 2026
             </p>
           </div>
         </div>
@@ -932,7 +970,9 @@ export default function AchievementsPage() {
                         <Button asChild size="sm" variant="outline">
                           <a href={achievement.downloadHref} download>
                             <Download className="mr-2 h-4 w-4" />
-                            Download Dry-Run Profile
+                            {"downloadLabel" in achievement && achievement.downloadLabel
+                              ? achievement.downloadLabel
+                              : "Download Dry-Run Profile"}
                           </a>
                         </Button>
                       </div>
@@ -948,11 +988,11 @@ export default function AchievementsPage() {
       {/* Summary Stats */}
       <section className="py-12 bg-muted/30">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-semibold mb-6 text-center">May 2026 Proof Summary</h2>
+          <h2 className="text-2xl font-semibold mb-6 text-center">Proof Summary</h2>
           <div className="grid md:grid-cols-4 gap-6">
             <Card className="text-center">
               <CardContent className="pt-6">
-                <div className="text-3xl font-bold text-[#1F3A60]">19</div>
+                <div className="text-3xl font-bold text-[#1F3A60]">20</div>
                 <div className="text-sm text-muted-foreground mt-2">Proof-Backed Milestones</div>
               </CardContent>
             </Card>
