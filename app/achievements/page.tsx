@@ -26,7 +26,7 @@ export default function AchievementsPage() {
       headline: 'Phoenix Local Observability Spike — Evidence-First Tool Adoption',
       summary: 'Completed a bounded Phoenix local observability spike as an internal SPIKE_ONLY milestone, using a frozen no-platform baseline before adopting the tool. The work produced local trace-backed evidence for approved fixtures, improved 9 of 23 observability parameters, and preserved strict claim boundaries.',
       proofType: 'internal evidence milestone, local observability spike, claim-boundary controlled closeout',
-      evidenceReference: 'Phoenix closeout package accepted with caveats; provider-review receipts retained in internal evidence packet; public-safe summary published without raw receipts or private paths',
+      evidenceReference: 'ai-os-profile commit 7fa25a8; Phoenix closeout package accepted with caveats; provider-review receipts retained in internal evidence packet; public-safe summary published without raw receipts or private paths',
       status: 'Accepted with caveats / Public-safe cockpit summary live / Next action: accept closeout and pause',
       publicSafeResult: 'AIOS can now show an evidence-first observability adoption story: it built baseline controls before using Phoenix, measured a local evidence lift, kept dashboard output as interpretation rather than source of truth, and blocked stronger runtime, production, benchmark, and orchestration claims.',
       caveat: 'SPIKE_ONLY internal evidence milestone. This is not production readiness, public benchmark readiness, Benchmark Dataset v0.1 export, CASE-003 rerun or unfreeze, Langfuse evaluation, LangGraph migration, full observability rollout, full runtime authority enforcement, actual multi-worker runtime orchestration proof, all-13-smoke-pass, production telemetry, or proof that a dashboard is the raw source of truth.',
@@ -46,6 +46,13 @@ export default function AchievementsPage() {
           'Controlled decision coverage includes BLOCK, DOWNGRADE, SANITIZER_FAIL, WARN, and CLAIM_BLOCKED',
           'Phoenix SPIKE_ONLY trace-linked fixtures: 4; trace candidates: 8',
           'Named model-review labels are backed by retained provider receipts in the internal packet; no raw receipt identifiers are published here'
+        ],
+        evidenceMaturity: [
+          {
+            before: 'AIOS mainly focused on creating artifacts, recording achievements, and deploying pages.',
+            whatChanged: 'Phoenix milestone added evidence references, claim boundaries, checker/gate runner logic, Opus caveats, commit anchors, and deployment traceability.',
+            value: 'AIOS can now catch gaps that were easy to miss before, such as local-only proof, missing evidence references, and pages that deploy without clear evidence lineage.'
+          }
         ],
         skillsDemonstrated: [
           'Evidence-first observability adoption',
@@ -935,6 +942,32 @@ export default function AchievementsPage() {
                         ))}
                       </ul>
                     </div>
+
+                    {"evidenceMaturity" in achievement.details && achievement.details.evidenceMaturity && (
+                      <div>
+                        <h3 className="text-lg font-semibold text-[#1F3A60] mb-2">Evidence Maturity Gained</h3>
+                        <div className="overflow-x-auto rounded-md border border-border">
+                          <table className="w-full text-sm">
+                            <thead className="bg-muted/50 text-left text-foreground">
+                              <tr>
+                                <th className="px-3 py-2 font-medium">Before</th>
+                                <th className="px-3 py-2 font-medium">What changed</th>
+                                <th className="px-3 py-2 font-medium">Value</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {achievement.details.evidenceMaturity.map((row, idx) => (
+                                <tr key={idx} className="border-t border-border">
+                                  <td className="px-3 py-3 align-top text-muted-foreground">{row.before}</td>
+                                  <td className="px-3 py-3 align-top text-muted-foreground">{row.whatChanged}</td>
+                                  <td className="px-3 py-3 align-top text-muted-foreground">{row.value}</td>
+                                </tr>
+                              ))}
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    )}
 
                     {/* Public-Safe Result */}
                     <div>
