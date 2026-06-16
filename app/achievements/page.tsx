@@ -8,7 +8,7 @@ import { Badge } from "@/components/ui/badge"
 import { ChevronDown, ChevronRight, Download } from "lucide-react"
 
 export default function AchievementsPage() {
-  const [expandedDays, setExpandedDays] = useState<Set<string>>(new Set(['2026-06-14']))
+  const [expandedDays, setExpandedDays] = useState<Set<string>>(new Set(['2026-06-16']))
 
   const toggleDay = (date: string) => {
     const newExpanded = new Set(expandedDays)
@@ -21,6 +21,47 @@ export default function AchievementsPage() {
   }
 
   const achievements = [
+    {
+      date: '2026-06-16',
+      headline: 'Made AI Execution Measurable Before Claiming Efficiency',
+      summary: 'Updated AIOS public surfaces to separate Big Crew specialist delivery from execution control. Super Runner, Runner, and Checker now make task boundaries, validation, stop conditions, and claim boundaries explicit, with measurement-contract fields required before any performance, speed, or efficiency claim.',
+      proofType: 'public-safe AIOS role-visibility and measurement-contract milestone',
+      evidenceReference: 'TASK_EXECUTION_CONTROL_ROLE_MEASUREMENT_CONTRACT_V0_1 closeout package; OpenRouter Opus 4.7 gate receipt for this patch only',
+      status: 'Completed / Public-safe role visibility live / Measurement contract added before efficiency claims',
+      publicSafeResult: 'Execution control roles improve traceability, scope control, and claim safety. AIOS now shows how Super Runner, Runner, and Checker make execution roles measurable before any speed, performance, efficiency, or review-effort claim is allowed.',
+      caveat: 'This is a measurement-contract and public wording achievement. It is not a claim of reduced execution time, improved performance, increased efficiency, faster delivery, lower review effort, production readiness, benchmark proof, cost superiority, Hermes comparison completion, CASE-003 execution success, or Controlled Evidence Run completion. The OpenRouter Opus 4.7 gate was receipted for this measurement-contract patch only and does not imply all AIOS or CASE-003 work has Opus approval.',
+      details: {
+        whyItMatters: 'AI execution claims become risky when delivery work, scope control, validation, and public claim boundaries are blended together. This update makes the operating model easier to inspect: Big Crew does specialist delivery work, while Super Runner, Runner, and Checker govern boundary, execution, evidence, and claim safety before stronger claims can be made.',
+        evidence: [
+          'Big Crew is shown as the Specialist Delivery Team, separate from execution control.',
+          'Super Runner is shown as the Execution Control Layer for task boundary, dependency, authority, caveats, and stop conditions.',
+          'Runner is shown as the Bounded Task Executor for approved scoped work without inventing new scope.',
+          'Checker is shown as the Evidence & Claim Boundary Checker for evidence completeness, source-of-truth alignment, and claim boundaries.',
+          'Measurement-contract fields were added before any performance, speed, efficiency, or review-effort claim is allowed.',
+          'Common measurement fields include task duration, rework count, checker findings, claim drift prevented, owner escalation count, blocked unsafe actions, missing evidence, first-pass validation, scope changes, and handoff completeness.',
+          'Role-specific measurement fields were added for Super Runner, Runner, and Checker.',
+          'OpenRouter Opus 4.7 gate was receipted for this measurement-contract patch and returned APPROVE.',
+          'Public wording blocks reduced execution time, improved performance, increased efficiency, faster delivery, lower review effort, production readiness, benchmark proof, cost superiority, Hermes comparison completion, CASE-003 execution success, and Controlled Evidence Run completion.'
+        ],
+        evidenceMaturity: [
+          {
+            before: 'AIOS could describe specialist delivery and evidence discipline, but execution-control roles were less visible on the public achievement surface.',
+            whatChanged: 'The public story now separates specialist delivery from execution control and adds required measurement fields before efficiency claims.',
+            value: 'The achievement can be understood as traceability, scope control, and claim-safety progress without implying faster delivery, better performance, or production readiness.'
+          }
+        ],
+        skillsDemonstrated: [
+          'Execution-control role design',
+          'Measurement contract design before efficiency claims',
+          'Public-safe AIOS achievement wording',
+          'Claim-boundary preservation for model-review receipts',
+          'Separation of specialist delivery from execution governance',
+          'Source-of-truth aligned portfolio communication'
+        ],
+        impact: 'Execution control roles improve traceability, scope control, and claim safety by making task ownership, validation, stop conditions, and claim boundaries explicit. The impact is qualitative and measurement-ready; performance, speed, efficiency, and review-effort impact remain unclaimed until measured.'
+      },
+      tags: ['AIOS', 'Execution Control', 'Measurement Contract', 'Claim Safety', 'Opus Gate']
+    },
     {
       date: '2026-06-14',
       headline: 'Phoenix Local Observability Spike — Evidence-First Tool Adoption',
@@ -835,10 +876,10 @@ export default function AchievementsPage() {
               Public-safe evidence of what was built, what is proven, what is caveated, and what is not published.
             </p>
             <p className="mt-4 text-sm font-medium text-white/80">
-              Evidence updated: 14 Jun 2026 · Phoenix local observability spike accepted with caveats
+              Evidence updated: 16 Jun 2026 · execution-control measurement contract added
             </p>
             <p className="mt-2 text-sm text-white/75">
-              Latest validated milestone: Phoenix Local Observability Spike, 14 Jun 2026
+              Latest validated milestone: Made AI Execution Measurable Before Claiming Efficiency, 16 Jun 2026
             </p>
           </div>
         </div>
@@ -1025,7 +1066,7 @@ export default function AchievementsPage() {
           <div className="grid md:grid-cols-4 gap-6">
             <Card className="text-center">
               <CardContent className="pt-6">
-                <div className="text-3xl font-bold text-[#1F3A60]">20</div>
+                <div className="text-3xl font-bold text-[#1F3A60]">21</div>
                 <div className="text-sm text-muted-foreground mt-2">Proof-Backed Milestones</div>
               </CardContent>
             </Card>
