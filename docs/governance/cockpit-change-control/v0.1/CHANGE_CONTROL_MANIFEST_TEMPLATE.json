@@ -1,0 +1,14 @@
+{
+  "change_class": "",
+  "summary": "",
+  "owner_intended_meaning": "",
+  "canonical_source": "",
+  "affected_public_routes": [],
+  "affected_files": [],
+  "protected_not_in_scope": [],
+  "owner_semantic_acceptance_required": "yes",
+  "owner_semantic_acceptance_status": "",
+  "deploy_allowed": "no",
+  "deployment_performed": "no",
+  "claim_boundary": ""
+}

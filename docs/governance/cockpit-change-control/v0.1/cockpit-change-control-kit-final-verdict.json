@@ -1,0 +1,9 @@
+{
+  "verdict": "COCKPIT_CHANGE_CONTROL_KIT_INSTALLED_COMMAND_WIRING_DEFERRED",
+  "kit_version": "v0.1",
+  "installed": "yes",
+  "checker_script_installed": "yes",
+  "package_json_wiring": "deferred",
+  "public_app_route_copy_changed": "no",
+  "deployed": "no"
+}
