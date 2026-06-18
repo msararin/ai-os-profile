@@ -596,6 +596,33 @@ export default function AIOperatingSystemPage() {
               </CardContent>
             </Card>
 
+            <Card className="mt-4 border-border bg-card">
+              <CardHeader>
+                <CardTitle className="text-sm font-medium">
+                  AIOS Capability Layer
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-3 text-sm leading-6 text-muted-foreground">
+                <p>
+                  This North Star is supported by measurement-grade evidence
+                  discipline, source-of-truth control, policy, governance, and
+                  Prime Gate / Gate PM review.
+                </p>
+                <p>
+                  The goal is not blind automation. It is controlled delegation:
+                  routine validation, evidence checks, and escalation boundaries
+                  can move through the system, while strategic control stays with
+                  the owner.
+                </p>
+                <p>
+                  AIOS reduces low-value decision load so the owner can operate
+                  more like a CEO — setting direction, approving material
+                  trade-offs, and focusing attention on strategy, judgment, and
+                  leverage.
+                </p>
+              </CardContent>
+            </Card>
+
             <div className="mt-6 space-y-3">
               {[
                 {

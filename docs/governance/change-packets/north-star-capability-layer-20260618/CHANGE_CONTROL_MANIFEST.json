@@ -1,0 +1,24 @@
+{
+  "change_class": "CHANGE_CLASS_NORTH_STAR_OR_STRATEGY_UPDATE",
+  "summary": "Keep the short North Star mission anchor and add an adjacent AIOS Capability Layer explaining measurement-grade evidence discipline, source-of-truth control, policy, governance, and Prime Gate / Gate PM review.",
+  "owner_intended_meaning": "AIOS should let the owner operate more like a CEO through controlled delegation. Routine validation, evidence checks, and escalation boundaries can move through the system while strategic control stays with the owner.",
+  "canonical_source": "Owner semantic decision in current session plus North Star RCA owner report.",
+  "affected_public_routes": [
+    "/ai-operating-system",
+    "/lean-value-tree"
+  ],
+  "affected_files": [
+    "app/ai-operating-system/page.tsx",
+    "app/lean-value-tree/page.tsx"
+  ],
+  "protected_not_in_scope": [
+    "app/achievements/page.tsx",
+    "app/knowledge-sharing/page.tsx",
+    "app/architecture/system-health/page.tsx"
+  ],
+  "owner_semantic_acceptance_required": "yes",
+  "owner_semantic_acceptance_status": "approved_for_local_patch_only_not_go_live",
+  "deploy_allowed": "no",
+  "deployment_performed": "no",
+  "claim_boundary": "North Star remains short. Adjacent capability layer may describe measurement/evidence/policy/governance/Prime Gate support and controlled delegation. Forbidden positive claims listed in the owner task remain blocked."
+}

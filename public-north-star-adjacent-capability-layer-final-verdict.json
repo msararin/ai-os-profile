@@ -1,0 +1,28 @@
+{
+  "task": "TASK_GOVERNANCE_REPAIR_WORKTREE_RECOVERY_AND_SAFE_CONTINUATION_V0_1",
+  "date": "2026-06-18",
+  "final_verdict": "PUBLIC_NORTH_STAR_CAPABILITY_LAYER_READY_FOR_OWNER_REVIEW",
+  "clean_worktree_path": "/Users/apple/projects/ai-os-profile-governance-repair",
+  "kit_commit": "b1b9952",
+  "patch_commit": "pending",
+  "owner_semantic_acceptance_status": "approved_for_local_patch_only_not_go_live",
+  "deploy_allowed": "no",
+  "deployed": "no",
+  "target_files_modified": [
+    "app/ai-operating-system/page.tsx",
+    "app/lean-value-tree/page.tsx"
+  ],
+  "protected_routes_modified": "no",
+  "north_star_sentence": "Sustainable economic leverage through an AI-assisted personal operating system.",
+  "capability_layer_added": "yes",
+  "typecheck": "pass",
+  "lint": "pass_with_existing_warnings",
+  "build": "pass",
+  "local_smoke_ai_operating_system": "pass_http_200",
+  "local_smoke_lean_value_tree": "pass_http_200",
+  "forbidden_positive_claim_scan": "pass",
+  "private_leakage_scan": "pass",
+  "runner_gang_verdict": "pending",
+  "prime_gate_verdict": "pending",
+  "round3_status": "PAUSED_BY_DEFAULT"
+}
