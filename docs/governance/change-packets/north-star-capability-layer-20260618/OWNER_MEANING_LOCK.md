@@ -9,7 +9,7 @@ Keep the North Star short and stable. Add an adjacent AIOS Capability Layer that
 
 ## Owner-Intended Meaning
 
-AIOS should let the owner operate more like a CEO through controlled delegation. Routine validation, evidence checks, and escalation boundaries can move through the system while strategic control stays with the owner.
+AIOS should let the owner operate more like a CEO through controlled delegation. Routine validation, evidence checks, and escalation boundaries are progressively moved through the system under Prime Gate / Gate PM review while strategic control stays with the owner.
 
 ## Acceptance Scope
 

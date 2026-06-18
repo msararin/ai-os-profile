@@ -22,6 +22,8 @@ Added the owner-approved adjacent `AIOS Capability Layer` block near the North S
 - `app/ai-operating-system/page.tsx`
 - `app/lean-value-tree/page.tsx`
 
+Prime Gate / Opus returned `APPROVE WITH SMALL PATCH`. The delegation sentence was softened from a present-tense capability claim into a progressive, review-bounded claim. The owner-intended meaning was preserved and go-live remains blocked.
+
 ## North Star Sentence
 
 `Sustainable economic leverage through an AI-assisted personal operating system.`

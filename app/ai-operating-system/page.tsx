@@ -611,8 +611,8 @@ export default function AIOperatingSystemPage() {
                 <p>
                   The goal is not blind automation. It is controlled delegation:
                   routine validation, evidence checks, and escalation boundaries
-                  can move through the system, while strategic control stays with
-                  the owner.
+                  are progressively moved through the system under Prime Gate /
+                  Gate PM review, while strategic control stays with the owner.
                 </p>
                 <p>
                   AIOS reduces low-value decision load so the owner can operate

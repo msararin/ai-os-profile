@@ -30,12 +30,14 @@ This is deterministic evidence validation only. It is not external Prime Gate re
 | Private path/key/receipt leakage scan clean | PASS |
 | Protected routes unchanged | PASS |
 | Package/checker caveats recorded honestly | PASS |
+| Post-Prime-Gate wording patch rerun | PASS |
 
 ## Caveats
 
 - The checker is installed as `scripts/check-cockpit-change-control.mjs`.
 - `package.json` command wiring is deferred.
-- Prime Gate / external Opus review is not captured by this Runner Gang validation.
+- Prime Gate / external Opus review was captured after the initial Runner Gang pass.
+- Prime Gate returned `APPROVE WITH SMALL PATCH`; the delegation sentence was softened and Runner Gang checks were rerun.
 - No deployment was performed.
 
 ## Verdict

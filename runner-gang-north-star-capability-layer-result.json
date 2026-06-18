@@ -15,5 +15,7 @@
   "protected_routes_unchanged": "pass",
   "checker_caveat_recorded": "pass",
   "package_json_wiring": "deferred",
-  "prime_gate_external_review": "pending"
+  "prime_gate_external_review": "captured",
+  "prime_gate_verdict": "PRIME_GATE_APPROVES_WITH_PATCHES_FOR_OWNER_LOCAL_REVIEW",
+  "post_prime_gate_patch_rerun": "pass"
 }

@@ -22,7 +22,10 @@
   "local_smoke_lean_value_tree": "pass_http_200",
   "forbidden_positive_claim_scan": "pass",
   "private_leakage_scan": "pass",
-  "runner_gang_verdict": "pending",
-  "prime_gate_verdict": "pending",
+  "runner_gang_verdict": "RUNNER_GANG_PASS_READY_FOR_PRIME_GATE_REVIEW",
+  "prime_gate_verdict": "PRIME_GATE_APPROVES_WITH_PATCHES_FOR_OWNER_LOCAL_REVIEW",
+  "prime_gate_external_review_captured": "yes",
+  "prime_gate_small_patch_applied": "yes",
+  "post_prime_gate_validation": "pass",
   "round3_status": "PAUSED_BY_DEFAULT"
 }
