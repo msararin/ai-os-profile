@@ -1,0 +1,15 @@
+{
+  "public_surface_runner_used": false,
+  "fallback_used": "runner_gang_v0_1_style_manual_checklist",
+  "restore_visible_local": "pass",
+  "no_private_paths_keys_receipts_leaked": "pass_false_positive_terms_only",
+  "no_forbidden_positive_claims": "pass",
+  "routes_return_200": {
+    "/achievements": 200,
+    "/knowledge-sharing": 200,
+    "/architecture/system-health": 200
+  },
+  "round3_not_implied_executed_ready_succeeded": "pass",
+  "disliked_public_framing_removed": "source_scan_preliminary_pass",
+  "future_patch_blocked_pending_owner_semantic_approval": true
+}

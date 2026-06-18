@@ -1,0 +1,15 @@
+{
+  "final_verdict": "RESTORE_COMPLETE_RCA_PENDING",
+  "restore_completed": "yes",
+  "restore_commit_hash": null,
+  "deployed": "no",
+  "live_restore_confirmed": "no",
+  "rca_completed": "yes",
+  "prime_gate_review_captured": "no",
+  "public_surface_runner_used": "no",
+  "runner_gang_used": "yes",
+  "root_cause_count": 14,
+  "policy_patch_created": "yes",
+  "future_public_patch_blocked_pending_owner_semantic_acceptance": "yes",
+  "round3_status": "PAUSED_BY_DEFAULT"
+}

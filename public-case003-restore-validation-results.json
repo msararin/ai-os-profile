@@ -1,0 +1,14 @@
+{
+  "typecheck": "pass",
+  "lint": "pass_with_6_existing_warnings",
+  "build": "pass",
+  "local_smoke": {
+    "/achievements": 200,
+    "/knowledge-sharing": 200,
+    "/architecture/system-health": 200
+  },
+  "claim_scan": "pass",
+  "private_path_key_receipt_leakage_scan": "pass_false_positive_terms_only",
+  "disliked_framing_source_scan": "preliminary_pass",
+  "restore_completed_in_worktree": true
+}
