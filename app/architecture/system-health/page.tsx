@@ -80,6 +80,49 @@ const configurationSummary = [
   },
 ]
 
+const case003Achievements = [
+  {
+    title: "Prime Gate / Gate PM Skill Contract Established",
+    proofLabel: "ROLE_SKILL_CONTRACT_ESTABLISHED",
+    value:
+      "Created a reusable gate-review role and skill contract so external review can convert blockers into clear unblock paths instead of vague not-ready decisions.",
+  },
+  {
+    title: "Round 3 Execution Runner Gap Discovered",
+    proofLabel: "RUNNER_GAP_DISCOVERED_READ_ONLY",
+    value:
+      "Read-only discovery confirmed that no existing bounded Round 3 execution runner was available, and separated evidence helpers and validators from the actual execution-runner role.",
+  },
+  {
+    title: "External Reviewer Failure Handled Without Claim Drift",
+    proofLabel: "FAILED_REVIEW_ROUTE_CONTAINED",
+    value:
+      "Provider and transport failures were recorded without simulating external review or advancing claims without a valid reviewer receipt.",
+  },
+  {
+    title: "Bounded Round 3 Execution Runner Spec Approved for Owner Review",
+    proofLabel: "SPEC_APPROVED_FOR_OWNER_REVIEW_NOT_IMPLEMENTED",
+    value:
+      "A bounded execution-runner specification was drafted, validated by Runner Gang v0.1, reviewed by Prime Gate, and hardened with advisory safety patches before any implementation decision.",
+  },
+]
+
+const case003BeforeAfter = [
+  ["Source-state drift unclear", "Source-state blockers 0"],
+  ["No reusable deterministic validation harness", "Runner Gang v0.1 exists as a local deterministic validation harness"],
+  ["No clear Prime Gate role", "Prime Gate / Gate PM role contract established"],
+  ["No known execution runner", "No existing execution runner confirmed by read-only discovery"],
+  ["Helper, validator, and runner boundaries unclear", "Bounded runner spec drafted, Runner-Gang validated, and Prime-Gate approved for owner review"],
+]
+
+const case003RoleMap = [
+  ["Codex", "Implementation and evidence producer"],
+  ["Runner Gang", "Deterministic PASS/WARN/BLOCK validation harness"],
+  ["Prime Gate / Gate PM", "External evidence and execution-readiness reviewer"],
+  ["Execution Runner", "Future bounded runner that will perform Round 3 only if separately implemented and authorized"],
+  ["Owner", "Execution, canonical, and public-claim authority"],
+]
+
 const accessBoundaryLayers = [
   {
     layer: "Public Surface",
@@ -130,6 +173,8 @@ const nonClaims = [
   "No benchmark proof.",
   "No autonomous orchestration.",
   "No realtime agent tracking.",
+  "No CASE-003 Round 3 execution or success claim.",
+  "No bounded runner implementation, dry-run scaffold, or execution packet patch claim.",
 ]
 
 export default function SystemHealthPage() {
@@ -196,6 +241,110 @@ export default function SystemHealthPage() {
               </CardContent>
             </Card>
           </div>
+
+          <Card className="mt-6 border-[#00B494]/30 bg-[#00B494]/5">
+            <CardHeader>
+              <div className="flex flex-wrap items-center justify-between gap-2">
+                <CardTitle>CASE-003 Governance Update - 17 Jun 2026</CardTitle>
+                <Badge variant="outline">Pre-execution / public-safe</Badge>
+              </div>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              <div className="rounded-lg border bg-background p-4 text-sm leading-6 text-muted-foreground">
+                <p>
+                  CASE-003 Round 3 remains paused. This update records pre-execution governance
+                  progress: Prime Gate role setup, Runner Gang validation, execution runner gap
+                  discovery, and bounded runner spec approval for owner review.
+                </p>
+                <p className="mt-2 font-medium text-foreground">
+                  Next decision: whether to allow bounded runner implementation planning only.
+                </p>
+              </div>
+
+              <div className="grid gap-3 md:grid-cols-2">
+                {case003Achievements.map((achievement) => (
+                  <div key={achievement.proofLabel} className="rounded-lg border bg-background p-4">
+                    <p className="text-sm font-semibold text-foreground">{achievement.title}</p>
+                    <p className="mt-2 text-sm leading-6 text-muted-foreground">
+                      {achievement.value}
+                    </p>
+                    <Badge variant="secondary" className="mt-3">
+                      {achievement.proofLabel}
+                    </Badge>
+                  </div>
+                ))}
+              </div>
+
+              <div className="overflow-x-auto rounded-lg border bg-background">
+                <table className="w-full min-w-[720px] text-left text-sm">
+                  <thead className="border-b bg-muted/50 text-xs uppercase tracking-wide text-muted-foreground">
+                    <tr>
+                      <th className="px-4 py-3 font-medium">Before</th>
+                      <th className="px-4 py-3 font-medium">After</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y">
+                    {case003BeforeAfter.map(([before, after]) => (
+                      <tr key={before} className="align-top">
+                        <td className="px-4 py-3 text-muted-foreground">{before}</td>
+                        <td className="px-4 py-3 text-muted-foreground">{after}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+
+              <div className="grid gap-4 lg:grid-cols-2">
+                <div className="rounded-lg border bg-background p-4">
+                  <h3 className="text-sm font-semibold text-foreground">Role map</h3>
+                  <dl className="mt-3 space-y-3 text-sm">
+                    {case003RoleMap.map(([role, responsibility]) => (
+                      <div key={role}>
+                        <dt className="font-medium text-foreground">{role}</dt>
+                        <dd className="text-muted-foreground">{responsibility}</dd>
+                      </div>
+                    ))}
+                  </dl>
+                </div>
+                <div className="rounded-lg border bg-background p-4">
+                  <h3 className="text-sm font-semibold text-foreground">Done / blocked / next</h3>
+                  <div className="mt-3 space-y-3 text-sm leading-6 text-muted-foreground">
+                    <p>
+                      <span className="font-medium text-foreground">Done:</span> source-state
+                      contained; true blockers 0; gate blockers 0; Runner Gang v0.1 local harness;
+                      Prime Gate contract; bounded runner spec owner-review approval; advisory
+                      patches applied and revalidated.
+                    </p>
+                    <p>
+                      <span className="font-medium text-foreground">Blocked:</span> bounded runner
+                      implementation, dry-run scaffold, execution packet patch, actual Round 3
+                      execution, Round 3 success claim, and public production/runtime/ROI/Hermes/
+                      replacement/full-orchestration claims.
+                    </p>
+                    <p>
+                      <span className="font-medium text-foreground">Next:</span> owner decision on
+                      bounded runner implementation planning only.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="rounded-lg border bg-background p-4 text-sm leading-6 text-muted-foreground">
+                <p>
+                  <span className="font-medium text-foreground">Allowed claims:</span> bounded
+                  runner spec approved for owner review; Runner Gang validation PASS; Round 3
+                  remains paused.
+                </p>
+                <p className="mt-2">
+                  <span className="font-medium text-foreground">Forbidden claims:</span> Round 3
+                  executed, Round 3 succeeded, execution readiness complete, runner implemented,
+                  dry-run scaffold exists, execution packet patched, independent multi-worker proof
+                  achieved, or production/runtime/ROI/Hermes/replacement/full-orchestration
+                  readiness.
+                </p>
+              </div>
+            </CardContent>
+          </Card>
 
           <Card className="mt-6 border-primary/20 bg-primary/5">
             <CardHeader>

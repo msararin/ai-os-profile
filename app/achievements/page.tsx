@@ -22,6 +22,44 @@ export default function AchievementsPage() {
 
   const achievements = [
     {
+      date: '2026-06-17',
+      headline: 'CASE-003 Pre-Execution Governance Path Clarified',
+      summary: 'Recorded four public-safe CASE-003 governance achievements without claiming Round 3 execution, execution readiness, production readiness, ROI proof, Hermes comparison, replacement readiness, full orchestration proof, or independent multi-worker proof.',
+      proofType: 'public-safe pre-execution governance milestone, local deterministic validation, external gate review for bounded runner spec owner review',
+      evidenceReference: 'CASE-003 2026-06-17 owner-reviewed closeout packet; public summary excludes private paths, raw receipts, keys, and internal evidence locations',
+      status: 'Completed / Public-safe value communication live / Round 3 remains paused',
+      publicSafeResult: 'CASE-003 moved from unclear pre-execution governance toward a bounded next decision: whether to allow bounded runner implementation planning only. The update records role setup, deterministic validation, runner-gap discovery, reviewer-route recovery, and bounded runner spec owner-review approval without advancing execution claims.',
+      caveat: 'CASE-003 Round 3 remains paused. No bounded runner implementation, dry-run scaffold, execution packet patch, actual Round 3 execution, Round 3 success, production/runtime readiness, ROI proof, Hermes comparison completion, replacement readiness, full orchestration proof, or independent multi-worker proof is claimed.',
+      details: {
+        whyItMatters: 'The value is governance clarity before execution. CASE-003 exposed that safe AI work needs more than a yes/no review: blockers need unblock paths, validators must be separated from execution runners, external-review failures must not be simulated locally, and public communication must explain what changed without making unsupported readiness claims.',
+        evidence: [
+          'ROLE_SKILL_CONTRACT_ESTABLISHED: Prime Gate / Gate PM was defined as a reusable gate-review role with blocker-to-unblock behavior.',
+          'RUNNER_GAP_DISCOVERED_READ_ONLY: Read-only discovery found no existing bounded Round 3 execution runner and separated evidence helpers and validators from runner responsibility.',
+          'FAILED_REVIEW_ROUTE_CONTAINED: Provider and transport failures were recorded without simulating external review or upgrading claims.',
+          'SPEC_APPROVED_FOR_OWNER_REVIEW_NOT_IMPLEMENTED: A bounded runner spec was drafted, validated by Runner Gang v0.1, reviewed by Prime Gate, and patched with advisory safeguards before any implementation decision.',
+          'Runner Gang v0.1 remains a local deterministic PASS/WARN/BLOCK validation harness, not independent multi-worker proof.',
+          'The next decision is bounded runner implementation planning only; implementation, scaffold, execution packet patch, and actual execution remain separate blocked actions.'
+        ],
+        evidenceMaturity: [
+          {
+            before: 'CASE-003 could not safely move toward Round 3 because source-state, gate-review behavior, and execution-runner responsibility were unclear.',
+            whatChanged: 'Source-state blockers were contained, Runner Gang became a local deterministic validation harness, Prime Gate became a reusable reviewer role, and the missing bounded execution runner was converted into a reviewed specification.',
+            value: 'A future session now has a clearer, safer next gate without implying the system is ready to run.'
+          }
+        ],
+        skillsDemonstrated: [
+          'Gate PM role and skill-contract design',
+          'Read-only runner discovery and candidate classification',
+          'External-review failure containment without claim drift',
+          'Bounded runner specification and command-contract drafting',
+          'Runner Gang deterministic validation',
+          'Claim-safe public communication'
+        ],
+        impact: 'The practical impact is a cleaner path from governance blockers to a bounded next decision. CASE-003 still cannot run, but the reasons, roles, proof labels, and next allowed decision are easier to inspect.'
+      },
+      tags: ['CASE-003', 'Gate PM', 'Runner Gang', 'Claim Safety', 'Pre-Execution']
+    },
+    {
       date: '2026-06-16',
       headline: 'Made AI Execution Measurable Before Claiming Efficiency',
       summary: 'Updated AIOS public surfaces to separate Big Crew specialist delivery from execution control. Super Runner, Runner, and Checker now make task boundaries, validation, stop conditions, and claim boundaries explicit, with measurement-contract fields required before any performance, speed, or efficiency claim.',
@@ -183,14 +221,14 @@ export default function AchievementsPage() {
       headline: 'CASE-003 Orchestration Enforcement and Skill Sync',
       summary: 'Turned the single-worker queue failure into a stricter multi-agent evidence workflow: routing evidence, Agent-to-Task visibility, false-orchestration detection, role skill updates, QA/Data Visualizer enforcement, and parallel-delegation boundaries were packaged for owner review.',
       proofType: 'private owner-review packet, orchestration enforcement, role skill synchronization',
-      evidenceReference: 'KB session update 2026-06-09-aios-case003-orchestration-achievement-and-skill-sync.md; Downloads packet AIOS_CASE003_9JUN_ORCHESTRATION_ACHIEVEMENT_KB_SYNC_2026-06-09',
+      evidenceReference: 'KB session update 2026-06-09-aios-case003-orchestration-achievement-and-skill-sync.md; owner-review orchestration evidence packet',
       status: 'Owner-review evidence packet completed; CASE-003 execution and public proof remain blocked',
       publicSafeResult: 'AIOS now has clearer enforcement expectations for CASE-003-style work: role names are not enough, closeouts need route evidence, Agent-to-Task maps, QA validation, owner-readable summaries, and explicit blocked actions.',
       caveat: 'Private/local owner-review record only. It does not authorize real derivative creation, real data ingestion, CASE-003 real pilot execution, CASE-003 fresh rerun, Benchmark Dataset v0.1 export, production/live monitoring readiness claims, or public-proof claims.',
       details: {
         whyItMatters: 'The failure mode was subtle: AIOS had multiple roles and governance rules, but work could still collapse into one worker acting as the whole system. The June 9 packet made that visible and added operating checks so future CASE-003 gates must show who did what, what evidence exists, what is only Codex-local, and which actions remain blocked.',
         evidence: [
-          'Owner-readable Downloads packet created at AIOS_CASE003_9JUN_ORCHESTRATION_ACHIEVEMENT_KB_SYNC_2026-06-09',
+          'Owner-readable orchestration evidence packet created for 2026-06-09 review',
           'Executive visual summary, achievement record, retrospective, role skill updates, QA validation, monitor status, artifact integrity manifest, and HTML evidence index were packaged',
           'Ten local HTML evidence files were copied into the packet under professional sequence names without overwriting originals',
           'Codex/Risa skill updates captured: do not act as the whole AIOS, expose simulated roles, create Agent-to-Task maps, and provide next recommended action plus next prompt',
@@ -876,10 +914,10 @@ export default function AchievementsPage() {
               Public-safe evidence of what was built, what is proven, what is caveated, and what is not published.
             </p>
             <p className="mt-4 text-sm font-medium text-white/80">
-              Evidence updated: 16 Jun 2026 · execution-control measurement contract added
+              Evidence updated: 17 Jun 2026 · CASE-003 pre-execution governance value added
             </p>
             <p className="mt-2 text-sm text-white/75">
-              Latest validated milestone: Made AI Execution Measurable Before Claiming Efficiency, 16 Jun 2026
+              Latest validated milestone: CASE-003 Pre-Execution Governance Path Clarified, 17 Jun 2026
             </p>
           </div>
         </div>

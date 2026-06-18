@@ -153,6 +153,23 @@ const linkedInPosts = [
   },
 ]
 
+const governanceLesson = {
+  title: "From AI Review to Gate Discipline: Turning Blockers into Unblock Paths",
+  date: "Jun 17, 2026",
+  summary:
+    "A public-safe CASE-003 lesson: governance reviews are most useful when they convert blocked states into reason, risk, remediation, actor map, validation, next gate, and a concrete next command.",
+  themes: [
+    "A reviewer is a reusable role, not just a model name.",
+    "Deterministic runner checks reduce ambiguity before external review.",
+    "Not authorized should become reason, risk, remediation, actor map, validation, and next gate.",
+    "Evidence helpers, validators, and execution runners must stay separate.",
+    "Failed external review routes should be recorded and contained without simulating approval locally.",
+    "Precise pseudo-code-like prompts work better for governance gates than vague review requests.",
+  ],
+  boundary:
+    "This lesson does not claim CASE-003 Round 3 execution, execution readiness, production/runtime readiness, ROI proof, Hermes comparison, replacement readiness, full orchestration proof, or independent multi-worker proof.",
+}
+
 export default function KnowledgeSharingPage() {
   return (
     <PageLayout>
@@ -174,6 +191,32 @@ export default function KnowledgeSharingPage() {
           <p className="mt-3 text-sm font-medium text-muted-foreground">
             Archive status: public LinkedIn posts through 11 Jun 2026. Drafts and learning
             records are not exposed on this public page.
+          </p>
+        </section>
+
+        <section className="mb-8 rounded-lg border border-primary/20 bg-primary/5 p-5">
+          <div className="flex flex-wrap items-center justify-between gap-2">
+            <div>
+              <p className="text-sm font-medium text-primary">{governanceLesson.date}</p>
+              <h2 className="mt-1 text-xl font-semibold">{governanceLesson.title}</h2>
+            </div>
+            <span className="rounded-full border bg-background px-3 py-1 text-xs font-medium text-muted-foreground">
+              Governance lesson
+            </span>
+          </div>
+          <p className="mt-3 text-sm leading-6 text-muted-foreground">
+            {governanceLesson.summary}
+          </p>
+          <div className="mt-4 grid gap-3 md:grid-cols-2">
+            {governanceLesson.themes.map((theme) => (
+              <div key={theme} className="rounded-md border bg-background p-3 text-sm text-muted-foreground">
+                {theme}
+              </div>
+            ))}
+          </div>
+          <p className="mt-4 text-sm leading-6 text-muted-foreground">
+            <span className="font-medium text-foreground">Boundary:</span>{" "}
+            {governanceLesson.boundary}
           </p>
         </section>
 
