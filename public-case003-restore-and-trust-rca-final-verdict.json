@@ -1,9 +1,9 @@
 {
-  "final_verdict": "RESTORE_COMPLETE_RCA_PENDING",
+  "final_verdict": "PUBLIC_SURFACE_RESTORED_RCA_COMPLETE_WITH_CAVEATS",
   "restore_completed": "yes",
-  "restore_commit_hash": null,
-  "deployed": "no",
-  "live_restore_confirmed": "no",
+  "restore_commit_hash": "52fd080",
+  "deployed": "yes",
+  "live_restore_confirmed": "yes",
   "rca_completed": "yes",
   "prime_gate_review_captured": "no",
   "public_surface_runner_used": "no",
