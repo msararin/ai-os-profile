@@ -1,5 +1,5 @@
 {
-  "final_verdict": "SARARIN_AI_KNOWLEDGE_SHARING_LINKEDIN_EMBED_READY_NOT_DEPLOYED",
+  "final_verdict": "SARARIN_AI_KNOWLEDGE_SHARING_LINKEDIN_EMBED_DEPLOYED",
   "task": "TASK_UPDATE_SARARIN_AI_KNOWLEDGE_SHARING_LINKEDIN_EMBED_7471151721398968320_V0_1",
   "target_route": "/knowledge-sharing",
   "target_file": "app/knowledge-sharing/page.tsx",
@@ -11,11 +11,11 @@
   "local_urn_visible": "pass",
   "disliked_case003_framing_reintroduced": "no",
   "private_leakage_scan": "pass",
-  "commit_hash": null,
-  "pushed": "no",
-  "deployed": "no",
-  "live_knowledge_sharing_200": "pending",
-  "live_urn_visible": "pending",
+  "commit_hash": "7a0c882",
+  "pushed": "yes",
+  "deployed": "yes",
+  "live_knowledge_sharing_200": 200,
+  "live_urn_visible": "pass",
   "achievements_changed_by_task": "no",
   "system_health_changed_by_task": "no"
 }
