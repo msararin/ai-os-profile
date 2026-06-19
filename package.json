@@ -11,6 +11,7 @@
     "typecheck": "tsc --noEmit",
     "public:review": "node scripts/public-surface-review.mjs",
     "public:topic-map": "node scripts/check-public-surface-topic-map.mjs",
+    "public:deployment-protocol": "node scripts/check-deployment-operating-set.mjs",
     "check:public-dashboard-leakage": "node scripts/check-public-dashboard-leakage.mjs"
   },
   "dependencies": {
