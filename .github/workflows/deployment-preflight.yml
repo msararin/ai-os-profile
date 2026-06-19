@@ -44,6 +44,9 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Public deployment protocol check
+        run: pnpm public:deployment-protocol
+
       - name: Secret scanning
         uses: gitleaks/gitleaks-action@v2
         env:
