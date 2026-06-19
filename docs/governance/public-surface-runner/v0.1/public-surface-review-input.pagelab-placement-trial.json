@@ -1,0 +1,117 @@
+{
+  "profile": "public_surface_go_live_v0_1",
+  "trial_type": "pagelab_public_surface_placement_trial_v0_1",
+  "surface_type": "route_section",
+  "public_route_or_surface": "/architecture/system-health/observability",
+  "expected_entry_present": true,
+  "expected_entry_identifier": "Public Surface Release Lane section on the observability route",
+  "code_changes": true,
+  "changed_files": [
+    "app/architecture/system-health/observability/page.tsx",
+    "docs/governance/public-surface-runner/v0.1/PAGELAB_PUBLIC_SURFACE_PLACEMENT_TRIAL_REPORT.md",
+    "docs/governance/public-surface-runner/v0.1/public-surface-review-input.pagelab-placement-trial.json"
+  ],
+  "evidence_refs": [
+    "docs/governance/public-surface-runner/v0.1/PAGELAB_PUBLIC_SURFACE_RELEASE_LANE.md",
+    "docs/governance/public-surface-runner/v0.1/PAGELAB_PUBLIC_SURFACE_PLACEMENT_TRIAL_REPORT.md"
+  ],
+  "change_summary": "Adds a compact Public Surface Release Lane section to the public observability route and records an owner-facing placement trial report.",
+  "public_copy_summary": "Public Surface Release Lane helps package recurring public-page updates for owner review before go-live consideration. It does not deploy, approve go-live, certify production readiness, or replace owner semantic acceptance.",
+  "declared_claim_boundary": {
+    "public_may_claim": [
+      "Public Surface Release Lane helps package recurring public-page updates for owner review before go-live consideration.",
+      "The local review command generates an owner review packet.",
+      "The lane checks claim boundaries, leakage risk, unsupported proof, and review evidence.",
+      "The lane improves repeatability for public-surface updates."
+    ],
+    "public_must_not_claim": [
+      "The lane deploys public changes.",
+      "The lane approves go-live.",
+      "The lane modifies production.",
+      "The lane guarantees content correctness.",
+      "The lane proves production readiness.",
+      "The lane is a full QA platform.",
+      "The lane replaces Prime Gate or owner review."
+    ],
+    "internal_only": [
+      "Private operational artifacts",
+      "Credentials or tokens",
+      "Provider receipts",
+      "Prompt logs",
+      "Raw task payloads"
+    ]
+  },
+  "public_routes": [
+    {
+      "route": "/architecture/system-health/observability",
+      "source_file": "app/architecture/system-health/observability/page.tsx",
+      "change_type": "compact_public_safe_section",
+      "intended_public_copy": "Public Surface Release Lane helps package recurring public-page updates for owner review before go-live consideration. It does not deploy, approve go-live, certify production readiness, or replace owner semantic acceptance."
+    }
+  ],
+  "owner_facing_artifacts": [
+    {
+      "path": "docs/governance/public-surface-runner/v0.1/PAGELAB_PUBLIC_SURFACE_PLACEMENT_TRIAL_REPORT.md",
+      "purpose": "Placement decision record and owner review notes"
+    }
+  ],
+  "source_of_truth_mapping": [
+    {
+      "public_surface": "/architecture/system-health/observability",
+      "source_of_truth": "docs/governance/public-surface-runner/v0.1/PAGELAB_PUBLIC_SURFACE_RELEASE_LANE.md",
+      "evidence_boundary": "Use public-safe summaries only; do not expose private operational artifacts."
+    },
+    {
+      "public_surface": "/architecture/system-health/observability",
+      "source_of_truth": "docs/governance/public-surface-runner/v0.1/PAGELAB_PUBLIC_SURFACE_PLACEMENT_TRIAL_REPORT.md",
+      "evidence_boundary": "Owner-facing placement rationale; public copy stays bounded to review support."
+    }
+  ],
+  "claim_boundary": {
+    "allowed_claims": [
+      "Public Surface Release Lane supports recurring public-page review before go-live consideration.",
+      "The local review command generates an owner review packet.",
+      "The lane checks claim boundaries, leakage risk, unsupported proof, and review evidence.",
+      "The lane improves repeatability for public-surface updates."
+    ],
+    "forbidden_claims": [
+      "The lane deploys public changes.",
+      "The lane approves go-live.",
+      "The lane modifies production.",
+      "The lane guarantees content correctness.",
+      "The lane proves production readiness.",
+      "The lane is a full QA platform.",
+      "The lane replaces Prime Gate or owner review."
+    ]
+  },
+  "owner_review": {
+    "required": true,
+    "status": "required_before_go_live_consideration",
+    "semantic_acceptance_required": true
+  },
+  "route_smoke_result": {
+    "status": "not_applicable",
+    "reason": "No deployment or local server route smoke is part of this placement trial; build validation is used for static route generation."
+  },
+  "build_result": {
+    "status": "pass",
+    "summary": "pnpm build completed successfully and statically generated /architecture/system-health/observability; Next.js emitted a workspace-root inference warning."
+  },
+  "typecheck_result": {
+    "status": "pass",
+    "summary": "pnpm typecheck completed with no TypeScript errors."
+  },
+  "lint_result": {
+    "status": "pass",
+    "summary": "pnpm lint completed with 0 errors and 6 pre-existing warnings outside this patch."
+  },
+  "release_verification": {
+    "deployment_performed": false,
+    "go_live_approved": false,
+    "production_readiness_claimed": false,
+    "route_smoke": {
+      "status": "not_applicable",
+      "reason": "No deployment or local server route smoke is part of this placement trial; build validation is used for static route generation."
+    }
+  }
+}

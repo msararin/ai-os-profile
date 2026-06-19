@@ -1,0 +1,159 @@
+{
+  "profile": "public_surface_go_live_v0_1",
+  "profile_name": "Public Surface Runner",
+  "generated_at": "2026-06-19T09:42:19.314Z",
+  "rules_sha256": "6d598344e1c8c24942460935723237db324c50ca5669d868c795aa14b3724e82",
+  "surface_type": "route_section",
+  "public_route_or_surface": "/architecture/system-health/observability",
+  "expected_entry_identifier": "Public Surface Release Lane section on the observability route",
+  "changed_files": [
+    "app/architecture/system-health/observability/page.tsx",
+    "docs/governance/public-surface-runner/v0.1/PAGELAB_PUBLIC_SURFACE_PLACEMENT_TRIAL_REPORT.md",
+    "docs/governance/public-surface-runner/v0.1/public-surface-review-input.pagelab-placement-trial.json"
+  ],
+  "public_copy_summary": "Public Surface Release Lane helps package recurring public-page updates for owner review before go-live consideration. It does not deploy, approve go-live, certify production readiness, or replace owner semantic acceptance.",
+  "evidence_refs": [
+    "docs/governance/public-surface-runner/v0.1/PAGELAB_PUBLIC_SURFACE_RELEASE_LANE.md",
+    "docs/governance/public-surface-runner/v0.1/PAGELAB_PUBLIC_SURFACE_PLACEMENT_TRIAL_REPORT.md"
+  ],
+  "declared_claim_boundary": {
+    "public_may_claim": [
+      "Public Surface Release Lane helps package recurring public-page updates for owner review before go-live consideration.",
+      "The local review command generates an owner review packet.",
+      "The lane checks claim boundaries, leakage risk, unsupported proof, and review evidence.",
+      "The lane improves repeatability for public-surface updates."
+    ],
+    "public_must_not_claim": [
+      "The lane deploys public changes.",
+      "The lane approves go-live.",
+      "The lane modifies production.",
+      "The lane guarantees content correctness.",
+      "The lane proves production readiness.",
+      "The lane is a full QA platform.",
+      "The lane replaces Prime Gate or owner review."
+    ],
+    "internal_only": [
+      "Private operational artifacts",
+      "Credentials or tokens",
+      "Provider receipts",
+      "Prompt logs",
+      "Raw task payloads"
+    ]
+  },
+  "checks": [
+    {
+      "id": "SURFACE_IDENTIFIED",
+      "name": "Public surface identified",
+      "result": "PASS",
+      "evidence": "/architecture/system-health/observability",
+      "note": "Public surface is explicitly identified."
+    },
+    {
+      "id": "EXPECTED_ENTRY_PRESENT",
+      "name": "Expected public entry present",
+      "result": "PASS",
+      "evidence": "Public Surface Release Lane section on the observability route",
+      "note": "Expected public entry is present or traceable."
+    },
+    {
+      "id": "CLAIM_SAFE_WORDING",
+      "name": "Claim-safe wording",
+      "result": "PASS",
+      "evidence": "Public copy avoids blocked maturity and proof claims.",
+      "note": "Claim wording is bounded."
+    },
+    {
+      "id": "NO_PRIVATE_PATH_LEAK",
+      "name": "No private KB or local path leak",
+      "result": "PASS",
+      "evidence": "No private local or KB path patterns detected.",
+      "note": "No private path leakage found."
+    },
+    {
+      "id": "NO_SECRET_OR_RECEIPT_LEAK",
+      "name": "No secrets, receipts, telemetry, prompt logs, or internal evidence JSON exposed",
+      "result": "PASS",
+      "evidence": "No secret or receipt patterns detected.",
+      "note": "No secret or receipt leakage found."
+    },
+    {
+      "id": "NO_ROUND3_OVERCLAIM",
+      "name": "No Round 3 execution or success overclaim",
+      "result": "PASS",
+      "evidence": "No Round 3 execution, success, proof, or production-readiness claim detected.",
+      "note": "Round 3 boundary is clean."
+    },
+    {
+      "id": "BUILD_TYPECHECK_LINT_CAPTURED_IF_APPLICABLE",
+      "name": "Build/typecheck/lint evidence captured if applicable",
+      "result": "PASS",
+      "evidence": "build: pnpm build completed successfully and statically generated /architecture/system-health/observability; Next.js emitted a workspace-root inference warning. | typecheck: pnpm typecheck completed with no TypeScript errors. | lint: pnpm lint completed with 0 errors and 6 pre-existing warnings outside this patch.",
+      "note": "Technical evidence is captured or explicitly not applicable."
+    },
+    {
+      "id": "ROUTE_SMOKE_CAPTURED_IF_APPLICABLE",
+      "name": "Route smoke evidence captured if applicable",
+      "result": "NOT_APPLICABLE",
+      "evidence": "No deployment or local server route smoke is part of this placement trial; build validation is used for static route generation.",
+      "note": "Route smoke evidence supplied."
+    },
+    {
+      "id": "DEPLOYMENT_REF_CAPTURED_IF_DEPLOYED",
+      "name": "Deployment or preview URL captured if deployment occurred",
+      "result": "NOT_APPLICABLE",
+      "evidence": "No deployment reference.",
+      "note": "No deployment occurred."
+    },
+    {
+      "id": "PUBLIC_INTERNAL_BOUNDARY_CLEAR",
+      "name": "Public copy distinguishes internal evidence from public claim",
+      "result": "PASS",
+      "evidence": "Claim boundary fields supplied.",
+      "note": "Public/internal claim boundary is explicit."
+    },
+    {
+      "id": "FORBIDDEN_TERMS_CONTEXT_ONLY",
+      "name": "Forbidden terms only appear in boundary or forbidden sections",
+      "result": "PASS",
+      "evidence": "Forbidden terms are not used as positive public claims.",
+      "note": "Forbidden term context is acceptable."
+    },
+    {
+      "id": "VISUAL_SPOT_CHECK_OPTIONAL",
+      "name": "Visual Spot Checker",
+      "result": "NOT_APPLICABLE",
+      "evidence": "Visual Spot Checker not used.",
+      "note": "Optional lightweight visibility check only; no screenshot diffing, design QA, accessibility approval, or visual regression."
+    },
+    {
+      "id": "OWNER_REVIEW_SURFACE_AVAILABLE",
+      "name": "Owner review surface available",
+      "result": "PASS",
+      "evidence": "PAGELAB_PUBLIC_SURFACE_PLACEMENT_REVIEW_PACKET.html",
+      "note": "One-click owner review packet is generated by this command."
+    }
+  ],
+  "warnings": [],
+  "blocks": [],
+  "deployment_occurred": false,
+  "deployment_url": "",
+  "route_smoke_result": {
+    "status": "not_applicable",
+    "reason": "No deployment or local server route smoke is part of this placement trial; build validation is used for static route generation."
+  },
+  "build_result": {
+    "status": "pass",
+    "summary": "pnpm build completed successfully and statically generated /architecture/system-health/observability; Next.js emitted a workspace-root inference warning."
+  },
+  "typecheck_result": {
+    "status": "pass",
+    "summary": "pnpm typecheck completed with no TypeScript errors."
+  },
+  "lint_result": {
+    "status": "pass",
+    "summary": "pnpm lint completed with 0 errors and 6 pre-existing warnings outside this patch."
+  },
+  "visual_spot_check": null,
+  "final_status": "READY_FOR_GO_LIVE_CONSIDERATION",
+  "boundary_statement": "Local owner review only. No deploy, no publish, no preview promotion, no production modification, no go-live approval."
+}

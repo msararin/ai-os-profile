@@ -1,0 +1,33 @@
+{
+  "profile": "public_surface_go_live_v0_1",
+  "surface_type": "negative-fixture",
+  "public_route_or_surface": "/achievements",
+  "expected_entry_identifier": "negative-forbidden-claim-fixture",
+  "expected_entry_present": true,
+  "changed_files": [
+    "app/achievements/page.tsx"
+  ],
+  "public_copy": "This update proves production-ready autonomous orchestration and says Round 3 completed successfully.",
+  "evidence_refs": [
+    "Negative fixture only"
+  ],
+  "deployment_occurred": false,
+  "deployment_url": null,
+  "route_smoke_result": {
+    "status": "not_applicable",
+    "reason": "Negative fixture only; no route was changed or deployed."
+  },
+  "declared_claim_boundary": {
+    "public_may_claim": [
+      "Nothing; this fixture should block."
+    ],
+    "public_must_not_claim": [
+      "Production readiness.",
+      "Autonomous orchestration.",
+      "Round 3 completion or success."
+    ],
+    "internal_only": [
+      "Negative test fixture details."
+    ]
+  }
+}

@@ -68,6 +68,20 @@ const enforcementMatrix = [
   },
 ]
 
+const publicSurfaceReleaseLane = {
+  title: "Public Surface Release Lane",
+  status: "Owner review support",
+  detail:
+    "Helps package recurring public-page updates for owner review before go-live consideration.",
+  checks: [
+    "claim-boundary and owner-meaning checks",
+    "private-leakage and unsupported-proof checks",
+    "route, build, and review-evidence capture when applicable",
+  ],
+  boundary:
+    "It does not deploy, approve go-live, certify production readiness, or replace owner semantic acceptance.",
+}
+
 const evidenceMap = [
   {
     task: "Claim-boundary controls",
@@ -225,6 +239,35 @@ export default function ObservabilityPage() {
               </Card>
             ))}
           </div>
+
+          <Card className="border-primary/20 bg-primary/5">
+            <CardHeader className="pb-3">
+              <div className="flex flex-wrap items-start justify-between gap-3">
+                <div>
+                  <CardTitle className="text-base">{publicSurfaceReleaseLane.title}</CardTitle>
+                  <p className="mt-2 text-sm leading-6 text-muted-foreground">
+                    {publicSurfaceReleaseLane.detail}
+                  </p>
+                </div>
+                <Badge variant="outline" className="shrink-0">
+                  {publicSurfaceReleaseLane.status}
+                </Badge>
+              </div>
+            </CardHeader>
+            <CardContent className="space-y-4 text-sm leading-6 text-muted-foreground">
+              <div className="grid gap-3 md:grid-cols-3">
+                {publicSurfaceReleaseLane.checks.map((check) => (
+                  <div key={check} className="rounded-md border border-primary/15 bg-background/70 p-3">
+                    {check}
+                  </div>
+                ))}
+              </div>
+              <p className="rounded-md border border-primary/15 bg-background/70 p-3">
+                <span className="font-medium text-foreground">Boundary: </span>
+                {publicSurfaceReleaseLane.boundary}
+              </p>
+            </CardContent>
+          </Card>
 
           <div>
             <div className="flex flex-wrap items-center gap-3">
