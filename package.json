@@ -10,6 +10,7 @@
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "public:review": "node scripts/public-surface-review.mjs",
+    "public:topic-map": "node scripts/check-public-surface-topic-map.mjs",
     "check:public-dashboard-leakage": "node scripts/check-public-dashboard-leakage.mjs"
   },
   "dependencies": {
