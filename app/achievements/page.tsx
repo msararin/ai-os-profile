@@ -8,7 +8,7 @@ import { Badge } from "@/components/ui/badge"
 import { ChevronDown, ChevronRight, Download } from "lucide-react"
 
 export default function AchievementsPage() {
-  const [expandedDays, setExpandedDays] = useState<Set<string>>(new Set(['2026-06-16']))
+  const [expandedDays, setExpandedDays] = useState<Set<string>>(new Set(['2026-06-17', '2026-06-16']))
 
   const toggleDay = (date: string) => {
     const newExpanded = new Set(expandedDays)
@@ -21,6 +21,146 @@ export default function AchievementsPage() {
   }
 
   const achievements = [
+    {
+      date: '2026-06-17',
+      headline: 'Prime Gate / Gate PM Skill Contract Established',
+      summary: 'Established a governed review role for the next repeated controlled run so evidence, meaning, and claim boundaries can be checked before public interpretation or owner decisions rely on them.',
+      proofType: 'preparation evidence for repeated controlled experiment review discipline',
+      evidenceReference: 'Achievements v2 owner copy-review draft; public route patch prepared locally only',
+      status: 'Prepared for owner local review / No deploy in this task / Round 3 paused',
+      publicSafeResult: 'AI review became a governed review role, not just a model response. Prime Gate / Gate PM is responsible for checking whether evidence, meaning, and claim boundaries are strong enough before public interpretation or owner decisions rely on them.',
+      caveat: 'Preparation evidence only. This does not claim execution, success, implementation, execution-readiness completion, production/runtime readiness, ROI proof, Hermes comparison, replacement readiness, full orchestration proof, or independent multi-worker proof.',
+      details: {
+        whyItMatters: 'The next controlled run needs review discipline that protects meaning, evidence quality, and claim boundaries before stronger public interpretation or owner decisions rely on the results.',
+        evidence: [
+          'Prime Gate / Gate PM role defined as a governed review function.',
+          'Review focus includes evidence strength, meaning preservation, and claim-boundary discipline.',
+          'The work supports a repeated controlled experiment using the same underlying task.',
+          'The goal is a future run that is more measurable, comparable, and defensible.',
+          'Round 3 remains paused; no execution occurred and no success claim exists.'
+        ],
+        evidenceMaturity: [
+          {
+            before: 'Review could be interpreted as another model response rather than a governed role with a defined decision-quality responsibility.',
+            whatChanged: 'Prime Gate / Gate PM was framed as a review role responsible for evidence, meaning, and claim-boundary checks.',
+            value: 'The future repeated run has a clearer review gate before public interpretation or owner decisions rely on the evidence.'
+          }
+        ],
+        skillsDemonstrated: [
+          'Governed review role design',
+          'Owner-meaning preservation',
+          'Evidence and claim-boundary review',
+          'Repeated-experiment preparation'
+        ],
+        impact: 'This makes review responsibility inspectable before the next controlled run, without claiming that the run has executed or succeeded.'
+      },
+      tags: ['Prime Gate', 'Review Discipline', 'Evidence Quality', 'Claim Boundary']
+    },
+    {
+      date: '2026-06-17',
+      headline: 'Round 3 Execution Runner Gap Discovered',
+      summary: 'Identified that the next repeated run needed a clearer execution-runner path before it could be measured fairly against earlier rounds.',
+      proofType: 'pre-execution runner-control gap finding',
+      evidenceReference: 'Achievements v2 owner copy-review draft; public route patch prepared locally only',
+      status: 'Gap identified / No deploy in this task / Round 3 paused',
+      publicSafeResult: 'The team found that the next repeated run needed a clearer execution-runner path before it could be measured fairly. Identifying this gap protected the experiment from starting with unclear control, stale state, or weak comparability.',
+      caveat: 'Runner-control gap identified before execution. This is not Round 3 execution, implementation, readiness completion, or outcome proof.',
+      details: {
+        whyItMatters: 'A repeated experiment only becomes comparable when the execution path is clear enough to separate real improvement from stale state, missing context, or claim drift.',
+        evidence: [
+          'Runner-control gap identified before the next repeated run started.',
+          'The gap affects measurement comparability and evidence quality.',
+          'The finding supports safer preparation for the same underlying task across rounds.',
+          'The issue was treated as a stop condition for stronger claims.',
+          'Round 3 remains paused; no execution occurred and no success claim exists.'
+        ],
+        evidenceMaturity: [
+          {
+            before: 'The next run risked starting before runner control and comparison boundaries were clear enough.',
+            whatChanged: 'The runner gap was made explicit before execution.',
+            value: 'The future repeated run can be prepared with clearer control and measurement boundaries.'
+          }
+        ],
+        skillsDemonstrated: [
+          'Pre-execution gap detection',
+          'Runner-control review',
+          'Measurement comparability protection',
+          'Claim-safety stop condition'
+        ],
+        impact: 'This protects the future experiment from weak comparability before any execution claim is made.'
+      },
+      tags: ['Runner Gap', 'Repeated Experiment', 'Measurement', 'Claim Safety']
+    },
+    {
+      date: '2026-06-17',
+      headline: 'External Reviewer Failure Handled Without Claim Drift',
+      summary: 'Preserved the evidence boundary when an external review path failed instead of implying that the review had happened.',
+      proofType: 'failure-handling and claim-boundary preservation',
+      evidenceReference: 'Achievements v2 owner copy-review draft; public route patch prepared locally only',
+      status: 'Failure handled / Claim boundary preserved / No deploy in this task',
+      publicSafeResult: 'When an external review path failed, the system preserved the boundary instead of pretending the review happened. That matters because evidence quality depends on distinguishing completed review from missing review.',
+      caveat: 'Failure handled with claim boundary preserved. This is not external approval, execution proof, or production readiness.',
+      details: {
+        whyItMatters: 'Evidence discipline depends on knowing the difference between completed review and missing review. Treating a failed review path as if it succeeded would make the next run less defensible.',
+        evidence: [
+          'External review failure was recorded as a boundary, not converted into approval.',
+          'The missing review state remained visible for owner interpretation.',
+          'The handling supports a more defensible future repeated run.',
+          'The work preserved claim safety instead of filling the gap with narrative confidence.',
+          'Round 3 remains paused; no execution occurred and no success claim exists.'
+        ],
+        evidenceMaturity: [
+          {
+            before: 'A failed external review path could have been flattened into ambiguous or overconfident review language.',
+            whatChanged: 'The failure was handled without claim drift.',
+            value: 'The future evidence record can distinguish what was reviewed from what still needs review.'
+          }
+        ],
+        skillsDemonstrated: [
+          'Failure-state preservation',
+          'External review boundary handling',
+          'Evidence-quality discipline',
+          'Public claim safety'
+        ],
+        impact: 'This improves trust in the evidence trail by keeping missing review visible instead of implying unsupported approval.'
+      },
+      tags: ['External Review', 'Failure Handling', 'Evidence Quality', 'Claim Boundary']
+    },
+    {
+      date: '2026-06-17',
+      headline: 'Bounded Round 3 Execution Runner Spec Approved for Owner Review',
+      summary: 'Prepared, validated, and reviewed a bounded runner specification for owner review so the next repeated run can have clearer stop conditions, evidence expectations, and comparison boundaries before execution begins.',
+      proofType: 'bounded runner specification prepared for owner review',
+      evidenceReference: 'Achievements v2 owner copy-review draft; public route patch prepared locally only',
+      status: 'Spec prepared for owner review / No implementation claim / Round 3 paused',
+      publicSafeResult: 'A bounded runner specification was prepared, validated, and reviewed for owner review so the next repeated run could have clearer stop conditions, evidence expectations, and comparison boundaries before execution begins.',
+      caveat: 'Spec approved for owner review only. This is not implementation, execution, readiness completion, or success evidence.',
+      details: {
+        whyItMatters: 'Before repeating the same underlying task, the system needs clearer boundaries for when to stop, what evidence to collect, and how to compare the next run with prior rounds.',
+        evidence: [
+          'Bounded runner specification prepared for owner review.',
+          'The specification focuses on stop conditions, evidence expectations, and comparison boundaries.',
+          'The work supports a future repeated controlled run using the same underlying task.',
+          'The specification is preparation evidence only, not implementation evidence.',
+          'Round 3 remains paused; no execution occurred and no success claim exists.'
+        ],
+        evidenceMaturity: [
+          {
+            before: 'The future run did not yet have a bounded runner specification ready for owner review.',
+            whatChanged: 'A bounded runner specification was prepared, validated, and reviewed for owner review.',
+            value: 'The next repeated run can be evaluated against clearer control, evidence, and comparison expectations if the owner later approves execution.'
+          }
+        ],
+        skillsDemonstrated: [
+          'Bounded runner specification',
+          'Stop-condition design',
+          'Evidence expectation design',
+          'Comparison-boundary planning'
+        ],
+        impact: 'This creates a clearer preparation layer for a future repeated controlled run without claiming implementation, execution, readiness completion, or success.'
+      },
+      tags: ['Runner Spec', 'Owner Review', 'Stop Conditions', 'Evidence Discipline']
+    },
     {
       date: '2026-06-16',
       headline: 'Made AI Execution Measurable Before Claiming Efficiency',
@@ -896,6 +1036,24 @@ export default function AchievementsPage() {
             <p className="mt-2 text-sm text-muted-foreground">
               This page records external/professional proof and impact. Draft learning patterns and reusable ideas stay unpublished until claims are approved.
             </p>
+            <div className="mt-4 rounded-md border border-[#1F3A60]/15 bg-background p-4">
+              <p className="text-sm text-muted-foreground">
+                <strong>Current CASE-003 preparation context:</strong> the latest
+                achievements are preparation evidence for repeating the same
+                underlying experiment/task under tighter controls. The goal is to
+                test whether improvements to governance, evidence discipline,
+                validation, runner control, and external gate review make a
+                future run more measurable, comparable, and defensible.
+              </p>
+              <p className="mt-2 text-sm text-muted-foreground">
+                Round 3 remains paused. No execution occurred. No success claim
+                exists. These achievements do not claim execution, success,
+                implementation, execution-readiness completion,
+                production/runtime readiness, ROI proof, Hermes comparison,
+                replacement readiness, full orchestration proof, or independent
+                multi-worker proof.
+              </p>
+            </div>
           </div>
 
           {achievements.map((achievement) => (
