@@ -185,7 +185,8 @@ Commit message
 Files changed
 Remaining unrelated dirty files
 Validation completed before commit
-Blocked claims
+Claim level
+Not claiming
 ```
 
 ## 4. Push gate
@@ -346,28 +347,44 @@ Do not claim stronger than evidence.
 For every deployment, record:
 
 ```text
-Allowed claims:
-- What can be said now.
+Claim level:
+<LEVEL>
 
-Blocked claims:
-- What cannot be said yet.
+Evidence:
+- <key evidence only>
 
-Unvalidated:
-- What remains unchecked.
+Not claiming:
+<ONE_OR_TWO_UMBRELLA_LIMITS_ONLY>
 ```
 
-Example:
+Allowed claim levels:
 
 ```text
-Allowed claim:
-The boundary and observability reframe patches have been deployed and HTTP/content checked on sararin.ai.
+MANUAL_WORKING_PROTOCOL
+CONTROL_ARTIFACT_COMMITTED
+CHECKER_ADDED
+PARTIALLY_AUTOMATED_PREFLIGHT_CONTROL
+DEPLOYED_HTTP_CONTENT_CHECKED
+VISUAL_SPOT_CHECKED
+FULL_DEPLOYMENT_ENFORCEMENT
+```
 
-Blocked claims:
-- Production visual verification complete
-- Fully browser-verified public UI
-- Playwright visual regression complete
-- Live telemetry verified
-- Full runtime automation verified
+`FULL_DEPLOYMENT_ENFORCEMENT` is reserved. Do not use it unless full enforcement is explicitly proven.
+
+Routine closeouts should not list every possible blocked claim. Use one umbrella `Not claiming` item unless a specific risk is active. Use detailed blocked claims only when there is a failure, security risk, public/private boundary risk, or claim dispute.
+
+Example for the current protocol integration state:
+
+```text
+Claim level:
+PARTIALLY_AUTOMATED_PREFLIGHT_CONTROL
+
+Evidence:
+- Deployment protocol checker is committed.
+- Checker is scripted and included in GitHub Deployment Preflight.
+
+Not claiming:
+FULL_DEPLOYMENT_ENFORCEMENT
 ```
 
 ## 9. Public-surface map update rule
@@ -454,11 +471,14 @@ Production check:
 - visual:
 - Playwright:
 
-Allowed claims:
--
+Claim level:
+<LEVEL>
 
-Blocked claims:
--
+Evidence:
+- <key evidence only>
+
+Not claiming:
+<ONE_OR_TWO_UMBRELLA_LIMITS_ONLY>
 
 Remaining unrelated files:
 -
