@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Public Surface Review Packet</title>
+  <style>
+    :root { --ink: #172033; --muted: #5b6475; --line: #d8dee9; --panel: #f7f9fc; --pass: #0d7a46; --warn: #9a6200; --block: #b42318; --na: #596170; }
+    body { margin: 0; font: 14px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: var(--ink); background: #fff; }
+    main { max-width: 1120px; margin: 0 auto; padding: 32px 24px 48px; }
+    h1 { font-size: 28px; line-height: 1.15; margin: 0 0 8px; }
+    h2 { font-size: 18px; margin: 28px 0 10px; padding-bottom: 6px; border-bottom: 1px solid var(--line); }
+    p, ul { margin-top: 8px; margin-bottom: 8px; }
+    .summary { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; margin-top: 18px; }
+    .field { border: 1px solid var(--line); border-radius: 6px; background: var(--panel); padding: 10px 12px; min-width: 0; }
+    .label { display: block; color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: 0; margin-bottom: 4px; }
+    .value { overflow-wrap: anywhere; font-weight: 600; }
+    table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+    th, td { text-align: left; vertical-align: top; border: 1px solid var(--line); padding: 8px; overflow-wrap: anywhere; }
+    th { background: #eef2f7; font-size: 12px; color: #3d4656; }
+    .badge { display: inline-block; border-radius: 999px; padding: 2px 8px; font-size: 12px; font-weight: 700; color: #fff; }
+    .pass { background: var(--pass); } .warn { background: var(--warn); } .block { background: var(--block); } .not-applicable { background: var(--na); }
+    .boundary { border-left: 4px solid #374151; background: #f7f7f8; padding: 12px 14px; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Public Surface Review Packet</h1>
+    <p><strong>Profile:</strong> public_surface_go_live_v0_1 | <strong>Generated:</strong> 2026-06-19T09:40:17.286Z</p>
+    <p><strong>Final status:</strong> <span class="badge ready-for-go-live-consideration">READY_FOR_GO_LIVE_CONSIDERATION</span></p>
+    <div class="summary">
+      <div class="field"><span class="label">Surface type</span><span class="value">route_section</span></div>
+      <div class="field"><span class="label">Public surface</span><span class="value">/architecture/system-health/observability</span></div>
+      <div class="field"><span class="label">Expected entry</span><span class="value">Public Surface Release Lane section on the observability route</span></div>
+      <div class="field"><span class="label">Check counts</span><span class="value">10 PASS, 0 WARN, 0 BLOCK, 3 NOT_APPLICABLE</span></div>
+    </div>
+    <h2>Intended Public Change</h2>
+    <p>Public Surface Release Lane helps package recurring public-page updates for owner review before go-live consideration. It does not deploy, approve go-live, certify production readiness, or replace owner semantic acceptance.</p>
+    <p><strong>Changed files:</strong></p><ul><li>app/architecture/system-health/observability/page.tsx</li>
+<li>docs/governance/public-surface-runner/v0.1/PAGELAB_PUBLIC_SURFACE_PLACEMENT_TRIAL_REPORT.md</li>
+<li>docs/governance/public-surface-runner/v0.1/public-surface-review-input.pagelab-placement-trial.json</li></ul>
+    <p><strong>Evidence references:</strong></p><ul><li>docs/governance/public-surface-runner/v0.1/PAGELAB_PUBLIC_SURFACE_RELEASE_LANE.md</li>
+<li>docs/governance/public-surface-runner/v0.1/PAGELAB_PUBLIC_SURFACE_PLACEMENT_TRIAL_REPORT.md</li></ul>
+    <h2>Claim Boundary</h2>
+    <div class="summary">
+      <div class="field"><span class="label">Public may claim</span><ul><li>Public Surface Release Lane helps package recurring public-page updates for owner review before go-live consideration.</li>
+<li>The local review command generates an owner review packet.</li>
+<li>The lane checks claim boundaries, leakage risk, unsupported proof, and review evidence.</li>
+<li>The lane improves repeatability for public-surface updates.</li></ul></div>
+      <div class="field"><span class="label">Public must not claim</span><ul><li>The lane deploys public changes.</li>
+<li>The lane approves go-live.</li>
+<li>The lane modifies production.</li>
+<li>The lane guarantees content correctness.</li>
+<li>The lane proves production readiness.</li>
+<li>The lane is a full QA platform.</li>
+<li>The lane replaces Prime Gate or owner review.</li></ul></div>
+      <div class="field"><span class="label">Internal only</span><ul><li>Private operational artifacts</li>
+<li>Credentials or tokens</li>
+<li>Provider receipts</li>
+<li>Prompt logs</li>
+<li>Raw task payloads</li></ul></div>
+    </div>
+    <h2>Validation Results</h2>
+    <table><thead><tr><th style="width: 18%;">Check ID</th><th style="width: 18%;">Name</th><th style="width: 12%;">Result</th><th style="width: 24%;">Evidence</th><th>Note</th></tr></thead><tbody>
+      <tr>
+        <td>SURFACE_IDENTIFIED</td>
+        <td>Public surface identified</td>
+        <td><span class="badge pass">PASS</span></td>
+        <td>/architecture/system-health/observability</td>
+        <td>Public surface is explicitly identified.</td>
+      </tr>
+
+      <tr>
+        <td>EXPECTED_ENTRY_PRESENT</td>
+        <td>Expected public entry present</td>
+        <td><span class="badge pass">PASS</span></td>
+        <td>Public Surface Release Lane section on the observability route</td>
+        <td>Expected public entry is present or traceable.</td>
+      </tr>
+
+      <tr>
+        <td>CLAIM_SAFE_WORDING</td>
+        <td>Claim-safe wording</td>
+        <td><span class="badge pass">PASS</span></td>
+        <td>Public copy avoids blocked maturity and proof claims.</td>
+        <td>Claim wording is bounded.</td>
+      </tr>
+
+      <tr>
+        <td>NO_PRIVATE_PATH_LEAK</td>
+        <td>No private KB or local path leak</td>
+        <td><span class="badge pass">PASS</span></td>
+        <td>No private local or KB path patterns detected.</td>
+        <td>No private path leakage found.</td>
+      </tr>
+
+      <tr>
+        <td>NO_SECRET_OR_RECEIPT_LEAK</td>
+        <td>No secrets, receipts, telemetry, prompt logs, or internal evidence JSON exposed</td>
+        <td><span class="badge pass">PASS</span></td>
+        <td>No secret or receipt patterns detected.</td>
+        <td>No secret or receipt leakage found.</td>
+      </tr>
+
+      <tr>
+        <td>NO_ROUND3_OVERCLAIM</td>
+        <td>No Round 3 execution or success overclaim</td>
+        <td><span class="badge pass">PASS</span></td>
+        <td>No Round 3 execution, success, proof, or production-readiness claim detected.</td>
+        <td>Round 3 boundary is clean.</td>
+      </tr>
+
+      <tr>
+        <td>BUILD_TYPECHECK_LINT_CAPTURED_IF_APPLICABLE</td>
+        <td>Build/typecheck/lint evidence captured if applicable</td>
+        <td><span class="badge pass">PASS</span></td>
+        <td>build: pnpm build completed successfully and statically generated /architecture/system-health/observability; Next.js emitted a workspace-root inference warning. | typecheck: pnpm typecheck completed with no TypeScript errors. | lint: pnpm lint completed with 0 errors and 6 pre-existing warnings outside this patch.</td>
+        <td>Technical evidence is captured or explicitly not applicable.</td>
+      </tr>
+
+      <tr>
+        <td>ROUTE_SMOKE_CAPTURED_IF_APPLICABLE</td>
+        <td>Route smoke evidence captured if applicable</td>
+        <td><span class="badge not-applicable">NOT_APPLICABLE</span></td>
+        <td>No deployment or local server route smoke is part of this placement trial; build validation is used for static route generation.</td>
+        <td>Route smoke evidence supplied.</td>
+      </tr>
+
+      <tr>
+        <td>DEPLOYMENT_REF_CAPTURED_IF_DEPLOYED</td>
+        <td>Deployment or preview URL captured if deployment occurred</td>
+        <td><span class="badge not-applicable">NOT_APPLICABLE</span></td>
+        <td>No deployment reference.</td>
+        <td>No deployment occurred.</td>
+      </tr>
+
+      <tr>
+        <td>PUBLIC_INTERNAL_BOUNDARY_CLEAR</td>
+        <td>Public copy distinguishes internal evidence from public claim</td>
+        <td><span class="badge pass">PASS</span></td>
+        <td>Claim boundary fields supplied.</td>
+        <td>Public/internal claim boundary is explicit.</td>
+      </tr>
+
+      <tr>
+        <td>FORBIDDEN_TERMS_CONTEXT_ONLY</td>
+        <td>Forbidden terms only appear in boundary or forbidden sections</td>
+        <td><span class="badge pass">PASS</span></td>
+        <td>Forbidden terms are not used as positive public claims.</td>
+        <td>Forbidden term context is acceptable.</td>
+      </tr>
+
+      <tr>
+        <td>VISUAL_SPOT_CHECK_OPTIONAL</td>
+        <td>Visual Spot Checker</td>
+        <td><span class="badge not-applicable">NOT_APPLICABLE</span></td>
+        <td>Visual Spot Checker not used.</td>
+        <td>Optional lightweight visibility check only; no screenshot diffing, design QA, accessibility approval, or visual regression.</td>
+      </tr>
+
+      <tr>
+        <td>OWNER_REVIEW_SURFACE_AVAILABLE</td>
+        <td>Owner review surface available</td>
+        <td><span class="badge pass">PASS</span></td>
+        <td>PAGELAB_PUBLIC_SURFACE_PLACEMENT_REVIEW_PACKET.html</td>
+        <td>One-click owner review packet is generated by this command.</td>
+      </tr></tbody></table>
+    <h2>Warnings And Blocks</h2>
+    <p><strong>Warnings:</strong></p><ul><li>None supplied.</li></ul>
+    <p><strong>Blocks:</strong></p><ul><li>None supplied.</li></ul>
+    <h2>Technical Evidence</h2>
+    <ul>
+      <li>Build: pnpm build completed successfully and statically generated /architecture/system-health/observability; Next.js emitted a workspace-root inference warning.</li>
+      <li>Typecheck: pnpm typecheck completed with no TypeScript errors.</li>
+      <li>Lint: pnpm lint completed with 0 errors and 6 pre-existing warnings outside this patch.</li>
+      <li>Route smoke: No deployment or local server route smoke is part of this placement trial; build validation is used for static route generation.</li>
+      <li>Deployment occurred: no</li>
+      <li>Deployment reference: not applicable</li>
+    </ul>
+    <h2>Visual Spot Checker</h2>
+    <p>not used</p>
+    <p>This is optional lightweight visibility confirmation only. It is not screenshot diffing, design QA, accessibility approval, or visual regression.</p>
+    <h2>Final Boundary Statement</h2>
+    <div class="boundary">
+      <p>Local owner review only. No deploy, no publish, no preview promotion, no production modification, no go-live approval.</p>
+      <p>Passing this review packet does not deploy, publish, promote preview to production, approve public go-live, or prove production readiness.</p>
+    </div>
+  </main>
+</body>
+</html>

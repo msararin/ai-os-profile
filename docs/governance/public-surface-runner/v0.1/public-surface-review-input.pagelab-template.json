@@ -1,0 +1,58 @@
+{
+  "profile": "public_surface_go_live_v0_1",
+  "surface_type": "pagelab-public-update",
+  "public_route_or_surface": "PageLab recurring public update lane",
+  "expected_entry_identifier": "pagelab-public-surface-team-lane-v0-1",
+  "expected_entry_present": true,
+  "changed_files": [
+    "docs/governance/public-surface-runner/v0.1/PAGELAB_PUBLIC_SURFACE_RELEASE_LANE.md",
+    "docs/governance/public-surface-runner/v0.1/public-surface-runner-rules.json",
+    "scripts/public-surface-review.mjs",
+    "package.json"
+  ],
+  "public_copy": "PageLab public surface updates now have a repo-local, non-deploying owner review lane that packages deterministic claim-boundary, source-mapping, leakage, route-smoke, and review-surface checks before any go-live decision.",
+  "evidence_refs": [
+    "Cockpit/Public Surface Source Map",
+    "Public Surface Owner Semantic Acceptance Policy",
+    "Public Export Rules",
+    "Public Surface Runner packet-local implementation"
+  ],
+  "deployment_occurred": false,
+  "deployment_url": null,
+  "route_smoke_result": {
+    "status": "not_applicable",
+    "reason": "This slice wires a local owner review command only; no public route or deployment is touched."
+  },
+  "build_result": {
+    "status": "not_applicable",
+    "reason": "No public route code or runtime app behavior was changed by the template itself."
+  },
+  "typecheck_result": {
+    "status": "not_applicable",
+    "reason": "The runner script is plain Node JavaScript and does not add TypeScript surface area."
+  },
+  "lint_result": {
+    "status": "not_applicable",
+    "reason": "This template records the lane wiring; full repo lint remains a separate validation step when public page code changes."
+  },
+  "visual_spot_check": {
+    "status": "not_applicable",
+    "reason": "No public visual route was changed."
+  },
+  "declared_claim_boundary": {
+    "public_may_claim": [
+      "A local owner review command exists for PageLab public surface update packets.",
+      "The command generates a review packet and deterministic PASS/WARN/BLOCK/NOT_APPLICABLE results.",
+      "The lane is non-deploying and preserves owner go-live authority."
+    ],
+    "public_must_not_claim": [
+      "Go-live is approved.",
+      "Production readiness is proven.",
+      "Deployment occurred.",
+      "Full QA, SEO, accessibility, analytics, visual regression, or autonomous orchestration was completed."
+    ],
+    "internal_only": [
+      "Private locations, credentials, provider metadata, raw traces, prompt materials, and internal evidence details."
+    ]
+  }
+}

@@ -1,0 +1,101 @@
+{
+  "profile_id": "public_surface_go_live_v0_1",
+  "profile_name": "Public Surface Runner",
+  "profile_type": "thin_deterministic_validation_profile",
+  "version": "0.1",
+  "status": "repo_local_pagelab_lane_ready_for_trial",
+  "identity_boundary": {
+    "use_name": "Public Surface Runner",
+    "allowed_description": "A lightweight validation profile that packages one-click owner review evidence for recurring PageLab public page updates.",
+    "forbidden_description": "An autonomous worker system, full QA platform, deployment system, visual regression suite, or public go-live authority."
+  },
+  "result_values": [
+    "PASS",
+    "WARN",
+    "BLOCK",
+    "NOT_APPLICABLE"
+  ],
+  "checks": [
+    {
+      "id": "SURFACE_IDENTIFIED",
+      "name": "Public surface identified",
+      "block_if": "No public route, page, component, card, preview URL, or production URL is identified."
+    },
+    {
+      "id": "EXPECTED_ENTRY_PRESENT",
+      "name": "Expected public entry present",
+      "block_if": "Expected public entry is missing."
+    },
+    {
+      "id": "CLAIM_SAFE_WORDING",
+      "name": "Claim-safe wording",
+      "block_if": "Copy makes unsupported maturity, proof, production-readiness, automation, certification, or enterprise-grade claims."
+    },
+    {
+      "id": "NO_PRIVATE_PATH_LEAK",
+      "name": "No private KB or local path leak",
+      "block_if": "A private local path or private KB path appears in public-facing copy or owner-safe summary fields."
+    },
+    {
+      "id": "NO_SECRET_OR_RECEIPT_LEAK",
+      "name": "No secrets, receipts, telemetry, prompt logs, or internal evidence JSON exposed",
+      "block_if": "Sensitive receipt, key, token, raw telemetry, prompt log, or internal evidence detail is exposed."
+    },
+    {
+      "id": "NO_ROUND3_OVERCLAIM",
+      "name": "No Round 3 execution or success overclaim",
+      "block_if": "Public copy implies CASE-003 Round 3 execution, completion, success, production readiness, real pilot completion, or proof without authorization."
+    },
+    {
+      "id": "BUILD_TYPECHECK_LINT_CAPTURED_IF_APPLICABLE",
+      "name": "Build/typecheck/lint evidence captured if applicable",
+      "block_if": "A required technical check failed and the failure is not bounded."
+    },
+    {
+      "id": "ROUTE_SMOKE_CAPTURED_IF_APPLICABLE",
+      "name": "Route smoke evidence captured if applicable",
+      "block_if": "Route smoke failed for a route expected to go live."
+    },
+    {
+      "id": "DEPLOYMENT_REF_CAPTURED_IF_DEPLOYED",
+      "name": "Deployment or preview URL captured if deployment occurred",
+      "block_if": "Deployment occurred but no URL or reference is available and public verification depends on it."
+    },
+    {
+      "id": "PUBLIC_INTERNAL_BOUNDARY_CLEAR",
+      "name": "Public copy distinguishes internal evidence from public claim",
+      "block_if": "Internal evidence is presented as public proof without boundary."
+    },
+    {
+      "id": "FORBIDDEN_TERMS_CONTEXT_ONLY",
+      "name": "Forbidden terms only appear in boundary or forbidden sections",
+      "block_if": "Forbidden terms appear as positive public claims."
+    },
+    {
+      "id": "VISUAL_SPOT_CHECK_OPTIONAL",
+      "name": "Visual Spot Checker",
+      "block_if": "The intended entry is not visible where expected after public verification is required.",
+      "optional": true
+    },
+    {
+      "id": "OWNER_REVIEW_SURFACE_AVAILABLE",
+      "name": "Owner review surface available",
+      "block_if": "No owner-accessible review surface is available before a go-live decision."
+    }
+  ],
+  "one_click_public_review": {
+    "required_command": "pnpm public:review",
+    "alternate_command": "npm run public:review",
+    "purpose": "Generate a one-click owner review packet without deploying.",
+    "required_output": "PUBLIC_SURFACE_REVIEW_PACKET.html",
+    "must_not": [
+      "deploy",
+      "publish",
+      "promote preview to production",
+      "modify production",
+      "claim go-live approval",
+      "claim production readiness"
+    ]
+  },
+  "go_live_rule": "No go-live readiness recommendation unless the owner can inspect the intended public change through a one-click review artifact. This runner never approves go-live."
+}
