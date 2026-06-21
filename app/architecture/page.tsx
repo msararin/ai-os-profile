@@ -178,7 +178,7 @@ export default function ArchitecturePage() {
       </section>
 
       <section className="border-t border-border bg-muted/30 py-10">
-        <div className="mx-auto grid max-w-6xl gap-4 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
+        <div className="mx-auto grid max-w-6xl gap-4 px-4 sm:px-6 lg:grid-cols-3 lg:px-8">
           <div className="rounded-lg border border-border bg-background p-5">
             <h2 className="text-lg font-semibold text-foreground">Release Boundary</h2>
             <p className="mt-2 text-sm leading-6 text-muted-foreground">
@@ -193,6 +193,19 @@ export default function ArchitecturePage() {
               Phase 1: telemetry production and store behavior remain implemented in optimize-worker
               while AIOS owns the governance meaning of the evidence.
             </p>
+          </div>
+          <div className="rounded-lg border border-border bg-background p-5">
+            <h2 className="text-lg font-semibold text-foreground">Public Surface Governance</h2>
+            <p className="mt-2 text-sm leading-6 text-muted-foreground">
+              A governance/design surface for how public pages handle story, term impact,
+              claim safety, implementation support, and owner approval.
+            </p>
+            <Link
+              href="/architecture/public-surface-governance"
+              className="mt-3 inline-flex text-sm font-medium text-primary hover:underline"
+            >
+              How we update public surfaces →
+            </Link>
           </div>
         </div>
       </section>
