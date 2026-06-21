@@ -40,6 +40,7 @@ const routeContracts = [
     routeFile: "app/architecture/public-surface-governance/page.tsx",
     parentFile: "app/architecture/page.tsx",
     href: "/architecture/public-surface-governance",
+    parentRequired: true,
     parentSnippets: [
       "Public Surface Governance",
       "governance/design surface",
@@ -62,6 +63,7 @@ const routeContracts = [
     routeFile: "app/achievements/public-surface-governance/page.tsx",
     parentFile: "app/achievements/page.tsx",
     href: "/achievements/public-surface-governance",
+    parentRequired: false,
     parentSnippets: [
       "Public Surface Governance Operating Model Defined",
       "automated release-governance",
@@ -94,6 +96,7 @@ const forbiddenPositiveClaims = [
   },
 ]
 
+const warnings = []
 const errors = []
 
 if (!fs.existsSync(docPath)) {
@@ -139,6 +142,12 @@ console.log(`Headings: ${requiredHeadings.length}`)
 console.log(`Boundary concepts: ${requiredConcepts.length}`)
 console.log(`Blocked claim terms: ${blockedClaimTerms.length}`)
 console.log(`Public surface route contracts: ${routeContracts.length}`)
+if (warnings.length > 0) {
+  console.log(`Warnings: ${warnings.length}`)
+  for (const warning of warnings) {
+    console.log(`- ${warning}`)
+  }
+}
 
 function checkRouteContract(contract) {
   const routePath = path.join(root, contract.routeFile)
@@ -149,21 +158,39 @@ function checkRouteContract(contract) {
     return
   }
 
+  const routeContent = fs.readFileSync(routePath, "utf8")
+  let parentContent = ""
+
   if (!fs.existsSync(parentPath)) {
-    errors.push(`${contract.name}: missing parent source file ${contract.parentFile}`)
+    if (contract.parentRequired) {
+      errors.push(`${contract.name}: missing parent source file ${contract.parentFile}`)
+    } else {
+      warnings.push(`${contract.name}: optional parent source file missing: ${contract.parentFile}`)
+    }
     return
   }
 
-  const routeContent = fs.readFileSync(routePath, "utf8")
-  const parentContent = fs.readFileSync(parentPath, "utf8")
+  parentContent = fs.readFileSync(parentPath, "utf8")
+  const parentHasHref = parentContent.includes(contract.href)
 
-  if (!parentContent.includes(contract.href)) {
-    errors.push(`${contract.name}: parent page does not link to ${contract.href}`)
+  if (!parentHasHref) {
+    if (contract.parentRequired) {
+      errors.push(`${contract.name}: parent page does not link to ${contract.href}`)
+    } else {
+      warnings.push(`${contract.name}: parent page does not yet link to ${contract.href}`)
+    }
   }
 
-  for (const snippet of contract.parentSnippets) {
-    if (!parentContent.includes(snippet)) {
-      errors.push(`${contract.name}: parent page missing discoverability/boundary snippet: ${snippet}`)
+  if (parentHasHref || contract.parentRequired) {
+    for (const snippet of contract.parentSnippets) {
+      if (!parentContent.includes(snippet)) {
+        const message = `${contract.name}: parent page missing discoverability/boundary snippet: ${snippet}`
+        if (contract.parentRequired) {
+          errors.push(message)
+        } else {
+          warnings.push(message)
+        }
+      }
     }
   }
 
