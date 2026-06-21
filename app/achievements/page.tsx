@@ -1,7 +1,6 @@
 "use client"
 
 import { useState } from "react"
-import Link from "next/link"
 import { PageLayout } from "@/components/page-layout"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -1095,30 +1094,6 @@ export default function AchievementsPage() {
               </p>
             </div>
           </div>
-
-          <Link
-            href="/achievements/public-surface-governance"
-            className="mb-8 block rounded-lg border border-[#00B494]/30 bg-[#00B494]/5 p-4 transition-colors hover:border-[#00B494] hover:bg-[#00B494]/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00B494] focus-visible:ring-offset-2"
-          >
-            <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-              <div>
-                <p className="text-sm font-semibold text-[#1F3A60]">
-                  Public Surface Governance Operating Model Defined
-                </p>
-                <p className="mt-2 max-w-3xl text-sm leading-6 text-muted-foreground">
-                  Governance/design surface for how public updates move through Surface Story
-                  Guild, Prime Gate, Public Surface Runner Team, and Lyn approval.
-                </p>
-                <p className="mt-2 text-xs leading-5 text-muted-foreground">
-                  Boundary: no automated release-governance claim and no production-readiness
-                  certification claim.
-                </p>
-              </div>
-              <span className="shrink-0 text-sm font-medium text-[#00B494]">
-                View achievement →
-              </span>
-            </div>
-          </Link>
 
           {achievements.map((achievement) => (
             <Card 

@@ -62,13 +62,13 @@ const routeContracts = [
     name: "Public Surface Governance achievement surface",
     routeFile: "app/achievements/public-surface-governance/page.tsx",
     parentFile: "app/achievements/page.tsx",
-    href: "/achievements/public-surface-governance",
     parentRequired: true,
     parentSnippets: [
-      "Public Surface Governance Operating Model Defined",
-      "Surface Story Guild, Prime Gate, Public Surface Runner Team, and Lyn approval",
-      "automated release-governance",
+      "Public Surface Governance and Deployment Discoverability Improved",
+      "public-surface governance, deployment discoverability containment, claim-safe story control",
+      "implementation and validation support",
       "production-readiness certification",
+      "Lightweight governance without adding manual deployment ceremony",
     ],
     routeSnippets: [
       "Public Surface Governance Operating Model Defined",
@@ -174,9 +174,11 @@ function checkRouteContract(contract) {
 
   parentContent = fs.readFileSync(parentPath, "utf8")
   const normalizedParentContent = normalizeWhitespace(parentContent)
-  const parentHasHref = normalizedParentContent.includes(normalizeWhitespace(contract.href))
+  const parentHasHref = contract.href
+    ? normalizedParentContent.includes(normalizeWhitespace(contract.href))
+    : true
 
-  if (!parentHasHref) {
+  if (contract.href && !parentHasHref) {
     if (contract.parentRequired) {
       errors.push(`${contract.name}: parent page does not link to ${contract.href}`)
     } else {
