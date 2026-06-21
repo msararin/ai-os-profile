@@ -236,7 +236,7 @@ export default function Case003Round3EvidenceLadderPage() {
             evidence completeness, deviation handling, and claim safety matured across each stage.
           </p>
           <div className="mt-6 flex flex-wrap gap-2">
-            <Badge>ROUND3_POST_RUN_OPUS_APPROVED_WITH_CAVEATS_FOR_OWNER_CLAIM_REVIEW</Badge>
+            <LongBadge>ROUND3_POST_RUN_OPUS_APPROVED_WITH_CAVEATS_FOR_OWNER_CLAIM_REVIEW</LongBadge>
             <Badge variant="outline">No claim beyond controlled execution evidence</Badge>
           </div>
           <Alert className="mt-6 border-primary/25 bg-primary/5">
@@ -305,7 +305,7 @@ export default function Case003Round3EvidenceLadderPage() {
                   <div>
                     <div className="flex flex-wrap items-center gap-2">
                       <h3 className="text-base font-semibold text-foreground">{stage.title}</h3>
-                      <Badge variant="outline">{stage.verdict}</Badge>
+                      <LongBadge>{stage.verdict}</LongBadge>
                     </div>
                     <p className="mt-3 text-sm font-medium text-foreground">
                       Measurement gained: {stage.gained}
@@ -522,5 +522,13 @@ function SectionHeading({
       <h2 className="mt-2 text-2xl font-semibold tracking-tight text-foreground">{title}</h2>
       <p className="mt-2 max-w-3xl text-sm leading-6 text-muted-foreground">{detail}</p>
     </div>
+  )
+}
+
+function LongBadge({ children }: { children: string }) {
+  return (
+    <span className="inline-flex max-w-full items-center rounded-md border border-border bg-background px-2 py-0.5 text-xs font-medium leading-5 text-foreground break-words">
+      {children}
+    </span>
   )
 }
