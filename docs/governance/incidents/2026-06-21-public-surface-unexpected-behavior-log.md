@@ -20,6 +20,7 @@ This log covers public-surface work around:
 - Deployment discoverability checks
 - Achievement Proof Gallery format
 - QA responsibility for expected behavior, root cause, and solution verification
+- owner repeated-validation count as a quality/performance signal
 
 ## Non-claims
 This incident log does not claim:
@@ -31,6 +32,45 @@ This incident log does not claim:
 - universal enforcement across historical pages
 - ROI proof
 - independent multi-worker proof
+
+---
+
+## Owner repeated-validation count
+
+### Performance signal
+This incident required the owner to repeatedly validate the public surface instead of QA/Runner proving owner-visible expected behavior before closeout. That is a performance failure of the assistant/runner process.
+
+### Minimum explicit owner validation attempts observed in this thread
+At least **5 owner-visible validation attempts / corrective checks** were required before the system stopped treating source/link/deploy evidence as sufficient:
+
+1. Owner reported no visible update on `sararin.ai` after source/deploy work.
+2. Owner challenged status wording because the assistant spoke as if the work was already done while live visibility was not confirmed.
+3. Owner reported the achievement for the Public Surface Governance / Surface Story Guild work was missing.
+4. Owner identified that the achievement was created in the wrong format, not the established Achievement Proof Gallery format.
+5. Owner reported the Architecture page still did not show the expected Public Surface Governance / Surface Story Guild surface.
+
+Additional corrective prompts in the same incident included requests to re-check root cause, log unexpected behavior, avoid patching over the issue, and keep the failure in policy/performance tracking.
+
+### RCA on repeated owner validation
+The system failed because QA did not own owner-visible expected behavior. Validation over-weighted:
+
+- route existence
+- source presence
+- parent-link existence
+- build/typecheck success
+- Vercel status
+- assistant status narration
+
+Validation under-weighted:
+
+- whether the owner could actually find the update
+- whether the update appeared in the expected page format
+- whether the page matched the established product pattern
+- whether the proposed solution addressed the root cause
+- whether repeated owner correction should stop closeout immediately
+
+### Policy implication
+If the owner has to validate the same public surface more than once for the same intent, the task is no longer in normal execution. It becomes an incident requiring RCA, QA ownership, and policy containment.
 
 ---
 
@@ -49,6 +89,8 @@ For public-surface work, QA must ask:
 5. Did we introduce a workaround that creates a new format or narrative drift?
 6. Does the solution preserve claim boundaries?
 7. Is the validation evidence strong enough to close the issue?
+8. How many times did the owner have to re-validate or correct the same page/intent?
+9. Has repeated owner validation triggered incident mode?
 
 ### QA exit rule
 An issue cannot be considered fully contained unless QA confirms:
@@ -58,6 +100,7 @@ An issue cannot be considered fully contained unless QA confirms:
 - root cause is addressed or explicitly logged as still open
 - solution is tested against the original failure mode
 - no new public claim overreach was introduced
+- owner repeated-validation count is recorded when the owner had to correct the same surface more than once
 
 ---
 
@@ -284,14 +327,38 @@ ROLE_SCOPE_GAP_LOGGED
 
 ---
 
+## Incident 6 — Architecture surface was linked but not owner-visible in the expected architecture pattern
+
+### Unexpected behavior
+The Architecture source included a public-surface governance link/card, but the owner still reported that the Architecture page did not visibly show the expected public-surface governance / Surface Story Guild concept.
+
+### User-visible symptom
+The owner could not recognize the Public Surface Governance work as part of the Architecture surface.
+
+### Root cause
+The implementation treated “a link exists somewhere on the page” as sufficient. It did not verify visual hierarchy, architecture-model placement, or whether the concept appeared in the expected architecture component pattern.
+
+### Required solution
+Represent Public Surface Governance as an explicit architecture component/layer in the main architecture model, with Surface Story Guild / Prime Gate / Runner support / owner approval visible in the same pattern as other architecture layers.
+
+### QA verification required
+QA must verify that the owner can find the concept on `/architecture` without hunting for a low-emphasis link and that the page format matches the owner’s expected architecture pattern.
+
+### Current status
+ROOT_CAUSE_IDENTIFIED_FIX_REQUIRED
+
+---
+
 ## Consolidated required next steps
 
 1. Fix `app/achievements/page.tsx` so the 2026-06-21 milestone appears as a normal Achievement Proof Gallery entry.
-2. Update header/latest milestone/count copy if hardcoded.
-3. Remove or reduce duplicate featured-link behavior if it creates confusing display.
-4. Add or update a checker so achievement route/link work cannot pass while missing the gallery-format entry.
-5. Run QA against owner-visible expected behavior, not only build status.
-6. Close this incident only after root cause is verified and the solution is tested against the original failure modes.
+2. Fix `app/architecture/page.tsx` so Public Surface Governance appears as an explicit architecture model component, not just a low-emphasis link/card.
+3. Update header/latest milestone/count copy if hardcoded.
+4. Remove or reduce duplicate featured-link behavior if it creates confusing display.
+5. Add or update a checker so achievement route/link work cannot pass while missing the gallery-format entry.
+6. Run QA against owner-visible expected behavior, not only build status.
+7. Close this incident only after root cause is verified and the solution is tested against the original failure modes.
+8. Treat repeated owner validation as a performance-score failure and incident trigger.
 
 ## Expected closure verdict
 ACHIEVEMENT_FORMAT_DRIFT_AND_PUBLIC_SURFACE_UNEXPECTED_BEHAVIOR_CONTAINED
