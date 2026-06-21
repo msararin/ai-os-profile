@@ -26,8 +26,8 @@ export default function AchievementsPage() {
       headline: 'Public Surface Governance and Deployment Discoverability Improved',
       summary: 'Improved the public-surface update path after a visibility failure: routes existed, but parent pages did not make the update easy to find. The work separated Surface Story Guild communication coherence, Prime Gate claim safety, Public Surface Runner implementation and validation support, and Lyn final positioning approval while hardening deployment checks without adding a new manual deployment step.',
       proofType: 'public-surface governance, deployment discoverability containment, claim-safe story control',
-      evidenceReference: 'PR #18 Add public surface governance discoverability links; commits 9504e19 and bfa1434; follow-up achievement story patch fc784206',
-      status: 'Merged / Vercel deployment success reported for PR #18 / Achievement story patch committed',
+      evidenceReference: 'PR #18 Add public surface governance discoverability links; commits 9504e19 and bfa1434; follow-up achievement story patch fc784206; governed repair pass for architecture and achievement format',
+      status: 'Governed repair in progress / expected-behavior QA required before public-closeout claim',
       publicSafeResult: 'AIOS now makes the public-surface update path more visible and measurable: parent pages can surface governance routes, the deployment protocol can check route/source/discoverability contracts, and public copy is bounded so implementation support is not confused with go-live authority.',
       caveat: 'This is a public governance and deployment-discoverability milestone. It is not a claim of automated release governance, production-readiness certification, autonomous go-live authority, full production monitoring, universal enforcement, ROI proof, or proof that the flow has been applied across every historical page.',
       details: {
@@ -38,19 +38,26 @@ export default function AchievementsPage() {
           'Surface Story Guild, Prime Gate, Public Surface Runner Team, and Lyn approval boundaries were separated.',
           'Public Surface Runner Team wording was constrained to implementation and validation support only.',
           'Deployment protocol source checks were hardened inside the existing public:deployment-protocol path instead of adding a new manual deployment step.',
-          'Boundary wording blocks automated release-governance and production-readiness certification claims.'
+          'Boundary wording blocks automated release-governance and production-readiness certification claims.',
+          'Governed QA repaired the display-format drift by requiring the milestone to appear in the normal Achievement Proof Gallery format.'
         ],
         evidenceMaturity: [
           {
             before: 'A route could exist and deploy successfully while still being hard for the owner or reader to find from normal site navigation.',
             whatChanged: 'Parent-page discoverability and source-level route/story/boundary checks were added for the Public Surface Governance surfaces.',
             value: 'Future public-surface updates are less likely to become invisible, point to the wrong surface, or drift away from the measurable AIOS story.'
+          },
+          {
+            before: 'An achievement could exist as a standalone route or featured link while missing the established Achievement Proof Gallery format.',
+            whatChanged: 'The milestone is represented as a normal dated gallery entry with proof type, evidence reference, public-safe result, caveat, evidence maturity, skills, impact, and tags.',
+            value: 'The owner can validate the work in the same proof pattern as prior AIOS achievements.'
           }
         ],
         skillsDemonstrated: [
           'Public-surface governance operating-model design',
           'Surface Story Guild role design',
           'Deployment visibility RCA and containment',
+          'Achievement Proof Gallery format discipline',
           'Claim-boundary role separation',
           'Source-level deployment guardrail design',
           'Measurable AIOS story preservation',

@@ -42,7 +42,9 @@ const routeContracts = [
     href: "/architecture/public-surface-governance",
     parentRequired: true,
     parentSnippets: [
+      'title: "Public Surface Governance"',
       "Public Surface Governance",
+      "Surface Story Guild",
       "governance/design surface",
       "implementation support",
       "owner approval",
@@ -64,6 +66,7 @@ const routeContracts = [
     parentFile: "app/achievements/page.tsx",
     parentRequired: true,
     parentSnippets: [
+      "date: '2026-06-21'",
       "Public Surface Governance and Deployment Discoverability Improved",
       "public-surface governance, deployment discoverability containment, claim-safe story control",
       "implementation and validation support",
@@ -71,7 +74,7 @@ const routeContracts = [
       "Lightweight governance without adding manual deployment ceremony",
     ],
     routeSnippets: [
-      "Public Surface Governance Operating Model Defined",
+      "Public Surface Governance and Deployment Discoverability Improved",
       "Public-safe result",
       "Evidence / artifacts",
       "Skills demonstrated",

@@ -34,6 +34,13 @@ const architectureGroups = [
         detail: "Applies manual release discipline, risk framing, checkpoint cadence, and stop conditions before work proceeds.",
         labels: ["Risk review", "Manual preflight", "Stop conditions"],
       },
+      {
+        title: "Public Surface Governance",
+        detail:
+          "Coordinates public-page story coherence, term impact, claim boundaries, implementation support, QA verification, and Lyn approval before public-surface updates are treated as ready.",
+        labels: ["Surface Story Guild", "Prime Gate", "Runner support", "Owner approval"],
+        href: "/architecture/public-surface-governance",
+      },
     ],
   },
   {
@@ -157,7 +164,11 @@ export default function ArchitecturePage() {
                           href={layer.href}
                           className="mt-3 inline-flex text-xs font-medium text-primary hover:underline"
                         >
-                          View system health surfaces →
+                          {layer.href === "/architecture/system-health"
+                            ? "View system health surfaces →"
+                            : layer.href === "/architecture/public-surface-governance"
+                              ? "View public surface governance →"
+                              : "View surface →"}
                         </Link>
                       ) : null}
                     </div>
@@ -175,22 +186,16 @@ export default function ArchitecturePage() {
             </p>
           </div>
 
-          <Link
-            href="/architecture/public-surface-governance"
-            className="mt-4 block rounded-lg border border-border bg-card p-4 transition-colors hover:border-primary/50 hover:bg-muted/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
-          >
+          <div className="mt-4 rounded-lg border border-border bg-card p-4">
             <p className="text-sm font-semibold text-foreground">
-              Public Surface Governance — How We Update Public Surfaces
+              Public Surface Governance Boundary
             </p>
             <p className="mt-2 text-xs leading-5 text-muted-foreground">
-              A governance/design surface for public-page updates, claim boundaries, and owner
-              review flow. Public Surface Runner Team owns implementation and validation support
-              only.
+              Public Surface Runner Team means implementation and validation support only. Lyn owns
+              final positioning and publish approval. This is not a claim of automated release
+              governance, and no production-readiness certification claim is made.
             </p>
-            <span className="mt-3 inline-flex text-xs font-medium text-primary">
-              View public surface governance →
-            </span>
-          </Link>
+          </div>
         </div>
       </section>
 

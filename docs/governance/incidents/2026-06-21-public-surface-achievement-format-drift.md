@@ -18,6 +18,10 @@ The milestone appeared as a separate route / featured link, not as a standard ga
 ## Root cause
 The implementation optimized for route safety and discoverability while avoiding the large achievements page data model. The system did not enforce that new achievements must be represented in the gallery entry format.
 
+The root cause was not only an achievement-page bug. It also included role/R&R confusion: Surface Story Guild story coherence, Prime Gate claim safety, Public Surface Runner implementation support, and Lyn final positioning approval were not translated into concrete display-format acceptance criteria before implementation.
+
+The repair must be made through the governed local/Codex workflow. ChatGPT/GitHub connector write actions are not governed execution for this surface unless Lyn explicitly authorizes them.
+
 ## Contributing factors
 - app/achievements/page.tsx is large and risky to patch manually.
 - The team treated "achievement route exists" as equivalent to "achievement gallery entry exists."
@@ -28,6 +32,7 @@ The implementation optimized for route safety and discoverability while avoiding
 - Add the 2026-06-21 milestone as a normal achievements array entry.
 - Update the header and latest milestone copy.
 - Remove or reduce duplicate featured-link behavior if it conflicts with gallery format.
+- Confirm closure through owner-visible QA, not source or route checks alone.
 
 ## Containment
 Future public achievement work must check:
@@ -35,6 +40,8 @@ Future public achievement work must check:
 - Is this also represented in the Achievement Proof Gallery format?
 - Does the parent page display it in the same pattern as prior achievements?
 - Does the copy preserve claim boundaries?
+- Did Surface Story Guild, Prime Gate, Public Surface Runner Team, and Lyn approval boundaries produce concrete page-format acceptance criteria?
+- Has owner-visible QA confirmed the expected format rather than only route/link existence?
 
 ## What must not change
 - Do not add heavy deployment process.
