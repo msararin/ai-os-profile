@@ -27,9 +27,9 @@ export default function AchievementsPage() {
       summary: 'Improved the public-surface update path after a visibility failure: routes existed, but parent pages did not make the update easy to find. The work separated Surface Story Guild communication coherence, Prime Gate claim safety, Public Surface Runner implementation and validation support, and Lyn final positioning approval while hardening deployment checks without adding a new manual deployment step.',
       proofType: 'public-surface governance, deployment discoverability containment, claim-safe story control',
       evidenceReference: 'PR #18 Add public surface governance discoverability links; commits 9504e19 and bfa1434; follow-up achievement story patch fc784206; governed repair pass for architecture and achievement format',
-      status: 'Governed repair in progress / expected-behavior QA required before public-closeout claim',
-      publicSafeResult: 'AIOS now makes the public-surface update path more visible and measurable: parent pages can surface governance routes, the deployment protocol can check route/source/discoverability contracts, and public copy is bounded so implementation support is not confused with go-live authority.',
-      caveat: 'This is a public governance and deployment-discoverability milestone. It is not a claim of automated release governance, production-readiness certification, autonomous go-live authority, full production monitoring, universal enforcement, ROI proof, or proof that the flow has been applied across every historical page.',
+      status: 'PUBLIC_SURFACE_REPAIR_DEPLOYED_AND_MARKER_VERIFIED / LIVE_BROWSER_VISUAL_CONFIRMATION_PENDING',
+      publicSafeResult: 'AIOS repaired a governance failure where technical proxies such as route existence, source commits, deployment success, and checker pass were mistaken for owner-visible public-surface success. The repaired cockpit entry now separates assumption status, repair evidence, remaining risks, and claim boundaries.',
+      caveat: 'This is a governance-failure lesson learned and public-surface repair milestone. It does not claim automated release governance, production-readiness certification, autonomous go-live authority, universal prevention, or live browser visual confirmation.',
       details: {
         whyItMatters: 'A measurable AIOS should not only create routes or pass deployment checks. It should make the intended update visible to the owner, keep story and evidence aligned, and prevent public claims from drifting beyond what the system actually proves.',
         evidence: [
@@ -51,6 +51,70 @@ export default function AchievementsPage() {
             before: 'An achievement could exist as a standalone route or featured link while missing the established Achievement Proof Gallery format.',
             whatChanged: 'The milestone is represented as a normal dated gallery entry with proof type, evidence reference, public-safe result, caveat, evidence maturity, skills, impact, and tags.',
             value: 'The owner can validate the work in the same proof pattern as prior AIOS achievements.'
+          }
+        ],
+        beforeAfterRepair: [
+          {
+            before: 'Route/source/deploy/checker evidence was treated as enough.',
+            after: 'Final status separates deployed success, served HTML marker verification, and pending live browser visual confirmation.'
+          },
+          {
+            before: 'Owner-visible outcome was not verified early enough.',
+            after: 'Repeated owner validation is logged as an incident/performance signal.'
+          },
+          {
+            before: 'Achievement route was confused with Proof Gallery format.',
+            after: '/achievements has the 2026-06-21 milestone in normal Proof Gallery format.'
+          },
+          {
+            before: 'Architecture link was confused with architecture model visibility.',
+            after: '/architecture has Public Surface Governance as an architecture model component.'
+          },
+          {
+            before: 'ChatGPT connector capability was confused with authorized execution.',
+            after: 'GitHub connector is read/check only by default unless owner explicitly authorizes execution.'
+          },
+          {
+            before: 'Governance expansion was treated as the natural fix.',
+            after: 'Prime Gate requires simplification, not governance expansion; Runner Gang passes with live browser visual confirmation pending.'
+          }
+        ],
+        assumptionStatusAfterRepair: [
+          {
+            group: "Contained",
+            items: [
+              "A1 Route exists = owner can see the update",
+              "A3 Deploy success = live-visible success",
+              "A4 Link exists somewhere = expected page format is satisfied",
+              "A5 Achievement route exists = achievement proof gallery entry exists",
+              "A11 Owner correction is normal review = not a failure signal",
+              "A14 Closing status can be based on lowest technical evidence rather than owner-visible outcome"
+            ],
+            meaning:
+              "These failure modes were addressed for this repair through explicit architecture visibility, Proof Gallery format repair, incident logging, status separation, and served HTML marker verification."
+          },
+          {
+            group: "Partially contained",
+            items: [
+              "A2 Source committed = public surface is done",
+              "A6 Governance doc exists = governance worked",
+              "A8 Checker pass = expected behavior is satisfied",
+              "A10 ChatGPT connector can execute = authorized execution",
+              "A12 Surface Story Guild checks story only = not format/visibility",
+              "A13 Public Surface Runner validates implementation only = not owner-visible behavior"
+            ],
+            meaning:
+              "These require continued discipline. They were logged, bounded, or improved, but still depend on future QA behavior and role discipline."
+          },
+          {
+            group: "Watch",
+            items: [
+              "A7 More governance = safer workflow",
+              "A9 QA can be replaced by build/lint/typecheck",
+              "A15 Complex case study can absorb public-surface governance work without isolation"
+            ],
+            meaning:
+              "These are not active blockers, but they are risk signals. Do not add governance by default; keep public-surface repair isolated from complex case-study work."
           }
         ],
         skillsDemonstrated: [
@@ -1210,6 +1274,52 @@ export default function AchievementsPage() {
                               ))}
                             </tbody>
                           </table>
+                        </div>
+                      </div>
+                    )}
+
+                    {"beforeAfterRepair" in achievement.details && achievement.details.beforeAfterRepair && (
+                      <div>
+                        <h3 className="text-lg font-semibold text-[#1F3A60] mb-2">Before / After Repair</h3>
+                        <div className="overflow-x-auto rounded-md border border-border">
+                          <table className="w-full text-sm">
+                            <thead className="bg-muted/50 text-left text-foreground">
+                              <tr>
+                                <th className="px-3 py-2 font-medium">Before</th>
+                                <th className="px-3 py-2 font-medium">After</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {achievement.details.beforeAfterRepair.map((row, idx) => (
+                                <tr key={idx} className="border-t border-border">
+                                  <td className="px-3 py-3 align-top text-muted-foreground">{row.before}</td>
+                                  <td className="px-3 py-3 align-top text-muted-foreground">{row.after}</td>
+                                </tr>
+                              ))}
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    )}
+
+                    {"assumptionStatusAfterRepair" in achievement.details && achievement.details.assumptionStatusAfterRepair && (
+                      <div>
+                        <h3 className="text-lg font-semibold text-[#1F3A60] mb-2">Assumption Before / After Fix</h3>
+                        <p className="mb-3 text-sm text-muted-foreground">
+                          This does not mean every false assumption needs a new governance layer. It means the false assumptions must be classified into contained / partially contained / watch, then handled with smaller governance and sharper QA.
+                        </p>
+                        <div className="grid gap-3 md:grid-cols-3">
+                          {achievement.details.assumptionStatusAfterRepair.map((group) => (
+                            <div key={group.group} className="rounded-md border border-border bg-muted/20 p-3">
+                              <h4 className="text-sm font-semibold text-foreground">{group.group}</h4>
+                              <ul className="mt-2 list-disc space-y-1 pl-4 text-xs text-muted-foreground">
+                                {group.items.map((item) => (
+                                  <li key={item}>{item}</li>
+                                ))}
+                              </ul>
+                              <p className="mt-3 text-xs leading-5 text-muted-foreground">{group.meaning}</p>
+                            </div>
+                          ))}
                         </div>
                       </div>
                     )}
