@@ -9,6 +9,7 @@ const navigation = [
   { name: "AI Operating System", href: "/ai-operating-system" },
   { name: "Knowledge Sharing", href: "/knowledge-sharing" },
   { name: "Achievements", href: "/achievements" },
+  { name: "Case Studies", href: "/case-studies" },
   { name: "System Health", href: "/architecture/system-health" },
   { name: "About Sararin", href: "/about" },
 ]
@@ -26,7 +27,7 @@ export function SiteHeader() {
               href={item.href}
               className={cn(
                 "rounded px-2 py-1 text-sm font-medium transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-1 sm:px-3",
-                pathname === item.href
+                pathname === item.href || (item.href !== "/" && pathname.startsWith(`${item.href}/`))
                   ? "text-primary"
                   : "text-muted-foreground"
               )}

@@ -1,208 +1,78 @@
+import Link from "next/link"
 import { PageLayout } from "@/components/page-layout"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 
 const constants = [
-  ["Case study", "CASE-003 Round 3"],
-  ["Scope", "Approved owner-authorized packet"],
-  ["Task source", "Round 3 task matrix"],
-  ["Measurement boundary", "T4 measurement contract"],
-  ["Claim constraint", "No public/prod/ROI/Hermes/replacement/full-orchestration claim"],
-  ["Evidence rule", "Missing evidence downgrades claim; deviation triggers RCA"],
-  ["Authority rule", "Newer validated authority records override stale status fields"],
+  ["Case study", "Company M / CASE-003"],
+  ["Industry context", "Mock retail-like adoption scenario"],
+  ["Scope", "Owner-authorized CASE-003 execution packet"],
+  ["Task source", "Round 3 task/evidence checklist"],
+  ["Measurement rule", "Evidence determines claim level"],
+  ["Claim guardrail", "No production, ROI, replacement, or broad performance claim"],
 ]
 
-const dimensions = [
-  ["Executability", "Could the task be executed under approved authority?"],
-  ["Authority completeness", "Did approval map to a runnable control surface?"],
-  ["Runner availability", "Was there an approved command or runner?"],
-  ["Evidence completeness", "Were required outputs and evidence produced?"],
-  ["Deviation handling", "Were unexpected differences detected, classified, and contained?"],
-  ["Claim safety", "Did the claim stay within evidence boundaries?"],
-  ["Reviewer confidence", "Did Opus and Runner Gang support progression?"],
-  ["Owner decision readiness", "Is the result ready for owner claim approval?"],
-]
-
-const ladderStages = [
+const rounds = [
   {
-    letter: "A",
-    title: "Source Validation Achievement",
-    verdict: "ROUND3_NOT_EXECUTED_BLOCKED_BY_SOURCE_VALIDATION",
-    gained: "Authorization alone is not executable authority.",
-    achievement:
-      "Detected that owner approval existed while the controlled packet lacked an approved command or runner and execution remained disabled.",
-    commit: "64dce14",
-    evidence: "Source validation packet 20260619-1855",
+    round: "Round 1",
+    state: "Useful-looking work, weak measurement control",
+    change: "Exposed that evidence and authority were not yet strong enough to support a bounded claim.",
   },
   {
-    letter: "B",
-    title: "Runner Recovery Achievement",
-    verdict: "ROUND3_STILL_BLOCKED_APPROVED_COMMAND_NOT_FOUND",
-    gained: "The original runner was not recoverable, and the system refused to pretend otherwise.",
-    achievement:
-      "Confirmed zero recoverable approved runner candidates and preserved claim integrity.",
-    commit: "78c947a",
-    evidence: "Command repair packet 20260620-0518",
+    round: "Round 2",
+    state: "More traceable, still blocked by execution authority gaps",
+    change: "Clarified that a recoverable approved runner was required before execution evidence could be produced.",
   },
   {
-    letter: "C",
-    title: "Minimal Runner Design Achievement",
-    verdict: "MINIMAL_RUNNER_SPEC_READY_FOR_OWNER_APPROVAL_NOT_EXECUTABLE_YET",
-    gained:
-      "A new bounded runner candidate can be designed from approved sources without expanding scope.",
-    achievement:
-      "Created minimal runner spec, owner approval packet, validation checklist, missing evidence rule, and deviation RCA rule.",
-    commit: "ec143c0",
-    evidence: "Minimal runner design packet 20260620-0525",
-  },
-  {
-    letter: "D",
-    title: "Runner Approval And Enablement Achievement",
-    verdict: "ROUND3_MINIMAL_RUNNER_APPROVED_EXECUTION_ENABLED_NOT_YET_RUN",
-    gained:
-      "A runner candidate can be converted into executable authority through owner approval and enablement.",
-    achievement: "Enabled execution only as true_for_approved_minimal_runner_only.",
-    commit: "5ac26b8",
-    evidence: "Runner enablement packet 20260620-0532",
-  },
-  {
-    letter: "E",
-    title: "Opus And Runner Gang Gate Achievement",
-    verdict: "ROUND3_GO_FOR_EXECUTION_WITH_LIMITED_CONDITIONS",
-    gained: "Reviewer and deterministic preflight can distinguish true blockers from warnings.",
-    achievement:
-      "Opus returned GO_WITH_LIMITED_CONDITIONS. Runner Gang returned PASS_WITH_WARNINGS. True blockers: none.",
-    commit: "03c1181",
-    evidence: "GO/NO-GO gate packet 20260620-0543",
-  },
-  {
-    letter: "F",
-    title: "Controlled Execution Achievement",
-    verdict: "ROUND3_EXECUTED_EVIDENCE_READY_FOR_POST_RUN_OPUS_CLOSEOUT",
-    gained: "The approved minimal runner can produce a complete controlled evidence set.",
-    achievement:
-      "Created the runner script, ran the bounded evidence-production pass, produced complete evidence, and found no missing evidence.",
-    commit: "7d7717f",
-    evidence: "Execution evidence packet 20260620-0551",
-  },
-  {
-    letter: "G",
-    title: "Deviation And Authority-Precedence Achievement",
-    verdict: "NON_BLOCKING_DEVIATION_CONTAINED_WITH_AUTHORITY_PRECEDENCE",
-    gained:
-      "The system can detect stale authority fields and prevent them from overriding newer validated records.",
-    achievement:
-      "Recorded RCA and mitigation. Newer owner authorization, runner approval, enablement, GO/NO-GO, execution evidence, and post-run Opus records were treated as authoritative.",
-    commit: "b022612",
-    evidence: "Authority precedence note",
-  },
-  {
-    letter: "H",
-    title: "Post-run Opus Closeout Achievement",
-    verdict: "ROUND3_POST_RUN_OPUS_APPROVED_WITH_CAVEATS_FOR_OWNER_CLAIM_REVIEW",
-    gained: "Execution evidence is sufficient for owner claim review, with claim boundary preserved.",
-    achievement: "Opus approved with small patch and codified the authority-precedence caveat.",
-    commit: "b022612",
-    evidence: "Post-run Opus closeout packet 20260620-0606",
+    round: "Round 3",
+    state: "Controlled execution evidence produced with caveats",
+    change: "Added approved runner, bounded execution, evidence checklist, deviation handling, and post-run review readiness.",
   },
 ]
 
-const comparisonRows = [
-  [
-    "Source Validation",
-    "Detected authorization-to-execution gap",
-    "Blocked",
-    "Incomplete",
-    "Missing",
-    "Not run",
-    "None",
-    "Source validation blocked",
-    "Blocker recorded",
-    "Proved authorization was not enough",
-  ],
-  [
-    "Command Repair",
-    "Proved original runner absence",
-    "Blocked",
-    "Incomplete",
-    "Not recoverable",
-    "Not run",
-    "None",
-    "Recovery failed cleanly",
-    "Runner absence proven",
-    "Changed diagnosis from missing reference to no recoverable runner",
-  ],
-  [
-    "Minimal Runner Design",
-    "Created bounded runner candidate",
-    "Not yet executable",
-    "Candidate only",
-    "Designed",
-    "Not run",
-    "Rules defined",
-    "Ready for owner approval",
-    "Runner design readiness",
-    "Created new runner candidate without scope expansion",
-  ],
-  [
-    "Runner Enablement",
-    "Converted approval into executable authority",
-    "Enabled for approved minimal runner only",
-    "Complete for limited execution",
-    "Approved",
-    "Not run",
-    "Rules preserved",
-    "Source validation passed",
-    "Execution enabled, not completed",
-    "Approval became executable authority",
-  ],
-  [
-    "GO/NO-GO Gate",
-    "Separated warnings from true blockers",
-    "Go with limited conditions",
-    "Accepted",
-    "Approved with warning",
-    "Not run",
-    "Stale status warning noted",
-    "Opus and Runner Gang passed with caveats",
-    "Go for execution",
-    "True blockers cleared",
-  ],
-  [
-    "Execution",
-    "Produced complete execution evidence",
-    "Bounded pass completed",
-    "Used",
-    "Script created and run",
-    "Complete",
-    "One non-blocking deviation with RCA",
-    "Ready for post-run Opus",
-    "Controlled execution evidence",
-    "Enabled execution became actual evidence",
-  ],
-  [
-    "Post-run Opus",
-    "Evidence became owner-review ready",
-    "Completed and reviewed",
-    "Accepted with caveat",
-    "Accepted within boundary",
-    "Complete",
-    "Non-blocking, caveat codified",
-    "Approved with small patch",
-    "Controlled execution evidence ready for owner decision",
-    "Execution result became review-ready claim boundary",
-  ],
+const measurementRows = [
+  ["Measurability", "Shows whether work can be evaluated instead of narrated.", "Not measurable", "Measurement rule set", "Claims become evidence-bounded", "Partially measurable", "Approved runner and checklist", "Measurement becomes executable", "Measurable with higher confidence", "Medium-high", "Keep"],
+  ["Traceability", "Connects claims to artifacts and decisions.", "Scattered evidence", "Source validation packets", "Evidence gaps become visible", "Partially traceable", "Stage evidence map", "Round-specific trace improves", "Traceable by public-safe labels and commits", "Medium-high", "Keep"],
+  ["Evidence completeness", "Shows whether required outputs exist.", "Incomplete", "Missing evidence rule", "Weak claims downgrade", "Partial", "Bounded evidence-production pass", "Required evidence set completes", "Complete evidence set for bounded claim", "Medium-high", "Keep"],
+  ["Runner authority", "Shows whether the execution method was authorized.", "Missing", "Minimal runner design", "Runner becomes reviewable", "Candidate only", "Owner approval and enablement", "Execution authority becomes bounded", "Approved runner executed in scope", "Medium", "Keep"],
+  ["Deviation handling", "Prevents unexpected differences from becoming hidden risk.", "Weak", "Deviation RCA rule", "Warnings get classified", "Warning surfaced", "Authority precedence rule", "Stale-source risk is contained", "Warning contained with caveat", "Medium", "Monitor"],
+  ["Claim safety", "Keeps evidence from becoming broader claims.", "Fragile", "Claim boundary", "Reduce overclaim risk", "Improved", "Post-run review", "Boundary remains visible", "Controlled execution evidence only", "High", "Keep"],
+  ["Reviewer confidence", "Separates true blockers from warnings.", "Low", "Gate review", "Readiness signals become clearer", "Medium", "Post-run review", "Confidence improves with caveats", "Review-ready with caveats", "Medium", "Monitor"],
+  ["Owner decision readiness", "Shows whether a bounded owner decision is possible.", "Not ready", "Approval packet", "Decision ask narrows", "Partially ready", "Evidence and caveat", "Decision becomes bounded", "Ready for bounded owner decision", "Medium", "Monitor"],
+  ["Workflow friction", "Shows whether control reduces or adds work.", "High", "Runner spec", "Less ambiguity", "Still high", "Minimal runner and checklist", "Less interpretation", "Improved, but storytelling needed rewrite", "Medium", "Improve"],
+  ["Stale-source risk", "Checks whether old status fields can mislead decisions.", "High", "Source validation", "Stale data becomes visible", "Medium-high", "Authority precedence rule", "Newer records override stale fields", "Contained with caveat", "Medium", "Monitor"],
+]
+
+const interventions = [
+  ["Source validation block", "Owner approval existed, but executable authority was not proven.", "Blocked execution until source and authority gaps were visible.", "Prevent false execution readiness.", "Execution stayed blocked; gap became explicit.", "High confidence blocker."],
+  ["Runner recovery attempt", "The original approved runner could not be recovered.", "Checked for recoverable runner candidates and refused to pretend one existed.", "Runner authority becomes falsifiable.", "Zero recoverable candidates confirmed.", "High confidence blocker."],
+  ["Minimal runner design", "No bounded method existed to produce the needed evidence.", "Designed a minimal runner candidate from approved sources.", "Execution method becomes reviewable.", "Runner spec became ready for owner approval.", "Candidate only until approved."],
+  ["Owner approval and enablement", "Runner design did not yet equal executable authority.", "Enabled only the approved minimal runner.", "Authority becomes bounded and executable.", "Execution enabled for the approved path only.", "Scope remains narrow."],
+  ["Opus + Runner Gang GO/NO-GO", "Warnings needed separation from true blockers.", "Ran claim-safety and deterministic preflight checks.", "True blockers clear or remain visible.", "GO with limited conditions; warnings preserved.", "Warnings were not erased."],
+  ["Round 3 execution", "Approved method still needed actual evidence production.", "Ran the bounded evidence-production pass.", "Required evidence set becomes complete.", "Complete evidence set produced for controlled execution.", "Claim remains bounded."],
+  ["Deviation RCA", "Stale status fields conflicted with newer authority records.", "Classified the deviation and applied authority precedence.", "Stale-source risk becomes contained.", "Non-blocking deviation recorded with caveat.", "Monitor."],
+  ["Post-run Opus closeout", "Evidence needed claim-safety review after execution.", "Reviewed evidence and caveat for bounded decision readiness.", "Owner decision readiness improves.", "Controlled execution evidence became ready for owner decision.", "Not final owner approval."],
+]
+
+const glossary = [
+  ["Measurement contract", "Rules that define what evidence can support which claim."],
+  ["T4 measurement contract", "The measurement rule set used to decide what can be claimed from evidence."],
+  ["Round 3 task matrix", "The task/evidence checklist used to compare expected execution with actual execution."],
+  ["Runner", "The bounded execution method used to produce evidence."],
+  ["Opus Gate", "External reviewer for claim safety and reasoning quality."],
+  ["Runner Gang", "Deterministic preflight and validation layer."],
+  ["Authority precedence", "Newer validated approval/evidence records override stale status fields."],
 ]
 
 const evidenceRows = [
-  ["Source Validation", "Source validation packet 20260619-1855", "Pre-execution validation", "64dce14", "ROUND3_NOT_EXECUTED_BLOCKED_BY_SOURCE_VALIDATION"],
-  ["Command Repair", "Command repair packet 20260620-0518", "Approved command repair result", "78c947a", "ROUND3_STILL_BLOCKED_APPROVED_COMMAND_NOT_FOUND"],
-  ["Minimal Runner Design", "Minimal runner design packet 20260620-0525", "Minimal approved runner spec", "ec143c0", "MINIMAL_RUNNER_SPEC_READY_FOR_OWNER_APPROVAL_NOT_EXECUTABLE_YET"],
-  ["Runner Enablement", "Runner enablement packet 20260620-0532", "Controlled packet enablement record", "5ac26b8", "ROUND3_MINIMAL_RUNNER_APPROVED_EXECUTION_ENABLED_NOT_YET_RUN"],
-  ["GO/NO-GO Gate", "GO/NO-GO gate packet 20260620-0543", "Opus and Runner Gang decision", "03c1181", "ROUND3_GO_FOR_EXECUTION_WITH_LIMITED_CONDITIONS"],
-  ["Execution", "Execution evidence packet 20260620-0551", "Execution verdict", "7d7717f", "ROUND3_EXECUTED_EVIDENCE_READY_FOR_POST_RUN_OPUS_CLOSEOUT"],
-  ["Post-run Opus", "Post-run Opus closeout packet 20260620-0606", "Claim boundary assessment", "b022612", "ROUND3_POST_RUN_OPUS_APPROVED_WITH_CAVEATS_FOR_OWNER_CLAIM_REVIEW"],
+  ["Source validation block", "Source validation packet", "64dce14"],
+  ["Command repair", "Approved command repair result", "78c947a"],
+  ["Minimal runner design", "Minimal runner spec", "ec143c0"],
+  ["Runner enablement", "Controlled enablement record", "5ac26b8"],
+  ["GO/NO-GO gate", "Opus and Runner Gang decision", "03c1181"],
+  ["Round 3 execution", "Execution verdict", "7d7717f"],
+  ["Post-run Opus closeout", "Claim-boundary assessment", "b022612"],
 ]
 
 const forbiddenClaims = [
@@ -223,28 +93,36 @@ export default function Case003Round3EvidenceLadderPage() {
     <PageLayout>
       <section className="border-b border-border bg-background">
         <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
+          <Link href="/case-studies" className="mb-5 inline-flex text-sm font-medium text-primary hover:underline">
+            ← Back to Case Studies
+          </Link>
           <div className="flex flex-wrap gap-2">
             <Badge variant="outline">CASE-003</Badge>
-            <Badge variant="outline">Round 3</Badge>
-            <Badge variant="outline">Controlled execution evidence</Badge>
+            <Badge variant="outline">Company M</Badge>
+            <Badge variant="outline">Measurement comparison</Badge>
           </div>
           <h1 className="mt-4 max-w-5xl text-3xl font-semibold tracking-tight text-foreground sm:text-5xl">
-            CASE-003 Round 3 Controlled Execution Evidence Ladder
+            Company M CASE-003: Measuring AI Adoption Control Across Rounds
           </h1>
           <p className="mt-4 max-w-4xl text-base leading-7 text-muted-foreground sm:text-lg">
-            Same case study, different control layers: measuring how authority, runner readiness,
-            evidence completeness, deviation handling, and claim safety matured across each stage.
+            A mock retail-like company case study showing how AI adoption work becomes more
+            measurable, traceable, and claim-safe across controlled execution rounds.
           </p>
           <div className="mt-6 flex flex-wrap gap-2">
-            <LongBadge>ROUND3_POST_RUN_OPUS_APPROVED_WITH_CAVEATS_FOR_OWNER_CLAIM_REVIEW</LongBadge>
-            <Badge variant="outline">No claim beyond controlled execution evidence</Badge>
+            <LongBadge>CONTROLLED_EXECUTION_EVIDENCE_READY_FOR_OWNER_DECISION</LongBadge>
+            <Badge variant="outline">Controlled Execution Evidence Claim</Badge>
           </div>
           <Alert className="mt-6 border-primary/25 bg-primary/5">
             <AlertDescription className="text-sm leading-6">
-              CASE-003 Round 3 demonstrated a controlled AI execution lifecycle:
-              owner-authorized scope, approved minimal runner, bounded execution,
-              complete local evidence capture, deviation RCA, authority-precedence handling,
-              and post-run Opus review readiness.
+              CASE-003 Round 3 demonstrated controlled execution evidence: owner-authorized scope,
+              approved minimal runner, bounded execution, complete evidence capture, deviation RCA,
+              authority-precedence handling, and post-run review readiness.
+            </AlertDescription>
+          </Alert>
+          <Alert className="mt-4 border-amber-500/40 bg-amber-500/5">
+            <AlertDescription className="text-sm leading-6">
+              Caveat: this does not claim production readiness, ROI, Hermes comparison, replacement
+              readiness, full orchestration proof, or business impact.
             </AlertDescription>
           </Alert>
         </div>
@@ -253,11 +131,69 @@ export default function Case003Round3EvidenceLadderPage() {
       <section className="py-10">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <SectionHeading
-            eyebrow="Constant variable"
-            title="What Stayed Constant"
-            detail="The repeated stages were controlled measurements against the same case study, not random rework."
+            eyebrow="Problem statement"
+            title="From Useful-Looking Work To Measurable Adoption Control"
+            detail="We created Company M as a mock retail-like company context to test how AI adoption work can move from looks useful to measurable, traceable, and claim-safe."
           />
-          <div className="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+          <div className="mt-6 grid gap-5 lg:grid-cols-[1fr_0.9fr]">
+            <Card>
+              <CardHeader>
+                <CardTitle>Company M Context</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-3 text-sm leading-6 text-muted-foreground">
+                <p>
+                  Company M is a mock retail-like company context close enough to real adoption
+                  conditions to test evidence discipline without exposing live customer data.
+                </p>
+                <p>
+                  The same case study is used across rounds. What changes is the control layer:
+                  source validation, runner authority, evidence completeness, review gates,
+                  deviation handling, and claim safety.
+                </p>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardHeader>
+                <CardTitle>Included / Excluded Scope</CardTitle>
+              </CardHeader>
+              <CardContent className="grid gap-4 text-sm leading-6 text-muted-foreground sm:grid-cols-2">
+                <div>
+                  <p className="font-semibold text-foreground">Included</p>
+                  <ul className="mt-2 list-disc space-y-1 pl-5">
+                    <li>mock Company M context</li>
+                    <li>CASE-003 controlled execution evidence</li>
+                    <li>round comparison of measurement maturity</li>
+                    <li>evidence completeness</li>
+                    <li>deviation handling</li>
+                    <li>claim boundary</li>
+                  </ul>
+                </div>
+                <div>
+                  <p className="font-semibold text-foreground">Excluded</p>
+                  <ul className="mt-2 list-disc space-y-1 pl-5">
+                    <li>production readiness</li>
+                    <li>live customer telemetry</li>
+                    <li>ROI</li>
+                    <li>Hermes comparison</li>
+                    <li>replacement readiness</li>
+                    <li>full orchestration proof</li>
+                    <li>business impact</li>
+                  </ul>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      <section className="border-y border-border bg-muted/25 py-10">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <SectionHeading
+            eyebrow="Controlled baseline"
+            title="What Stayed Constant"
+            detail="The baseline is concrete: the same mock company, adoption problem, owner-authorized scope, evidence rule, and claim guardrail stayed in place while the control layer matured."
+          />
+          <div className="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
             {constants.map(([label, value]) => (
               <Card key={label}>
                 <CardHeader className="pb-2">
@@ -270,52 +206,22 @@ export default function Case003Round3EvidenceLadderPage() {
         </div>
       </section>
 
-      <section className="border-y border-border bg-muted/25 py-10">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <SectionHeading
-            eyebrow="Measurement dimensions"
-            title="What Was Measured"
-            detail="Each stage is compared against the same eight maturity dimensions."
-          />
-          <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {dimensions.map(([label, question]) => (
-              <div key={label} className="rounded-lg border border-border bg-background p-4">
-                <p className="text-sm font-semibold text-foreground">{label}</p>
-                <p className="mt-2 text-sm leading-6 text-muted-foreground">{question}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       <section className="py-10">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <SectionHeading
-            eyebrow="Achievement ladder"
-            title="Stage-by-stage Achievement"
-            detail="Each rung records a measured control gain and preserves the claim boundary."
+            eyebrow="Round framing"
+            title="What Changed By Round"
+            detail="The case stayed constant; the control layer and measurement maturity changed."
           />
-          <div className="mt-8 space-y-4">
-            {ladderStages.map((stage) => (
-              <Card key={stage.letter} className="overflow-hidden">
-                <CardContent className="grid gap-4 p-5 lg:grid-cols-[72px_1fr_220px]">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-md bg-primary text-lg font-semibold text-primary-foreground">
-                    {stage.letter}
-                  </div>
-                  <div>
-                    <div className="flex flex-wrap items-center gap-2">
-                      <h3 className="text-base font-semibold text-foreground">{stage.title}</h3>
-                      <LongBadge>{stage.verdict}</LongBadge>
-                    </div>
-                    <p className="mt-3 text-sm font-medium text-foreground">
-                      Measurement gained: {stage.gained}
-                    </p>
-                    <p className="mt-2 text-sm leading-6 text-muted-foreground">{stage.achievement}</p>
-                  </div>
-                  <div className="rounded-md border border-border bg-muted/30 p-3 text-sm">
-                    <p className="font-medium text-foreground">Commit {stage.commit}</p>
-                    <p className="mt-2 leading-5 text-muted-foreground">{stage.evidence}</p>
-                  </div>
+          <div className="mt-6 grid gap-4 md:grid-cols-3">
+            {rounds.map((round) => (
+              <Card key={round.round}>
+                <CardHeader>
+                  <CardTitle>{round.round}</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-3 text-sm leading-6 text-muted-foreground">
+                  <p className="font-medium text-foreground">{round.state}</p>
+                  <p>{round.change}</p>
                 </CardContent>
               </Card>
             ))}
@@ -327,31 +233,20 @@ export default function Case003Round3EvidenceLadderPage() {
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <SectionHeading
             eyebrow="Measurement comparison"
-            title="Stage Comparison"
-            detail="The table makes the maturity progression scannable without converting evidence into broader proof."
+            title="Round 1 / Round 2 / Round 3 Parameter Comparison"
+            detail="Qualitative telemetry is used where numeric telemetry is not available. No fake numeric measurements are invented."
           />
           <div className="mt-6 overflow-x-auto rounded-lg border border-border bg-background">
-            <table className="min-w-[1180px] text-left text-sm">
+            <table className="min-w-[1480px] text-left text-sm">
               <thead className="border-b border-border bg-muted/40 text-xs uppercase text-muted-foreground">
                 <tr>
-                  {[
-                    "Stage",
-                    "Achievement",
-                    "Executability",
-                    "Authority",
-                    "Runner",
-                    "Evidence",
-                    "Deviation",
-                    "Reviewer",
-                    "Claim",
-                    "Delta",
-                  ].map((header) => (
+                  {["Parameter / telemetry", "Why it matters", "Round 1 state", "Improvement introduced", "Expected change", "Round 2 state", "Improvement introduced", "Expected change", "Round 3 state", "Confidence level", "Conclusion"].map((header) => (
                     <th key={header} className="px-4 py-3 font-medium">{header}</th>
                   ))}
                 </tr>
               </thead>
               <tbody>
-                {comparisonRows.map((row) => (
+                {measurementRows.map((row) => (
                   <tr key={row[0]} className="border-b border-border align-top last:border-b-0">
                     {row.map((cell, index) => (
                       <td key={`${row[0]}-${index}`} className="px-4 py-4 leading-6 text-muted-foreground">
@@ -362,6 +257,52 @@ export default function Case003Round3EvidenceLadderPage() {
                 ))}
               </tbody>
             </table>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-10">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <SectionHeading
+            eyebrow="Intervention ladder"
+            title="How Achievements Changed Measurement Quality"
+            detail="Each stage is shown as a measurement intervention, not a disconnected achievement log."
+          />
+          <div className="mt-8 grid gap-4 lg:grid-cols-2">
+            {interventions.map(([title, problem, intervention, expected, actual, confidence]) => (
+              <Card key={title}>
+                <CardHeader>
+                  <CardTitle className="text-base">{title}</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-3 text-sm leading-6 text-muted-foreground">
+                  <p><span className="font-medium text-foreground">Problem found:</span> {problem}</p>
+                  <p><span className="font-medium text-foreground">Intervention:</span> {intervention}</p>
+                  <p><span className="font-medium text-foreground">Expected measurement change:</span> {expected}</p>
+                  <p><span className="font-medium text-foreground">Actual measured state:</span> {actual}</p>
+                  <p><span className="font-medium text-foreground">Confidence / caveat:</span> {confidence}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-y border-border bg-muted/25 py-10">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <SectionHeading
+            eyebrow="Plain-language glossary"
+            title="Internal Terms Translated"
+            detail="Public-safe language still needs to be reader-clear."
+          />
+          <div className="mt-6 grid gap-4 md:grid-cols-2">
+            {glossary.map(([term, definition]) => (
+              <Card key={term}>
+                <CardHeader className="pb-2">
+                  <CardTitle className="text-sm">{term}</CardTitle>
+                </CardHeader>
+                <CardContent className="text-sm leading-6 text-muted-foreground">{definition}</CardContent>
+              </Card>
+            ))}
           </div>
         </div>
       </section>
@@ -370,134 +311,71 @@ export default function Case003Round3EvidenceLadderPage() {
         <div className="mx-auto grid max-w-6xl gap-6 px-4 sm:px-6 lg:grid-cols-[1fr_0.85fr] lg:px-8">
           <Card>
             <CardHeader>
-              <CardTitle>Claim Ladder</CardTitle>
+              <CardTitle>Evidence Map</CardTitle>
             </CardHeader>
-            <CardContent className="space-y-3 text-sm leading-6 text-muted-foreground">
-              {[
-                "No execution claim",
-                "Blocker recorded",
-                "Runner absence proven",
-                "Minimal runner candidate designed",
-                "Runner approved and enabled",
-                "GO for execution with limited conditions",
-                "Controlled execution evidence produced",
-                "Controlled execution evidence ready for owner decision",
-              ].map((item, index) => (
-                <div key={item} className="flex gap-3">
-                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-secondary text-xs font-semibold text-secondary-foreground">
-                    {index + 1}
-                  </span>
-                  <span>{item}</span>
-                </div>
-              ))}
-              <div className="rounded-md border border-primary/20 bg-primary/5 p-3 text-foreground">
-                CONTROLLED_EXECUTION_EVIDENCE_CLAIM_READY_FOR_OWNER_DECISION
+            <CardContent>
+              <div className="overflow-x-auto">
+                <table className="min-w-[640px] text-left text-sm">
+                  <thead className="border-b border-border bg-muted/40 text-xs uppercase text-muted-foreground">
+                    <tr>
+                      {["Stage", "Public-safe evidence label", "Commit"].map((header) => (
+                        <th key={header} className="px-4 py-3 font-medium">{header}</th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {evidenceRows.map((row) => (
+                      <tr key={row[0]} className="border-b border-border align-top last:border-b-0">
+                        {row.map((cell, index) => (
+                          <td key={`${row[0]}-${index}`} className="px-4 py-4 leading-6 text-muted-foreground">
+                            {index === 0 ? <span className="font-medium text-foreground">{cell}</span> : cell}
+                          </td>
+                        ))}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
               </div>
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="border-amber-500/40 bg-amber-500/5">
             <CardHeader>
-              <CardTitle>Deviation Handling</CardTitle>
+              <CardTitle>Claim Boundary</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4 text-sm leading-6 text-muted-foreground">
+              <p className="font-medium text-foreground">Controlled Execution Evidence Claim</p>
               <p>
-                <span className="font-medium text-foreground">Deviation:</span> stale task-matrix
-                status fields still reflected an earlier pre-approval state.
+                The page supports a bounded evidence claim for CASE-003 Round 3. It does not
+                convert controlled evidence into broader readiness, impact, replacement, or whole-system claims.
               </p>
-              <p>
-                <span className="font-medium text-foreground">Classification:</span> non-blocking.
-              </p>
-              <p>
-                <span className="font-medium text-foreground">RCA:</span> task-matrix status fields
-                were older than the later authority records and review packets.
-              </p>
-              <p>
-                <span className="font-medium text-foreground">Claim impact:</span> does not block
-                controlled execution evidence, but the caveat must carry forward.
-              </p>
-            </CardContent>
-          </Card>
-        </div>
-      </section>
-
-      <section className="border-y border-border bg-muted/25 py-10">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <Card className="border-primary/20 bg-background">
-            <CardHeader>
-              <CardTitle>Authority Precedence Rule</CardTitle>
-            </CardHeader>
-            <CardContent className="text-sm leading-6 text-muted-foreground">
-              Stale task-matrix status fields must not override newer owner authorization,
-              minimal runner approval, controlled enablement, GO/NO-GO, execution evidence,
-              or post-run Opus closeout records.
-            </CardContent>
-          </Card>
-        </div>
-      </section>
-
-      <section className="py-10">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <SectionHeading
-            eyebrow="Evidence map"
-            title="Artifact And Commit Navigation"
-            detail="Public-safe evidence labels keep the chain traceable without exposing local paths."
-          />
-          <div className="mt-6 overflow-x-auto rounded-lg border border-border">
-            <table className="min-w-[900px] text-left text-sm">
-              <thead className="border-b border-border bg-muted/40 text-xs uppercase text-muted-foreground">
-                <tr>
-                  {["Stage", "Evidence label", "Key artifact", "Commit", "Verdict"].map((header) => (
-                    <th key={header} className="px-4 py-3 font-medium">{header}</th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {evidenceRows.map((row) => (
-                  <tr key={row[0]} className="border-b border-border align-top last:border-b-0">
-                    {row.map((cell, index) => (
-                      <td key={`${row[0]}-${index}`} className="px-4 py-4 leading-6 text-muted-foreground">
-                        {index === 0 ? <span className="font-medium text-foreground">{cell}</span> : cell}
-                      </td>
-                    ))}
-                  </tr>
+              <div className="grid gap-2 sm:grid-cols-2">
+                {forbiddenClaims.map((claim) => (
+                  <div key={claim} className="rounded-md border border-border bg-background/70 px-3 py-2">
+                    Not claimed: {claim}
+                  </div>
                 ))}
-              </tbody>
-            </table>
-          </div>
+              </div>
+            </CardContent>
+          </Card>
         </div>
       </section>
 
       <section className="border-t border-border bg-background py-10">
-        <div className="mx-auto grid max-w-6xl gap-6 px-4 sm:px-6 lg:grid-cols-[1fr_0.8fr] lg:px-8">
-          <Card className="border-destructive/20">
-            <CardHeader>
-              <CardTitle>Still Not Claimed</CardTitle>
-            </CardHeader>
-            <CardContent className="grid gap-2 text-sm text-muted-foreground sm:grid-cols-2">
-              {forbiddenClaims.map((claim) => (
-                <div key={claim} className="rounded-md border border-border bg-muted/25 px-3 py-2">
-                  {claim}
-                </div>
-              ))}
-            </CardContent>
-          </Card>
-
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <Card>
             <CardHeader>
               <CardTitle>Next Decision</CardTitle>
             </CardHeader>
             <CardContent className="space-y-3 text-sm leading-6 text-muted-foreground">
+              <p><span className="font-medium text-foreground">Owner final claim approval:</span> pending.</p>
               <p>
-                <span className="font-medium text-foreground">Decision status:</span> pending.
-              </p>
-              <p>
-                <span className="font-medium text-foreground">Recommended label:</span>{" "}
+                <span className="font-medium text-foreground">Recommended final claim label:</span>{" "}
                 CASE003_ROUND3_OWNER_APPROVED_WITH_CAVEAT_CONTROLLED_EXECUTION_EVIDENCE_CLAIM
               </p>
               <p>
-                Owner approval may approve only the controlled execution evidence claim, not
-                public/prod/ROI/Hermes/replacement/full-orchestration claims.
+                The decision is whether the controlled execution evidence claim is acceptable with
+                caveat, not whether any broader public, business, replacement, or production claim is approved.
               </p>
             </CardContent>
           </Card>
@@ -518,17 +396,17 @@ function SectionHeading({
 }) {
   return (
     <div>
-      <p className="text-xs font-semibold uppercase tracking-wide text-primary">{eyebrow}</p>
+      <p className="text-sm font-medium uppercase tracking-wide text-muted-foreground">{eyebrow}</p>
       <h2 className="mt-2 text-2xl font-semibold tracking-tight text-foreground">{title}</h2>
-      <p className="mt-2 max-w-3xl text-sm leading-6 text-muted-foreground">{detail}</p>
+      <p className="mt-3 max-w-4xl text-sm leading-6 text-muted-foreground">{detail}</p>
     </div>
   )
 }
 
-function LongBadge({ children }: { children: string }) {
+function LongBadge({ children }: { children: React.ReactNode }) {
   return (
-    <span className="inline-flex max-w-full items-center rounded-md border border-border bg-background px-2 py-0.5 text-xs font-medium leading-5 text-foreground break-words">
-      {children}
+    <span className="inline-flex max-w-full items-center rounded-md border border-primary/30 bg-primary/5 px-2.5 py-1 text-xs font-medium leading-5 text-primary">
+      <span className="break-words">{children}</span>
     </span>
   )
 }
