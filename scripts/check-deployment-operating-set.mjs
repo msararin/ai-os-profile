@@ -63,9 +63,10 @@ const routeContracts = [
     routeFile: "app/achievements/public-surface-governance/page.tsx",
     parentFile: "app/achievements/page.tsx",
     href: "/achievements/public-surface-governance",
-    parentRequired: false,
+    parentRequired: true,
     parentSnippets: [
       "Public Surface Governance Operating Model Defined",
+      "Surface Story Guild, Prime Gate, Public Surface Runner Team, and Lyn approval",
       "automated release-governance",
       "production-readiness certification",
     ],
@@ -84,11 +85,11 @@ const routeContracts = [
 const forbiddenPositiveClaims = [
   {
     term: "automated release governance",
-    allowedBoundaryPattern: /without claiming automated release\s*-?governance|not (?:a )?claim(?:ing)?[^.]*automated release\s*-?governance/i,
+    allowedBoundaryPattern: /without claiming automated release\s*-?governance|not (?:a )?claim(?:ing)?[^.]*automated release\s*-?governance|no automated release\s*-?governance claim/i,
   },
   {
     term: "production-readiness certification",
-    allowedBoundaryPattern: /without claiming[^.]*production-readiness certification|not (?:a )?claim(?:ing)?[^.]*production readiness is certified/i,
+    allowedBoundaryPattern: /without claiming[^.]*production-readiness certification|not (?:a )?claim(?:ing)?[^.]*production readiness is certified|no production-readiness certification claim/i,
   },
   {
     term: "certify production readiness",
@@ -159,6 +160,7 @@ function checkRouteContract(contract) {
   }
 
   const routeContent = fs.readFileSync(routePath, "utf8")
+  const normalizedRouteContent = normalizeWhitespace(routeContent)
   let parentContent = ""
 
   if (!fs.existsSync(parentPath)) {
@@ -171,7 +173,8 @@ function checkRouteContract(contract) {
   }
 
   parentContent = fs.readFileSync(parentPath, "utf8")
-  const parentHasHref = parentContent.includes(contract.href)
+  const normalizedParentContent = normalizeWhitespace(parentContent)
+  const parentHasHref = normalizedParentContent.includes(normalizeWhitespace(contract.href))
 
   if (!parentHasHref) {
     if (contract.parentRequired) {
@@ -183,7 +186,7 @@ function checkRouteContract(contract) {
 
   if (parentHasHref || contract.parentRequired) {
     for (const snippet of contract.parentSnippets) {
-      if (!parentContent.includes(snippet)) {
+      if (!normalizedParentContent.includes(normalizeWhitespace(snippet))) {
         const message = `${contract.name}: parent page missing discoverability/boundary snippet: ${snippet}`
         if (contract.parentRequired) {
           errors.push(message)
@@ -195,7 +198,7 @@ function checkRouteContract(contract) {
   }
 
   for (const snippet of contract.routeSnippets) {
-    if (!routeContent.includes(snippet)) {
+    if (!normalizedRouteContent.includes(normalizeWhitespace(snippet))) {
       errors.push(`${contract.name}: route page missing story/boundary snippet: ${snippet}`)
     }
   }
@@ -210,4 +213,8 @@ function checkRouteContract(contract) {
 
 function escapeRegExp(value) {
   return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")
+}
+
+function normalizeWhitespace(value) {
+  return value.replace(/\s+/g, " ").trim()
 }

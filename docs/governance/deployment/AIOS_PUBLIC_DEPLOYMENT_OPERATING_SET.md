@@ -415,6 +415,19 @@ CONTROL_ARTIFACT_ONLY: true
 PUBLIC_UX_CHANGED: false
 ```
 
+Public Surface Governance source contract:
+
+```text
+The existing deployment protocol checker also verifies that the Public Surface
+Governance route files exist, that `/architecture` and `/achievements` link to
+their governance surfaces, and that the copy preserves the implementation /
+validation support boundary without claiming automated release governance or
+production-readiness certification.
+```
+
+This is an automatic source-level preflight check. It does not add a new manual
+deployment step.
+
 ## 10. Stop conditions
 
 Stop deployment work if:
