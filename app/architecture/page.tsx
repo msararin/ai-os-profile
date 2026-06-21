@@ -174,6 +174,23 @@ export default function ArchitecturePage() {
               approve execution.
             </p>
           </div>
+
+          <Link
+            href="/architecture/public-surface-governance"
+            className="mt-4 block rounded-lg border border-border bg-card p-4 transition-colors hover:border-primary/50 hover:bg-muted/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+          >
+            <p className="text-sm font-semibold text-foreground">
+              Public Surface Governance — How We Update Public Surfaces
+            </p>
+            <p className="mt-2 text-xs leading-5 text-muted-foreground">
+              A governance/design surface for public-page updates, claim boundaries, and owner
+              review flow. Public Surface Runner Team owns implementation and validation support
+              only.
+            </p>
+            <span className="mt-3 inline-flex text-xs font-medium text-primary">
+              View public surface governance →
+            </span>
+          </Link>
         </div>
       </section>
 
