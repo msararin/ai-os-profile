@@ -1,7 +1,6 @@
 "use client"
 
 import { useState } from "react"
-import Link from "next/link"
 import { PageLayout } from "@/components/page-layout"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -9,7 +8,7 @@ import { Badge } from "@/components/ui/badge"
 import { ChevronDown, ChevronRight, Download } from "lucide-react"
 
 export default function AchievementsPage() {
-  const [expandedDays, setExpandedDays] = useState<Set<string>>(new Set(['2026-06-17', '2026-06-16']))
+  const [expandedDays, setExpandedDays] = useState<Set<string>>(new Set(['2026-06-21', '2026-06-17', '2026-06-16']))
 
   const toggleDay = (date: string) => {
     const newExpanded = new Set(expandedDays)
@@ -22,6 +21,52 @@ export default function AchievementsPage() {
   }
 
   const achievements = [
+    {
+      date: '2026-06-21',
+      headline: 'Public Surface Governance and Deployment Discoverability Improved',
+      summary: 'Improved the public-surface update path after a visibility failure: routes existed, but parent pages did not make the update easy to find. The work separated Surface Story Guild communication coherence, Prime Gate claim safety, Public Surface Runner implementation and validation support, and Lyn final positioning approval while hardening deployment checks without adding a new manual deployment step.',
+      proofType: 'public-surface governance, deployment discoverability containment, claim-safe story control',
+      evidenceReference: 'PR #18 Add public surface governance discoverability links; commits 9504e19 and bfa1434; follow-up achievement story patch fc784206; governed repair pass for architecture and achievement format',
+      status: 'Governed repair in progress / expected-behavior QA required before public-closeout claim',
+      publicSafeResult: 'AIOS now makes the public-surface update path more visible and measurable: parent pages can surface governance routes, the deployment protocol can check route/source/discoverability contracts, and public copy is bounded so implementation support is not confused with go-live authority.',
+      caveat: 'This is a public governance and deployment-discoverability milestone. It is not a claim of automated release governance, production-readiness certification, autonomous go-live authority, full production monitoring, universal enforcement, ROI proof, or proof that the flow has been applied across every historical page.',
+      details: {
+        whyItMatters: 'A measurable AIOS should not only create routes or pass deployment checks. It should make the intended update visible to the owner, keep story and evidence aligned, and prevent public claims from drifting beyond what the system actually proves.',
+        evidence: [
+          'Public Surface Governance routes were preserved: /architecture/public-surface-governance and /achievements/public-surface-governance.',
+          'Parent discoverability was added so /architecture and /achievements can link to the governance surfaces.',
+          'Surface Story Guild, Prime Gate, Public Surface Runner Team, and Lyn approval boundaries were separated.',
+          'Public Surface Runner Team wording was constrained to implementation and validation support only.',
+          'Deployment protocol source checks were hardened inside the existing public:deployment-protocol path instead of adding a new manual deployment step.',
+          'Boundary wording blocks automated release-governance and production-readiness certification claims.',
+          'Governed QA repaired the display-format drift by requiring the milestone to appear in the normal Achievement Proof Gallery format.'
+        ],
+        evidenceMaturity: [
+          {
+            before: 'A route could exist and deploy successfully while still being hard for the owner or reader to find from normal site navigation.',
+            whatChanged: 'Parent-page discoverability and source-level route/story/boundary checks were added for the Public Surface Governance surfaces.',
+            value: 'Future public-surface updates are less likely to become invisible, point to the wrong surface, or drift away from the measurable AIOS story.'
+          },
+          {
+            before: 'An achievement could exist as a standalone route or featured link while missing the established Achievement Proof Gallery format.',
+            whatChanged: 'The milestone is represented as a normal dated gallery entry with proof type, evidence reference, public-safe result, caveat, evidence maturity, skills, impact, and tags.',
+            value: 'The owner can validate the work in the same proof pattern as prior AIOS achievements.'
+          }
+        ],
+        skillsDemonstrated: [
+          'Public-surface governance operating-model design',
+          'Surface Story Guild role design',
+          'Deployment visibility RCA and containment',
+          'Achievement Proof Gallery format discipline',
+          'Claim-boundary role separation',
+          'Source-level deployment guardrail design',
+          'Measurable AIOS story preservation',
+          'Lightweight governance without adding manual deployment ceremony'
+        ],
+        impact: 'This improves AIOS credibility by turning a frustrating visibility miss into a repeatable, source-checked containment pattern: updates must be findable, story-aligned, evidence-aware, and claim-safe before they are treated as public-surface ready.'
+      },
+      tags: ['Public Surface Governance', 'Surface Story Guild', 'Deployment Visibility', 'Claim Safety', 'Measurable AIOS']
+    },
     {
       date: '2026-06-17',
       headline: 'Prime Gate / Gate PM Skill Contract Established',
@@ -1017,10 +1062,10 @@ export default function AchievementsPage() {
               Public-safe evidence of what was built, what is proven, what is caveated, and what is not published.
             </p>
             <p className="mt-4 text-sm font-medium text-white/80">
-              Evidence updated: 16 Jun 2026 · execution-control measurement contract added
+              Evidence updated: 21 Jun 2026 · public-surface governance and deployment discoverability added
             </p>
             <p className="mt-2 text-sm text-white/75">
-              Latest validated milestone: Made AI Execution Measurable Before Claiming Efficiency, 16 Jun 2026
+              Latest validated milestone: Public Surface Governance and Deployment Discoverability Improved, 21 Jun 2026
             </p>
           </div>
         </div>
@@ -1056,30 +1101,6 @@ export default function AchievementsPage() {
               </p>
             </div>
           </div>
-
-          <Link
-            href="/achievements/public-surface-governance"
-            className="mb-8 block rounded-lg border border-[#00B494]/30 bg-[#00B494]/5 p-4 transition-colors hover:border-[#00B494] hover:bg-[#00B494]/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00B494] focus-visible:ring-offset-2"
-          >
-            <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-              <div>
-                <p className="text-sm font-semibold text-[#1F3A60]">
-                  Public Surface Governance Operating Model Defined
-                </p>
-                <p className="mt-2 max-w-3xl text-sm leading-6 text-muted-foreground">
-                  Governance/design surface for how public updates move through Surface Story
-                  Guild, Prime Gate, Public Surface Runner Team, and Lyn approval.
-                </p>
-                <p className="mt-2 text-xs leading-5 text-muted-foreground">
-                  Boundary: no automated release-governance claim and no production-readiness
-                  certification claim.
-                </p>
-              </div>
-              <span className="shrink-0 text-sm font-medium text-[#00B494]">
-                View achievement →
-              </span>
-            </div>
-          </Link>
 
           {achievements.map((achievement) => (
             <Card 
@@ -1249,7 +1270,7 @@ export default function AchievementsPage() {
           <div className="grid md:grid-cols-4 gap-6">
             <Card className="text-center">
               <CardContent className="pt-6">
-                <div className="text-3xl font-bold text-[#1F3A60]">21</div>
+                <div className="text-3xl font-bold text-[#1F3A60]">22</div>
                 <div className="text-sm text-muted-foreground mt-2">Proof-Backed Milestones</div>
               </CardContent>
             </Card>
