@@ -8,7 +8,7 @@ import { Badge } from "@/components/ui/badge"
 import { ChevronDown, ChevronRight, Download } from "lucide-react"
 
 export default function AchievementsPage() {
-  const [expandedDays, setExpandedDays] = useState<Set<string>>(new Set(['2026-06-21', '2026-06-17', '2026-06-16']))
+  const [expandedDays, setExpandedDays] = useState<Set<string>>(new Set(['2026-06-22', '2026-06-21', '2026-06-17', '2026-06-16']))
 
   const toggleDay = (date: string) => {
     const newExpanded = new Set(expandedDays)
@@ -21,6 +21,57 @@ export default function AchievementsPage() {
   }
 
   const achievements = [
+    {
+      date: '2026-06-22',
+      headline: 'Made Public Portfolio Pages Easier to Understand',
+      summary: 'Improved the governance rule for public portfolio pages so future cockpit and case study updates are checked from the reader’s point of view, not only from the system’s point of view. Recruiter and hiring-manager readers are now part of the design expectation for portfolio-value updates, helping prevent public pages from becoming too technical, too internal, or too much like a working scratchpad.',
+      proofType: 'surface-governance, portfolio-readability, audience-validation, claim-safe public surface',
+      evidenceReference: 'Public Surface Intent Governance v1 documentation update; audience trigger rule and role-skill responsibility docs synced to git in robert-knowledge-base commit d4dde7b',
+      status: 'SOURCE_OF_TRUTH_DOCS_SYNCED_TO_GIT / NOT_A_DEPLOYED_PUBLIC_PAGE_CHANGE',
+      publicSafeResult: 'AIOS converted a real portfolio communication problem into a reusable governance improvement: clearer audience responsibility, better portfolio readability, and safer public-facing claim boundaries for future cockpit and case study updates.',
+      caveat: 'This was a governance/source-of-truth update. It was not a deployed public page change and does not claim live public-surface proof, production readiness, ROI, full automation, independent multi-agent execution, or a real Company M operational outcome.',
+      details: {
+        whyItMatters: 'A portfolio page should not only prove that work happened. It should help the right reader quickly understand what changed, why it matters, and why the work is valuable.',
+        evidence: [
+          'Public Surface Intent Governance v1 was updated.',
+          'Audience trigger rule was added.',
+          'Recruiter Reader and Hiring Manager Reader were defined as mandatory audience design considerations.',
+          'Material-change trigger was added to avoid unnecessary review overhead.',
+          'Knowledge-sharing-only and documentation-only updates were excluded from formal review unless the owner requests it.',
+          'Source-of-truth documentation was synced to git.'
+        ],
+        evidenceMaturity: [
+          {
+            before: 'Public portfolio review could focus on system correctness while missing whether the intended recruiter or hiring-manager reader could understand the value quickly.',
+            whatChanged: 'Recruiter Reader and Hiring Manager Reader are now mandatory audience design considerations for cockpit and portfolio-value updates, with formal review triggered only by material portfolio-value or claim-risk changes.',
+            value: 'Future portfolio surfaces are more likely to be readable, value-forward, and claim-safe without turning every small documentation change into a heavy review ceremony.'
+          }
+        ],
+        beforeAfterRepair: [
+          {
+            before: 'A page could be technically correct but still read as artifact-first, terminology-heavy, or internal.',
+            after: 'BA readability, owner visual feel, recruiter value, hiring-manager value, surface consistency, visible-surface verification, and claim boundary have clearer responsibilities.'
+          },
+          {
+            before: 'Audience review could be treated as either optional or as a heavy gate for every patch.',
+            after: 'Recruiter and hiring-manager readers are mandatory design considerations, while formal audience review is reserved for material cockpit or portfolio-value changes.'
+          },
+          {
+            before: 'Route existence or source updates could be mistaken for public-surface value.',
+            after: 'The governance rule reinforces discoverability, reader comprehension, and claim-safe placement as separate responsibilities.'
+          }
+        ],
+        skillsDemonstrated: [
+          'Public-surface governance refinement',
+          'Portfolio readability operating-model design',
+          'Audience-validation role design',
+          'Claim-safe public-surface boundary setting',
+          'Governance simplification through material-change triggers'
+        ],
+        impact: 'This shows the ability to turn a real communication problem into a reusable governance improvement: clearer audience responsibility, better portfolio readability, and safer public-facing claims.'
+      },
+      tags: ['surface-governance', 'portfolio-readability', 'audience-validation', 'claim-safe-public-surface']
+    },
     {
       date: '2026-06-21',
       headline: 'Public Surface Governance and Deployment Discoverability Improved',
