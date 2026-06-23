@@ -1,5 +1,26 @@
 import { PageLayout } from "@/components/page-layout"
 
+const featuredKnowledgeShares = [
+  {
+    title: "sararin.ai as Knowledge Sharing",
+    date: "Jun 23, 2026",
+    status: "Published knowledge-sharing note",
+    topic: "AI delivery discipline / knowledge sharing",
+    summary:
+      "A public note on shifting sararin.ai from a portfolio-only surface into a knowledge-sharing space for AI delivery patterns, governance habits, claim boundaries, and reusable lessons.",
+    body: [
+      "I am updating sararin.ai into a knowledge-sharing space, not just a portfolio page.",
+      "The useful part of my AI work is not the final artifact alone. It is the operating discipline behind it: separating ideas, execution, checks, and approval; keeping claim boundaries clear; working with imperfect information without pretending it is proof; and turning messy experiments into reusable lessons.",
+      "For me, AI fluency is becoming less about asking better prompts and more about building better working systems around AI.",
+      "sararin.ai will become the place where I share those patterns in a more open and structured way: case notes, operating principles, lessons learned, and examples of how I think through AI delivery and governance.",
+      "Not as a finished methodology. As a working knowledge base in public.",
+    ],
+    caveat:
+      "This is a knowledge-sharing update, not a claim of validated proof, production AI, client work, or autonomous-agent execution.",
+    sourceStatus: "LinkedIn URL pending capture",
+  },
+]
+
 const linkedInPosts = [
   {
     urn: "urn:li:share:7474472373878956032",
@@ -204,9 +225,46 @@ export default function KnowledgeSharingPage() {
             public Knowledge Sharing area and each card identifies the post date.
           </p>
           <p className="mt-3 text-sm font-medium text-muted-foreground">
-            Archive status: public LinkedIn posts through 21 Jun 2026. Drafts and learning
+            Archive status: public knowledge-sharing posts through 23 Jun 2026. Drafts and learning
             records are not exposed on this public page.
           </p>
+        </section>
+
+        <section className="mb-8 grid gap-6">
+          {featuredKnowledgeShares.map((share) => (
+            <article key={share.title} className="rounded-lg border bg-card p-5">
+              <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+                <div>
+                  <p className="text-sm font-medium text-muted-foreground">{share.date}</p>
+                  <h2 className="mt-1 text-2xl font-semibold text-foreground">
+                    {share.title}
+                  </h2>
+                  <p className="mt-2 max-w-3xl text-sm leading-6 text-muted-foreground">
+                    {share.summary}
+                  </p>
+                </div>
+                <span className="shrink-0 rounded-md border bg-background px-3 py-1 text-xs font-medium text-muted-foreground">
+                  {share.sourceStatus}
+                </span>
+              </div>
+              <div className="flex flex-wrap gap-2 text-xs text-muted-foreground">
+                <span className="rounded-md border bg-background px-2 py-1">
+                  Topic: {share.topic}
+                </span>
+                <span className="rounded-md border bg-background px-2 py-1">
+                  Status: {share.status}
+                </span>
+              </div>
+              <div className="mt-5 max-w-3xl space-y-4 text-sm leading-6 text-foreground">
+                {share.body.map((paragraph) => (
+                  <p key={paragraph}>{paragraph}</p>
+                ))}
+              </div>
+              <p className="mt-5 max-w-3xl text-xs leading-5 text-muted-foreground">
+                Caveat: {share.caveat}
+              </p>
+            </article>
+          ))}
         </section>
 
         <div className="grid gap-8">
