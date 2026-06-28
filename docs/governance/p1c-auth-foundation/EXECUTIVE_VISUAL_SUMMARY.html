@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>P1C Auth Foundation Summary</title>
+    <style>
+      body { font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; margin: 0; color: #111827; background: #f8fafc; }
+      main { max-width: 960px; margin: 0 auto; padding: 32px 20px; }
+      section { background: #fff; border: 1px solid #dbe3ef; border-radius: 8px; padding: 20px; margin: 16px 0; }
+      h1, h2 { margin: 0 0 12px; }
+      table { width: 100%; border-collapse: collapse; font-size: 14px; }
+      th, td { border: 1px solid #dbe3ef; padding: 8px; text-align: left; vertical-align: top; }
+      th { background: #eef2f7; }
+      .pass { color: #047857; font-weight: 700; }
+      .warn { color: #92400e; font-weight: 700; }
+      code { background: #eef2f7; padding: 2px 4px; border-radius: 4px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <section>
+        <h1>P1C Auth Foundation</h1>
+        <p><strong>Verdict:</strong> <span class="pass">PASS_WITH_LOCAL_OAUTH_LIMITATION</span></p>
+        <p>Minimal owner-only Google OAuth/Auth.js foundation implemented on a clean worktree. No telemetry dashboard UI or P2 work included.</p>
+      </section>
+      <section>
+        <h2>Current State</h2>
+        <table>
+          <tr><th>Item</th><th>Status</th><th>Evidence</th></tr>
+          <tr><td>Clean worktree</td><td class="pass">Pass</td><td><code>codex/p1c-auth-foundation</code></td></tr>
+          <tr><td>Auth foundation</td><td class="pass">Pass</td><td><code>auth.ts</code>, Auth route, <code>proxy.ts</code></td></tr>
+          <tr><td>Protected shell</td><td class="pass">Pass</td><td><code>/internal/dashboard</code></td></tr>
+          <tr><td>Validation</td><td class="pass">Pass</td><td>typecheck, lint, build, curl smoke checks</td></tr>
+          <tr><td>Real OAuth sign-in</td><td class="warn">Pending owner env</td><td>Requires real Google OAuth secret configuration outside git</td></tr>
+        </table>
+      </section>
+      <section>
+        <h2>AGENT_TO_TASK_EXECUTION_MAP</h2>
+        <table>
+          <tr><th>Task</th><th>Expected Role</th><th>Actual Worker Observed</th><th>Evidence</th><th>QA Status</th><th>Receipt Status</th><th>False-Orchestration Risk</th></tr>
+          <tr><td>Create clean worktree</td><td>Codex local executor</td><td>Codex</td><td>git worktree</td><td>Pass</td><td>local telemetry</td><td>Low</td></tr>
+          <tr><td>Implement P1C auth</td><td>Codex local executor</td><td>Codex</td><td>code diff</td><td>Pass</td><td>local telemetry</td><td>Low</td></tr>
+          <tr><td>Validate build and routes</td><td>QA Sentinel</td><td>Codex local draft QA</td><td>command outputs</td><td>Pass with limitation</td><td>local telemetry</td><td>Low; no external QA claimed</td></tr>
+        </table>
+        <p><strong>AGENT_TO_TASK_ORCHESTRATION_VERDICT:</strong> ORCHESTRATION_EVIDENCE_CONFIRMED_WITH_WARNINGS</p>
+      </section>
+      <section>
+        <h2>Next Allowed Action</h2>
+        <p>Owner review and real OAuth secret/callback test. P2 and telemetry dashboard UI remain blocked.</p>
+      </section>
+    </main>
+  </body>
+</html>

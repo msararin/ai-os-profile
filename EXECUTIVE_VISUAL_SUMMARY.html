@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>P1D sararin.ai Auth Prep Summary</title>
+    <style>
+      body { margin: 0; background: #f8fafc; color: #172033; font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+      main { max-width: 1040px; margin: 0 auto; padding: 32px 20px; }
+      section { background: #fff; border: 1px solid #d9e2ef; border-radius: 8px; padding: 20px; margin: 16px 0; }
+      h1, h2 { margin: 0 0 12px; }
+      table { width: 100%; border-collapse: collapse; font-size: 14px; }
+      th, td { border: 1px solid #d9e2ef; padding: 8px; text-align: left; vertical-align: top; }
+      th { background: #eef4fb; }
+      .pass { color: #047857; font-weight: 700; }
+      .warn { color: #92400e; font-weight: 700; }
+      .block { color: #b91c1c; font-weight: 700; }
+      code { background: #eef4fb; padding: 2px 4px; border-radius: 4px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <section>
+        <h1>P1D sararin.ai Auth Prep</h1>
+        <p><strong>Final Status:</strong> <span class="block">P1D_BLOCKED_BY_DEPLOYMENT_AUTHORIZATION</span></p>
+        <p>Local prep and validation completed. Production Google OAuth is not verified because no deployment, env configuration receipt, Google Console receipt, or browser evidence exists.</p>
+      </section>
+
+      <section>
+        <h2>Gate Status</h2>
+        <table>
+          <tr><th>Gate</th><th>Verdict</th><th>Meaning</th></tr>
+          <tr><td>QA Gate</td><td class="warn">PASS_WITH_ENV_CONFIGURATION_PENDING</td><td>Local validation passed; production env and browser evidence pending.</td></tr>
+          <tr><td>Prime Gate</td><td class="warn">READY_FOR_ENV_CONFIGURATION_ONLY</td><td>Owner must authorize/configure env and deployment path before auth testing.</td></tr>
+          <tr><td>Surface Runner</td><td class="warn">SURFACE_RUNNER_PLAN_ONLY_NOT_EXECUTED</td><td>No browser validation was performed.</td></tr>
+        </table>
+      </section>
+
+      <section>
+        <h2>Validation Summary</h2>
+        <table>
+          <tr><th>Check</th><th>Status</th><th>Evidence</th></tr>
+          <tr><td>Typecheck</td><td class="pass">Pass</td><td><code>rtk pnpm typecheck</code></td></tr>
+          <tr><td>Build</td><td class="pass">Pass</td><td><code>rtk pnpm build</code></td></tr>
+          <tr><td>Lint</td><td class="warn">Pass with warnings</td><td>0 errors, 6 existing warnings</td></tr>
+          <tr><td>Diff check</td><td class="pass">Pass</td><td><code>rtk git diff --check</code></td></tr>
+          <tr><td>Secret value scan</td><td class="pass">Pass</td><td>No strict secret value matches</td></tr>
+          <tr><td>Local protected route</td><td class="pass">Pass</td><td><code>/internal/dashboard</code> redirects before login</td></tr>
+          <tr><td>Local sign-in/callback</td><td class="warn">Not executed</td><td>Owner skipped local callback test; local secrets are intentionally absent.</td></tr>
+        </table>
+      </section>
+
+      <section>
+        <h2>Blocked Actions</h2>
+        <ul>
+          <li>P2</li>
+          <li>Telemetry dashboard UI or APIs</li>
+          <li>Public live telemetry claim</li>
+          <li>Enterprise Zero Trust claim</li>
+          <li>Production auth works claim without browser evidence</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Next Allowed Action</h2>
+        <p>Owner authorization for environment configuration plus branch push / PR / preview or production auth validation path.</p>
+      </section>
+
+      <section>
+        <h2>AGENT_TO_TASK_EXECUTION_MAP</h2>
+        <table>
+          <tr><th>Task</th><th>Expected Role</th><th>Actual Worker Observed</th><th>Evidence</th><th>QA Status</th><th>Telemetry / Receipt</th><th>False-Orchestration Risk</th></tr>
+          <tr><td>Route and role setup</td><td>Stage manager / routing layer</td><td>Codex local draft</td><td><code>P1D_ROUTE_LEDGER.md</code>, <code>P1D_ROLE_DEPENDENCY_MATRIX.md</code></td><td>Pass local</td><td>Local files only</td><td>Low; no external role claim</td></tr>
+          <tr><td>Production auth prep docs</td><td>Codex local executor</td><td>Codex</td><td>P1D artifact files</td><td>Pass local</td><td><code>P1D_TELEMETRY_RECEIPT.md</code></td><td>Low</td></tr>
+          <tr><td>Local validation</td><td>QA Sentinel</td><td>Codex local draft QA</td><td>Command outputs</td><td>Pass with env pending</td><td><code>telemetry-closeout.md</code></td><td>Low; no external QA claimed</td></tr>
+          <tr><td>Browser validation</td><td>Surface Runner</td><td>Not executed</td><td>Plan only</td><td>Not run</td><td>Missing browser evidence</td><td>Controlled by downgrade</td></tr>
+        </table>
+        <p><strong>AGENT_TO_TASK_ORCHESTRATION_VERDICT:</strong> ORCHESTRATION_EVIDENCE_CONFIRMED_WITH_WARNINGS</p>
+      </section>
+    </main>
+  </body>
+</html>

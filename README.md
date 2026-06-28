@@ -141,13 +141,13 @@ This project deploys to Vercel automatically on push to `main`.
 
 **Environment Variables Required:**
 ```bash
+# Auth.js / NextAuth
+AUTH_URL=https://sararin.ai
+AUTH_SECRET=... (generate with: openssl rand -base64 32)
+
 # Google OAuth (for /internal/* auth)
 GOOGLE_CLIENT_ID=...
 GOOGLE_CLIENT_SECRET=...
-
-# NextAuth
-NEXTAUTH_URL=https://sararin.ai
-NEXTAUTH_SECRET=... (generate with: openssl rand -base64 32)
 
 # Email allowlist
 INTERNAL_ALLOWED_EMAILS=msararin@gmail.com
