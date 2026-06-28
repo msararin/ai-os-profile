@@ -14,6 +14,15 @@ const surfaces = [
     ],
   },
   {
+    title: "LLMOps Readiness",
+    status: "Available — evidence-calibrated page",
+    href: "/architecture/system-health/llmops-readiness",
+    copy: [
+      "Shows how AI-assisted delivery claims are capped by evidence tier, receipts, and release controls.",
+      "Not a full LLMOps platform claim, provider-backed runtime telemetry, or operational monitoring loop.",
+    ],
+  },
+  {
     title: "Evidence Discipline",
     status: "Available",
     href: "/architecture/system-health/observability",
@@ -176,6 +185,7 @@ export default function SystemHealthPage() {
               <CardContent className="space-y-1 text-sm text-muted-foreground">
                 <p>Evidence Discipline</p>
                 <p>Runtime Authority Evidence</p>
+                <p>LLMOps Readiness</p>
                 <p>AIOS Monitoring static snapshot</p>
               </CardContent>
             </Card>
