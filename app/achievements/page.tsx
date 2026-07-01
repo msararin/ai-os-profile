@@ -8,7 +8,7 @@ import { Badge } from "@/components/ui/badge"
 import { ChevronDown, ChevronRight, Download } from "lucide-react"
 
 export default function AchievementsPage() {
-  const [expandedDays, setExpandedDays] = useState<Set<string>>(new Set(['2026-06-22', '2026-06-21', '2026-06-17', '2026-06-16']))
+  const [expandedDays, setExpandedDays] = useState<Set<string>>(new Set(['2026-07-01', '2026-06-22', '2026-06-21', '2026-06-17', '2026-06-16']))
 
   const toggleDay = (date: string) => {
     const newExpanded = new Set(expandedDays)
@@ -21,6 +21,50 @@ export default function AchievementsPage() {
   }
 
   const achievements = [
+    {
+      date: '2026-07-01',
+      headline: 'AIOS Role-Receipted First Task Run Evidence',
+      summary: 'Moved optimize-worker from a swimlane backlog viewer into a local evidence-producing task runner. The first task run generated a structured artifact bundle and was reviewed through role receipts: Big Crew review, Runner Gang deterministic validation, and Prime Gate reconciliation.',
+      proofType: 'local proof achievement, role-receipted review, telemetry-aware governance, deterministic validation',
+      evidenceReference: 'Optimize-worker Phase B local proof closeout; Big Crew OpenRouter review receipt; Runner Gang validation receipt; Prime Gate OpenRouter reconciliation receipt',
+      status: 'Local proof - not yet live verified / Evidence committed locally / Public-safe summary',
+      publicSafeResult: 'Optimize-worker produced its first local task evidence bundle with explicit role receipts, telemetry-aware review, deterministic validation, and claim-boundary discipline.',
+      caveat: 'Local proof only. This is not pushed proof, live deployment proof, public proof before verification, stakeholder proof, operational-readiness proof, production proof, revenue proof, Supernova execution, CASE-004, external-release proof, client proof, or full autonomous multi-agent proof.',
+      downloadHref: '/optimize-worker-phase-b-local-proof-telemetry-report-20260701.html',
+      downloadLabel: 'Download Public-Safe Telemetry Report',
+      details: {
+        whyItMatters: 'AI delivery governance is more credible when task execution produces reviewable evidence instead of only plans or status labels. This achievement shows a practical step from work visualization to evidence-producing execution: a local task bundle was generated, reviewed by role receipts, validated deterministically, and accepted under a strict local-only claim boundary.',
+        evidence: [
+          'The optimize-worker flow moved from showing a suggested first task to generating a structured local artifact bundle.',
+          'The first task run was AI Agent Launch Checklist.',
+          'The local bundle included task_spec.json, routing_decision.json, result.md, robert_review.md, and lyn_release_gate.md.',
+          'The routing decision explicitly stated that no real OpenRouter or Ollama app adapter was invoked.',
+          'Big Crew reviewed the artifact through an external reviewer route with provider, model, token, and cost telemetry recorded.',
+          'Runner Gang performed deterministic validation using command and static evidence checks.',
+          'Prime Gate reconciled the evidence through an Opus review route and accepted the first task run local-only.',
+          'The Definition of Done passed after the task status, claim level, and artifact boundary footer were aligned.',
+          'The output bundle and receipts were preserved locally in git.',
+          'Known gaps remain disclosed: no screenshot captured, Codex-local telemetry not exposed, and no public/stakeholder/production claim is supported.'
+        ],
+        evidenceMaturity: [
+          {
+            before: 'The swimlane console could organize workstreams and suggest the next task, but the task run itself was not yet producing the required reviewable evidence bundle.',
+            whatChanged: 'A small local task-run path generated the first evidence bundle, then moved it through Big Crew review, Runner Gang validation, and Prime Gate reconciliation.',
+            value: 'The workflow now demonstrates local evidence discipline: task output, routing boundary, review artifacts, telemetry disclosure, validation, and claim boundaries are visible before stronger claims are considered.'
+          }
+        ],
+        skillsDemonstrated: [
+          'AI delivery governance through evidence-producing workflow design',
+          'Role-receipted review without treating role labels as proof',
+          'Telemetry-aware governance with model, token, and cost fields where available',
+          'Deterministic validation before acceptance',
+          'Public-safe claim-boundary discipline',
+          'Local artifact bundle preservation for later portfolio review'
+        ],
+        impact: 'The practical impact is a stronger portfolio proof pattern: the system can show how an AI task moves from backlog selection to local artifact generation, review, validation, and bounded acceptance without overstating it as public, stakeholder, production, or revenue proof.'
+      },
+      tags: ['AIOS', 'Optimize Worker', 'Role Receipts', 'Telemetry', 'Local Proof']
+    },
     {
       date: '2026-06-22',
       headline: 'Made Public Portfolio Pages Easier to Understand',
@@ -1177,10 +1221,10 @@ export default function AchievementsPage() {
               Public-safe evidence of what was built, what is proven, what is caveated, and what is not published.
             </p>
             <p className="mt-4 text-sm font-medium text-white/80">
-              Evidence updated: 21 Jun 2026 · public-surface governance and deployment discoverability added
+              Evidence updated: 1 Jul 2026 · optimize-worker local proof evidence added
             </p>
             <p className="mt-2 text-sm text-white/75">
-              Latest validated milestone: Public Surface Governance and Deployment Discoverability Improved, 21 Jun 2026
+              Latest validated milestone: AIOS Role-Receipted First Task Run Evidence, 1 Jul 2026
             </p>
           </div>
         </div>
@@ -1431,7 +1475,7 @@ export default function AchievementsPage() {
           <div className="grid md:grid-cols-4 gap-6">
             <Card className="text-center">
               <CardContent className="pt-6">
-                <div className="text-3xl font-bold text-[#1F3A60]">22</div>
+                <div className="text-3xl font-bold text-[#1F3A60]">23</div>
                 <div className="text-sm text-muted-foreground mt-2">Proof-Backed Milestones</div>
               </CardContent>
             </Card>
