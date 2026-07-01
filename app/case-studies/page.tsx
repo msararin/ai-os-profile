@@ -30,16 +30,16 @@ export default function CaseStudiesPage() {
             <Card>
               <CardHeader>
                 <div className="mb-3 flex flex-wrap gap-2">
-                  <Badge variant="outline">CASE-003</Badge>
                   <Badge variant="outline">Company M</Badge>
-                  <Badge variant="outline">Controlled evidence</Badge>
+                  <Badge variant="outline">Bounded evidence</Badge>
+                  <Badge variant="outline">Case study</Badge>
                 </div>
                 <CardTitle>CASE-003: Company M AI Adoption Measurement Study</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4 text-sm leading-6 text-muted-foreground">
                 <p>
-                  A mock retail-like company context used to explore how AI adoption work becomes
-                  measurable, traceable, and claim-safe across controlled execution rounds.
+                  A bounded evidence case study on how AI adoption work becomes measurable,
+                  traceable, and claim-safe across controlled execution rounds.
                 </p>
                 <Link
                   href="/case-studies/case-003/round3-evidence-ladder"

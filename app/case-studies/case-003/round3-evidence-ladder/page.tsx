@@ -330,8 +330,8 @@ export default function Case003Round3EvidenceLadderPage() {
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <SectionHeading
             eyebrow="Reader path"
-            title="The Story Before The Evidence"
-            detail="These four plain-language cards explain the case study before the detailed governance evidence appears."
+            title="Overview / Why This Exists"
+            detail="These four plain-language cards explain the case study before the detailed evidence appears."
           />
           <div className="mt-6 grid gap-4 md:grid-cols-2">
             {storyCards.map((card) => (
@@ -345,7 +345,7 @@ export default function Case003Round3EvidenceLadderPage() {
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <SectionHeading
             eyebrow="Main measurement table"
-            title="Round-by-Round Measurement Comparison"
+            title="Evidence / What Changed"
             detail="This is the main evidence view. It shows what changed, why confidence changed, and what should happen next for each measurement parameter."
           />
           <div className="mt-4 rounded-lg border border-primary/20 bg-background p-4 text-sm leading-6 text-muted-foreground">
@@ -477,7 +477,7 @@ export default function Case003Round3EvidenceLadderPage() {
         <div className="mx-auto grid max-w-6xl gap-6 px-4 sm:px-6 lg:grid-cols-[1fr_0.85fr] lg:px-8">
           <Card className="border-primary/20">
             <CardHeader>
-              <CardTitle>What Confidence Means</CardTitle>
+              <CardTitle>What This Proves</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4 text-sm leading-6 text-muted-foreground">
               <p>
@@ -498,7 +498,7 @@ export default function Case003Round3EvidenceLadderPage() {
 
           <Card className="border-destructive/20">
             <CardHeader>
-              <CardTitle>What We Can and Cannot Claim</CardTitle>
+              <CardTitle>What This Does Not Claim</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4 text-sm leading-6 text-muted-foreground">
               <p>
@@ -615,7 +615,7 @@ export default function Case003Round3EvidenceLadderPage() {
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <Card>
             <CardHeader>
-              <CardTitle>Next Decision</CardTitle>
+              <CardTitle>Current Status / Next Step</CardTitle>
             </CardHeader>
             <CardContent className="space-y-3 text-sm leading-6 text-muted-foreground">
               <p>

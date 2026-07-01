@@ -17,6 +17,16 @@ const openQuestions = [
   "What would be needed before this becomes a completed case study?",
 ]
 
+const nonClaims = [
+  "Not a completed case study.",
+  "No execution closeout claim.",
+  "No production validation claim.",
+  "No enterprise validation claim.",
+  "No independent validation claim.",
+  "No provider-backed validation claim.",
+  "No readiness, Level 4, or v5.1 claim.",
+]
+
 export default function EvidenceDisciplineCaseStudyPage() {
   return (
     <PageLayout>
@@ -85,6 +95,16 @@ export default function EvidenceDisciplineCaseStudyPage() {
 
       <section className="border-y border-border bg-muted/25 py-10">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <div className="mb-6 max-w-3xl">
+            <p className="text-sm font-medium uppercase tracking-wide text-primary">Evidence / What Changed</p>
+            <h2 className="mt-2 text-2xl font-semibold tracking-tight text-foreground">
+              How the public story was narrowed
+            </h2>
+            <p className="mt-3 text-sm leading-6 text-muted-foreground">
+              These cards separate the blockage, available evidence, and narrowed recovery path before
+              any stronger case-study claim is made.
+            </p>
+          </div>
           <div className="grid gap-6 lg:grid-cols-3">
             <Card>
               <CardHeader>
@@ -152,7 +172,7 @@ export default function EvidenceDisciplineCaseStudyPage() {
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <Card className="border-primary/20">
             <CardHeader>
-              <CardTitle>Practices This Illustrates</CardTitle>
+              <CardTitle>What This Demonstrates So Far</CardTitle>
             </CardHeader>
             <CardContent className="grid gap-3 text-sm leading-6 text-muted-foreground md:grid-cols-2">
               {evidencePractices.map((practice) => (
@@ -166,10 +186,23 @@ export default function EvidenceDisciplineCaseStudyPage() {
       </section>
 
       <section className="py-10">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto grid max-w-6xl gap-6 px-4 sm:px-6 lg:grid-cols-[1fr_0.9fr] lg:px-8">
+          <Card className="border-destructive/20">
+            <CardHeader>
+              <CardTitle>What This Does Not Claim</CardTitle>
+            </CardHeader>
+            <CardContent className="grid gap-2 text-sm leading-6 text-muted-foreground">
+              {nonClaims.map((claim) => (
+                <div key={claim} className="rounded-md border border-border bg-muted/25 px-3 py-2">
+                  {claim}
+                </div>
+              ))}
+            </CardContent>
+          </Card>
+
           <Card>
             <CardHeader>
-              <CardTitle>Next Step</CardTitle>
+              <CardTitle>Current Status / Next Step</CardTitle>
             </CardHeader>
             <CardContent className="text-sm leading-6 text-muted-foreground">
               Keep this case marked as in progress until the public narrative, evidence boundary,
