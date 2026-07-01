@@ -49,6 +49,28 @@ export default function CaseStudiesPage() {
                 </Link>
               </CardContent>
             </Card>
+
+            <Card>
+              <CardHeader>
+                <div className="mb-3 flex flex-wrap gap-2">
+                  <Badge variant="outline">AI-assisted delivery</Badge>
+                  <Badge variant="outline">In progress</Badge>
+                </div>
+                <CardTitle>Evidence Discipline for AI-Assisted Delivery</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4 text-sm leading-6 text-muted-foreground">
+                <p>
+                  An in-progress case study exploring how delivery teams track evidence, surface
+                  assumptions, and document constraints when working with AI assistance.
+                </p>
+                <Link
+                  href="/case-studies/evidence-discipline-ai-assisted-delivery"
+                  className="inline-flex rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+                >
+                  View in-progress story
+                </Link>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>
