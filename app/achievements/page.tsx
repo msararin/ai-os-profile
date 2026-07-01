@@ -27,7 +27,7 @@ export default function AchievementsPage() {
       summary: 'Moved optimize-worker from a swimlane backlog viewer into a local evidence-producing task runner. The first task run generated a structured artifact bundle and was reviewed through role receipts: Big Crew review, Runner Gang deterministic validation, and Prime Gate reconciliation.',
       proofType: 'local proof achievement, role-receipted review, telemetry-aware governance, deterministic validation',
       evidenceReference: 'Optimize-worker Phase B local proof closeout; Big Crew OpenRouter review receipt; Runner Gang validation receipt; Prime Gate OpenRouter reconciliation receipt',
-      status: 'Local proof - not yet live verified / Evidence committed locally / Public-safe summary',
+      status: 'Local proof - live route verified / Evidence committed locally / Public-safe summary',
       publicSafeResult: 'Optimize-worker produced its first local task evidence bundle with explicit role receipts, telemetry-aware review, deterministic validation, and claim-boundary discipline.',
       caveat: 'Local proof only. This is not pushed proof, live deployment proof, public proof before verification, stakeholder proof, operational-readiness proof, production proof, revenue proof, Supernova execution, CASE-004, external-release proof, client proof, or full autonomous multi-agent proof.',
       downloadHref: '/optimize-worker-phase-b-local-proof-telemetry-report-20260701.html',
