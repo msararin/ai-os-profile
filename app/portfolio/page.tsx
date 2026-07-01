@@ -3,7 +3,19 @@ import { PageLayout } from "@/components/page-layout"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 
-const portfolioItems = [
+interface PortfolioItem {
+  id: string
+  title: string
+  subtitle: string
+  domain: string
+  description: string
+  keyPatterns: string[]
+  lessons: string
+  status: string
+  statusNote?: string
+}
+
+const portfolioItems: PortfolioItem[] = [
   {
     id: "ai-workflow-governance",
     title: "AI Workflow Governance",
@@ -18,6 +30,22 @@ const portfolioItems = [
     ],
     lessons: "AI adoption depends on workflow, governance, reviewability, operating structure, and human accountability — not only the model.",
     status: "Current",
+  },
+  {
+    id: "case-r01-evidence-before-claims",
+    title: "Evidence Discipline for AI-Assisted Delivery",
+    subtitle: "Governance signal for AI-assisted delivery claims",
+    domain: "AI Governance",
+    description: "A draft portfolio candidate showing how AI-assisted work keeps internal artifacts, evidence, and public claims separate before anything is promoted publicly.",
+    keyPatterns: [
+      "Evidence before claims in AI-assisted delivery",
+      "State discipline across artifacts, receipts, and public-facing claims",
+      "Prevention of false completion claims before promotion",
+      "External mockup role review with explicit claim boundaries",
+    ],
+    lessons: "External mockup role review applied (single model call, three analytical lenses). This remains a draft portfolio candidate, not a public case-study page, independent validation, or execution closeout.",
+    status: "Draft portfolio candidate",
+    statusNote: "Draft portfolio candidate",
   },
   {
     id: "data-reliability",
@@ -117,6 +145,11 @@ export default function PortfolioPage() {
                   <p className="text-base text-muted-foreground mb-4">
                     {item.description}
                   </p>
+                  {"statusNote" in item && item.statusNote ? (
+                    <p className="mb-4 text-sm font-medium text-foreground">
+                      Status: {item.statusNote}
+                    </p>
+                  ) : null}
 
                   <div className="space-y-4">
                     <div>
