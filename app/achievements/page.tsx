@@ -1243,20 +1243,14 @@ export default function AchievementsPage() {
             </p>
             <div className="mt-4 rounded-md border border-[#1F3A60]/15 bg-background p-4">
               <p className="text-sm text-muted-foreground">
-                <strong>Current CASE-003 preparation context:</strong> the latest
-                achievements are preparation evidence for repeating the same
-                underlying experiment/task under tighter controls. The goal is to
-                test whether improvements to governance, evidence discipline,
-                validation, runner control, and external gate review make a
-                future run more measurable, comparable, and defensible.
+                Achievement notes summarize local evidence, role receipts, and
+                claim boundaries. Public-facing claims are kept conservative
+                until deployment, stakeholder, or operational proof is
+                separately verified.
               </p>
               <p className="mt-2 text-sm text-muted-foreground">
-                Round 3 remains paused. No execution occurred. No success claim
-                exists. These achievements do not claim execution, success,
-                implementation, execution-readiness completion,
-                production/runtime readiness, ROI proof, Hermes comparison,
-                replacement readiness, full orchestration proof, or independent
-                multi-worker proof.
+                Case-specific preparation notes remain scoped to their relevant
+                achievement entries.
               </p>
             </div>
           </div>
