@@ -54,6 +54,15 @@ const aiosSections = [
     href: "/architecture",
     description: "System structure, boundaries, and public-safe technical view.",
   },
+  {
+    order: "09",
+    title: "Evidence Discipline for AI-Assisted Delivery",
+    status: "In progress",
+    description:
+      "An in-progress case study examining how to separate work-in-progress from claims that are ready for a public audience, using an ongoing surface recovery as the working example.",
+    evidenceNote:
+      "Work in progress. Shared while the underlying engagement is still active; not a final writeup.",
+  },
 ]
 
 const existingTools = [
@@ -191,43 +200,76 @@ export default function AIOperatingSystemPage() {
             Choose a path below to explore the AIOS case study.
           </p>
           <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {aiosSections.map((section) => (
-              <Link
-                key={section.href}
-                href={section.href}
-                className="group flex min-h-[96px] flex-col rounded-lg border border-border bg-card p-4 transition-colors hover:border-primary/70 hover:bg-background/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-              >
-                <div className="flex items-start justify-between gap-3">
-                  <div className="flex min-w-0 gap-3">
-                    <span className="pt-0.5 text-xs font-semibold tabular-nums text-muted-foreground/60">
-                      {section.order}
-                    </span>
-                    <div className="min-w-0">
-                    <h3 className="text-sm font-semibold text-foreground">
-                      {section.title}
-                    </h3>
-                    {section.isRecommendedStart ? (
-                      <Badge
-                        variant="outline"
-                        className="mt-2 border-border bg-transparent px-2 py-0 text-[10px] font-medium text-muted-foreground"
-                      >
-                        Start here
-                      </Badge>
-                    ) : null}
+            {aiosSections.map((section) => {
+              const href = "href" in section ? section.href : undefined
+              const content = (
+                <>
+                  <div className="flex items-start justify-between gap-3">
+                    <div className="flex min-w-0 gap-3">
+                      <span className="pt-0.5 text-xs font-semibold tabular-nums text-muted-foreground/60">
+                        {section.order}
+                      </span>
+                      <div className="min-w-0">
+                        <h3 className="text-sm font-semibold text-foreground">
+                          {section.title}
+                        </h3>
+                        <div className="mt-2 flex flex-wrap gap-2">
+                          {section.isRecommendedStart ? (
+                            <Badge
+                              variant="outline"
+                              className="border-border bg-transparent px-2 py-0 text-[10px] font-medium text-muted-foreground"
+                            >
+                              Start here
+                            </Badge>
+                          ) : null}
+                          {"status" in section ? (
+                            <Badge
+                              variant="outline"
+                              className="border-border bg-transparent px-2 py-0 text-[10px] font-medium text-muted-foreground"
+                            >
+                              {section.status}
+                            </Badge>
+                          ) : null}
+                        </div>
+                      </div>
                     </div>
+                    {href ? (
+                      <span
+                        aria-hidden="true"
+                        className="shrink-0 text-sm text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:text-primary"
+                      >
+                        →
+                      </span>
+                    ) : null}
                   </div>
-                  <span
-                    aria-hidden="true"
-                    className="shrink-0 text-sm text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:text-primary"
-                  >
-                    →
-                  </span>
+                  <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
+                    {section.description}
+                  </p>
+                  {"evidenceNote" in section ? (
+                    <p className="mt-3 border-t border-border pt-3 text-xs leading-relaxed text-muted-foreground">
+                      {section.evidenceNote}
+                    </p>
+                  ) : null}
+                </>
+              )
+
+              return href ? (
+                <Link
+                  key={href}
+                  href={href}
+                  className="group flex min-h-[96px] flex-col rounded-lg border border-border bg-card p-4 transition-colors hover:border-primary/70 hover:bg-background/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                >
+                  {content}
+                </Link>
+              ) : (
+                <div
+                  key={section.title}
+                  className="flex min-h-[96px] flex-col rounded-lg border border-border bg-card p-4"
+                >
+                  {content}
                 </div>
-                <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
-                  {section.description}
-                </p>
-              </Link>
-            ))}
+              )
+            })}
           </div>
         </div>
       </section>
