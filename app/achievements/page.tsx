@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import Link from "next/link"
 import { PageLayout } from "@/components/page-layout"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -8,7 +9,7 @@ import { Badge } from "@/components/ui/badge"
 import { ChevronDown, ChevronRight, Download } from "lucide-react"
 
 export default function AchievementsPage() {
-  const [expandedDays, setExpandedDays] = useState<Set<string>>(new Set(['2026-06-16']))
+  const [expandedDays, setExpandedDays] = useState<Set<string>>(new Set(['2026-07-01']))
 
   const toggleDay = (date: string) => {
     const newExpanded = new Set(expandedDays)
@@ -21,6 +22,94 @@ export default function AchievementsPage() {
   }
 
   const achievements = [
+    {
+      date: '2026-07-01',
+      headline: 'AIOS Role-Receipted First Task Run Evidence',
+      summary: 'Moved optimize-worker from a swimlane backlog viewer into a local evidence-producing task runner. The first task run generated a structured artifact bundle and was reviewed through role receipts: Big Crew review, Runner Gang deterministic validation, and Prime Gate reconciliation.',
+      proofType: 'local proof achievement, role-receipted review, telemetry-aware governance, deterministic validation',
+      evidenceReference: 'Optimize-worker Phase B local proof closeout; Big Crew OpenRouter review receipt; Runner Gang validation receipt; Prime Gate OpenRouter reconciliation receipt',
+      status: 'Local proof - not yet live verified / Evidence committed locally / Public-safe summary',
+      publicSafeResult: 'Optimize-worker produced its first local task evidence bundle with explicit role receipts, telemetry-aware review, deterministic validation, and claim-boundary discipline.',
+      caveat: 'Local proof only. This is not pushed proof, live deployment proof, public proof before verification, stakeholder proof, operational-readiness proof, production proof, revenue proof, Supernova execution, CASE-004, external-release proof, client proof, or full autonomous multi-agent proof.',
+      downloadHref: '/optimize-worker-phase-b-local-proof-telemetry-report-20260701.html',
+      downloadLabel: 'Download Public-Safe Telemetry Report',
+      details: {
+        whyItMatters: 'AI delivery governance is more credible when task execution produces reviewable evidence instead of only plans or status labels. This achievement shows a practical step from work visualization to evidence-producing execution: a local task bundle was generated, reviewed by role receipts, validated deterministically, and accepted under a strict local-only claim boundary.',
+        evidence: [
+          'The optimize-worker flow moved from showing a suggested first task to generating a structured local artifact bundle.',
+          'The first task run was AI Agent Launch Checklist.',
+          'The local bundle included task_spec.json, routing_decision.json, result.md, robert_review.md, and lyn_release_gate.md.',
+          'The routing decision explicitly stated that no real OpenRouter or Ollama app adapter was invoked.',
+          'Big Crew reviewed the artifact through an external reviewer route with provider, model, token, and cost telemetry recorded.',
+          'Runner Gang performed deterministic validation using command and static evidence checks.',
+          'Prime Gate reconciled the evidence through an Opus review route and accepted the first task run local-only.',
+          'The Definition of Done passed after the task status, claim level, and artifact boundary footer were aligned.',
+          'The output bundle and receipts were preserved locally in git.',
+          'Known gaps remain disclosed: no screenshot captured, Codex-local telemetry not exposed, and no public/stakeholder/production claim is supported.'
+        ],
+        evidenceMaturity: [
+          {
+            before: 'The swimlane console could organize workstreams and suggest the next task, but the task run itself was not yet producing the required reviewable evidence bundle.',
+            whatChanged: 'A small local task-run path generated the first evidence bundle, then moved it through Big Crew review, Runner Gang validation, and Prime Gate reconciliation.',
+            value: 'The workflow now demonstrates local evidence discipline: task output, routing boundary, review artifacts, telemetry disclosure, validation, and claim boundaries are visible before stronger claims are considered.'
+          }
+        ],
+        skillsDemonstrated: [
+          'AI delivery governance through evidence-producing workflow design',
+          'Role-receipted review without treating role labels as proof',
+          'Telemetry-aware governance with model, token, and cost fields where available',
+          'Deterministic validation before acceptance',
+          'Public-safe claim-boundary discipline',
+          'Local artifact bundle preservation for later portfolio review'
+        ],
+        impact: 'The practical impact is a stronger portfolio proof pattern: the system can show how an AI task moves from backlog selection to local artifact generation, review, validation, and bounded acceptance without overstating it as public, stakeholder, production, or revenue proof.'
+      },
+      tags: ['AIOS', 'Optimize Worker', 'Role Receipts', 'Telemetry', 'Local Proof']
+    },
+    {
+      date: '2026-06-16',
+      headline: 'AIOS Self-Audit & Source-of-Truth Assurance',
+      summary: 'Detected a systemic active-checkout source-of-truth retrievability gap, converted it into an executable remediation path, promoted the canonical measurement policy family into the active checkout, validated source/hash alignment, resolved the Track H source-grounding caveat, and closed the loop through Checker and an external Opus gate.',
+      proofType: 'internal AIOS source-of-truth assurance milestone, hash-validated remediation, claim-boundary controlled closeout',
+      evidenceReference: 'TASK_AIOS_KB_MEASUREMENT_POLICY_ACTIVE_CHECKOUT_PROMOTION_V0_1 closeout package; external OpenRouter Opus final gate returned KB_RETRIEVABILITY_REMEDIATED_AND_CLOSED',
+      status: 'Completed / Active-checkout retrievability remediated / Public-safe achievement wording only',
+      publicSafeResult: 'AIOS demonstrated measurable self-audit behavior: it detected a source-of-truth gap, contained unsafe downstream use, executed the owner-approved remediation path, validated the canonical files in the active checkout, and preserved blocked comparison, public, production, cost, replacement, and benchmark claims.',
+      caveat: 'This is a source-of-truth assurance and remediation achievement only. It is not whole-KB-clean-forever proof, production-ready governance, Hermes comparison readiness, cost or replacement decision readiness, public proof readiness, benchmark insight, CASE-003 execution success, Track P readiness, full AIOS telemetry completeness, or a claim that all active worktrees are clean.',
+      details: {
+        whyItMatters: 'AI governance breaks down when canonical files exist somewhere but are not retrievable from the active checkout used by downstream work. This achievement matters because AIOS did not stop at recording a caveat. It measured the impact, contained unsafe claims, selected a safe remediation route, promoted the canonical policy family into the active checkout, validated hashes, and closed the loop with Checker and external Opus review.',
+        evidence: [
+          'Systemic active-checkout source-of-truth retrievability gap was detected during Track H and KB hygiene work.',
+          'Owner-actionable route selected: OPTION_A_PROMOTE_POLICY_FAMILY_INTO_ACTIVE_CHECKOUT_WITH_HASH_VALIDATION.',
+          'Canonical measurement policy family promoted into the active public-safe checkout for validation.',
+          'Promoted files: AIOS_CORE_MEASUREMENT_DISCIPLINE_POLICY.md, AIOS_MEASUREMENT_REINFORCEMENT_GATE.md, AIOS_THIN_SLICE_MEASUREMENT_POLICY_FOR_PROMPTS.md, and AIOS_MEASUREMENT_CONTRACT_PATTERN.md.',
+          'Active hashes matched source hashes from the measurement-promotion worktree.',
+          'AIOS_SOURCE_OF_TRUTH_LEDGER.md and source-of-truth-index.md were aligned to the active checkout.',
+          'Track H source-grounding caveat was resolved for active-checkout retrievability only.',
+          'Review copies were classified as fallback/reference copies, not canonical source-of-truth.',
+          'check_kb_retrievability.sh passed for all four policy files.',
+          'External OpenRouter Opus final gate returned KB_RETRIEVABILITY_REMEDIATED_AND_CLOSED and ACHIEVEMENT_CANDIDATE_READY_AFTER_REMEDIATION.',
+          'No Hermes run, MCP run, Hermes-vs-Codex comparison, Track P start, CASE-003 execution, Track A/A2 execution change, merge/rebase/push, or public/prod/cost/replacement/benchmark insight claim occurred.'
+        ],
+        evidenceMaturity: [
+          {
+            before: 'AIOS had a source-grounding caveat: the promoted policy existed outside the active checkout and fallback review copies were being used for design intake.',
+            whatChanged: 'The canonical measurement policy family was promoted into the active checkout, source hashes were validated, and downstream references were updated to distinguish canonical source from fallback copies.',
+            value: 'The operating system moved from audit-only containment to measurable problem solving: detect, contain, remediate, validate, and close.'
+          }
+        ],
+        skillsDemonstrated: [
+          'Source-of-truth retrievability audit',
+          'Owner-actionable remediation planning',
+          'Hash-validated policy promotion',
+          'Ledger and index alignment',
+          'Track H source-grounding caveat resolution',
+          'Fallback review-copy classification',
+          'Checker validation and external Opus gate discipline'
+        ],
+        impact: 'The practical impact is stronger source-grounding for downstream design and case-study work. AIOS can now cite the active checkout canonical policy paths for the measurement policy family while still blocking actual Hermes comparison, Track P, CASE-003 execution, public proof, production, cost, replacement, and benchmark insight claims until separate gates approve them.'
+      },
+      tags: ['AIOS', 'Source-of-Truth', 'Self-Audit', 'Checker', 'Opus Gate']
+    },
     {
       date: '2026-06-16',
       headline: 'Made AI Execution Measurable Before Claiming Efficiency',
@@ -876,10 +965,10 @@ export default function AchievementsPage() {
               Public-safe evidence of what was built, what is proven, what is caveated, and what is not published.
             </p>
             <p className="mt-4 text-sm font-medium text-white/80">
-              Evidence updated: 16 Jun 2026 · execution-control measurement contract added
+              Evidence updated: 1 Jul 2026 · optimize-worker local proof evidence added
             </p>
             <p className="mt-2 text-sm text-white/75">
-              Latest validated milestone: Made AI Execution Measurable Before Claiming Efficiency, 16 Jun 2026
+              Latest validated milestone: AIOS Role-Receipted First Task Run Evidence, 1 Jul 2026
             </p>
           </div>
         </div>
@@ -897,6 +986,30 @@ export default function AchievementsPage() {
               This page records external/professional proof and impact. Draft learning patterns and reusable ideas stay unpublished until claims are approved.
             </p>
           </div>
+
+          <Link
+            href="/achievements/public-surface-governance"
+            className="mb-8 block rounded-lg border border-[#00B494]/30 bg-[#00B494]/5 p-4 transition-colors hover:border-[#00B494] hover:bg-[#00B494]/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00B494] focus-visible:ring-offset-2"
+          >
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+              <div>
+                <p className="text-sm font-semibold text-[#1F3A60]">
+                  Public Surface Governance Operating Model Defined
+                </p>
+                <p className="mt-2 max-w-3xl text-sm leading-6 text-muted-foreground">
+                  Governance/design surface for how public updates move through Surface Story
+                  Guild, Prime Gate, Public Surface Runner Team, and Lyn approval.
+                </p>
+                <p className="mt-2 text-xs leading-5 text-muted-foreground">
+                  Boundary: implementation and validation support only; no automated
+                  release-governance or production-readiness certification claim.
+                </p>
+              </div>
+              <span className="shrink-0 text-sm font-medium text-[#00B494]">
+                View achievement →
+              </span>
+            </div>
+          </Link>
 
           {achievements.map((achievement) => (
             <Card 
@@ -1066,7 +1179,7 @@ export default function AchievementsPage() {
           <div className="grid md:grid-cols-4 gap-6">
             <Card className="text-center">
               <CardContent className="pt-6">
-                <div className="text-3xl font-bold text-[#1F3A60]">21</div>
+                <div className="text-3xl font-bold text-[#1F3A60]">22</div>
                 <div className="text-sm text-muted-foreground mt-2">Proof-Backed Milestones</div>
               </CardContent>
             </Card>
