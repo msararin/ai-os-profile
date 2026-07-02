@@ -104,3 +104,31 @@
 - If Opus accepts auth live with fallback only: OPUS_GATED_PRODUCTION_AUTH_LIVE_TELEMETRY_FALLBACK_ONLY
 - If Opus accepts full scoped live telemetry: OPUS_GATED_PRODUCTION_INTERNAL_TELEMETRY_LIVE_WITH_SCOPE
 - If blocked before deploy: no production auth, no production telemetry, no go-live claim
+
+## Deploy Attempt Outcome
+- Final deploy outcome classification: SARARIN_AI_PRODUCTION_DEPLOY_BLOCKED_WITH_REASON
+- Reason: non-interactive Vercel CLI produced no surfaced output on two production deploy attempts.
+- Attempt 1 command: `rtk npx vercel --prod --yes`
+- Attempt 1 observed deployment record: `https://ai-os-profile-gtst6zgyn-msararins-projects.vercel.app`
+- Attempt 1 Vercel status: UNKNOWN
+- Attempt 2 command: `rtk npx vercel deploy --prod --yes --debug`
+- Attempt 2 observed deployment record: `https://ai-os-profile-ic4n0wyab-msararins-projects.vercel.app`
+- Attempt 2 Vercel status: UNKNOWN
+- Both attempts were interrupted after repeated silent polling.
+- No deployment URL or successful deployment id was returned by the deploy command output.
+
+## Production Surface Safety Outcome
+- `sararin.ai` remains aliased to prior ready deployment:
+  - `https://ai-os-profile-7p5me0bq0-msararins-projects.vercel.app`
+- `https://sararin.ai/internal/telemetry`: HTTP 404, no internal telemetry dashboard publicly exposed.
+- `https://sararin.ai/architecture/system-health/monitoring`: HTTP 200.
+- `https://sararin.ai/architecture/system-health/observability`: HTTP 200.
+- `https://sararin.ai/api/observability`: HTTP 200 public-safe JSON.
+- Rollback status: ROLLBACK_NOT_REQUIRED_PUBLIC_SURFACE_SAFE_AUTH_PROOF_PENDING
+
+## Opus Repair Loop Outcome
+- Opus artifact: /Users/apple/projects/ai-os-profile/OPUS_PRODUCTION_DEPLOY_TOOLING_BLOCK_REPAIR_GUIDANCE_20260702.md
+- Opus verdict: APPROVE WITH SMALL PATCH
+- Opus closeout direction: SARARIN_AI_PRODUCTION_DEPLOY_BLOCKED_WITH_REASON
+- Opus decision: do not retry `vercel --prod` in this loop.
+- Required follow-up: inspect the two UNKNOWN production deployment records in the Vercel dashboard and confirm terminal-failed state or remove them before another production deploy attempt.
