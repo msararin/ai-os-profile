@@ -9,7 +9,7 @@ const navigation = [
   { name: "AI Operating System", href: "/ai-operating-system" },
   { name: "Knowledge Sharing", href: "/knowledge-sharing" },
   { name: "Achievements", href: "/achievements" },
-  { name: "Case Studies", href: "/case-studies/case-003/round3-evidence-ladder" },
+  { name: "Case Studies", href: "/case-studies" },
   { name: "System Health", href: "/architecture/system-health" },
   { name: "About Sararin", href: "/about" },
 ]
