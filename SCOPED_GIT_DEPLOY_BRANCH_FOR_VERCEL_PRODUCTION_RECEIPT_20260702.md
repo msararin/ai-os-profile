@@ -16,7 +16,8 @@
 ## Branch / Commit / Remote
 - Branch: production-google-auth-telemetry-20260702
 - Starting commit checked: ec64503
-- Final commit after this receipt: pending closeout commit.
+- Pushed handoff commit before receipt finalization: c7c961a
+- Final branch tip after receipt finalization: captured in final report.
 - Remote: git@github.com:msararin/ai-os-profile.git
 
 ## Validation Results
@@ -45,9 +46,10 @@
   - SQLite DB files.
 
 ## Push / PR / Deploy Handoff Status
-- Push: pending closeout command.
-- Remote branch URL: pending closeout command.
-- PR URL: pending closeout command or creation instruction.
+- Push: completed.
+- Remote branch URL: https://github.com/msararin/ai-os-profile/tree/production-google-auth-telemetry-20260702
+- PR URL: https://github.com/msararin/ai-os-profile/pull/23
+- PR status: draft.
 - Vercel production deploy event: not claimed in this receipt.
 
 ## Rollback Target

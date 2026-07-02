@@ -51,7 +51,9 @@ Scope exclusions:
 ## Push / PR Handoff
 - Branch push: selected after validation.
 - Remote branch: `origin/production-google-auth-telemetry-20260702`.
-- PR status: create PR if GitHub CLI allows non-interactive creation; otherwise provide exact PR creation instruction.
+- Branch push status: pushed.
+- Draft PR: https://github.com/msararin/ai-os-profile/pull/23
+- PR status: draft, ready for owner/reviewer inspection before any merge or production deployment claim.
 
 ## Rollback Target
 - Current `sararin.ai` production deployment before this handoff remains:
