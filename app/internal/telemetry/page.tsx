@@ -20,17 +20,80 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip"
 import { getInternalTelemetryDashboardData } from "@/lib/telemetry-ledger/query"
 
 export const dynamic = "force-dynamic"
 
+const labelExplanations: Record<string, { english: string; thai: string }> = {
+  BUNDLED_JSON_EXPORT: {
+    english: "Data comes from a bundled JSON export, not a live production database.",
+    thai: "ข้อมูลมาจากไฟล์ JSON ที่ export/pack ไว้ ไม่ใช่ฐานข้อมูล production สด ใช้เพื่อดูภาพรวมและตรวจช่องข้อมูลที่ยังขาด",
+  },
+  FALLBACK_MODE_ACTIVE: {
+    english: "The page is using fallback snapshot data instead of live telemetry database data.",
+    thai: "ตอนนี้ใช้ข้อมูล fallback/snapshot แทน live telemetry database",
+  },
+  NOT_LIVE_DATABASE: {
+    english: "This data is not flowing from a real-time production database.",
+    thai: "ข้อมูลนี้ไม่ได้ไหลจากฐานข้อมูล production สดแบบ real-time",
+  },
+  NOT_PRODUCTION_TELEMETRY_VERIFICATION: {
+    english: "The page can display data, but it is not full production telemetry verification.",
+    thai: "หน้าแสดงข้อมูลได้ แต่ยังไม่ใช่การ verify production telemetry เต็มรูปแบบ",
+  },
+  NOT_EXPOSED: {
+    english: "The source tool or artifact did not expose this value. Do not infer it.",
+    thai: "ระบบหรือเครื่องมือไม่ได้เปิดเผยค่านี้ จึงยังไม่ควรเดาหรือเติมเอง",
+  },
+  NOT_APPLICABLE_FOR_LOCAL_RUN: {
+    english: "This likely came from local execution, so external provider/model/token data may not apply.",
+    thai: "งานนี้น่าจะเป็น local execution เช่น Codex/local validation จึงไม่มี provider/model/token จาก external API",
+  },
+  FIELD_NOT_EXPOSED_NOT_CLAIMED: {
+    english: "The field is not exposed, so the dashboard does not fill or claim it.",
+    thai: "เครื่องมือหรือ artifact ไม่ได้เปิดเผย field นี้ ระบบจึงไม่เติมเองและไม่ claim",
+  },
+  SOURCE_ARTIFACT_MISSING_FIELD: {
+    english: "The source artifact does not contain this field, or extraction did not find it.",
+    thai: "artifact ต้นทางไม่มี field นี้ หรือยัง extract ไม่พบ ต้องแก้ที่ schema/receipt/source artifact",
+  },
+  LOW_CONFIDENCE_ADVISORY: {
+    english: "This row is advisory and should not support final claims.",
+    thai: "แถวนี้เป็นข้อมูลช่วยสังเกต ไม่ควรใช้เป็นหลักฐานหลัก",
+  },
+}
+
 function SourceBadge({ label }: { label: string }) {
   const variant = label === "LOW_CONFIDENCE_ADVISORY" ? "destructive" : "outline"
-
-  return (
+  const explanation = labelExplanations[label]
+  const badge = (
     <Badge variant={variant} className="whitespace-nowrap">
       {label}
     </Badge>
+  )
+
+  if (!explanation) {
+    return badge
+  }
+
+  return (
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <span
+          tabIndex={0}
+          className="inline-flex rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+        >
+          {badge}
+        </span>
+      </TooltipTrigger>
+      <TooltipContent side="top" sideOffset={8} className="max-w-sm text-left leading-5">
+        <div className="space-y-1">
+          <p className="font-medium">{explanation.english}</p>
+          <p>{explanation.thai}</p>
+        </div>
+      </TooltipContent>
+    </Tooltip>
   )
 }
 
@@ -174,8 +237,8 @@ export default async function InternalTelemetryPage() {
                   Owner internal
                 </Badge>
                 <Badge variant="outline">LOCAL QUERY CANDIDATE</Badge>
-                <Badge variant="outline">{isBundledExport ? "BUNDLED_JSON_EXPORT" : "READ-ONLY SQLITE"}</Badge>
-                {isBundledExport ? <Badge variant="outline">NOT_LIVE_DATABASE</Badge> : null}
+                <SourceBadge label={isBundledExport ? "BUNDLED_JSON_EXPORT" : "READ-ONLY SQLITE"} />
+                {isBundledExport ? <SourceBadge label="NOT_LIVE_DATABASE" /> : null}
               </div>
               <div>
                 <h1 className="text-3xl font-semibold tracking-tight text-foreground">
@@ -210,7 +273,10 @@ export default async function InternalTelemetryPage() {
 
           {isBundledExport ? (
             <div className="rounded-lg border border-blue-300/70 bg-blue-50 px-4 py-3 text-sm text-blue-950 dark:bg-blue-950/20 dark:text-blue-100">
-              <div className="font-semibold">FALLBACK_MODE_ACTIVE - NOT_PRODUCTION_TELEMETRY_VERIFICATION</div>
+              <div className="flex flex-wrap gap-2">
+                <SourceBadge label="FALLBACK_MODE_ACTIVE" />
+                <SourceBadge label="NOT_PRODUCTION_TELEMETRY_VERIFICATION" />
+              </div>
               <p className="mt-1">
                 Rows on this page come from a sanitized bundled JSON export. Missing fields remain
                 visible, local paths are redacted, and provider-backed telemetry display is not
@@ -242,6 +308,59 @@ export default async function InternalTelemetryPage() {
               </p>
             </div>
           ) : null}
+
+          <Card className="rounded-lg border-primary/20">
+            <CardHeader>
+              <Badge variant="secondary" className="w-fit">
+                Owner-readable explanation
+              </Badge>
+              <CardTitle className="text-xl">What this page means</CardTitle>
+              <CardDescription>
+                This internal page helps review fallback telemetry inspection data without changing
+                the source, hiding missing fields, or increasing the claim level.
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="grid gap-4 lg:grid-cols-3">
+                <div className="rounded-lg border bg-muted/30 p-4">
+                  <h2 className="text-sm font-semibold text-foreground">What this page means</h2>
+                  <p className="mt-2 text-sm leading-6 text-muted-foreground">
+                    It shows bundled or read-only staging candidate telemetry behind auth so the
+                    owner can inspect execution, evidence, fallback state, and missing-field signals.
+                  </p>
+                </div>
+                <div className="rounded-lg border border-emerald-300/70 bg-emerald-50 p-4 text-emerald-950 dark:bg-emerald-950/20 dark:text-emerald-100">
+                  <h2 className="text-sm font-semibold">Can claim</h2>
+                  <ul className="mt-2 space-y-2 text-sm leading-6">
+                    <li>The internal route exists behind Auth.js.</li>
+                    <li>Bundled/staging fallback telemetry inspection data can be reviewed.</li>
+                    <li>Missing fields and fallback labels remain visible.</li>
+                  </ul>
+                </div>
+                <div className="rounded-lg border border-amber-300/70 bg-amber-50 p-4 text-amber-950 dark:bg-amber-950/20 dark:text-amber-100">
+                  <h2 className="text-sm font-semibold">Cannot claim yet</h2>
+                  <ul className="mt-2 space-y-2 text-sm leading-6">
+                    <li>No live production telemetry database.</li>
+                    <li>No provider-backed telemetry display verification.</li>
+                    <li>No full production telemetry verification.</li>
+                    <li>No owner authenticated rendered proof unless owner confirms it.</li>
+                  </ul>
+                </div>
+              </div>
+              <div className="rounded-lg border bg-card p-4">
+                <h2 className="text-sm font-semibold text-foreground">Label guide</h2>
+                <p className="mt-1 text-sm leading-6 text-muted-foreground">
+                  Hover or focus each label for Thai/English explanation. These labels explain why
+                  this page is useful for review without upgrading the telemetry claim.
+                </p>
+                <div className="mt-3 flex flex-wrap gap-2">
+                  {Object.keys(labelExplanations).map((label) => (
+                    <SourceBadge key={label} label={label} />
+                  ))}
+                </div>
+              </div>
+            </CardContent>
+          </Card>
 
           <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
             {[
