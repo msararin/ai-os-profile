@@ -280,66 +280,69 @@ export default function SystemHealthPage() {
             </CardContent>
           </Card>
 
-          <Card className="mt-6 border-amber-300/70 bg-amber-50 dark:bg-amber-950/20">
-            <CardHeader>
-              <div className="flex flex-wrap items-start justify-between gap-3">
-                <div>
-                  <CardTitle>Private Internal Telemetry Access</CardTitle>
-                  <p className="mt-2 text-sm leading-6 text-muted-foreground">
-                    Internal telemetry details are available only through the protected Auth.js
-                    route. This public card is an access boundary, not a telemetry dashboard.
-                  </p>
+          <Link
+            href="/internal/telemetry"
+            className="group mt-6 block rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+            aria-label="Open private internal telemetry access"
+          >
+            <Card className="border-amber-300/70 bg-amber-50 transition-colors group-hover:border-primary/60 group-hover:bg-amber-100 dark:bg-amber-950/20">
+              <CardHeader>
+                <div className="flex flex-wrap items-start justify-between gap-3">
+                  <div>
+                    <CardTitle>Private Internal Telemetry Access</CardTitle>
+                    <p className="mt-2 text-sm leading-6 text-muted-foreground">
+                      Internal telemetry details are available only through the protected Auth.js
+                      route. This public card is an access boundary, not a telemetry dashboard.
+                    </p>
+                  </div>
+                  <Badge variant="outline">Google login required</Badge>
                 </div>
-                <Badge variant="outline">Google login required</Badge>
-              </div>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="grid gap-3 md:grid-cols-2">
-                <div className="rounded-lg border bg-background p-4">
-                  <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
-                    Private route
-                  </p>
-                  <p className="mt-1 font-mono text-sm text-foreground">/internal/telemetry</p>
-                  <p className="mt-2 text-sm leading-6 text-muted-foreground">
-                    Redirects to Auth.js sign-in when no allowed owner session is present.
-                  </p>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="grid gap-3 md:grid-cols-2">
+                  <div className="rounded-lg border bg-background p-4">
+                    <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
+                      Private route
+                    </p>
+                    <p className="mt-1 font-mono text-sm text-foreground">/internal/telemetry</p>
+                    <p className="mt-2 text-sm leading-6 text-muted-foreground">
+                      Redirects to Auth.js sign-in when no allowed owner session is present.
+                    </p>
+                  </div>
+                  <div className="rounded-lg border bg-background p-4">
+                    <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
+                      Public boundary
+                    </p>
+                    <p className="mt-1 text-sm font-semibold text-foreground">
+                      No internal rows shown here
+                    </p>
+                    <p className="mt-2 text-sm leading-6 text-muted-foreground">
+                      Raw task rows, source paths, receipt details, and provider fields remain off
+                      public System Health pages.
+                    </p>
+                  </div>
                 </div>
-                <div className="rounded-lg border bg-background p-4">
-                  <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
-                    Public boundary
-                  </p>
-                  <p className="mt-1 text-sm font-semibold text-foreground">
-                    No internal rows shown here
-                  </p>
-                  <p className="mt-2 text-sm leading-6 text-muted-foreground">
-                    Raw task rows, source paths, receipt details, and provider fields remain off
-                    public System Health pages.
-                  </p>
+
+                <div className="flex flex-wrap gap-2">
+                  {privateTelemetryLabels.map((label) => (
+                    <Badge key={label} variant="outline">
+                      {label}
+                    </Badge>
+                  ))}
                 </div>
-              </div>
 
-              <div className="flex flex-wrap gap-2">
-                {privateTelemetryLabels.map((label) => (
-                  <Badge key={label} variant="outline">
-                    {label}
-                  </Badge>
-                ))}
-              </div>
+                <p className="text-sm leading-6 text-muted-foreground">
+                  Current private dashboard data may fall back to a sanitized bundled JSON export.
+                  Those labels mean the data is not a live database, not provider-backed telemetry
+                  display, and not production telemetry verification.
+                </p>
 
-              <p className="text-sm leading-6 text-muted-foreground">
-                Current private dashboard data may fall back to a sanitized bundled JSON export.
-                Those labels mean the data is not a live database, not provider-backed telemetry
-                display, and not production telemetry verification.
-              </p>
-
-              <Link
-                href="/internal/telemetry"
-                className="inline-flex rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90"
-              >
-                Open internal telemetry
-              </Link>
-            </CardContent>
-          </Card>
+                <span className="inline-flex rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground group-hover:bg-primary/90">
+                  Open internal telemetry
+                </span>
+              </CardContent>
+            </Card>
+          </Link>
         </div>
       </section>
 
