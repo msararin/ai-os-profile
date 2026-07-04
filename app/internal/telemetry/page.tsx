@@ -72,12 +72,24 @@ function MetricList({
   )
 }
 
-function clampPercent(value: number, maxValue: number) {
-  if (maxValue <= 0 || value <= 0) {
-    return 0
+function metricRowsFromLabels(
+  labels: string[],
+  dataSourceType: string,
+): Array<{ label: string; value: number; detail?: string; dataSourceType: string }> {
+  const counts = new Map<string, number>()
+
+  for (const rawLabel of labels) {
+    const label = rawLabel.trim() || "SOURCE_ARTIFACT_MISSING_FIELD"
+    counts.set(label, (counts.get(label) ?? 0) + 1)
   }
 
-  return Math.max((value / maxValue) * 100, 6)
+  return [...counts.entries()]
+    .map(([label, value]) => ({
+      label,
+      value,
+      dataSourceType,
+    }))
+    .sort((a, b) => b.value - a.value)
 }
 
 export default async function InternalTelemetryPage() {
@@ -100,32 +112,6 @@ export default async function InternalTelemetryPage() {
   )
   const providerCoverageState =
     providerVisibleRows.length > 0 ? `${providerVisibleRows.length} partial rows` : "Not exposed"
-  const eventSourceRows = [
-    {
-      label: "Candidate records",
-      value: data.counts.candidateRecords,
-      detail: "Sanitized staging/backfill candidate rows.",
-      dataSourceType: isBundledExport ? "BUNDLED_JSON_EXPORT" : "STAGING_CANDIDATE",
-    },
-    {
-      label: "Low-confidence advisory exclusions",
-      value: data.counts.exclusions,
-      detail: "Visible as advisory rows; excluded from authoritative aggregates.",
-      dataSourceType: "LOW_CONFIDENCE_ADVISORY",
-    },
-    {
-      label: "Backfill batches",
-      value: data.counts.batches,
-      detail: "Batch metadata, not live production telemetry.",
-      dataSourceType: isBundledExport ? "BUNDLED_JSON_EXPORT" : "STAGING_CANDIDATE",
-    },
-    {
-      label: "Runtime agent runs",
-      value: data.counts.agentRuns,
-      detail: "Only counted if a readable ledger exposes them.",
-      dataSourceType: data.counts.agentRuns > 0 ? "RUNTIME_CAPTURED" : "FIELD_NOT_EXPOSED_NOT_CLAIMED",
-    },
-  ]
   const missingFieldRows =
     data.missingTelemetryWarnings.length > 0
       ? data.missingTelemetryWarnings.slice(0, 8)
@@ -149,26 +135,32 @@ export default async function InternalTelemetryPage() {
             dataSourceType: "FIELD_NOT_EXPOSED_NOT_CLAIMED",
           },
         ]
-  const targetTelemetryRows = [
-    {
-      label: "Spend by model",
-      value: 1,
-      detail: "Target-only until provider-backed cost telemetry exists.",
-      dataSourceType: "FIELD_NOT_EXPOSED_NOT_CLAIMED",
-    },
-    {
-      label: "Input/output tokens",
-      value: 1,
-      detail: "Missing or source-dependent; no token proof claim.",
-      dataSourceType: "FIELD_NOT_EXPOSED_NOT_CLAIMED",
-    },
-    {
-      label: "Returned model",
-      value: 1,
-      detail: "Missing unless source artifacts expose it.",
-      dataSourceType: "FIELD_NOT_EXPOSED_NOT_CLAIMED",
-    },
-  ]
+  const roleTaskArtifactRows =
+    data.spendByRoleReviewerRoute.length > 0
+      ? data.spendByRoleReviewerRoute.slice(0, 6)
+      : [
+          {
+            label: "Role/task/artifact telemetry",
+            value: 0,
+            detail: "No role/task aggregate rows exposed by the current fallback export.",
+            dataSourceType: "FIELD_NOT_EXPOSED_NOT_CLAIMED",
+          },
+        ]
+  const evidenceClaimRows = metricRowsFromLabels(
+    data.taskReceiptRows.map((row) => `${row.evidenceType} / ${row.claimLevel}`),
+    isBundledExport ? "BUNDLED_JSON_EXPORT" : "STAGING_CANDIDATE",
+  ).slice(0, 6)
+  const evidenceClaimGraphRows =
+    evidenceClaimRows.length > 0
+      ? evidenceClaimRows
+      : [
+          {
+            label: "Evidence tier / claim level",
+            value: 0,
+            detail: "No evidence or claim-level rows exposed by the current fallback export.",
+            dataSourceType: "FIELD_NOT_EXPOSED_NOT_CLAIMED",
+          },
+        ]
 
   return (
     <main className="min-h-screen bg-background">
@@ -288,74 +280,47 @@ export default async function InternalTelemetryPage() {
             ))}
           </div>
 
-          <div className="grid gap-4 xl:grid-cols-[1.05fr_0.95fr]">
-            <Card className="rounded-lg border-primary/20 bg-primary/5">
-              <CardHeader>
-                <Badge variant="secondary" className="w-fit">
-                  Visual telemetry summary
-                </Badge>
-                <CardTitle className="text-xl">Graph-first internal telemetry dashboard</CardTitle>
-                <CardDescription>
-                  Counts are shown as staging/backfill or fallback evidence. This screen does not
-                  claim provider-backed telemetry display or full production telemetry verification.
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                {eventSourceRows.map((row) => {
-                  const maxValue = Math.max(...eventSourceRows.map((item) => item.value), 1)
-
-                  return (
-                    <div key={row.label} className="space-y-1.5">
-                      <div className="flex items-start justify-between gap-3 text-sm">
-                        <span className="font-medium text-foreground">{row.label}</span>
-                        <span className="font-mono text-muted-foreground">{row.value}</span>
-                      </div>
-                      <div className="h-3 overflow-hidden rounded-full bg-background">
-                        <div
-                          className="h-full rounded-full bg-primary"
-                          style={{ width: `${clampPercent(row.value, maxValue)}%` }}
-                        />
-                      </div>
-                      <div className="flex flex-wrap items-center gap-2">
-                        <SourceBadge label={row.dataSourceType} />
-                        <p className="text-xs leading-5 text-muted-foreground">{row.detail}</p>
-                      </div>
-                    </div>
-                  )
-                })}
-              </CardContent>
-            </Card>
-
-            <Card className="rounded-lg">
-              <CardHeader>
-                <Badge variant="secondary" className="w-fit">
-                  Missing-field coverage chart
-                </Badge>
-                <CardTitle className="text-xl">Missing telemetry remains visible.</CardTitle>
-                <CardDescription>
-                  Provider, model, token, and cost fields are disclosed as missing or not exposed
-                  when source artifacts do not support stronger claims.
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <MetricList rows={missingFieldRows} />
-              </CardContent>
-            </Card>
+          <div className="rounded-lg border bg-card px-4 py-4">
+            <div className="flex flex-col gap-3 lg:flex-row lg:items-start lg:justify-between">
+              <div>
+                <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
+                  Time window
+                </p>
+                <h2 className="mt-1 text-lg font-semibold text-foreground">All available</h2>
+                <p className="mt-1 max-w-3xl text-sm leading-6 text-muted-foreground">
+                  Time filtering limited because per-record telemetry timestamps are unavailable/incomplete.
+                  All available only for bundled fallback export. Batch/export timestamps describe
+                  snapshot generation, not telemetry event time.
+                </p>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {["Last 24 hours", "Last 7 days", "Last 30 days", "Custom range"].map((label) => (
+                  <button
+                    key={label}
+                    type="button"
+                    disabled
+                    className="rounded-md border bg-muted px-3 py-2 text-xs font-medium text-muted-foreground opacity-70"
+                  >
+                    {label} unavailable
+                  </button>
+                ))}
+                <span className="rounded-md border border-primary/40 bg-primary/10 px-3 py-2 text-xs font-medium text-primary">
+                  All available active
+                </span>
+              </div>
+            </div>
           </div>
 
           <div className="grid gap-4 xl:grid-cols-2">
-            <Card className="rounded-lg">
+            <Card className="rounded-lg border-primary/20 bg-primary/5">
               <CardHeader>
                 <Badge variant="secondary" className="w-fit">
-                  Model/provider visibility chart
+                  Executive graph 1
                 </Badge>
-                <CardTitle className="text-xl">
-                  {providerVisibleRows.length > 0
-                    ? "Provider/model rows are partial, not proof."
-                    : "Provider/model telemetry is not exposed."}
-                </CardTitle>
+                <CardTitle className="text-xl">Model Spend &amp; Usage</CardTitle>
                 <CardDescription>
-                  Rendered values come from the bundled or read-only candidate source only.
+                  Existing aggregate fallback rows only. Provider-backed telemetry display, token
+                  proof, and production spend verification are not claimed.
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -363,18 +328,51 @@ export default async function InternalTelemetryPage() {
               </CardContent>
             </Card>
 
-            <Card className="rounded-lg border-amber-300/70 bg-amber-50 dark:bg-amber-950/20">
+            <Card className="rounded-lg">
               <CardHeader>
-                <Badge variant="outline" className="w-fit">
-                  Target cost/token telemetry pattern
+                <Badge variant="secondary" className="w-fit">
+                  Executive graph 2
                 </Badge>
-                <CardTitle className="text-xl">Cost and token charts are target/missing state.</CardTitle>
+                <CardTitle className="text-xl">Role vs Task / Artifact</CardTitle>
                 <CardDescription>
-                  No provider-backed spend or token dashboard is claimed from this fallback view.
+                  Role, reviewer route, task, and artifact aggregates remain fallback evidence and
+                  are not time-filtered from current data.
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <MetricList rows={targetTelemetryRows} />
+                <MetricList rows={roleTaskArtifactRows} />
+              </CardContent>
+            </Card>
+
+            <Card className="rounded-lg">
+              <CardHeader>
+                <Badge variant="secondary" className="w-fit">
+                  Executive graph 3
+                </Badge>
+                <CardTitle className="text-xl">Evidence Tier vs Claim Level</CardTitle>
+                <CardDescription>
+                  Evidence and claim-level rows are displayed as local candidate data with missing
+                  fields preserved.
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <MetricList rows={evidenceClaimGraphRows} />
+              </CardContent>
+            </Card>
+
+            <Card className="rounded-lg border-amber-300/70 bg-amber-50 dark:bg-amber-950/20">
+              <CardHeader>
+                <Badge variant="outline" className="w-fit">
+                  Executive graph 4
+                </Badge>
+                <CardTitle className="text-xl">Missing Telemetry Coverage</CardTitle>
+                <CardDescription>
+                  Missing provider, model, token, cost, timestamp, and receipt fields are counted
+                  and disclosed instead of filled.
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <MetricList rows={missingFieldRows} />
               </CardContent>
             </Card>
           </div>
