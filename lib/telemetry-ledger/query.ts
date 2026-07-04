@@ -1,4 +1,5 @@
 import DatabaseConstructor from "better-sqlite3"
+import bundledExportData from "../../data/internal-telemetry/telemetry-dashboard-export.json"
 
 const DEFAULT_LEDGER_DB_PATH =
   "/Users/apple/projects/optimize-worker/observability/aios_observability.sqlite"
@@ -72,6 +73,10 @@ export type DashboardMetricRow = {
 
 export type DashboardDataSourceType =
   | "BACKFILLED_FROM_KB"
+  | "BUNDLED_JSON_EXPORT"
+  | "STAGING_BACKFILL_CANDIDATE"
+  | "NOT_LIVE_DATABASE"
+  | "NOT_PRODUCTION_TELEMETRY_VERIFICATION"
   | "RUNTIME_CAPTURED"
   | "STAGING_CANDIDATE"
   | "LOW_CONFIDENCE_ADVISORY"
@@ -92,10 +97,26 @@ export type DashboardTableRow = {
 }
 
 export type InternalTelemetryDashboardData = {
+  exportGeneratedAt?: string
+  exportGeneratedAtTz?: string
+  checksumAlgo?: string
+  sourceChecksumPrefix?: string
   dbPath: string
-  dbMode: "READ_ONLY_QUERY"
+  dbMode: "READ_ONLY_QUERY" | "BUNDLED_JSON_EXPORT"
   ledgerUnavailableReason?: string
   generatedAt: string
+  exportMetadata?: {
+    generated_at?: string
+    generated_at_timezone?: string
+    export_source?: string
+    export_claim_level?: string
+    source_checksum_algorithm?: string
+    source_database_label?: string
+    source_database_sha256?: string
+    local_paths_redacted?: boolean
+    not_live_database?: boolean
+    not_production_telemetry_verification?: boolean
+  }
   batch: BackfillBatchRow | null
   counts: {
     agentRuns: number
@@ -198,6 +219,61 @@ function emptyDashboardData(reason: string): InternalTelemetryDashboardData {
   }
 }
 
+function readBundledExportData(): InternalTelemetryDashboardData | null {
+  try {
+    const parsed = bundledExportData as InternalTelemetryDashboardData
+    if (process.env.NODE_ENV === "production") {
+      console.warn(
+        JSON.stringify({
+          event: "internal_telemetry_fallback_mode_active",
+          data_source: "BUNDLED_JSON_EXPORT",
+          not_live_database: true,
+          not_production_telemetry_verification: true,
+          export_generated_at: parsed.exportGeneratedAt ?? parsed.exportMetadata?.generated_at ?? "SOURCE_ARTIFACT_MISSING_FIELD",
+          export_generated_at_tz: parsed.exportGeneratedAtTz ?? parsed.exportMetadata?.generated_at_timezone ?? "UTC",
+          checksum_algo: parsed.checksumAlgo ?? parsed.exportMetadata?.source_checksum_algorithm ?? "sha256",
+          source_checksum_prefix: parsed.sourceChecksumPrefix ?? "SOURCE_ARTIFACT_MISSING_FIELD",
+        }),
+      )
+    }
+    return {
+      ...parsed,
+      dbPath: "BUNDLED_JSON_EXPORT_SOURCE_REDACTED",
+      dbMode: "BUNDLED_JSON_EXPORT",
+      summaryCards: [
+        {
+          label: "Bundled export mode",
+          value: 1,
+          detail: `FALLBACK_MODE_ACTIVE / generated ${
+            parsed.exportGeneratedAt ?? parsed.exportMetadata?.generated_at ?? "SOURCE_ARTIFACT_MISSING_FIELD"
+          } ${parsed.exportGeneratedAtTz ?? parsed.exportMetadata?.generated_at_timezone ?? "UTC"} / source ${
+            parsed.checksumAlgo ?? parsed.exportMetadata?.source_checksum_algorithm ?? "sha256"
+          }:${parsed.sourceChecksumPrefix ?? "SOURCE_ARTIFACT_MISSING_FIELD"}`,
+          dataSourceType: "BUNDLED_JSON_EXPORT",
+        },
+        ...parsed.summaryCards,
+      ],
+      missingTelemetryWarnings: [
+        {
+          label: "NOT_LIVE_DATABASE",
+          value: 1,
+          detail: "Bundled JSON export is a sanitized staging/backfill snapshot, not a live production telemetry database.",
+          dataSourceType: "NOT_LIVE_DATABASE",
+        },
+        {
+          label: "NOT_PRODUCTION_TELEMETRY_VERIFICATION",
+          value: 1,
+          detail: "Rendered rows from this export do not prove telemetry verification without later field/source review and Prime Gate approval.",
+          dataSourceType: "NOT_PRODUCTION_TELEMETRY_VERIFICATION",
+        },
+        ...parsed.missingTelemetryWarnings,
+      ],
+    }
+  } catch {
+    return null
+  }
+}
+
 function parseJsonObject(value: string): Record<string, unknown> {
   try {
     const parsed = JSON.parse(value)
@@ -266,7 +342,10 @@ function topEntries(rows: DashboardMetricRow[], limit = 8) {
 export function getInternalTelemetryDashboardData(): InternalTelemetryDashboardData {
   const dbPath = getDbPath()
   if (!dbPath) {
-    return emptyDashboardData("Production telemetry ledger path is not configured.")
+    return (
+      readBundledExportData() ??
+      emptyDashboardData("Production telemetry ledger path is not configured.")
+    )
   }
 
   let db: SqliteDatabase
@@ -276,7 +355,10 @@ export function getInternalTelemetryDashboardData(): InternalTelemetryDashboardD
       fileMustExist: true,
     })
   } catch {
-    return emptyDashboardData("Configured telemetry ledger path is not readable.")
+    return (
+      readBundledExportData() ??
+      emptyDashboardData("Configured telemetry ledger path is not readable.")
+    )
   }
 
   try {

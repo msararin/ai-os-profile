@@ -1,0 +1,1790 @@
+{
+  "exportGeneratedAt": "2026-07-03T09:42:14.436Z",
+  "exportGeneratedAtTz": "UTC",
+  "checksumAlgo": "sha256",
+  "sourceChecksumPrefix": "956a650cedff37ee",
+  "exportMetadata": {
+    "generated_at": "2026-07-03T09:42:14.437Z",
+    "generated_at_timezone": "UTC",
+    "export_source": "read_only_sqlite_sanitized_bundled_json",
+    "export_claim_level": "DRAFT_LOCAL_ONLY_BUNDLED_JSON_EXPORT_CANDIDATE",
+    "source_checksum_algorithm": "sha256",
+    "source_database_label": "optimize-worker-aios-observability-sqlite",
+    "source_database_sha256": "956a650cedff37eeea60fa83621a969f9ae53c60b041d048ad99eda4f06322c8",
+    "local_paths_redacted": true,
+    "not_live_database": true,
+    "not_production_telemetry_verification": true,
+    "fallback_mode_label": "FALLBACK_MODE_ACTIVE",
+    "aggregate_semantics": "Candidate record aggregates exclude telemetry_backfill_exclusions; low-confidence exclusions are shown separately as advisory rows.",
+    "sanitizer_ruleset": [
+      "redact local absolute paths",
+      "redact backup paths",
+      "scan exported JSON for OAuth/client-secret/private-key markers",
+      "scan exported JSON for local absolute paths",
+      "export dashboard-shaped fields only; do not export raw records, raw prompts, stack traces, or full messages"
+    ],
+    "sqlite_open_mode": "readonly: true, fileMustExist: true, pragma query_only = ON",
+    "sqlite_sidecar_policy": "no -wal or -shm sidecars expected or observed after export"
+  },
+  "dbPath": "BUNDLED_JSON_EXPORT_SOURCE_REDACTED",
+  "dbMode": "BUNDLED_JSON_EXPORT",
+  "generatedAt": "2026-07-03T09:42:14.437Z",
+  "batch": {
+    "backfill_batch_id": "limited-backfill-dryrun-20260701-e14201349be3",
+    "source_dry_run_path": "artifact:limited-backfill-dryrun-20260701.json#3b10b4d81bc7",
+    "mode": "BUNDLED_JSON_EXPORT",
+    "claim_level": "DRAFT_LOCAL_ONLY_BUNDLED_JSON_EXPORT_CANDIDATE",
+    "created_at": "2026-07-01 18:34:00",
+    "backup_path": "REDACTED_FOR_PRODUCTION_EXPORT"
+  },
+  "counts": {
+    "agentRuns": 10,
+    "batches": 1,
+    "candidateRecords": 2297,
+    "exclusions": 50
+  },
+  "summaryCards": [
+    {
+      "label": "Bundled JSON export",
+      "value": 1,
+      "detail": "FALLBACK_MODE_ACTIVE / NOT_LIVE_DATABASE / NOT_PRODUCTION_TELEMETRY_VERIFICATION",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "label": "Candidate records",
+      "value": 2297,
+      "detail": "STAGING_BACKFILL_CANDIDATE; excludes LOW_CONFIDENCE_ADVISORY rows",
+      "dataSourceType": "STAGING_BACKFILL_CANDIDATE"
+    },
+    {
+      "label": "Advisory exclusions",
+      "value": 50,
+      "detail": "LOW_CONFIDENCE_ADVISORY",
+      "dataSourceType": "LOW_CONFIDENCE_ADVISORY"
+    },
+    {
+      "label": "Existing agent_runs",
+      "value": 10,
+      "detail": "RUNTIME_CAPTURED context only from source DB snapshot",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    }
+  ],
+  "spendByModelProvider": [
+    {
+      "label": "NOT_EXPOSED / NOT_APPLICABLE_FOR_LOCAL_RUN / NOT_APPLICABLE_FOR_LOCAL_RUN",
+      "value": 2035.016953,
+      "detail": "8 bundled staging model rows",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "label": "NOT_APPLICABLE_FOR_LOCAL_RUN / NOT_APPLICABLE_FOR_LOCAL_RUN / NOT_APPLICABLE_FOR_LOCAL_RUN",
+      "value": 13,
+      "detail": "3 bundled staging model rows",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "label": "openrouter / anthropic/claude-opus-4.7 / anthropic/claude-4.7-opus-20260416",
+      "value": 0.27775,
+      "detail": "4 bundled staging model rows",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "label": "yes / yes / yes",
+      "value": 0.06199,
+      "detail": "1 bundled staging model rows",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "label": "openrouter / anthropic/claude-sonnet-4.5 / anthropic/claude-4.5-sonnet-20250929",
+      "value": 0.054465,
+      "detail": "3 bundled staging model rows",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "label": "Field / anthropic/claude-opus-4.7 / anthropic/claude-4.7-opus-20260416",
+      "value": 0.039855,
+      "detail": "1 bundled staging model rows",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "label": "openrouter / NOT_APPLICABLE_FOR_LOCAL_RUN / NOT_APPLICABLE_FOR_LOCAL_RUN",
+      "value": 0.033906,
+      "detail": "2 bundled staging model rows",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "label": "Role / NOT_APPLICABLE_FOR_LOCAL_RUN / NOT_APPLICABLE_FOR_LOCAL_RUN",
+      "value": 0.03327,
+      "detail": "1 bundled staging model rows",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "label": "NOT_APPLICABLE_FOR_LOCAL_RUN / anthropic/claude-sonnet-4.5 / anthropic/claude-4.5-sonnet-20250929",
+      "value": 0.020559,
+      "detail": "1 bundled staging model rows",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "label": "not_applicable_local_codex_execution / NOT_APPLICABLE_FOR_LOCAL_RUN / NOT_APPLICABLE_FOR_LOCAL_RUN",
+      "value": 0,
+      "detail": "3 bundled staging model rows",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "label": "not_applicable_local_codex_execution / not_exposed_by_tool / not_exposed_by_tool",
+      "value": 0,
+      "detail": "1 bundled staging model rows",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "label": "model / NOT_APPLICABLE_FOR_LOCAL_RUN / NOT_APPLICABLE_FOR_LOCAL_RUN",
+      "value": 0,
+      "detail": "2 bundled staging model rows",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "label": "not used. / not available for this local run. / not available for this local run.",
+      "value": 0,
+      "detail": "1 bundled staging model rows",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "label": "not_available_runtime_not_exposed / NOT_APPLICABLE_FOR_LOCAL_RUN / NOT_APPLICABLE_FOR_LOCAL_RUN",
+      "value": 0,
+      "detail": "1 bundled staging model rows",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "label": "not_exposed_by_tool / not_exposed_by_tool / not_exposed_by_tool",
+      "value": 0,
+      "detail": "1 bundled staging model rows",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "label": "NOT_APPLICABLE_FOR_DETERMINISTIC_VALIDATION / NOT_APPLICABLE_FOR_LOCAL_RUN / NOT_APPLICABLE_FOR_LOCAL_RUN",
+      "value": 0,
+      "detail": "1 bundled staging model rows",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "label": "coordinated_local / NOT_APPLICABLE_FOR_LOCAL_RUN / NOT_APPLICABLE_FOR_LOCAL_RUN",
+      "value": 0,
+      "detail": "1 bundled staging model rows",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    }
+  ],
+  "modelVsTask": [
+    {
+      "taskTitle": "Shared Telemetry Ledger Contract And KB Backfill Plan",
+      "provider": "not_applicable_local_codex_execution",
+      "requestedModel": "NOT_APPLICABLE_FOR_LOCAL_RUN",
+      "returnedModel": "NOT_APPLICABLE_FOR_LOCAL_RUN",
+      "totalTokens": "FIELD_NOT_EXPOSED_NOT_CLAIMED",
+      "cost": "FIELD_NOT_EXPOSED_NOT_CLAIMED",
+      "generationId": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "sourceFilePath": "artifact:SHARED_TELEMETRY_LEDGER_CONTRACT_AND_KB_BACKFILL_PLAN_20260701.md#e891294b507a",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "taskTitle": "Shared Telemetry Ledger Contract Module And Read-Only Inventory Candidate",
+      "provider": "not_applicable_local_codex_execution",
+      "requestedModel": "NOT_APPLICABLE_FOR_LOCAL_RUN",
+      "returnedModel": "NOT_APPLICABLE_FOR_LOCAL_RUN",
+      "totalTokens": "FIELD_NOT_EXPOSED_NOT_CLAIMED",
+      "cost": "FIELD_NOT_EXPOSED_NOT_CLAIMED",
+      "generationId": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "sourceFilePath": "artifact:SHARED_TELEMETRY_LEDGER_CONTRACT_MODULE_AND_READ_ONLY_INVENTORY_CANDIDATE_20260701.md#f677933a63b4",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "taskTitle": "Prime Gate Shared Telemetry Backfill Mapping Review",
+      "provider": "not_applicable_local_codex_execution",
+      "requestedModel": "not_exposed_by_tool",
+      "returnedModel": "not_exposed_by_tool",
+      "totalTokens": "FIELD_NOT_EXPOSED_NOT_CLAIMED",
+      "cost": "FIELD_NOT_EXPOSED_NOT_CLAIMED",
+      "generationId": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "sourceFilePath": "artifact:PRIME_GATE_SHARED_TELEMETRY_BACKFILL_MAPPING_REVIEW_20260701.md#99f406238251",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "taskTitle": "SQLite Telemetry Storage Existence Check",
+      "provider": "model",
+      "requestedModel": "NOT_APPLICABLE_FOR_LOCAL_RUN",
+      "returnedModel": "NOT_APPLICABLE_FOR_LOCAL_RUN",
+      "totalTokens": "FIELD_NOT_EXPOSED_NOT_CLAIMED",
+      "cost": "FIELD_NOT_EXPOSED_NOT_CLAIMED",
+      "generationId": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "sourceFilePath": "artifact:SQLITE_TELEMETRY_STORAGE_EXISTENCE_CHECK_20260701.md#78c53afb6d77",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "taskTitle": "SQLite Telemetry Measurement Ledger Decision",
+      "provider": "not_applicable_local_codex_execution",
+      "requestedModel": "NOT_APPLICABLE_FOR_LOCAL_RUN",
+      "returnedModel": "NOT_APPLICABLE_FOR_LOCAL_RUN",
+      "totalTokens": "FIELD_NOT_EXPOSED_NOT_CLAIMED",
+      "cost": "FIELD_NOT_EXPOSED_NOT_CLAIMED",
+      "generationId": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "sourceFilePath": "artifact:SQLITE_TELEMETRY_MEASUREMENT_LEDGER_DECISION_20260701.md#4887266e1288",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "taskTitle": "Google Auth Local Callback Fix and Browser Proof",
+      "provider": "openrouter",
+      "requestedModel": "anthropic/claude-opus-4.7",
+      "returnedModel": "anthropic/claude-4.7-opus-20260416",
+      "totalTokens": "5126",
+      "cost": "0.06199",
+      "generationId": "gen-1782920288-sTOe4co9v5Earzq7An8R",
+      "sourceFilePath": "artifact:GOOGLE_AUTH_LOCAL_CALLBACK_FIX_AND_BROWSER_PROOF_20260701.md#3ecc27e5d333",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "taskTitle": "Prime Gate Google Auth Telemetry Boundary Review - OpenRouter Opus",
+      "provider": "openrouter",
+      "requestedModel": "anthropic/claude-opus-4.7",
+      "returnedModel": "anthropic/claude-4.7-opus-20260416",
+      "totalTokens": "5126",
+      "cost": "0.06199",
+      "generationId": "gen-1782920288-sTOe4co9v5Earzq7An8R",
+      "sourceFilePath": "artifact:PRIME_GATE_GOOGLE_AUTH_TELEMETRY_BOUNDARY_REVIEW_OPENROUTER_OPUS_20260701.md#36314836cb18",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "taskTitle": "Big Crew Google Auth Telemetry Boundary Review",
+      "provider": "not used.",
+      "requestedModel": "not available for this local run.",
+      "returnedModel": "not available for this local run.",
+      "totalTokens": "FIELD_NOT_EXPOSED_NOT_CLAIMED",
+      "cost": "FIELD_NOT_EXPOSED_NOT_CLAIMED",
+      "generationId": "not available.",
+      "sourceFilePath": "artifact:BIG_CREW_GOOGLE_AUTH_TELEMETRY_BOUNDARY_REVIEW_20260701.md#3261e9113a90",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "taskTitle": "Internal Live Telemetry Existing Surface Verification",
+      "provider": "yes",
+      "requestedModel": "yes",
+      "returnedModel": "yes",
+      "totalTokens": "5126",
+      "cost": "0.06199",
+      "generationId": "no exact generation id | evidence refs and receipt status | Static receipt references exist; generation ids are not displayed on monitoring page. |",
+      "sourceFilePath": "artifact:INTERNAL_LIVE_TELEMETRY_EXISTING_SURFACE_VERIFICATION_20260701.md#0db1fc17398b",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "taskTitle": "Telemetry Receipt: Achievement Page Optimize Worker Phase B",
+      "provider": "Role",
+      "requestedModel": "NOT_APPLICABLE_FOR_LOCAL_RUN",
+      "returnedModel": "NOT_APPLICABLE_FOR_LOCAL_RUN",
+      "totalTokens": "2554",
+      "cost": "0.03327",
+      "generationId": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "sourceFilePath": "artifact:TELEMETRY_RECEIPT_ACHIEVEMENT_PAGE_OPTIMIZE_WORKER_PHASE_B_20260701.md#704a769e5c37",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "taskTitle": "Telemetry Receipt - Achievement Page Push Deploy Live Verify - 2026-07-01",
+      "provider": "not_available_runtime_not_exposed",
+      "requestedModel": "NOT_APPLICABLE_FOR_LOCAL_RUN",
+      "returnedModel": "NOT_APPLICABLE_FOR_LOCAL_RUN",
+      "totalTokens": "FIELD_NOT_EXPOSED_NOT_CLAIMED",
+      "cost": "FIELD_NOT_EXPOSED_NOT_CLAIMED",
+      "generationId": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "sourceFilePath": "artifact:TELEMETRY_RECEIPT_ACHIEVEMENT_PAGE_PUSH_DEPLOY_LIVE_VERIFY_20260701.md#b2393ddad90b",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "taskTitle": "LLMOps Visual Telemetry Patch v0.2 KB Closeout Telemetry Receipt",
+      "provider": "not_exposed_by_tool",
+      "requestedModel": "not_exposed_by_tool",
+      "returnedModel": "not_exposed_by_tool",
+      "totalTokens": "FIELD_NOT_EXPOSED_NOT_CLAIMED",
+      "cost": "FIELD_NOT_EXPOSED_NOT_CLAIMED",
+      "generationId": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "sourceFilePath": "artifact:TELEMETRY_RECEIPT.md#1abe6c4ecf17",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "taskTitle": "Closeout: Optimize Worker Phase B Role-Receipted Local Proof",
+      "provider": "openrouter",
+      "requestedModel": "NOT_APPLICABLE_FOR_LOCAL_RUN",
+      "returnedModel": "NOT_APPLICABLE_FOR_LOCAL_RUN",
+      "totalTokens": "2035",
+      "cost": "0.016953",
+      "generationId": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "sourceFilePath": "artifact:01_CLOSEOUT_OPTIMIZE_WORKER_PHASE_B_ROLE_RECEIPTED_LOCAL_PROOF_20260701.md#c49eb6e8405e",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "taskTitle": "Telemetry Receipt: Optimize Worker Phase B Closeout",
+      "provider": "openrouter",
+      "requestedModel": "NOT_APPLICABLE_FOR_LOCAL_RUN",
+      "returnedModel": "NOT_APPLICABLE_FOR_LOCAL_RUN",
+      "totalTokens": "2035",
+      "cost": "0.016953",
+      "generationId": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "sourceFilePath": "artifact:04_TELEMETRY_RECEIPT_OPTIMIZE_WORKER_PHASE_B_CLOSEOUT_20260701.md#ff3effa5c295",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "taskTitle": "Big Crew Phase B Artifact Quality Review Receipt",
+      "provider": "openrouter",
+      "requestedModel": "anthropic/claude-sonnet-4.5",
+      "returnedModel": "anthropic/claude-4.5-sonnet-20250929",
+      "totalTokens": "2035",
+      "cost": "0.016953",
+      "generationId": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "sourceFilePath": "artifact:BIG_CREW_PHASE_B_ARTIFACT_QUALITY_REVIEW_RECEIPT_20260701.md#2e25e88b9de6",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "taskTitle": "Phase B Big Crew Small Patch Receipt",
+      "provider": "NOT_EXPOSED",
+      "requestedModel": "NOT_APPLICABLE_FOR_LOCAL_RUN",
+      "returnedModel": "NOT_APPLICABLE_FOR_LOCAL_RUN",
+      "totalTokens": "FIELD_NOT_EXPOSED_NOT_CLAIMED",
+      "cost": "FIELD_NOT_EXPOSED_NOT_CLAIMED",
+      "generationId": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "sourceFilePath": "artifact:PHASE_B_BIG_CREW_SMALL_PATCH_RECEIPT_20260701.md#bef17d885de1",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "taskTitle": "Phase B Evidence Preservation Receipt",
+      "provider": "NOT_EXPOSED",
+      "requestedModel": "NOT_APPLICABLE_FOR_LOCAL_RUN",
+      "returnedModel": "NOT_APPLICABLE_FOR_LOCAL_RUN",
+      "totalTokens": "FIELD_NOT_EXPOSED_NOT_CLAIMED",
+      "cost": "0.016953",
+      "generationId": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "sourceFilePath": "artifact:PHASE_B_EVIDENCE_PRESERVATION_RECEIPT_20260701.md#d4528428a82a",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "taskTitle": "Phase B Local Cleanup Receipt",
+      "provider": "NOT_EXPOSED",
+      "requestedModel": "NOT_APPLICABLE_FOR_LOCAL_RUN",
+      "returnedModel": "NOT_APPLICABLE_FOR_LOCAL_RUN",
+      "totalTokens": "FIELD_NOT_EXPOSED_NOT_CLAIMED",
+      "cost": "FIELD_NOT_EXPOSED_NOT_CLAIMED",
+      "generationId": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "sourceFilePath": "artifact:PHASE_B_LOCAL_CLEANUP_RECEIPT_20260701.md#d3dbcbc6558c",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "taskTitle": "Prime Gate Reconciliation Packet: Phase B First Task Evidence",
+      "provider": "openrouter",
+      "requestedModel": "anthropic/claude-sonnet-4.5",
+      "returnedModel": "anthropic/claude-4.5-sonnet-20250929",
+      "totalTokens": "2035",
+      "cost": "0.016953",
+      "generationId": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "sourceFilePath": "artifact:PHASE_B_PRIME_GATE_RECONCILIATION_PACKET_20260701.md#5ede4f447815",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "taskTitle": "Prime Gate Phase B First Task Reconciliation Receipt",
+      "provider": "Field",
+      "requestedModel": "anthropic/claude-opus-4.7",
+      "returnedModel": "anthropic/claude-4.7-opus-20260416",
+      "totalTokens": "3747",
+      "cost": "0.039855",
+      "generationId": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "sourceFilePath": "artifact:PRIME_GATE_PHASE_B_FIRST_TASK_RECONCILIATION_RECEIPT_20260701.md#c8be5316a59a",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "taskTitle": "Prime Gate Reconciliation — Optimize Worker Phase A Role Receipts",
+      "provider": "openrouter",
+      "requestedModel": "anthropic/claude-opus-4.7",
+      "returnedModel": "anthropic/claude-4.7-opus-20260416",
+      "totalTokens": "10321",
+      "cost": "0.076885",
+      "generationId": "gen-1782915924-axMlamLtQgfHbvjhEHlK",
+      "sourceFilePath": "artifact:PRIME_GATE_RECONCILIATION_OPTIMIZE_WORKER_PHASE_A_ROLE_RECEIPTS_20260701.md#a95857b7f942",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "taskTitle": "Prime Gate Reconciliation Packet — Optimize Worker Phase A Role Receipts",
+      "provider": "NOT_APPLICABLE_FOR_LOCAL_RUN",
+      "requestedModel": "anthropic/claude-sonnet-4.5",
+      "returnedModel": "anthropic/claude-4.5-sonnet-20250929",
+      "totalTokens": "2205",
+      "cost": "0.020559",
+      "generationId": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "sourceFilePath": "artifact:ROLE_ACTIVATION_PRIME_GATE_RECONCILIATION_PACKET_20260701.md#d4340e7a61fb",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "taskTitle": "not run in this task.",
+      "provider": "NOT_EXPOSED",
+      "requestedModel": "NOT_APPLICABLE_FOR_LOCAL_RUN",
+      "returnedModel": "NOT_APPLICABLE_FOR_LOCAL_RUN",
+      "totalTokens": "FIELD_NOT_EXPOSED_NOT_CLAIMED",
+      "cost": "FIELD_NOT_EXPOSED_NOT_CLAIMED",
+      "generationId": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "sourceFilePath": "artifact:ROLE_ACTIVATION_PRIME_GATE_RECONCILIATION_PACKET_FULL_20260701.md#c68b1a006efe",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "taskTitle": "Runner Gang Phase B First Task Validation Receipt",
+      "provider": "NOT_APPLICABLE_FOR_DETERMINISTIC_VALIDATION",
+      "requestedModel": "NOT_APPLICABLE_FOR_LOCAL_RUN",
+      "returnedModel": "NOT_APPLICABLE_FOR_LOCAL_RUN",
+      "totalTokens": "FIELD_NOT_EXPOSED_NOT_CLAIMED",
+      "cost": "FIELD_NOT_EXPOSED_NOT_CLAIMED",
+      "generationId": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "sourceFilePath": "artifact:RUNNER_GANG_PHASE_B_FIRST_TASK_VALIDATION_RECEIPT_20260701.md#3c3c3dc1e3ce",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "taskTitle": "Telemetry Receipt — Optimize Worker Phase A Prime Gate Reconciliation",
+      "provider": "openrouter",
+      "requestedModel": "anthropic/claude-opus-4.7",
+      "returnedModel": "anthropic/claude-4.7-opus-20260416",
+      "totalTokens": "10321",
+      "cost": "0.076885",
+      "generationId": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "sourceFilePath": "artifact:TELEMETRY_RECEIPT_OPTIMIZE_WORKER_PHASE_A_PRIME_GATE_RECONCILIATION_20260701.md#04c3b4caec1b",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    }
+  ],
+  "spendByRoleReviewerRoute": [
+    {
+      "label": "SOURCE_ARTIFACT_MISSING_FIELD / SOURCE_ARTIFACT_MISSING_FIELD",
+      "value": 21,
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "label": "Codex local repo inspection and artifact drafting / Codex local repo inspection and artifact drafting",
+      "value": 2,
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "label": "Codex local read-only repo/SQLite inspection and architecture artifact drafting / Codex local read-only repo/SQLite inspection and architecture artifact drafting",
+      "value": 1,
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "label": "Codex local contract module and read-only inventory implementation candidate / Codex local contract module and read-only inventory implementation candidate",
+      "value": 1,
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "label": "Codex local Prime Gate-style reviewer / Codex local Prime Gate-style reviewer",
+      "value": 1,
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "label": "OpenRouter external provider-backed Prime Gate review. / OpenRouter external provider-backed Prime Gate review.",
+      "value": 1,
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "label": "Codex local role-structured review. / Codex local role-structured review.",
+      "value": 1,
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "label": "yes / yes",
+      "value": 1,
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "label": "Field / Field",
+      "value": 1,
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    }
+  ],
+  "governanceGateOutcomeByTask": [
+    {
+      "gateName": "owner gate",
+      "gateStatus": "DRAFT_LOCAL_ONLY_DOWNGRADED",
+      "gateVerdict": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "sourceFilePath": "artifact:SHARED_TELEMETRY_LEDGER_CONTRACT_AND_KB_BACKFILL_PLAN_20260701.md#e891294b507a",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "gateName": "Prime Gate",
+      "gateStatus": "DRAFT_LOCAL_ONLY_DOWNGRADED",
+      "gateVerdict": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "sourceFilePath": "artifact:SHARED_TELEMETRY_LEDGER_CONTRACT_MODULE_AND_READ_ONLY_INVENTORY_CANDIDATE_20260701.md#f677933a63b4",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "gateName": "Prime Gate",
+      "gateStatus": "DRAFT_LOCAL_ONLY_DOWNGRADED",
+      "gateVerdict": "ACCEPT_INVENTORY_AS_DRY_RUN_REQUIRE_MAPPING_PATCH_BEFORE_BACKFILL",
+      "sourceFilePath": "artifact:PRIME_GATE_SHARED_TELEMETRY_BACKFILL_MAPPING_REVIEW_20260701.md#99f406238251",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "gateName": "Telemetry Steward",
+      "gateStatus": "DRAFT_LOCAL_ONLY_DOWNGRADED",
+      "gateVerdict": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "sourceFilePath": "artifact:SQLITE_TELEMETRY_STORAGE_EXISTENCE_CHECK_20260701.md#78c53afb6d77",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "gateName": "Telemetry Steward",
+      "gateStatus": "DRAFT_LOCAL_ONLY_DOWNGRADED",
+      "gateVerdict": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "sourceFilePath": "artifact:SQLITE_TELEMETRY_MEASUREMENT_LEDGER_DECISION_20260701.md#4887266e1288",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "gateName": "Prime Gate",
+      "gateStatus": "DOWNGRADED_LOCAL_ONLY_UNTIL_FULL_AIOS_PACKET",
+      "gateVerdict": "APPROVE_ROUTE_GATING_CANDIDATE_WITH_OWNER_CALLBACK_SETUP_REQUIRED",
+      "sourceFilePath": "artifact:GOOGLE_AUTH_LOCAL_CALLBACK_FIX_AND_BROWSER_PROOF_20260701.md#3ecc27e5d333",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "gateName": "Prime Gate",
+      "gateStatus": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "gateVerdict": "APPROVE_ROUTE_GATING_CANDIDATE_WITH_OWNER_CALLBACK_SETUP_REQUIRED",
+      "sourceFilePath": "artifact:PRIME_GATE_GOOGLE_AUTH_TELEMETRY_BOUNDARY_REVIEW_OPENROUTER_OPUS_20260701.md#36314836cb18",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "gateName": "QA Sentinel",
+      "gateStatus": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "gateVerdict": "auth route-gating candidate only; telemetry verification remains not claimed.",
+      "sourceFilePath": "artifact:BIG_CREW_GOOGLE_AUTH_TELEMETRY_BOUNDARY_REVIEW_20260701.md#3261e9113a90",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "gateName": "Prime Gate",
+      "gateStatus": "DRAFT_LOCAL_ONLY_DOWNGRADED",
+      "gateVerdict": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "sourceFilePath": "artifact:INTERNAL_LIVE_TELEMETRY_EXISTING_SURFACE_VERIFICATION_20260701.md#0db1fc17398b",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "gateName": "Surface Guild",
+      "gateStatus": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "gateVerdict": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "sourceFilePath": "artifact:TELEMETRY_RECEIPT_ACHIEVEMENT_PAGE_OPTIMIZE_WORKER_PHASE_B_20260701.md#704a769e5c37",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "gateName": "Prime Gate",
+      "gateStatus": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "gateVerdict": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "sourceFilePath": "artifact:PRIME_GATE_AIOS_ATTENTION_CADENCE_CONTROL_V0_1_REVIEW.md#07d1e03b9799",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "gateName": "Prime gate",
+      "gateStatus": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "gateVerdict": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "sourceFilePath": "artifact:AIOS_COCKPIT_P1D_AUTH_PREP_CLOSEOUT.md#ef7537c5ee54",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "gateName": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "gateStatus": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "gateVerdict": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "sourceFilePath": "artifact:P1D_PAUSE_SYNC_TELEMETRY_RECEIPT.md#532dde361782",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "gateName": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "gateStatus": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "gateVerdict": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "sourceFilePath": "artifact:AIOS_GOVERNANCE_ATTENTION_CORE_PUSH_BLOCKED_STOP_STATE.md#4866b0a537b7",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "gateName": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "gateStatus": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "gateVerdict": "FINAL_ALIGNMENT_APPROVED_PROMOTE_POLICY_AND_REQUIRE_T4",
+      "sourceFilePath": "artifact:AIOS_SOURCE_OF_TRUTH_LEDGER.md#9401f7713dc1",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "gateName": "Surface Guild",
+      "gateStatus": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "gateVerdict": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "sourceFilePath": "artifact:CASE004_PUBLIC_CASE_STUDY_PHASED_SURFACE_PLAN_KB_SYNC.md#13772e7b2dbf",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "gateName": "Prime Gate",
+      "gateStatus": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "gateVerdict": "PASS_CLOSEOUT_WITH_BOUNDARIES",
+      "sourceFilePath": "artifact:CASE004_STAGE3_REVISION_CLOSED_WITH_BOUNDARIES_KB_CLOSEOUT.md#6cc53dbe6f3c",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "gateName": "Prime Gate",
+      "gateStatus": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "gateVerdict": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "sourceFilePath": "artifact:CASE004_STAGE00_CONTROL_SETUP_CLOSEOUT.md#0bfc1605ab11",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "gateName": "Prime Gate",
+      "gateStatus": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "gateVerdict": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "sourceFilePath": "artifact:CASE004_HARNESS_PROOF_SERIES_DISCUSSION_DIGEST.md#e25b93b7e2b6",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "gateName": "Prime Gate",
+      "gateStatus": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "gateVerdict": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "sourceFilePath": "artifact:CASE004_NEXT_SESSION_HANDOFF_STAGE3_PREP.md#b54faa3bae52",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "gateName": "owner gate",
+      "gateStatus": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "gateVerdict": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "sourceFilePath": "artifact:CASE004_STAGE01_DATA_SCENARIO_CLOSEOUT.md#4eb491d1869e",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "gateName": "owner gate",
+      "gateStatus": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "gateVerdict": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "sourceFilePath": "artifact:CASE004_STAGE01_OWNER_REVIEW_ARTIFACT_LOCATION_GAP.md#02fcd69e70df",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "gateName": "Prime Gate",
+      "gateStatus": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "gateVerdict": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "sourceFilePath": "artifact:CASE004_STAGE2_SESSION_CLOSEOUT_20260625.md#b23ecbfcfc6d",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "gateName": "Owner Gate",
+      "gateStatus": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "gateVerdict": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "sourceFilePath": "artifact:README_MANIFEST.md#776a2a02648b",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "gateName": "Surface Guild",
+      "gateStatus": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "gateVerdict": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "sourceFilePath": "artifact:LLMOPS_READINESS_VISUAL_TELEMETRY_PATCH_V0_2_KB_CLOSEOUT.md#c9629ec3a74a",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "gateName": "Surface Guild",
+      "gateStatus": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "gateVerdict": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "sourceFilePath": "artifact:README_MANIFEST.md#17ff8fda6e29",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "gateName": "Prime Gate",
+      "gateStatus": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "gateVerdict": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "sourceFilePath": "artifact:01_CLOSEOUT_OPTIMIZE_WORKER_PHASE_B_ROLE_RECEIPTED_LOCAL_PROOF_20260701.md#c49eb6e8405e",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "gateName": "Prime Gate",
+      "gateStatus": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "gateVerdict": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "sourceFilePath": "artifact:02_LESSON_LEARNED_ROLE_TELEMETRY_AND_RECEIPT_DISCIPLINE_20260701.md#a5fa0eb80ad1",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "gateName": "Surface Guild",
+      "gateStatus": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "gateVerdict": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "sourceFilePath": "artifact:03_DEBT_REGISTER_OPTIMIZE_WORKER_PHASE_B_20260701.md#6d8eca7bcbfe",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "gateName": "Prime Gate",
+      "gateStatus": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "gateVerdict": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "sourceFilePath": "artifact:04_TELEMETRY_RECEIPT_OPTIMIZE_WORKER_PHASE_B_CLOSEOUT_20260701.md#ff3effa5c295",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    }
+  ],
+  "claimMovementTimeline": [
+    {
+      "sourceArtifactDate": "2026-07-01",
+      "claimBefore": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "claimAfter": "DRAFT_LOCAL_ONLY_ARCHITECTURE_CONTRACT",
+      "claimMovement": "CLAIM_AFTER_RECORDED_NO_PRIOR_CLAIM_IN_SOURCE::DRAFT_LOCAL_ONLY_ARCHITECTURE_CONTRACT",
+      "sourceFilePath": "artifact:SHARED_TELEMETRY_LEDGER_CONTRACT_AND_KB_BACKFILL_PLAN_20260701.md#e891294b507a",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "sourceArtifactDate": "2026-07-01",
+      "claimBefore": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "claimAfter": "DRAFT_LOCAL_ONLY_INVENTORY_CANDIDATE",
+      "claimMovement": "CLAIM_AFTER_RECORDED_NO_PRIOR_CLAIM_IN_SOURCE::DRAFT_LOCAL_ONLY_INVENTORY_CANDIDATE",
+      "sourceFilePath": "artifact:SHARED_TELEMETRY_LEDGER_CONTRACT_MODULE_AND_READ_ONLY_INVENTORY_CANDIDATE_20260701.md#f677933a63b4",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "sourceArtifactDate": "2026-07-01",
+      "claimBefore": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "claimAfter": "DRAFT_LOCAL_ONLY_PRIME_GATE_REVIEW",
+      "claimMovement": "CLAIM_AFTER_RECORDED_NO_PRIOR_CLAIM_IN_SOURCE::DRAFT_LOCAL_ONLY_PRIME_GATE_REVIEW",
+      "sourceFilePath": "artifact:PRIME_GATE_SHARED_TELEMETRY_BACKFILL_MAPPING_REVIEW_20260701.md#99f406238251",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "sourceArtifactDate": "2026-07-01",
+      "claimBefore": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "claimAfter": "DRAFT_LOCAL_ONLY_EXISTENCE_CHECK",
+      "claimMovement": "CLAIM_AFTER_RECORDED_NO_PRIOR_CLAIM_IN_SOURCE::DRAFT_LOCAL_ONLY_EXISTENCE_CHECK",
+      "sourceFilePath": "artifact:SQLITE_TELEMETRY_STORAGE_EXISTENCE_CHECK_20260701.md#78c53afb6d77",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "sourceArtifactDate": "2026-07-01",
+      "claimBefore": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "claimAfter": "DRAFT_LOCAL_ONLY_DECISION",
+      "claimMovement": "CLAIM_AFTER_RECORDED_NO_PRIOR_CLAIM_IN_SOURCE::DRAFT_LOCAL_ONLY_DECISION",
+      "sourceFilePath": "artifact:SQLITE_TELEMETRY_MEASUREMENT_LEDGER_DECISION_20260701.md#4887266e1288",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "sourceArtifactDate": "2026-07-01",
+      "claimBefore": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "claimAfter": "LOCAL_IMPLEMENTATION_CANDIDATE_ONLY",
+      "claimMovement": "CLAIM_AFTER_RECORDED_NO_PRIOR_CLAIM_IN_SOURCE::LOCAL_IMPLEMENTATION_CANDIDATE_ONLY",
+      "sourceFilePath": "artifact:GOOGLE_AUTH_REBUILD_IMPLEMENTATION_CANDIDATE_RECEIPT_20260701.md#9bf044859cf9",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "sourceArtifactDate": "2026-07-01",
+      "claimBefore": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "claimAfter": "LOCAL_IMPLEMENTATION_CANDIDATE_ONLY_BROWSER_PROOF_BLOCKED",
+      "claimMovement": "CLAIM_AFTER_RECORDED_NO_PRIOR_CLAIM_IN_SOURCE::LOCAL_IMPLEMENTATION_CANDIDATE_ONLY_BROWSER_PROOF_BLOCKED",
+      "sourceFilePath": "artifact:GOOGLE_AUTH_LOCAL_BROWSER_PROOF_PACKET_20260701.md#ee336109467f",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "sourceArtifactDate": "2026-07-01",
+      "claimBefore": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "claimAfter": "LOCAL_IMPLEMENTATION_CANDIDATE_ONLY_BROWSER_PROOF_BLOCKED",
+      "claimMovement": "CLAIM_AFTER_RECORDED_NO_PRIOR_CLAIM_IN_SOURCE::LOCAL_IMPLEMENTATION_CANDIDATE_ONLY_BROWSER_PROOF_BLOCKED",
+      "sourceFilePath": "artifact:GOOGLE_AUTH_LOCAL_CALLBACK_FIX_AND_BROWSER_PROOF_20260701.md#3ecc27e5d333",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "sourceArtifactDate": "2026-07-01",
+      "claimBefore": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "claimAfter": "EXTERNAL_PROVIDER_BACKED_PRIME_GATE_REVIEW_ONLY",
+      "claimMovement": "CLAIM_AFTER_RECORDED_NO_PRIOR_CLAIM_IN_SOURCE::EXTERNAL_PROVIDER_BACKED_PRIME_GATE_REVIEW_ONLY",
+      "sourceFilePath": "artifact:PRIME_GATE_GOOGLE_AUTH_TELEMETRY_BOUNDARY_REVIEW_OPENROUTER_OPUS_20260701.md#36314836cb18",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "sourceArtifactDate": "2026-07-01",
+      "claimBefore": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "claimAfter": "DRAFT_LOCAL_ONLY_ROLE_REVIEW",
+      "claimMovement": "CLAIM_AFTER_RECORDED_NO_PRIOR_CLAIM_IN_SOURCE::DRAFT_LOCAL_ONLY_ROLE_REVIEW",
+      "sourceFilePath": "artifact:BIG_CREW_GOOGLE_AUTH_TELEMETRY_BOUNDARY_REVIEW_20260701.md#3261e9113a90",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "sourceArtifactDate": "2026-07-01",
+      "claimBefore": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "claimAfter": "TELEMETRY_SURFACE_EXISTS_ONLY",
+      "claimMovement": "CLAIM_AFTER_RECORDED_NO_PRIOR_CLAIM_IN_SOURCE::TELEMETRY_SURFACE_EXISTS_ONLY",
+      "sourceFilePath": "artifact:INTERNAL_LIVE_TELEMETRY_EXISTING_SURFACE_VERIFICATION_20260701.md#0db1fc17398b",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "sourceArtifactDate": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "claimBefore": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "claimAfter": "DRAFT_LOCAL_ONLY_NOT_PUSHED_NOT_DEPLOYED_NOT_LIVE_VERIFIED",
+      "claimMovement": "CLAIM_AFTER_RECORDED_NO_PRIOR_CLAIM_IN_SOURCE::DRAFT_LOCAL_ONLY_NOT_PUSHED_NOT_DEPLOYED_NOT_LIVE_VERIFIED",
+      "sourceFilePath": "artifact:TELEMETRY_RECEIPT_ACHIEVEMENT_PAGE_PUSH_DEPLOY_LIVE_VERIFY_20260701.md#b2393ddad90b",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "sourceArtifactDate": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "claimBefore": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "claimAfter": "PHASE_B_FIRST_TASK_RUN_ACCEPTED_LOCAL_ONLY",
+      "claimMovement": "CLAIM_AFTER_RECORDED_NO_PRIOR_CLAIM_IN_SOURCE::PHASE_B_FIRST_TASK_RUN_ACCEPTED_LOCAL_ONLY",
+      "sourceFilePath": "artifact:PHASE_B_PRIME_GATE_RECONCILIATION_PACKET_20260701.md#5ede4f447815",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "sourceArtifactDate": "2026-07-01",
+      "claimBefore": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "claimAfter": "PHASE_A_SWIMLANE_IMPLEMENTATION_ACCEPTED_LOCAL_ONLY",
+      "claimMovement": "CLAIM_AFTER_RECORDED_NO_PRIOR_CLAIM_IN_SOURCE::PHASE_A_SWIMLANE_IMPLEMENTATION_ACCEPTED_LOCAL_ONLY",
+      "sourceFilePath": "artifact:PRIME_GATE_OPTIMIZE_WORKER_SWIMLANE_PHASE_A_IMPLEMENTATION_REVIEW_20260701.md#feb928c97645",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "sourceArtifactDate": "2026-07-01",
+      "claimBefore": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "claimAfter": "PHASE_A_SWIMLANE_IMPLEMENTATION_ACCEPTED_LOCAL_ONLY",
+      "claimMovement": "CLAIM_AFTER_RECORDED_NO_PRIOR_CLAIM_IN_SOURCE::PHASE_A_SWIMLANE_IMPLEMENTATION_ACCEPTED_LOCAL_ONLY",
+      "sourceFilePath": "artifact:ROLE_ACTIVATION_PRIME_GATE_RECONCILIATION_PACKET_FULL_20260701.md#c68b1a006efe",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "sourceArtifactDate": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "claimBefore": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "claimAfter": "STRUCTURED_STORAGE_EXISTS_BUT_COVERAGE_IS_INCOMPLETE",
+      "claimMovement": "STRUCTURED_STORAGE_EXISTS_BUT_COVERAGE_IS_INCOMPLETE",
+      "sourceFilePath": "artifact:aios_observability.sqlite#0a4728ced9e1",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "sourceArtifactDate": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "claimBefore": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "claimAfter": "STRUCTURED_STORAGE_EXISTS_BUT_COVERAGE_IS_INCOMPLETE",
+      "claimMovement": "STRUCTURED_STORAGE_EXISTS_BUT_COVERAGE_IS_INCOMPLETE",
+      "sourceFilePath": "artifact:historical-evidence.sqlite#a1ef786b40d2",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    }
+  ],
+  "missingTelemetryWarnings": [
+    {
+      "label": "detected_claim_before",
+      "value": 2297,
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "label": "detected_target_claim",
+      "value": 2297,
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "label": "detected_gate_owner",
+      "value": 2297,
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "label": "detected_latency",
+      "value": 2276,
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "label": "detected_forbidden_next_action",
+      "value": 2276,
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "label": "pairing_key",
+      "value": 2259,
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "label": "detected_role_correctness",
+      "value": 2255,
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "label": "detected_strongest_supportable_claim",
+      "value": 2238,
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "label": "detected_task_id",
+      "value": 2209,
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "label": "detected_authorized_next_action",
+      "value": 2195,
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "label": "detected_generation_id",
+      "value": 2194,
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "label": "detected_blocked_reason",
+      "value": 2164,
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    }
+  ],
+  "ledgerCoverage": [
+    {
+      "label": "telemetry_field",
+      "value": 1890,
+      "detail": "entity_type",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "label": "task_run",
+      "value": 126,
+      "detail": "entity_type",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "label": "evidence_artifact",
+      "value": 126,
+      "detail": "entity_type",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "label": "governance_gate",
+      "value": 73,
+      "detail": "entity_type",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "label": "model_usage",
+      "value": 35,
+      "detail": "entity_type",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "label": "role_execution",
+      "value": 30,
+      "detail": "entity_type",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "label": "claim_movement",
+      "value": 17,
+      "detail": "entity_type",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "label": "medium",
+      "value": 2259,
+      "detail": "extraction_confidence",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "label": "high",
+      "value": 38,
+      "detail": "extraction_confidence",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "label": "ARTIFACT_BACKFILL_CANDIDATE",
+      "value": 1349,
+      "detail": "coverage_class",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "label": "BACKFILLED_FROM_KB_CANDIDATE",
+      "value": 910,
+      "detail": "coverage_class",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    },
+    {
+      "label": "SQLITE_SCHEMA_COUNT_ONLY",
+      "value": 38,
+      "detail": "coverage_class",
+      "dataSourceType": "BUNDLED_JSON_EXPORT"
+    }
+  ],
+  "taskReceiptRows": [
+    {
+      "taskTitle": "Shared Telemetry Ledger Contract And KB Backfill Plan",
+      "taskId": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "sourceFilePath": "artifact:SHARED_TELEMETRY_LEDGER_CONTRACT_AND_KB_BACKFILL_PLAN_20260701.md#e891294b507a",
+      "evidenceType": "markdown_receipt",
+      "claimLevel": "DRAFT_LOCAL_ONLY_ARCHITECTURE_CONTRACT",
+      "finalStatus": "SHARED_TELEMETRY_LEDGER_CONTRACT_AND_KB_BACKFILL_PLAN_CREATED_LOCAL_ONLY",
+      "authorizedNextAction": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "missingFieldCount": 23,
+      "dataSourceType": "BUNDLED_JSON_EXPORT",
+      "extractionConfidence": "medium",
+      "sourceOrigin": "AI_OS_PROFILE_ARTIFACT"
+    },
+    {
+      "taskTitle": "Shared Telemetry Ledger Contract Module And Read-Only Inventory Candidate",
+      "taskId": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "sourceFilePath": "artifact:SHARED_TELEMETRY_LEDGER_CONTRACT_MODULE_AND_READ_ONLY_INVENTORY_CANDIDATE_20260701.md#f677933a63b4",
+      "evidenceType": "markdown_receipt",
+      "claimLevel": "DRAFT_LOCAL_ONLY_INVENTORY_CANDIDATE",
+      "finalStatus": "SHARED_TELEMETRY_LEDGER_CONTRACT_MODULE_AND_READ_ONLY_INVENTORY_CREATED_LOCAL_ONLY",
+      "authorizedNextAction": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "missingFieldCount": 24,
+      "dataSourceType": "BUNDLED_JSON_EXPORT",
+      "extractionConfidence": "medium",
+      "sourceOrigin": "AI_OS_PROFILE_ARTIFACT"
+    },
+    {
+      "taskTitle": "Prime Gate Shared Telemetry Backfill Mapping Review",
+      "taskId": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "sourceFilePath": "artifact:PRIME_GATE_SHARED_TELEMETRY_BACKFILL_MAPPING_REVIEW_20260701.md#99f406238251",
+      "evidenceType": "markdown_receipt",
+      "claimLevel": "DRAFT_LOCAL_ONLY_PRIME_GATE_REVIEW",
+      "finalStatus": "PRIME_GATE_SHARED_TELEMETRY_BACKFILL_MAPPING_REVIEW_CREATED_LOCAL_ONLY",
+      "authorizedNextAction": "PATCH_INVENTORY_PARSER_FOR_PROVIDER_TELEMETRY_AND_CLAIM_MOVEMENT",
+      "missingFieldCount": 19,
+      "dataSourceType": "BUNDLED_JSON_EXPORT",
+      "extractionConfidence": "medium",
+      "sourceOrigin": "AI_OS_PROFILE_ARTIFACT"
+    },
+    {
+      "taskTitle": "SQLite Telemetry Storage Existence Check",
+      "taskId": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "sourceFilePath": "artifact:SQLITE_TELEMETRY_STORAGE_EXISTENCE_CHECK_20260701.md#78c53afb6d77",
+      "evidenceType": "markdown_receipt",
+      "claimLevel": "DRAFT_LOCAL_ONLY_EXISTENCE_CHECK",
+      "finalStatus": "SQLITE_TELEMETRY_STORAGE_EXISTENCE_CHECK_CREATED_LOCAL_ONLY",
+      "authorizedNextAction": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "missingFieldCount": 24,
+      "dataSourceType": "BUNDLED_JSON_EXPORT",
+      "extractionConfidence": "medium",
+      "sourceOrigin": "AI_OS_PROFILE_ARTIFACT"
+    },
+    {
+      "taskTitle": "SQLite Telemetry Measurement Ledger Decision",
+      "taskId": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "sourceFilePath": "artifact:SQLITE_TELEMETRY_MEASUREMENT_LEDGER_DECISION_20260701.md#4887266e1288",
+      "evidenceType": "markdown_receipt",
+      "claimLevel": "DRAFT_LOCAL_ONLY_DECISION",
+      "finalStatus": "SQLITE_TELEMETRY_MEASUREMENT_LEDGER_DECISION_CREATED_LOCAL_ONLY",
+      "authorizedNextAction": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "missingFieldCount": 24,
+      "dataSourceType": "BUNDLED_JSON_EXPORT",
+      "extractionConfidence": "medium",
+      "sourceOrigin": "AI_OS_PROFILE_ARTIFACT"
+    },
+    {
+      "taskTitle": "Google Auth Rebuild Implementation Candidate Receipt",
+      "taskId": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "sourceFilePath": "artifact:GOOGLE_AUTH_REBUILD_IMPLEMENTATION_CANDIDATE_RECEIPT_20260701.md#9bf044859cf9",
+      "evidenceType": "markdown_receipt",
+      "claimLevel": "LOCAL_IMPLEMENTATION_CANDIDATE_ONLY",
+      "finalStatus": "GOOGLE_AUTH_LOCAL_IMPLEMENTATION_CANDIDATE_CREATED_BROWSER_PROOF_PENDING",
+      "authorizedNextAction": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "missingFieldCount": 28,
+      "dataSourceType": "BUNDLED_JSON_EXPORT",
+      "extractionConfidence": "medium",
+      "sourceOrigin": "AI_OS_PROFILE_ARTIFACT"
+    },
+    {
+      "taskTitle": "Google Auth Local Browser Proof Packet",
+      "taskId": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "sourceFilePath": "artifact:GOOGLE_AUTH_LOCAL_BROWSER_PROOF_PACKET_20260701.md#ee336109467f",
+      "evidenceType": "markdown_receipt",
+      "claimLevel": "LOCAL_IMPLEMENTATION_CANDIDATE_ONLY_BROWSER_PROOF_BLOCKED",
+      "finalStatus": "GOOGLE_AUTH_LOCAL_BROWSER_PROOF_BLOCKED_WITH_REASON",
+      "authorizedNextAction": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "missingFieldCount": 28,
+      "dataSourceType": "BUNDLED_JSON_EXPORT",
+      "extractionConfidence": "medium",
+      "sourceOrigin": "AI_OS_PROFILE_ARTIFACT"
+    },
+    {
+      "taskTitle": "Google Auth Local Callback Fix and Browser Proof",
+      "taskId": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "sourceFilePath": "artifact:GOOGLE_AUTH_LOCAL_CALLBACK_FIX_AND_BROWSER_PROOF_20260701.md#3ecc27e5d333",
+      "evidenceType": "markdown_receipt",
+      "claimLevel": "LOCAL_IMPLEMENTATION_CANDIDATE_ONLY_BROWSER_PROOF_BLOCKED",
+      "finalStatus": "GOOGLE_AUTH_LOCAL_BROWSER_PROOF_BLOCKED_BY_GOOGLE_CONSOLE_CALLBACK",
+      "authorizedNextAction": "FIX_LOCAL_CALLBACK_AND_RETRY_AUTH_BROWSER_PROOF",
+      "missingFieldCount": 10,
+      "dataSourceType": "BUNDLED_JSON_EXPORT",
+      "extractionConfidence": "medium",
+      "sourceOrigin": "AI_OS_PROFILE_ARTIFACT"
+    },
+    {
+      "taskTitle": "Prime Gate Google Auth Telemetry Boundary Review - OpenRouter Opus",
+      "taskId": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "sourceFilePath": "artifact:PRIME_GATE_GOOGLE_AUTH_TELEMETRY_BOUNDARY_REVIEW_OPENROUTER_OPUS_20260701.md#36314836cb18",
+      "evidenceType": "markdown_receipt",
+      "claimLevel": "EXTERNAL_PROVIDER_BACKED_PRIME_GATE_REVIEW_ONLY",
+      "finalStatus": "PRIME_GATE_OPUS_REVIEW_CREATED_PROVIDER_BACKED",
+      "authorizedNextAction": "FIX_LOCAL_CALLBACK_AND_RETRY_AUTH_BROWSER_PROOF",
+      "missingFieldCount": 11,
+      "dataSourceType": "BUNDLED_JSON_EXPORT",
+      "extractionConfidence": "medium",
+      "sourceOrigin": "AI_OS_PROFILE_ARTIFACT"
+    },
+    {
+      "taskTitle": "Big Crew Google Auth Telemetry Boundary Review",
+      "taskId": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "sourceFilePath": "artifact:BIG_CREW_GOOGLE_AUTH_TELEMETRY_BOUNDARY_REVIEW_20260701.md#3261e9113a90",
+      "evidenceType": "markdown_receipt",
+      "claimLevel": "DRAFT_LOCAL_ONLY_ROLE_REVIEW",
+      "finalStatus": "BIG_CREW_GOOGLE_AUTH_TELEMETRY_BOUNDARY_REVIEW_CREATED_LOCAL_ONLY",
+      "authorizedNextAction": "PARK_AUTH_UNTIL_OWNER_CALLBACK_SETUP",
+      "missingFieldCount": 20,
+      "dataSourceType": "BUNDLED_JSON_EXPORT",
+      "extractionConfidence": "medium",
+      "sourceOrigin": "AI_OS_PROFILE_ARTIFACT"
+    },
+    {
+      "taskTitle": "Internal Live Telemetry Existing Surface Verification",
+      "taskId": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "sourceFilePath": "artifact:INTERNAL_LIVE_TELEMETRY_EXISTING_SURFACE_VERIFICATION_20260701.md#0db1fc17398b",
+      "evidenceType": "markdown_receipt",
+      "claimLevel": "TELEMETRY_SURFACE_EXISTS_ONLY",
+      "finalStatus": "INTERNAL_LIVE_TELEMETRY_SURFACE_VERIFICATION_CREATED_LOCAL_ONLY",
+      "authorizedNextAction": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "missingFieldCount": 15,
+      "dataSourceType": "BUNDLED_JSON_EXPORT",
+      "extractionConfidence": "medium",
+      "sourceOrigin": "AI_OS_PROFILE_ARTIFACT"
+    },
+    {
+      "taskTitle": "Telemetry Receipt: Achievement Page Optimize Worker Phase B",
+      "taskId": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "sourceFilePath": "artifact:TELEMETRY_RECEIPT_ACHIEVEMENT_PAGE_OPTIMIZE_WORKER_PHASE_B_20260701.md#704a769e5c37",
+      "evidenceType": "markdown_receipt",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "finalStatus": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "authorizedNextAction": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "missingFieldCount": 25,
+      "dataSourceType": "BUNDLED_JSON_EXPORT",
+      "extractionConfidence": "medium",
+      "sourceOrigin": "AI_OS_PROFILE_ARTIFACT"
+    },
+    {
+      "taskTitle": "Telemetry Receipt - Achievement Page Push Deploy Live Verify - 2026-07-01",
+      "taskId": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "sourceFilePath": "artifact:TELEMETRY_RECEIPT_ACHIEVEMENT_PAGE_PUSH_DEPLOY_LIVE_VERIFY_20260701.md#b2393ddad90b",
+      "evidenceType": "markdown_receipt",
+      "claimLevel": "DRAFT_LOCAL_ONLY_NOT_PUSHED_NOT_DEPLOYED_NOT_LIVE_VERIFIED",
+      "finalStatus": "ACHIEVEMENT_PAGE_PUSH_BLOCKED_UNSAFE_BRANCH_DIVERGENCE",
+      "authorizedNextAction": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "missingFieldCount": 29,
+      "dataSourceType": "BUNDLED_JSON_EXPORT",
+      "extractionConfidence": "medium",
+      "sourceOrigin": "AI_OS_PROFILE_ARTIFACT"
+    },
+    {
+      "taskTitle": "Prime Gate Review - AIOS Attention Cadence Control v0.1",
+      "taskId": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "sourceFilePath": "artifact:PRIME_GATE_AIOS_ATTENTION_CADENCE_CONTROL_V0_1_REVIEW.md#07d1e03b9799",
+      "evidenceType": "markdown_receipt",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "finalStatus": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "authorizedNextAction": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "missingFieldCount": 32,
+      "dataSourceType": "BUNDLED_JSON_EXPORT",
+      "extractionConfidence": "medium",
+      "sourceOrigin": "ROBERT_KB"
+    },
+    {
+      "taskTitle": "AIOS Cockpit P1D Auth Prep Closeout",
+      "taskId": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "sourceFilePath": "artifact:AIOS_COCKPIT_P1D_AUTH_PREP_CLOSEOUT.md#ef7537c5ee54",
+      "evidenceType": "markdown_receipt",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "finalStatus": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "authorizedNextAction": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "missingFieldCount": 32,
+      "dataSourceType": "BUNDLED_JSON_EXPORT",
+      "extractionConfidence": "medium",
+      "sourceOrigin": "ROBERT_KB"
+    },
+    {
+      "taskTitle": "P1D Pause Sync Telemetry Receipt",
+      "taskId": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "sourceFilePath": "artifact:P1D_PAUSE_SYNC_TELEMETRY_RECEIPT.md#532dde361782",
+      "evidenceType": "markdown_receipt",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "finalStatus": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "authorizedNextAction": "owner authorization for env configuration plus branch push/PR/preview or production auth validation path",
+      "missingFieldCount": 32,
+      "dataSourceType": "BUNDLED_JSON_EXPORT",
+      "extractionConfidence": "medium",
+      "sourceOrigin": "ROBERT_KB"
+    },
+    {
+      "taskTitle": "AIOS Governance Attention Core KB Closeout",
+      "taskId": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "sourceFilePath": "artifact:AIOS_GOVERNANCE_ATTENTION_CORE_KB_CLOSEOUT.md#adc76e6bdb5f",
+      "evidenceType": "markdown_receipt",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "finalStatus": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "authorizedNextAction": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "missingFieldCount": 33,
+      "dataSourceType": "BUNDLED_JSON_EXPORT",
+      "extractionConfidence": "medium",
+      "sourceOrigin": "ROBERT_KB"
+    },
+    {
+      "taskTitle": "AIOS Governance Attention Core Push-Blocked Stop State",
+      "taskId": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "sourceFilePath": "artifact:AIOS_GOVERNANCE_ATTENTION_CORE_PUSH_BLOCKED_STOP_STATE.md#4866b0a537b7",
+      "evidenceType": "markdown_receipt",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "finalStatus": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "authorizedNextAction": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "missingFieldCount": 32,
+      "dataSourceType": "BUNDLED_JSON_EXPORT",
+      "extractionConfidence": "medium",
+      "sourceOrigin": "ROBERT_KB"
+    },
+    {
+      "taskTitle": "AIOS Measurement Contract Pattern",
+      "taskId": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "sourceFilePath": "artifact:AIOS_MEASUREMENT_CONTRACT_PATTERN.md#b353388ed7aa",
+      "evidenceType": "markdown_receipt",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "finalStatus": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "authorizedNextAction": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "missingFieldCount": 34,
+      "dataSourceType": "BUNDLED_JSON_EXPORT",
+      "extractionConfidence": "medium",
+      "sourceOrigin": "ROBERT_KB"
+    },
+    {
+      "taskTitle": "AIOS Source Of Truth Ledger",
+      "taskId": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "sourceFilePath": "artifact:AIOS_SOURCE_OF_TRUTH_LEDGER.md#9401f7713dc1",
+      "evidenceType": "markdown_receipt",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "finalStatus": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "authorizedNextAction": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "missingFieldCount": 33,
+      "dataSourceType": "BUNDLED_JSON_EXPORT",
+      "extractionConfidence": "medium",
+      "sourceOrigin": "ROBERT_KB"
+    },
+    {
+      "taskTitle": "CASE-004 Public Case Study Phased Surface Plan — KB Sync",
+      "taskId": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "sourceFilePath": "artifact:CASE004_PUBLIC_CASE_STUDY_PHASED_SURFACE_PLAN_KB_SYNC.md#13772e7b2dbf",
+      "evidenceType": "markdown_receipt",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "finalStatus": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "authorizedNextAction": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "missingFieldCount": 33,
+      "dataSourceType": "BUNDLED_JSON_EXPORT",
+      "extractionConfidence": "medium",
+      "sourceOrigin": "ROBERT_KB"
+    },
+    {
+      "taskTitle": "CASE-004 Stage 3 Revision Closed With Boundaries KB Closeout",
+      "taskId": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "sourceFilePath": "artifact:CASE004_STAGE3_REVISION_CLOSED_WITH_BOUNDARIES_KB_CLOSEOUT.md#6cc53dbe6f3c",
+      "evidenceType": "markdown_receipt",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "finalStatus": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "authorizedNextAction": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "missingFieldCount": 32,
+      "dataSourceType": "BUNDLED_JSON_EXPORT",
+      "extractionConfidence": "medium",
+      "sourceOrigin": "ROBERT_KB"
+    },
+    {
+      "taskTitle": "CASE-004 Stage 00 Control Setup Closeout",
+      "taskId": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "sourceFilePath": "artifact:CASE004_STAGE00_CONTROL_SETUP_CLOSEOUT.md#0bfc1605ab11",
+      "evidenceType": "markdown_receipt",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "finalStatus": "``text",
+      "authorizedNextAction": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "missingFieldCount": 32,
+      "dataSourceType": "BUNDLED_JSON_EXPORT",
+      "extractionConfidence": "medium",
+      "sourceOrigin": "ROBERT_KB"
+    },
+    {
+      "taskTitle": "CASE-004 Harness Proof Series Discussion Digest",
+      "taskId": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "sourceFilePath": "artifact:CASE004_HARNESS_PROOF_SERIES_DISCUSSION_DIGEST.md#e25b93b7e2b6",
+      "evidenceType": "markdown_receipt",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "finalStatus": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "authorizedNextAction": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "missingFieldCount": 33,
+      "dataSourceType": "BUNDLED_JSON_EXPORT",
+      "extractionConfidence": "medium",
+      "sourceOrigin": "ROBERT_KB"
+    },
+    {
+      "taskTitle": "CASE-004 Next Session Handoff - Stage 3 Prep",
+      "taskId": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "sourceFilePath": "artifact:CASE004_NEXT_SESSION_HANDOFF_STAGE3_PREP.md#b54faa3bae52",
+      "evidenceType": "markdown_receipt",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "finalStatus": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "authorizedNextAction": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "missingFieldCount": 33,
+      "dataSourceType": "BUNDLED_JSON_EXPORT",
+      "extractionConfidence": "medium",
+      "sourceOrigin": "ROBERT_KB"
+    },
+    {
+      "taskTitle": "CASE-004 Stage 1 Data Scenario Closeout",
+      "taskId": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "sourceFilePath": "artifact:CASE004_STAGE01_DATA_SCENARIO_CLOSEOUT.md#4eb491d1869e",
+      "evidenceType": "markdown_receipt",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "finalStatus": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "authorizedNextAction": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "missingFieldCount": 33,
+      "dataSourceType": "BUNDLED_JSON_EXPORT",
+      "extractionConfidence": "medium",
+      "sourceOrigin": "ROBERT_KB"
+    },
+    {
+      "taskTitle": "CASE-004 Stage 1 Owner Review Artifact Location Gap",
+      "taskId": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "sourceFilePath": "artifact:CASE004_STAGE01_OWNER_REVIEW_ARTIFACT_LOCATION_GAP.md#02fcd69e70df",
+      "evidenceType": "markdown_receipt",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "finalStatus": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "authorizedNextAction": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "missingFieldCount": 33,
+      "dataSourceType": "BUNDLED_JSON_EXPORT",
+      "extractionConfidence": "medium",
+      "sourceOrigin": "ROBERT_KB"
+    },
+    {
+      "taskTitle": "CASE-004 Stage 2 Session Closeout - 2026-06-25",
+      "taskId": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "sourceFilePath": "artifact:CASE004_STAGE2_SESSION_CLOSEOUT_20260625.md#b23ecbfcfc6d",
+      "evidenceType": "markdown_receipt",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "finalStatus": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "authorizedNextAction": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "missingFieldCount": 33,
+      "dataSourceType": "BUNDLED_JSON_EXPORT",
+      "extractionConfidence": "medium",
+      "sourceOrigin": "ROBERT_KB"
+    },
+    {
+      "taskTitle": "CASE-004 Stage 1 Artifact Locator Manifest",
+      "taskId": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "sourceFilePath": "artifact:README_MANIFEST.md#776a2a02648b",
+      "evidenceType": "markdown_receipt",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "finalStatus": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "authorizedNextAction": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "missingFieldCount": 32,
+      "dataSourceType": "BUNDLED_JSON_EXPORT",
+      "extractionConfidence": "medium",
+      "sourceOrigin": "ROBERT_KB"
+    },
+    {
+      "taskTitle": "AIOS Evidence Schema",
+      "taskId": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "sourceFilePath": "artifact:EVIDENCE_SCHEMA.md#3c756f789708",
+      "evidenceType": "markdown_receipt",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "finalStatus": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "authorizedNextAction": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "missingFieldCount": 34,
+      "dataSourceType": "BUNDLED_JSON_EXPORT",
+      "extractionConfidence": "medium",
+      "sourceOrigin": "ROBERT_KB"
+    },
+    {
+      "taskTitle": "LLMOps Readiness Visual Telemetry Patch v0.2 KB Closeout",
+      "taskId": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "sourceFilePath": "artifact:LLMOPS_READINESS_VISUAL_TELEMETRY_PATCH_V0_2_KB_CLOSEOUT.md#c9629ec3a74a",
+      "evidenceType": "markdown_receipt",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "finalStatus": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "authorizedNextAction": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "missingFieldCount": 32,
+      "dataSourceType": "BUNDLED_JSON_EXPORT",
+      "extractionConfidence": "medium",
+      "sourceOrigin": "ROBERT_KB"
+    },
+    {
+      "taskTitle": "README Manifest: LLMOps Readiness Visual Telemetry Patch v0.2",
+      "taskId": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "sourceFilePath": "artifact:README_MANIFEST.md#17ff8fda6e29",
+      "evidenceType": "markdown_receipt",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "finalStatus": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "authorizedNextAction": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "missingFieldCount": 32,
+      "dataSourceType": "BUNDLED_JSON_EXPORT",
+      "extractionConfidence": "medium",
+      "sourceOrigin": "ROBERT_KB"
+    },
+    {
+      "taskTitle": "LLMOps Visual Telemetry Patch v0.2 KB Closeout Telemetry Receipt",
+      "taskId": "20260628-llmops-visual-telemetry-v0-2-kb-closeout",
+      "sourceFilePath": "artifact:TELEMETRY_RECEIPT.md#1abe6c4ecf17",
+      "evidenceType": "markdown_receipt",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "finalStatus": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "authorizedNextAction": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "missingFieldCount": 29,
+      "dataSourceType": "BUNDLED_JSON_EXPORT",
+      "extractionConfidence": "medium",
+      "sourceOrigin": "ROBERT_KB"
+    },
+    {
+      "taskTitle": "Closeout: Optimize Worker Phase B Role-Receipted Local Proof",
+      "taskId": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "sourceFilePath": "artifact:01_CLOSEOUT_OPTIMIZE_WORKER_PHASE_B_ROLE_RECEIPTED_LOCAL_PROOF_20260701.md#c49eb6e8405e",
+      "evidenceType": "markdown_receipt",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "finalStatus": "ACHIEVEMENT_PAGE_CONTEXT_PATCH_LIVE_VERIFIED_PUBLIC_SAFE_NO_SCREENSHOT",
+      "authorizedNextAction": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "missingFieldCount": 23,
+      "dataSourceType": "BUNDLED_JSON_EXPORT",
+      "extractionConfidence": "medium",
+      "sourceOrigin": "ROBERT_KB"
+    },
+    {
+      "taskTitle": "Lesson Learned: Role Telemetry and Receipt Discipline",
+      "taskId": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "sourceFilePath": "artifact:02_LESSON_LEARNED_ROLE_TELEMETRY_AND_RECEIPT_DISCIPLINE_20260701.md#a5fa0eb80ad1",
+      "evidenceType": "markdown_receipt",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "finalStatus": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "authorizedNextAction": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "missingFieldCount": 33,
+      "dataSourceType": "BUNDLED_JSON_EXPORT",
+      "extractionConfidence": "medium",
+      "sourceOrigin": "ROBERT_KB"
+    },
+    {
+      "taskTitle": "Debt Register: Optimize Worker Phase B",
+      "taskId": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "sourceFilePath": "artifact:03_DEBT_REGISTER_OPTIMIZE_WORKER_PHASE_B_20260701.md#6d8eca7bcbfe",
+      "evidenceType": "markdown_receipt",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "finalStatus": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "authorizedNextAction": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "missingFieldCount": 33,
+      "dataSourceType": "BUNDLED_JSON_EXPORT",
+      "extractionConfidence": "medium",
+      "sourceOrigin": "ROBERT_KB"
+    },
+    {
+      "taskTitle": "Telemetry Receipt: Optimize Worker Phase B Closeout",
+      "taskId": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "sourceFilePath": "artifact:04_TELEMETRY_RECEIPT_OPTIMIZE_WORKER_PHASE_B_CLOSEOUT_20260701.md#ff3effa5c295",
+      "evidenceType": "markdown_receipt",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "finalStatus": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "authorizedNextAction": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "missingFieldCount": 24,
+      "dataSourceType": "BUNDLED_JSON_EXPORT",
+      "extractionConfidence": "medium",
+      "sourceOrigin": "ROBERT_KB"
+    },
+    {
+      "taskTitle": "Achievement Record: AIOS Role-Receipted First Task Run Evidence",
+      "taskId": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "sourceFilePath": "artifact:05_ACHIEVEMENT_RECORD_OPTIMIZE_WORKER_PHASE_B_20260701.md#af77e7955cee",
+      "evidenceType": "markdown_receipt",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "finalStatus": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "authorizedNextAction": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "missingFieldCount": 33,
+      "dataSourceType": "BUNDLED_JSON_EXPORT",
+      "extractionConfidence": "medium",
+      "sourceOrigin": "ROBERT_KB"
+    },
+    {
+      "taskTitle": "Cleanup Receipt: Optimize Worker Phase B Closeout",
+      "taskId": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "sourceFilePath": "artifact:06_CLEANUP_RECEIPT_OPTIMIZE_WORKER_PHASE_B_CLOSEOUT_20260701.md#58e72cfa31c4",
+      "evidenceType": "markdown_receipt",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "finalStatus": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "authorizedNextAction": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "missingFieldCount": 33,
+      "dataSourceType": "BUNDLED_JSON_EXPORT",
+      "extractionConfidence": "medium",
+      "sourceOrigin": "ROBERT_KB"
+    },
+    {
+      "taskTitle": "Files Changed",
+      "taskId": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "sourceFilePath": "artifact:files-changed.md#d1904e1f9542",
+      "evidenceType": "markdown_receipt",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "finalStatus": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "authorizedNextAction": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "missingFieldCount": 34,
+      "dataSourceType": "BUNDLED_JSON_EXPORT",
+      "extractionConfidence": "medium",
+      "sourceOrigin": "ROBERT_KB"
+    }
+  ],
+  "lowConfidenceRows": [
+    {
+      "sourceFilePath": "artifact:ROUTE_LEDGER_TELEMETRY_INVENTORY_PARSER_PROVIDER_AND_CLAIM_PATCH_20260701.md#fa5d2a175b1f",
+      "exclusionReason": "LOW_CONFIDENCE_ADVISORY_ONLY",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "missingFieldCount": 25,
+      "dataSourceType": "LOW_CONFIDENCE_ADVISORY"
+    },
+    {
+      "sourceFilePath": "artifact:route-ledger.md#38149c4199c8",
+      "exclusionReason": "LOW_CONFIDENCE_ADVISORY_ONLY",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "missingFieldCount": 26,
+      "dataSourceType": "LOW_CONFIDENCE_ADVISORY"
+    },
+    {
+      "sourceFilePath": "artifact:role-dependency-matrix.md#cc50bf3d30b9",
+      "exclusionReason": "LOW_CONFIDENCE_ADVISORY_ONLY",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "missingFieldCount": 28,
+      "dataSourceType": "LOW_CONFIDENCE_ADVISORY"
+    },
+    {
+      "sourceFilePath": "artifact:OPENROUTER_RECEIPT_PRIME_GATE_ACHIEVEMENT_PAGE_PUBLIC_SURFACE_REVIEW_20260701.json#fe86312b9289",
+      "exclusionReason": "INSUFFICIENT_TASK_IDENTITY",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "missingFieldCount": 20,
+      "dataSourceType": "LOW_CONFIDENCE_ADVISORY"
+    },
+    {
+      "sourceFilePath": "artifact:OPENROUTER_METADATA_PRIME_GATE_ACHIEVEMENT_PAGE_PUBLIC_SURFACE_REVIEW_20260701.json#9781d16ff31d",
+      "exclusionReason": "INSUFFICIENT_TASK_IDENTITY",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "missingFieldCount": 20,
+      "dataSourceType": "LOW_CONFIDENCE_ADVISORY"
+    },
+    {
+      "sourceFilePath": "artifact:P1D_PAUSE_SYNC_ROUTE_LEDGER.md#ad156bf41593",
+      "exclusionReason": "LOW_CONFIDENCE_ADVISORY_ONLY",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "missingFieldCount": 29,
+      "dataSourceType": "LOW_CONFIDENCE_ADVISORY"
+    },
+    {
+      "sourceFilePath": "artifact:EXECUTIVE_VISUAL_SUMMARY.html#cf20fddcb6cd",
+      "exclusionReason": "LOW_CONFIDENCE_ADVISORY_ONLY",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "missingFieldCount": 34,
+      "dataSourceType": "LOW_CONFIDENCE_ADVISORY"
+    },
+    {
+      "sourceFilePath": "artifact:ROUTE_LEDGER.md#f1ea40e4fa1d",
+      "exclusionReason": "LOW_CONFIDENCE_ADVISORY_ONLY",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "missingFieldCount": 30,
+      "dataSourceType": "LOW_CONFIDENCE_ADVISORY"
+    },
+    {
+      "sourceFilePath": "artifact:LLMOPS_READINESS_VISUAL_TELEMETRY_PATCH_V0_2_REPORT.html#056a9e7e0257",
+      "exclusionReason": "LOW_CONFIDENCE_ADVISORY_ONLY",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "missingFieldCount": 34,
+      "dataSourceType": "LOW_CONFIDENCE_ADVISORY"
+    },
+    {
+      "sourceFilePath": "artifact:00_ROUTE_LEDGER_OPTIMIZE_WORKER_PHASE_B_CLOSEOUT_20260701.md#91fde990c02c",
+      "exclusionReason": "LOW_CONFIDENCE_ADVISORY_ONLY",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "missingFieldCount": 34,
+      "dataSourceType": "LOW_CONFIDENCE_ADVISORY"
+    },
+    {
+      "sourceFilePath": "artifact:CASE003_INTENT_FIRST_DEFINITION_OF_DONE.html#3c9bd0e855cd",
+      "exclusionReason": "LOW_CONFIDENCE_ADVISORY_ONLY",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "missingFieldCount": 34,
+      "dataSourceType": "LOW_CONFIDENCE_ADVISORY"
+    },
+    {
+      "sourceFilePath": "artifact:OPENROUTER_METADATA_BIG_CREW_ENGINEERING_REVIEW_OPTIMIZE_WORKER_PHASE_A_20260701.json#42263e0e7fa9",
+      "exclusionReason": "INSUFFICIENT_TASK_IDENTITY",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "missingFieldCount": 20,
+      "dataSourceType": "LOW_CONFIDENCE_ADVISORY"
+    },
+    {
+      "sourceFilePath": "artifact:OPENROUTER_METADATA_BIG_CREW_PHASE_B_ARTIFACT_REVIEW_20260701.json#e8a26901f05e",
+      "exclusionReason": "INSUFFICIENT_TASK_IDENTITY",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "missingFieldCount": 20,
+      "dataSourceType": "LOW_CONFIDENCE_ADVISORY"
+    },
+    {
+      "sourceFilePath": "artifact:OPENROUTER_METADATA_PRIME_GATE_PHASE_B_RECONCILIATION_20260701.json#12827927b081",
+      "exclusionReason": "INSUFFICIENT_TASK_IDENTITY",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "missingFieldCount": 20,
+      "dataSourceType": "LOW_CONFIDENCE_ADVISORY"
+    },
+    {
+      "sourceFilePath": "artifact:OPENROUTER_METADATA_PRIME_GATE_RECONCILIATION_FULL_OPTIMIZE_WORKER_PHASE_A_20260701.json#9fd168fb29db",
+      "exclusionReason": "INSUFFICIENT_TASK_IDENTITY",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "missingFieldCount": 20,
+      "dataSourceType": "LOW_CONFIDENCE_ADVISORY"
+    },
+    {
+      "sourceFilePath": "artifact:OPENROUTER_METADATA_PRIME_GATE_RECONCILIATION_OPTIMIZE_WORKER_PHASE_A_20260701.json#3d08c3d604c0",
+      "exclusionReason": "INSUFFICIENT_TASK_IDENTITY",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "missingFieldCount": 20,
+      "dataSourceType": "LOW_CONFIDENCE_ADVISORY"
+    },
+    {
+      "sourceFilePath": "artifact:OPENROUTER_OPUS_PRIME_GATE_RECONCILIATION_RESULT_20260701.md#f655e367daf6",
+      "exclusionReason": "INSUFFICIENT_TASK_IDENTITY",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "missingFieldCount": 33,
+      "dataSourceType": "LOW_CONFIDENCE_ADVISORY"
+    },
+    {
+      "sourceFilePath": "artifact:OPENROUTER_OPUS_PRIME_GATE_RECONCILIATION_RESULT_FULL_20260701.md#a4ad7130d80b",
+      "exclusionReason": "INSUFFICIENT_TASK_IDENTITY",
+      "claimLevel": "PHASE_A_SWIMLANE_IMPLEMENTATION_ACCEPTED_LOCAL_ONLY_WITH_ROLE_RECEIPTS",
+      "missingFieldCount": 30,
+      "dataSourceType": "LOW_CONFIDENCE_ADVISORY"
+    },
+    {
+      "sourceFilePath": "artifact:OPENROUTER_RECEIPT_BIG_CREW_ENGINEERING_REVIEW_OPTIMIZE_WORKER_PHASE_A_20260701.json#4fd5c0abeb98",
+      "exclusionReason": "INSUFFICIENT_TASK_IDENTITY",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "missingFieldCount": 20,
+      "dataSourceType": "LOW_CONFIDENCE_ADVISORY"
+    },
+    {
+      "sourceFilePath": "artifact:OPENROUTER_RECEIPT_BIG_CREW_PHASE_B_ARTIFACT_REVIEW_20260701.json#d9e77b937ea8",
+      "exclusionReason": "INSUFFICIENT_TASK_IDENTITY",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "missingFieldCount": 20,
+      "dataSourceType": "LOW_CONFIDENCE_ADVISORY"
+    },
+    {
+      "sourceFilePath": "artifact:OPENROUTER_RECEIPT_PRIME_GATE_PHASE_B_RECONCILIATION_20260701.json#19fcd765774d",
+      "exclusionReason": "INSUFFICIENT_TASK_IDENTITY",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "missingFieldCount": 20,
+      "dataSourceType": "LOW_CONFIDENCE_ADVISORY"
+    },
+    {
+      "sourceFilePath": "artifact:OPENROUTER_RECEIPT_PRIME_GATE_RECONCILIATION_FULL_OPTIMIZE_WORKER_PHASE_A_20260701.json#429b4b223dec",
+      "exclusionReason": "INSUFFICIENT_TASK_IDENTITY",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "missingFieldCount": 20,
+      "dataSourceType": "LOW_CONFIDENCE_ADVISORY"
+    },
+    {
+      "sourceFilePath": "artifact:OPENROUTER_RECEIPT_PRIME_GATE_RECONCILIATION_OPTIMIZE_WORKER_PHASE_A_20260701.json#b27cbaeead85",
+      "exclusionReason": "INSUFFICIENT_TASK_IDENTITY",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "missingFieldCount": 20,
+      "dataSourceType": "LOW_CONFIDENCE_ADVISORY"
+    },
+    {
+      "sourceFilePath": "artifact:PHASE_B_BIG_CREW_REVIEW_ROUTE_LEDGER_20260701.md#20ce4e2fdae1",
+      "exclusionReason": "LOW_CONFIDENCE_ADVISORY_ONLY",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "missingFieldCount": 29,
+      "dataSourceType": "LOW_CONFIDENCE_ADVISORY"
+    },
+    {
+      "sourceFilePath": "artifact:PHASE_B_LOCAL_PROOF_CLOSEOUT_ROUTE_LEDGER_20260701.md#ffc9b2f2f16a",
+      "exclusionReason": "LOW_CONFIDENCE_ADVISORY_ONLY",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "missingFieldCount": 32,
+      "dataSourceType": "LOW_CONFIDENCE_ADVISORY"
+    },
+    {
+      "sourceFilePath": "artifact:PHASE_B_PRIME_GATE_RECONCILIATION_ROUTE_LEDGER_20260701.md#cda70ef32cc4",
+      "exclusionReason": "LOW_CONFIDENCE_ADVISORY_ONLY",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "missingFieldCount": 28,
+      "dataSourceType": "LOW_CONFIDENCE_ADVISORY"
+    },
+    {
+      "sourceFilePath": "artifact:PHASE_B_TASK_RUN_PATH_ROUTE_LEDGER_20260701.md#57be831c7c5d",
+      "exclusionReason": "LOW_CONFIDENCE_ADVISORY_ONLY",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "missingFieldCount": 33,
+      "dataSourceType": "LOW_CONFIDENCE_ADVISORY"
+    },
+    {
+      "sourceFilePath": "artifact:PRIME_GATE_PHASE_B_FIRST_TASK_RECONCILIATION_20260701.md#71797634bde7",
+      "exclusionReason": "INSUFFICIENT_TASK_IDENTITY",
+      "claimLevel": "PHASE_B_FIRST_TASK_RUN_ACCEPTED_LOCAL_ONLY",
+      "missingFieldCount": 30,
+      "dataSourceType": "LOW_CONFIDENCE_ADVISORY"
+    },
+    {
+      "sourceFilePath": "artifact:ROLE_ACTIVATION_ROUTE_LEDGER_OPTIMIZE_WORKER_PHASE_A_20260701.md#4c8e4234e248",
+      "exclusionReason": "LOW_CONFIDENCE_ADVISORY_ONLY",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "missingFieldCount": 29,
+      "dataSourceType": "LOW_CONFIDENCE_ADVISORY"
+    },
+    {
+      "sourceFilePath": "artifact:RUNNER_GANG_ROUTE_LEDGER_OPTIMIZE_WORKER_PHASE_A_20260701.md#ade14a17f601",
+      "exclusionReason": "LOW_CONFIDENCE_ADVISORY_ONLY",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "missingFieldCount": 32,
+      "dataSourceType": "LOW_CONFIDENCE_ADVISORY"
+    },
+    {
+      "sourceFilePath": "artifact:data-evidence-role-boundary.examples.json#e06cdb5bb73a",
+      "exclusionReason": "INSUFFICIENT_TASK_IDENTITY",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "missingFieldCount": 35,
+      "dataSourceType": "LOW_CONFIDENCE_ADVISORY"
+    },
+    {
+      "sourceFilePath": "artifact:task-run-receipt.example.json#e9e4e9f3c60c",
+      "exclusionReason": "INSUFFICIENT_TASK_IDENTITY",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "missingFieldCount": 25,
+      "dataSourceType": "LOW_CONFIDENCE_ADVISORY"
+    },
+    {
+      "sourceFilePath": "artifact:cost_log.json#d64f779374b2",
+      "exclusionReason": "INSUFFICIENT_TASK_IDENTITY",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "missingFieldCount": 34,
+      "dataSourceType": "LOW_CONFIDENCE_ADVISORY"
+    },
+    {
+      "sourceFilePath": "artifact:decision_trace.json#2bdf5c3b77ac",
+      "exclusionReason": "INSUFFICIENT_TASK_IDENTITY",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "missingFieldCount": 34,
+      "dataSourceType": "LOW_CONFIDENCE_ADVISORY"
+    },
+    {
+      "sourceFilePath": "artifact:cost_log.json#5d0441a8043f",
+      "exclusionReason": "INSUFFICIENT_TASK_IDENTITY",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "missingFieldCount": 34,
+      "dataSourceType": "LOW_CONFIDENCE_ADVISORY"
+    },
+    {
+      "sourceFilePath": "artifact:decision_trace.json#671c738c06c5",
+      "exclusionReason": "INSUFFICIENT_TASK_IDENTITY",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "missingFieldCount": 34,
+      "dataSourceType": "LOW_CONFIDENCE_ADVISORY"
+    },
+    {
+      "sourceFilePath": "artifact:cost_log.json#57efd062d4cb",
+      "exclusionReason": "INSUFFICIENT_TASK_IDENTITY",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "missingFieldCount": 34,
+      "dataSourceType": "LOW_CONFIDENCE_ADVISORY"
+    },
+    {
+      "sourceFilePath": "artifact:decision_trace.json#347d5c135046",
+      "exclusionReason": "INSUFFICIENT_TASK_IDENTITY",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "missingFieldCount": 34,
+      "dataSourceType": "LOW_CONFIDENCE_ADVISORY"
+    },
+    {
+      "sourceFilePath": "artifact:validation_summary.json#c72bc95b9f74",
+      "exclusionReason": "INSUFFICIENT_TASK_IDENTITY",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "missingFieldCount": 34,
+      "dataSourceType": "LOW_CONFIDENCE_ADVISORY"
+    },
+    {
+      "sourceFilePath": "artifact:evidence-readiness-readout.json#3319845a113e",
+      "exclusionReason": "INSUFFICIENT_TASK_IDENTITY",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "missingFieldCount": 35,
+      "dataSourceType": "LOW_CONFIDENCE_ADVISORY"
+    }
+  ]
+}

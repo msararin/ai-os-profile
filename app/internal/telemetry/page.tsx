@@ -81,6 +81,7 @@ export default async function InternalTelemetryPage() {
   }
 
   const data = getInternalTelemetryDashboardData()
+  const isBundledExport = data.dbMode === "BUNDLED_JSON_EXPORT"
 
   return (
     <main className="min-h-screen bg-background">
@@ -94,7 +95,8 @@ export default async function InternalTelemetryPage() {
                   Owner internal
                 </Badge>
                 <Badge variant="outline">LOCAL QUERY CANDIDATE</Badge>
-                <Badge variant="outline">READ-ONLY SQLITE</Badge>
+                <Badge variant="outline">{isBundledExport ? "BUNDLED_JSON_EXPORT" : "READ-ONLY SQLITE"}</Badge>
+                {isBundledExport ? <Badge variant="outline">NOT_LIVE_DATABASE</Badge> : null}
               </div>
               <div>
                 <h1 className="text-3xl font-semibold tracking-tight text-foreground">
@@ -116,12 +118,39 @@ export default async function InternalTelemetryPage() {
           </div>
 
           <div className="rounded-lg border border-amber-300/70 bg-amber-50 px-4 py-3 text-sm text-amber-950 dark:bg-amber-950/20 dark:text-amber-100">
-            <div className="font-semibold">STAGING_CANDIDATE - local internal dashboard query candidate</div>
+            <div className="font-semibold">
+              {isBundledExport
+                ? "BUNDLED_JSON_EXPORT - staging/backfill snapshot candidate"
+                : "STAGING_CANDIDATE - local internal dashboard query candidate"}
+            </div>
             <p className="mt-1">
               This view reads staging/backfill candidate data only. It is not telemetry
-              verification, not production proof, and not a public dashboard.
+              verification, not production proof, not a live database, and not a public dashboard.
             </p>
           </div>
+
+          {isBundledExport ? (
+            <div className="rounded-lg border border-blue-300/70 bg-blue-50 px-4 py-3 text-sm text-blue-950 dark:bg-blue-950/20 dark:text-blue-100">
+              <div className="font-semibold">FALLBACK_MODE_ACTIVE - NOT_PRODUCTION_TELEMETRY_VERIFICATION</div>
+              <p className="mt-1">
+                Rows on this page come from a sanitized bundled JSON export. Missing fields remain
+                visible, local paths are redacted, and provider-backed telemetry display is not
+                claimed without later review.
+              </p>
+              <p className="mt-2 font-mono text-xs">
+                exportGeneratedAt: {data.exportGeneratedAt ?? data.exportMetadata?.generated_at ?? "SOURCE_ARTIFACT_MISSING_FIELD"}
+                {" · "}
+                timezone: {data.exportGeneratedAtTz ?? data.exportMetadata?.generated_at_timezone ?? "UTC"}
+                {" · "}
+                sourceChecksumPrefix: {data.checksumAlgo ?? data.exportMetadata?.source_checksum_algorithm ?? "sha256"}:
+                {data.sourceChecksumPrefix ?? "SOURCE_ARTIFACT_MISSING_FIELD"}
+              </p>
+              <p className="mt-1 text-xs">
+                Aggregate note: candidate record counts exclude LOW_CONFIDENCE_ADVISORY rows, which
+                are shown separately.
+              </p>
+            </div>
+          ) : null}
 
           {data.ledgerUnavailableReason ? (
             <div className="rounded-lg border border-red-300/70 bg-red-50 px-4 py-3 text-sm text-red-950 dark:bg-red-950/20 dark:text-red-100">
