@@ -32,14 +32,6 @@ const surfaces = [
     ],
   },
   {
-    title: "Telemetry Inventory",
-    status: "Under construction",
-    copy: [
-      "Will summarize which records exist, which fields are missing, and which signals are excluded from comparison.",
-      "Not a live telemetry dashboard.",
-    ],
-  },
-  {
     title: "AIOS Monitoring",
     status: "Under construction — static snapshot",
     href: "/architecture/system-health/monitoring",
@@ -204,14 +196,6 @@ export default function SystemHealthPage() {
                 <p>Agent Orchestration Map</p>
               </CardContent>
             </Card>
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-base">Planned / under construction</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-1 text-sm text-muted-foreground">
-                <p>Telemetry Inventory</p>
-              </CardContent>
-            </Card>
           </div>
 
           <Card className="mt-6 border-primary/20 bg-primary/5">
@@ -319,6 +303,11 @@ export default function SystemHealthPage() {
                     <p className="mt-2 text-sm leading-6 text-muted-foreground">
                       Raw task rows, source paths, receipt details, and provider fields remain off
                       public System Health pages.
+                    </p>
+                    <p className="mt-2 text-sm leading-6 text-muted-foreground">
+                      Telemetry inventory details live inside the protected internal telemetry route.
+                      Internal telemetry rows and receipts are not exposed on public System Health
+                      pages.
                     </p>
                   </div>
                 </div>
