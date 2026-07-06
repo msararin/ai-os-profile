@@ -226,24 +226,7 @@ export default function OrgRolesPage() {
         </div>
       </section>
 
-      <section className="border-b border-border bg-muted/30 py-10">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-semibold tracking-tight text-foreground">
-            Capability Detail Pages
-          </h2>
-          <p className="mt-3 max-w-3xl text-sm text-muted-foreground">
-            These compact cards open deeper role capability pages. Long learning,
-            evidence, and upskill narratives stay off the hub so the role map
-            remains scannable.
-          </p>
-          <div className="mt-6 grid gap-4 md:grid-cols-2">
-            <CapabilityRoleCard detail={dataTeamDetail} />
-            <CapabilityRoleCard detail={runnerDetail} />
-          </div>
-        </div>
-      </section>
-
-      <section className="py-16">
+      <section className="py-12">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className="mb-8 flex items-center justify-between gap-4">
             <h2 className="text-2xl font-semibold tracking-tight text-foreground">
@@ -254,11 +237,8 @@ export default function OrgRolesPage() {
             </Badge>
           </div>
 
-          <details className="rounded-lg border border-border bg-card p-5 sm:p-6">
-            <summary className="cursor-pointer text-sm font-semibold text-foreground">
-              Show operating org chart
-            </summary>
-            <div className="mx-auto max-w-5xl">
+          <div className="rounded-lg border border-border bg-card p-5 sm:p-6">
+            <div className="mx-auto max-w-5xl space-y-4">
               <div className="flex justify-center">
                 <div className="w-full max-w-sm rounded border border-primary/30 bg-primary/10 p-4 text-center">
                   <p className="text-sm font-semibold text-primary">
@@ -270,8 +250,6 @@ export default function OrgRolesPage() {
                 </div>
               </div>
 
-              <div className="mx-auto h-8 w-px bg-border" />
-
               <div className="rounded border border-border bg-background p-4 text-center">
                   <p className="text-sm font-semibold text-foreground">
                     Robert / GPT
@@ -280,8 +258,6 @@ export default function OrgRolesPage() {
                     Executive Orchestration Layer
                   </p>
               </div>
-
-              <div className="mx-auto h-8 w-px bg-border" />
 
               <div className="rounded border border-primary/30 bg-primary/5 p-4">
                 <p className="text-center text-sm font-semibold text-primary">
@@ -300,65 +276,83 @@ export default function OrgRolesPage() {
                 </div>
               </div>
 
-              <div className="mx-auto h-8 w-px bg-border" />
-
-              <div className="rounded border border-border bg-background p-4 text-center">
+              <div className="grid gap-4 md:grid-cols-2">
+                <div className="rounded border border-border bg-background p-4 text-center">
                   <p className="text-sm font-semibold text-foreground">
                     Big Crew
                   </p>
                   <p className="mt-1 text-xs text-muted-foreground">
                     Specialist Delivery Team
                   </p>
+                </div>
+
+                <div className="rounded border border-dashed border-border bg-muted/30 p-4 text-center">
+                  <p className="text-sm font-semibold text-foreground">
+                    GPT KB + Git
+                  </p>
+                  <p className="mt-1 text-xs text-muted-foreground">
+                    Shared source of truth for decisions, evidence, and handoffs
+                  </p>
+                </div>
               </div>
 
-              <div className="mx-auto h-8 w-px bg-border" />
-
-              <div className="rounded border border-dashed border-border bg-muted/30 p-4 text-center">
-                <p className="text-sm font-semibold text-foreground">
-                  GPT KB + Git
-                </p>
-                <p className="mt-1 text-xs text-muted-foreground">
-                  Shared source of truth for decisions, evidence, and handoffs
-                </p>
-              </div>
-
-              <div className="mx-auto h-8 w-px bg-border" />
-
-              <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-                {[
-                  ["PM / Delivery", "Specialist delivery planning"],
-                  ["Architecture", "System boundaries and dependencies"],
-                  ["QA", "Delivery failure modes and test readiness"],
-                  ["Release", "Release-readiness critique"],
-                  ["Workflow / Implementation", "Scoped delivery support"],
-                  ["Data Team", "Specialist Review Perspective"],
-                  ["UX / UI / IA", "Specialist Review Perspective"],
-                  ["Sonnet-style / Opus-style", "Local review unless receipted"],
-                  ["Supernova", "Business / Opportunity Intelligence"],
-                ].map(([name, description]) => (
-                  <div
-                    key={name}
-                    className="rounded border border-border bg-background p-3"
-                  >
-                    <p className="text-sm font-medium text-foreground">
-                      {name}
-                    </p>
-                    <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
-                      {description}
-                    </p>
-                    {name === "Data Team" ? (
-                      <Link
-                        href="/org-roles/data-team"
-                        className="mt-3 inline-flex text-xs font-medium text-primary hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
-                      >
-                        View capability detail
-                      </Link>
-                    ) : null}
-                  </div>
-                ))}
-              </div>
+              <details className="rounded border border-border bg-background p-4">
+                <summary className="cursor-pointer text-sm font-semibold text-foreground">
+                  Show specialist lanes
+                </summary>
+                <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+                  {[
+                    ["PM / Delivery", "Specialist delivery planning"],
+                    ["Architecture", "System boundaries and dependencies"],
+                    ["QA", "Delivery failure modes and test readiness"],
+                    ["Release", "Release-readiness critique"],
+                    ["Workflow / Implementation", "Scoped delivery support"],
+                    ["Data Team", "Specialist Review Perspective"],
+                    ["UX / UI / IA", "Specialist Review Perspective"],
+                    ["Sonnet-style / Opus-style", "Local review unless receipted"],
+                    ["Supernova", "Business / Opportunity Intelligence"],
+                  ].map(([name, description]) => (
+                    <div
+                      key={name}
+                      className="rounded border border-border bg-card p-3"
+                    >
+                      <p className="text-sm font-medium text-foreground">
+                        {name}
+                      </p>
+                      <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
+                        {description}
+                      </p>
+                      {name === "Data Team" ? (
+                        <Link
+                          href="/org-roles/data-team"
+                          className="mt-3 inline-flex text-xs font-medium text-primary hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+                        >
+                          View capability detail
+                        </Link>
+                      ) : null}
+                    </div>
+                  ))}
+                </div>
+              </details>
             </div>
-          </details>
+          </div>
+        </div>
+      </section>
+
+      <section className="border-y border-border bg-muted/30 py-10">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl font-semibold tracking-tight text-foreground">
+            Capability Detail Pages
+          </h2>
+          <p className="mt-3 max-w-3xl text-sm text-muted-foreground">
+            These cards open deeper role capability pages after the operating
+            org map. Long learning, evidence, and upskill narratives stay off
+            the hub so the role map remains scannable.
+          </p>
+          <div className="mt-6 grid gap-4 md:grid-cols-2">
+            <CapabilityRoleCard detail={dataTeamDetail} />
+            <CapabilityRoleCard detail={runnerDetail} />
+          </div>
         </div>
       </section>
 
@@ -372,35 +366,32 @@ export default function OrgRolesPage() {
             They are separate from Big Crew specialist delivery work.
           </p>
           <div className="mt-8 grid gap-4 md:grid-cols-3">
-            <CapabilityRoleCard detail={runnerDetail} />
             {executionControlRoles.map((role) => (
-              role.name === "Runner" ? null : (
-                <Card key={role.name} className="border-primary/20 bg-primary/5">
-                  <CardHeader>
-                    <CardTitle className="text-base">
-                      {role.name} ({role.label})
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent className="space-y-3 text-sm leading-6 text-muted-foreground">
-                    <p>
-                      <span className="font-medium text-foreground">Primary responsibility:</span>{" "}
-                      {role.primaryResponsibility}
-                    </p>
-                    <p>
-                      <span className="font-medium text-foreground">Evidence contribution:</span>{" "}
-                      {role.evidenceContribution}
-                    </p>
-                    <p>
-                      <span className="font-medium text-foreground">Not allowed:</span>{" "}
-                      {role.notAllowed}
-                    </p>
-                    <p>
-                      <span className="font-medium text-foreground">Relationship to Big Crew:</span>{" "}
-                      {role.bigCrewRelationship}
-                    </p>
-                  </CardContent>
-                </Card>
-              )
+              <Card key={role.name} className="border-primary/20 bg-primary/5">
+                <CardHeader>
+                  <CardTitle className="text-base">
+                    {role.name} ({role.label})
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-3 text-sm leading-6 text-muted-foreground">
+                  <p>
+                    <span className="font-medium text-foreground">Primary responsibility:</span>{" "}
+                    {role.primaryResponsibility}
+                  </p>
+                  <p>
+                    <span className="font-medium text-foreground">Evidence contribution:</span>{" "}
+                    {role.evidenceContribution}
+                  </p>
+                  <p>
+                    <span className="font-medium text-foreground">Not allowed:</span>{" "}
+                    {role.notAllowed}
+                  </p>
+                  <p>
+                    <span className="font-medium text-foreground">Relationship to Big Crew:</span>{" "}
+                    {role.bigCrewRelationship}
+                  </p>
+                </CardContent>
+              </Card>
             ))}
           </div>
         </div>
