@@ -22,6 +22,58 @@ export default function AchievementsPage() {
 
   const achievements = [
     {
+      date: '2026-07-05',
+      headline: 'Data Team Upskill: Evidence-Based Telemetry Validation',
+      summary: 'Upgraded the data-team capability layer from simple first-pass profiling into a reusable evidence-based telemetry validation workflow. The key shift was not to make a prettier dashboard first, but to teach the system how to reason about telemetry data before making claims.',
+      proofType: 'local capability upgrade, telemetry semantics, data-quality validation, visualization-readiness governance',
+      evidenceReference: 'Local Data Team Skill Pack v0.1; project-context adapter; validation and visualization readiness plan; field inventory and field-level count artifacts from the available export only',
+      status: 'LOCAL_CAPABILITY_UPGRADE_ONLY / SOURCE_LIMITED_VALIDATION_BOUNDARY_PRESERVED',
+      publicSafeResult: 'The data-team workflow can now separate telemetry semantics, validation evidence, field-level checks, classification rules, sample-row proof, and visualization readiness before stronger dashboard or production claims are considered.',
+      caveat: 'Local capability upgrade only. This does not claim production telemetry verification, full row-level completeness, provider-backed review, independent review, production graph readiness, live monitoring, or production UI implementation.',
+      details: {
+        whyItMatters: 'Telemetry work becomes more trustworthy when the system can explain what the available evidence proves, what it only suggests, and what it cannot support. This upskill creates a reusable pattern for reasoning about telemetry-like data before turning it into reports, charts, or owner-facing decisions.',
+        evidence: [
+          'Telemetry semantics were separated from project-specific facts so reusable skills can classify logs, metrics, traces, resources, attributes, events, warning-derived fields, summary-only fields, and absent fields without hardcoding one project context.',
+          'Data-quality validation guidance now distinguishes first-pass profiling from evidence-backed validation, including reproducible checks, field-level counts, classification rules, sample-row proof, and downgrade language when evidence is insufficient.',
+          'Profiling and visualization readiness guidance now defines when owner-readable insights, charts, tables, tooltips, disclaimers, and decision surfaces are appropriate before implementing graphs or production UI.',
+          'The local workflow preserves source limitation language for dashboard-shaped exports and avoids converting unresolved or inferred categories into stronger completeness claims.',
+          'The capability pattern can support future telemetry, observability, AI workflow monitoring, LLMOps readiness, and client proof-of-concept data-quality reviews.'
+        ],
+        evidenceMaturity: [
+          {
+            before: 'Telemetry analysis could begin with useful profiling, but the evidence boundary between observed fields, inferred categories, and not-claimable completeness was easier to blur.',
+            whatChanged: 'The data-team layer now requires field inventory, field-level counts, classification rules, sample-row proof, observed versus inferred separation, and visualization readiness gates before stronger claims are made.',
+            value: 'Future telemetry work can move from exploration toward validation with clearer proof requirements, better downgrade language, and less risk of treating dashboard-shaped evidence as raw row-level completeness.'
+          }
+        ],
+        beforeAfterRepair: [
+          {
+            before: 'A dashboard or chart idea could be treated as the natural next step after a first-pass profile.',
+            after: 'The workflow now asks whether the evidence is ready for a chart, table, tooltip, or owner decision view before any graph or production surface is built.'
+          },
+          {
+            before: 'Category labels could be repeated from an earlier report without enough field-level proof.',
+            after: 'Category labels must be tied to explicit classification rules, recountability, sample-row evidence, and source limitation language.'
+          },
+          {
+            before: 'Reusable telemetry capability and project-specific context could be mixed together.',
+            after: 'Permanent skills stay reusable, while project-specific facts, unresolved counts, route context, and non-claims stay in project-context artifacts.'
+          }
+        ],
+        skillsDemonstrated: [
+          'Telemetry semantics using OpenTelemetry-style signal concepts',
+          'GX-style and Soda-style validation thinking without overstating checks as complete proof',
+          'Evidently-style profiling and monitoring readiness without claiming live monitoring',
+          'Field inventory and field-level count discipline',
+          'Classification-rule and sample-row evidence planning',
+          'Owner-readable visualization readiness gates and disclaimer design',
+          'Public-safe claim-boundary control for source-limited telemetry work'
+        ],
+        impact: 'The practical impact is a stronger reusable data-team capability: telemetry and data-quality work can be framed around evidence, source limitations, reproducible validation steps, and owner-readable decision support before investing in dashboards, reports, or production UI.'
+      },
+      tags: ['Data Team', 'Telemetry Validation', 'Data Quality', 'Visualization Readiness', 'Local Capability']
+    },
+    {
       date: '2026-07-01',
       headline: 'AIOS Role-Receipted First Task Run Evidence',
       summary: 'Moved optimize-worker from a swimlane backlog viewer into a local evidence-producing task runner. The first task run generated a structured artifact bundle and was reviewed through role receipts: Big Crew review, Runner Gang deterministic validation, and Prime Gate reconciliation.',
