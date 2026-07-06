@@ -2,41 +2,65 @@ import { PageLayout } from "@/components/page-layout"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import Link from "next/link"
+import { executionControlRoles } from "@/lib/aios-execution-control-measurement"
+import {
+  CapabilityRoleCard,
+  dataTeamDetail,
+  runnerDetail,
+} from "./role-detail-content"
 
 const rolePolicies = [
   {
-    role: "GPT / Sararin",
+    role: "Lyn — Owner / Decision Authority",
     responsibility:
-      "Executive review, taste, risk appetite, and final approval for public, money, legal, privacy, reputation, health, career, and major architecture decisions.",
+      "Owner review, risk appetite, and final approval for public, money, legal, privacy, reputation, health, career, and major architecture decisions.",
     owns: "Final gate and protected decisions",
     doesNotOwn: "Routine execution or broad staffing before evidence exists",
     budget: "Sararin-gated",
     escalation: "Stop and ask when the decision is high-risk or hard to reverse.",
   },
   {
-    role: "Hermes",
+    role: "Robert / GPT — Executive Orchestration Layer",
     responsibility:
-      "Stage manager, dispatcher, trace recorder, KB maintainer, and task packet owner.",
-    owns: "Routing discipline, validation summaries, and KB sync",
-    doesNotOwn: "UI/code implementation or autonomous final approval",
-    budget: "Cheap/local first",
-    escalation: "Route to Codex, Big Crew, Researcher, Supernova, or Sararin when scope requires it.",
+      "Executive orchestration, synthesis, sequencing, decision framing, and source-of-truth alignment.",
+    owns: "Tradeoff framing, narrative coherence, and claim-boundary review",
+    doesNotOwn: "Owner authorization, autonomous execution approval, or production-readiness claims",
+    budget: "Executive review lane",
+    escalation: "Escalate to Lyn when the decision touches protected categories or publication authority.",
   },
   {
-    role: "Codex",
+    role: "Super Runner (Execution Control Layer)",
     responsibility:
-      "Repo, UI, and code implementation executor for bounded task packets.",
-    owns: "Files changed, build/regression evidence, commit-ready patches, and caveats",
-    doesNotOwn: "Product strategy, private raw KB exposure, or production-readiness claims",
-    budget: "Implementation lane",
-    escalation: "Return evidence and stop when the task exceeds the packet or exposes risk.",
+      "Controls task boundary, dependency, authority, caveats, and stop conditions before work proceeds.",
+    owns: "Scope, authorization check, dependency visibility, and stop-condition preservation",
+    doesNotOwn: "Autonomous platform authority, production readiness, cost decisions, or replacement decisions",
+    budget: "Control lane",
+    escalation: "Stop when owner authorization, unsafe scope, missing dependency, or claim boundary is unresolved.",
   },
   {
-    role: "Big Crew",
+    role: "Runner (Bounded Task Executor)",
     responsibility:
-      "Scoped product, architecture, engineering, QA, review, and release-readiness work.",
+      "Executes approved bounded tasks without inventing new scope.",
+    owns: "Scoped output, files changed, validation-ready handoff, and implementation caveats",
+    doesNotOwn: "Scope creation, self-approval, benchmark proof, or performance claims",
+    budget: "Bounded execution lane",
+    escalation: "Return to Super Runner when scope changes or required authorization is missing.",
+  },
+  {
+    role: "Checker (Evidence & Claim Boundary Checker)",
+    responsibility:
+      "Validates evidence completeness, source-of-truth alignment, and claim boundaries.",
+    owns: "Evidence gaps, source-of-truth mismatches, claim drift, and validation status",
+    doesNotOwn: "Big Crew QA replacement, public proof approval, production readiness, or cost superiority claims",
+    budget: "Evidence safety lane",
+    escalation: "Block or downgrade when evidence is missing, claims drift, or source-of-truth alignment fails.",
+  },
+  {
+    role: "Big Crew (Specialist Delivery Team)",
+    responsibility:
+      "Specialist delivery work across PM / Delivery, Architecture, QA, Release, Workflow, and Implementation.",
     owns: "Role-specific critique, implementation support, QA findings, and release recommendations",
-    doesNotOwn: "Autonomous staffing, final release approval, or Sararin-protected decisions",
+    doesNotOwn: "Execution-control authority, final release approval, or Lyn-protected decisions",
     budget: "Senior synthesis only",
     escalation: "Use senior model review only for named decisions with clear expected value.",
   },
@@ -153,13 +177,31 @@ export default function OrgRolesPage() {
             Org Chart & Role Policy
           </h1>
           <p className="mt-4 max-w-3xl text-pretty text-lg text-muted-foreground">
-            Public-safe operating map for who owns coordination, execution,
-            evidence, review, and budget discipline inside the AIOS work system.
+            Public-safe operating map for who owns executive orchestration,
+            execution control, specialist delivery, evidence review, and budget
+            discipline inside the AIOS work system.
           </p>
           <p className="mt-4 max-w-3xl text-sm italic text-muted-foreground">
             This is an operating model summary, not runtime access control,
             autonomous staffing, or production-readiness evidence.
           </p>
+        </div>
+      </section>
+
+      <section className="border-b border-border bg-muted/30 py-10">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl font-semibold tracking-tight text-foreground">
+            Capability Detail Pages
+          </h2>
+          <p className="mt-3 max-w-3xl text-sm text-muted-foreground">
+            These compact cards open deeper role capability pages. Long learning,
+            evidence, and upskill narratives stay off the hub so the role map
+            remains scannable.
+          </p>
+          <div className="mt-6 grid gap-4 md:grid-cols-2">
+            <CapabilityRoleCard detail={dataTeamDetail} />
+            <CapabilityRoleCard detail={runnerDetail} />
+          </div>
         </div>
       </section>
 
@@ -174,41 +216,61 @@ export default function OrgRolesPage() {
             </Badge>
           </div>
 
-          <div className="rounded-lg border border-border bg-card p-5 sm:p-6">
+          <details className="rounded-lg border border-border bg-card p-5 sm:p-6">
+            <summary className="cursor-pointer text-sm font-semibold text-foreground">
+              Show operating org chart
+            </summary>
             <div className="mx-auto max-w-5xl">
               <div className="flex justify-center">
                 <div className="w-full max-w-sm rounded border border-primary/30 bg-primary/10 p-4 text-center">
                   <p className="text-sm font-semibold text-primary">
-                    Sararin / GPT
+                    Lyn
                   </p>
                   <p className="mt-1 text-xs text-muted-foreground">
-                    Executive review and protected decisions
+                    Owner / Decision Authority
                   </p>
                 </div>
               </div>
 
               <div className="mx-auto h-8 w-px bg-border" />
 
-              <div className="grid gap-4 md:grid-cols-[1fr_auto_1fr] md:items-center">
-                <div className="rounded border border-border bg-background p-4 text-center">
+              <div className="rounded border border-border bg-background p-4 text-center">
                   <p className="text-sm font-semibold text-foreground">
-                    GPT
+                    Robert / GPT
                   </p>
                   <p className="mt-1 text-xs text-muted-foreground">
-                    Personal AI context layer and KB continuity
+                    Executive Orchestration Layer
                   </p>
+              </div>
+
+              <div className="mx-auto h-8 w-px bg-border" />
+
+              <div className="rounded border border-primary/30 bg-primary/5 p-4">
+                <p className="text-center text-sm font-semibold text-primary">
+                  Execution Control & Evidence Governance
+                </p>
+                <p className="mt-1 text-center text-xs text-muted-foreground">
+                  Scope, authorization, validation, stop conditions, and claim boundaries
+                </p>
+                <div className="mt-4 grid gap-3 md:grid-cols-3">
+                  {executionControlRoles.map((role) => (
+                    <div key={role.name} className="rounded border border-border bg-background p-3 text-center">
+                      <p className="text-sm font-semibold text-foreground">{role.name}</p>
+                      <p className="mt-1 text-xs text-muted-foreground">{role.label}</p>
+                    </div>
+                  ))}
                 </div>
-                <div className="hidden px-2 text-sm font-medium text-muted-foreground md:block">
-                  peers via KB
-                </div>
-                <div className="rounded border border-border bg-background p-4 text-center">
+              </div>
+
+              <div className="mx-auto h-8 w-px bg-border" />
+
+              <div className="rounded border border-border bg-background p-4 text-center">
                   <p className="text-sm font-semibold text-foreground">
-                    Hermes
+                    Big Crew
                   </p>
                   <p className="mt-1 text-xs text-muted-foreground">
-                    Stage manager, router, trace, and handoff owner
+                    Specialist Delivery Team
                   </p>
-                </div>
               </div>
 
               <div className="mx-auto h-8 w-px bg-border" />
@@ -226,14 +288,15 @@ export default function OrgRolesPage() {
 
               <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
                 {[
-                  ["Codex", "Repo and UI implementation"],
-                  ["Big Crew", "Product, architecture, QA, review"],
-                  ["Researcher", "Evidence scans and claim safety"],
-                  ["Supernova", "Opportunity and monetization analysis"],
-                  ["Investment Team", "Planned specialist lane"],
-                  ["optimize-worker", "Routing and trace automation"],
-                  ["Fallback routing", "Alternate path policy"],
-                  ["Future crews", "Only after scope is proven"],
+                  ["PM / Delivery", "Specialist delivery planning"],
+                  ["Architecture", "System boundaries and dependencies"],
+                  ["QA", "Delivery failure modes and test readiness"],
+                  ["Release", "Release-readiness critique"],
+                  ["Workflow / Implementation", "Scoped delivery support"],
+                  ["Data Team", "Specialist Review Perspective"],
+                  ["UX / UI / IA", "Specialist Review Perspective"],
+                  ["Sonnet-style / Opus-style", "Local review unless receipted"],
+                  ["Supernova", "Business / Opportunity Intelligence"],
                 ].map(([name, description]) => (
                   <div
                     key={name}
@@ -245,131 +308,191 @@ export default function OrgRolesPage() {
                     <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
                       {description}
                     </p>
+                    {name === "Data Team" ? (
+                      <Link
+                        href="/org-roles/data-team"
+                        className="mt-3 inline-flex text-xs font-medium text-primary hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+                      >
+                        View capability detail
+                      </Link>
+                    ) : null}
                   </div>
                 ))}
               </div>
             </div>
-          </div>
+          </details>
         </div>
       </section>
 
-      <section className="border-t border-border bg-muted/30 py-16">
+      <section className="border-t border-border py-16">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <h2 className="text-2xl font-semibold tracking-tight text-foreground">
-            Role & Responsibility Policy
-          </h2>
-          <div className="mt-8 overflow-x-auto rounded-lg border border-border bg-card">
-            <table className="min-w-[1180px] divide-y divide-border">
-              <thead className="bg-background">
-                <tr>
-                  {[
-                    "Role / team",
-                    "Responsibility",
-                    "Owns",
-                    "Does not own",
-                    "Budget policy",
-                    "Escalation rule",
-                  ].map((heading) => (
-                    <th
-                      key={heading}
-                      scope="col"
-                      className="px-4 py-3 text-left text-sm font-medium text-foreground"
-                    >
-                      {heading}
-                    </th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-border">
-                {rolePolicies.map((policy) => (
-                  <tr key={policy.role} className="align-top">
-                    <td className="whitespace-nowrap px-4 py-4 text-sm font-medium text-foreground">
-                      {policy.role}
-                    </td>
-                    <td className="max-w-72 px-4 py-4 text-sm text-muted-foreground">
-                      {policy.responsibility}
-                    </td>
-                    <td className="max-w-56 px-4 py-4 text-sm text-muted-foreground">
-                      {policy.owns}
-                    </td>
-                    <td className="max-w-56 px-4 py-4 text-sm text-muted-foreground">
-                      {policy.doesNotOwn}
-                    </td>
-                    <td className="max-w-44 px-4 py-4 text-sm text-muted-foreground">
-                      {policy.budget}
-                    </td>
-                    <td className="max-w-64 px-4 py-4 text-sm text-muted-foreground">
-                      {policy.escalation}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-16">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-semibold tracking-tight text-foreground">
-            Budget Policy
+            Execution Control Role Cards
           </h2>
           <p className="mt-3 max-w-3xl text-sm text-muted-foreground">
-            Role first, model second. Budget is allocated like workforce salary:
-            use the cheapest reliable route for routine work and reserve senior
-            review for named decisions with a clear expected value.
+            These roles govern scope, authorization, validation, and claim safety.
+            They are separate from Big Crew specialist delivery work.
           </p>
-          <div className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-            {budgetTiers.map((tier) => (
-              <Card key={tier.tier} className="border-border bg-card">
-                <CardHeader className="pb-3">
-                  <div className="flex items-center justify-between gap-3">
-                    <CardTitle className="text-base font-medium text-foreground">
-                      {tier.name}
+          <div className="mt-8 grid gap-4 md:grid-cols-3">
+            <CapabilityRoleCard detail={runnerDetail} />
+            {executionControlRoles.map((role) => (
+              role.name === "Runner" ? null : (
+                <Card key={role.name} className="border-primary/20 bg-primary/5">
+                  <CardHeader>
+                    <CardTitle className="text-base">
+                      {role.name} ({role.label})
                     </CardTitle>
-                    <Badge variant="outline">{tier.tier}</Badge>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-muted-foreground">
-                    {tier.description}
-                  </p>
-                </CardContent>
-              </Card>
+                  </CardHeader>
+                  <CardContent className="space-y-3 text-sm leading-6 text-muted-foreground">
+                    <p>
+                      <span className="font-medium text-foreground">Primary responsibility:</span>{" "}
+                      {role.primaryResponsibility}
+                    </p>
+                    <p>
+                      <span className="font-medium text-foreground">Evidence contribution:</span>{" "}
+                      {role.evidenceContribution}
+                    </p>
+                    <p>
+                      <span className="font-medium text-foreground">Not allowed:</span>{" "}
+                      {role.notAllowed}
+                    </p>
+                    <p>
+                      <span className="font-medium text-foreground">Relationship to Big Crew:</span>{" "}
+                      {role.bigCrewRelationship}
+                    </p>
+                  </CardContent>
+                </Card>
+              )
             ))}
           </div>
-          <p className="mt-6 max-w-3xl text-sm font-medium text-foreground">
-            No senior delegation without a named decision, expected value, cost
-            cap, and abort condition.
-          </p>
         </div>
       </section>
 
-      <section className="border-t border-border bg-muted/30 py-16">
+      <section className="border-t border-border bg-background py-12">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <h2 className="text-2xl font-semibold tracking-tight text-foreground">
-            Task Routing Policy
+            Supporting Policies
           </h2>
-          <div className="mt-8 grid gap-4 md:grid-cols-2">
-            {taskPolicies.map((policy) => (
-              <Card key={policy.task} className="border-border bg-card">
-                <CardHeader className="pb-3">
-                  <div className="flex items-start justify-between gap-3">
-                    <CardTitle className="text-base font-medium text-foreground">
-                      {policy.task}
-                    </CardTitle>
-                    <Badge variant="secondary" className="shrink-0">
-                      {policy.route}
-                    </Badge>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-muted-foreground">
-                    {policy.rule}
-                  </p>
-                </CardContent>
-              </Card>
-            ))}
+          <p className="mt-3 max-w-3xl text-sm text-muted-foreground">
+            Detailed routing and budget policies are collapsed by default so the
+            org-role hub stays focused on scan and navigation.
+          </p>
+          <div className="mt-6 space-y-3">
+            <details className="rounded-lg border border-border bg-card p-4">
+              <summary className="cursor-pointer text-sm font-semibold text-foreground">
+                Role & Responsibility Policy
+              </summary>
+              <div className="mt-5 overflow-x-auto rounded-lg border border-border bg-background">
+                <table className="min-w-[1180px] divide-y divide-border">
+                  <thead className="bg-card">
+                    <tr>
+                      {[
+                        "Role / team",
+                        "Responsibility",
+                        "Owns",
+                        "Does not own",
+                        "Budget policy",
+                        "Escalation rule",
+                      ].map((heading) => (
+                        <th
+                          key={heading}
+                          scope="col"
+                          className="px-4 py-3 text-left text-sm font-medium text-foreground"
+                        >
+                          {heading}
+                        </th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-border">
+                    {rolePolicies.map((policy) => (
+                      <tr key={policy.role} className="align-top">
+                        <td className="whitespace-nowrap px-4 py-4 text-sm font-medium text-foreground">
+                          {policy.role}
+                        </td>
+                        <td className="max-w-72 px-4 py-4 text-sm text-muted-foreground">
+                          {policy.responsibility}
+                        </td>
+                        <td className="max-w-56 px-4 py-4 text-sm text-muted-foreground">
+                          {policy.owns}
+                        </td>
+                        <td className="max-w-56 px-4 py-4 text-sm text-muted-foreground">
+                          {policy.doesNotOwn}
+                        </td>
+                        <td className="max-w-44 px-4 py-4 text-sm text-muted-foreground">
+                          {policy.budget}
+                        </td>
+                        <td className="max-w-64 px-4 py-4 text-sm text-muted-foreground">
+                          {policy.escalation}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </details>
+
+            <details className="rounded-lg border border-border bg-card p-4">
+              <summary className="cursor-pointer text-sm font-semibold text-foreground">
+                Budget Policy
+              </summary>
+              <p className="mt-4 max-w-3xl text-sm text-muted-foreground">
+                Role first, model second. Budget is allocated like workforce
+                salary: use the cheapest reliable route for routine work and
+                reserve senior review for named decisions with a clear expected
+                value.
+              </p>
+              <div className="mt-5 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+                {budgetTiers.map((tier) => (
+                  <Card key={tier.tier} className="border-border bg-background">
+                    <CardHeader className="pb-3">
+                      <div className="flex items-center justify-between gap-3">
+                        <CardTitle className="text-base font-medium text-foreground">
+                          {tier.name}
+                        </CardTitle>
+                        <Badge variant="outline">{tier.tier}</Badge>
+                      </div>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-sm text-muted-foreground">
+                        {tier.description}
+                      </p>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+              <p className="mt-5 max-w-3xl text-sm font-medium text-foreground">
+                No senior delegation without a named decision, expected value,
+                cost cap, and abort condition.
+              </p>
+            </details>
+
+            <details className="rounded-lg border border-border bg-card p-4">
+              <summary className="cursor-pointer text-sm font-semibold text-foreground">
+                Task Routing Policy
+              </summary>
+              <div className="mt-5 grid gap-4 md:grid-cols-2">
+                {taskPolicies.map((policy) => (
+                  <Card key={policy.task} className="border-border bg-background">
+                    <CardHeader className="pb-3">
+                      <div className="flex items-start justify-between gap-3">
+                        <CardTitle className="text-base font-medium text-foreground">
+                          {policy.task}
+                        </CardTitle>
+                        <Badge variant="secondary" className="shrink-0">
+                          {policy.route}
+                        </Badge>
+                      </div>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-sm text-muted-foreground">
+                        {policy.rule}
+                      </p>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </details>
           </div>
         </div>
       </section>
