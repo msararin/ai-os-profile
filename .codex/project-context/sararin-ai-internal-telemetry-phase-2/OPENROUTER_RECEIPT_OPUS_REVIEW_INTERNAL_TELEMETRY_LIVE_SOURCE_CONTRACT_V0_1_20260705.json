@@ -1,0 +1,25 @@
+{
+  "accounting_fallback_reference": null,
+  "actual_provider_cost": 0.069535,
+  "completion_tokens": 1204,
+  "confidence_label": "HIGH_CONFIDENCE_ACTUAL_TELEMETRY",
+  "cost_telemetry_status": "ACTUAL_PROVIDER_COST_CAPTURED",
+  "estimated_cost": null,
+  "limitation_remarks": {
+    "cost": "actual per-request cost returned by provider response",
+    "does_not_support": "effective monitor readiness, Benchmark Dataset v0.1 cost-sensitive claims, production/live monitoring, or public-facing claims unless actual/reconciled cost evidence is later captured",
+    "supports": "bounded planning and internal limitation-aware review",
+    "usage": "provider-reported usage fields captured"
+  },
+  "model_requested": "anthropic/claude-opus-4.7",
+  "model_returned": "anthropic/claude-4.7-opus-20260416",
+  "prompt_tokens": 7887,
+  "provider": "openrouter",
+  "receipt_status": "EXTERNAL_RECEIPT_PRESENT",
+  "request_or_generation_id": "gen-1783336871-YDzHXV7TWai7bh6dTIyK",
+  "run_id": "opus-review-internal-telemetry-live-source-contract-v0-1-20260705",
+  "schema_version": "openrouter-provider-receipt.v0.1",
+  "timestamp": "2026-07-06T11:21:28.894890Z",
+  "total_tokens": 9091,
+  "usage_telemetry_status": "USAGE_TELEMETRY_CAPTURED"
+}
