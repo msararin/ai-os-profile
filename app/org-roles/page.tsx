@@ -235,21 +235,33 @@ export default function OrgRolesPage() {
 
               <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
                 {[
-                  ["Codex", "Repo and UI implementation", ""],
-                  ["Big Crew", "Product, architecture, QA, review", ""],
-                  ["Researcher", "Evidence scans and claim safety", ""],
-                  ["Supernova", "Opportunity and monetization analysis", ""],
-                  ["Investment Team", "Planned specialist lane", ""],
-                  ["optimize-worker", "Routing and trace automation", ""],
-                  ["Data Team", "Evidence-based telemetry and data quality intelligence", "#data-team"],
-                  ["Fallback routing", "Alternate path policy", ""],
-                  ["Future crews", "Only after scope is proven", ""],
-                ].map(([name, description, href]) => {
+                  ["Codex", "Repo and UI implementation", "", ""],
+                  ["Big Crew", "Product, architecture, QA, review", "", ""],
+                  ["Researcher", "Evidence scans and claim safety", "", ""],
+                  ["Supernova", "Opportunity and monetization analysis", "", ""],
+                  ["Investment Team", "Planned specialist lane", "", ""],
+                  ["optimize-worker", "Routing and trace automation", "", ""],
+                  [
+                    "Data Team",
+                    "Evidence-based telemetry and data quality intelligence",
+                    "#data-team",
+                    "New capability",
+                  ],
+                  ["Fallback routing", "Alternate path policy", "", ""],
+                  ["Future crews", "Only after scope is proven", "", ""],
+                ].map(([name, description, href, label]) => {
                   const content = (
                     <>
-                    <p className="text-sm font-medium text-foreground">
-                      {name}
-                    </p>
+                    <div className="flex items-center justify-between gap-2">
+                      <p className="text-sm font-medium text-foreground">
+                        {name}
+                      </p>
+                      {label ? (
+                        <Badge variant="secondary" className="shrink-0 text-[10px]">
+                          {label}
+                        </Badge>
+                      ) : null}
+                    </div>
                     <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
                       {description}
                     </p>
@@ -261,7 +273,7 @@ export default function OrgRolesPage() {
                       <Link
                         key={name}
                         href={href}
-                        className="rounded border border-border bg-background p-3 transition hover:border-primary/50 hover:bg-primary/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+                        className="rounded border border-primary/40 bg-primary/5 p-3 transition hover:border-primary/60 hover:bg-primary/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
                       >
                         {content}
                       </Link>
@@ -283,20 +295,38 @@ export default function OrgRolesPage() {
         </div>
       </section>
 
-      <section id="data-team" className="border-t border-border py-16">
+      <section id="data-team" className="border-t border-border bg-primary/5 py-16">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <div className="mb-8 flex flex-wrap items-center justify-between gap-4">
-            <div>
-              <h2 className="text-2xl font-semibold tracking-tight text-foreground">
-                Data Team
-              </h2>
-              <p className="mt-2 max-w-3xl text-sm text-muted-foreground">
-                Evidence-based telemetry and data quality intelligence.
+          <div className="mb-8 rounded-lg border border-primary/30 bg-background p-5 shadow-sm sm:p-6">
+            <div className="flex flex-wrap items-center gap-3">
+              <Badge variant="secondary" className="bg-primary/10 text-primary">
+                Role detail / Capability layer
+              </Badge>
+              <Badge variant="outline">Selected from Operating Org Chart</Badge>
+            </div>
+            <h2 className="mt-4 text-2xl font-semibold tracking-tight text-foreground">
+              Data Team
+            </h2>
+            <p className="mt-2 max-w-3xl text-base text-muted-foreground">
+              Evidence-based telemetry and data quality intelligence.
+            </p>
+            <p className="mt-4 max-w-4xl text-sm font-medium leading-relaxed text-foreground">
+              From dashboard-first reporting to evidence-first telemetry
+              validation.
+            </p>
+            <div className="mt-5 rounded border border-border bg-muted/30 p-4">
+              <p className="text-sm font-medium text-foreground">
+                Why this role exists / What changed
+              </p>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                This role was added after the system exposed a gap: dashboards
+                and reports can look convincing before the underlying data
+                source, field counts, classification rules, and claim boundaries
+                are strong enough. The Data Team exists to move the workflow
+                from dashboard-first reporting to evidence-first telemetry
+                validation.
               </p>
             </div>
-            <Badge variant="secondary" className="bg-primary/10 text-primary">
-              Capability layer
-            </Badge>
           </div>
 
           <div className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
