@@ -2,12 +2,50 @@ import { PageLayout } from "@/components/page-layout"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import Link from "next/link"
-import { executionControlRoles } from "@/lib/aios-execution-control-measurement"
 import {
   CapabilityRoleCard,
   dataTeamDetail,
   runnerDetail,
 } from "./role-detail-content"
+
+const executionControlRoles = [
+  {
+    name: "Super Runner",
+    label: "Execution Control Layer",
+    primaryResponsibility:
+      "Controls task boundary, dependency, authority, caveats, and stop conditions before work proceeds.",
+    evidenceContribution:
+      "Shows whether dependency, authority, stop condition, unsafe scope, and caveat fields were declared.",
+    notAllowed:
+      "Does not act as an autonomous platform, approve execution, claim production readiness, or make cost/replacement decisions.",
+    bigCrewRelationship:
+      "Governs the task boundary around Big Crew work; it is not a delivery specialist role.",
+  },
+  {
+    name: "Runner",
+    label: "Bounded Task Executor",
+    primaryResponsibility:
+      "Executes approved bounded tasks without inventing new scope.",
+    evidenceContribution:
+      "Shows files touched, scope adherence, validation-ready output, and handoff artifact status.",
+    notAllowed:
+      "Does not add unapproved scope, self-approve output, or convert task completion into performance proof.",
+    bigCrewRelationship:
+      "Executes bounded work after scope is controlled; it is not the same as Big Crew implementation perspective.",
+  },
+  {
+    name: "Checker",
+    label: "Evidence & Claim Boundary Checker",
+    primaryResponsibility:
+      "Validates evidence completeness, source-of-truth alignment, and claim boundaries.",
+    evidenceContribution:
+      "Shows evidence gaps, claim drift, source-of-truth mismatches, validation status, and first-pass acceptance.",
+    notAllowed:
+      "Does not replace Big Crew QA, approve production readiness, or claim benchmark, cost, speed, or public-proof outcomes.",
+    bigCrewRelationship:
+      "Checks whether claims are evidence-safe; Big Crew QA checks delivery quality and failure modes.",
+  },
+] as const
 
 const rolePolicies = [
   {
