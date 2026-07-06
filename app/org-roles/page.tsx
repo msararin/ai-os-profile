@@ -76,6 +76,15 @@ const rolePolicies = [
     budget: "Cheap/local first",
     escalation: "Escalate when automation would create false confidence without trace quality.",
   },
+  {
+    role: "Data Team",
+    responsibility:
+      "Evidence-based telemetry and data-quality intelligence for source-limited datasets, validation readiness, and owner-readable insight.",
+    owns: "Telemetry semantics, field inventories, validation gates, source limits, and visualization readiness",
+    doesNotOwn: "Production telemetry verification, live monitoring, full row-level completeness, or graph readiness by default",
+    budget: "Validation lane",
+    escalation: "Escalate when evidence is not strong enough to support a count, category, report, chart, or decision surface.",
+  },
 ]
 
 const taskPolicies = [
@@ -226,29 +235,198 @@ export default function OrgRolesPage() {
 
               <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
                 {[
-                  ["Codex", "Repo and UI implementation"],
-                  ["Big Crew", "Product, architecture, QA, review"],
-                  ["Researcher", "Evidence scans and claim safety"],
-                  ["Supernova", "Opportunity and monetization analysis"],
-                  ["Investment Team", "Planned specialist lane"],
-                  ["optimize-worker", "Routing and trace automation"],
-                  ["Fallback routing", "Alternate path policy"],
-                  ["Future crews", "Only after scope is proven"],
-                ].map(([name, description]) => (
-                  <div
-                    key={name}
-                    className="rounded border border-border bg-background p-3"
-                  >
+                  ["Codex", "Repo and UI implementation", ""],
+                  ["Big Crew", "Product, architecture, QA, review", ""],
+                  ["Researcher", "Evidence scans and claim safety", ""],
+                  ["Supernova", "Opportunity and monetization analysis", ""],
+                  ["Investment Team", "Planned specialist lane", ""],
+                  ["optimize-worker", "Routing and trace automation", ""],
+                  ["Data Team", "Evidence-based telemetry and data quality intelligence", "#data-team"],
+                  ["Fallback routing", "Alternate path policy", ""],
+                  ["Future crews", "Only after scope is proven", ""],
+                ].map(([name, description, href]) => {
+                  const content = (
+                    <>
                     <p className="text-sm font-medium text-foreground">
                       {name}
                     </p>
                     <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
                       {description}
                     </p>
-                  </div>
-                ))}
+                    </>
+                  )
+
+                  if (href) {
+                    return (
+                      <Link
+                        key={name}
+                        href={href}
+                        className="rounded border border-border bg-background p-3 transition hover:border-primary/50 hover:bg-primary/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+                      >
+                        {content}
+                      </Link>
+                    )
+                  }
+
+                  return (
+                    <div
+                      key={name}
+                      className="rounded border border-border bg-background p-3"
+                    >
+                      {content}
+                    </div>
+                  )
+                })}
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="data-team" className="border-t border-border py-16">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <div className="mb-8 flex flex-wrap items-center justify-between gap-4">
+            <div>
+              <h2 className="text-2xl font-semibold tracking-tight text-foreground">
+                Data Team
+              </h2>
+              <p className="mt-2 max-w-3xl text-sm text-muted-foreground">
+                Evidence-based telemetry and data quality intelligence.
+              </p>
+            </div>
+            <Badge variant="secondary" className="bg-primary/10 text-primary">
+              Capability layer
+            </Badge>
+          </div>
+
+          <div className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
+            <Card className="border-border bg-card">
+              <CardHeader>
+                <CardTitle className="text-lg font-medium text-foreground">
+                  Role purpose
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4 text-sm leading-relaxed text-muted-foreground">
+                <p>
+                  The Data Team turns telemetry-like evidence into
+                  decision-ready insight. Its purpose is not to make dashboards
+                  look convincing first. Its purpose is to make sure fields,
+                  counts, classifications, and evidence boundaries are clear
+                  before claims or visualizations are promoted.
+                </p>
+                <p>
+                  Reusable skill is separated from project context: permanent
+                  skills define the method, project context supplies the facts,
+                  and reports or visualizations are produced only when the
+                  evidence is ready.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-border bg-card">
+              <CardHeader>
+                <CardTitle className="text-lg font-medium text-foreground">
+                  Claim boundary
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm leading-relaxed text-muted-foreground">
+                  This role represents a capability layer and
+                  validation-readiness workflow. It does not claim production
+                  telemetry verification, full row-level completeness,
+                  provider-backed review, live monitoring, or production graph
+                  readiness by default.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+
+          <div className="mt-6 grid gap-6 lg:grid-cols-2">
+            <Card className="border-border bg-card">
+              <CardHeader>
+                <CardTitle className="text-lg font-medium text-foreground">
+                  Core responsibilities
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ul className="space-y-2 text-sm leading-relaxed text-muted-foreground">
+                  <li>Interpret telemetry-like fields and signal meaning.</li>
+                  <li>Separate profiling from validation.</li>
+                  <li>
+                    Check whether counts are directly observed, inferred, or
+                    not claimable.
+                  </li>
+                  <li>
+                    Define field inventories, field-level counts,
+                    classification rules, and sample-row proof.
+                  </li>
+                  <li>
+                    Prepare visualization and UI readiness only after evidence
+                    is strong enough.
+                  </li>
+                  <li>Prevent dashboards and reports from overclaiming.</li>
+                </ul>
+              </CardContent>
+            </Card>
+
+            <Card className="border-border bg-card">
+              <CardHeader>
+                <CardTitle className="text-lg font-medium text-foreground">
+                  External reference models
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ul className="space-y-2 text-sm leading-relaxed text-muted-foreground">
+                  <li>OpenTelemetry Semantic Conventions</li>
+                  <li>Great Expectations / GX-style validation</li>
+                  <li>Soda-style data quality checks</li>
+                  <li>Evidently-style profiling and monitoring</li>
+                </ul>
+              </CardContent>
+            </Card>
+          </div>
+
+          <div className="mt-6 overflow-x-auto rounded-lg border border-border bg-card">
+            <table className="min-w-[880px] divide-y divide-border">
+              <thead className="bg-background">
+                <tr>
+                  {["Permanent skill", "Public-safe purpose"].map((heading) => (
+                    <th
+                      key={heading}
+                      scope="col"
+                      className="px-4 py-3 text-left text-sm font-medium text-foreground"
+                    >
+                      {heading}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-border">
+                {[
+                  [
+                    "data-team-core-telemetry-semantics",
+                    "Interprets telemetry-like signals, fields, attributes, logs, metrics, traces, resources, events, and claim/evidence metadata.",
+                  ],
+                  [
+                    "data-team-quality-validation",
+                    "Defines data quality checks, field-level counts, reproducible classification rules, category recount gates, and downgrade language.",
+                  ],
+                  [
+                    "data-team-profiling-monitoring",
+                    "Turns profiling outputs into owner-readable insight, monitoring-ready summaries, segment views, tooltip/disclaimer guidance, and visualization readiness gates.",
+                  ],
+                ].map(([skill, purpose]) => (
+                  <tr key={skill} className="align-top">
+                    <td className="whitespace-nowrap px-4 py-4 text-sm font-medium text-foreground">
+                      {skill}
+                    </td>
+                    <td className="px-4 py-4 text-sm text-muted-foreground">
+                      {purpose}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         </div>
       </section>
