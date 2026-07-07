@@ -1,59 +1,118 @@
 import Link from "next/link"
+import { HomepageGovernanceHero } from "@/components/homepage-governance-hero"
 import { PageLayout } from "@/components/page-layout"
-import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Alert, AlertDescription } from "@/components/ui/alert"
+
+const novicePositioningRows = [
+  {
+    is: "AI work people can trust",
+    isNot: "Not a chatbot - because chatting is not governance",
+    matters: "Can we trust it?",
+  },
+  {
+    is: "AI work you can measure",
+    isNot: "Not a prompt library - because prompts alone do not prove what happened",
+    matters: "Can we review it?",
+  },
+  {
+    is: "AI work you can audit",
+    isNot: "Not an automation script - because automation can run without accountability",
+    matters: "Can we prove it?",
+  },
+  {
+    is: "AI work with review gates",
+    isNot:
+      "Not just a workflow diagram - because diagrams show intended steps, not whether the work was evidenced, reviewed, stopped, or safe to claim",
+    matters: "Can we stop it safely?",
+  },
+  {
+    is: "AI work with role separation",
+    isNot:
+      "Not just an Agent SDK - because SDKs help agents act, but AIOS governs whether the work is trusted, reviewed, and allowed to be claimed",
+    matters: "Can we say this is done without overclaiming?",
+  },
+  {
+    is: "AI work safe to operationalize",
+    isNot:
+      "Not just a tool that lets agents work for humans - because real AI operations need control, evidence, and human authority",
+    matters: "Can this survive real governance?",
+  },
+]
 
 export default function HomePage() {
   return (
     <PageLayout>
-      {/* Hero Section */}
-      <section className="border-b border-border bg-background">
-        <div className="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
-          <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl mb-2">
-            Sararin Malaithong
-          </h1>
-          <p className="text-lg text-muted-foreground mb-6 max-w-4xl">
-            A live AI Operating System showcase — showing how I structure AI work with governance, role routing, evidence discipline, and measurable delivery practices, not just AI outputs.
-          </p>
-          
-          <p className="text-2xl font-semibold text-primary mt-6 mb-4">
-            I create structure where transformation is messy.
-          </p>
-          
-          <div className="space-y-4 text-base text-muted-foreground max-w-3xl">
-            <p>
-              This portfolio demonstrates a working AI Operating System (AIOS) for governed transformation work. 
-              It shows architecture, governance, cost awareness, learning loops, and evidence discipline—not just theory.
+      <HomepageGovernanceHero />
+
+      <section className="border-b border-[#e5edf4] bg-[#fffaf0] py-12">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl">
+            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.16em] text-[#b45309]">
+              Novice guide
             </p>
-            
-            <p>
-              I'm a transformation and program governance leader with 15+ years turning ambiguous goals into 
-              executable systems. My background: data reliability → banking modernization → cloud governance → 
-              AI orchestration. Today I build and govern AI systems that prove governance can enable speed, 
-              not only control it.
+            <h2 className="break-words bg-gradient-to-r from-[#0f766e] via-[#10233f] to-[#f59e0b] bg-clip-text text-2xl font-semibold leading-tight text-transparent sm:text-3xl">
+              AIOS makes agentic AI trustworthy.
+            </h2>
+            <p className="mt-4 text-base leading-7 text-[#536274] sm:text-lg">
+              Agent SDKs help AI do the work. AIOS governs whether the work can be trusted.
             </p>
           </div>
-          
-          {/* Employment Status */}
-          <Alert className="mt-6 max-w-3xl border-primary/30 bg-primary/5">
-            <AlertDescription className="text-base">
-              <strong>Currently exploring senior roles</strong> in AI/data transformation, 
-              delivery governance, and enterprise technology programs.
-            </AlertDescription>
-          </Alert>
 
-          <div className="mt-8 flex gap-4 flex-wrap">
-            <Button asChild size="lg">
-              <Link href="/architecture">View AIOS Architecture</Link>
-            </Button>
-            <Button asChild variant="outline" size="lg">
-              <Link href="/achievements">See Measured Results</Link>
-            </Button>
-            <Button asChild variant="outline" size="lg">
-              <Link href="/about">About Me</Link>
-            </Button>
+          <div className="mt-8 grid min-w-0 grid-cols-1 gap-4 lg:grid-cols-3">
+            <div className="min-w-0 overflow-hidden rounded-md border border-[#5eead4] bg-white shadow-sm">
+              <div className="border-b border-[#c8f7ef] bg-[#f0fffb] px-4 py-3">
+                <h3 className="break-words text-sm font-semibold uppercase tracking-[0.12em] text-[#0f766e]">
+                  What is AIOS
+                </h3>
+              </div>
+              <div className="divide-y divide-[#e5edf4]">
+                {novicePositioningRows.map((row) => (
+                  <p key={row.is} className="min-h-20 break-words px-4 py-4 text-sm font-medium leading-6 text-[#10233f]">
+                    {row.is}
+                  </p>
+                ))}
+              </div>
+            </div>
+
+            <div className="min-w-0 overflow-hidden rounded-md border border-[#f59e0b] bg-white shadow-sm">
+              <div className="border-b border-[#fde3b0] bg-[#fffaf0] px-4 py-3">
+                <h3 className="break-words text-sm font-semibold uppercase tracking-[0.12em] text-[#b45309]">
+                  What AIOS is not
+                </h3>
+              </div>
+              <div className="divide-y divide-[#e5edf4]">
+                {novicePositioningRows.map((row) => (
+                  <p key={row.isNot} className="min-h-20 break-words px-4 py-4 text-sm leading-6 text-[#46566a]">
+                    {row.isNot}
+                  </p>
+                ))}
+              </div>
+            </div>
+
+            <div className="min-w-0 overflow-hidden rounded-md border border-[#10233f] bg-[#10233f] text-white shadow-sm">
+              <div className="border-b border-white/15 px-4 py-3">
+                <h3 className="break-words text-sm font-semibold uppercase tracking-[0.12em] text-[#a8dfe0]">
+                  Why AIOS matters
+                </h3>
+              </div>
+              <div className="divide-y divide-white/15">
+                {novicePositioningRows.map((row) => (
+                  <p key={row.matters} className="min-h-20 break-words px-4 py-4 text-sm font-medium leading-6">
+                    {row.matters}
+                  </p>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-8 max-w-3xl border-l-4 border-[#f59e0b] bg-white px-5 py-4 shadow-sm">
+            <p className="break-words text-base font-semibold leading-7 text-[#10233f]">
+              Agent SDKs help AI act. AIOS governs whether the work can be trusted, reviewed, and safely claimed.
+            </p>
+            <p className="mt-2 break-words text-sm leading-6 text-[#536274]">
+              It turns AI execution into measurable, auditable, governance-ready operations.
+            </p>
           </div>
         </div>
       </section>
