@@ -68,6 +68,42 @@ const evidenceGroups = [
   },
 ]
 
+const novicePositioningRows = [
+  {
+    is: "AI work people can trust",
+    isNot: "Not a chatbot - because chatting is not governance",
+    matters: "Can we trust it?",
+  },
+  {
+    is: "AI work you can measure",
+    isNot: "Not a prompt library - because prompts alone do not prove what happened",
+    matters: "Can we review it?",
+  },
+  {
+    is: "AI work you can audit",
+    isNot: "Not an automation script - because automation can run without accountability",
+    matters: "Can we prove it?",
+  },
+  {
+    is: "AI work with review gates",
+    isNot:
+      "Not just a workflow diagram - because diagrams show intended steps, not whether the work was evidenced, reviewed, stopped, or safe to claim",
+    matters: "Can we stop it safely?",
+  },
+  {
+    is: "AI work with role separation",
+    isNot:
+      "Not just an Agent SDK - because SDKs help agents act, but AIOS governs whether the work is trusted, reviewed, and allowed to be claimed",
+    matters: "Can we say this is done without overclaiming?",
+  },
+  {
+    is: "AI work safe to operationalize",
+    isNot:
+      "Not just a tool that lets agents work for humans - because real AI operations need control, evidence, and human authority",
+    matters: "Can this survive real governance?",
+  },
+]
+
 const operatingModel = [
   {
     title: "Frame the work",
@@ -229,6 +265,73 @@ export default function HomePage() {
               </section>
             ))}
           </div>
+
+          <section className="mt-10 overflow-hidden border border-amber-300 bg-white shadow-sm">
+            <div className="grid gap-0 lg:grid-cols-[0.85fr_1.15fr]">
+              <div className="border-b border-amber-200 bg-gradient-to-br from-slate-950 via-blue-950 to-teal-900 p-6 text-white lg:border-b-0 lg:border-r lg:p-8">
+                <p className="text-sm font-medium uppercase text-amber-200">
+                  Novice guide
+                </p>
+                <h2 className="mt-3 text-2xl font-semibold tracking-tight sm:text-3xl">
+                  AIOS makes agentic AI trustworthy.
+                </h2>
+                <p className="mt-4 text-base leading-7 text-slate-200">
+                  Agent SDKs help AI do the work. AIOS governs whether the work is evidenced,
+                  reviewed, controlled, and safe to claim.
+                </p>
+                <p className="mt-5 border-l-4 border-amber-300 pl-4 text-sm font-medium leading-6 text-amber-100">
+                  It turns AI execution into measurable, auditable, governance-ready operations.
+                </p>
+              </div>
+
+              <div className="grid min-w-0 gap-0 lg:grid-cols-3">
+                <div className="min-w-0 border-b border-border lg:border-b-0 lg:border-r">
+                  <div className="border-b border-teal-200 bg-teal-50 px-4 py-3">
+                    <h3 className="break-words text-sm font-semibold uppercase tracking-normal text-teal-800">
+                      What is AIOS
+                    </h3>
+                  </div>
+                  <div className="divide-y divide-border">
+                    {novicePositioningRows.map((row) => (
+                      <p key={row.is} className="min-h-20 break-words px-4 py-4 text-sm font-medium leading-6 text-foreground">
+                        {row.is}
+                      </p>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="min-w-0 border-b border-border lg:border-b-0 lg:border-r">
+                  <div className="border-b border-amber-200 bg-amber-50 px-4 py-3">
+                    <h3 className="break-words text-sm font-semibold uppercase tracking-normal text-amber-800">
+                      What AIOS is not
+                    </h3>
+                  </div>
+                  <div className="divide-y divide-border">
+                    {novicePositioningRows.map((row) => (
+                      <p key={row.isNot} className="min-h-20 break-words px-4 py-4 text-sm leading-6 text-muted-foreground">
+                        {row.isNot}
+                      </p>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="min-w-0">
+                  <div className="border-b border-blue-200 bg-blue-50 px-4 py-3">
+                    <h3 className="break-words text-sm font-semibold uppercase tracking-normal text-blue-900">
+                      Why AIOS matters
+                    </h3>
+                  </div>
+                  <div className="divide-y divide-border">
+                    {novicePositioningRows.map((row) => (
+                      <p key={row.matters} className="min-h-20 break-words px-4 py-4 text-sm font-medium leading-6 text-foreground">
+                        {row.matters}
+                      </p>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
 
           <div className="mt-10 overflow-hidden border border-border bg-card/90 shadow-sm backdrop-blur">
             <div className="grid gap-0 lg:grid-cols-[0.9fr_1.1fr]">
