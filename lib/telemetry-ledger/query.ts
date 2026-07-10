@@ -103,6 +103,7 @@ export type InternalTelemetryDashboardData = {
     batches: number
     candidateRecords: number
     exclusions: number
+    backfillCandidates: number
   }
   summaryCards: DashboardMetricRow[]
   spendByModelProvider: DashboardMetricRow[]
@@ -175,6 +176,7 @@ function emptyDashboardData(reason: string): InternalTelemetryDashboardData {
       batches: 0,
       candidateRecords: 0,
       exclusions: 0,
+      backfillCandidates: 0,
     },
     summaryCards: [
       {
@@ -489,6 +491,7 @@ export function getInternalTelemetryDashboardData(): InternalTelemetryDashboardD
         batches: batches.length,
         candidateRecords: candidateRows.length,
         exclusions: exclusionRows.length,
+        backfillCandidates: candidateRows.filter((row) => (row.coverage_class ?? "").includes("BACKFILL")).length,
       },
       summaryCards: [
         {

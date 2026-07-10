@@ -96,6 +96,9 @@ async function sourceRegression() {
   record("Knowledge Sharing source removes Related Achievement box", !/July 1 .*Related Achievement/.test(knowledgeSource), /July 1 .*Related Achievement/.test(knowledgeSource) ? "rogue box found" : "absent")
   record("Knowledge Sharing source removes July 1 achievement link", !/View July 1 achievement evidence/.test(knowledgeSource), /View July 1 achievement evidence/.test(knowledgeSource) ? "rogue link found" : "absent")
   record("Knowledge Sharing source preserves at least 32 posts", (knowledgeSource.match(/urn:li:share:/g) || []).length >= 32, `${(knowledgeSource.match(/urn:li:share:/g) || []).length} URNs`) 
+  record("Knowledge Sharing source owner URN 7480909361486397440 exactly once", (knowledgeSource.match(/urn:li:share:7480909361486397440/g) || []).length === 1, "source invariant")
+  record("Knowledge Sharing source owner URN 7478071149814403072 exactly once", (knowledgeSource.match(/urn:li:share:7478071149814403072/g) || []).length === 1, "source invariant")
+  record("Knowledge Sharing source removes iframe h-auto collapse class", !/\bh-auto\b/.test(knowledgeSource), /\bh-auto\b/.test(knowledgeSource) ? "h-auto found" : "absent")
   record("Knowledge Sharing source no viewport-width escape", !/\bw-screen\b/.test(knowledgeSource), /\bw-screen\b/.test(knowledgeSource) ? "w-screen found" : "no w-screen")
 
   const telemetryExpectations = [
@@ -110,6 +113,7 @@ async function sourceRegression() {
     ["source label", /sourceLabel/],
     ["freshness label", /sourceFreshness/],
     ["snapshot stale gate", /snapshotStale/],
+    ["candidate non-claim adjacent to cards", /Candidate\/backfill records; not verified production runtime telemetry\./],
   ]
   for (const [label, pattern] of telemetryExpectations) {
     record(`Internal Telemetry source ${label}`, pattern.test(telemetrySource), pattern.test(telemetrySource) ? "present" : "missing")
@@ -130,6 +134,7 @@ async function sourceRegression() {
   record("Telemetry snapshot separates agent runs", Number(snapshot?.counts?.agentRuns) >= 0 && snapshot?.counts?.agentRuns !== snapshot?.counts?.candidateRecords, "agentRuns and candidateRecords remain separate")
   record("Telemetry snapshot has checksum/freshness", Boolean(snapshot?.source?.checksumPrefix && snapshot?.generatedAt), "checksum and generatedAt present")
   record("Telemetry snapshot strips absolute local paths", !/\/Users\/apple\//.test(snapshotSource), /\/Users\/apple\//.test(snapshotSource) ? "absolute path found" : "no absolute path")
+  record("Telemetry snapshot has backfill candidate count", Number(snapshot?.counts?.backfillCandidates) > 0, `backfillCandidates=${snapshot?.counts?.backfillCandidates ?? "missing"}`)
 }
 
 try {
@@ -140,6 +145,7 @@ try {
   ])
   record("/knowledge-sharing Related Achievement box absent", !/July 1 — Related Achievement|View July 1 achievement evidence/.test(knowledgeBody), "box/link absent")
   record("/knowledge-sharing has at least 32 embedded posts", (knowledgeBody.match(/urn:li:share:/g) || []).length >= 32, `${(knowledgeBody.match(/urn:li:share:/g) || []).length} URNs`)
+  record("/knowledge-sharing has exactly 32 iframe cards", (knowledgeBody.match(/<iframe\b/g) || []).length === 32, `${(knowledgeBody.match(/<iframe\b/g) || []).length} iframes`)
 
   const systemHealthBody = await publicPage("/architecture/system-health", [
     ["Internal Telemetry card", /Internal Telemetry/],

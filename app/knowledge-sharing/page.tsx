@@ -243,7 +243,7 @@ export default function KnowledgeSharingPage() {
                   frameBorder="0"
                   allowFullScreen
                   title={post.title}
-                  className="h-auto w-full max-w-[504px]"
+                  className="w-full max-w-[504px]"
                 />
               </div>
             </article>
