@@ -2,6 +2,18 @@ import { PageLayout } from "@/components/page-layout"
 
 const linkedInPosts = [
   {
+    urn: "urn:li:share:7480909361486397440",
+    height: 1980,
+    title: "LinkedIn Post - Jul 9, 2026",
+    date: "Jul 9, 2026",
+  },
+  {
+    urn: "urn:li:share:7478071149814403072",
+    height: 1951,
+    title: "LinkedIn Post - Jul 1, 2026",
+    date: "Jul 1, 2026",
+  },
+  {
     urn: "urn:li:share:7475176644392009728",
     height: 1749,
     title: "LinkedIn Post - Jun 23, 2026",
@@ -202,9 +214,23 @@ export default function KnowledgeSharingPage() {
             public Knowledge Sharing area and each card identifies the post date.
           </p>
           <p className="mt-3 text-sm font-medium text-muted-foreground">
-            Archive status: public LinkedIn posts through 23 Jun 2026. Drafts and learning
+            Archive status: owner-provided LinkedIn posts through 9 Jul 2026. Drafts and learning
             records are not exposed on this public page.
           </p>
+        </section>
+
+        <section className="mb-8 rounded-lg border p-4">
+          <h2 className="text-lg font-semibold">July 1 — Related Achievement</h2>
+          <p className="mt-2 text-sm text-muted-foreground">
+            This July 1 item is captured under Achievements. See the linked achievement for the
+            implementation evidence, public-safe report, and closeout context.
+          </p>
+          <a
+            href="/achievements"
+            className="mt-3 inline-block text-sm font-medium text-primary underline-offset-4 hover:underline"
+          >
+            View July 1 achievement evidence
+          </a>
         </section>
 
         <div className="grid gap-8">

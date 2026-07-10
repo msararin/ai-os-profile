@@ -40,6 +40,15 @@ const surfaces = [
     ],
   },
   {
+    title: "Internal Telemetry",
+    status: "Protected internal",
+    href: "/internal/telemetry",
+    copy: [
+      "Protected internal telemetry view for system health and execution evidence.",
+      "Authentication is required; this link does not expose telemetry publicly or claim live readiness.",
+    ],
+  },
+  {
     title: "AIOS Monitoring",
     status: "Under construction — static snapshot",
     href: "/architecture/system-health/monitoring",
