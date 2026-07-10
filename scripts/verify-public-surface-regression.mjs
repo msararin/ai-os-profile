@@ -1,9 +1,29 @@
 #!/usr/bin/env node
 
-const baseUrl = (process.argv[2] || process.env.BASE_URL || "http://127.0.0.1:3000").replace(/\/$/, "")
+import { readFile } from "node:fs/promises"
+import path from "node:path"
+
+const args = process.argv.slice(2)
+const sourceRootIndex = args.indexOf("--source-root")
+const sourceRoot = path.resolve(
+  sourceRootIndex >= 0 ? args[sourceRootIndex + 1] : process.env.SOURCE_ROOT || process.cwd(),
+)
+const baseArg = args.find((arg, index) => arg !== "--source-root" && index !== sourceRootIndex + 1)
+const baseUrl = (baseArg || process.env.BASE_URL || "http://127.0.0.1:3000").replace(/\/$/, "")
 const timeoutMs = Number(process.env.VERIFY_TIMEOUT_MS || 15000)
 
 const checks = []
+
+// Owner-review guardrails: these strings represent the raw empty staging UX that must not return.
+const bannedTelemetrySourcePatterns = [
+  ["raw staging banner", /STAGING_CANDIDATE - local internal dashboard query candidate/],
+  ["empty-query message", /No rows found in the staging query/],
+  ["raw missing-field banner", /FIELD_NOT_EXPOSED_NOT_CLAIMED - ledger unavailable/],
+]
+
+// Positive claim forms are forbidden; explicit non-claims such as "not established" remain allowed.
+const positiveTelemetryOverclaims =
+  /telemetry (?:is )?ready|production telemetry (?:is )?verified|public telemetry dashboard|authenticated dashboard content (?:is )?verified/i
 
 function record(name, passed, detail) {
   checks.push({ name, passed, detail })
@@ -57,7 +77,49 @@ async function protectedRoute(path, { allowAbsent = false } = {}) {
   record(`${path} response body leak`, !protectedContentLeaked, protectedContentLeaked ? "protected content found" : "no protected content found")
 }
 
+async function sourceRegression() {
+  const knowledgeSource = await readFile(path.join(sourceRoot, "app/knowledge-sharing/page.tsx"), "utf8")
+  const telemetrySource = await readFile(path.join(sourceRoot, "app/internal/telemetry/page.tsx"), "utf8")
+
+  const knowledgeExpectations = [
+    ["bounded page width", /max-w-5xl/],
+    ["shrink-safe descendants", /min-w-0/],
+    ["contained cards and embeds", /overflow-hidden/],
+    ["wrapping text and links", /break-words/],
+    ["responsive iframe cap", /w-full max-w-\[504px\]/],
+  ]
+  for (const [label, pattern] of knowledgeExpectations) {
+    record(`Knowledge Sharing source ${label}`, pattern.test(knowledgeSource), pattern.test(knowledgeSource) ? "present" : "missing")
+  }
+  record("Knowledge Sharing source no viewport-width escape", !/\bw-screen\b/.test(knowledgeSource), /\bw-screen\b/.test(knowledgeSource) ? "w-screen found" : "no w-screen")
+
+  const telemetryExpectations = [
+    ["server auth call", /const session = await auth\(\)/],
+    ["owner allowlist", /isAllowedInternalEmail/],
+    ["auth redirect", /redirect\("\/api\/auth\/signin\?callbackUrl=\/internal\/telemetry"\)/],
+    ["dynamic route", /export const dynamic = "force-dynamic"/],
+    ["local query row presence", /Local query row presence/],
+    ["claim boundary", /Claim boundary/],
+    ["next gates", /Next gates/],
+    ["collapsed diagnostics", /<details/],
+  ]
+  for (const [label, pattern] of telemetryExpectations) {
+    record(`Internal Telemetry source ${label}`, pattern.test(telemetrySource), pattern.test(telemetrySource) ? "present" : "missing")
+  }
+
+  for (const [label, pattern] of bannedTelemetrySourcePatterns) {
+    record(`Internal Telemetry source excludes ${label}`, !pattern.test(telemetrySource), pattern.test(telemetrySource) ? "banned string found" : "absent across full source")
+  }
+
+  record(
+    "Internal Telemetry source no positive readiness/exposure claim",
+    !positiveTelemetryOverclaims.test(telemetrySource),
+    positiveTelemetryOverclaims.test(telemetrySource) ? "positive overclaim found" : "no positive overclaim",
+  )
+}
+
 try {
+  await sourceRegression()
   await publicPage("/knowledge-sharing", [
     ["URN 7480909361486397440", /urn:li:share:7480909361486397440/],
     ["URN 7478071149814403072", /urn:li:share:7478071149814403072/],

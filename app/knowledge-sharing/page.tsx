@@ -198,7 +198,7 @@ const linkedInPosts = [
 export default function KnowledgeSharingPage() {
   return (
     <PageLayout>
-      <div className="container mx-auto px-4 py-8">
+      <div className="mx-auto w-full max-w-5xl min-w-0 px-4 py-8 sm:px-6 lg:px-8">
         <div className="mb-8">
           <h1 className="text-4xl font-bold mb-4">Knowledge Sharing</h1>
           <p className="text-muted-foreground text-lg">
@@ -206,7 +206,7 @@ export default function KnowledgeSharingPage() {
           </p>
         </div>
 
-        <section className="mb-8 rounded-lg border bg-muted/30 p-4">
+        <section className="mb-8 min-w-0 max-w-full overflow-hidden rounded-lg border bg-muted/30 p-4">
           <h2 className="text-lg font-semibold">LinkedIn knowledge sharing archive</h2>
           <p className="mt-2 text-sm text-muted-foreground">
             Embedded LinkedIn posts are shown below. If an embed is blocked by the local browser,
@@ -219,24 +219,24 @@ export default function KnowledgeSharingPage() {
           </p>
         </section>
 
-        <section className="mb-8 rounded-lg border p-4">
-          <h2 className="text-lg font-semibold">July 1 — Related Achievement</h2>
-          <p className="mt-2 text-sm text-muted-foreground">
+        <section className="mb-8 min-w-0 max-w-full overflow-hidden rounded-lg border p-4">
+          <h2 className="break-words text-lg font-semibold">July 1 — Related Achievement</h2>
+          <p className="mt-2 break-words text-sm text-muted-foreground">
             This July 1 item is captured under Achievements. See the linked achievement for the
             implementation evidence, public-safe report, and closeout context.
           </p>
           <a
             href="/achievements"
-            className="mt-3 inline-block text-sm font-medium text-primary underline-offset-4 hover:underline"
+            className="mt-3 inline-block max-w-full break-words text-sm font-medium text-primary underline-offset-4 hover:underline"
           >
             View July 1 achievement evidence
           </a>
         </section>
 
-        <div className="grid gap-8">
+        <div className="grid min-w-0 gap-8">
           {linkedInPosts.map((post) => (
-            <article key={post.urn} className="border rounded-lg p-4 bg-card">
-              <div className="flex items-center justify-between mb-4">
+            <article key={post.urn} className="min-w-0 max-w-full overflow-hidden rounded-lg border bg-card p-4">
+              <div className="mb-4 flex min-w-0 flex-wrap items-center justify-between gap-2">
                 <h2 className="text-lg font-medium text-muted-foreground">
                   {post.date}
                 </h2>
@@ -244,12 +244,12 @@ export default function KnowledgeSharingPage() {
                   href={`https://www.linkedin.com/feed/update/${post.urn}`}
                   target="_blank"
                   rel="noreferrer"
-                  className="text-sm font-medium text-primary underline-offset-4 hover:underline"
+                  className="max-w-full break-words text-sm font-medium text-primary underline-offset-4 hover:underline"
                 >
                   Open on LinkedIn
                 </a>
               </div>
-              <div className="flex justify-center">
+              <div className="flex min-w-0 max-w-full justify-center overflow-hidden">
                 <iframe
                   src={`https://www.linkedin.com/embed/feed/update/${post.urn}`}
                   height={post.height}
@@ -257,7 +257,7 @@ export default function KnowledgeSharingPage() {
                   frameBorder="0"
                   allowFullScreen
                   title={post.title}
-                  className="max-w-full"
+                  className="h-auto w-full max-w-[504px]"
                 />
               </div>
             </article>
