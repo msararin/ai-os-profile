@@ -104,19 +104,23 @@ export default async function InternalTelemetryPage() {
           <Card>
             <CardHeader>
               <CardDescription>Local query row presence</CardDescription>
-              <CardTitle className="text-lg">{ledgerState}</CardTitle>
+              <CardTitle className="text-lg">
+                {data.dbMode === "SNAPSHOT_CANDIDATE" ? data.counts.candidateRecords.toLocaleString() : ledgerState}
+              </CardTitle>
             </CardHeader>
             <CardContent className="text-sm text-muted-foreground">
-              This describes the current query candidate only, not production data quality.
+              Candidate/backfill records; not verified production runtime telemetry.
             </CardContent>
           </Card>
           <Card>
             <CardHeader>
-              <CardDescription>Owner decision</CardDescription>
-              <CardTitle className="text-lg">Review required</CardTitle>
+              <CardDescription>Backfill candidate class</CardDescription>
+              <CardTitle className="text-lg">
+                {data.dbMode === "SNAPSHOT_CANDIDATE" ? data.counts.backfillCandidates.toLocaleString() : "Review required"}
+              </CardTitle>
             </CardHeader>
             <CardContent className="text-sm text-muted-foreground">
-              Keep claims capped until the ledger, fields, and rendered evidence pass review.
+              Backfill class only; not verified production runtime telemetry. Owner review required.
             </CardContent>
           </Card>
         </div>
