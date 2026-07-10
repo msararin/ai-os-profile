@@ -1,4 +1,5 @@
 import DatabaseConstructor from "better-sqlite3"
+import candidateSnapshot from "@/data/telemetry/internal-candidate-snapshot.json"
 
 const DEFAULT_LEDGER_DB_PATH =
   "/Users/apple/projects/optimize-worker/observability/aios_observability.sqlite"
@@ -93,7 +94,7 @@ export type DashboardTableRow = {
 
 export type InternalTelemetryDashboardData = {
   dbPath: string
-  dbMode: "READ_ONLY_QUERY"
+  dbMode: "READ_ONLY_QUERY" | "SNAPSHOT_CANDIDATE"
   ledgerUnavailableReason?: string
   generatedAt: string
   batch: BackfillBatchRow | null
@@ -142,6 +143,10 @@ export type InternalTelemetryDashboardData = {
     missingFieldCount: number
     dataSourceType: DashboardDataSourceType
   }>
+  sourceLabel?: string
+  sourceFreshness?: string
+  sourceChecksumPrefix?: string
+  snapshotStale?: boolean
 }
 
 function getDbPath() {
@@ -195,6 +200,68 @@ function emptyDashboardData(reason: string): InternalTelemetryDashboardData {
     ledgerCoverage: [],
     taskReceiptRows: [],
     lowConfidenceRows: [],
+  }
+}
+
+function snapshotDashboardData(): InternalTelemetryDashboardData {
+  const snapshot = candidateSnapshot
+  const generatedAge = Date.now() - new Date(snapshot.generatedAt).getTime()
+  const sourceFreshnessAge = Date.now() - new Date(snapshot.source.sourceFreshness.replace(" ", "T") + "Z").getTime()
+  const metric = (label: string, value: number, detail: string): DashboardMetricRow => ({
+    label,
+    value,
+    detail,
+    dataSourceType: "STAGING_CANDIDATE",
+  })
+  const taskReceiptRows = snapshot.taskRows.map((row) => ({
+    taskTitle: row.taskTitle ?? "SOURCE_ARTIFACT_MISSING_FIELD",
+    taskId: "SOURCE_ARTIFACT_MISSING_FIELD",
+    sourceFilePath: "REDACTED_SOURCE_PATH",
+    evidenceType: row.entityType,
+    claimLevel: row.claimLevel,
+    finalStatus: "CANDIDATE_RECORD_ONLY",
+    authorizedNextAction: "Telemetry Steward review",
+    missingFieldCount: 0,
+    dataSourceType: "STAGING_CANDIDATE" as const,
+    extractionConfidence: "medium",
+    sourceOrigin: "LOCAL_SQLITE_CANDIDATES",
+  }))
+  const modelVsTask = snapshot.modelRows.map((row) => ({
+    taskTitle: row.taskTitle ?? "SOURCE_ARTIFACT_MISSING_FIELD",
+    provider: row.provider ?? "SOURCE_ARTIFACT_MISSING_FIELD",
+    requestedModel: row.requestedModel ?? "SOURCE_ARTIFACT_MISSING_FIELD",
+    returnedModel: row.returnedModel ?? "SOURCE_ARTIFACT_MISSING_FIELD",
+    totalTokens: row.totalTokens === null ? "SOURCE_ARTIFACT_MISSING_FIELD" : String(row.totalTokens),
+    cost: row.cost === null ? "SOURCE_ARTIFACT_MISSING_FIELD" : String(row.cost),
+    generationId: "SOURCE_ARTIFACT_MISSING_FIELD",
+    sourceFilePath: "REDACTED_SOURCE_PATH",
+    dataSourceType: "STAGING_CANDIDATE" as const,
+  }))
+  return {
+    dbPath: "SANITIZED_BUNDLED_CANDIDATE_SNAPSHOT",
+    dbMode: "SNAPSHOT_CANDIDATE",
+    generatedAt: snapshot.generatedAt,
+    batch: null,
+    counts: { ...snapshot.counts, batches: snapshot.batch ? 1 : 0 },
+    summaryCards: [
+      metric("Candidate records", snapshot.counts.candidateRecords, "Candidate/backfill records only"),
+      metric("Advisory exclusions", snapshot.counts.exclusions, "Excluded or low-confidence advisory rows"),
+      metric("Agent runs", snapshot.counts.agentRuns, "Context count; not merged with candidate records"),
+      metric("Backfill candidates", snapshot.counts.backfillCandidates, "Backfill class only"),
+    ],
+    spendByModelProvider: snapshot.modelRows.length > 0 ? [metric("Model usage candidates", snapshot.modelRows.length, "Snapshot candidate class")] : [],
+    modelVsTask,
+    spendByRoleReviewerRoute: [],
+    governanceGateOutcomeByTask: [],
+    claimMovementTimeline: [],
+    missingTelemetryWarnings: [],
+    ledgerCoverage: snapshot.entityTypes.map((row) => metric(row.label, row.value, "entity_type candidate rows")),
+    taskReceiptRows,
+    lowConfidenceRows: [],
+    sourceLabel: snapshot.source.kind,
+    sourceFreshness: snapshot.source.sourceFreshness,
+    sourceChecksumPrefix: snapshot.source.checksumPrefix,
+    snapshotStale: Math.max(generatedAge, sourceFreshnessAge) > 24 * 60 * 60 * 1000,
   }
 }
 
@@ -266,7 +333,7 @@ function topEntries(rows: DashboardMetricRow[], limit = 8) {
 export function getInternalTelemetryDashboardData(): InternalTelemetryDashboardData {
   const dbPath = getDbPath()
   if (!dbPath) {
-    return emptyDashboardData("Production telemetry ledger path is not configured.")
+    return snapshotDashboardData()
   }
 
   let db: SqliteDatabase

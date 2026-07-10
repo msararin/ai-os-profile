@@ -80,6 +80,8 @@ async function protectedRoute(path, { allowAbsent = false } = {}) {
 async function sourceRegression() {
   const knowledgeSource = await readFile(path.join(sourceRoot, "app/knowledge-sharing/page.tsx"), "utf8")
   const telemetrySource = await readFile(path.join(sourceRoot, "app/internal/telemetry/page.tsx"), "utf8")
+  const snapshotPath = path.join(sourceRoot, "data/telemetry/internal-candidate-snapshot.json")
+  const snapshotSource = await readFile(snapshotPath, "utf8")
 
   const knowledgeExpectations = [
     ["bounded page width", /max-w-5xl/],
@@ -91,6 +93,9 @@ async function sourceRegression() {
   for (const [label, pattern] of knowledgeExpectations) {
     record(`Knowledge Sharing source ${label}`, pattern.test(knowledgeSource), pattern.test(knowledgeSource) ? "present" : "missing")
   }
+  record("Knowledge Sharing source removes Related Achievement box", !/July 1 .*Related Achievement/.test(knowledgeSource), /July 1 .*Related Achievement/.test(knowledgeSource) ? "rogue box found" : "absent")
+  record("Knowledge Sharing source removes July 1 achievement link", !/View July 1 achievement evidence/.test(knowledgeSource), /View July 1 achievement evidence/.test(knowledgeSource) ? "rogue link found" : "absent")
+  record("Knowledge Sharing source preserves at least 32 posts", (knowledgeSource.match(/urn:li:share:/g) || []).length >= 32, `${(knowledgeSource.match(/urn:li:share:/g) || []).length} URNs`) 
   record("Knowledge Sharing source no viewport-width escape", !/\bw-screen\b/.test(knowledgeSource), /\bw-screen\b/.test(knowledgeSource) ? "w-screen found" : "no w-screen")
 
   const telemetryExpectations = [
@@ -102,6 +107,9 @@ async function sourceRegression() {
     ["claim boundary", /Claim boundary/],
     ["next gates", /Next gates/],
     ["collapsed diagnostics", /<details/],
+    ["source label", /sourceLabel/],
+    ["freshness label", /sourceFreshness/],
+    ["snapshot stale gate", /snapshotStale/],
   ]
   for (const [label, pattern] of telemetryExpectations) {
     record(`Internal Telemetry source ${label}`, pattern.test(telemetrySource), pattern.test(telemetrySource) ? "present" : "missing")
@@ -116,14 +124,22 @@ async function sourceRegression() {
     !positiveTelemetryOverclaims.test(telemetrySource),
     positiveTelemetryOverclaims.test(telemetrySource) ? "positive overclaim found" : "no positive overclaim",
   )
+  let snapshot = {}
+  try { snapshot = JSON.parse(snapshotSource) } catch { snapshot = {} }
+  record("Telemetry snapshot has candidate records", Number(snapshot?.counts?.candidateRecords) > 0, `candidateRecords=${snapshot?.counts?.candidateRecords ?? "missing"}`)
+  record("Telemetry snapshot separates agent runs", Number(snapshot?.counts?.agentRuns) >= 0 && snapshot?.counts?.agentRuns !== snapshot?.counts?.candidateRecords, "agentRuns and candidateRecords remain separate")
+  record("Telemetry snapshot has checksum/freshness", Boolean(snapshot?.source?.checksumPrefix && snapshot?.generatedAt), "checksum and generatedAt present")
+  record("Telemetry snapshot strips absolute local paths", !/\/Users\/apple\//.test(snapshotSource), /\/Users\/apple\//.test(snapshotSource) ? "absolute path found" : "no absolute path")
 }
 
 try {
   await sourceRegression()
-  await publicPage("/knowledge-sharing", [
+  const knowledgeBody = await publicPage("/knowledge-sharing", [
     ["URN 7480909361486397440", /urn:li:share:7480909361486397440/],
     ["URN 7478071149814403072", /urn:li:share:7478071149814403072/],
   ])
+  record("/knowledge-sharing Related Achievement box absent", !/July 1 — Related Achievement|View July 1 achievement evidence/.test(knowledgeBody), "box/link absent")
+  record("/knowledge-sharing has at least 32 embedded posts", (knowledgeBody.match(/urn:li:share:/g) || []).length >= 32, `${(knowledgeBody.match(/urn:li:share:/g) || []).length} URNs`)
 
   const systemHealthBody = await publicPage("/architecture/system-health", [
     ["Internal Telemetry card", /Internal Telemetry/],

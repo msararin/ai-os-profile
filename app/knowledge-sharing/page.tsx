@@ -219,20 +219,6 @@ export default function KnowledgeSharingPage() {
           </p>
         </section>
 
-        <section className="mb-8 min-w-0 max-w-full overflow-hidden rounded-lg border p-4">
-          <h2 className="break-words text-lg font-semibold">July 1 — Related Achievement</h2>
-          <p className="mt-2 break-words text-sm text-muted-foreground">
-            This July 1 item is captured under Achievements. See the linked achievement for the
-            implementation evidence, public-safe report, and closeout context.
-          </p>
-          <a
-            href="/achievements"
-            className="mt-3 inline-block max-w-full break-words text-sm font-medium text-primary underline-offset-4 hover:underline"
-          >
-            View July 1 achievement evidence
-          </a>
-        </section>
-
         <div className="grid min-w-0 gap-8">
           {linkedInPosts.map((post) => (
             <article key={post.urn} className="min-w-0 max-w-full overflow-hidden rounded-lg border bg-card p-4">

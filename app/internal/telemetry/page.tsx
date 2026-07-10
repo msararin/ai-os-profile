@@ -121,6 +121,24 @@ export default async function InternalTelemetryPage() {
           </Card>
         </div>
 
+        <Card className="border-blue-200 bg-blue-50/60 dark:border-blue-900/60 dark:bg-blue-950/20">
+          <CardHeader>
+            <CardTitle className="text-base">Data source and freshness</CardTitle>
+            <CardDescription>
+              source={data.sourceLabel ?? "local_sqlite_candidates"} · freshness={data.sourceFreshness ?? data.generatedAt}
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="text-sm text-muted-foreground">
+            Candidate/backfill records; not verified production runtime telemetry. Snapshot checksum:
+            <span className="ml-1 font-mono text-xs">{data.sourceChecksumPrefix ?? "not available"}</span>
+            {data.snapshotStale ? (
+              <p className="mt-2 font-medium text-amber-800 dark:text-amber-200">
+                Snapshot is older than 24 hours; refresh before relying on row presence.
+              </p>
+            ) : null}
+          </CardContent>
+        </Card>
+
         {data.ledgerUnavailableReason ? (
           <Card className="border-amber-300/70 bg-amber-50 dark:bg-amber-950/20">
             <CardHeader>

@@ -1,0 +1,381 @@
+{
+  "schemaVersion": 1,
+  "generatorVersion": "20260710.1",
+  "generatedAt": "2026-07-10T12:09:56.880Z",
+  "source": {
+    "kind": "local_sqlite_candidates",
+    "sourceFreshness": "2026-07-01 18:34:00",
+    "checksumPrefix": "844567914dcdc115",
+    "databasePathOmitted": true
+  },
+  "claimBoundary": "Candidate/backfill records; not verified production runtime telemetry.",
+  "counts": {
+    "agentRuns": 10,
+    "candidateRecords": 2297,
+    "exclusions": 50,
+    "backfillCandidates": 2259
+  },
+  "entityTypes": [
+    {
+      "label": "telemetry_field",
+      "value": 1890
+    },
+    {
+      "label": "task_run",
+      "value": 126
+    },
+    {
+      "label": "evidence_artifact",
+      "value": 126
+    },
+    {
+      "label": "governance_gate",
+      "value": 73
+    },
+    {
+      "label": "model_usage",
+      "value": 35
+    },
+    {
+      "label": "role_execution",
+      "value": 30
+    },
+    {
+      "label": "claim_movement",
+      "value": 17
+    }
+  ],
+  "coverageClasses": [
+    {
+      "label": "ARTIFACT_BACKFILL_CANDIDATE",
+      "value": 1349
+    },
+    {
+      "label": "BACKFILLED_FROM_KB_CANDIDATE",
+      "value": 910
+    },
+    {
+      "label": "SQLITE_SCHEMA_COUNT_ONLY",
+      "value": 38
+    }
+  ],
+  "extractionConfidence": [
+    {
+      "label": "medium",
+      "value": 2259
+    },
+    {
+      "label": "high",
+      "value": 38
+    }
+  ],
+  "exclusionReasons": [
+    {
+      "label": "INSUFFICIENT_TASK_IDENTITY",
+      "value": 35
+    },
+    {
+      "label": "LOW_CONFIDENCE_ADVISORY_ONLY",
+      "value": 15
+    }
+  ],
+  "modelRows": [
+    {
+      "entityType": "model_usage",
+      "taskTitle": null,
+      "provider": "not_applicable_local_codex_execution",
+      "requestedModel": "NOT_APPLICABLE_FOR_LOCAL_RUN",
+      "returnedModel": "NOT_APPLICABLE_FOR_LOCAL_RUN",
+      "totalTokens": null,
+      "cost": null,
+      "sourceArtifactDate": "2026-07-01",
+      "claimLevel": "DRAFT_LOCAL_ONLY_ARCHITECTURE_CONTRACT",
+      "coverageClass": "ARTIFACT_BACKFILL_CANDIDATE"
+    },
+    {
+      "entityType": "model_usage",
+      "taskTitle": null,
+      "provider": "not_applicable_local_codex_execution",
+      "requestedModel": "NOT_APPLICABLE_FOR_LOCAL_RUN",
+      "returnedModel": "NOT_APPLICABLE_FOR_LOCAL_RUN",
+      "totalTokens": null,
+      "cost": null,
+      "sourceArtifactDate": "2026-07-01",
+      "claimLevel": "DRAFT_LOCAL_ONLY_INVENTORY_CANDIDATE",
+      "coverageClass": "ARTIFACT_BACKFILL_CANDIDATE"
+    },
+    {
+      "entityType": "model_usage",
+      "taskTitle": null,
+      "provider": "not_applicable_local_codex_execution",
+      "requestedModel": "not_exposed_by_tool",
+      "returnedModel": "not_exposed_by_tool",
+      "totalTokens": null,
+      "cost": null,
+      "sourceArtifactDate": "2026-07-01",
+      "claimLevel": "DRAFT_LOCAL_ONLY_PRIME_GATE_REVIEW",
+      "coverageClass": "ARTIFACT_BACKFILL_CANDIDATE"
+    },
+    {
+      "entityType": "model_usage",
+      "taskTitle": null,
+      "provider": "model",
+      "requestedModel": "NOT_APPLICABLE_FOR_LOCAL_RUN",
+      "returnedModel": "NOT_APPLICABLE_FOR_LOCAL_RUN",
+      "totalTokens": null,
+      "cost": null,
+      "sourceArtifactDate": "2026-07-01",
+      "claimLevel": "DRAFT_LOCAL_ONLY_EXISTENCE_CHECK",
+      "coverageClass": "ARTIFACT_BACKFILL_CANDIDATE"
+    },
+    {
+      "entityType": "model_usage",
+      "taskTitle": null,
+      "provider": "not_applicable_local_codex_execution",
+      "requestedModel": "NOT_APPLICABLE_FOR_LOCAL_RUN",
+      "returnedModel": "NOT_APPLICABLE_FOR_LOCAL_RUN",
+      "totalTokens": null,
+      "cost": null,
+      "sourceArtifactDate": "2026-07-01",
+      "claimLevel": "DRAFT_LOCAL_ONLY_DECISION",
+      "coverageClass": "ARTIFACT_BACKFILL_CANDIDATE"
+    },
+    {
+      "entityType": "model_usage",
+      "taskTitle": null,
+      "provider": "openrouter",
+      "requestedModel": "anthropic/claude-opus-4.7",
+      "returnedModel": "anthropic/claude-4.7-opus-20260416",
+      "totalTokens": null,
+      "cost": null,
+      "sourceArtifactDate": "2026-07-01",
+      "claimLevel": "LOCAL_IMPLEMENTATION_CANDIDATE_ONLY_BROWSER_PROOF_BLOCKED",
+      "coverageClass": "ARTIFACT_BACKFILL_CANDIDATE"
+    },
+    {
+      "entityType": "model_usage",
+      "taskTitle": null,
+      "provider": "openrouter",
+      "requestedModel": "anthropic/claude-opus-4.7",
+      "returnedModel": "anthropic/claude-4.7-opus-20260416",
+      "totalTokens": null,
+      "cost": null,
+      "sourceArtifactDate": "2026-07-01",
+      "claimLevel": "EXTERNAL_PROVIDER_BACKED_PRIME_GATE_REVIEW_ONLY",
+      "coverageClass": "ARTIFACT_BACKFILL_CANDIDATE"
+    },
+    {
+      "entityType": "model_usage",
+      "taskTitle": null,
+      "provider": "not used.",
+      "requestedModel": "not available for this local run.",
+      "returnedModel": "not available for this local run.",
+      "totalTokens": null,
+      "cost": null,
+      "sourceArtifactDate": "2026-07-01",
+      "claimLevel": "DRAFT_LOCAL_ONLY_ROLE_REVIEW",
+      "coverageClass": "ARTIFACT_BACKFILL_CANDIDATE"
+    },
+    {
+      "entityType": "model_usage",
+      "taskTitle": null,
+      "provider": "yes",
+      "requestedModel": "yes",
+      "returnedModel": "yes",
+      "totalTokens": null,
+      "cost": null,
+      "sourceArtifactDate": "2026-07-01",
+      "claimLevel": "TELEMETRY_SURFACE_EXISTS_ONLY",
+      "coverageClass": "ARTIFACT_BACKFILL_CANDIDATE"
+    },
+    {
+      "entityType": "model_usage",
+      "taskTitle": null,
+      "provider": "Role",
+      "requestedModel": "NOT_APPLICABLE_FOR_LOCAL_RUN",
+      "returnedModel": "NOT_APPLICABLE_FOR_LOCAL_RUN",
+      "totalTokens": null,
+      "cost": null,
+      "sourceArtifactDate": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "coverageClass": "ARTIFACT_BACKFILL_CANDIDATE"
+    },
+    {
+      "entityType": "model_usage",
+      "taskTitle": null,
+      "provider": "not_available_runtime_not_exposed",
+      "requestedModel": "NOT_APPLICABLE_FOR_LOCAL_RUN",
+      "returnedModel": "NOT_APPLICABLE_FOR_LOCAL_RUN",
+      "totalTokens": null,
+      "cost": null,
+      "sourceArtifactDate": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "claimLevel": "DRAFT_LOCAL_ONLY_NOT_PUSHED_NOT_DEPLOYED_NOT_LIVE_VERIFIED",
+      "coverageClass": "ARTIFACT_BACKFILL_CANDIDATE"
+    },
+    {
+      "entityType": "model_usage",
+      "taskTitle": null,
+      "provider": "not_exposed_by_tool",
+      "requestedModel": "not_exposed_by_tool",
+      "returnedModel": "not_exposed_by_tool",
+      "totalTokens": null,
+      "cost": null,
+      "sourceArtifactDate": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "coverageClass": "BACKFILLED_FROM_KB_CANDIDATE"
+    }
+  ],
+  "taskRows": [
+    {
+      "entityType": "task_run",
+      "taskTitle": "Shared Telemetry Ledger Contract And KB Backfill Plan",
+      "provider": null,
+      "requestedModel": null,
+      "returnedModel": null,
+      "totalTokens": null,
+      "cost": null,
+      "sourceArtifactDate": "2026-07-01",
+      "claimLevel": "DRAFT_LOCAL_ONLY_ARCHITECTURE_CONTRACT",
+      "coverageClass": "ARTIFACT_BACKFILL_CANDIDATE"
+    },
+    {
+      "entityType": "task_run",
+      "taskTitle": "Shared Telemetry Ledger Contract Module And Read-Only Inventory Candidate",
+      "provider": null,
+      "requestedModel": null,
+      "returnedModel": null,
+      "totalTokens": null,
+      "cost": null,
+      "sourceArtifactDate": "2026-07-01",
+      "claimLevel": "DRAFT_LOCAL_ONLY_INVENTORY_CANDIDATE",
+      "coverageClass": "ARTIFACT_BACKFILL_CANDIDATE"
+    },
+    {
+      "entityType": "task_run",
+      "taskTitle": "Prime Gate Shared Telemetry Backfill Mapping Review",
+      "provider": null,
+      "requestedModel": null,
+      "returnedModel": null,
+      "totalTokens": null,
+      "cost": null,
+      "sourceArtifactDate": "2026-07-01",
+      "claimLevel": "DRAFT_LOCAL_ONLY_PRIME_GATE_REVIEW",
+      "coverageClass": "ARTIFACT_BACKFILL_CANDIDATE"
+    },
+    {
+      "entityType": "task_run",
+      "taskTitle": "SQLite Telemetry Storage Existence Check",
+      "provider": null,
+      "requestedModel": null,
+      "returnedModel": null,
+      "totalTokens": null,
+      "cost": null,
+      "sourceArtifactDate": "2026-07-01",
+      "claimLevel": "DRAFT_LOCAL_ONLY_EXISTENCE_CHECK",
+      "coverageClass": "ARTIFACT_BACKFILL_CANDIDATE"
+    },
+    {
+      "entityType": "task_run",
+      "taskTitle": "SQLite Telemetry Measurement Ledger Decision",
+      "provider": null,
+      "requestedModel": null,
+      "returnedModel": null,
+      "totalTokens": null,
+      "cost": null,
+      "sourceArtifactDate": "2026-07-01",
+      "claimLevel": "DRAFT_LOCAL_ONLY_DECISION",
+      "coverageClass": "ARTIFACT_BACKFILL_CANDIDATE"
+    },
+    {
+      "entityType": "task_run",
+      "taskTitle": "Google Auth Rebuild Implementation Candidate Receipt",
+      "provider": null,
+      "requestedModel": null,
+      "returnedModel": null,
+      "totalTokens": null,
+      "cost": null,
+      "sourceArtifactDate": "2026-07-01",
+      "claimLevel": "LOCAL_IMPLEMENTATION_CANDIDATE_ONLY",
+      "coverageClass": "ARTIFACT_BACKFILL_CANDIDATE"
+    },
+    {
+      "entityType": "task_run",
+      "taskTitle": "Google Auth Local Browser Proof Packet",
+      "provider": null,
+      "requestedModel": null,
+      "returnedModel": null,
+      "totalTokens": null,
+      "cost": null,
+      "sourceArtifactDate": "2026-07-01",
+      "claimLevel": "LOCAL_IMPLEMENTATION_CANDIDATE_ONLY_BROWSER_PROOF_BLOCKED",
+      "coverageClass": "ARTIFACT_BACKFILL_CANDIDATE"
+    },
+    {
+      "entityType": "task_run",
+      "taskTitle": "Google Auth Local Callback Fix and Browser Proof",
+      "provider": null,
+      "requestedModel": null,
+      "returnedModel": null,
+      "totalTokens": null,
+      "cost": null,
+      "sourceArtifactDate": "2026-07-01",
+      "claimLevel": "LOCAL_IMPLEMENTATION_CANDIDATE_ONLY_BROWSER_PROOF_BLOCKED",
+      "coverageClass": "ARTIFACT_BACKFILL_CANDIDATE"
+    },
+    {
+      "entityType": "task_run",
+      "taskTitle": "Prime Gate Google Auth Telemetry Boundary Review - OpenRouter Opus",
+      "provider": null,
+      "requestedModel": null,
+      "returnedModel": null,
+      "totalTokens": null,
+      "cost": null,
+      "sourceArtifactDate": "2026-07-01",
+      "claimLevel": "EXTERNAL_PROVIDER_BACKED_PRIME_GATE_REVIEW_ONLY",
+      "coverageClass": "ARTIFACT_BACKFILL_CANDIDATE"
+    },
+    {
+      "entityType": "task_run",
+      "taskTitle": "Big Crew Google Auth Telemetry Boundary Review",
+      "provider": null,
+      "requestedModel": null,
+      "returnedModel": null,
+      "totalTokens": null,
+      "cost": null,
+      "sourceArtifactDate": "2026-07-01",
+      "claimLevel": "DRAFT_LOCAL_ONLY_ROLE_REVIEW",
+      "coverageClass": "ARTIFACT_BACKFILL_CANDIDATE"
+    },
+    {
+      "entityType": "task_run",
+      "taskTitle": "Internal Live Telemetry Existing Surface Verification",
+      "provider": null,
+      "requestedModel": null,
+      "returnedModel": null,
+      "totalTokens": null,
+      "cost": null,
+      "sourceArtifactDate": "2026-07-01",
+      "claimLevel": "TELEMETRY_SURFACE_EXISTS_ONLY",
+      "coverageClass": "ARTIFACT_BACKFILL_CANDIDATE"
+    },
+    {
+      "entityType": "task_run",
+      "taskTitle": "Telemetry Receipt: Achievement Page Optimize Worker Phase B",
+      "provider": null,
+      "requestedModel": null,
+      "returnedModel": null,
+      "totalTokens": null,
+      "cost": null,
+      "sourceArtifactDate": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "coverageClass": "ARTIFACT_BACKFILL_CANDIDATE"
+    }
+  ],
+  "batch": {
+    "backfill_batch_id": "limited-backfill-dryrun-20260701-e14201349be3",
+    "mode": "LIMITED_LOCAL_BACKFILL_CANDIDATE",
+    "claim_level": "LOCAL_BACKFILL_CANDIDATE_ONLY",
+    "created_at": "2026-07-01 18:34:00",
+    "sourcePathOmitted": true
+  }
+}
