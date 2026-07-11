@@ -72,6 +72,12 @@ const architectureGroups = [
         labels: ["Reviewed records", "Decision history", "Truth boundary"],
       },
       {
+        title: "Repository Integrity & Source Custody",
+        detail: "Repo Custodian preserves repository and source evidence before downstream delivery claims are evaluated.",
+        labels: ["Repository evidence", "Source custody", "Proof boundary"],
+        href: "/org-roles/repo-custodian",
+      },
+      {
         title: "Business Runway / Capability",
         detail: "Frames portfolio proof, adoption governance, POC support, and risk learning as capability direction, not proven revenue.",
         labels: ["Portfolio proof", "POC support", "Runway direction"],
