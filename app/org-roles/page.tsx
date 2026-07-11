@@ -5,6 +5,7 @@ import Link from "next/link"
 import {
   CapabilityRoleCard,
   dataTeamDetail,
+  repoCustodianCardDetail,
   runnerDetail,
 } from "./role-detail-content"
 
@@ -226,7 +227,25 @@ export default function OrgRolesPage() {
         </div>
       </section>
 
-      <section className="py-12">
+      <section className="border-b border-border bg-muted/30 py-10">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl font-semibold tracking-tight text-foreground">
+            Capability Detail Pages
+          </h2>
+          <p className="mt-3 max-w-3xl text-sm text-muted-foreground">
+            These compact cards open deeper role capability pages. Long learning,
+            evidence, and upskill narratives stay off the hub so the role map
+            remains scannable.
+          </p>
+          <div className="mt-6 grid gap-4 md:grid-cols-2">
+            <CapabilityRoleCard detail={dataTeamDetail} />
+            <CapabilityRoleCard detail={runnerDetail} />
+            <CapabilityRoleCard detail={repoCustodianCardDetail} />
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className="mb-8 flex items-center justify-between gap-4">
             <h2 className="text-2xl font-semibold tracking-tight text-foreground">

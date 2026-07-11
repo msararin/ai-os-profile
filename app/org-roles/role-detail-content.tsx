@@ -39,6 +39,21 @@ type RoleDetail = {
   upskillPath: Array<[string, string, string]>
 }
 
+type CapabilityCardDetail = Pick<
+  RoleDetail,
+  "title" | "type" | "purpose" | "chips" | "boundary" | "href"
+>
+
+export const repoCustodianCardDetail: CapabilityCardDetail = {
+  title: "Repo Custodian",
+  type: "Repository integrity capability",
+  purpose:
+    "Protects source custody, exact-SHA work, recoverability, and repository evidence without turning local proof into production claims.",
+  chips: ["Source custody", "Worktree isolation", "Recovery readiness"],
+  boundary: "Production evidence: NOT_PROVEN",
+  href: "/org-roles/repo-custodian",
+}
+
 export const dataTeamDetail: RoleDetail = {
   title: "Data Team",
   type: "Telemetry capability layer",
@@ -343,7 +358,7 @@ export const runnerDetail: RoleDetail = {
   ],
 }
 
-export function CapabilityRoleCard({ detail }: { detail: RoleDetail }) {
+export function CapabilityRoleCard({ detail }: { detail: CapabilityCardDetail }) {
   return (
     <Card className="border-primary/20 bg-primary/5">
       <CardHeader className="space-y-3">
