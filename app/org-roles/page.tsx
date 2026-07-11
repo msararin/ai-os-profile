@@ -315,6 +315,79 @@ export default function OrgRolesPage() {
                 </div>
               </div>
 
+              <aside
+                aria-labelledby="repo-custodian-cross-cutting-heading"
+                className="rounded-lg border border-dashed border-primary/40 bg-primary/5 p-4 sm:p-5"
+              >
+                <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+                  <div>
+                    <p className="text-xs font-medium uppercase tracking-wide text-primary">
+                      Cross-cutting capability · On demand / event-triggered
+                    </p>
+                    <h3
+                      id="repo-custodian-cross-cutting-heading"
+                      className="mt-1 text-base font-semibold text-foreground"
+                    >
+                      Shared Operational Integrity &amp; Custody
+                    </h3>
+                    <p className="mt-1 max-w-3xl text-xs leading-relaxed text-muted-foreground">
+                      A comprehension grouping, not an org unit. Repo Custodian
+                      protects repository integrity, provenance, clean worktrees,
+                      exact-SHA handoffs, and recovery readiness across delivery lanes.
+                    </p>
+                  </div>
+                  <Link
+                    href="/org-roles/repo-custodian"
+                    className="inline-flex shrink-0 text-xs font-medium text-primary hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+                  >
+                    View Repo Custodian detail
+                  </Link>
+                </div>
+
+                <div className="mt-4 rounded border border-dashed border-border bg-background/70 p-3">
+                  <p className="text-xs font-semibold text-foreground">
+                    Non-hierarchical service handoffs
+                  </p>
+                  <p className="mt-2 text-xs italic text-muted-foreground">
+                    Coordination patterns (not reporting lines):
+                  </p>
+                  <ul className="mt-2 space-y-2 border-l-2 border-dashed border-border pl-4 text-xs leading-relaxed text-muted-foreground">
+                    <li>
+                      <span className="font-medium text-foreground">Big Crew:</span>{" "}
+                      clean source, worktree, and exact-SHA readiness.
+                    </li>
+                    <li>
+                      <span className="font-medium text-foreground">Execution Control:</span>{" "}
+                      repository risk, exclusions, and rollback readiness.
+                    </li>
+                    <li>
+                      <span className="font-medium text-foreground">GPT KB + Git:</span>{" "}
+                      repository integrity and provenance, not content authority.
+                    </li>
+                    <li>
+                      <span className="font-medium text-foreground">Path to Production:</span>{" "}
+                      clean-source and provenance handoff, not build, deployment, or production proof.
+                    </li>
+                  </ul>
+                </div>
+
+                <p className="mt-4 text-xs leading-relaxed text-muted-foreground">
+                  This grouping is not a department, staffed team, reporting line,
+                  governance tier, or permanent delivery lane. Repo Custodian has a
+                  repository-custody boundary only; it is not delivery or deployment authority.
+                </p>
+                <p className="mt-2 break-words font-mono text-[11px] leading-relaxed text-muted-foreground">
+                  REPO_CUSTODIAN_EVIDENCE_IS_NOT_PRODUCTION_PROOF ·{" "}
+                  SOURCE_CUSTODY_IS_NOT_DEPLOYMENT_VERIFICATION ·{" "}
+                  REFERENCE_ONLY_NOT_CROSS_LANE_PROOF
+                </p>
+                <p className="mt-2 text-[11px] leading-relaxed text-muted-foreground">
+                  Placement follows the owner-confirmed operating decision for this chart;
+                  the historical KB placement label is retained as a disclosed reconciliation
+                  residual and is not used as the chart hierarchy.
+                </p>
+              </aside>
+
               <details className="rounded border border-border bg-background p-4">
                 <summary className="cursor-pointer text-sm font-semibold text-foreground">
                   Show specialist lanes
