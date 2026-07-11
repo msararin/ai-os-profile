@@ -271,6 +271,46 @@ export default function AIOperatingSystemPage() {
               )
             })}
           </div>
+          <div className="mt-6 rounded-lg border border-primary/30 bg-card p-5">
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+              <div className="max-w-3xl">
+                <h3 className="text-base font-semibold text-foreground">
+                  Path to Production
+                </h3>
+                <p className="mt-2 text-sm leading-6 text-muted-foreground">
+                  A deterministic release path that binds a scoped candidate to
+                  independent validation, protected promotion, exact deployment
+                  identity, live surface evidence, and a final claim gate.
+                </p>
+              </div>
+              <Badge
+                variant="outline"
+                className="w-fit shrink-0 border-primary/30 bg-primary/5 text-xs text-foreground"
+              >
+                Runner Gang
+              </Badge>
+            </div>
+
+            <dl className="mt-5 grid gap-3 text-xs sm:grid-cols-2 lg:grid-cols-4">
+              {[
+                ["Execution", "Runner Gang"],
+                ["Independent authority", "Prime Gate"],
+                ["Candidate implementation", "Big Crew (bounded)"],
+                ["Surface meaning", "Surface Guild"],
+                ["Route/render proof", "Surface Runner"],
+              ].map(([term, detail]) => (
+                <div key={term} className="rounded-md border border-border bg-background/60 p-3">
+                  <dt className="font-medium text-foreground">{term}</dt>
+                  <dd className="mt-1 leading-relaxed text-muted-foreground">{detail}</dd>
+                </div>
+              ))}
+            </dl>
+
+            <p className="mt-4 border-t border-border pt-4 text-xs leading-5 text-muted-foreground">
+              Reusable runtime accepted. This Cockpit release is the production
+              proof attempt; the page does not certify its own deployment.
+            </p>
+          </div>
         </div>
       </section>
 
