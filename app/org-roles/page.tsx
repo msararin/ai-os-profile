@@ -358,23 +358,6 @@ export default function OrgRolesPage() {
         </div>
       </section>
 
-      <section className="border-y border-border bg-muted/30 py-10">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-semibold tracking-tight text-foreground">
-            Capability Detail Pages
-          </h2>
-          <p className="mt-3 max-w-3xl text-sm text-muted-foreground">
-            These cards open deeper role capability pages after the operating
-            org map. Long learning, evidence, and upskill narratives stay off
-            the hub so the role map remains scannable.
-          </p>
-          <div className="mt-6 grid gap-4 md:grid-cols-2">
-            <CapabilityRoleCard detail={dataTeamDetail} />
-            <CapabilityRoleCard detail={runnerDetail} />
-          </div>
-        </div>
-      </section>
-
       <section className="border-t border-border py-16">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <h2 className="text-2xl font-semibold tracking-tight text-foreground">
