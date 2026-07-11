@@ -854,7 +854,7 @@ export default function AIOperatingSystemPage() {
             ].map((workstream) => (
               <Card key={workstream.name} className="border-border bg-card">
                 <CardHeader className="pb-3">
-                  <div className="flex items-start justify-between gap-3">
+                  <div className="flex flex-wrap items-start justify-between gap-3">
                     <CardTitle className="text-base font-medium">
                       {workstream.name}
                     </CardTitle>
