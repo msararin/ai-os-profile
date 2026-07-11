@@ -279,7 +279,7 @@ export default function AIOperatingSystemPage() {
                 </h3>
                 <p className="mt-2 text-sm leading-6 text-muted-foreground">
                   A deterministic release path that binds a scoped candidate to
-                  independent validation, protected promotion, exact deployment
+                  independent validation, non-force promotion with preflight validation, exact deployment
                   identity, live surface evidence, and a final claim gate.
                 </p>
               </div>
