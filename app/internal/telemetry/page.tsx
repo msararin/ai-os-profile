@@ -55,7 +55,7 @@ function MetricList({
             <span className="min-w-0 break-words text-muted-foreground">{row.label}</span>
             <span className="shrink-0 font-mono text-foreground">
               {valuePrefix}
-              {row.value}
+              {row.value.toLocaleString("en-US")}
             </span>
           </div>
           <SourceBadge label={row.dataSourceType ?? "FIELD_NOT_EXPOSED_NOT_CLAIMED"} />
