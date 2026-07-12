@@ -34,6 +34,14 @@ function SourceBadge({ label }: { label: string }) {
   )
 }
 
+function SectionMeaning({ children }: { children: React.ReactNode }) {
+  return (
+    <p className="mt-1 border-l-2 border-teal-500 pl-3 text-sm leading-6 text-teal-700 dark:text-teal-300">
+      {children}
+    </p>
+  )
+}
+
 function MetricList({
   rows,
   valuePrefix = "",
@@ -89,8 +97,8 @@ const ownerInsightMetrics = [
   },
   {
     value: "18,019",
-    label: "Not-claimable preserved investigation target",
-    meaning: "A preserved governance/claim value that the recovered source packet could not reproduce from approved evidence.",
+    label: "Non-additive, non-claimable investigation target",
+    meaning: "Source calculation unverified; excluded from all totals; no valid join to the Codex CLI gpt-5.5 label.",
     decision: "Use only to track the unresolved evidence gap and required source-proof work.",
     boundary: "NOT_CLAIMABLE_FROM_AVAILABLE_EVIDENCE; not a verified subtotal, partition, residual bucket, or value to add to/subtract from the other figures.",
   },
@@ -173,6 +181,7 @@ export default async function InternalTelemetryPage() {
         <Card className="rounded-lg border-blue-200 bg-blue-50/60 dark:border-blue-900/60 dark:bg-blue-950/20">
           <CardHeader>
             <CardTitle className="text-base">What this page tells us</CardTitle>
+            <SectionMeaning>Explains this historical snapshot for internal review, including separate totals, non-claims, and unresolved evidence gaps.</SectionMeaning>
             <CardDescription>
               This internal telemetry surface separates raw telemetry counts into measurement
               layers. The numbers are useful for understanding warning scope, governance hygiene,
@@ -235,6 +244,7 @@ export default async function InternalTelemetryPage() {
         <Card className="border-blue-200 bg-blue-50/60 dark:border-blue-900/60 dark:bg-blue-950/20">
           <CardHeader>
             <CardTitle className="text-base">Data source and freshness</CardTitle>
+            <SectionMeaning>Shows the source batch timestamp and database checksum prefix; this is not a live feed or snapshot-completeness proof.</SectionMeaning>
             <CardDescription>
               source={data.sourceLabel ?? "local_sqlite_candidates"} · freshness=
               {data.sourceFreshness ?? data.generatedAt}
@@ -256,6 +266,7 @@ export default async function InternalTelemetryPage() {
         <Card className="rounded-lg">
           <CardHeader>
             <CardTitle className="text-base">Claim-Level Legend</CardTitle>
+            <SectionMeaning>Defines the claim states used on this page so local evidence is not mistaken for stronger proof.</SectionMeaning>
             <CardDescription>Current and future claim states are separated explicitly.</CardDescription>
           </CardHeader>
           <CardContent className="space-y-3 text-sm">
@@ -285,6 +296,7 @@ export default async function InternalTelemetryPage() {
         <Card className="rounded-lg">
           <CardHeader>
             <CardTitle className="text-base">Next Gate</CardTitle>
+            <SectionMeaning>Shows the review sequence required before this source-limited evidence can support any stronger claim.</SectionMeaning>
             <CardDescription>Current patch and later gates before any stronger claim.</CardDescription>
           </CardHeader>
           <CardContent className="space-y-3 text-sm">
@@ -312,8 +324,13 @@ export default async function InternalTelemetryPage() {
         </Card>
       </section>
 
-      <section className="mx-auto grid max-w-7xl gap-4 px-4 py-6 sm:px-6 md:grid-cols-2 xl:grid-cols-4 lg:px-8">
-        {data.summaryCards.map((card) => (
+      <section className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+        <div className="mb-4">
+          <h2 className="text-base font-semibold text-foreground">Record Population Summary</h2>
+          <SectionMeaning>Shows candidate record counts from the sanitized snapshot, with advisory exclusions separated from the backfill population.</SectionMeaning>
+        </div>
+        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+          {data.summaryCards.map((card) => (
           <Card key={card.label} className="rounded-lg">
             <CardHeader className="gap-1">
               <CardDescription>{card.label}</CardDescription>
@@ -323,7 +340,8 @@ export default async function InternalTelemetryPage() {
               <SourceBadge label={card.dataSourceType ?? "FIELD_NOT_EXPOSED_NOT_CLAIMED"} />
             </CardContent>
           </Card>
-        ))}
+          ))}
+        </div>
       </section>
 
       <section className="mx-auto grid max-w-7xl gap-4 px-4 pb-6 sm:px-6 xl:grid-cols-3 lg:px-8">
@@ -333,6 +351,7 @@ export default async function InternalTelemetryPage() {
               <BarChart3 className="size-4" />
               Spend by Model / Provider
             </CardTitle>
+            <SectionMeaning>Counts model-usage candidate rows in the snapshot fallback; it does not establish verified spend.</SectionMeaning>
             <CardDescription>
               Data source: STAGING_CANDIDATE. Missing cost rows stay visible elsewhere and are not
               estimated.
@@ -349,6 +368,7 @@ export default async function InternalTelemetryPage() {
               <Database className="size-4" />
               Ledger Coverage
             </CardTitle>
+            <SectionMeaning>Shows candidate counts by entity type, not a ledger join or a financial-verification measure.</SectionMeaning>
             <CardDescription>Entity, confidence, and coverage counts from staging rows.</CardDescription>
           </CardHeader>
           <CardContent>
@@ -361,6 +381,7 @@ export default async function InternalTelemetryPage() {
         <Card className="rounded-lg">
           <CardHeader>
             <CardTitle className="text-base">Model vs Task</CardTitle>
+            <SectionMeaning>Shows captured model candidates beside task context, including missing token or cost fields without estimation.</SectionMeaning>
             <CardDescription>Provider/model/token/cost values rendered as captured.</CardDescription>
           </CardHeader>
           <CardContent>
@@ -400,6 +421,7 @@ export default async function InternalTelemetryPage() {
         <Card className="rounded-lg">
           <CardHeader>
             <CardTitle className="text-base">Spend by Role / Reviewer Route</CardTitle>
+            <SectionMeaning>Counts role-execution candidates by intended role and reviewer independence; despite the legacy title, these rows are not spend.</SectionMeaning>
             <CardDescription>Grouped role and reviewer route rows; not a verified spend claim.</CardDescription>
           </CardHeader>
           <CardContent>
@@ -415,6 +437,7 @@ export default async function InternalTelemetryPage() {
               <GitBranch className="size-4" />
               Governance Gate Outcome by Task
             </CardTitle>
+            <SectionMeaning>Lists sanitized gate name, status, and verdict candidates; it does not calculate approval rates or task-group performance.</SectionMeaning>
             <CardDescription>Gate status and verdict rows from staging records.</CardDescription>
           </CardHeader>
           <CardContent>
@@ -446,6 +469,7 @@ export default async function InternalTelemetryPage() {
         <Card className="rounded-lg">
           <CardHeader>
             <CardTitle className="text-base">Claim Movement Timeline</CardTitle>
+            <SectionMeaning>Shows source-artifact dates with claim-before and claim-after candidates; it does not prove operational velocity or trends.</SectionMeaning>
             <CardDescription>Claim movement rows remain local-only and source-mapped.</CardDescription>
           </CardHeader>
           <CardContent>
@@ -482,6 +506,7 @@ export default async function InternalTelemetryPage() {
               <AlertTriangle className="size-4" />
               Missing Telemetry Warning Panel
             </CardTitle>
+            <SectionMeaning>Ranks the top 12 missing-field categories totaling 26,957 occurrences; this panel is not the 69,881 all-field total.</SectionMeaning>
             <CardDescription>Missing fields are counted and displayed, not hidden.</CardDescription>
           </CardHeader>
           <CardContent>
@@ -492,6 +517,7 @@ export default async function InternalTelemetryPage() {
         <Card className="rounded-lg">
           <CardHeader>
             <CardTitle className="text-base">Low-Confidence Advisory Rows</CardTitle>
+            <SectionMeaning>Lists sanitized exclusion reasons, claim levels, and missing-field counts for advisory review, not authoritative conclusions.</SectionMeaning>
             <CardDescription>Excluded rows are visible as advisory, not authoritative.</CardDescription>
           </CardHeader>
           <CardContent>
@@ -528,6 +554,7 @@ export default async function InternalTelemetryPage() {
               <FileText className="size-4" />
               Task Receipt Table
             </CardTitle>
+            <SectionMeaning>Shows sanitized task-run candidate metadata and missingness; these are not live agent runs or timestamp-verified receipts.</SectionMeaning>
             <CardDescription>
               Local artifact-backed task rows. Source paths are internal-only and remain behind auth.
             </CardDescription>
