@@ -336,89 +336,7 @@ export default async function InternalTelemetryPage() {
         </Card>
       </section>
 
-      <section className="mx-auto grid max-w-7xl gap-4 px-4 pt-6 sm:px-6 lg:grid-cols-2 lg:px-8">
-        <Card className="rounded-lg">
-          <CardHeader>
-            <CardTitle className="text-base">Claim-Level Legend</CardTitle>
-            <SectionMeaning>Defines the claim states used on this page so local evidence is not mistaken for stronger proof.</SectionMeaning>
-            <CardDescription>Current and future claim states are separated explicitly.</CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-3 text-sm">
-            <div>
-              <Badge variant="outline">DRAFT_LOCAL_ONLY</Badge>
-              <p className="mt-1 text-muted-foreground">Local draft or support artifact; not final AIOS proof.</p>
-            </div>
-            <div>
-              <Badge variant="outline">OPUS_GATED_LOCAL_BACKFILL_CANDIDATE</Badge>
-              <p className="mt-1 text-muted-foreground">Achieved for the staging backfill candidate only.</p>
-            </div>
-            <div>
-              <Badge variant="outline">OPUS_GATED_LOCAL_INTERNAL_DASHBOARD_QUERY_CANDIDATE</Badge>
-              <p className="mt-1 text-muted-foreground">Achieved for this local internal query candidate only.</p>
-            </div>
-            <div>
-              <Badge variant="outline">TELEMETRY_SURFACE_EXISTS_ONLY</Badge>
-              <p className="mt-1 text-muted-foreground">Possible low-level surface claim; not the current verification target.</p>
-            </div>
-            <div>
-              <Badge variant="outline">INTERNAL_TELEMETRY_VERIFIED_WITH_MISSING_FIELD_DISCLOSURE</Badge>
-              <p className="mt-1 text-muted-foreground">Not achieved. Requires Telemetry Steward, rendered evidence, and Prime Gate.</p>
-            </div>
-          </CardContent>
-        </Card>
-
-        <Card className="rounded-lg">
-          <CardHeader>
-            <CardTitle className="text-base">Next Gate</CardTitle>
-            <SectionMeaning>Shows the review sequence required before this source-limited evidence can support any stronger claim.</SectionMeaning>
-            <CardDescription>Current patch and later gates before any stronger claim.</CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-3 text-sm">
-            <div className="flex items-start justify-between gap-3">
-              <span className="text-muted-foreground">Current gate</span>
-              <Badge variant="outline">Surface Guild + QA patch</Badge>
-            </div>
-            <div className="flex items-start justify-between gap-3">
-              <span className="text-muted-foreground">Next gate</span>
-              <Badge variant="outline">Patched dashboard review</Badge>
-            </div>
-            <div className="flex items-start justify-between gap-3">
-              <span className="text-muted-foreground">Later gate</span>
-              <Badge variant="outline">Telemetry Steward field/source review</Badge>
-            </div>
-            <div className="flex items-start justify-between gap-3">
-              <span className="text-muted-foreground">Later gate</span>
-              <Badge variant="outline">Opus Prime Gate before preview</Badge>
-            </div>
-            <div className="flex items-start justify-between gap-3">
-              <span className="text-muted-foreground">Production</span>
-              <Badge variant="outline">Owner decision required</Badge>
-            </div>
-          </CardContent>
-        </Card>
-      </section>
-
-      <section className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-        <div className="mb-4">
-          <h2 className="text-base font-semibold text-foreground">Record Population Summary</h2>
-          <SectionMeaning>Shows candidate record counts from the sanitized snapshot, with advisory exclusions separated from the backfill population.</SectionMeaning>
-        </div>
-        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-          {data.summaryCards.map((card) => (
-          <Card key={card.label} className="rounded-lg">
-            <CardHeader className="gap-1">
-              <CardDescription>{card.label}</CardDescription>
-              <CardTitle className="text-3xl">{card.value}</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <SourceBadge label={card.dataSourceType ?? "FIELD_NOT_EXPOSED_NOT_CLAIMED"} />
-            </CardContent>
-          </Card>
-          ))}
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-7xl px-4 pb-6 sm:px-6 lg:px-8">
+      <section className="mx-auto max-w-7xl px-4 pt-6 sm:px-6 lg:px-8">
         <div className="mb-4">
           <h2 className="text-base font-semibold text-foreground">Telemetry Overview Visuals</h2>
           <p className="mt-1 text-sm leading-6 text-muted-foreground">
@@ -501,6 +419,88 @@ export default async function InternalTelemetryPage() {
             />
           </CardContent>
         </Card>
+        </div>
+      </section>
+
+      <section className="mx-auto grid max-w-7xl gap-4 px-4 pt-6 sm:px-6 lg:grid-cols-2 lg:px-8">
+        <Card className="rounded-lg">
+          <CardHeader>
+            <CardTitle className="text-base">Claim-Level Legend</CardTitle>
+            <SectionMeaning>Defines the claim states used on this page so local evidence is not mistaken for stronger proof.</SectionMeaning>
+            <CardDescription>Current and future claim states are separated explicitly.</CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-3 text-sm">
+            <div>
+              <Badge variant="outline">DRAFT_LOCAL_ONLY</Badge>
+              <p className="mt-1 text-muted-foreground">Local draft or support artifact; not final AIOS proof.</p>
+            </div>
+            <div>
+              <Badge variant="outline">OPUS_GATED_LOCAL_BACKFILL_CANDIDATE</Badge>
+              <p className="mt-1 text-muted-foreground">Achieved for the staging backfill candidate only.</p>
+            </div>
+            <div>
+              <Badge variant="outline">OPUS_GATED_LOCAL_INTERNAL_DASHBOARD_QUERY_CANDIDATE</Badge>
+              <p className="mt-1 text-muted-foreground">Achieved for this local internal query candidate only.</p>
+            </div>
+            <div>
+              <Badge variant="outline">TELEMETRY_SURFACE_EXISTS_ONLY</Badge>
+              <p className="mt-1 text-muted-foreground">Possible low-level surface claim; not the current verification target.</p>
+            </div>
+            <div>
+              <Badge variant="outline">INTERNAL_TELEMETRY_VERIFIED_WITH_MISSING_FIELD_DISCLOSURE</Badge>
+              <p className="mt-1 text-muted-foreground">Not achieved. Requires Telemetry Steward, rendered evidence, and Prime Gate.</p>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card className="rounded-lg">
+          <CardHeader>
+            <CardTitle className="text-base">Next Gate</CardTitle>
+            <SectionMeaning>Shows the review sequence required before this source-limited evidence can support any stronger claim.</SectionMeaning>
+            <CardDescription>Current patch and later gates before any stronger claim.</CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-3 text-sm">
+            <div className="flex items-start justify-between gap-3">
+              <span className="text-muted-foreground">Current gate</span>
+              <Badge variant="outline">Surface Guild + QA patch</Badge>
+            </div>
+            <div className="flex items-start justify-between gap-3">
+              <span className="text-muted-foreground">Next gate</span>
+              <Badge variant="outline">Patched dashboard review</Badge>
+            </div>
+            <div className="flex items-start justify-between gap-3">
+              <span className="text-muted-foreground">Later gate</span>
+              <Badge variant="outline">Telemetry Steward field/source review</Badge>
+            </div>
+            <div className="flex items-start justify-between gap-3">
+              <span className="text-muted-foreground">Later gate</span>
+              <Badge variant="outline">Opus Prime Gate before preview</Badge>
+            </div>
+            <div className="flex items-start justify-between gap-3">
+              <span className="text-muted-foreground">Production</span>
+              <Badge variant="outline">Owner decision required</Badge>
+            </div>
+          </CardContent>
+        </Card>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+        <div className="mb-4">
+          <h2 className="text-base font-semibold text-foreground">Record Population Summary</h2>
+          <SectionMeaning>Shows candidate record counts from the sanitized snapshot, with advisory exclusions separated from the backfill population.</SectionMeaning>
+        </div>
+        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+          {data.summaryCards.map((card) => (
+          <Card key={card.label} className="rounded-lg">
+            <CardHeader className="gap-1">
+              <CardDescription>{card.label}</CardDescription>
+              <CardTitle className="text-3xl">{card.value}</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <SourceBadge label={card.dataSourceType ?? "FIELD_NOT_EXPOSED_NOT_CLAIMED"} />
+            </CardContent>
+          </Card>
+          ))}
         </div>
       </section>
 
