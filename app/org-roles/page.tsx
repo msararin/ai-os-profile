@@ -3,9 +3,11 @@ import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import Link from "next/link"
 import {
+  bigCrewArchitectureGateDetail,
   CapabilityRoleCard,
   dataTeamDetail,
   repoCustodianCardDetail,
+  qaSentinelDetail,
   runnerDetail,
 } from "./role-detail-content"
 
@@ -238,6 +240,8 @@ export default function OrgRolesPage() {
             remains scannable.
           </p>
           <div className="mt-6 grid gap-4 md:grid-cols-2">
+            <CapabilityRoleCard detail={bigCrewArchitectureGateDetail} />
+            <CapabilityRoleCard detail={qaSentinelDetail} />
             <CapabilityRoleCard detail={dataTeamDetail} />
             <CapabilityRoleCard detail={runnerDetail} />
             <CapabilityRoleCard detail={repoCustodianCardDetail} />
