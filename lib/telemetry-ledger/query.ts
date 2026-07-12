@@ -107,6 +107,9 @@ export type InternalTelemetryDashboardData = {
   }
   summaryCards: DashboardMetricRow[]
   spendByModelProvider: DashboardMetricRow[]
+  modelCandidateDistribution: DashboardMetricRow[]
+  modelCandidatePopulationCount: number
+  modelCandidateExportCount: number
   modelVsTask: Array<{
     taskTitle: string
     provider: string
@@ -187,6 +190,9 @@ function emptyDashboardData(reason: string): InternalTelemetryDashboardData {
       },
     ],
     spendByModelProvider: [],
+    modelCandidateDistribution: [],
+    modelCandidatePopulationCount: 0,
+    modelCandidateExportCount: 0,
     modelVsTask: [],
     spendByRoleReviewerRoute: [],
     governanceGateOutcomeByTask: [],
@@ -251,7 +257,13 @@ function snapshotDashboardData(): InternalTelemetryDashboardData {
       metric("Agent runs", snapshot.counts.agentRuns, "Context count; not merged with candidate records"),
       metric("Backfill candidates", snapshot.counts.backfillCandidates, "Backfill class only"),
     ],
-    spendByModelProvider: snapshot.modelRows.length > 0 ? [metric("Model usage candidates", snapshot.modelRows.length, "Snapshot candidate class")] : [],
+    spendByModelProvider: [],
+    modelCandidateDistribution: groupCount(
+      snapshot.modelRows.map((row) => row.returnedModel ?? "FIELD_NOT_EXPOSED_NOT_CLAIMED"),
+    ).map((row) => metric(row.label, row.value, "exported candidate rows; not calls")),
+    modelCandidatePopulationCount:
+      snapshot.entityTypes.find((row) => row.label === "model_usage")?.value ?? 0,
+    modelCandidateExportCount: snapshot.modelRows.length,
     modelVsTask,
     spendByRoleReviewerRoute: snapshot.roleReviewerRoutes.map((row) =>
       metric(row.label, row.value, row.detail),
@@ -418,6 +430,9 @@ export function getInternalTelemetryDashboardData(): InternalTelemetryDashboardD
       const requested = stringField(row.record, "requested_model")
       const returned = stringField(row.record, "returned_model")
       const cost = numericField(row.record, "cost")
+      if (cost === null) {
+        continue
+      }
       const key = `${provider} / ${requested} / ${returned}`
       const current = spendGroups.get(key) ?? { cost: 0, rows: 0 }
       spendGroups.set(key, { cost: current.cost + (cost ?? 0), rows: current.rows + 1 })
@@ -430,6 +445,14 @@ export function getInternalTelemetryDashboardData(): InternalTelemetryDashboardD
         detail: `${group.rows} staging model rows`,
       }))
       .sort((a, b) => b.value - a.value)
+
+    const modelCandidateDistribution = groupCount(
+      modelRows.map((row) => stringField(row.record, "returned_model")),
+    ).map((row) => ({
+      ...row,
+      detail: "candidate rows; not calls",
+      dataSourceType: "STAGING_CANDIDATE" as const,
+    }))
 
     const modelVsTask = modelRows.slice(0, 25).map((row) => {
       const task = taskRowsBySourcePath.get(row.source_file_path)
@@ -543,6 +566,9 @@ export function getInternalTelemetryDashboardData(): InternalTelemetryDashboardD
         },
       ],
       spendByModelProvider,
+      modelCandidateDistribution,
+      modelCandidatePopulationCount: modelRows.length,
+      modelCandidateExportCount: modelRows.length,
       modelVsTask,
       spendByRoleReviewerRoute: topEntries(spendByRoleReviewerRoute, 10),
       governanceGateOutcomeByTask,

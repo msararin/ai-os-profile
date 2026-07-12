@@ -45,9 +45,11 @@ function SectionMeaning({ children }: { children: React.ReactNode }) {
 function MetricList({
   rows,
   valuePrefix = "",
+  showRowMetadata = true,
 }: {
   rows: Array<{ label: string; value: number; detail?: string; dataSourceType?: string }>
   valuePrefix?: string
+  showRowMetadata?: boolean
 }) {
   if (rows.length === 0) {
     return <p className="text-sm text-muted-foreground">No rows found in the staging query.</p>
@@ -66,16 +68,88 @@ function MetricList({
               {row.value.toLocaleString("en-US")}
             </span>
           </div>
-          <SourceBadge label={row.dataSourceType ?? "FIELD_NOT_EXPOSED_NOT_CLAIMED"} />
+          {showRowMetadata ? (
+            <SourceBadge label={row.dataSourceType ?? "FIELD_NOT_EXPOSED_NOT_CLAIMED"} />
+          ) : null}
           <div className="h-2 rounded bg-muted">
             <div
               className="h-2 rounded bg-primary"
               style={{ width: `${Math.max((row.value / maxValue) * 100, 4)}%` }}
             />
           </div>
-          {row.detail ? <p className="text-xs text-muted-foreground">{row.detail}</p> : null}
+          {showRowMetadata && row.detail ? (
+            <p className="text-xs text-muted-foreground">{row.detail}</p>
+          ) : null}
         </div>
       ))}
+    </div>
+  )
+}
+
+function UnavailableVisual({ title, detail }: { title: string; detail: string }) {
+  return (
+    <div className="rounded-lg border border-dashed bg-muted/20 p-4">
+      <div className="flex items-center gap-2 text-sm font-medium text-foreground">
+        <AlertTriangle className="size-4 text-amber-600" />
+        {title}
+      </div>
+      <div className="mt-3 h-3 overflow-hidden rounded-full border bg-background" aria-hidden="true">
+        <div className="h-full w-0 bg-muted" />
+      </div>
+      <p className="mt-3 text-xs leading-5 text-muted-foreground">{detail}</p>
+    </div>
+  )
+}
+
+function CandidateDominanceStrip({
+  rows,
+  exportedCount,
+  populationCount,
+}: {
+  rows: Array<{ label: string; value: number }>
+  exportedCount: number
+  populationCount: number
+}) {
+  if (rows.length === 0 || exportedCount === 0) {
+    return (
+      <UnavailableVisual
+        title="Model dominance unavailable"
+        detail="No exported model-usage candidate rows are available for a source-limited concentration view."
+      />
+    )
+  }
+
+  const colors = ["bg-teal-600", "bg-sky-600", "bg-indigo-500", "bg-amber-500", "bg-slate-400"]
+
+  return (
+    <div className="space-y-4">
+      <div className="flex h-4 overflow-hidden rounded-full bg-muted" aria-label="Candidate-row concentration strip">
+        {rows.map((row, index) => (
+          <div
+            key={row.label}
+            className={colors[index % colors.length]}
+            style={{ width: `${(row.value / exportedCount) * 100}%` }}
+            title={`${row.label}: ${row.value} of ${exportedCount} exported candidate rows`}
+          />
+        ))}
+      </div>
+      <div className="space-y-2">
+        {rows.map((row, index) => (
+          <div key={row.label} className="flex items-start justify-between gap-3 text-xs">
+            <span className="flex min-w-0 items-start gap-2 text-muted-foreground">
+              <span className={`mt-1 size-2 shrink-0 rounded-full ${colors[index % colors.length]}`} />
+              <span className="break-words">{row.label}</span>
+            </span>
+            <span className="shrink-0 font-mono text-foreground">
+              {row.value}/{exportedCount} ({Math.round((row.value / exportedCount) * 100)}%)
+            </span>
+          </div>
+        ))}
+      </div>
+      <p className="text-xs leading-5 text-muted-foreground">
+        Export coverage: {exportedCount} of {populationCount} model-usage candidate rows. Placeholder
+        labels remain visible. This is not spend, calls, or actual model dominance.
+      </p>
     </div>
   )
 }
@@ -344,8 +418,16 @@ export default async function InternalTelemetryPage() {
         </div>
       </section>
 
-      <section className="mx-auto grid max-w-7xl gap-4 px-4 pb-6 sm:px-6 xl:grid-cols-3 lg:px-8">
-        <Card className="rounded-lg xl:col-span-2">
+      <section className="mx-auto max-w-7xl px-4 pb-6 sm:px-6 lg:px-8">
+        <div className="mb-4">
+          <h2 className="text-base font-semibold text-foreground">Telemetry Overview Visuals</h2>
+          <p className="mt-1 text-sm leading-6 text-muted-foreground">
+            Two source-limited candidate-row views and two explicit data-gap states. Units are never
+            mixed or inferred.
+          </p>
+        </div>
+        <div className="grid gap-4 lg:grid-cols-2">
+        <Card className="rounded-lg">
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-base">
               <BarChart3 className="size-4" />
@@ -358,10 +440,71 @@ export default async function InternalTelemetryPage() {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <MetricList rows={data.spendByModelProvider} valuePrefix="$" />
+            <UnavailableVisual
+              title="Spend unavailable"
+              detail="The sanitized source contract exposes no verified numeric cost, currency unit, or verified/estimated status. Candidate-row counts are not displayed as dollars."
+            />
           </CardContent>
         </Card>
 
+        <Card className="rounded-lg">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2 text-base">
+              <Database className="size-4" />
+              Calls by Model
+            </CardTitle>
+            <SectionMeaning>Shows captured model-label distribution in the exported candidate subset; actual call count is not exposed.</SectionMeaning>
+            <CardDescription>Candidate rows by captured returned-model label; not calls.</CardDescription>
+          </CardHeader>
+          <CardContent>
+            {data.modelCandidateDistribution.length > 0 ? (
+              <div className="space-y-4">
+                <MetricList rows={data.modelCandidateDistribution} showRowMetadata={false} />
+                <p className="text-xs leading-5 text-muted-foreground">
+                  STAGING_CANDIDATE · exported candidate rows · actual call count unavailable.
+                </p>
+              </div>
+            ) : (
+              <UnavailableVisual
+                title="Call count unavailable"
+                detail="No exported model-usage candidate rows are available for a source-limited label distribution."
+              />
+            )}
+          </CardContent>
+        </Card>
+
+        <Card className="rounded-lg">
+          <CardHeader>
+            <CardTitle className="text-base">Approved vs Non-standard Usage</CardTitle>
+            <SectionMeaning>Requires an approved-route or provider-type classification that the sanitized snapshot does not expose.</SectionMeaning>
+            <CardDescription>No share denominator is available, so no route split is inferred.</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <UnavailableVisual
+              title="Route classification unavailable"
+              detail="Provider labels, local-execution markers, reviewer routes, and claim levels are not substitutes for approved/non-standard usage status."
+            />
+          </CardContent>
+        </Card>
+
+        <Card className="rounded-lg">
+          <CardHeader>
+            <CardTitle className="text-base">Model Dominance</CardTitle>
+            <SectionMeaning>Shows captured-label concentration only in the exported candidate subset; it does not establish actual model dominance.</SectionMeaning>
+            <CardDescription>Candidate-row concentration with placeholder labels retained.</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <CandidateDominanceStrip
+              rows={data.modelCandidateDistribution}
+              exportedCount={data.modelCandidateExportCount}
+              populationCount={data.modelCandidatePopulationCount}
+            />
+          </CardContent>
+        </Card>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-4 pb-6 sm:px-6 lg:px-8">
         <Card className="rounded-lg">
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-base">
