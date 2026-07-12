@@ -343,6 +343,306 @@ export const runnerDetail: RoleDetail = {
   ],
 }
 
+export const bigCrewArchitectureGateDetail: RoleDetail = {
+  title: "Big Crew Architecture Gate",
+  type: "Production readiness control layer",
+  purpose:
+    "Keeps prototype-to-production decisions bounded, evidence-led, and public-safe before source work expands.",
+  chips: ["Architecture gate", "Claim boundary", "Production slice"],
+  boundary: "Draft public-safe slice; taxonomy not PASS/DONE/VERIFIED",
+  href: "/org-roles/big-crew-architecture-gate",
+  hero:
+    "Big Crew Architecture Gate is a controlled review layer for deciding whether a prototype, internal tool, or AI workflow is ready to become a maintainable production-facing application. This page is a public-safe draft slice, not a maturity claim.",
+  atAGlance: [
+    ["Role type", "Architecture and production-readiness gate"],
+    ["Primary shift", "Demo debt to bounded production-entry decisions"],
+    ["Core output", "Gate packet, boundary review, and implementation handoff"],
+    ["Boundary", "No taxonomy PASS, implementation readiness, deployment readiness, or live verification claim"],
+  ],
+  why:
+    "Prototype work can become public or production-facing before ownership, maintainability, evidence, and claim boundaries are clear. Big Crew Architecture Gate exists to slow that transition just enough to make scope, risk, and missing evidence visible before implementation expands.",
+  upskilled: {
+    before: [
+      "demo-first implementation momentum",
+      "unclear production-entry criteria",
+      "role and ownership assumptions mixed into source work",
+      "private evidence at risk of leaking into public artifacts",
+    ],
+    after: [
+      "source-of-truth lock before implementation",
+      "public/private boundary review",
+      "bounded first-slice implementation planning",
+      "missing-evidence and non-claim disclosure",
+      "Runner Gang diff/build/no-leak validation",
+      "Prime Gate risk review before continuation",
+    ],
+  },
+  skillPack: [
+    {
+      title: "architecture-gate-scope-framing",
+      body: "Defines the smallest production-facing slice and separates implementation candidates from future-role expansion.",
+    },
+    {
+      title: "public-private-boundary-review",
+      body: "Keeps full internal source packs and private receipts out of public repo content while allowing sanitized references.",
+    },
+    {
+      title: "production-entry-handoff",
+      body: "Turns gate decisions into scoped worktree instructions, validation targets, stop conditions, and claim boundaries.",
+    },
+  ],
+  principles: [
+    "Source of truth before source change",
+    "Smallest public-safe slice first",
+    "Private custody is not public content",
+    "Missing evidence must stay visible",
+    "Runner is not Gate",
+    "Prime Gate leads mitigation",
+    "No PASS/DONE/VERIFIED claim without evidence",
+    "No deploy or live verification claim by default",
+  ],
+  references: [
+    {
+      title: "Private custody reference",
+      body: "The full Big Crew source pack is privately custodied outside the public repo. This public page references that custody only at a high level.",
+    },
+    {
+      title: "Public-safe recovery boundary",
+      body: "Public repo content may contain sanitized index/reference material only, not the full source pack or private receipts.",
+    },
+    {
+      title: "Safe-worktree execution boundary",
+      body: "Source work must happen in a clean or scoped worktree with exact diff, build, and no-leak validation before any continuation claim.",
+    },
+    {
+      title: "Lane collision guard",
+      body: "If a blocker belongs to cleanup, custody, telemetry, or governance, Prime Gate classifies it as a dependency instead of letting this lane silently switch.",
+    },
+  ],
+  workflow:
+    "Source-of-truth lock - public/private boundary review - first-slice scope - safe-worktree plan - bounded source diff - Runner Gang validation - Prime Gate review - owner-readable summary.",
+  inputs: [
+    "private custody status",
+    "public-safe index/reference boundary",
+    "implementation packet",
+    "active lane header",
+    "forbidden lane switches",
+    "validation and stop conditions",
+  ],
+  outputs: [
+    "bounded architecture gate slice",
+    "public-safe detail page",
+    "diff and build validation receipt",
+    "missing-evidence disclosure",
+    "Prime Gate review outcome",
+    "next executable phase boundary",
+  ],
+  escalations: [
+    {
+      title: "Prime Gate",
+      body: "scope, risk, public/private boundary, and claim-language mitigation",
+    },
+    {
+      title: "Runner Gang",
+      body: "diff scope, build result, no-leak checks, and forbidden-claim validation",
+    },
+    {
+      title: "Evidence Steward",
+      body: "custody reference, receipts, source-of-truth status, and non-action record",
+    },
+    {
+      title: "Lyn",
+      body: "owner-level risk, scope change, custody waiver, implementation authorization beyond packet, deploy/live verification, or business priority",
+    },
+  ],
+  evidence: [
+    {
+      title: "Available Evidence",
+      items: [
+        "Private custody of the Big Crew source pack is recorded outside the public repo.",
+        "Public-safe recovery selected a KB-local draft and future-write packet before source implementation.",
+        "Provider-backed routing patch confirmed Opus Prime Gate and Sonnet Runner Gang boundaries.",
+        "Lane collision guard requires blockers from other lanes to be classified before action.",
+      ],
+    },
+    {
+      title: "Missing Evidence",
+      items: [
+        "No taxonomy PASS, DONE, or VERIFIED state is claimed.",
+        "No production deploy or live verification is claimed.",
+        "No role specs are claimed for this slice.",
+        "No full source-pack content is exposed in public repo content.",
+        "No production-fixed claim is made.",
+      ],
+    },
+    {
+      title: "Claims Not Made",
+      items: [
+        "Not a final architecture approval.",
+        "Not implementation readiness for all Big Crew roles.",
+        "Not a deployment readiness claim.",
+        "Not live verification.",
+        "Not proof that every source-pack question is resolved.",
+        "Not authorization to push or commit.",
+      ],
+    },
+  ],
+  upskillPath: [
+    ["1", "Gate Reader", "can identify active lane, source of truth, and non-claims"],
+    ["2", "Boundary Reviewer", "can separate public-safe content from private custody evidence"],
+    ["3", "Scoped Slice Planner", "can define a safe first production-facing implementation slice"],
+    ["4", "Architecture Gate Lead", "can coordinate Runner Gang validation and Prime Gate review before continuation"],
+  ],
+}
+
+export const qaSentinelDetail: RoleDetail = {
+  title: "QA Sentinel",
+  type: "Big Crew v0.1 quality role",
+  purpose:
+    "Protects evidence sufficiency, validation readiness, claim discipline, and release or handoff quality boundaries.",
+  chips: ["Evidence sufficiency", "Validation readiness", "Checker Designer capability"],
+  boundary: "Checker Designer is a capability, not a separate role",
+  href: "/org-roles/qa-sentinel",
+  hero:
+    "QA Sentinel is Big Crew's callable v0.1 quality role. It identifies failure modes, weak assumptions, missing evidence, and release blockers, and uses the Checker Designer capability when the work is specifically about designing acceptance criteria or deterministic validation plans.",
+  atAGlance: [
+    ["Role type", "Callable Big Crew v0.1 quality role"],
+    ["Core output", "Quality findings, evidence checks, validation criteria, and blocker recommendations"],
+    ["Capability", "Checker Designer for acceptance criteria and validation-plan design"],
+    ["Boundary", "Does not execute checks or own final go/no-go authority"],
+  ],
+  why:
+    "Visible results can look ready before their assumptions, evidence, validation criteria, and claim boundaries are strong enough. QA Sentinel makes those gaps explicit before handoff, release, production-facing use, or public narrative expands.",
+  upskilled: {
+    before: [
+      "quality review after implementation",
+      "acceptance criteria mixed with test execution",
+      "missing evidence hidden inside broad readiness language",
+      "Checker Designer treated as an ambiguous alias or separate role",
+    ],
+    after: [
+      "failure-mode and weak-assumption review before release",
+      "evidence sufficiency and owner-usability checks",
+      "explicit validation-readiness and claim-downgrade criteria",
+      "Checker Designer used as a bounded capability under QA Sentinel",
+      "Runner Gang, Evidence Steward, Prime Gate, and owner boundaries preserved",
+    ],
+  },
+  skillPack: [
+    {
+      title: "qa-sentinel-quality-risk-review",
+      body: "Identifies failure modes, weak assumptions, missing evidence, and release or handoff blockers.",
+    },
+    {
+      title: "checker-designer-capability",
+      body: "Designs acceptance criteria, deterministic validation plans, evidence checklists, and claim-downgrade rules without executing the checks.",
+    },
+    {
+      title: "evidence-and-claim-discipline",
+      body: "Reviews whether evidence supports the stated local claim and recommends downgrade or blocking language when it does not.",
+    },
+  ],
+  principles: [
+    "Failure modes before readiness language",
+    "Evidence sufficiency before claim strength",
+    "Design checks separately from executing checks",
+    "Checker Designer stays under QA Sentinel",
+    "Runner Gang executes deterministic validation",
+    "Evidence Steward owns receipts and custody records",
+    "Prime Gate owns final claim-boundary go/no-go",
+    "No production, deploy, live-verification, or taxonomy completion claim by default",
+  ],
+  references: [
+    {
+      title: "Canonical v0.1 role boundary",
+      body: "QA Sentinel is the callable quality role. Checker Designer is its check-design capability, not a flat alias and not a separate v0.1 role.",
+    },
+    {
+      title: "Surface acceptance pairing",
+      body: "For page or surface acceptance criteria, QA Sentinel uses Checker Designer capability alongside Surface Guild. Surface Guild leads reader journey and visible meaning; this pairing does not move Checker Designer into Surface Guild.",
+    },
+    {
+      title: "Deterministic validation boundary",
+      body: "Runner Gang executes deterministic checks. QA Sentinel defines or reviews checks, blockers, and evidence expectations; it is not the runner.",
+    },
+    {
+      title: "Gate and evidence boundary",
+      body: "Evidence Steward records source authority and receipts. QA Sentinel reviews sufficiency. Prime Gate makes the final claim-boundary decision.",
+    },
+  ],
+  workflow:
+    "Source and claim boundary - failure-mode review - weak-assumption review - acceptance and evidence criteria - Runner Gang validation handoff - evidence sufficiency review - blocker or downgrade recommendation - Prime Gate decision.",
+  inputs: [
+    "stated local claim",
+    "source artifacts and implementation diff",
+    "acceptance criteria or validation target",
+    "evidence and receipt inventory",
+    "handoff or release boundary",
+    "known non-claims and stop conditions",
+  ],
+  outputs: [
+    "failure modes and weak assumptions",
+    "acceptance criteria and validation-plan design",
+    "evidence sufficiency findings",
+    "release or handoff blockers",
+    "claim-downgrade recommendation",
+    "Runner Gang validation expectations",
+  ],
+  escalations: [
+    {
+      title: "Runner Gang",
+      body: "execute deterministic checks and return pass/fail evidence",
+    },
+    {
+      title: "Evidence Steward",
+      body: "record source authority, custody, receipts, and provider/model telemetry",
+    },
+    {
+      title: "Prime Gate",
+      body: "decide final claim boundary and go/no-go after QA findings",
+    },
+    {
+      title: "Lyn",
+      body: "owner decision for taxonomy split, scope expansion, implementation authority, push, deploy, live verification, or public release",
+    },
+  ],
+  evidence: [
+    {
+      title: "Available Evidence",
+      items: [
+        "The canonical v0.1 role set names QA Sentinel as the quality role.",
+        "The accepted calling boundary places Checker Designer under QA Sentinel as a check-design capability.",
+        "A provider-validated local role-page mapping defines purpose, responsibilities, relationships, and non-claims.",
+      ],
+    },
+    {
+      title: "Missing Evidence",
+      items: [
+        "No production, deployment, or live-verification evidence is claimed.",
+        "No taxonomy PASS, DONE, or VERIFIED state is claimed.",
+        "No separate Checker Designer role contract or role-page authority exists.",
+        "This local page slice does not prove independent validation of future work.",
+      ],
+    },
+    {
+      title: "Claims Not Made",
+      items: [
+        "QA Sentinel does not execute deterministic validation.",
+        "QA Sentinel does not own evidence custody or provider receipts.",
+        "QA Sentinel does not approve final claim boundaries.",
+        "QA Sentinel does not approve release, production, deploy, or live verification.",
+        "Checker Designer is not a separate role and is not owned by Surface Guild.",
+      ],
+    },
+  ],
+  upskillPath: [
+    ["1", "Quality Risk Reader", "can identify failure modes, weak assumptions, and missing evidence"],
+    ["2", "Checker Designer", "can design acceptance criteria, evidence checklists, and deterministic validation plans"],
+    ["3", "QA Sentinel", "can review evidence sufficiency, blockers, owner usability, and claim-downgrade needs"],
+    ["4", "Quality Gate Partner", "can hand off checks to Runner Gang and findings to Prime Gate without absorbing their authority"],
+  ],
+}
+
 export function CapabilityRoleCard({ detail }: { detail: RoleDetail }) {
   return (
     <Card className="border-primary/20 bg-primary/5">

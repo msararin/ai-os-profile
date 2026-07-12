@@ -4,8 +4,10 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import Link from "next/link"
 import { executionControlRoles } from "@/lib/aios-execution-control-measurement"
 import {
+  bigCrewArchitectureGateDetail,
   CapabilityRoleCard,
   dataTeamDetail,
+  qaSentinelDetail,
   runnerDetail,
 } from "./role-detail-content"
 
@@ -199,6 +201,8 @@ export default function OrgRolesPage() {
             remains scannable.
           </p>
           <div className="mt-6 grid gap-4 md:grid-cols-2">
+            <CapabilityRoleCard detail={bigCrewArchitectureGateDetail} />
+            <CapabilityRoleCard detail={qaSentinelDetail} />
             <CapabilityRoleCard detail={dataTeamDetail} />
             <CapabilityRoleCard detail={runnerDetail} />
           </div>
@@ -314,6 +318,20 @@ export default function OrgRolesPage() {
                         className="mt-3 inline-flex text-xs font-medium text-primary hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
                       >
                         View capability detail
+                      </Link>
+                    ) : name === "Architecture" ? (
+                      <Link
+                        href="/org-roles/big-crew-architecture-gate"
+                        className="mt-3 inline-flex text-xs font-medium text-primary hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+                      >
+                        View gate detail
+                      </Link>
+                    ) : name === "QA" ? (
+                      <Link
+                        href="/org-roles/qa-sentinel"
+                        className="mt-3 inline-flex text-xs font-medium text-primary hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+                      >
+                        View quality role detail
                       </Link>
                     ) : null}
                   </div>
