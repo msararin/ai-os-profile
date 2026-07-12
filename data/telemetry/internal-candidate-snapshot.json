@@ -1,7 +1,7 @@
 {
-  "schemaVersion": 1,
-  "generatorVersion": "20260710.1",
-  "generatedAt": "2026-07-10T12:09:56.880Z",
+  "schemaVersion": 2,
+  "generatorVersion": "20260712.1",
+  "generatedAt": "2026-07-01T18:34:00Z",
   "source": {
     "kind": "local_sqlite_candidates",
     "sourceFreshness": "2026-07-01 18:34:00",
@@ -9,6 +9,14 @@
     "databasePathOmitted": true
   },
   "claimBoundary": "Candidate/backfill records; not verified production runtime telemetry.",
+  "preservedBoundaries": {
+    "candidateRecords": 2297,
+    "backfillClassRecords": 2259,
+    "historicalMissingFieldOccurrences": 69881,
+    "exportLimitedTop12Occurrences": 26957,
+    "delta2Status": "UNRESOLVED",
+    "value18019Status": "NON_CLAIMABLE_NON_ADDITIVE"
+  },
   "counts": {
     "agentRuns": 10,
     "candidateRecords": 2297,
@@ -77,6 +85,705 @@
     {
       "label": "LOW_CONFIDENCE_ADVISORY_ONLY",
       "value": 15
+    }
+  ],
+  "roleReviewerRoutes": [
+    {
+      "label": "SOURCE_ARTIFACT_MISSING_FIELD / SOURCE_ARTIFACT_MISSING_FIELD",
+      "value": 7,
+      "detail": "intended role / reviewer independence; source-limited candidate aggregate"
+    },
+    {
+      "label": "Runner Gang deterministic validation / SOURCE_ARTIFACT_MISSING_FIELD",
+      "value": 3,
+      "detail": "intended role / reviewer independence; source-limited candidate aggregate"
+    },
+    {
+      "label": "SOURCE_ARTIFACT_MISSING_FIELD / EXTERNAL_PROVIDER_BACKED",
+      "value": 2,
+      "detail": "intended role / reviewer independence; source-limited candidate aggregate"
+    },
+    {
+      "label": "Codex local implementation executor / SOURCE_ARTIFACT_MISSING_FIELD",
+      "value": 2,
+      "detail": "intended role / reviewer independence; source-limited candidate aggregate"
+    },
+    {
+      "label": "Model / Provider / SOURCE_ARTIFACT_MISSING_FIELD",
+      "value": 1,
+      "detail": "intended role / reviewer independence; source-limited candidate aggregate"
+    },
+    {
+      "label": "Codex local KB closeout executor / SOURCE_ARTIFACT_MISSING_FIELD",
+      "value": 1,
+      "detail": "intended role / reviewer independence; source-limited candidate aggregate"
+    },
+    {
+      "label": "Big Crew Engineering / Artifact Quality Review / EXTERNAL_PROVIDER_BACKED",
+      "value": 1,
+      "detail": "intended role / reviewer independence; source-limited candidate aggregate"
+    },
+    {
+      "label": "Codex local evidence preservation executor / SOURCE_ARTIFACT_MISSING_FIELD",
+      "value": 1,
+      "detail": "intended role / reviewer independence; source-limited candidate aggregate"
+    },
+    {
+      "label": "Codex local cleanup classifier / SOURCE_ARTIFACT_MISSING_FIELD",
+      "value": 1,
+      "detail": "intended role / reviewer independence; source-limited candidate aggregate"
+    },
+    {
+      "label": "Prime Gate / SOURCE_ARTIFACT_MISSING_FIELD",
+      "value": 1,
+      "detail": "intended role / reviewer independence; source-limited candidate aggregate"
+    }
+  ],
+  "governanceGateOutcomes": [
+    {
+      "gateName": "owner gate",
+      "gateStatus": "DRAFT_LOCAL_ONLY_DOWNGRADED",
+      "gateVerdict": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "dataSourceType": "STAGING_CANDIDATE"
+    },
+    {
+      "gateName": "Prime Gate",
+      "gateStatus": "DRAFT_LOCAL_ONLY_DOWNGRADED",
+      "gateVerdict": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "dataSourceType": "STAGING_CANDIDATE"
+    },
+    {
+      "gateName": "Prime Gate",
+      "gateStatus": "DRAFT_LOCAL_ONLY_DOWNGRADED",
+      "gateVerdict": "ACCEPT_INVENTORY_AS_DRY_RUN_REQUIRE_MAPPING_PATCH_BEFORE_BACKFILL",
+      "dataSourceType": "STAGING_CANDIDATE"
+    },
+    {
+      "gateName": "Telemetry Steward",
+      "gateStatus": "DRAFT_LOCAL_ONLY_DOWNGRADED",
+      "gateVerdict": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "dataSourceType": "STAGING_CANDIDATE"
+    },
+    {
+      "gateName": "Telemetry Steward",
+      "gateStatus": "DRAFT_LOCAL_ONLY_DOWNGRADED",
+      "gateVerdict": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "dataSourceType": "STAGING_CANDIDATE"
+    },
+    {
+      "gateName": "Prime Gate",
+      "gateStatus": "DOWNGRADED_LOCAL_ONLY_UNTIL_FULL_AIOS_PACKET",
+      "gateVerdict": "APPROVE_ROUTE_GATING_CANDIDATE_WITH_OWNER_CALLBACK_SETUP_REQUIRED",
+      "dataSourceType": "STAGING_CANDIDATE"
+    },
+    {
+      "gateName": "Prime Gate",
+      "gateStatus": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "gateVerdict": "APPROVE_ROUTE_GATING_CANDIDATE_WITH_OWNER_CALLBACK_SETUP_REQUIRED",
+      "dataSourceType": "STAGING_CANDIDATE"
+    },
+    {
+      "gateName": "QA Sentinel",
+      "gateStatus": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "gateVerdict": "auth route-gating candidate only; telemetry verification remains not claimed.",
+      "dataSourceType": "STAGING_CANDIDATE"
+    },
+    {
+      "gateName": "Prime Gate",
+      "gateStatus": "DRAFT_LOCAL_ONLY_DOWNGRADED",
+      "gateVerdict": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "dataSourceType": "STAGING_CANDIDATE"
+    },
+    {
+      "gateName": "Surface Guild",
+      "gateStatus": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "gateVerdict": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "dataSourceType": "STAGING_CANDIDATE"
+    },
+    {
+      "gateName": "Prime Gate",
+      "gateStatus": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "gateVerdict": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "dataSourceType": "STAGING_CANDIDATE"
+    },
+    {
+      "gateName": "Prime gate",
+      "gateStatus": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "gateVerdict": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "dataSourceType": "STAGING_CANDIDATE"
+    },
+    {
+      "gateName": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "gateStatus": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "gateVerdict": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "dataSourceType": "STAGING_CANDIDATE"
+    },
+    {
+      "gateName": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "gateStatus": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "gateVerdict": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "dataSourceType": "STAGING_CANDIDATE"
+    },
+    {
+      "gateName": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "gateStatus": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "gateVerdict": "FINAL_ALIGNMENT_APPROVED_PROMOTE_POLICY_AND_REQUIRE_T4",
+      "dataSourceType": "STAGING_CANDIDATE"
+    },
+    {
+      "gateName": "Surface Guild",
+      "gateStatus": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "gateVerdict": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "dataSourceType": "STAGING_CANDIDATE"
+    },
+    {
+      "gateName": "Prime Gate",
+      "gateStatus": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "gateVerdict": "PASS_CLOSEOUT_WITH_BOUNDARIES",
+      "dataSourceType": "STAGING_CANDIDATE"
+    },
+    {
+      "gateName": "Prime Gate",
+      "gateStatus": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "gateVerdict": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "dataSourceType": "STAGING_CANDIDATE"
+    },
+    {
+      "gateName": "Prime Gate",
+      "gateStatus": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "gateVerdict": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "dataSourceType": "STAGING_CANDIDATE"
+    },
+    {
+      "gateName": "Prime Gate",
+      "gateStatus": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "gateVerdict": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "dataSourceType": "STAGING_CANDIDATE"
+    },
+    {
+      "gateName": "owner gate",
+      "gateStatus": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "gateVerdict": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "dataSourceType": "STAGING_CANDIDATE"
+    },
+    {
+      "gateName": "owner gate",
+      "gateStatus": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "gateVerdict": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "dataSourceType": "STAGING_CANDIDATE"
+    },
+    {
+      "gateName": "Prime Gate",
+      "gateStatus": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "gateVerdict": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "dataSourceType": "STAGING_CANDIDATE"
+    },
+    {
+      "gateName": "Owner Gate",
+      "gateStatus": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "gateVerdict": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "dataSourceType": "STAGING_CANDIDATE"
+    },
+    {
+      "gateName": "Surface Guild",
+      "gateStatus": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "gateVerdict": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "dataSourceType": "STAGING_CANDIDATE"
+    },
+    {
+      "gateName": "Surface Guild",
+      "gateStatus": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "gateVerdict": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "dataSourceType": "STAGING_CANDIDATE"
+    },
+    {
+      "gateName": "Prime Gate",
+      "gateStatus": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "gateVerdict": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "dataSourceType": "STAGING_CANDIDATE"
+    },
+    {
+      "gateName": "Prime Gate",
+      "gateStatus": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "gateVerdict": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "dataSourceType": "STAGING_CANDIDATE"
+    },
+    {
+      "gateName": "Surface Guild",
+      "gateStatus": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "gateVerdict": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "dataSourceType": "STAGING_CANDIDATE"
+    },
+    {
+      "gateName": "Prime Gate",
+      "gateStatus": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "gateVerdict": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "dataSourceType": "STAGING_CANDIDATE"
+    }
+  ],
+  "claimMovements": [
+    {
+      "sourceArtifactDate": "2026-07-01",
+      "claimBefore": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "claimAfter": "DRAFT_LOCAL_ONLY_ARCHITECTURE_CONTRACT",
+      "claimMovement": "CLAIM_AFTER_RECORDED_NO_PRIOR_CLAIM_IN_SOURCE::DRAFT_LOCAL_ONLY_ARCHITECTURE_CONTRACT",
+      "dataSourceType": "STAGING_CANDIDATE"
+    },
+    {
+      "sourceArtifactDate": "2026-07-01",
+      "claimBefore": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "claimAfter": "DRAFT_LOCAL_ONLY_INVENTORY_CANDIDATE",
+      "claimMovement": "CLAIM_AFTER_RECORDED_NO_PRIOR_CLAIM_IN_SOURCE::DRAFT_LOCAL_ONLY_INVENTORY_CANDIDATE",
+      "dataSourceType": "STAGING_CANDIDATE"
+    },
+    {
+      "sourceArtifactDate": "2026-07-01",
+      "claimBefore": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "claimAfter": "DRAFT_LOCAL_ONLY_PRIME_GATE_REVIEW",
+      "claimMovement": "CLAIM_AFTER_RECORDED_NO_PRIOR_CLAIM_IN_SOURCE::DRAFT_LOCAL_ONLY_PRIME_GATE_REVIEW",
+      "dataSourceType": "STAGING_CANDIDATE"
+    },
+    {
+      "sourceArtifactDate": "2026-07-01",
+      "claimBefore": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "claimAfter": "DRAFT_LOCAL_ONLY_EXISTENCE_CHECK",
+      "claimMovement": "CLAIM_AFTER_RECORDED_NO_PRIOR_CLAIM_IN_SOURCE::DRAFT_LOCAL_ONLY_EXISTENCE_CHECK",
+      "dataSourceType": "STAGING_CANDIDATE"
+    },
+    {
+      "sourceArtifactDate": "2026-07-01",
+      "claimBefore": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "claimAfter": "DRAFT_LOCAL_ONLY_DECISION",
+      "claimMovement": "CLAIM_AFTER_RECORDED_NO_PRIOR_CLAIM_IN_SOURCE::DRAFT_LOCAL_ONLY_DECISION",
+      "dataSourceType": "STAGING_CANDIDATE"
+    },
+    {
+      "sourceArtifactDate": "2026-07-01",
+      "claimBefore": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "claimAfter": "LOCAL_IMPLEMENTATION_CANDIDATE_ONLY",
+      "claimMovement": "CLAIM_AFTER_RECORDED_NO_PRIOR_CLAIM_IN_SOURCE::LOCAL_IMPLEMENTATION_CANDIDATE_ONLY",
+      "dataSourceType": "STAGING_CANDIDATE"
+    },
+    {
+      "sourceArtifactDate": "2026-07-01",
+      "claimBefore": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "claimAfter": "LOCAL_IMPLEMENTATION_CANDIDATE_ONLY_BROWSER_PROOF_BLOCKED",
+      "claimMovement": "CLAIM_AFTER_RECORDED_NO_PRIOR_CLAIM_IN_SOURCE::LOCAL_IMPLEMENTATION_CANDIDATE_ONLY_BROWSER_PROOF_BLOCKED",
+      "dataSourceType": "STAGING_CANDIDATE"
+    },
+    {
+      "sourceArtifactDate": "2026-07-01",
+      "claimBefore": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "claimAfter": "LOCAL_IMPLEMENTATION_CANDIDATE_ONLY_BROWSER_PROOF_BLOCKED",
+      "claimMovement": "CLAIM_AFTER_RECORDED_NO_PRIOR_CLAIM_IN_SOURCE::LOCAL_IMPLEMENTATION_CANDIDATE_ONLY_BROWSER_PROOF_BLOCKED",
+      "dataSourceType": "STAGING_CANDIDATE"
+    },
+    {
+      "sourceArtifactDate": "2026-07-01",
+      "claimBefore": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "claimAfter": "EXTERNAL_PROVIDER_BACKED_PRIME_GATE_REVIEW_ONLY",
+      "claimMovement": "CLAIM_AFTER_RECORDED_NO_PRIOR_CLAIM_IN_SOURCE::EXTERNAL_PROVIDER_BACKED_PRIME_GATE_REVIEW_ONLY",
+      "dataSourceType": "STAGING_CANDIDATE"
+    },
+    {
+      "sourceArtifactDate": "2026-07-01",
+      "claimBefore": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "claimAfter": "DRAFT_LOCAL_ONLY_ROLE_REVIEW",
+      "claimMovement": "CLAIM_AFTER_RECORDED_NO_PRIOR_CLAIM_IN_SOURCE::DRAFT_LOCAL_ONLY_ROLE_REVIEW",
+      "dataSourceType": "STAGING_CANDIDATE"
+    },
+    {
+      "sourceArtifactDate": "2026-07-01",
+      "claimBefore": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "claimAfter": "TELEMETRY_SURFACE_EXISTS_ONLY",
+      "claimMovement": "CLAIM_AFTER_RECORDED_NO_PRIOR_CLAIM_IN_SOURCE::TELEMETRY_SURFACE_EXISTS_ONLY",
+      "dataSourceType": "STAGING_CANDIDATE"
+    },
+    {
+      "sourceArtifactDate": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "claimBefore": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "claimAfter": "DRAFT_LOCAL_ONLY_NOT_PUSHED_NOT_DEPLOYED_NOT_LIVE_VERIFIED",
+      "claimMovement": "CLAIM_AFTER_RECORDED_NO_PRIOR_CLAIM_IN_SOURCE::DRAFT_LOCAL_ONLY_NOT_PUSHED_NOT_DEPLOYED_NOT_LIVE_VERIFIED",
+      "dataSourceType": "STAGING_CANDIDATE"
+    },
+    {
+      "sourceArtifactDate": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "claimBefore": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "claimAfter": "PHASE_B_FIRST_TASK_RUN_ACCEPTED_LOCAL_ONLY",
+      "claimMovement": "CLAIM_AFTER_RECORDED_NO_PRIOR_CLAIM_IN_SOURCE::PHASE_B_FIRST_TASK_RUN_ACCEPTED_LOCAL_ONLY",
+      "dataSourceType": "STAGING_CANDIDATE"
+    },
+    {
+      "sourceArtifactDate": "2026-07-01",
+      "claimBefore": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "claimAfter": "PHASE_A_SWIMLANE_IMPLEMENTATION_ACCEPTED_LOCAL_ONLY",
+      "claimMovement": "CLAIM_AFTER_RECORDED_NO_PRIOR_CLAIM_IN_SOURCE::PHASE_A_SWIMLANE_IMPLEMENTATION_ACCEPTED_LOCAL_ONLY",
+      "dataSourceType": "STAGING_CANDIDATE"
+    },
+    {
+      "sourceArtifactDate": "2026-07-01",
+      "claimBefore": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "claimAfter": "PHASE_A_SWIMLANE_IMPLEMENTATION_ACCEPTED_LOCAL_ONLY",
+      "claimMovement": "CLAIM_AFTER_RECORDED_NO_PRIOR_CLAIM_IN_SOURCE::PHASE_A_SWIMLANE_IMPLEMENTATION_ACCEPTED_LOCAL_ONLY",
+      "dataSourceType": "STAGING_CANDIDATE"
+    },
+    {
+      "sourceArtifactDate": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "claimBefore": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "claimAfter": "STRUCTURED_STORAGE_EXISTS_BUT_COVERAGE_IS_INCOMPLETE",
+      "claimMovement": "STRUCTURED_STORAGE_EXISTS_BUT_COVERAGE_IS_INCOMPLETE",
+      "dataSourceType": "STAGING_CANDIDATE"
+    },
+    {
+      "sourceArtifactDate": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "claimBefore": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "claimAfter": "STRUCTURED_STORAGE_EXISTS_BUT_COVERAGE_IS_INCOMPLETE",
+      "claimMovement": "STRUCTURED_STORAGE_EXISTS_BUT_COVERAGE_IS_INCOMPLETE",
+      "dataSourceType": "STAGING_CANDIDATE"
+    }
+  ],
+  "missingTelemetryWarnings": [
+    {
+      "label": "detected_claim_before",
+      "value": 2297,
+      "detail": "export-limited missing-field occurrence count"
+    },
+    {
+      "label": "detected_target_claim",
+      "value": 2297,
+      "detail": "export-limited missing-field occurrence count"
+    },
+    {
+      "label": "detected_gate_owner",
+      "value": 2297,
+      "detail": "export-limited missing-field occurrence count"
+    },
+    {
+      "label": "detected_latency",
+      "value": 2276,
+      "detail": "export-limited missing-field occurrence count"
+    },
+    {
+      "label": "detected_forbidden_next_action",
+      "value": 2276,
+      "detail": "export-limited missing-field occurrence count"
+    },
+    {
+      "label": "pairing_key",
+      "value": 2259,
+      "detail": "export-limited missing-field occurrence count"
+    },
+    {
+      "label": "detected_role_correctness",
+      "value": 2255,
+      "detail": "export-limited missing-field occurrence count"
+    },
+    {
+      "label": "detected_strongest_supportable_claim",
+      "value": 2238,
+      "detail": "export-limited missing-field occurrence count"
+    },
+    {
+      "label": "detected_task_id",
+      "value": 2209,
+      "detail": "export-limited missing-field occurrence count"
+    },
+    {
+      "label": "detected_authorized_next_action",
+      "value": 2195,
+      "detail": "export-limited missing-field occurrence count"
+    },
+    {
+      "label": "detected_generation_id",
+      "value": 2194,
+      "detail": "export-limited missing-field occurrence count"
+    },
+    {
+      "label": "detected_blocked_reason",
+      "value": 2164,
+      "detail": "export-limited missing-field occurrence count"
+    }
+  ],
+  "lowConfidenceRows": [
+    {
+      "exclusionReason": "LOW_CONFIDENCE_ADVISORY_ONLY",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "extractionConfidence": "low",
+      "missingFieldCount": 25,
+      "dataSourceType": "LOW_CONFIDENCE_ADVISORY"
+    },
+    {
+      "exclusionReason": "LOW_CONFIDENCE_ADVISORY_ONLY",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "extractionConfidence": "low",
+      "missingFieldCount": 26,
+      "dataSourceType": "LOW_CONFIDENCE_ADVISORY"
+    },
+    {
+      "exclusionReason": "LOW_CONFIDENCE_ADVISORY_ONLY",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "extractionConfidence": "low",
+      "missingFieldCount": 28,
+      "dataSourceType": "LOW_CONFIDENCE_ADVISORY"
+    },
+    {
+      "exclusionReason": "INSUFFICIENT_TASK_IDENTITY",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "extractionConfidence": "high",
+      "missingFieldCount": 20,
+      "dataSourceType": "LOW_CONFIDENCE_ADVISORY"
+    },
+    {
+      "exclusionReason": "INSUFFICIENT_TASK_IDENTITY",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "extractionConfidence": "high",
+      "missingFieldCount": 20,
+      "dataSourceType": "LOW_CONFIDENCE_ADVISORY"
+    },
+    {
+      "exclusionReason": "LOW_CONFIDENCE_ADVISORY_ONLY",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "extractionConfidence": "low",
+      "missingFieldCount": 29,
+      "dataSourceType": "LOW_CONFIDENCE_ADVISORY"
+    },
+    {
+      "exclusionReason": "LOW_CONFIDENCE_ADVISORY_ONLY",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "extractionConfidence": "low",
+      "missingFieldCount": 34,
+      "dataSourceType": "LOW_CONFIDENCE_ADVISORY"
+    },
+    {
+      "exclusionReason": "LOW_CONFIDENCE_ADVISORY_ONLY",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "extractionConfidence": "low",
+      "missingFieldCount": 30,
+      "dataSourceType": "LOW_CONFIDENCE_ADVISORY"
+    },
+    {
+      "exclusionReason": "LOW_CONFIDENCE_ADVISORY_ONLY",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "extractionConfidence": "low",
+      "missingFieldCount": 34,
+      "dataSourceType": "LOW_CONFIDENCE_ADVISORY"
+    },
+    {
+      "exclusionReason": "LOW_CONFIDENCE_ADVISORY_ONLY",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "extractionConfidence": "low",
+      "missingFieldCount": 34,
+      "dataSourceType": "LOW_CONFIDENCE_ADVISORY"
+    },
+    {
+      "exclusionReason": "LOW_CONFIDENCE_ADVISORY_ONLY",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "extractionConfidence": "low",
+      "missingFieldCount": 34,
+      "dataSourceType": "LOW_CONFIDENCE_ADVISORY"
+    },
+    {
+      "exclusionReason": "INSUFFICIENT_TASK_IDENTITY",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "extractionConfidence": "high",
+      "missingFieldCount": 20,
+      "dataSourceType": "LOW_CONFIDENCE_ADVISORY"
+    },
+    {
+      "exclusionReason": "INSUFFICIENT_TASK_IDENTITY",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "extractionConfidence": "high",
+      "missingFieldCount": 20,
+      "dataSourceType": "LOW_CONFIDENCE_ADVISORY"
+    },
+    {
+      "exclusionReason": "INSUFFICIENT_TASK_IDENTITY",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "extractionConfidence": "high",
+      "missingFieldCount": 20,
+      "dataSourceType": "LOW_CONFIDENCE_ADVISORY"
+    },
+    {
+      "exclusionReason": "INSUFFICIENT_TASK_IDENTITY",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "extractionConfidence": "high",
+      "missingFieldCount": 20,
+      "dataSourceType": "LOW_CONFIDENCE_ADVISORY"
+    },
+    {
+      "exclusionReason": "INSUFFICIENT_TASK_IDENTITY",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "extractionConfidence": "high",
+      "missingFieldCount": 20,
+      "dataSourceType": "LOW_CONFIDENCE_ADVISORY"
+    },
+    {
+      "exclusionReason": "INSUFFICIENT_TASK_IDENTITY",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "extractionConfidence": "medium",
+      "missingFieldCount": 33,
+      "dataSourceType": "LOW_CONFIDENCE_ADVISORY"
+    },
+    {
+      "exclusionReason": "INSUFFICIENT_TASK_IDENTITY",
+      "claimLevel": "PHASE_A_SWIMLANE_IMPLEMENTATION_ACCEPTED_LOCAL_ONLY_WITH_ROLE_RECEIPTS",
+      "extractionConfidence": "medium",
+      "missingFieldCount": 30,
+      "dataSourceType": "LOW_CONFIDENCE_ADVISORY"
+    },
+    {
+      "exclusionReason": "INSUFFICIENT_TASK_IDENTITY",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "extractionConfidence": "high",
+      "missingFieldCount": 20,
+      "dataSourceType": "LOW_CONFIDENCE_ADVISORY"
+    },
+    {
+      "exclusionReason": "INSUFFICIENT_TASK_IDENTITY",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "extractionConfidence": "high",
+      "missingFieldCount": 20,
+      "dataSourceType": "LOW_CONFIDENCE_ADVISORY"
+    },
+    {
+      "exclusionReason": "INSUFFICIENT_TASK_IDENTITY",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "extractionConfidence": "high",
+      "missingFieldCount": 20,
+      "dataSourceType": "LOW_CONFIDENCE_ADVISORY"
+    },
+    {
+      "exclusionReason": "INSUFFICIENT_TASK_IDENTITY",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "extractionConfidence": "high",
+      "missingFieldCount": 20,
+      "dataSourceType": "LOW_CONFIDENCE_ADVISORY"
+    },
+    {
+      "exclusionReason": "INSUFFICIENT_TASK_IDENTITY",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "extractionConfidence": "high",
+      "missingFieldCount": 20,
+      "dataSourceType": "LOW_CONFIDENCE_ADVISORY"
+    },
+    {
+      "exclusionReason": "LOW_CONFIDENCE_ADVISORY_ONLY",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "extractionConfidence": "low",
+      "missingFieldCount": 29,
+      "dataSourceType": "LOW_CONFIDENCE_ADVISORY"
+    },
+    {
+      "exclusionReason": "LOW_CONFIDENCE_ADVISORY_ONLY",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "extractionConfidence": "low",
+      "missingFieldCount": 32,
+      "dataSourceType": "LOW_CONFIDENCE_ADVISORY"
+    },
+    {
+      "exclusionReason": "LOW_CONFIDENCE_ADVISORY_ONLY",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "extractionConfidence": "low",
+      "missingFieldCount": 28,
+      "dataSourceType": "LOW_CONFIDENCE_ADVISORY"
+    },
+    {
+      "exclusionReason": "LOW_CONFIDENCE_ADVISORY_ONLY",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "extractionConfidence": "low",
+      "missingFieldCount": 33,
+      "dataSourceType": "LOW_CONFIDENCE_ADVISORY"
+    },
+    {
+      "exclusionReason": "INSUFFICIENT_TASK_IDENTITY",
+      "claimLevel": "PHASE_B_FIRST_TASK_RUN_ACCEPTED_LOCAL_ONLY",
+      "extractionConfidence": "medium",
+      "missingFieldCount": 30,
+      "dataSourceType": "LOW_CONFIDENCE_ADVISORY"
+    },
+    {
+      "exclusionReason": "LOW_CONFIDENCE_ADVISORY_ONLY",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "extractionConfidence": "low",
+      "missingFieldCount": 29,
+      "dataSourceType": "LOW_CONFIDENCE_ADVISORY"
+    },
+    {
+      "exclusionReason": "LOW_CONFIDENCE_ADVISORY_ONLY",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "extractionConfidence": "low",
+      "missingFieldCount": 32,
+      "dataSourceType": "LOW_CONFIDENCE_ADVISORY"
+    },
+    {
+      "exclusionReason": "INSUFFICIENT_TASK_IDENTITY",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "extractionConfidence": "high",
+      "missingFieldCount": 35,
+      "dataSourceType": "LOW_CONFIDENCE_ADVISORY"
+    },
+    {
+      "exclusionReason": "INSUFFICIENT_TASK_IDENTITY",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "extractionConfidence": "high",
+      "missingFieldCount": 25,
+      "dataSourceType": "LOW_CONFIDENCE_ADVISORY"
+    },
+    {
+      "exclusionReason": "INSUFFICIENT_TASK_IDENTITY",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "extractionConfidence": "high",
+      "missingFieldCount": 34,
+      "dataSourceType": "LOW_CONFIDENCE_ADVISORY"
+    },
+    {
+      "exclusionReason": "INSUFFICIENT_TASK_IDENTITY",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "extractionConfidence": "high",
+      "missingFieldCount": 34,
+      "dataSourceType": "LOW_CONFIDENCE_ADVISORY"
+    },
+    {
+      "exclusionReason": "INSUFFICIENT_TASK_IDENTITY",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "extractionConfidence": "high",
+      "missingFieldCount": 34,
+      "dataSourceType": "LOW_CONFIDENCE_ADVISORY"
+    },
+    {
+      "exclusionReason": "INSUFFICIENT_TASK_IDENTITY",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "extractionConfidence": "high",
+      "missingFieldCount": 34,
+      "dataSourceType": "LOW_CONFIDENCE_ADVISORY"
+    },
+    {
+      "exclusionReason": "INSUFFICIENT_TASK_IDENTITY",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "extractionConfidence": "high",
+      "missingFieldCount": 34,
+      "dataSourceType": "LOW_CONFIDENCE_ADVISORY"
+    },
+    {
+      "exclusionReason": "INSUFFICIENT_TASK_IDENTITY",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "extractionConfidence": "high",
+      "missingFieldCount": 34,
+      "dataSourceType": "LOW_CONFIDENCE_ADVISORY"
+    },
+    {
+      "exclusionReason": "INSUFFICIENT_TASK_IDENTITY",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "extractionConfidence": "high",
+      "missingFieldCount": 34,
+      "dataSourceType": "LOW_CONFIDENCE_ADVISORY"
+    },
+    {
+      "exclusionReason": "INSUFFICIENT_TASK_IDENTITY",
+      "claimLevel": "SOURCE_ARTIFACT_MISSING_FIELD",
+      "extractionConfidence": "high",
+      "missingFieldCount": 35,
+      "dataSourceType": "LOW_CONFIDENCE_ADVISORY"
     }
   ],
   "modelRows": [
