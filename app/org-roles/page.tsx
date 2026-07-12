@@ -3,9 +3,11 @@ import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import Link from "next/link"
 import {
+  bigCrewArchitectureGateDetail,
   CapabilityRoleCard,
   dataTeamDetail,
   repoCustodianCardDetail,
+  qaSentinelDetail,
   runnerDetail,
 } from "./role-detail-content"
 
@@ -238,6 +240,8 @@ export default function OrgRolesPage() {
             remains scannable.
           </p>
           <div className="mt-6 grid gap-4 md:grid-cols-2">
+            <CapabilityRoleCard detail={bigCrewArchitectureGateDetail} />
+            <CapabilityRoleCard detail={qaSentinelDetail} />
             <CapabilityRoleCard detail={dataTeamDetail} />
             <CapabilityRoleCard detail={runnerDetail} />
             <CapabilityRoleCard detail={repoCustodianCardDetail} />
@@ -335,6 +339,28 @@ export default function OrgRolesPage() {
                       protects repository integrity, provenance, clean worktrees,
                       exact-SHA handoffs, and recovery readiness across delivery lanes.
                     </p>
+                    {name === "Data Team" ? (
+                      <Link
+                        href="/org-roles/data-team"
+                        className="mt-3 inline-flex text-xs font-medium text-primary hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+                      >
+                        View capability detail
+                      </Link>
+                    ) : name === "Architecture" ? (
+                      <Link
+                        href="/org-roles/big-crew-architecture-gate"
+                        className="mt-3 inline-flex text-xs font-medium text-primary hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+                      >
+                        View gate detail
+                      </Link>
+                    ) : name === "QA" ? (
+                      <Link
+                        href="/org-roles/qa-sentinel"
+                        className="mt-3 inline-flex text-xs font-medium text-primary hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+                      >
+                        View quality role detail
+                      </Link>
+                    ) : null}
                   </div>
                   <Link
                     href="/org-roles/repo-custodian"
