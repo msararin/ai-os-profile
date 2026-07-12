@@ -150,7 +150,7 @@ const snapshot = {
   claimMovements,
   missingTelemetryWarnings,
   lowConfidenceRows,
-  modelRows: modelRows.slice(0, 12),
+  modelRows,
   taskRows: taskRows.slice(0, 12),
   batch: batch ? { ...batch, sourcePathOmitted: true } : null,
 }

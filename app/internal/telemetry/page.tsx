@@ -129,7 +129,7 @@ function CandidateDominanceStrip({
             key={row.label}
             className={colors[index % colors.length]}
             style={{ width: `${(row.value / exportedCount) * 100}%` }}
-            title={`${row.label}: ${row.value} of ${exportedCount} exported candidate rows`}
+            title={`${row.label}: ${row.value} of ${exportedCount} model-usage candidate rows`}
           />
         ))}
       </div>
@@ -147,7 +147,7 @@ function CandidateDominanceStrip({
         ))}
       </div>
       <p className="text-xs leading-5 text-muted-foreground">
-        Export coverage: {exportedCount} of {populationCount} model-usage candidate rows. Placeholder
+        Exact coverage: {exportedCount} of {populationCount} available model-usage candidate rows. Placeholder
         labels remain visible. This is not spend, calls, or actual model dominance.
       </p>
     </div>
@@ -372,14 +372,19 @@ export default async function InternalTelemetryPage() {
               Calls by Model
             </CardTitle>
             <SectionMeaning>Shows captured model-label distribution in the exported candidate subset; actual call count is not exposed.</SectionMeaning>
-            <CardDescription>Candidate rows by captured returned-model label; not calls.</CardDescription>
+            <CardDescription>
+              All available snapshot rows grouped by captured returned-model label; not calls. Snapshot:
+              {" "}{data.generatedAt}.
+            </CardDescription>
           </CardHeader>
           <CardContent>
             {data.modelCandidateDistribution.length > 0 ? (
               <div className="space-y-4">
                 <MetricList rows={data.modelCandidateDistribution} showRowMetadata={false} />
                 <p className="text-xs leading-5 text-muted-foreground">
-                  STAGING_CANDIDATE · exported candidate rows · actual call count unavailable.
+                  STAGING_CANDIDATE · {data.modelCandidateExportCount} of{" "}
+                  {data.modelCandidatePopulationCount} available model-usage candidate rows · snapshot{" "}
+                  {data.generatedAt} · actual call count unavailable.
                 </p>
               </div>
             ) : (
@@ -400,7 +405,7 @@ export default async function InternalTelemetryPage() {
           <CardContent>
             <UnavailableVisual
               title="Route classification unavailable"
-              detail="Provider labels, local-execution markers, reviewer routes, and claim levels are not substitutes for approved/non-standard usage status."
+              detail="The candidate contract contains no authoritative route classification. The separate agent_runs.routing_decision field is null for all 10 rows and covers a different population and period."
             />
           </CardContent>
         </Card>
@@ -409,7 +414,10 @@ export default async function InternalTelemetryPage() {
           <CardHeader>
             <CardTitle className="text-base">Model Dominance</CardTitle>
             <SectionMeaning>Shows captured-label concentration only in the exported candidate subset; it does not establish actual model dominance.</SectionMeaning>
-            <CardDescription>Candidate-row concentration with placeholder labels retained.</CardDescription>
+            <CardDescription>
+              Captured-label concentration across all available snapshot model-usage candidate rows;
+              placeholder labels retained. Snapshot: {data.generatedAt}.
+            </CardDescription>
           </CardHeader>
           <CardContent>
             <CandidateDominanceStrip
