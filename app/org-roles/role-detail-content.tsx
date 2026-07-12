@@ -358,7 +358,6 @@ export const runnerDetail: RoleDetail = {
   ],
 }
 
-export function CapabilityRoleCard({ detail }: { detail: CapabilityCardDetail }) {
 export const bigCrewArchitectureGateDetail: RoleDetail = {
   title: "Big Crew Architecture Gate",
   type: "Production readiness control layer",
