@@ -8,7 +8,7 @@ import { Badge } from "@/components/ui/badge"
 import { ChevronDown, ChevronRight, Download } from "lucide-react"
 
 export default function AchievementsPage() {
-  const [expandedDays, setExpandedDays] = useState<Set<string>>(new Set(['2026-07-01', '2026-06-22', '2026-06-21', '2026-06-17', '2026-06-16']))
+  const [expandedDays, setExpandedDays] = useState<Set<string>>(new Set(['2026-07-11', '2026-07-01', '2026-06-22', '2026-06-21', '2026-06-17', '2026-06-16']))
 
   const toggleDay = (date: string) => {
     const newExpanded = new Set(expandedDays)
@@ -21,6 +21,152 @@ export default function AchievementsPage() {
   }
 
   const achievements = [
+    {
+      date: '2026-07-11',
+      headline: 'Turned AI-Assisted Delivery Into a Traceable Release System',
+      summary: 'Connected source-of-truth reconciliation, decision ownership, evidence checks, bounded implementation, and exact-version promotion so unsupported release claims can be stopped before they reach a public surface.',
+      proofType: 'release governance, product delivery, public-surface assurance',
+      evidenceReference: 'Canonical enforcement v0.2; repository-custody promotion receipts; scoped Cockpit, role-architecture, and public-surface release records',
+      status: 'Evidence-backed system and scoped production releases verified',
+      publicSafeResult: 'A repeatable delivery path now links ambiguous requirements to controlled implementation, reviewable evidence, non-force integration, exact-SHA deployment checks, and live desktop/mobile verification for completed public changes.',
+      caveat: 'This is evidence for the cited, scoped releases—not a claim that every future release is automatically safe or that all internal telemetry is complete. Authenticated internal-telemetry acceptance remained pending after the referenced public-surface promotion.',
+      details: {
+        whyItMatters: 'Transformation programs need more than fast output. They need a delivery system that makes ownership, evidence, release identity, and residual risk visible enough to support a defensible go/no-go decision.',
+        evidence: [
+          'Canonical enforcement requires route, role, receipt, deterministic validation, final gate, and claim downgrade when evidence is missing.',
+          'Knowledge-base promotion excluded unrelated history and verified target tree plus three canonical file blobs.',
+          'Application promotions used standard non-force pull-request merges and exact commit-to-deployment binding.',
+          'Completed Cockpit responsive work was live-checked at desktop, tablet, and mobile with zero document overflow and clean interaction, console, and network evidence.',
+          'Role-information architecture was verified at 1440×1000 and 390×844 with zero horizontal overflow and working detail navigation.',
+          'Authenticated internal telemetry remained a separate acceptance boundary after the referenced public release work.'
+        ],
+        evidenceMaturity: [
+          {
+            before: 'Source commits, passing checks, or a successful deployment could be mistaken for an owner-visible and supportable outcome.',
+            whatChanged: 'The release path now reconciles canonical source, bounds the change, validates the exact candidate, binds deployment to its SHA, and verifies the rendered public result.',
+            value: 'Recruiters and transformation leaders can see evidence of disciplined execution—not only process design or technical activity.'
+          }
+        ],
+        skillsDemonstrated: [
+          'Evidence-based release governance',
+          'Cross-functional delivery leadership',
+          'Decision and authority design',
+          'Exact-version production traceability',
+          'Responsive public-experience validation'
+        ],
+        impact: 'Created a controlled path from ambiguous work to traceable public delivery while reducing the chance that incomplete evidence becomes an overstated release claim.'
+      },
+      tags: ['Release Governance', 'Transformation', 'Product Delivery', 'Traceability']
+    },
+    {
+      date: '2026-07-11',
+      headline: 'Recovered a High-Risk Workspace Without Discarding Unique Work',
+      summary: 'Contained repositories with hundreds of accumulated changes by freezing unsafe writes, inventorying source state, creating checksum-backed custody copies, and separating clean recovery and promotion lanes.',
+      proofType: 'operational recovery, repository custody, risk containment',
+      evidenceReference: 'Dirty-workspace controlled-remediation inventories, custody manifests, recovery worktrees, and coordinated promotion receipts',
+      status: 'Custody and controlled promotion evidence verified',
+      publicSafeResult: 'The recovery preserved unique work and restored a controlled delivery path without destructive cleanup, force pushes, or mixing unrelated history into the promoted source.',
+      caveat: 'The cited counts are limited to the current canonical inventories and custody manifests; they are not a claim that every historical workspace artifact has been classified or recovered.',
+      details: {
+        whyItMatters: 'When several workstreams share a drifted repository, a quick cleanup can erase valuable work or contaminate a release. The recovery treated provenance and reversibility as operational requirements.',
+        evidence: [
+          'Full application and knowledge-base inventories recorded paths, classifications, sizes, and hashes.',
+          'Custody manifests matched source hashes to protected copies before remediation decisions.',
+          'Distinct recovery, integration, verification, and rollback worktrees preserved lane ownership.',
+          'Canonical promotion excluded 334 unrelated review-history commits through exact-patch reconciliation.',
+          'Remote commit, tree, and canonical blob identities were verified after non-force promotion.'
+        ],
+        evidenceMaturity: [
+          {
+            before: 'A materially drifted workspace mixed intended source, evidence, generated output, and private or machine-local state.',
+            whatChanged: 'The work was inventoried, checksum-custodied, classified, isolated into clean lanes, and promoted only through bounded non-force changes.',
+            value: 'Delivery could resume without sacrificing recoverability or silently overwriting unrelated work.'
+          }
+        ],
+        skillsDemonstrated: [
+          'Operational recovery leadership',
+          'Repository and configuration custody',
+          'Risk containment and reversibility',
+          'Change provenance and exact-SHA verification',
+          'Non-destructive remediation planning'
+        ],
+        impact: 'Restored a trustworthy delivery path while preserving unique work, reducing mixed-release risk, and retaining exact recovery evidence.'
+      },
+      tags: ['Recovery', 'Risk Management', 'Repository Custody', 'Change Control']
+    },
+    {
+      date: '2026-07-11',
+      headline: 'Made Telemetry Useful for Decisions—Without Overstating Coverage',
+      summary: 'Reframed fragmented telemetry around meaning, measurement, trust boundaries, and custody so leaders can distinguish usable evidence from unresolved or non-claimable data.',
+      proofType: 'telemetry interpretation, data quality, observability strategy',
+      evidenceReference: 'Internal telemetry reconciliation, authenticated render receipts, validation records, and claim-boundary closeout',
+      status: 'Reconciled evidence set; authenticated internal acceptance pending',
+      publicSafeResult: 'The protected-view design explains what the captured figures mean, where they came from, and which decisions they cannot yet support instead of presenting raw counts as proof of complete monitoring.',
+      caveat: 'Authenticated internal-telemetry acceptance remains pending. This is not complete live-production telemetry coverage. The evidence set records 69,881 historical missing-field occurrences and an export-limited top-12 subset of 26,957. A separate 18,019 investigation target remains non-additive and not claimable; the two-record lineage delta remains unresolved.',
+      details: {
+        whyItMatters: 'Telemetry creates confidence only when its semantics, scope, provenance, and limitations are visible. Counts without those boundaries can mislead decision-makers.',
+        evidence: [
+          'Controlled render receipts show the detailed protected presentation and preserved sign-in boundary; final authenticated internal-telemetry acceptance remains pending.',
+          'The view exposes data source and freshness context rather than implying real-time completeness.',
+          '69,881 is labeled as historical missing-field occurrences—not source-record coverage.',
+          '26,957 is labeled as the export-limited top-12 occurrence subset—not total missing signals.',
+          '18,019 remains a preserved investigation target that is non-additive and not claimable.',
+          'The two-record delta remains an unresolved lineage mismatch rather than a completed reconciliation claim.'
+        ],
+        evidenceMaturity: [
+          {
+            before: 'Fragmented counts could be read as a live operational picture without enough context about scope or lineage.',
+            whatChanged: 'The owner view now links meaning, measurement, trust boundary, and custody while showing unresolved and non-claimable values explicitly.',
+            value: 'Leaders gain decision-supporting context without being asked to trust a dashboard-shaped claim.'
+          }
+        ],
+        skillsDemonstrated: [
+          'Data interpretation and semantic modeling',
+          'Observability strategy',
+          'Data-quality and lineage analysis',
+          'Trust-boundary design',
+          'Executive communication of uncertainty'
+        ],
+        impact: 'Shifted telemetry from receipt collection toward decision intelligence while keeping incomplete coverage, unresolved lineage, and non-claimable values visible.'
+      },
+      tags: ['Telemetry', 'Data Quality', 'Decision Intelligence', 'Trust']
+    },
+    {
+      date: '2026-07-11',
+      headline: 'Designed a Role-Based Operating Model for AI-Assisted Work',
+      summary: 'Separated business insight, engineering judgment, execution, validation, and executive authority so work is assigned by capability and decision rights—not by treating every AI tool as interchangeable.',
+      proofType: 'operating-model design, organizational architecture, human–AI coordination',
+      evidenceReference: 'Canonical workforce allocation, role contracts, public operating organization chart, and Repo Custodian role records',
+      status: 'Canonical model and public role architecture verified',
+      publicSafeResult: 'The model makes ownership and escalation clearer, protects final human decisions, and keeps specialized execution and validation from collapsing into one opaque assistant workflow.',
+      caveat: 'The public organization chart represents an operating model and verified information architecture. It does not claim a permanently staffed autonomous organization or universal execution coverage.',
+      details: {
+        whyItMatters: 'Scaling AI-assisted work requires clear decision rights and handoffs. Without them, senior review becomes routine labor, validation loses independence, and leaders cannot tell who—or what—actually produced an outcome.',
+        evidence: [
+          'Canonical role contracts distinguish task ownership, expected outputs, acceptance criteria, dependencies, and human gates.',
+          'The operating model separates engineering and architecture intelligence, business and opportunity analysis, execution, deterministic validation, and final human authority.',
+          'Public role architecture presents capability detail without exposing private operational evidence.',
+          'Repo Custodian is implemented as a cross-cutting, event-triggered operational-integrity capability rather than a reporting-line department.',
+          'The live organization view and detail navigation were verified on desktop and mobile.'
+        ],
+        evidenceMaturity: [
+          {
+            before: 'Roles, capabilities, authority, and model choice could blur into a generic multi-agent narrative.',
+            whatChanged: 'The operating model defines capability-specific work, decision boundaries, evidence expectations, and non-hierarchical integrity support.',
+            value: 'AI-assisted delivery becomes easier to govern, explain, and scale without making the executive layer perform the entire workflow.'
+          }
+        ],
+        skillsDemonstrated: [
+          'AI operating-model design',
+          'Organizational and capability architecture',
+          'Delegation and authority boundaries',
+          'Human–AI workflow design',
+          'Scalable coordination and escalation design'
+        ],
+        impact: 'Established a clearer structure for assigning work, validating results, and protecting human accountability across AI-assisted transformation.'
+      },
+      tags: ['Operating Model', 'Organizational Design', 'Human–AI Work', 'Transformation']
+    },
     {
       date: '2026-07-01',
       headline: 'AIOS Role-Receipted First Task Run Evidence',
@@ -1221,10 +1367,10 @@ export default function AchievementsPage() {
               Public-safe evidence of what was built, what is proven, what is caveated, and what is not published.
             </p>
             <p className="mt-4 text-sm font-medium text-white/80">
-              Evidence updated: 1 Jul 2026 · optimize-worker local proof evidence added
+              Evidence updated: 11 Jul 2026 · release, recovery, telemetry, and operating-model evidence reconciled
             </p>
             <p className="mt-2 text-sm text-white/75">
-              Latest validated milestone: AIOS Role-Receipted First Task Run Evidence, 1 Jul 2026
+              Latest validated milestones: traceable delivery, non-destructive recovery, decision-grade telemetry, and role-based operating design
             </p>
           </div>
         </div>
@@ -1469,7 +1615,7 @@ export default function AchievementsPage() {
           <div className="grid md:grid-cols-4 gap-6">
             <Card className="text-center">
               <CardContent className="pt-6">
-                <div className="text-3xl font-bold text-[#1F3A60]">23</div>
+                <div className="text-3xl font-bold text-[#1F3A60]">27</div>
                 <div className="text-sm text-muted-foreground mt-2">Proof-Backed Milestones</div>
               </CardContent>
             </Card>
