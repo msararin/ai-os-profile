@@ -430,13 +430,25 @@ export function getInternalTelemetryDashboardData(): InternalTelemetryDashboardD
   try {
     db.pragma("query_only = ON")
 
-    const agentRunsResult = db.prepare<{ count: number }>("SELECT COUNT(*) AS count FROM agent_runs").get()
+    const agentRunColumns = new Set(
+      (db.prepare("PRAGMA table_info(agent_runs)").all() as Array<{ name: string }>).map((row) => row.name),
+    )
+    const hasOperationalOrigin = agentRunColumns.has("record_classification") && agentRunColumns.has("trace_id")
+    const agentRunsResult = hasOperationalOrigin
+      ? db
+          .prepare<{ count: number }>(
+            "SELECT COUNT(*) AS count FROM agent_runs WHERE record_classification = 'live' AND trace_id NOT LIKE 'trace-example-%'",
+          )
+          .get()
+      : undefined
     const agentRuns = Number(agentRunsResult?.count ?? 0)
-    const spendRows = db
-      .prepare(
-        "SELECT provider, model, cost_usd, cost_source, started_at, ended_at FROM agent_runs ORDER BY id",
-      )
-      .all() as AgentRunSpendRow[]
+    const spendRows = hasOperationalOrigin
+      ? db
+          .prepare(
+            "SELECT provider, model, cost_usd, cost_source, started_at, ended_at FROM agent_runs WHERE record_classification = 'live' AND trace_id NOT LIKE 'trace-example-%' ORDER BY id",
+          )
+          .all() as AgentRunSpendRow[]
+      : []
     const candidateRows = db
       .prepare("SELECT * FROM telemetry_backfill_candidate_records ORDER BY id")
       .all() as RawCandidateRow[]
@@ -610,11 +622,13 @@ export function getInternalTelemetryDashboardData(): InternalTelemetryDashboardD
         backfillCandidates: candidateRows.filter((row) => (row.coverage_class ?? "").includes("BACKFILL")).length,
       },
       spendCoverageSummary:
-        spendStartedAtMin && spendStartedAtMax
+        !hasOperationalOrigin
+          ? "Spend unavailable: agent_runs does not expose the required record_classification origin field; legacy rows are not accepted as live operational telemetry."
+          : spendStartedAtMin && spendStartedAtMax
           ? `Bounded agent_runs view: ${agentRuns} rows by started_at, ${spendStartedAtMin} through ${spendStartedAtMax} UTC. ${spendNumericRowCount} numeric cost_usd rows total ${spendNumericTotal.toFixed(3)} USD-designated; ${agentRuns - spendNumericRowCount} rows remain unavailable and are not zero. Of the numeric subtotal, ${spendEstimatedTotal.toFixed(3)} is estimated from delegate reports and ${spendProviderReportedTotal.toFixed(3)} is source-labeled provider-reported, not independently receipted. This ${agentRuns}-row Spend population is separate from the ${modelRows.length}-row Calls/Dominance candidate snapshot.`
           : "Spend started_at range is unavailable; no bounded Spend claim is supported.",
-      spendSnapshotState: "LOCAL_READ_ONLY",
-      spendSnapshotVersion: "local-read-only-ledger",
+      spendSnapshotState: hasOperationalOrigin ? "LOCAL_READ_ONLY" : "UNAVAILABLE",
+      spendSnapshotVersion: hasOperationalOrigin ? "local-read-only-ledger" : "origin-contract-unavailable",
       spendSnapshotGeneratedAt: new Date().toISOString(),
       spendSnapshotSourceFreshness: spendStartedAtMax ?? undefined,
       summaryCards: [
