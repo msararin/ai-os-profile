@@ -8,7 +8,7 @@ import { Badge } from "@/components/ui/badge"
 import { ChevronDown, ChevronRight, Download } from "lucide-react"
 
 export default function AchievementsPage() {
-  const [expandedDays, setExpandedDays] = useState<Set<string>>(new Set(['2026-07-11', '2026-07-01', '2026-06-22', '2026-06-21', '2026-06-17', '2026-06-16']))
+  const [expandedDays, setExpandedDays] = useState<Set<string>>(new Set(['2026-07-13', '2026-07-11', '2026-07-01', '2026-06-22', '2026-06-21', '2026-06-17', '2026-06-16']))
 
   const toggleDay = (date: string) => {
     const newExpanded = new Set(expandedDays)
@@ -21,6 +21,47 @@ export default function AchievementsPage() {
   }
 
   const achievements = [
+    {
+      date: '2026-07-13',
+      headline: 'Governed Path to Production Across Five AIOS Repositories',
+      summary: 'Recovered a broken production-control chain and established reliable, fail-closed Path-to-Production discovery across five AIOS repositories. Four displaced dependencies were restored by exact hash, the canonical runtime was independently validated, and fresh Codex sessions passed discovery in 5/5 repositories. Machine-specific pointers remained local-only, preventing private KB paths from entering public or private Git history.',
+      proofType: 'control-plane recovery, cross-repository discovery, fail-closed governance, local-only custody',
+      evidenceReference: 'Path-to-Production recovery, independent gate, cross-repository discovery, fail-closed fixture, and local pointer-custody receipts',
+      status: 'LOCAL AIOS CONTROL-PLANE VALIDATION — NOT PRODUCTION DEPLOYMENT',
+      publicSafeResult: 'A governed local control-plane now makes the canonical Path-to-Production route discoverable across five accepted AIOS repositories while failing closed on stale or conflicting controls and keeping machine-specific pointers out of Git history.',
+      caveat: 'Local AIOS control-plane validation only. No production deployment, production verification, portable cross-machine bootstrap, tracked global pointer, universal repository coverage, or zero-risk claim is made.',
+      details: {
+        whyItMatters: 'A production route is only governable when each participating repository can discover the same reviewed control, reject stale or conflicting instructions, and keep machine-specific implementation details out of shared history.',
+        evidence: [
+          '4/4 exact dependency restorations',
+          '0 repins',
+          'Prime Gate: ACCEPT_WITH_PATCH',
+          'Fresh discovery: 5/5 passed',
+          'Stale/conflicting controls: 2/2 failed closed',
+          'Workstream-authored repository history changes during recovery/custody: 0',
+          'Pointer custody: local-only protected',
+          'Provider cost: USD 0.0426',
+          'Paid retries: 0',
+          'Separate Prime Gate, Repo Custodian, and fresh validation sessions produced the review and validation evidence.'
+        ],
+        evidenceMaturity: [
+          {
+            before: 'A broken dependency chain made the canonical production-control route unavailable from the accepted repository set.',
+            whatChanged: 'Path-displaced controls were restored exactly, the canonical runtime was validated independently, discovery was installed locally, and machine-specific pointers were protected from Git history.',
+            value: 'Five accepted AIOS repositories can now discover the same governed route and fail closed instead of inventing a partial production workflow.'
+          }
+        ],
+        skillsDemonstrated: [
+          'Control-plane recovery and dependency reconciliation',
+          'Cross-repository governance design',
+          'Fail-closed validation and negative testing',
+          'Independent gate and role-receipt discipline',
+          'Private-path and repository-custody controls'
+        ],
+        impact: 'Restored a reliable local governance layer for Path-to-Production reasoning across the accepted five-repository AIOS denominator while preserving private machine and KB boundaries.'
+      },
+      tags: ['Path to Production', 'Control Plane', 'Fail Closed', 'Repository Custody']
+    },
     {
       date: '2026-07-11',
       headline: 'Turned AI-Assisted Delivery Into a Traceable Release System',
