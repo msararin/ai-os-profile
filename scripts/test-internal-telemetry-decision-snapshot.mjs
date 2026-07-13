@@ -53,6 +53,20 @@ const wrongOrder = { ...snapshot, source: { ...snapshot.source, sourceFreshness:
 assert.throws(() => validateEnvelope(buildEnvelope(wrongOrder), buildEnvelope(wrongOrder).integrity.payloadSha256), /timestamp ordering/)
 
 assert.equal(snapshot.approvalUsage.status, "AUTHORITATIVE_CONTRACT_NOT_PROVEN")
+
+const generatorSource = fs.readFileSync(
+  new URL("./generate-internal-telemetry-decision-snapshot.mjs", import.meta.url),
+  "utf8",
+)
+assert.match(generatorSource, /"record_classification"/)
+assert.match(generatorSource, /record_classification = 'live'/)
+assert.match(generatorSource, /synthetic trace-example fixtures are not an operational Spend source/)
+
+const revokedManifest = JSON.parse(
+  fs.readFileSync(new URL("../data/telemetry/internal-decision-snapshot.manifest.json", import.meta.url), "utf8"),
+)
+assert.equal(revokedManifest.status, "REVOKED_SYNTHETIC_FIXTURE")
+assert.equal(revokedManifest.expectedPayloadSha256, "0".repeat(64))
 const pageSource = fs.readFileSync(new URL("../app/internal/telemetry/page.tsx", import.meta.url), "utf8")
 const approvalStart = pageSource.indexOf("Approved vs Non-standard Usage")
 const approvalEnd = pageSource.indexOf("Model Dominance", approvalStart)

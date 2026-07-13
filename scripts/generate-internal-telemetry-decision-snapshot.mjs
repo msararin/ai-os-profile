@@ -44,22 +44,26 @@ const db = new Database(inputPath, { readonly: true, fileMustExist: true })
 db.pragma("query_only = ON")
 
 const columns = db.prepare("PRAGMA table_info(agent_runs)").all().map((row) => row.name)
-for (const field of ["provider", "model", "cost_usd", "cost_source", "started_at", "ended_at"]) {
+for (const field of ["trace_id", "record_classification", "provider", "model", "cost_usd", "cost_source", "started_at", "ended_at"]) {
   if (!columns.includes(field)) throw new Error(`agent_runs.${field} is unavailable`)
 }
 
 const rows = db.prepare(
-  "SELECT provider, model, cost_usd, cost_source, started_at, ended_at FROM agent_runs ORDER BY id",
+  "SELECT trace_id, provider, model, cost_usd, cost_source, started_at, ended_at FROM agent_runs WHERE record_classification = 'live' AND trace_id NOT LIKE 'trace-example-%' ORDER BY id",
 ).all()
 db.close()
 
-if (rows.length === 0) throw new Error("agent_runs source is empty")
+if (rows.length === 0) throw new Error("agent_runs has no schema-classified live operational rows")
+if (rows.some((row) => /^trace-example-/.test(row.trace_id))) {
+  throw new Error("synthetic trace-example fixtures are not an operational Spend source")
+}
 
 const normalizedRows = rows.map((row) => {
   if (row.cost_usd !== null && (!Number.isFinite(row.cost_usd) || row.cost_usd < 0)) {
     throw new Error("cost_usd contains an unsupported value")
   }
   return {
+    traceId: row.trace_id,
     provider: row.provider ?? "SOURCE_ARTIFACT_MISSING_FIELD",
     model: row.model ?? "SOURCE_ARTIFACT_MISSING_FIELD",
     costUsd: row.cost_usd,
