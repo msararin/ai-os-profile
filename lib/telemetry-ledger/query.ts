@@ -43,6 +43,15 @@ type BackfillBatchRow = {
   backup_path: string
 }
 
+type AgentRunSpendRow = {
+  provider: string | null
+  model: string | null
+  cost_usd: number | null
+  cost_source: string
+  started_at: string
+  ended_at: string | null
+}
+
 type SqliteStatement<T> = {
   all(): T[]
   get(): T | undefined
@@ -105,6 +114,7 @@ export type InternalTelemetryDashboardData = {
     exclusions: number
     backfillCandidates: number
   }
+  spendCoverageSummary: string
   summaryCards: DashboardMetricRow[]
   spendByModelProvider: DashboardMetricRow[]
   modelCandidateDistribution: DashboardMetricRow[]
@@ -181,6 +191,7 @@ function emptyDashboardData(reason: string): InternalTelemetryDashboardData {
       exclusions: 0,
       backfillCandidates: 0,
     },
+    spendCoverageSummary: reason,
     summaryCards: [
       {
         label: "Ledger unavailable",
@@ -251,6 +262,8 @@ function snapshotDashboardData(): InternalTelemetryDashboardData {
     generatedAt: snapshot.generatedAt,
     batch: null,
     counts: { ...snapshot.counts, batches: snapshot.batch ? 1 : 0 },
+    spendCoverageSummary:
+      "Snapshot fallback does not expose numeric agent_runs cost_usd rows; Spend remains unavailable.",
     summaryCards: [
       metric("Candidate records", snapshot.counts.candidateRecords, "Candidate/backfill records only"),
       metric("Advisory exclusions", snapshot.counts.exclusions, "Excluded or low-confidence advisory rows"),
@@ -345,22 +358,18 @@ function sourceLabel(record: Record<string, unknown>, fallback: DashboardDataSou
   return fallback
 }
 
-function numericField(record: Record<string, unknown>, key: string) {
-  const value = record[key]
-  if (typeof value === "number") {
-    return value
-  }
-  if (typeof value === "string") {
-    const parsed = Number(value)
-    return Number.isFinite(parsed) ? parsed : null
-  }
-  return null
-}
-
 function groupCount(rows: string[]) {
   return [...rows.reduce((map, label) => map.set(label, (map.get(label) ?? 0) + 1), new Map<string, number>())]
     .sort((a, b) => b[1] - a[1])
     .map(([label, value]) => ({ label, value }))
+}
+
+function earlierTimestamp(current: string | null, candidate: string): string {
+  return current === null || candidate < current ? candidate : current
+}
+
+function laterTimestamp(current: string | null, candidate: string): string {
+  return current === null || candidate > current ? candidate : current
 }
 
 function topEntries(rows: DashboardMetricRow[], limit = 8) {
@@ -388,6 +397,11 @@ export function getInternalTelemetryDashboardData(): InternalTelemetryDashboardD
 
     const agentRunsResult = db.prepare<{ count: number }>("SELECT COUNT(*) AS count FROM agent_runs").get()
     const agentRuns = Number(agentRunsResult?.count ?? 0)
+    const spendRows = db
+      .prepare(
+        "SELECT provider, model, cost_usd, cost_source, started_at, ended_at FROM agent_runs ORDER BY id",
+      )
+      .all() as AgentRunSpendRow[]
     const candidateRows = db
       .prepare("SELECT * FROM telemetry_backfill_candidate_records ORDER BY id")
       .all() as RawCandidateRow[]
@@ -425,24 +439,45 @@ export function getInternalTelemetryDashboardData(): InternalTelemetryDashboardD
     )
 
     const spendGroups = new Map<string, { cost: number; rows: number }>()
-    for (const row of modelRows) {
-      const provider = stringField(row.record, "provider")
-      const requested = stringField(row.record, "requested_model")
-      const returned = stringField(row.record, "returned_model")
-      const cost = numericField(row.record, "cost")
-      if (cost === null) {
+    let spendNumericRowCount = 0
+    let spendNumericTotal = 0
+    let spendEstimatedTotal = 0
+    let spendProviderReportedTotal = 0
+    let spendStartedAtMin: string | null = null
+    let spendStartedAtMax: string | null = null
+    for (const row of spendRows) {
+      spendStartedAtMin = earlierTimestamp(spendStartedAtMin, row.started_at)
+      spendStartedAtMax = laterTimestamp(spendStartedAtMax, row.started_at)
+      if (row.cost_usd === null) {
         continue
       }
-      const key = `${provider} / ${requested} / ${returned}`
+      spendNumericRowCount += 1
+      spendNumericTotal += row.cost_usd
+      if (row.cost_source === "estimated_from_delegate_report") {
+        spendEstimatedTotal += row.cost_usd
+      }
+      if (row.cost_source === "provider_reported") {
+        spendProviderReportedTotal += row.cost_usd
+      }
+      const provider = row.provider ?? "SOURCE_ARTIFACT_MISSING_FIELD"
+      const model = row.model ?? "SOURCE_ARTIFACT_MISSING_FIELD"
+      const provenance =
+        row.cost_source === "estimated_from_delegate_report"
+          ? "estimated from delegate reports"
+          : row.cost_source === "provider_reported"
+            ? "provider-reported (source-labeled; not independently receipted)"
+            : `other source provenance: ${row.cost_source}`
+      const key = `${provider} / ${model} / ${provenance}`
       const current = spendGroups.get(key) ?? { cost: 0, rows: 0 }
-      spendGroups.set(key, { cost: current.cost + (cost ?? 0), rows: current.rows + 1 })
+      spendGroups.set(key, { cost: current.cost + row.cost_usd, rows: current.rows + 1 })
     }
 
     const spendByModelProvider = [...spendGroups.entries()]
       .map(([label, group]) => ({
         label,
         value: Number(group.cost.toFixed(6)),
-        detail: `${group.rows} staging model rows`,
+        detail: `${group.rows} numeric agent_runs cost_usd rows`,
+        dataSourceType: "RUNTIME_CAPTURED" as const,
       }))
       .sort((a, b) => b.value - a.value)
 
@@ -539,6 +574,10 @@ export function getInternalTelemetryDashboardData(): InternalTelemetryDashboardD
         exclusions: exclusionRows.length,
         backfillCandidates: candidateRows.filter((row) => (row.coverage_class ?? "").includes("BACKFILL")).length,
       },
+      spendCoverageSummary:
+        spendStartedAtMin && spendStartedAtMax
+          ? `Bounded agent_runs view: ${agentRuns} rows by started_at, ${spendStartedAtMin} through ${spendStartedAtMax} UTC. ${spendNumericRowCount} numeric cost_usd rows total ${spendNumericTotal.toFixed(3)} USD-designated; ${agentRuns - spendNumericRowCount} rows remain unavailable and are not zero. Of the numeric subtotal, ${spendEstimatedTotal.toFixed(3)} is estimated from delegate reports and ${spendProviderReportedTotal.toFixed(3)} is source-labeled provider-reported, not independently receipted. This ${agentRuns}-row Spend population is separate from the ${modelRows.length}-row Calls/Dominance candidate snapshot.`
+          : "Spend started_at range is unavailable; no bounded Spend claim is supported.",
       summaryCards: [
         {
           label: "Candidate records",

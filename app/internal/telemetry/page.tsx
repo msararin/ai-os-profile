@@ -349,19 +349,25 @@ export default async function InternalTelemetryPage() {
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-base">
               <BarChart3 className="size-4" />
-              Spend by Model / Provider
+              Spend by Model / Provider — recorded cost_usd
             </CardTitle>
-            <SectionMeaning>Counts model-usage candidate rows in the snapshot fallback; it does not establish verified spend.</SectionMeaning>
+            <SectionMeaning>Uses numeric agent_runs cost_usd rows only; unavailable costs stay unknown and are never counted as zero.</SectionMeaning>
             <CardDescription>
-              Data source: STAGING_CANDIDATE. Missing cost rows stay visible elsewhere and are not
-              estimated.
+              Bounded recorded-cost aggregate with estimated and source-labeled provider-reported
+              provenance shown separately; not fully verified or complete spend.
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <UnavailableVisual
-              title="Spend unavailable"
-              detail="The sanitized source contract exposes no verified numeric cost, currency unit, or verified/estimated status. Candidate-row counts are not displayed as dollars."
-            />
+            {data.spendByModelProvider.length > 0 ? (
+              <div className="space-y-4">
+                <MetricList rows={data.spendByModelProvider} valuePrefix="USD " />
+                <p className="text-xs leading-5 text-muted-foreground">
+                  {data.spendCoverageSummary}
+                </p>
+              </div>
+            ) : (
+              <UnavailableVisual title="Spend unavailable" detail={data.spendCoverageSummary} />
+            )}
           </CardContent>
         </Card>
 
