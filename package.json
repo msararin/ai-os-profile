@@ -12,7 +12,9 @@
     "public:review": "node scripts/public-surface-review.mjs",
     "public:topic-map": "node scripts/check-public-surface-topic-map.mjs",
     "public:deployment-protocol": "node scripts/check-deployment-operating-set.mjs",
-    "check:public-dashboard-leakage": "node scripts/check-public-dashboard-leakage.mjs"
+    "check:public-dashboard-leakage": "node scripts/check-public-dashboard-leakage.mjs",
+    "telemetry:decision:test": "node scripts/test-internal-telemetry-decision-snapshot.mjs",
+    "telemetry:decision:verify": "node scripts/verify-internal-telemetry-decision-snapshot.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",
@@ -63,6 +65,7 @@
     "react-hook-form": "^7.54.1",
     "react-resizable-panels": "^2.1.7",
     "recharts": "2.15.0",
+    "server-only": "^0.0.1",
     "sonner": "^1.7.1",
     "tailwind-merge": "^3.3.1",
     "vaul": "^1.1.2",

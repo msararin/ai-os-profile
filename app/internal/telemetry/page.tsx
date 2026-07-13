@@ -206,16 +206,20 @@ export default async function InternalTelemetryPage() {
                   <ShieldCheck className="size-3.5" />
                   Owner internal
                 </Badge>
-                <Badge variant="outline">LOCAL QUERY CANDIDATE</Badge>
-                <Badge variant="outline">READ-ONLY SQLITE</Badge>
+                <Badge variant="outline">
+                  {data.spendSnapshotState === "LOCAL_READ_ONLY" ? "LOCAL QUERY CANDIDATE" : "MIXED SANITIZED SNAPSHOTS"}
+                </Badge>
+                <Badge variant="outline">
+                  {data.spendSnapshotState === "LOCAL_READ_ONLY" ? "READ-ONLY SQLITE" : "SERVER-ONLY SPEND AGGREGATE"}
+                </Badge>
               </div>
               <div>
                 <h1 className="text-3xl font-semibold tracking-tight text-foreground">
                   Internal Telemetry
                 </h1>
                 <p className="mt-2 max-w-3xl text-sm leading-6 text-muted-foreground">
-                  Task-role-evidence-governance view over local staging records. This page is not
-                  production proof and does not claim telemetry verification.
+                  Mixed-source internal view: a protected sanitized Spend aggregate alongside
+                  source-limited candidate evidence. Source periods and claim boundaries remain separate.
                 </p>
               </div>
             </div>
@@ -229,11 +233,11 @@ export default async function InternalTelemetryPage() {
           </div>
 
           <div className="rounded-lg border border-amber-300/70 bg-amber-50 px-4 py-3 text-sm text-amber-950 dark:bg-amber-950/20 dark:text-amber-100">
-            <div className="font-semibold">STAGING_CANDIDATE - local internal dashboard query candidate</div>
+            <div className="font-semibold">MIXED HISTORICAL SOURCE LAYERS — protected internal review</div>
             <p className="mt-1">
-              SNAPSHOT REVIEW ONLY — all figures are historical occurrence counts from the
-              2026-07-01 candidate analysis, not live production metrics. This view is not
-              telemetry verification, production proof, or a public dashboard.
+              Spend uses a separately versioned server-only aggregate for its displayed May 30
+              period. Other visuals retain the separate July 1 candidate snapshot. Neither is live
+              billing, complete telemetry, route-approval evidence, or a public dashboard.
             </p>
           </div>
 
@@ -300,8 +304,8 @@ export default async function InternalTelemetryPage() {
               <div className="rounded-lg border border-amber-300/70 bg-amber-50 p-4 text-sm leading-6 text-amber-950 dark:bg-amber-950/20 dark:text-amber-100">
                 <p className="font-semibold">Trust boundary</p>
                 <p className="mt-1">
-                  Local/read-only/staging candidate. Not production proof. Not telemetry
-                  verification. Not route safe-to-ship.
+                  Protected server-side Spend aggregate plus source-limited candidate context. Not
+                  live billing proof, complete telemetry, or route-approval evidence.
                 </p>
               </div>
             </div>
@@ -340,8 +344,8 @@ export default async function InternalTelemetryPage() {
         <div className="mb-4">
           <h2 className="text-base font-semibold text-foreground">Telemetry Overview Visuals</h2>
           <p className="mt-1 text-sm leading-6 text-muted-foreground">
-            Two source-limited candidate-row views and two explicit data-gap states. Units are never
-            mixed or inferred.
+            One bounded recorded-cost view, two separate candidate-row views, and one proven
+            classification gap. Units and populations are never mixed or inferred.
           </p>
         </div>
         <div className="grid gap-4 lg:grid-cols-2">
@@ -364,6 +368,19 @@ export default async function InternalTelemetryPage() {
                 <p className="text-xs leading-5 text-muted-foreground">
                   {data.spendCoverageSummary}
                 </p>
+                <p className="text-xs leading-5 text-muted-foreground">
+                  Delivery state: <span className="font-semibold">{data.spendSnapshotState}</span>
+                  {data.spendSnapshotVersion ? ` · snapshot ${data.spendSnapshotVersion}` : ""}
+                  {data.spendSnapshotGeneratedAt ? ` · generated ${data.spendSnapshotGeneratedAt}` : ""}
+                  {data.spendSnapshotSourceFreshness ? ` · source freshness ${data.spendSnapshotSourceFreshness}` : ""}
+                  {data.spendSnapshotChecksumPrefix ? ` · payload ${data.spendSnapshotChecksumPrefix}…` : ""}
+                </p>
+                {data.spendSnapshotState === "STALE" ? (
+                  <p className="rounded-md border border-amber-300 bg-amber-50 px-3 py-2 text-xs font-medium leading-5 text-amber-900 dark:bg-amber-950/20 dark:text-amber-100">
+                    STALE historical source — values remain source-backed for the displayed period,
+                    but the newest source evidence is more than 24 hours old and is not current telemetry.
+                  </p>
+                ) : null}
               </div>
             ) : (
               <UnavailableVisual title="Spend unavailable" detail={data.spendCoverageSummary} />
@@ -411,7 +428,7 @@ export default async function InternalTelemetryPage() {
           <CardContent>
             <UnavailableVisual
               title="Route classification unavailable"
-              detail="The candidate contract contains no authoritative route classification. The separate agent_runs.routing_decision field is null for all 10 rows and covers a different population and period."
+              detail="Exhaustive historical recovery found no accepted versioned approval registry, effective policy, classification authority, or usage join. The June design remained draft-only; reviewer-route and routing-decision fields are proxy-only and are not rendered as approval status."
             />
           </CardContent>
         </Card>

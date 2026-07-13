@@ -1,5 +1,6 @@
 import DatabaseConstructor from "better-sqlite3"
 import candidateSnapshot from "@/data/telemetry/internal-candidate-snapshot.json"
+import { loadInternalTelemetryDecisionSnapshot } from "@/lib/telemetry-ledger/decision-snapshot"
 
 const DEFAULT_LEDGER_DB_PATH =
   "/Users/apple/projects/optimize-worker/observability/aios_observability.sqlite"
@@ -115,6 +116,11 @@ export type InternalTelemetryDashboardData = {
     backfillCandidates: number
   }
   spendCoverageSummary: string
+  spendSnapshotState: "FRESH" | "STALE" | "UNAVAILABLE" | "LOCAL_READ_ONLY"
+  spendSnapshotVersion?: string
+  spendSnapshotGeneratedAt?: string
+  spendSnapshotSourceFreshness?: string
+  spendSnapshotChecksumPrefix?: string
   summaryCards: DashboardMetricRow[]
   spendByModelProvider: DashboardMetricRow[]
   modelCandidateDistribution: DashboardMetricRow[]
@@ -192,6 +198,7 @@ function emptyDashboardData(reason: string): InternalTelemetryDashboardData {
       backfillCandidates: 0,
     },
     spendCoverageSummary: reason,
+    spendSnapshotState: "UNAVAILABLE",
     summaryCards: [
       {
         label: "Ledger unavailable",
@@ -224,6 +231,7 @@ function emptyDashboardData(reason: string): InternalTelemetryDashboardData {
 
 function snapshotDashboardData(): InternalTelemetryDashboardData {
   const snapshot = candidateSnapshot
+  const decisionSnapshot = loadInternalTelemetryDecisionSnapshot()
   const generatedAge = Date.now() - new Date(snapshot.generatedAt).getTime()
   const sourceFreshnessAge = Date.now() - new Date(snapshot.source.sourceFreshness.replace(" ", "T") + "Z").getTime()
   const metric = (label: string, value: number, detail: string): DashboardMetricRow => ({
@@ -256,21 +264,48 @@ function snapshotDashboardData(): InternalTelemetryDashboardData {
     sourceFilePath: "REDACTED_SOURCE_PATH",
     dataSourceType: "STAGING_CANDIDATE" as const,
   }))
+  const spend = decisionSnapshot.status === "AVAILABLE" ? decisionSnapshot.value : null
+  const spendByModelProvider: DashboardMetricRow[] = spend
+    ? spend.groups.map((group) => ({
+        label: `${group.provider} / ${group.model} / ${
+          group.costSource === "estimated_from_delegate_report"
+            ? "estimated from delegate reports"
+            : group.costSource === "provider_reported"
+              ? "provider-reported (source-labeled; not independently receipted)"
+              : `other source provenance: ${group.costSource}`
+        }`,
+        value: group.costUsd,
+        detail: `${group.numericRowCount} numeric agent_runs cost_usd rows`,
+        dataSourceType: "RUNTIME_CAPTURED",
+      }))
+    : []
+  const spendEstimatedTotal = spend?.groups
+    .filter((group) => group.costSource === "estimated_from_delegate_report")
+    .reduce((total, group) => total + group.costUsd, 0) ?? 0
+  const spendProviderReportedTotal = spend?.groups
+    .filter((group) => group.costSource === "provider_reported")
+    .reduce((total, group) => total + group.costUsd, 0) ?? 0
   return {
     dbPath: "SANITIZED_BUNDLED_CANDIDATE_SNAPSHOT",
     dbMode: "SNAPSHOT_CANDIDATE",
     generatedAt: snapshot.generatedAt,
     batch: null,
     counts: { ...snapshot.counts, batches: snapshot.batch ? 1 : 0 },
-    spendCoverageSummary:
-      "Snapshot fallback does not expose numeric agent_runs cost_usd rows; Spend remains unavailable.",
+    spendCoverageSummary: spend
+      ? `Bounded sanitized agent_runs aggregate: ${spend.populationCount} rows by started_at, ${spend.periodStart} through ${spend.periodEnd} UTC. ${spend.numericCostRowCount} numeric cost_usd rows total ${spend.numericCostUsdTotal.toFixed(3)} USD-designated; ${spend.nullCostRowCount} rows remain unavailable and are not zero. Of the numeric subtotal, ${spendEstimatedTotal.toFixed(3)} is estimated from delegate reports and ${spendProviderReportedTotal.toFixed(3)} is source-labeled provider-reported, not independently receipted. This ${spend.populationCount}-row Spend population is separate from the ${snapshot.modelRows.length}-row Calls/Dominance candidate snapshot.`
+      : "Validated production Spend snapshot is absent or rejected; no cost values are rendered.",
+    spendSnapshotState: spend?.state ?? "UNAVAILABLE",
+    spendSnapshotVersion: spend?.snapshotVersion,
+    spendSnapshotGeneratedAt: spend?.generatedAt,
+    spendSnapshotSourceFreshness: spend?.sourceFreshness,
+    spendSnapshotChecksumPrefix: spend?.payloadSha256.slice(0, 16),
     summaryCards: [
       metric("Candidate records", snapshot.counts.candidateRecords, "Candidate/backfill records only"),
       metric("Advisory exclusions", snapshot.counts.exclusions, "Excluded or low-confidence advisory rows"),
       metric("Agent runs", snapshot.counts.agentRuns, "Context count; not merged with candidate records"),
       metric("Backfill candidates", snapshot.counts.backfillCandidates, "Backfill class only"),
     ],
-    spendByModelProvider: [],
+    spendByModelProvider,
     modelCandidateDistribution: groupCount(
       snapshot.modelRows.map((row) => row.returnedModel ?? "FIELD_NOT_EXPOSED_NOT_CLAIMED"),
     ).map((row) => metric(row.label, row.value, "exported candidate rows; not calls")),
@@ -578,6 +613,10 @@ export function getInternalTelemetryDashboardData(): InternalTelemetryDashboardD
         spendStartedAtMin && spendStartedAtMax
           ? `Bounded agent_runs view: ${agentRuns} rows by started_at, ${spendStartedAtMin} through ${spendStartedAtMax} UTC. ${spendNumericRowCount} numeric cost_usd rows total ${spendNumericTotal.toFixed(3)} USD-designated; ${agentRuns - spendNumericRowCount} rows remain unavailable and are not zero. Of the numeric subtotal, ${spendEstimatedTotal.toFixed(3)} is estimated from delegate reports and ${spendProviderReportedTotal.toFixed(3)} is source-labeled provider-reported, not independently receipted. This ${agentRuns}-row Spend population is separate from the ${modelRows.length}-row Calls/Dominance candidate snapshot.`
           : "Spend started_at range is unavailable; no bounded Spend claim is supported.",
+      spendSnapshotState: "LOCAL_READ_ONLY",
+      spendSnapshotVersion: "local-read-only-ledger",
+      spendSnapshotGeneratedAt: new Date().toISOString(),
+      spendSnapshotSourceFreshness: spendStartedAtMax ?? undefined,
       summaryCards: [
         {
           label: "Candidate records",

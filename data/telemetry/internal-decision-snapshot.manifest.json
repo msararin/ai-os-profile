@@ -1,0 +1,9 @@
+{
+  "contractId": "internal.telemetry.spend.recorded-cost-usd.v1",
+  "schemaVersion": 1,
+  "snapshotVersion": "20260713T074856Z",
+  "generatorVersion": "20260713.1",
+  "generatorSourceSha256": "e9772ae1de80e349d503351b98c158705121d6d540c008a8894cc767117295cd",
+  "environmentVariable": "INTERNAL_TELEMETRY_SANITIZED_SNAPSHOT_V1",
+  "expectedPayloadSha256": "b6db0a2282bab3d67fcc32bc51df76fcef4cdd89670ce64f9f07b47055f26918"
+}
