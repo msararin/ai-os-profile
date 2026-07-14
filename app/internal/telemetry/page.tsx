@@ -348,12 +348,8 @@ export default async function InternalTelemetryPage() {
             classification gap. Units and populations are never mixed or inferred.
           </p>
           <div className="mt-3 flex flex-wrap items-center gap-2 text-xs text-muted-foreground" aria-label="Telemetry time range">
-            <span className="font-semibold text-foreground">Range: All available live data</span>
-            <span>UTC · [start,end) end exclusive</span>
-            <span className="rounded border px-2 py-1">7D</span>
-            <span className="rounded border px-2 py-1">30D</span>
-            <span className="rounded border bg-muted px-2 py-1">All</span>
-            <span className="rounded border px-2 py-1">Custom UTC</span>
+            <span className="font-semibold text-foreground">Range controls: unavailable</span>
+            <span>Shared UTC [start,end) query is not connected to live source data yet.</span>
           </div>
         </div>
         <div className="grid gap-4 lg:grid-cols-2">

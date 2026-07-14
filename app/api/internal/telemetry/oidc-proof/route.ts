@@ -39,6 +39,5 @@ export async function POST(request: Request) {
     pathname,
     digest,
     size: Buffer.byteLength(payload),
-    url: blob.url,
   })
 }
