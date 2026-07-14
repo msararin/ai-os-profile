@@ -347,6 +347,14 @@ export default async function InternalTelemetryPage() {
             One bounded recorded-cost view, two separate candidate-row views, and one proven
             classification gap. Units and populations are never mixed or inferred.
           </p>
+          <div className="mt-3 flex flex-wrap items-center gap-2 text-xs text-muted-foreground" aria-label="Telemetry time range">
+            <span className="font-semibold text-foreground">Range: All available live data</span>
+            <span>UTC · [start,end) end exclusive</span>
+            <span className="rounded border px-2 py-1">7D</span>
+            <span className="rounded border px-2 py-1">30D</span>
+            <span className="rounded border bg-muted px-2 py-1">All</span>
+            <span className="rounded border px-2 py-1">Custom UTC</span>
+          </div>
         </div>
         <div className="grid gap-4 lg:grid-cols-2">
         <Card className="rounded-lg">
@@ -357,34 +365,27 @@ export default async function InternalTelemetryPage() {
             </CardTitle>
             <SectionMeaning>Uses numeric agent_runs cost_usd rows only; unavailable costs stay unknown and are never counted as zero.</SectionMeaning>
             <CardDescription>
-              Bounded recorded-cost aggregate with estimated and source-labeled provider-reported
-              provenance shown separately; not fully verified or complete spend.
+              Live operational Spend remains unavailable; preserved historical evidence is shown
+              separately with explicit SYNTHETIC/BACKFILL and operational-exclusion labels.
             </CardDescription>
           </CardHeader>
           <CardContent>
-            {data.spendByModelProvider.length > 0 ? (
-              <div className="space-y-4">
-                <MetricList rows={data.spendByModelProvider} valuePrefix="USD " />
-                <p className="text-xs leading-5 text-muted-foreground">
-                  {data.spendCoverageSummary}
-                </p>
-                <p className="text-xs leading-5 text-muted-foreground">
-                  Delivery state: <span className="font-semibold">{data.spendSnapshotState}</span>
-                  {data.spendSnapshotVersion ? ` · snapshot ${data.spendSnapshotVersion}` : ""}
-                  {data.spendSnapshotGeneratedAt ? ` · generated ${data.spendSnapshotGeneratedAt}` : ""}
-                  {data.spendSnapshotSourceFreshness ? ` · source freshness ${data.spendSnapshotSourceFreshness}` : ""}
-                  {data.spendSnapshotChecksumPrefix ? ` · payload ${data.spendSnapshotChecksumPrefix}…` : ""}
-                </p>
-                {data.spendSnapshotState === "STALE" ? (
-                  <p className="rounded-md border border-amber-300 bg-amber-50 px-3 py-2 text-xs font-medium leading-5 text-amber-900 dark:bg-amber-950/20 dark:text-amber-100">
-                    STALE historical source — values remain source-backed for the displayed period,
-                    but the newest source evidence is more than 24 hours old and is not current telemetry.
-                  </p>
-                ) : null}
+            <div className="space-y-4">
+              <div className="rounded-lg border border-amber-300 bg-amber-50 p-4 dark:bg-amber-950/20">
+                <h3 className="font-semibold text-foreground">Live operational Spend — UNAVAILABLE</h3>
+                <p className="mt-2 text-sm leading-5 text-muted-foreground">Protected continuous delivery is not yet connected. No synthetic or backfill values are included in live operational Spend.</p>
               </div>
-            ) : (
-              <UnavailableVisual title="Spend unavailable" detail={data.spendCoverageSummary} />
-            )}
+              <div className="rounded-lg border border-sky-300 bg-sky-50/50 p-4 dark:bg-sky-950/20">
+                <h3 className="font-semibold text-foreground">Preserved historical evidence — SYNTHETIC/BACKFILL</h3>
+                {data.historicalSpendByModelProvider.length > 0 ? (
+                  <div className="mt-4 space-y-4">
+                    <MetricList rows={data.historicalSpendByModelProvider} valuePrefix="USD-designated " />
+                    <p className="text-xs leading-5 text-muted-foreground">{data.historicalSpendSummary}</p>
+                    <p className="text-xs font-semibold text-amber-800 dark:text-amber-200">OPERATIONAL CLAIM: EXCLUDED</p>
+                  </div>
+                ) : <UnavailableVisual title="Historical evidence unavailable" detail={data.historicalSpendSummary} />}
+              </div>
+            </div>
           </CardContent>
         </Card>
 

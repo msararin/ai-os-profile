@@ -123,6 +123,8 @@ export type InternalTelemetryDashboardData = {
   spendSnapshotChecksumPrefix?: string
   summaryCards: DashboardMetricRow[]
   spendByModelProvider: DashboardMetricRow[]
+  historicalSpendByModelProvider: DashboardMetricRow[]
+  historicalSpendSummary: string
   modelCandidateDistribution: DashboardMetricRow[]
   modelCandidatePopulationCount: number
   modelCandidateExportCount: number
@@ -208,6 +210,8 @@ function emptyDashboardData(reason: string): InternalTelemetryDashboardData {
       },
     ],
     spendByModelProvider: [],
+    historicalSpendByModelProvider: [],
+    historicalSpendSummary: reason,
     modelCandidateDistribution: [],
     modelCandidatePopulationCount: 0,
     modelCandidateExportCount: 0,
@@ -306,6 +310,8 @@ function snapshotDashboardData(): InternalTelemetryDashboardData {
       metric("Backfill candidates", snapshot.counts.backfillCandidates, "Backfill class only"),
     ],
     spendByModelProvider,
+    historicalSpendByModelProvider: [],
+    historicalSpendSummary: "Preserved historical evidence is available only from the local SQLite ledger; bundled snapshot does not replace that view.",
     modelCandidateDistribution: groupCount(
       snapshot.modelRows.map((row) => row.returnedModel ?? "FIELD_NOT_EXPOSED_NOT_CLAIMED"),
     ).map((row) => metric(row.label, row.value, "exported candidate rows; not calls")),
@@ -403,6 +409,10 @@ function earlierTimestamp(current: string | null, candidate: string): string {
   return current === null || candidate < current ? candidate : current
 }
 
+function displayUtcTimestamp(value: string): string {
+  return value.endsWith("+00:00Z") ? `${value.slice(0, -6)}Z` : value
+}
+
 function laterTimestamp(current: string | null, candidate: string): string {
   return current === null || candidate > current ? candidate : current
 }
@@ -449,6 +459,11 @@ export function getInternalTelemetryDashboardData(): InternalTelemetryDashboardD
           )
           .all() as AgentRunSpendRow[]
       : []
+    const historicalRows = db
+      .prepare(
+        "SELECT provider, model, cost_usd, cost_source, started_at, ended_at FROM agent_runs ORDER BY id",
+      )
+      .all() as AgentRunSpendRow[]
     const candidateRows = db
       .prepare("SELECT * FROM telemetry_backfill_candidate_records ORDER BY id")
       .all() as RawCandidateRow[]
@@ -527,6 +542,37 @@ export function getInternalTelemetryDashboardData(): InternalTelemetryDashboardD
         dataSourceType: "RUNTIME_CAPTURED" as const,
       }))
       .sort((a, b) => b.value - a.value)
+
+    const historicalGroups = new Map<string, { cost: number; rows: number }>()
+    let historicalNumeric = 0
+    let historicalTotal = 0
+    let historicalEstimated = 0
+    let historicalProviderReported = 0
+    let historicalStart: string | null = null
+    let historicalEnd: string | null = null
+    for (const row of historicalRows) {
+      historicalStart = earlierTimestamp(historicalStart, row.started_at)
+      historicalEnd = laterTimestamp(historicalEnd, row.started_at)
+      if (row.cost_usd === null) continue
+      historicalNumeric += 1
+      historicalTotal += row.cost_usd
+      if (row.cost_source === "estimated_from_delegate_report") historicalEstimated += row.cost_usd
+      if (row.cost_source === "provider_reported") historicalProviderReported += row.cost_usd
+      const key = `${row.provider ?? "SOURCE_ARTIFACT_MISSING_FIELD"} / ${row.model ?? "SOURCE_ARTIFACT_MISSING_FIELD"}`
+      const current = historicalGroups.get(key) ?? { cost: 0, rows: 0 }
+      historicalGroups.set(key, { cost: current.cost + row.cost_usd, rows: current.rows + 1 })
+    }
+    const historicalSpendByModelProvider = [...historicalGroups.entries()]
+      .map(([label, group]) => ({
+        label,
+        value: Number(group.cost.toFixed(6)),
+        detail: `${group.rows} numeric rows · SYNTHETIC/BACKFILL · operational claim excluded`,
+        dataSourceType: "BACKFILLED_FROM_KB" as const,
+      }))
+      .sort((a, b) => b.value - a.value)
+    const historicalSpendSummary = historicalStart && historicalEnd
+      ? `Preserved historical evidence: ${historicalNumeric} numeric / ${historicalRows.length} total rows; ${historicalRows.length - historicalNumeric} unavailable (null cost is unavailable, not zero). USD-designated numeric subtotal ${historicalTotal.toFixed(3)}; ${historicalEstimated.toFixed(3)} estimated and ${historicalProviderReported.toFixed(3)} source-labeled provider-reported. Classification SYNTHETIC/BACKFILL; OPERATIONAL CLAIM: EXCLUDED. Captured UTC period ${displayUtcTimestamp(historicalStart)} through ${displayUtcTimestamp(historicalEnd)}.`
+      : "Preserved historical Spend period unavailable; no historical numeric claim is supported."
 
     const modelCandidateDistribution = groupCount(
       modelRows.map((row) => stringField(row.record, "returned_model")),
@@ -658,6 +704,8 @@ export function getInternalTelemetryDashboardData(): InternalTelemetryDashboardD
         },
       ],
       spendByModelProvider,
+      historicalSpendByModelProvider,
+      historicalSpendSummary,
       modelCandidateDistribution,
       modelCandidatePopulationCount: modelRows.length,
       modelCandidateExportCount: modelRows.length,
