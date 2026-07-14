@@ -20,9 +20,8 @@ export async function POST(request: Request) {
   }, null, 0)
   const digest = createHash("sha256").update(payload).digest("hex")
   const pathname = `shadow/${digest}.json`
-  let blob
   try {
-    blob = await put(pathname, payload, { access: "private", addRandomSuffix: false, contentType: "application/json", allowOverwrite: false })
+    await put(pathname, payload, { access: "private", addRandomSuffix: false, contentType: "application/json", allowOverwrite: false })
   } catch {
     return Response.json({
       oidcAvailable: Boolean(process.env.VERCEL_OIDC_TOKEN),
