@@ -517,137 +517,23 @@ export default function AIOperatingSystemPage() {
 
       <AIOSInteractionExplainer />
 
-      {/* AI Workforce Organization */}
+      {/* AI Workforce */}
       <section className="border-t border-border py-12">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
           <h2 className="text-2xl font-semibold tracking-tight text-foreground">
-            AI Workforce Organization
+            AI Workforce
           </h2>
-          <p className="mt-3 text-sm text-muted-foreground">
-            Delegation boundaries, role policies, and routing rules that define
-            who owns what in the AIOS work system.
-          </p>
-
-          {/* Simplified Org Chart */}
-          <div className="mt-8 rounded-lg border border-border bg-card p-6">
-            <div className="mx-auto max-w-4xl">
-              <div className="flex justify-center">
-                <div className="w-full max-w-sm rounded border border-primary/30 bg-primary/10 p-4 text-center">
-                  <p className="text-sm font-semibold text-primary">
-                    Sararin / GPT
-                  </p>
-                  <p className="mt-1 text-xs text-muted-foreground">
-                    Executive review and protected decisions
-                  </p>
-                </div>
-              </div>
-
-              <div className="mx-auto h-8 w-px bg-border" />
-
-              <div className="grid gap-4 md:grid-cols-[1fr_auto_1fr] md:items-center">
-                <div className="rounded border border-border bg-background p-4 text-center">
-                  <p className="text-sm font-semibold text-foreground">
-                    GPT
-                  </p>
-                  <p className="mt-1 text-xs text-muted-foreground">
-                    Personal AI context layer and KB continuity
-                  </p>
-                </div>
-                <div className="hidden px-2 text-sm font-medium text-muted-foreground md:block">
-                  peers via KB
-                </div>
-                <div className="rounded border border-border bg-background p-4 text-center">
-                  <p className="text-sm font-semibold text-foreground">
-                    Hermes
-                  </p>
-                  <p className="mt-1 text-xs text-muted-foreground">
-                    Stage manager, router, trace, and handoff owner
-                  </p>
-                </div>
-              </div>
-
-              <div className="mx-auto h-8 w-px bg-border" />
-
-              <div className="rounded border border-dashed border-border bg-muted/30 p-4 text-center">
-                <p className="text-sm font-semibold text-foreground">
-                  GPT KB + Git
-                </p>
-                <p className="mt-1 text-xs text-muted-foreground">
-                  Shared source of truth for decisions, evidence, and handoffs
-                </p>
-              </div>
-
-              <div className="mx-auto h-8 w-px bg-border" />
-
-              <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-                {[
-                  ["Codex", "Repo and UI implementation"],
-                  ["Big Crew", "Product, architecture, QA, review"],
-                  ["Researcher", "Evidence scans and claim safety"],
-                  ["Supernova", "Opportunity and monetization analysis"],
-                  ["Data Team", "Evidence structure and dashboard readiness"],
-                  ["optimize-worker", "Routing and trace automation"],
-                  ["Investment Team", "Planned specialist lane"],
-                ].map(([name, description]) => (
-                  <div
-                    key={name}
-                    className="rounded border border-border bg-background p-3"
-                  >
-                    <p className="text-sm font-medium text-foreground">
-                      {name}
-                    </p>
-                    <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
-                      {description}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Key Policies */}
-          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            <Card className="border-border bg-card">
-              <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-medium">
-                  Budget Discipline
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground">
-                  Role first, model second. Use cheapest reliable route for
-                  routine work; reserve senior review for named decisions.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-border bg-card">
-              <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-medium">
-                  Escalation Rule
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground">
-                  Money, legal, privacy, reputation, health, career, or major
-                  architecture → stop for executive review.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-border bg-card">
-              <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-medium">
-                  Task Routing
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground">
-                  Match capability to task. Repo patch → Codex. Evidence scan →
-                  Researcher. Review → Big Crew.
-                </p>
-              </CardContent>
-            </Card>
+          <div className="mt-6 rounded-lg border border-border bg-card p-6">
+            <p className="max-w-3xl text-sm leading-6 text-muted-foreground">
+              AI Workforce is the role-based execution capability within the AI Operating System.
+              Each role has explicit responsibilities, boundaries, and operating relationships.
+            </p>
+            <Link
+              href="/org-roles"
+              className="mt-4 inline-flex text-sm font-semibold text-primary hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+            >
+              Explore AI Workforce &amp; Org Roles →
+            </Link>
           </div>
         </div>
       </section>
