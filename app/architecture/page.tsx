@@ -78,6 +78,18 @@ const architectureGroups = [
         href: "/org-roles/repo-custodian",
       },
       {
+        title: "Durable Workflow Continuity",
+        detail:
+          "Optimize-Worker evolved from session-bound execution into a recoverable workflow runtime. Mechanical continuity is proven; human operational value remains unresolved.",
+        labels: [
+          "Canonical implementation",
+          "Mechanical stress passed",
+          "Human value unresolved",
+          "LangGraph parked",
+        ],
+        href: "/architecture/optimize-worker/durable-continuity",
+      },
+      {
         title: "Business Runway / Capability",
         detail: "Frames portfolio proof, adoption governance, POC support, and risk learning as capability direction, not proven revenue.",
         labels: ["Portfolio proof", "POC support", "Runway direction"],
