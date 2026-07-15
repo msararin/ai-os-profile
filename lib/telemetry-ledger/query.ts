@@ -285,6 +285,14 @@ function emptyDashboardData(reason: string, telemetryRange = normalizeTelemetryR
 function snapshotDashboardData(): InternalTelemetryDashboardData {
   const snapshot = candidateSnapshot
   const decisionSnapshot = loadInternalTelemetryDecisionSnapshot()
+  const historical = getPreservedHistoricalEvidence()
+  const historicalSpendByModelProvider = historical.groups.map((group) => ({
+    label: `${group.provider} / ${group.model} / ${group.costSource === "estimated_from_delegate_report" ? "estimated" : "provider-reported"}`,
+    value: group.costUsd,
+    detail: `${group.numericRowCount} numeric rows · SYNTHETIC/BACKFILL · operational claim excluded`,
+    dataSourceType: "BACKFILLED_FROM_KB" as const,
+  }))
+  const historicalSpendSummary = `All available source evidence (UTC). Preserved historical evidence: ${historical.numericCostRowCount} numeric / ${historical.populationCount} total rows; ${historical.nullCostRowCount} unavailable (null cost is unavailable, not zero). USD-designated numeric subtotal ${historical.groups.reduce((total, group) => total + group.costUsd, 0).toFixed(3)}; ${historical.groups.filter((group) => group.costSource === "estimated_from_delegate_report").reduce((total, group) => total + group.costUsd, 0).toFixed(3)} estimated and ${historical.groups.filter((group) => group.costSource === "provider_reported").reduce((total, group) => total + group.costUsd, 0).toFixed(3)} source-labeled provider-reported. Classification SYNTHETIC/BACKFILL; OPERATIONAL CLAIM: EXCLUDED. Captured UTC period ${historical.period.start} through ${historical.period.end}. Live operational Spend remains unavailable because protected continuous delivery is not connected.`
   const generatedAge = Date.now() - new Date(snapshot.generatedAt).getTime()
   const sourceFreshnessAge = Date.now() - new Date(snapshot.source.sourceFreshness.replace(" ", "T") + "Z").getTime()
   const metric = (label: string, value: number, detail: string): DashboardMetricRow => ({
@@ -359,8 +367,8 @@ function snapshotDashboardData(): InternalTelemetryDashboardData {
       metric("Backfill candidates", snapshot.counts.backfillCandidates, "Backfill class only"),
     ],
     spendByModelProvider,
-    historicalSpendByModelProvider: [],
-    historicalSpendSummary: "Preserved historical evidence is available only from the local SQLite ledger; bundled snapshot does not replace that view.",
+    historicalSpendByModelProvider,
+    historicalSpendSummary,
     modelCandidateDistribution: groupCount(
       snapshot.modelRows.map((row) => row.returnedModel ?? "FIELD_NOT_EXPOSED_NOT_CLAIMED"),
     ).map((row) => metric(row.label, row.value, "exported candidate rows; not calls")),
