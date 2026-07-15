@@ -440,7 +440,7 @@ export default async function InternalTelemetryPage({ searchParams }: { searchPa
                 {data.approvalUsage.unknownUnclassified}/{data.approvalUsage.denominator} UNKNOWN_UNCLASSIFIED — preserved historical evidence; no governed approval evidence is recorded for this population. Coverage is policy-match coverage, not usage volume.
               </p>
               <p className="mt-3 text-xs leading-5 text-muted-foreground">
-                Coverage: {data.approvalUsage.coveragePercent}% · policy version: {data.approvalUsage.policyVersion} · period: {data.approvalUsage.periodStart} → {data.approvalUsage.periodEnd} UTC · {data.approvalUsage.classification}. UNKNOWN_UNCLASSIFIED is not counted as NON_STANDARD; reviewer/routing proxies are excluded.
+                Coverage: {data.approvalUsage.coveragePercent}% · policy version: {data.approvalUsage.policyVersion} · {data.approvalUsage.periodStart === data.approvalUsage.periodEnd ? `Snapshot captured at: ${data.approvalUsage.periodStart}` : `period: ${data.approvalUsage.periodStart} → ${data.approvalUsage.periodEnd} UTC`} · {data.approvalUsage.classification}. UNKNOWN_UNCLASSIFIED is not counted as NON_STANDARD; reviewer/routing proxies are excluded.
               </p>
             </div>
           </CardContent>

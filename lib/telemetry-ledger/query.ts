@@ -284,6 +284,7 @@ function emptyDashboardData(reason: string, telemetryRange = normalizeTelemetryR
 
 function snapshotDashboardData(): InternalTelemetryDashboardData {
   const snapshot = candidateSnapshot
+  const historical = getPreservedHistoricalEvidence()
   const decisionSnapshot = loadInternalTelemetryDecisionSnapshot()
   const generatedAge = Date.now() - new Date(snapshot.generatedAt).getTime()
   const sourceFreshnessAge = Date.now() - new Date(snapshot.source.sourceFreshness.replace(" ", "T") + "Z").getTime()
@@ -359,8 +360,13 @@ function snapshotDashboardData(): InternalTelemetryDashboardData {
       metric("Backfill candidates", snapshot.counts.backfillCandidates, "Backfill class only"),
     ],
     spendByModelProvider,
-    historicalSpendByModelProvider: [],
-    historicalSpendSummary: "Preserved historical evidence is available only from the local SQLite ledger; bundled snapshot does not replace that view.",
+    historicalSpendByModelProvider: historical.groups.map((group) => ({
+      label: `${group.provider} / ${group.model} / ${group.costSource === "estimated_from_delegate_report" ? "estimated" : "provider-reported"}`,
+      value: group.costUsd,
+      detail: `${group.numericRowCount} numeric rows · SYNTHETIC/BACKFILL · operational claim excluded`,
+      dataSourceType: "BACKFILLED_FROM_KB" as const,
+    })),
+    historicalSpendSummary: `Preserved historical evidence: ${historical.numericCostRowCount} numeric / ${historical.populationCount} total rows; ${historical.nullCostRowCount} unavailable (null cost is unavailable, not zero). USD-designated subtotal 0.527; 0.461 estimated and 0.066 source-labeled provider-reported. Captured UTC period ${historical.period.start} through ${historical.period.end}. Classification SYNTHETIC/BACKFILL; OPERATIONAL CLAIM: EXCLUDED.`,
     modelCandidateDistribution: groupCount(
       snapshot.modelRows.map((row) => row.returnedModel ?? "FIELD_NOT_EXPOSED_NOT_CLAIMED"),
     ).map((row) => metric(row.label, row.value, "exported candidate rows; not calls")),
