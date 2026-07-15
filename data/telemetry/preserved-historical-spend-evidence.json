@@ -1,0 +1,17 @@
+{
+  "contractId": "internal.telemetry.preserved-historical-spend.v1",
+  "classification": "SYNTHETIC/BACKFILL",
+  "operationalClaim": "EXCLUDED",
+  "sourceIdentity": "preserved SQLite agent_runs evidence",
+  "sourceFileSha256": "0a4728ced9e190db9f51946d0bd802deaff11a8429af98f4ef513df740908c38",
+  "period": {"start": "2026-05-30T10:47:46.404231Z", "end": "2026-05-30T11:37:46.404231Z", "timezone": "UTC", "endExclusive": true},
+  "populationCount": 10,
+  "numericCostRowCount": 6,
+  "nullCostRowCount": 4,
+  "currency": "USD",
+  "groups": [
+    {"provider": "anthropic", "model": "claude-sonnet-4", "costSource": "estimated_from_delegate_report", "numericRowCount": 5, "costUsd": 0.461},
+    {"provider": "anthropic", "model": "claude-sonnet-4", "costSource": "provider_reported", "numericRowCount": 1, "costUsd": 0.066}
+  ],
+  "approvalUsage": {"approved": 0, "nonStandard": 0, "unknownUnclassified": 10, "denominator": 10, "coveragePercent": 0, "policyVersion": "UNAVAILABLE", "classification": "HISTORICAL_EVIDENCE_ONLY"}
+}

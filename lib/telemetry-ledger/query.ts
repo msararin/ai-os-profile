@@ -1,6 +1,7 @@
 import DatabaseConstructor from "better-sqlite3"
 import candidateSnapshot from "@/data/telemetry/internal-candidate-snapshot.json"
 import { loadInternalTelemetryDecisionSnapshot } from "@/lib/telemetry-ledger/decision-snapshot"
+import { getPreservedHistoricalEvidence } from "@/lib/telemetry-ledger/preserved-historical"
 
 const DEFAULT_LEDGER_DB_PATH =
   "/Users/apple/projects/optimize-worker/observability/aios_observability.sqlite"
@@ -88,6 +89,29 @@ export type DashboardDataSourceType =
   | "LOW_CONFIDENCE_ADVISORY"
   | "FIELD_NOT_EXPOSED_NOT_CLAIMED"
 
+export type TelemetryRange = {
+  key: "7D" | "30D" | "ALL" | "CUSTOM"
+  start: string | null
+  end: string | null
+  label: string
+  supported: boolean
+}
+
+export function normalizeTelemetryRange(input?: { range?: string; start?: string; end?: string }): TelemetryRange {
+  const range = input?.range?.toUpperCase()
+  const now = new Date()
+  if (range === "7D" || range === "30D") {
+    const days = range === "7D" ? 7 : 30
+    return { key: range, start: new Date(now.getTime() - days * 86400000).toISOString(), end: now.toISOString(), label: `Last ${days} days (UTC)`, supported: false }
+  }
+  if (range === "CUSTOM" && input?.start && input?.end) {
+    const start = new Date(input.start).toISOString()
+    const end = new Date(input.end).toISOString()
+    if (start < end) return { key: "CUSTOM", start, end, label: `${start} → ${end} (UTC)`, supported: true }
+  }
+  return { key: "ALL", start: null, end: null, label: "All available source evidence (UTC)", supported: true }
+}
+
 export type DashboardTableRow = {
   taskTitle: string
   taskId: string
@@ -169,6 +193,17 @@ export type InternalTelemetryDashboardData = {
   sourceFreshness?: string
   sourceChecksumPrefix?: string
   snapshotStale?: boolean
+  approvalUsage: {
+    approved: number
+    nonStandard: number
+    unknownUnclassified: number
+    denominator: number
+    coveragePercent: number
+    policyVersion: string
+    periodStart: string
+    periodEnd: string
+    classification: string
+  }
 }
 
 function getDbPath() {
@@ -185,7 +220,16 @@ function getDbPath() {
   return DEFAULT_LEDGER_DB_PATH
 }
 
-function emptyDashboardData(reason: string): InternalTelemetryDashboardData {
+function emptyDashboardData(reason: string, telemetryRange = normalizeTelemetryRange()): InternalTelemetryDashboardData {
+  const historical = getPreservedHistoricalEvidence()
+  const historicalInRange = telemetryRange.key === "ALL" || (telemetryRange.start === null || telemetryRange.end === null) ||
+    (historical.period.start < telemetryRange.end && historical.period.end > telemetryRange.start)
+  const historicalRows = historicalInRange ? historical.groups.map((group) => ({
+    label: `${group.provider} / ${group.model} / ${group.costSource === "estimated_from_delegate_report" ? "estimated" : "provider-reported"}`,
+    value: group.costUsd,
+    detail: `${group.numericRowCount} numeric rows · SYNTHETIC/BACKFILL · operational claim excluded`,
+    dataSourceType: "BACKFILLED_FROM_KB" as const,
+  })) : []
   return {
     dbPath: "FIELD_NOT_EXPOSED_NOT_CLAIMED",
     dbMode: "READ_ONLY_QUERY",
@@ -210,8 +254,8 @@ function emptyDashboardData(reason: string): InternalTelemetryDashboardData {
       },
     ],
     spendByModelProvider: [],
-    historicalSpendByModelProvider: [],
-    historicalSpendSummary: reason,
+    historicalSpendByModelProvider: historicalRows,
+    historicalSpendSummary: `${telemetryRange.label}. Preserved historical evidence: ${historical.numericCostRowCount} numeric / ${historical.populationCount} total rows; ${historical.nullCostRowCount} unavailable (null cost is unavailable, not zero). USD-designated numeric subtotal 0.527; 0.461 estimated and 0.066 source-labeled provider-reported. Classification SYNTHETIC/BACKFILL; OPERATIONAL CLAIM: EXCLUDED. Captured UTC period ${historical.period.start} through ${historical.period.end}. Live operational Spend remains unavailable because protected continuous delivery is not connected. ${historicalInRange ? "" : "No qualifying live records for this range."}`,
     modelCandidateDistribution: [],
     modelCandidatePopulationCount: 0,
     modelCandidateExportCount: 0,
@@ -230,6 +274,11 @@ function emptyDashboardData(reason: string): InternalTelemetryDashboardData {
     ledgerCoverage: [],
     taskReceiptRows: [],
     lowConfidenceRows: [],
+    approvalUsage: {
+      ...historical.approvalUsage,
+      periodStart: historical.period.start,
+      periodEnd: historical.period.end,
+    },
   }
 }
 
@@ -353,6 +402,17 @@ function snapshotDashboardData(): InternalTelemetryDashboardData {
     sourceFreshness: snapshot.source.sourceFreshness,
     sourceChecksumPrefix: snapshot.source.checksumPrefix,
     snapshotStale: Math.max(generatedAge, sourceFreshnessAge) > 24 * 60 * 60 * 1000,
+    approvalUsage: {
+      approved: 0,
+      nonStandard: 0,
+      unknownUnclassified: snapshot.modelRows.length,
+      denominator: snapshot.modelRows.length,
+      coveragePercent: 0,
+      policyVersion: "UNAVAILABLE",
+      periodStart: snapshot.source.sourceFreshness,
+      periodEnd: snapshot.source.sourceFreshness,
+      classification: "CANDIDATE_EVIDENCE_ONLY",
+    },
   }
 }
 
@@ -421,7 +481,7 @@ function topEntries(rows: DashboardMetricRow[], limit = 8) {
   return rows.slice(0, limit)
 }
 
-export function getInternalTelemetryDashboardData(): InternalTelemetryDashboardData {
+export function getInternalTelemetryDashboardData(telemetryRange = normalizeTelemetryRange()): InternalTelemetryDashboardData {
   const dbPath = getDbPath()
   if (!dbPath) {
     return snapshotDashboardData()
@@ -434,7 +494,7 @@ export function getInternalTelemetryDashboardData(): InternalTelemetryDashboardD
       fileMustExist: true,
     })
   } catch {
-    return emptyDashboardData("Configured telemetry ledger path is not readable.")
+    return emptyDashboardData("Configured telemetry ledger path is not readable.", telemetryRange)
   }
 
   try {
@@ -725,6 +785,17 @@ export function getInternalTelemetryDashboardData(): InternalTelemetryDashboardD
       ],
       taskReceiptRows,
       lowConfidenceRows,
+      approvalUsage: {
+        approved: 0,
+        nonStandard: 0,
+        unknownUnclassified: historicalRows.length,
+        denominator: historicalRows.length,
+        coveragePercent: 0,
+        policyVersion: "UNAVAILABLE",
+        periodStart: historicalStart ?? "UNAVAILABLE",
+        periodEnd: historicalEnd ?? "UNAVAILABLE",
+        classification: "HISTORICAL_EVIDENCE_ONLY",
+      },
     }
   } finally {
     db.close()

@@ -20,7 +20,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
-import { getInternalTelemetryDashboardData } from "@/lib/telemetry-ledger/query"
+import { getInternalTelemetryDashboardData, normalizeTelemetryRange } from "@/lib/telemetry-ledger/query"
 
 export const dynamic = "force-dynamic"
 
@@ -93,10 +93,7 @@ function UnavailableVisual({ title, detail }: { title: string; detail: string })
         <AlertTriangle className="size-4 text-amber-600" />
         {title}
       </div>
-      <div className="mt-3 h-3 overflow-hidden rounded-full border bg-background" aria-hidden="true">
-        <div className="h-full w-0 bg-muted" />
-      </div>
-      <p className="mt-3 text-xs leading-5 text-muted-foreground">{detail}</p>
+      <p className="mt-2 text-xs leading-5 text-muted-foreground">{detail}</p>
     </div>
   )
 }
@@ -185,7 +182,7 @@ const ownerInsightMetrics = [
   },
 ]
 
-export default async function InternalTelemetryPage() {
+export default async function InternalTelemetryPage({ searchParams }: { searchParams?: Promise<Record<string, string | string[] | undefined>> }) {
   const session = await auth()
   const email = session?.user?.email
 
@@ -193,7 +190,10 @@ export default async function InternalTelemetryPage() {
     redirect("/api/auth/signin?callbackUrl=/internal/telemetry")
   }
 
-  const data = getInternalTelemetryDashboardData()
+  const params = (await searchParams) ?? {}
+  const value = (key: string) => typeof params[key] === "string" ? params[key] : undefined
+  const telemetryRange = normalizeTelemetryRange({ range: value("range"), start: value("start"), end: value("end") })
+  const data = getInternalTelemetryDashboardData(telemetryRange)
 
   return (
     <main className="min-h-screen bg-background">
@@ -348,8 +348,13 @@ export default async function InternalTelemetryPage() {
             classification gap. Units and populations are never mixed or inferred.
           </p>
           <div className="mt-3 flex flex-wrap items-center gap-2 text-xs text-muted-foreground" aria-label="Telemetry time range">
-            <span className="font-semibold text-foreground">Range controls: unavailable</span>
-            <span>Shared UTC [start,end) query is not connected to live source data yet.</span>
+            <span className="font-semibold text-foreground">Shared range: {telemetryRange.label}</span>
+            {["7D", "30D", "ALL"].map((range) => (
+              <a key={range} className={`rounded border px-2 py-1 ${telemetryRange.key === range ? "bg-muted font-semibold" : ""}`} href={`/internal/telemetry?range=${range}`}>
+                {range === "ALL" ? "All" : range}
+              </a>
+            ))}
+            <span>Server-filtered UTC [start,end); 7D/30D are unavailable until live timestamped source exists.</span>
           </div>
         </div>
         <div className="grid gap-4 lg:grid-cols-2">
@@ -423,10 +428,21 @@ export default async function InternalTelemetryPage() {
             <CardDescription>No share denominator is available, so no route split is inferred.</CardDescription>
           </CardHeader>
           <CardContent>
-            <UnavailableVisual
-              title="Route classification unavailable"
-              detail="Exhaustive historical recovery found no accepted versioned approval registry, effective policy, classification authority, or usage join. The June design remained draft-only; reviewer-route and routing-decision fields are proxy-only and are not rendered as approval status."
-            />
+            <div className="rounded-lg border border-amber-300 bg-amber-50 p-4 text-sm dark:bg-amber-950/20">
+              <h3 className="font-semibold text-foreground">Governed classification coverage</h3>
+              <div className="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-4">
+                <div><div className="text-xs text-muted-foreground">APPROVED</div><div className="font-mono text-lg">{data.approvalUsage.approved}</div></div>
+                <div><div className="text-xs text-muted-foreground">NON_STANDARD</div><div className="font-mono text-lg">{data.approvalUsage.nonStandard}</div></div>
+                <div><div className="text-xs text-muted-foreground">UNKNOWN</div><div className="font-mono text-lg">{data.approvalUsage.unknownUnclassified}</div></div>
+                <div><div className="text-xs text-muted-foreground">DENOMINATOR</div><div className="font-mono text-lg">{data.approvalUsage.denominator}</div></div>
+              </div>
+              <p className="mt-3 rounded border border-amber-300 bg-amber-50 p-3 text-xs leading-5 text-amber-900 dark:bg-amber-950/20 dark:text-amber-100">
+                {data.approvalUsage.unknownUnclassified}/{data.approvalUsage.denominator} UNKNOWN_UNCLASSIFIED — preserved historical evidence; no governed approval evidence is recorded for this population. Coverage is policy-match coverage, not usage volume.
+              </p>
+              <p className="mt-3 text-xs leading-5 text-muted-foreground">
+                Coverage: {data.approvalUsage.coveragePercent}% · policy version: {data.approvalUsage.policyVersion} · period: {data.approvalUsage.periodStart} → {data.approvalUsage.periodEnd} UTC · {data.approvalUsage.classification}. UNKNOWN_UNCLASSIFIED is not counted as NON_STANDARD; reviewer/routing proxies are excluded.
+              </p>
+            </div>
           </CardContent>
         </Card>
 
