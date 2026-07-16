@@ -20,6 +20,9 @@ assert.match(page, /aria-current=\{telemetryRange\.key === "CUSTOM" \? "page" : 
 assert.match(page, /defaultValue=\{value\("start"\) \?\? ""\}/)
 assert.match(page, /defaultValue=\{value\("end"\) \?\? ""\}/)
 assert.match(page, /Calls\/Dominance is snapshot-only/)
+assert.match(page, /No timestamped evidence is available for this selected range\./)
+assert.match(page, /rows\.length === 0 \|\| exportedCount === 0/)
+assert.match(page, /No timestamped evidence is available for this selected range\./)
 
 const evaluation = new Date("2026-07-16T12:00:00.000Z")
 assert.equal(new Date(evaluation.getTime() - 7 * 86400000).toISOString(), "2026-07-09T12:00:00.000Z")
