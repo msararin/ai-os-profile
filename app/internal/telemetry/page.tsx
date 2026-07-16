@@ -52,7 +52,7 @@ function MetricList({
   showRowMetadata?: boolean
 }) {
   if (rows.length === 0) {
-    return <p className="text-sm text-muted-foreground">No rows found in the staging query.</p>
+    return <p className="rounded border border-dashed p-3 text-sm text-muted-foreground">No timestamped evidence is available for this selected range.</p>
   }
 
   const maxValue = Math.max(...rows.map((row) => row.value), 1)
@@ -110,8 +110,8 @@ function CandidateDominanceStrip({
   if (rows.length === 0 || exportedCount === 0) {
     return (
       <UnavailableVisual
-        title="Model dominance unavailable"
-        detail="No exported model-usage candidate rows are available for a source-limited concentration view."
+        title="No timestamped evidence is available for this selected range."
+        detail="Calls/Dominance is snapshot-only; no duration is inferred and no stale All-range data is reused."
       />
     )
   }
