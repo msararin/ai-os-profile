@@ -20,7 +20,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
-import { getInternalTelemetryDashboardData, normalizeTelemetryRange } from "@/lib/telemetry-ledger/query"
+import { getInternalTelemetryDashboardData } from "@/lib/telemetry-ledger/query"
 
 export const dynamic = "force-dynamic"
 
@@ -182,7 +182,7 @@ const ownerInsightMetrics = [
   },
 ]
 
-export default async function InternalTelemetryPage({ searchParams }: { searchParams?: Promise<Record<string, string | string[] | undefined>> }) {
+export default async function InternalTelemetryPage() {
   const session = await auth()
   const email = session?.user?.email
 
@@ -190,10 +190,7 @@ export default async function InternalTelemetryPage({ searchParams }: { searchPa
     redirect("/api/auth/signin?callbackUrl=/internal/telemetry")
   }
 
-  const params = (await searchParams) ?? {}
-  const value = (key: string) => typeof params[key] === "string" ? params[key] : undefined
-  const telemetryRange = normalizeTelemetryRange({ range: value("range"), start: value("start"), end: value("end") })
-  const data = getInternalTelemetryDashboardData(telemetryRange)
+  const data = getInternalTelemetryDashboardData()
 
   return (
     <main className="min-h-screen bg-background">
@@ -347,24 +344,7 @@ export default async function InternalTelemetryPage({ searchParams }: { searchPa
             One bounded recorded-cost view, two separate candidate-row views, and one proven
             classification gap. Units and populations are never mixed or inferred.
           </p>
-          <div className="mt-3 flex flex-wrap items-center gap-2 text-xs text-muted-foreground" aria-label="Telemetry time range">
-            <span className="font-semibold text-foreground">Shared range: {telemetryRange.label}</span>
-            {["7D", "30D", "ALL"].map((range) => (
-              <a key={range} aria-current={telemetryRange.key === range ? "page" : undefined} className={`rounded border px-2 py-1 ${telemetryRange.key === range ? "bg-muted font-semibold" : ""}`} href={`/internal/telemetry?range=${range}`}>
-                {range === "ALL" ? "All" : range}
-              </a>
-            ))}
-            <span>Evaluated at {telemetryRange.evaluatedAt}; UTC [start,end). Snapshot-only sources are excluded outside All.</span>
-            <form method="get" className={`flex flex-wrap items-center gap-2 ${telemetryRange.key === "CUSTOM" ? "rounded bg-muted p-1" : ""}`} aria-label="Custom UTC range" aria-current={telemetryRange.key === "CUSTOM" ? "page" : undefined}>
-              <input type="hidden" name="range" value="CUSTOM" />
-              <label className="sr-only" htmlFor="range-start">UTC start</label>
-              <input id="range-start" name="start" type="datetime-local" defaultValue={value("start") ?? ""} required className="rounded border bg-background px-2 py-1 text-xs" />
-              <label className="sr-only" htmlFor="range-end">UTC end</label>
-              <input id="range-end" name="end" type="datetime-local" defaultValue={value("end") ?? ""} required className="rounded border bg-background px-2 py-1 text-xs" />
-              <button type="submit" className="rounded border px-2 py-1 font-medium hover:bg-muted">Apply custom UTC</button>
-            </form>
-            {!telemetryRange.supported && telemetryRange.invalidReason ? <span role="alert" className="font-medium text-amber-700">{telemetryRange.invalidReason}</span> : null}
-          </div>
+          <p className="mt-3 text-xs text-muted-foreground">Stable bounded snapshots; shared time-range controls are parked in backlog.</p>
         </div>
         <div className="grid gap-4 lg:grid-cols-2">
         <Card className="rounded-lg">
@@ -424,7 +404,7 @@ export default async function InternalTelemetryPage({ searchParams }: { searchPa
             ) : (
               <UnavailableVisual
                 title="No timestamped evidence is available for this selected range."
-                detail={telemetryRange.key === "ALL" ? "Calls/Dominance snapshot is unavailable." : "Calls/Dominance is snapshot-only (July 1 snapshot); excluded outside All because snapshot duration cannot be inferred."}
+                detail="Calls/Dominance is a bounded July 1 snapshot; duration cannot be inferred."
               />
             )}
           </CardContent>
