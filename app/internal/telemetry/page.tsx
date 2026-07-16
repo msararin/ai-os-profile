@@ -52,7 +52,7 @@ function MetricList({
   showRowMetadata?: boolean
 }) {
   if (rows.length === 0) {
-    return <p className="text-sm text-muted-foreground">No rows found in the staging query.</p>
+    return <p className="rounded border border-dashed p-3 text-sm text-muted-foreground">No timestamped evidence is available for this selected range.</p>
   }
 
   const maxValue = Math.max(...rows.map((row) => row.value), 1)
@@ -93,10 +93,7 @@ function UnavailableVisual({ title, detail }: { title: string; detail: string })
         <AlertTriangle className="size-4 text-amber-600" />
         {title}
       </div>
-      <div className="mt-3 h-3 overflow-hidden rounded-full border bg-background" aria-hidden="true">
-        <div className="h-full w-0 bg-muted" />
-      </div>
-      <p className="mt-3 text-xs leading-5 text-muted-foreground">{detail}</p>
+      <p className="mt-2 text-xs leading-5 text-muted-foreground">{detail}</p>
     </div>
   )
 }
@@ -113,8 +110,8 @@ function CandidateDominanceStrip({
   if (rows.length === 0 || exportedCount === 0) {
     return (
       <UnavailableVisual
-        title="Model dominance unavailable"
-        detail="No exported model-usage candidate rows are available for a source-limited concentration view."
+        title="No timestamped evidence is available for this selected range."
+        detail="Calls/Dominance is snapshot-only; no duration is inferred and no stale All-range data is reused."
       />
     )
   }
@@ -347,6 +344,7 @@ export default async function InternalTelemetryPage() {
             One bounded recorded-cost view, two separate candidate-row views, and one proven
             classification gap. Units and populations are never mixed or inferred.
           </p>
+          <p className="mt-3 text-xs text-muted-foreground">Stable bounded snapshots; shared time-range controls are parked in backlog.</p>
         </div>
         <div className="grid gap-4 lg:grid-cols-2">
         <Card className="rounded-lg">
@@ -357,34 +355,27 @@ export default async function InternalTelemetryPage() {
             </CardTitle>
             <SectionMeaning>Uses numeric agent_runs cost_usd rows only; unavailable costs stay unknown and are never counted as zero.</SectionMeaning>
             <CardDescription>
-              Bounded recorded-cost aggregate with estimated and source-labeled provider-reported
-              provenance shown separately; not fully verified or complete spend.
+              Live operational Spend remains unavailable; preserved historical evidence is shown
+              separately with explicit SYNTHETIC/BACKFILL and operational-exclusion labels.
             </CardDescription>
           </CardHeader>
           <CardContent>
-            {data.spendByModelProvider.length > 0 ? (
-              <div className="space-y-4">
-                <MetricList rows={data.spendByModelProvider} valuePrefix="USD " />
-                <p className="text-xs leading-5 text-muted-foreground">
-                  {data.spendCoverageSummary}
-                </p>
-                <p className="text-xs leading-5 text-muted-foreground">
-                  Delivery state: <span className="font-semibold">{data.spendSnapshotState}</span>
-                  {data.spendSnapshotVersion ? ` · snapshot ${data.spendSnapshotVersion}` : ""}
-                  {data.spendSnapshotGeneratedAt ? ` · generated ${data.spendSnapshotGeneratedAt}` : ""}
-                  {data.spendSnapshotSourceFreshness ? ` · source freshness ${data.spendSnapshotSourceFreshness}` : ""}
-                  {data.spendSnapshotChecksumPrefix ? ` · payload ${data.spendSnapshotChecksumPrefix}…` : ""}
-                </p>
-                {data.spendSnapshotState === "STALE" ? (
-                  <p className="rounded-md border border-amber-300 bg-amber-50 px-3 py-2 text-xs font-medium leading-5 text-amber-900 dark:bg-amber-950/20 dark:text-amber-100">
-                    STALE historical source — values remain source-backed for the displayed period,
-                    but the newest source evidence is more than 24 hours old and is not current telemetry.
-                  </p>
-                ) : null}
+            <div className="space-y-4">
+              <div className="rounded-lg border border-amber-300 bg-amber-50 p-4 dark:bg-amber-950/20">
+                <h3 className="font-semibold text-foreground">Live operational Spend — UNAVAILABLE</h3>
+                <p className="mt-2 text-sm leading-5 text-muted-foreground">Protected continuous delivery is not yet connected. No synthetic or backfill values are included in live operational Spend.</p>
               </div>
-            ) : (
-              <UnavailableVisual title="Spend unavailable" detail={data.spendCoverageSummary} />
-            )}
+              <div className="rounded-lg border border-sky-300 bg-sky-50/50 p-4 dark:bg-sky-950/20">
+                <h3 className="font-semibold text-foreground">Preserved historical evidence — SYNTHETIC/BACKFILL</h3>
+                {data.historicalSpendByModelProvider.length > 0 ? (
+                  <div className="mt-4 space-y-4">
+                    <MetricList rows={data.historicalSpendByModelProvider} valuePrefix="USD-designated " />
+                    <p className="text-xs leading-5 text-muted-foreground">{data.historicalSpendSummary}</p>
+                    <p className="text-xs font-semibold text-amber-800 dark:text-amber-200">OPERATIONAL CLAIM: EXCLUDED</p>
+                  </div>
+                ) : <UnavailableVisual title="Historical evidence unavailable" detail={data.historicalSpendSummary} />}
+              </div>
+            </div>
           </CardContent>
         </Card>
 
@@ -412,8 +403,8 @@ export default async function InternalTelemetryPage() {
               </div>
             ) : (
               <UnavailableVisual
-                title="Call count unavailable"
-                detail="No exported model-usage candidate rows are available for a source-limited label distribution."
+                title="No timestamped evidence is available for this selected range."
+                detail="Calls/Dominance is a bounded July 1 snapshot; duration cannot be inferred."
               />
             )}
           </CardContent>
@@ -426,10 +417,21 @@ export default async function InternalTelemetryPage() {
             <CardDescription>No share denominator is available, so no route split is inferred.</CardDescription>
           </CardHeader>
           <CardContent>
-            <UnavailableVisual
-              title="Route classification unavailable"
-              detail="Exhaustive historical recovery found no accepted versioned approval registry, effective policy, classification authority, or usage join. The June design remained draft-only; reviewer-route and routing-decision fields are proxy-only and are not rendered as approval status."
-            />
+            <div className="rounded-lg border border-amber-300 bg-amber-50 p-4 text-sm dark:bg-amber-950/20">
+              <h3 className="font-semibold text-foreground">Governed classification coverage</h3>
+              <div className="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-4">
+                <div><div className="text-xs text-muted-foreground">APPROVED</div><div className="font-mono text-lg">{data.approvalUsage.approved}</div></div>
+                <div><div className="text-xs text-muted-foreground">NON_STANDARD</div><div className="font-mono text-lg">{data.approvalUsage.nonStandard}</div></div>
+                <div><div className="text-xs text-muted-foreground">UNKNOWN</div><div className="font-mono text-lg">{data.approvalUsage.unknownUnclassified}</div></div>
+                <div><div className="text-xs text-muted-foreground">DENOMINATOR</div><div className="font-mono text-lg">{data.approvalUsage.denominator}</div></div>
+              </div>
+              <p className="mt-3 rounded border border-amber-300 bg-amber-50 p-3 text-xs leading-5 text-amber-900 dark:bg-amber-950/20 dark:text-amber-100">
+                {data.approvalUsage.unknownUnclassified}/{data.approvalUsage.denominator} UNKNOWN_UNCLASSIFIED — preserved historical evidence; no governed approval evidence is recorded for this population. Coverage is policy-match coverage, not usage volume.
+              </p>
+              <p className="mt-3 text-xs leading-5 text-muted-foreground">
+                Coverage: {data.approvalUsage.coveragePercent}% · policy version: {data.approvalUsage.policyVersion} · period: {data.approvalUsage.periodStart} → {data.approvalUsage.periodEnd} UTC · {data.approvalUsage.classification}. UNKNOWN_UNCLASSIFIED is not counted as NON_STANDARD; reviewer/routing proxies are excluded.
+              </p>
+            </div>
           </CardContent>
         </Card>
 
