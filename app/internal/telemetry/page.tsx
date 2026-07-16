@@ -350,11 +350,20 @@ export default async function InternalTelemetryPage({ searchParams }: { searchPa
           <div className="mt-3 flex flex-wrap items-center gap-2 text-xs text-muted-foreground" aria-label="Telemetry time range">
             <span className="font-semibold text-foreground">Shared range: {telemetryRange.label}</span>
             {["7D", "30D", "ALL"].map((range) => (
-              <a key={range} className={`rounded border px-2 py-1 ${telemetryRange.key === range ? "bg-muted font-semibold" : ""}`} href={`/internal/telemetry?range=${range}`}>
+              <a key={range} aria-current={telemetryRange.key === range ? "page" : undefined} className={`rounded border px-2 py-1 ${telemetryRange.key === range ? "bg-muted font-semibold" : ""}`} href={`/internal/telemetry?range=${range}`}>
                 {range === "ALL" ? "All" : range}
               </a>
             ))}
-            <span>Server-filtered UTC [start,end); 7D/30D are unavailable until live timestamped source exists.</span>
+            <span>Evaluated at {telemetryRange.evaluatedAt}; UTC [start,end). Snapshot-only sources are excluded outside All.</span>
+            <form method="get" className={`flex flex-wrap items-center gap-2 ${telemetryRange.key === "CUSTOM" ? "rounded bg-muted p-1" : ""}`} aria-label="Custom UTC range" aria-current={telemetryRange.key === "CUSTOM" ? "page" : undefined}>
+              <input type="hidden" name="range" value="CUSTOM" />
+              <label className="sr-only" htmlFor="range-start">UTC start</label>
+              <input id="range-start" name="start" type="datetime-local" defaultValue={value("start") ?? ""} required className="rounded border bg-background px-2 py-1 text-xs" />
+              <label className="sr-only" htmlFor="range-end">UTC end</label>
+              <input id="range-end" name="end" type="datetime-local" defaultValue={value("end") ?? ""} required className="rounded border bg-background px-2 py-1 text-xs" />
+              <button type="submit" className="rounded border px-2 py-1 font-medium hover:bg-muted">Apply custom UTC</button>
+            </form>
+            {!telemetryRange.supported && telemetryRange.invalidReason ? <span role="alert" className="font-medium text-amber-700">{telemetryRange.invalidReason}</span> : null}
           </div>
         </div>
         <div className="grid gap-4 lg:grid-cols-2">
@@ -414,8 +423,8 @@ export default async function InternalTelemetryPage({ searchParams }: { searchPa
               </div>
             ) : (
               <UnavailableVisual
-                title="Call count unavailable"
-                detail="No exported model-usage candidate rows are available for a source-limited label distribution."
+                title="No timestamped evidence is available for this selected range."
+                detail={telemetryRange.key === "ALL" ? "Calls/Dominance snapshot is unavailable." : "Calls/Dominance is snapshot-only (July 1 snapshot); excluded outside All because snapshot duration cannot be inferred."}
               />
             )}
           </CardContent>

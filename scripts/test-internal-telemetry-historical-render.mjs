@@ -4,7 +4,7 @@ import { readFile } from "node:fs/promises"
 const querySource = await readFile(new URL("../lib/telemetry-ledger/query.ts", import.meta.url), "utf8")
 const artifact = JSON.parse(await readFile(new URL("../data/telemetry/preserved-historical-spend-evidence.json", import.meta.url), "utf8"))
 
-assert.match(querySource, /const historicalSpendByModelProvider = historical\.groups\.map/)
+assert.match(querySource, /const historicalSpendByModelProvider = historicalInRange \? historical\.groups\.map/)
 assert.match(querySource, /historicalSpendByModelProvider,\s*\n\s*historicalSpendSummary/)
 assert.doesNotMatch(querySource, /historicalSpendByModelProvider:\s*\[\]/)
 assert.equal(artifact.populationCount, 10)

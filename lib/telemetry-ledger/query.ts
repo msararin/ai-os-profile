@@ -95,21 +95,32 @@ export type TelemetryRange = {
   end: string | null
   label: string
   supported: boolean
+  evaluatedAt: string
+  invalidReason?: string
 }
 
-export function normalizeTelemetryRange(input?: { range?: string; start?: string; end?: string }): TelemetryRange {
+export function normalizeTelemetryRange(input?: { range?: string; start?: string; end?: string; now?: Date }): TelemetryRange {
   const range = input?.range?.toUpperCase()
-  const now = new Date()
+  const now = input?.now ?? new Date()
+  const evaluatedAt = now.toISOString()
   if (range === "7D" || range === "30D") {
     const days = range === "7D" ? 7 : 30
-    return { key: range, start: new Date(now.getTime() - days * 86400000).toISOString(), end: now.toISOString(), label: `Last ${days} days (UTC)`, supported: false }
+    return { key: range, start: new Date(now.getTime() - days * 86400000).toISOString(), end: evaluatedAt, label: `Last ${days} days (UTC)`, supported: true, evaluatedAt }
   }
-  if (range === "CUSTOM" && input?.start && input?.end) {
-    const start = new Date(input.start).toISOString()
-    const end = new Date(input.end).toISOString()
-    if (start < end) return { key: "CUSTOM", start, end, label: `${start} → ${end} (UTC)`, supported: true }
+  if (range === "CUSTOM") {
+    if (!input?.start || !input?.end) {
+      return { key: "CUSTOM", start: null, end: null, label: "Custom UTC range", supported: false, evaluatedAt, invalidReason: "Start and end are required." }
+    }
+    const startDate = new Date(input.start)
+    const endDate = new Date(input.end)
+    if (!Number.isFinite(startDate.getTime()) || !Number.isFinite(endDate.getTime()) || startDate >= endDate) {
+      return { key: "CUSTOM", start: null, end: null, label: "Custom UTC range", supported: false, evaluatedAt, invalidReason: "Start must be before end." }
+    }
+    const start = startDate.toISOString()
+    const end = endDate.toISOString()
+    return { key: "CUSTOM", start, end, label: start + " → " + end + " (UTC)", supported: true, evaluatedAt }
   }
-  return { key: "ALL", start: null, end: null, label: "All available source evidence (UTC)", supported: true }
+  return { key: "ALL", start: null, end: null, label: "All available source evidence (UTC)", supported: true, evaluatedAt }
 }
 
 export type DashboardTableRow = {
@@ -222,8 +233,7 @@ function getDbPath() {
 
 function emptyDashboardData(reason: string, telemetryRange = normalizeTelemetryRange()): InternalTelemetryDashboardData {
   const historical = getPreservedHistoricalEvidence()
-  const historicalInRange = telemetryRange.key === "ALL" || (telemetryRange.start === null || telemetryRange.end === null) ||
-    (historical.period.start < telemetryRange.end && historical.period.end > telemetryRange.start)
+  const historicalInRange = telemetryRange.key === "ALL" || (telemetryRange.supported && telemetryRange.start !== null && telemetryRange.end !== null && historical.period.start < telemetryRange.end && historical.period.end > telemetryRange.start)
   const historicalRows = historicalInRange ? historical.groups.map((group) => ({
     label: `${group.provider} / ${group.model} / ${group.costSource === "estimated_from_delegate_report" ? "estimated" : "provider-reported"}`,
     value: group.costUsd,
@@ -282,17 +292,22 @@ function emptyDashboardData(reason: string, telemetryRange = normalizeTelemetryR
   }
 }
 
-function snapshotDashboardData(): InternalTelemetryDashboardData {
+function snapshotDashboardData(telemetryRange = normalizeTelemetryRange()): InternalTelemetryDashboardData {
   const snapshot = candidateSnapshot
   const decisionSnapshot = loadInternalTelemetryDecisionSnapshot()
   const historical = getPreservedHistoricalEvidence()
-  const historicalSpendByModelProvider = historical.groups.map((group) => ({
+  const historicalInRange = telemetryRange.key === "ALL" || (telemetryRange.supported && telemetryRange.start !== null && telemetryRange.end !== null && historical.period.start < telemetryRange.end && historical.period.end > telemetryRange.start)
+  const historicalSpendByModelProvider = historicalInRange ? historical.groups.map((group) => ({
     label: `${group.provider} / ${group.model} / ${group.costSource === "estimated_from_delegate_report" ? "estimated" : "provider-reported"}`,
     value: group.costUsd,
     detail: `${group.numericRowCount} numeric rows · SYNTHETIC/BACKFILL · operational claim excluded`,
     dataSourceType: "BACKFILLED_FROM_KB" as const,
-  }))
-  const historicalSpendSummary = `All available source evidence (UTC). Preserved historical evidence: ${historical.numericCostRowCount} numeric / ${historical.populationCount} total rows; ${historical.nullCostRowCount} unavailable (null cost is unavailable, not zero). USD-designated numeric subtotal ${historical.groups.reduce((total, group) => total + group.costUsd, 0).toFixed(3)}; ${historical.groups.filter((group) => group.costSource === "estimated_from_delegate_report").reduce((total, group) => total + group.costUsd, 0).toFixed(3)} estimated and ${historical.groups.filter((group) => group.costSource === "provider_reported").reduce((total, group) => total + group.costUsd, 0).toFixed(3)} source-labeled provider-reported. Classification SYNTHETIC/BACKFILL; OPERATIONAL CLAIM: EXCLUDED. Captured UTC period ${historical.period.start} through ${historical.period.end}. Live operational Spend remains unavailable because protected continuous delivery is not connected.`
+  })) : []
+  const historicalSpendSummary = !telemetryRange.supported
+    ? telemetryRange.invalidReason ?? "No timestamped evidence is available for this selected range."
+    : historicalInRange
+      ? "Selected range " + telemetryRange.label + "; source period " + historical.period.start + " through " + historical.period.end + " UTC; eligible rows " + historical.populationCount + "; excluded rows 0; population SYNTHETIC/BACKFILL; range-filterable by event period. USD-designated numeric subtotal " + historical.groups.reduce((total, group) => total + group.costUsd, 0).toFixed(3) + "; " + historical.groups.filter((group) => group.costSource === "estimated_from_delegate_report").reduce((total, group) => total + group.costUsd, 0).toFixed(3) + " estimated and " + historical.groups.filter((group) => group.costSource === "provider_reported").reduce((total, group) => total + group.costUsd, 0).toFixed(3) + " source-labeled provider-reported. Classification SYNTHETIC/BACKFILL; OPERATIONAL CLAIM: EXCLUDED."
+      : "No timestamped evidence is available for this selected range. Historical Spend source period is 2026-05-30 UTC; excluded rows: all 10 (outside selected range)."
   const generatedAge = Date.now() - new Date(snapshot.generatedAt).getTime()
   const sourceFreshnessAge = Date.now() - new Date(snapshot.source.sourceFreshness.replace(" ", "T") + "Z").getTime()
   const metric = (label: string, value: number, detail: string): DashboardMetricRow => ({
@@ -301,7 +316,8 @@ function snapshotDashboardData(): InternalTelemetryDashboardData {
     detail,
     dataSourceType: "STAGING_CANDIDATE",
   })
-  const taskReceiptRows = snapshot.taskRows.map((row) => ({
+  const snapshotEligible = telemetryRange.key === "ALL"
+  const taskReceiptRows = snapshotEligible ? snapshot.taskRows.map((row) => ({
     taskTitle: row.taskTitle ?? "SOURCE_ARTIFACT_MISSING_FIELD",
     taskId: "SOURCE_ARTIFACT_MISSING_FIELD",
     sourceFilePath: "REDACTED_SOURCE_PATH",
@@ -313,8 +329,8 @@ function snapshotDashboardData(): InternalTelemetryDashboardData {
     dataSourceType: "STAGING_CANDIDATE" as const,
     extractionConfidence: "medium",
     sourceOrigin: "LOCAL_SQLITE_CANDIDATES",
-  }))
-  const modelVsTask = snapshot.modelRows.map((row) => ({
+  })) : []
+  const modelVsTask = snapshotEligible ? snapshot.modelRows.map((row) => ({
     taskTitle: row.taskTitle ?? "SOURCE_ARTIFACT_MISSING_FIELD",
     provider: row.provider ?? "SOURCE_ARTIFACT_MISSING_FIELD",
     requestedModel: row.requestedModel ?? "SOURCE_ARTIFACT_MISSING_FIELD",
@@ -324,7 +340,7 @@ function snapshotDashboardData(): InternalTelemetryDashboardData {
     generationId: "SOURCE_ARTIFACT_MISSING_FIELD",
     sourceFilePath: "REDACTED_SOURCE_PATH",
     dataSourceType: "STAGING_CANDIDATE" as const,
-  }))
+  })) : []
   const spend = decisionSnapshot.status === "AVAILABLE" ? decisionSnapshot.value : null
   const spendByModelProvider: DashboardMetricRow[] = spend
     ? spend.groups.map((group) => ({
@@ -369,12 +385,12 @@ function snapshotDashboardData(): InternalTelemetryDashboardData {
     spendByModelProvider,
     historicalSpendByModelProvider,
     historicalSpendSummary,
-    modelCandidateDistribution: groupCount(
+    modelCandidateDistribution: snapshotEligible ? groupCount(
       snapshot.modelRows.map((row) => row.returnedModel ?? "FIELD_NOT_EXPOSED_NOT_CLAIMED"),
-    ).map((row) => metric(row.label, row.value, "exported candidate rows; not calls")),
+    ).map((row) => metric(row.label, row.value, "exported candidate rows; not calls; snapshot-only")) : [],
     modelCandidatePopulationCount:
-      snapshot.entityTypes.find((row) => row.label === "model_usage")?.value ?? 0,
-    modelCandidateExportCount: snapshot.modelRows.length,
+      snapshotEligible ? snapshot.entityTypes.find((row) => row.label === "model_usage")?.value ?? 0 : 0,
+    modelCandidateExportCount: snapshotEligible ? snapshot.modelRows.length : 0,
     modelVsTask,
     spendByRoleReviewerRoute: snapshot.roleReviewerRoutes.map((row) =>
       metric(row.label, row.value, row.detail),
@@ -397,7 +413,7 @@ function snapshotDashboardData(): InternalTelemetryDashboardData {
     missingTelemetryWarnings: snapshot.missingTelemetryWarnings.map((row) =>
       metric(row.label, row.value, row.detail),
     ),
-    ledgerCoverage: snapshot.entityTypes.map((row) => metric(row.label, row.value, "entity_type candidate rows")),
+    ledgerCoverage: snapshotEligible ? snapshot.entityTypes.map((row) => metric(row.label, row.value, "entity_type candidate rows; snapshot-only")) : [],
     taskReceiptRows,
     lowConfidenceRows: snapshot.lowConfidenceRows.map((row) => ({
       sourceFilePath: "REDACTED_SOURCE_PATH",
@@ -492,7 +508,7 @@ function topEntries(rows: DashboardMetricRow[], limit = 8) {
 export function getInternalTelemetryDashboardData(telemetryRange = normalizeTelemetryRange()): InternalTelemetryDashboardData {
   const dbPath = getDbPath()
   if (!dbPath) {
-    return snapshotDashboardData()
+    return snapshotDashboardData(telemetryRange)
   }
 
   let db: SqliteDatabase
