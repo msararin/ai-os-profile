@@ -78,14 +78,20 @@ const architectureGroups = [
         href: "/org-roles/repo-custodian",
       },
       {
-        title: "Durable Workflow Continuity",
+        title: "Durable Continuity",
         detail:
-          "Optimize-Worker evolved from session-bound execution into a recoverable workflow runtime. Mechanical continuity is proven; human operational value remains unresolved.",
+          "Optimize-Worker evolved from session-bound execution to versioned, crash-resumable workflow state. Mechanical continuity is proven; human operational value remains unresolved.",
+        status: "PRODUCTION · MECHANICAL VALUE PROVEN",
         labels: [
           "Canonical implementation",
           "Mechanical stress passed",
           "Human value unresolved",
           "LangGraph parked",
+        ],
+        comparisons: [
+          ["Session-bound context", "Durable checkpoint", "Resume after crash/session boundary"],
+          ["Manual reconstruction", "Versioned workflow state", "0 observed repetition/state loss"],
+          ["Premature orchestration expansion", "Evidence-triggered evolution", "LangGraph deferred"],
         ],
         href: "/architecture/optimize-worker/durable-continuity",
       },
@@ -167,6 +173,11 @@ export default function ArchitecturePage() {
                     >
                       <h4 className="text-sm font-semibold text-foreground">{layer.title}</h4>
                       <p className="mt-2 text-xs leading-5 text-muted-foreground">{layer.detail}</p>
+                      {"status" in layer && layer.status ? (
+                        <p className="mt-3 text-[11px] font-semibold uppercase tracking-wide text-primary">
+                          {layer.status}
+                        </p>
+                      ) : null}
                       <div className="mt-3 flex flex-wrap gap-1.5">
                         {layer.labels.map((label) => (
                           <span
@@ -177,6 +188,29 @@ export default function ArchitecturePage() {
                           </span>
                         ))}
                       </div>
+                      {"comparisons" in layer && layer.comparisons ? (
+                        <div className="mt-4 grid gap-2" aria-label="Durable Continuity evolution">
+                          {layer.comparisons.map(([from, to, result]) => (
+                            <div
+                              key={from}
+                              className="grid gap-2 rounded-md border border-border bg-muted/20 p-3 sm:grid-cols-3"
+                            >
+                              <div>
+                                <p className="text-[10px] font-semibold uppercase tracking-wide text-muted-foreground">From</p>
+                                <p className="mt-1 text-xs leading-5 text-foreground">{from}</p>
+                              </div>
+                              <div>
+                                <p className="text-[10px] font-semibold uppercase tracking-wide text-primary">To</p>
+                                <p className="mt-1 text-xs leading-5 text-foreground">{to}</p>
+                              </div>
+                              <div>
+                                <p className="text-[10px] font-semibold uppercase tracking-wide text-[#007d68]">Result</p>
+                                <p className="mt-1 text-xs leading-5 text-foreground">{result}</p>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      ) : null}
                       {"href" in layer && layer.href ? (
                         <Link
                           href={layer.href}
@@ -186,6 +220,8 @@ export default function ArchitecturePage() {
                             ? "View system health surfaces →"
                             : layer.href === "/architecture/public-surface-governance"
                               ? "View public surface governance →"
+                              : layer.href === "/architecture/optimize-worker/durable-continuity"
+                                ? "Explore the architecture evolution →"
                               : "View surface →"}
                         </Link>
                       ) : null}
