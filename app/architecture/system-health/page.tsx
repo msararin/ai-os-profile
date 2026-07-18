@@ -5,6 +5,15 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 
 const surfaces = [
   {
+    title: "Public Telemetry",
+    status: "Bounded readiness — historical evidence",
+    href: "/architecture/system-health/public-telemetry",
+    copy: [
+      "Sanitized historical evidence about routing readiness and public trust boundaries.",
+      "Not live telemetry, current call or task volume, production-wide coverage, or a failure-rate view.",
+    ],
+  },
+  {
     title: "Runtime Authority Evidence",
     status: "Available — static insight dashboard",
     href: "/architecture/system-health/runtime-authority-evidence",
@@ -196,6 +205,7 @@ export default function SystemHealthPage() {
                 <p>Runtime Authority Evidence</p>
                 <p>LLMOps Readiness</p>
                 <p>AIOS Monitoring static snapshot</p>
+                <p>Public Telemetry bounded historical evidence</p>
               </CardContent>
             </Card>
             <Card>

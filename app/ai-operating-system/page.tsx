@@ -63,6 +63,14 @@ const aiosSections = [
     evidenceNote:
       "Work in progress. Shared while the underlying engagement is still active; not a final writeup.",
   },
+  {
+    order: "10",
+    title: "Public Telemetry",
+    href: "/architecture/system-health/public-telemetry",
+    status: "BOUNDED READINESS · HISTORICAL EVIDENCE",
+    description:
+      "Public-facing, sanitized evidence about routing readiness and trust boundaries; raw operational telemetry remains private.",
+  },
 ]
 
 const existingTools = [
