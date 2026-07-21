@@ -26,13 +26,13 @@ const countCards = [
   },
   {
     label: "Big Crew",
-    value: "Engineering / QA workspace",
-    status: "Roster pending confirmation",
+    value: "Bounded specialist delivery workspace",
+    status: "Started — explicit handoff and separate receipts",
   },
   {
     label: "Supernova",
     value: "Business intelligence workspace",
-    status: "First version complete; POC not yet validated.",
+    status: "Bounded canonical candidate; POC and R01 start unproven.",
   },
   {
     label: "Investment Team",
@@ -81,14 +81,14 @@ const surfaceLanes = [
   {
     lane: "Big Crew",
     owner: "Engineering / Quality role group",
-    status: "Roster pending confirmation",
-    purpose: "Engineering review workspace; member names are withheld until the registry is confirmed.",
+    status: "Started — bounded specialist delivery",
+    purpose: "Engineering review workspace with explicit handoff and separate receipts; it is not an autonomous team claim.",
   },
   {
     lane: "Supernova",
     owner: "Business / Opportunity Intelligence workspace",
-    status: "First version complete; POC not yet validated.",
-    purpose: "Frames opportunities, risks, options, and business evidence.",
+    status: "Bounded canonical candidate",
+    purpose: "Frames opportunities, risks, options, and business evidence; candidate personas are not active operational roles.",
   },
   {
     lane: "Future / Parked",
@@ -209,8 +209,8 @@ const supernovaRoles = [
 
 const fallbackNotes = [
   "AIOS does not publish a global agent count until each workspace is backed by a committed registry or contract.",
-  "Big Crew: engineering / QA workspace; roster pending confirmation.",
-  "Supernova: first version complete; POC not yet validated.",
+  "Big Crew: started bounded specialist delivery with explicit handoff and separate receipts.",
+  "Supernova: Stakeholder Core is a bounded canonical candidate; POC and R01 start are unproven.",
   "Simple Task Supporter: low-risk support lane, contract confirmation pending",
   "Investment Team: parked / TBD / not countable",
   "UX/UI: engineering capability tag, not separate role",
@@ -223,17 +223,17 @@ const fallbackNotes = [
 const sourceBoundaries = [
   {
     title: "Big Crew source boundary",
-    summary: "Workspace is publishable; roster is not.",
+    summary: "Started bounded specialist delivery; autonomous execution is not claimed.",
     detail:
-      "Big Crew is treated as an engineering / QA workspace because committed contracts define output behavior, but public roster names are withheld until the registry is confirmed.",
+      "Big Crew is a bounded specialist delivery workspace with explicit handoff and separate receipts; this does not claim an autonomous team, active roster, or self-validation.",
     source: "team-of-team-orchestration/role-output-contracts.md",
   },
   {
     title: "Supernova source boundary",
-    summary: "First version complete; POC not yet validated.",
+    summary: "Stakeholder Core is a bounded canonical candidate.",
     detail:
-      "Supernova roles are shown because the committed registry defines the business / opportunity intelligence skeleton and its 10 role contracts. The first working version / operating concept exists, but POC validation and revenue-loop proof are not complete.",
-    source: "supernova/supernova-v1-role-registry.md",
+      "The candidate defines stakeholder decision-support personas, not active operational roles. POC validation and R01 start are not yet authorized or proven.",
+    source: "supernova/stakeholder-core/README.md + registry.json",
   },
   {
     title: "Global count boundary",
@@ -279,7 +279,8 @@ export default function AgentOrchestrationMapPage() {
           </h1>
           <p className="mt-3 max-w-4xl text-muted-foreground">
             A visual map of how AIOS work is routed, reviewed, gated, and improved using
-            fallback-safe role labels.
+            fallback-safe role labels. This is a documented role-and-boundary map, not runtime
+            execution proof; availability is static unless a matching worker receipt exists.
           </p>
           <div className="mt-5 rounded-lg border border-amber-500/50 bg-amber-500/10 p-4 text-sm leading-6 text-muted-foreground">
             This is a map, not a dashboard. It does not represent live telemetry, autonomous

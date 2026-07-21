@@ -97,7 +97,7 @@ export const aiosMonitoringSnapshotMeta = {
     "Curated public-safe static snapshot aligned to the AIOS monitoring dashboard data contract v0.3 under-construction boundary.",
   coverageScope:
     "Covers selected public-safe status rows and the current under-construction dashboard implementation gate. It does not cover bypassed, pre-enforcement, manually reconstructed, live runtime, raw receipt, real-data, derivative, or benchmark records.",
-  posture: "UNDER CONSTRUCTION / static review surface",
+  posture: "CURATED STATIC REVIEW SNAPSHOT / reconciled through 20 July 2026",
   boundary:
     "This snapshot is not live runtime telemetry, not a production monitoring system, not realtime agent tracking, not public proof, not CASE-003 execution, not real data ingestion, not derivative authorization, and not benchmark export.",
   dataContractBoundary:

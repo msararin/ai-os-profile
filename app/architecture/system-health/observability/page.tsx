@@ -189,7 +189,8 @@ export default function ObservabilityPage() {
             Runtime Enforcement Value Surface
           </h1>
           <p className="mt-3 max-w-4xl text-muted-foreground">
-            This page shows how AIOS prevents unsupported automation, model, role, evidence,
+            Evidence discipline is active as a governance and interpretation method; observability
+            coverage remains bounded and source-limited. This page shows how AIOS prevents unsupported automation, model, role, evidence,
             cost, and performance claims from reaching public proof. Its current value is
             claim-boundary review: what can be said publicly, what needs a receipt, and what
             remains blocked.

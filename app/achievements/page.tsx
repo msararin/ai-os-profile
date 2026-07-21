@@ -8,7 +8,7 @@ import { Badge } from "@/components/ui/badge"
 import { ChevronDown, ChevronRight, Download } from "lucide-react"
 
 export default function AchievementsPage() {
-  const [expandedDays, setExpandedDays] = useState<Set<string>>(new Set(['2026-07-13', '2026-07-11', '2026-07-01', '2026-06-22', '2026-06-21', '2026-06-17', '2026-06-16']))
+  const [expandedDays, setExpandedDays] = useState<Set<string>>(new Set(['2026-07-14', '2026-07-13', '2026-07-11', '2026-07-01', '2026-06-22', '2026-06-21', '2026-06-17', '2026-06-16']))
 
   const toggleDay = (date: string) => {
     const newExpanded = new Set(expandedDays)
@@ -21,6 +21,31 @@ export default function AchievementsPage() {
   }
 
   const achievements = [
+    {
+      date: '2026-07-14',
+      headline: 'Durable Continuity — Bounded Mechanical Checkpoint and Recovery Proof',
+      summary: 'Moved optimize-worker from session-bound execution to versioned checkpoint and recovery behavior that passed tested interruption criteria.',
+      proofType: 'bounded mechanical continuity, checkpoint recovery, interruption testing',
+      evidenceReference: 'Canonical Durable Continuity closeout and public architecture evidence',
+      status: 'BOUNDED MECHANICAL CONTINUITY EVIDENCED',
+      publicSafeResult: 'Tested interruption recovery can preserve and resume bounded workflow state instead of requiring complete manual reconstruction.',
+      caveat: 'Human productivity or operational value, universal reliability, continuous production operation, and LangGraph migration remain unproven or parked.',
+      details: {
+        whyItMatters: 'Durable state reduces the mechanical risk of losing bounded workflow progress across a tested interruption without converting that test into a broader operational-value claim.',
+        evidence: [
+          'Versioned workflow checkpoints were exercised against bounded interruption criteria.',
+          'Crash and cross-session recovery passed the cited mechanical test boundary.',
+          'The canonical closeout keeps human value and continuous production operation unresolved.'
+        ],
+        skillsDemonstrated: [
+          'Durable workflow-state design',
+          'Interruption and recovery testing',
+          'Claim-boundary discipline'
+        ],
+        impact: 'Established bounded mechanical recovery evidence while preserving the distinction between a passing recovery mechanism and proven human or production value.'
+      },
+      tags: ['Durable Continuity', 'Recovery', 'Workflow State', 'Evidence Discipline']
+    },
     {
       date: '2026-07-13',
       headline: 'Governed Path to Production Across Five AIOS Repositories',
@@ -141,13 +166,13 @@ export default function AchievementsPage() {
       summary: 'Reframed fragmented telemetry around meaning, measurement, trust boundaries, and custody so leaders can distinguish usable evidence from unresolved or non-claimable data.',
       proofType: 'telemetry interpretation, data quality, observability strategy',
       evidenceReference: 'Internal telemetry reconciliation, authenticated render receipts, validation records, and claim-boundary closeout',
-      status: 'Reconciled evidence set; authenticated internal acceptance pending',
-      publicSafeResult: 'The protected-view design explains what the captured figures mean, where they came from, and which decisions they cannot yet support instead of presenting raw counts as proof of complete monitoring.',
-      caveat: 'Authenticated internal-telemetry acceptance remains pending. This is not complete live-production telemetry coverage. The evidence set records 69,881 historical missing-field occurrences and an export-limited top-12 subset of 26,957. A separate 18,019 investigation target remains non-additive and not claimable; the two-record lineage delta remains unresolved.',
+      status: 'Canonical bounded closeout behind authentication',
+      publicSafeResult: 'The protected four-visual review view reached canonical bounded closeout and explains what captured figures mean without presenting raw counts as complete monitoring.',
+      caveat: 'Protected bounded historical evidence only. This is not continuous live-production telemetry coverage or a public telemetry surface. The evidence set records 69,881 historical missing-field occurrences and an export-limited top-12 subset of 26,957. A separate 18,019 investigation target remains non-additive and not claimable; the two-record lineage delta remains unresolved.',
       details: {
         whyItMatters: 'Telemetry creates confidence only when its semantics, scope, provenance, and limitations are visible. Counts without those boundaries can mislead decision-makers.',
         evidence: [
-          'Controlled render receipts show the detailed protected presentation and preserved sign-in boundary; final authenticated internal-telemetry acceptance remains pending.',
+          'Canonical closeout records a stable four-visual protected presentation behind authentication.',
           'The view exposes data source and freshness context rather than implying real-time completeness.',
           '69,881 is labeled as historical missing-field occurrences—not source-record coverage.',
           '26,957 is labeled as the export-limited top-12 occurrence subset—not total missing signals.',
@@ -1408,7 +1433,7 @@ export default function AchievementsPage() {
               Public-safe evidence of what was built, what is proven, what is caveated, and what is not published.
             </p>
             <p className="mt-4 text-sm font-medium text-white/80">
-              Evidence updated: 11 Jul 2026 · release, recovery, telemetry, and operating-model evidence reconciled
+              Evidence reconciled through 20 July 2026 · curated static release, not a continuous live-status feed
             </p>
             <p className="mt-2 text-sm text-white/75">
               Latest validated milestones: traceable delivery, non-destructive recovery, decision-grade telemetry, and role-based operating design
@@ -1656,7 +1681,7 @@ export default function AchievementsPage() {
           <div className="grid md:grid-cols-4 gap-6">
             <Card className="text-center">
               <CardContent className="pt-6">
-                <div className="text-3xl font-bold text-[#1F3A60]">27</div>
+                <div className="text-3xl font-bold text-[#1F3A60]">28</div>
                 <div className="text-sm text-muted-foreground mt-2">Proof-Backed Milestones</div>
               </CardContent>
             </Card>

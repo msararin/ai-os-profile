@@ -134,9 +134,9 @@ const customizedSystems = [
 const locallyBuiltComponents = [
   {
     name: "Supernova",
-    status: "First version complete; POC not yet validated.",
+    status: "First version complete; bounded Stakeholder Core candidate.",
     description:
-      "Custom strategy and critique role with a first working version / operating concept, but it has not yet completed POC validation or revenue-loop proof.",
+      "Custom strategy and critique concept. Stakeholder Core is a canonical candidate, not an active-role claim; POC validation and R01 start are not yet authorized or proven.",
   },
   {
     name: "Data Team",
@@ -502,8 +502,9 @@ export default function AIOperatingSystemPage() {
 
           <p className="mt-5 max-w-3xl text-xs leading-5 text-muted-foreground">
             Evidence, Audit &amp; Observability is one review layer. Phase 1 telemetry production and
-            store behavior remain implemented in optimize-worker while AIOS owns the governance meaning
-            of the evidence. This is not a full production observability platform.
+            storage remain implemented in optimize-worker while AIOS owns governance meaning and
+            evidence boundaries. Protected Internal Telemetry is a separate authenticated view,
+            not a public or continuous observability platform.
           </p>
 
           <Link
@@ -697,9 +698,9 @@ export default function AIOperatingSystemPage() {
               },
               {
                 name: "Fallback routing",
-                status: "Policy active",
+                status: "AIOS Enforcement v0.2 canonical and AVAILABLE",
                 owner: "Sararin",
-                next: "Route work by task type, failure mode, risk, and available worker/model.",
+                next: "Keep v0.2.1 checker tooling additive under v0.2 and v0.3 candidate/inactive.",
                 proof: "Smoke-proven",
               },
               {
@@ -711,9 +712,9 @@ export default function AIOperatingSystemPage() {
               },
               {
                 name: "Supernova",
-                status: "First version complete; POC not yet validated.",
+                status: "First version complete; bounded Stakeholder Core candidate.",
                 owner: "Sararin",
-                next: "Define the first POC trigger and evidence requirement before treating it as operational.",
+                next: "Keep POC validation and R01 start unauthorized and unproven until their gates pass.",
                 proof: "Documented",
               },
               {
