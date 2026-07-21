@@ -7,23 +7,23 @@ const workstreams = [
   {
     name: "optimize-worker",
     description:
-      "Execution support layer for routing experiments, benchmark traces, and structured workflow automation.",
-    status: "Active",
+      "Execution support layer with bounded durable checkpoint and recovery evidence for structured workflows.",
+    status: "Mechanical continuity evidenced",
     owner: "Sararin + Codex",
-    nextAction: "Keep benchmark trace automation parked until a thin slice is chosen.",
+    nextAction: "Keep human operational value and continuous production operation unresolved until separately evidenced.",
     gateDecision: "Proceed only when scope is narrow and validation is explicit.",
     blockerRisk: "Automation can create false confidence if trace quality is unclear.",
-    proofLevel: "Documented",
-    evidence: "Benchmark trace workflow and regression gate",
+    proofLevel: "Bounded mechanical proof",
+    evidence: "Tested interruption checkpoint and recovery criteria",
     badgeClass: "bg-emerald-500/10 text-emerald-700",
   },
   {
     name: "Fallback routing",
     description:
       "Policy lane for choosing a safe alternate route when the primary worker or model is blocked.",
-    status: "Policy active",
+    status: "AIOS Enforcement v0.2 canonical and AVAILABLE",
     owner: "Sararin",
-    nextAction: "Route work by task type, failure mode, risk, and available worker/model.",
+    nextAction: "Use additive v0.2.1 checker tooling under v0.2; keep v0.3 candidate/inactive.",
     gateDecision: "Use fallback route when primary surface is blocked or uneconomical.",
     blockerRisk: "Cost and token evidence remain incomplete in some surfaces.",
     proofLevel: "Smoke-proven",
@@ -46,15 +46,15 @@ const workstreams = [
   {
     name: "Supernova",
     description:
-      "Opportunity and monetization intelligence lane with a first version complete; POC not yet validated.",
-    status: "First version complete; POC not yet validated.",
+      "Opportunity and monetization intelligence lane with a bounded Stakeholder Core candidate on canonical main.",
+    status: "First version complete; Stakeholder Core is a bounded canonical candidate.",
     owner: "Sararin",
     nextAction:
-      "Define the first POC trigger and evidence requirement before treating it as operational.",
+      "Keep POC validation and R01 start unauthorized and unproven until their gates pass.",
     gateDecision:
       "Do not claim POC or operating usefulness until a concrete run is reviewed.",
     blockerRisk:
-      "A completed first version can be mistaken for validated business evidence.",
+      "Candidate personas can be mistaken for active operational roles or validated business evidence.",
     proofLevel: "Documented",
     evidence: "First version exists; POC not yet run",
     badgeClass: "bg-orange-500/10 text-orange-700",
@@ -78,13 +78,13 @@ const workstreams = [
   {
     name: "Big Crew",
     description:
-      "Scoped execution crew for implementation, architecture review, QA, and release readiness.",
+      "Bounded specialist delivery workspace with explicit handoff and separate receipts.",
     status: "Started",
     owner: "Sararin + Codex",
     nextAction: "Keep Big Crew usage bounded to implementation and verification tasks with explicit handoff.",
     gateDecision: "Use for scoped execution only; do not expand into autonomous staffing.",
     blockerRisk: "Parallel work can blur ownership if files, roles, and review gates are not explicit.",
-    proofLevel: "Documented",
+    proofLevel: "Started / bounded",
     evidence: "Patch 1 and Patch 2 implementation handoffs",
     badgeClass: "bg-primary/10 text-primary",
   },

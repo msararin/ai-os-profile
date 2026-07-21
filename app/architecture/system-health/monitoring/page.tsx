@@ -113,6 +113,9 @@ export default function AiosMonitoringPage() {
         <div className="mx-auto max-w-5xl px-4 py-8 sm:px-6 lg:px-8">
           <div className="rounded-xl border-2 border-red-600 bg-red-50 p-4 text-red-950 shadow-sm dark:bg-red-950/40 dark:text-red-100">
             <p className="text-lg font-bold tracking-wide sm:text-xl">UNDER CONSTRUCTION</p>
+            <p className="mt-2 text-sm font-semibold leading-6">
+              Curated static review snapshot reconciled through 20 July 2026.
+            </p>
             <p className="mt-2 max-w-4xl text-sm font-semibold leading-6">
               {publicUnderConstructionGate.requiredDisclaimer}
             </p>

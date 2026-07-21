@@ -9,7 +9,7 @@ const surfaces = [
     status: "Available — static insight dashboard",
     href: "/architecture/system-health/runtime-authority-evidence",
     copy: [
-      "Static insight dashboard showing validation evidence, enforcement improvement, and orchestration evidence gaps.",
+      "Static insight dashboard showing a dated 104/104 bounded validation snapshot, enforcement improvement, and orchestration evidence gaps.",
       "Not live monitoring, production readiness, or universal enforcement.",
     ],
   },
@@ -18,16 +18,16 @@ const surfaces = [
     status: "Available — evidence-calibrated page",
     href: "/architecture/system-health/llmops-readiness",
     copy: [
-      "Shows how AI-assisted delivery claims are capped by evidence tier, receipts, and release controls.",
+      "Mostly Tier 1-2: LLMOps-aligned governance and evidence discipline, capped by receipts and release controls.",
       "Not a full LLMOps platform claim, provider-backed runtime telemetry, or operational monitoring loop.",
     ],
   },
   {
     title: "Evidence Discipline",
-    status: "Available",
+    status: "Available — bounded evidence governance",
     href: "/architecture/system-health/observability",
     copy: [
-      "Reviews what captured telemetry can and cannot support as evidence.",
+      "Evidence discipline is active as a governance method; observability remains bounded and source-limited.",
       "Does not make benchmark, provider comparison, or cost-saving claims.",
     ],
   },
@@ -41,16 +41,16 @@ const surfaces = [
   },
   {
     title: "Internal Telemetry",
-    status: "Protected internal",
+    status: "Protected — canonical bounded closeout",
     href: "/internal/telemetry",
     copy: [
-      "Protected internal telemetry view for system health and execution evidence.",
-      "Authentication is required; this link does not expose telemetry publicly or claim live readiness.",
+      "Protected Internal Telemetry has a canonical bounded closeout with a stable four-visual review view.",
+      "Authentication is required; this link exposes no telemetry publicly and does not claim continuous live monitoring.",
     ],
   },
   {
     title: "AIOS Monitoring",
-    status: "Under construction — static snapshot",
+    status: "Static snapshot — reconciled 20 July 2026",
     href: "/architecture/system-health/monitoring",
     copy: [
       "Shows exported pass, fail, downgraded, and not-started states from AIOS enforcement records.",
@@ -59,11 +59,11 @@ const surfaces = [
   },
   {
     title: "Agent Orchestration Map",
-    status: "Candidate — not yet released",
+    status: "Available — documented static map",
     href: "/architecture/system-health/agent-orchestration",
     copy: [
       "Maps how AIOS work is routed, reviewed, gated, parked, or improved across roles.",
-      "It is a static map, not realtime telemetry.",
+      "It is a documented role-and-boundary map, not runtime execution proof.",
     ],
   },
 ]

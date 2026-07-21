@@ -358,8 +358,8 @@ export default function LlmopsReadinessPage() {
                 <CardTitle className="text-base">Current expectation</CardTitle>
               </CardHeader>
               <CardContent className="text-sm leading-6 text-muted-foreground">
-                AIOS LLMOps readiness is mostly Tier 1-2. This means the system has
-                governance intent and documented controls, but not operational LLMOps
+                AIOS LLMOps readiness is mostly Tier 1-2: LLMOps-aligned governance and
+                evidence discipline with documented controls, but not operational LLMOps
                 telemetry, monitoring, security testing, prompt/model registry, or repeatable
                 eval loops yet.
               </CardContent>

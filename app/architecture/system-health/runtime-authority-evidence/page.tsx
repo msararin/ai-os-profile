@@ -269,7 +269,7 @@ export default function RuntimeAuthorityEvidenceDashboardPage() {
           </h1>
           <p className="mt-3 max-w-4xl text-muted-foreground">
             Static insight surface for runtime authority validation, enforcement improvement, and
-            orchestration evidence gaps.
+            orchestration evidence gaps. The 104/104 result is a dated bounded validation snapshot.
           </p>
           <Alert className="mt-6 border-amber-300 bg-amber-50 text-amber-950 dark:border-amber-900 dark:bg-amber-950/30 dark:text-amber-100">
             <AlertDescription className="text-sm leading-6">

@@ -81,7 +81,7 @@ const architectureGroups = [
         title: "Durable Continuity",
         detail:
           "Optimize-Worker evolved from session-bound execution to versioned, crash-resumable workflow state. Mechanical continuity is proven; human operational value remains unresolved.",
-        status: "PRODUCTION · MECHANICAL VALUE PROVEN",
+        status: "BOUNDED · MECHANICAL CONTINUITY EVIDENCED",
         labels: [
           "Canonical implementation",
           "Mechanical stress passed",
@@ -266,8 +266,9 @@ export default function ArchitecturePage() {
           <div className="rounded-lg border border-border bg-background p-5">
             <h2 className="text-lg font-semibold text-foreground">Phase 1 Observability Boundary</h2>
             <p className="mt-2 text-sm leading-6 text-muted-foreground">
-              Phase 1: telemetry production and store behavior remain implemented in optimize-worker
-              while AIOS owns the governance meaning of the evidence.
+              Phase 1 telemetry production and storage remain implemented in optimize-worker while
+              AIOS owns governance meaning and evidence boundaries. Protected Internal Telemetry is
+              a separate authenticated view, not a public or continuous observability platform.
             </p>
           </div>
           <div className="rounded-lg border border-border bg-background p-5">
