@@ -180,6 +180,96 @@ export default function TelcoChurnMLOpsCaseStudyPage() {
           </p>
         </div>
       </section>
+
+      <section className="py-10" aria-labelledby="spark-connect-lesson-title">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <div className="max-w-4xl">
+            <p className="text-sm font-medium uppercase tracking-wide text-primary">
+              Feature Preparation → Model Training
+            </p>
+            <h2
+              id="spark-connect-lesson-title"
+              className="mt-2 text-2xl font-semibold tracking-tight text-foreground"
+            >
+              Lesson Learned: Spark Connect Preprocessing Overhead
+            </h2>
+            <div className="mt-5 space-y-4 text-sm leading-6 text-muted-foreground">
+              <p>
+                During model preparation, the Spark ML preprocessing pipeline repeatedly failed at{" "}
+                <code className="rounded bg-muted px-1.5 py-0.5 text-foreground">
+                  preprocessing_pipeline.fit(train_df)
+                </code>{" "}
+                while fitting multiple categorical stages through Spark Connect. This was a Spark
+                ML preprocessing issue, not an MLflow failure.
+              </p>
+              <p>
+                The original pipeline used 15 individual StringIndexer stages, one multi-column
+                OneHotEncoder, and one VectorAssembler. Because fitted StringIndexers can create
+                server-side model objects, managing many fitted stages through a Spark Connect
+                client/server session may add more session and object-management overhead than this
+                small dataset requires.
+              </p>
+              <div className="grid gap-4 md:grid-cols-2">
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="text-base">First mitigation</CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-3">
+                    <p>
+                      Preprocessing was consolidated into one multi-column StringIndexer, one
+                      multi-column OneHotEncoder, and one VectorAssembler.
+                    </p>
+                    <p>
+                      This reduced the pipeline from 17 stages to 3. More precisely, fitted
+                      estimator models fell from approximately 16 to 2 because VectorAssembler is a
+                      Transformer and does not require fitting.
+                    </p>
+                  </CardContent>
+                </Card>
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="text-base">Implementation decision</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <ul className="list-disc space-y-2 pl-5">
+                      <li>Spark and Unity Catalog for governed Bronze, Silver, and feature tables</li>
+                      <li>pandas and scikit-learn for local preprocessing and training</li>
+                      <li>MLflow for experiment tracking, metrics, parameters, and model artifacts</li>
+                    </ul>
+                  </CardContent>
+                </Card>
+              </div>
+              <p>
+                This was appropriate for 7,043 customer records. Scikit-learn normally keeps its
+                pipeline and fitted objects in the Python process rather than maintaining remote
+                fitted model objects across a Spark Connect boundary, lowering operational overhead
+                while preserving the learning objective.
+              </p>
+              <Alert>
+                <AlertDescription className="space-y-2 text-sm leading-6">
+                  <p>
+                    <strong>Key conclusion:</strong>{" "}
+                    <code className="rounded bg-muted px-1.5 py-0.5 text-foreground">
+                      Spark ML issue ≠ dataset cache size
+                    </code>
+                  </p>
+                  <p>
+                    The relevant architectural difference was remote Spark Connect fitted-object and
+                    session management versus local Python-memory object management.
+                  </p>
+                </AlertDescription>
+              </Alert>
+              <p>
+                <strong className="text-foreground">Limitation:</strong> This is workload-specific,
+                not a general recommendation to replace Spark ML. Converting data with{" "}
+                <code className="rounded bg-muted px-1.5 py-0.5 text-foreground">toPandas()</code>{" "}
+                places it in driver memory and requires reassessment for materially larger datasets.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="border-y border-border bg-muted/25 py-10">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className="mb-6 max-w-3xl">
