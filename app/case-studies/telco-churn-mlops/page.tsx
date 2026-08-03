@@ -128,6 +128,12 @@ export default function TelcoChurnMLOpsCaseStudyPage() {
                   The IBM dataset is fictional/sample data for learning and demonstration. It is not
                   real customer or operator data.
                 </p>
+                <p>
+                  <strong className="text-foreground">Baseline status:</strong> The scikit-learn
+                  logistic regression baseline was successfully trained and evaluated on held-out
+                  test data. Its performance is sufficient to begin the MLOps lifecycle, but it is
+                  not production-ready.
+                </p>
               </CardContent>
             </Card>
           </div>
