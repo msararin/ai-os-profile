@@ -26,11 +26,11 @@ const executiveFacts = [
   },
   {
     label: "Delivery evidence",
-    value: "Bronze accepted · Silver pending",
+    value: "Bronze, Silver, and Features accepted",
   },
   {
     label: "Next gate",
-    value: "Silver data-quality validation",
+    value: "MLflow experiment evidence",
   },
   {
     label: "Claim ceiling",
@@ -38,6 +38,17 @@ const executiveFacts = [
   },
 ]
 
+const mlopsProgress = [
+  { label: "ADLS", status: "Done", tone: "done" },
+  { label: "Unity Catalog", status: "Done", tone: "done" },
+  { label: "Bronze", status: "Done", tone: "done" },
+  { label: "Silver", status: "Done", tone: "done" },
+  { label: "Features", status: "Done", tone: "done" },
+  { label: "MLflow", status: "Next", tone: "next" },
+  { label: "Model Registry", status: "Planned", tone: "planned" },
+  { label: "Batch Inference", status: "Planned", tone: "planned" },
+  { label: "Monitoring", status: "Planned", tone: "planned" },
+]
 export const metadata: Metadata = {
   title: "Telco Churn MLOps Learning Use Case | Sararin",
   description:
@@ -135,6 +146,40 @@ export default function TelcoChurnMLOpsCaseStudyPage() {
         </div>
       </section>
 
+      <section className="border-y border-border bg-muted/25 py-5" aria-labelledby="mlops-progress-title">
+        <div className="mx-auto max-w-6xl overflow-x-auto px-4 sm:px-6 lg:px-8">
+          <h2 id="mlops-progress-title" className="mb-4 text-lg font-semibold tracking-tight text-foreground">
+            Azure Databricks MLOps Learning Progress
+          </h2>
+          <div className="grid min-w-[900px] grid-cols-9 gap-4">
+            {mlopsProgress.map((stage) => (
+              <div key={stage.label} className="min-w-0">
+                <p className="min-h-10 text-sm font-semibold leading-5 text-foreground">
+                  {stage.label}
+                </p>
+                <div className="mt-2 flex items-center gap-1.5 text-sm text-muted-foreground">
+                  <span
+                    aria-hidden="true"
+                    className={
+                      stage.tone === "done"
+                        ? "text-base leading-none"
+                        : stage.tone === "next"
+                          ? "inline-block size-4 shrink-0 bg-amber-400"
+                          : "inline-block size-4 shrink-0 rounded-sm bg-muted-foreground/20"
+                    }
+                  >
+                    {stage.tone === "done" ? "✅" : null}
+                  </span>
+                  <span>{stage.status}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+          <p className="mt-4 text-sm text-muted-foreground">
+            Progress reflects completed hands-on evidence, not conceptual understanding alone.
+          </p>
+        </div>
+      </section>
       <section className="border-y border-border bg-muted/25 py-10">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className="mb-6 max-w-3xl">
