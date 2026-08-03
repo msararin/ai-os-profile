@@ -38,6 +38,18 @@ const executiveFacts = [
   },
 ]
 
+const mlopsProgress = [
+  { label: "ADLS", status: "Done", tone: "done" },
+  { label: "Unity Catalog", status: "Done", tone: "done" },
+  { label: "Bronze", status: "Done", tone: "done" },
+  { label: "Silver", status: "Next", tone: "next" },
+  { label: "Features", status: "Planned", tone: "planned" },
+  { label: "MLflow", status: "Planned", tone: "planned" },
+  { label: "Model Registry", status: "Planned", tone: "planned" },
+  { label: "Batch Inference", status: "Planned", tone: "planned" },
+  { label: "Monitoring", status: "Planned", tone: "planned" },
+]
+
 export const metadata: Metadata = {
   title: "Telco Churn MLOps Learning Use Case | Sararin",
   description:
@@ -130,6 +142,35 @@ export default function TelcoChurnMLOpsCaseStudyPage() {
                   <p className="mt-2 text-sm font-medium leading-6 text-foreground">{fact.value}</p>
                 </CardContent>
               </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-y border-border bg-muted/25 py-5" aria-label="MLOps delivery progress">
+        <div className="mx-auto max-w-6xl overflow-x-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid min-w-[900px] grid-cols-9 gap-4">
+            {mlopsProgress.map((stage) => (
+              <div key={stage.label} className="min-w-0">
+                <p className="min-h-10 text-sm font-semibold leading-5 text-foreground">
+                  {stage.label}
+                </p>
+                <div className="mt-2 flex items-center gap-1.5 text-sm text-muted-foreground">
+                  <span
+                    aria-hidden="true"
+                    className={
+                      stage.tone === "done"
+                        ? "text-base leading-none"
+                        : stage.tone === "next"
+                          ? "inline-block size-4 shrink-0 bg-amber-400"
+                          : "inline-block size-4 shrink-0 rounded-sm bg-muted-foreground/20"
+                    }
+                  >
+                    {stage.tone === "done" ? "✅" : null}
+                  </span>
+                  <span>{stage.status}</span>
+                </div>
+              </div>
             ))}
           </div>
         </div>
