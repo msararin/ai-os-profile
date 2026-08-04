@@ -14,22 +14,28 @@ export const metadata: Metadata = {
 const phases = [
   {
     phase: "Phase 1 — Data Foundation and Ingestion",
-    status: "In Design",
+    status: "In Progress",
     description: "Establish traceable non-production source inputs for the PoC.",
+    currentResult:
+      "Research, candidate comparison, working-set selection, source-contract design, and synthetic-data design are complete. Dataset generation and Databricks ingestion have not started.",
     actions: [
       "Define owner-created data contracts",
       "Generate or load synthetic or representative product, customer-event, transaction, and payment samples",
       "Apply source metadata and identifier-protection controls",
       "Ingest into Bronze",
     ],
-    results: [
-      "Traceable Bronze tables",
-      "Source metadata",
-      "Protected customer identifiers",
-      "Ingestion read-back evidence",
+    expectedResult: "Traceable, protected source inputs and Bronze ingestion read-back evidence.",
+    subphases: [
+      ["Data-source research", "Evidence Verified", "Public candidate sources and documentation reviewed"],
+      ["Candidate comparison", "Evidence Verified", "Candidates compared against PoC needs, constraints, provenance, and reproducibility"],
+      ["Working-set selection", "Evidence Verified", "Working set selected with documented rationale"],
+      ["Source-contract design", "Design Complete", "Target contract designed across isolated evidence lanes"],
+      ["Synthetic-data design", "Design Complete — Not Executed", "Generation method, constraints, and provenance requirements specified"],
+      ["Dataset generation", "Not Started", "No NBO–NRT synthetic records generated"],
+      ["Databricks Bronze ingestion", "Not Started", "No NBO–NRT ingestion read-back"],
     ],
     remark:
-      "Source-specific names such as M5 remain traceability labels only; real operator schemas are not claimed.",
+      "Source-specific labels remain traceability labels only. No operator schema or production ingestion is claimed.",
     details: [
       "Source table inventory",
       "Schema summary and row counts",
@@ -40,8 +46,10 @@ const phases = [
   },
   {
     phase: "Phase 2 — Data Preparation and Feature Readiness",
-    status: "Planned",
+    status: "Design Ready",
     description: "Convert raw inputs into validated, model-ready entities and features.",
+    currentResult:
+      "Target preparation structure, evidence lanes, provenance expectations, and model-ready design are prepared. No NBO–NRT Silver or feature read-back exists yet.",
     actions: [
       "Validate Bronze",
       "Standardize and clean Silver",
@@ -49,14 +57,19 @@ const phases = [
       "Create event-time and freshness metadata",
       "Apply leakage and quality checks",
     ],
-    results: [
-      "Validated Silver tables",
-      "Model-ready feature dataset",
-      "Data-quality evidence",
-      "Feature-freshness evidence",
+    expectedResult: "Validated Silver tables, model-ready features, and quality and freshness evidence.",
+    subphases: [
+      ["Target contract structure", "Design Complete", "Required source domains and target fields defined"],
+      ["Evidence-lane separation", "Design Complete", "Candidate evidence kept in isolated lanes"],
+      ["Provenance requirements", "Design Complete", "Source, derivation, and reproducibility expectations specified"],
+      ["Preparation logic", "Design Ready", "Cleaning, validation, temporal, and freshness requirements defined"],
+      ["Dataset profiling", "Not Started", "No generated NBO dataset profiled"],
+      ["Silver transformation", "Not Started", "No NBO–NRT Silver table"],
+      ["Feature preparation", "Not Started", "No NBO–NRT model-ready feature table"],
+      ["Quality and freshness read-back", "Not Started", "No executed evidence"],
     ],
     remark:
-      "Bronze and Silver are PoC implementation choices; transformations may be revised when profiling reveals quality issues.",
+      "Bronze, Silver, and feature preparation are PoC implementation choices, not source-system facts.",
     details: [
       "Transformation rules",
       "Null and duplicate checks",
@@ -66,8 +79,10 @@ const phases = [
   },
   {
     phase: "Phase 3 — Eligibility and Candidate Generation",
-    status: "Planned",
+    status: "Design Ready",
     description: "Build valid customer-offer combinations before ranking.",
+    currentResult:
+      "Eligibility, exclusion, candidate-generation, versioning, and trace requirements are designed. No actual customer-offer candidate table has been generated.",
     actions: [
       "Define generic PoC eligibility rules",
       "Apply exclusions and policy constraints",
@@ -75,13 +90,19 @@ const phases = [
       "Remove invalid combinations",
       "Persist the candidate table",
     ],
-    results: [
-      "Eligible customer-offer candidate table",
-      "Rule trace",
-      "Candidate counts before and after filtering",
+    expectedResult: "Eligible customer-offer candidates with rule trace and filtering counts.",
+    subphases: [
+      ["Eligibility concept", "Design Complete", "Eligibility separated from model ranking"],
+      ["Rule and exclusion structure", "Design Complete", "Generic PoC rule categories defined"],
+      ["Candidate-table contract", "Design Complete", "Candidate fields and trace requirements defined"],
+      ["Candidate versioning", "Design Ready", "Rule and candidate version expectations defined"],
+      ["Rule implementation", "Not Started", "No executable PoC rule set"],
+      ["Candidate generation", "Not Started", "No customer-offer combinations generated"],
+      ["Candidate persistence", "Not Started", "No persisted candidate table"],
+      ["Before/after candidate counts", "Not Started", "No executed filtering evidence"],
     ],
     remark:
-      "Rules are owner-created PoC assumptions and must not be represented as operator production rules.",
+      "Eligibility and exclusion logic are owner-created PoC assumptions, not operator production rules.",
     details: [
       "Rule register and rule version",
       "Candidate-volume summary",
@@ -93,6 +114,8 @@ const phases = [
     phase: "Phase 4 — Baseline Ranking and Model Governance",
     status: "Planned",
     description: "Rank eligible offers and create traceable model evidence.",
+    currentResult:
+      "The baseline modeling direction and governance evidence requirements are defined. No NBO model has been trained, logged, registered, or scored.",
     actions: [
       "Train a propensity or ranking baseline",
       "Compare candidate approaches",
@@ -100,11 +123,16 @@ const phases = [
       "Register the selected model and verify read-back",
       "Score and rank candidates",
     ],
-    results: [
-      "MLflow run",
-      "Registered baseline model",
-      "Ranked customer-offer output",
-      "Model version and metric evidence",
+    expectedResult: "A governed baseline model and traceable ranked customer-offer output.",
+    subphases: [
+      ["Baseline model direction", "Design Complete", "Propensity or ranking baseline selected for the first PoC"],
+      ["RL target direction", "Given Recommendation", "Retained as future direction, not implemented"],
+      ["MLflow evidence contract", "Design Complete", "Parameters, metrics, artifacts, lineage, and signature requirements defined"],
+      ["Registry evidence contract", "Design Complete", "Model registration and read-back requirements defined"],
+      ["Model training", "Not Started", "No NBO model run"],
+      ["Model comparison", "Not Started", "No NBO model comparison"],
+      ["Model registration", "Not Started", "No NBO registered model"],
+      ["Candidate scoring and ranking", "Not Started", "No scored candidate table"],
     ],
     remark:
       "Reinforcement Learning remains the target direction from the given recommendation; the first PoC uses a simpler baseline to prove the lifecycle.",
@@ -116,9 +144,11 @@ const phases = [
     ],
   },
   {
-    phase: "Phase 5 — Recommendation Output and Simulated Delivery",
+    phase: "Phase 5 — Top-N NBO Output and NRT Delivery Preparation",
     status: "Planned",
     description: "Produce a governed Top-N recommendation output and simulate downstream handoff.",
+    currentResult:
+      "Top-N output structure, simulated NRT delivery boundary, TMF680-aligned abstraction, and decision-trace requirements are defined. No delivery payload or latency evidence exists yet.",
     actions: [
       "Select Top 1 or Top N offers",
       "Persist a Gold recommendation output as a PoC implementation choice",
@@ -126,11 +156,17 @@ const phases = [
       "Simulate downstream handoff",
       "Preserve model and decision traceability",
     ],
-    results: [
-      "Gold recommendation table as a PoC output-layer choice",
-      "Simulated delivery payload",
-      "Model-to-decision lineage",
-      "Latency measurement",
+    expectedResult:
+      "Top-N NBO recommendations prepared for simulated NRT delivery, with ranking score, model version, decision timestamp, eligibility trace, model-to-decision lineage, and observed processing latency.",
+    subphases: [
+      ["Top-N output contract", "Design Complete", "Ranking score, model version, decision timestamp, and trace fields defined"],
+      ["NRT delivery abstraction", "Design Complete", "Simulated lower-latency delivery boundary defined"],
+      ["TMF680-aligned output", "Design Ready", "Public PoC abstraction defined"],
+      ["LID680 boundary", "Evidence Bounded", "Retained only as a traceability label"],
+      ["Gold output design", "Design Complete", "Persisted ranked recommendation output specified"],
+      ["Top-N generation", "Not Started", "No actual recommendation output"],
+      ["Payload generation", "Not Started", "No simulated TMF680-aligned payload"],
+      ["Latency measurement", "Not Started", "No observed NRT-oriented latency evidence"],
     ],
     remark:
       "LID680 is retained only as a traceability label; no internal system meaning or production integration is asserted.",
@@ -145,6 +181,8 @@ const phases = [
     phase: "Phase 6 — Feedback, Monitoring, and Next Cycle",
     status: "Planned",
     description: "Demonstrate how outcome evidence feeds monitoring and the next model cycle.",
+    currentResult:
+      "Feedback categories, reward assumptions, monitoring dimensions, and next-cycle controls are defined. No feedback, drift, or retraining evidence exists yet.",
     actions: [
       "Generate representative response events",
       "Calculate illustrative immediate or delayed outcomes as a PoC working assumption",
@@ -152,11 +190,16 @@ const phases = [
       "Compare model versions",
       "Define retraining or policy-update triggers",
     ],
-    results: [
-      "Feedback dataset",
-      "Monitoring summary",
-      "Drift or change indicators",
-      "Next-cycle decision record",
+    expectedResult: "Traceable feedback, monitoring, drift evidence, and a governed next-cycle decision.",
+    subphases: [
+      ["Feedback-event concept", "Design Complete", "Representative response-event categories defined"],
+      ["Reward design", "Design Complete — Assumption Only", "Immediate and delayed outcome concepts defined"],
+      ["Monitoring dimensions", "Design Complete", "Quality, freshness, latency, score, recommendation, and outcome monitoring defined"],
+      ["Next-cycle decision structure", "Design Ready", "Retraining or policy-update decision path defined"],
+      ["Feedback generation", "Not Started", "No response records"],
+      ["Reward calculation", "Not Started", "No executed reward evidence"],
+      ["Drift monitoring", "Not Started", "No measured drift"],
+      ["Retraining or policy update", "Not Started", "No next-cycle execution"],
     ],
     remark:
       "Reward values, attribution rules, and observation windows are PoC assumptions; monitoring thresholds are not production standards.",
@@ -197,11 +240,11 @@ const alignment = [
 
 const disclosures = [
   {
-    title: "Data Sources",
-    status: "0 datasets",
+    title: "Data-source evidence mapping",
+    status: "Research complete",
     body: [
-      "No approved, profiled, or upload-ready dataset evidence is included.",
-      "Source-specific labels are retained for traceability only and are drawn from the canonical knowledge-base transcription of the supplied recommendation; no undocumented source-system semantics are asserted.",
+      "Ten public candidates were assessed. Bank Marketing and the pinned TMF620 schema asset were acquired and profiled for bounded methodology and schema roles.",
+      "OTTO and MIND are documentation/reference sources only; no OTTO or MIND data bytes are integrated. No public source is treated as a complete Telco NBO–NRT dataset.",
     ],
   },
   {
@@ -235,6 +278,105 @@ const disclosures = [
       "Planned evidence includes data and model lineage, run parameters, metrics, artifacts, registry read-back, decision trace, validation results, latency, monitoring, and explicit unresolved gaps.",
     ],
   },
+]
+
+const progressGroups = [
+  {
+    title: "A. Data Discovery and Design",
+    summary:
+      "Research, bounded source-role selection, target-contract design, and design reproducibility are complete.",
+    stages: [
+      [
+        "Candidate Research",
+        "COMPLETED",
+        "10 public candidates assessed across licence, provenance, access, temporal structure, customer-offer linkage, exposure semantics, recommendation utility, leakage risk, and demonstration value.",
+      ],
+      [
+        "Composite Source Selection",
+        "SELECTED",
+        "4 bounded roles: Bank Marketing and TMF620 acquired/profiled; OTTO and MIND retained as documentation/reference sources only.",
+      ],
+      [
+        "Target Data Contract",
+        "DESIGNED",
+        "Contract v0.1.0 with 108 fields across two isolated evidence lanes.",
+      ],
+      [
+        "Phase 5A Reproducibility",
+        "VALIDATED",
+        "57/57 deterministic assertions passed; design artifacts and the evidence packet were reconciled.",
+      ],
+      [
+        "Phase 5A Gate",
+        "PASSED",
+        "PASS_READY_FOR_BOUNDED_IMPLEMENTATION_AUTHORIZATION",
+      ],
+      [
+        "Independent Checker",
+        "PASS",
+        "Packet-only review; no direct repository, generated-data, cloud, or implementation observation.",
+      ],
+      [
+        "Claim Level",
+        "DRAFT_LOCAL_ONLY",
+        "Verified Phase 5A research, selection, contract, and reproducibility evidence only.",
+      ],
+    ],
+    boundary:
+      "Phase 5A validates design reproducibility and evidence sufficiency only. It does not prove generated composite rows, Phase 5B activity, cloud loading, Databricks tables, model execution, or production readiness.",
+  },
+  {
+    title: "B. Data Implementation",
+    summary:
+      "Ready for separately bounded local composite data implementation authorization.",
+    stages: [
+      ["Composite Dataset Generation", "NOT STARTED", "No composite dataset rows exist."],
+      [
+        "Generated Composite Row Validation",
+        "NOT STARTED",
+        "No generated rows are available for schema, null, domain, consistency, or provenance validation.",
+      ],
+      ["ADLS Landing", "NOT STARTED", "No upload package or Owner upload authorization exists."],
+      ["Unity Catalog Onboarding", "NOT STARTED", "Begins only after an authorized ADLS landing."],
+      ["Bronze", "NOT STARTED", "No NBO–NRT Bronze table or read-back evidence."],
+      ["Silver", "NOT STARTED", "No NBO–NRT Silver transformation or read-back evidence."],
+      ["Features", "NOT STARTED", "No NBO–NRT model-ready feature table."],
+    ],
+    boundary:
+      "Required order: Composite generation → generated-row validation → ADLS landing → Unity Catalog onboarding → Bronze → Silver → Features.",
+  },
+  {
+    title: "C. MLOps Lifecycle",
+    summary:
+      "NBO model and MLOps execution have not started; prior use-case evidence is not inherited.",
+    stages: [
+      ["MLflow", "NOT STARTED", "No NBO experiment run or artifact evidence."],
+      ["Model Registry", "NOT STARTED", "No NBO registered model or registry read-back."],
+      ["Batch/NRT Inference", "NOT STARTED", "No batch or simulated NRT inference evidence."],
+      ["Monitoring", "NOT STARTED", "No NBO quality, drift, latency, recommendation, or outcome monitoring."],
+    ],
+    boundary:
+      "Features and model governance must exist before Top-N NBO/NRT output; output evidence must exist before feedback and monitoring are claimed.",
+  },
+]
+
+const cockpitEvidenceSummary = [
+  [
+    "Data Research: Completed.",
+    "Ten public candidates were assessed for licence, provenance, access, temporal structure, customer-offer linkage, exposure semantics, recommendation utility, leakage risk, and demonstration value.",
+  ],
+  [
+    "Composite Working Set: Selected.",
+    "Bank Marketing and TMF620 were acquired and profiled for bounded methodology and schema roles. OTTO and MIND were retained as documentation/reference sources only.",
+  ],
+  [
+    "Dataset Contract: Designed and Validated.",
+    "The target contract v0.1.0 contains 108 fields across two isolated evidence lanes. Phase 5A reproducibility passed 57/57 assertions.",
+  ],
+  [
+    "Dataset Implementation: Not Started.",
+    "No composite rows have been generated, locally validated, landed in ADLS, or loaded into Azure Databricks.",
+  ],
 ]
 
 const nextSteps = [
@@ -311,7 +453,7 @@ export default function NboNrtAzureDatabricksPage() {
                 <tbody className="divide-y divide-border text-muted-foreground">
                   <tr><th className="p-3 text-foreground">Input</th><td className="p-3">Synthetic or representative non-production product, customer-event, transaction, and payment samples</td></tr>
                   <tr><th className="p-3 text-foreground">Process</th><td className="p-3">Bronze → Silver → eligibility → candidate generation → baseline ranking</td></tr>
-                  <tr><th className="p-3 text-foreground">Output</th><td className="p-3">Top-N recommendation table with model version and decision trace</td></tr>
+                  <tr><th className="p-3 text-foreground">Output</th><td className="p-3">Top-N NBO recommendations prepared for simulated NRT delivery, with ranking score, model version, decision timestamp, eligibility trace, and decision trace.</td></tr>
                   <tr><th className="p-3 text-foreground">Control</th><td className="p-3">Identifier protection, MLflow experiment tracking, registered-model read-back, access boundaries, and latency measurement</td></tr>
                   <tr><th className="p-3 text-foreground">Proof</th><td className="p-3">Repeatable batch or micro-batch execution with persisted read-back evidence</td></tr>
                 </tbody>
@@ -376,14 +518,26 @@ export default function NboNrtAzureDatabricksPage() {
                   </CardHeader>
                   <CardContent className="space-y-4 text-sm leading-6 text-muted-foreground">
                     <p><strong className="text-foreground">Description:</strong> {item.description}</p>
-                    <div><strong className="text-foreground">Action:</strong><ul className="mt-1 list-disc space-y-1 pl-5">{item.actions.map((value) => <li key={value}>{value}</li>)}</ul></div>
-                    <div><strong className="text-foreground">Expected Result:</strong><ul className="mt-1 list-disc space-y-1 pl-5">{item.results.map((value) => <li key={value}>{value}</li>)}</ul></div>
+                    <p><strong className="text-foreground">Current Result:</strong> {item.currentResult}</p>
                     <p><strong className="text-foreground">Remark:</strong> {item.remark}</p>
                     <details className="group rounded-md border border-border bg-background">
                       <summary className="flex cursor-pointer list-none items-center justify-between gap-4 p-4 font-semibold text-foreground">
                         <span>Details</span><span aria-hidden="true" className="text-primary group-open:rotate-45">+</span>
                       </summary>
                       <div className="space-y-3 border-t border-border p-4">
+                        <div><strong className="text-foreground">Action:</strong><ul className="mt-1 list-disc space-y-1 pl-5">{item.actions.map((value) => <li key={value}>{value}</li>)}</ul></div>
+                        <p><strong className="text-foreground">Expected Result:</strong> {item.expectedResult}</p>
+                        <div className="overflow-x-auto">
+                          <table className="w-full min-w-[760px] text-left text-xs">
+                            <thead className="bg-muted/50"><tr><th className="p-2">Sub-phase</th><th className="p-2">Status</th><th className="p-2">Result</th></tr></thead>
+                            <tbody className="divide-y divide-border">
+                              {item.subphases.map(([subphase, status, result]) => (
+                                <tr key={subphase}><th className="p-2 align-top text-foreground">{subphase}</th><td className="p-2 align-top"><Badge variant="outline">{status}</Badge></td><td className="p-2">{result}</td></tr>
+                              ))}
+                            </tbody>
+                          </table>
+                        </div>
+                        <p className="font-semibold text-foreground">Validation and technical notes</p>
                         <ul className="list-disc space-y-1 pl-5">{item.details.map((value) => <li key={value}>{value}</li>)}</ul>
                         {item.candidateExample ? (
                           <div className="overflow-x-auto">
@@ -395,6 +549,59 @@ export default function NboNrtAzureDatabricksPage() {
                         ) : null}
                       </div>
                     </details>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="py-10" aria-labelledby="nbo-progress-title">
+          <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+            <h2 id="nbo-progress-title" className="text-2xl font-semibold tracking-tight text-foreground">
+              NBO–NRT progress and next executable boundary
+            </h2>
+            <p className="mt-3 max-w-4xl text-sm leading-6 text-muted-foreground">
+              Research and design progress are reported separately from dataset, cloud, and MLOps
+              implementation so completed evidence is visible without implying that the solution is built.
+            </p>
+            <div className="mt-6 grid gap-4 md:grid-cols-2">
+              {cockpitEvidenceSummary.map(([title, description]) => (
+                <Card key={title}>
+                  <CardContent className="space-y-2 p-5 text-sm leading-6 text-muted-foreground">
+                    <p className="font-semibold text-foreground">{title}</p>
+                    <p>{description}</p>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+            <div className="mt-8 space-y-6">
+              {progressGroups.map((group) => (
+                <Card key={group.title}>
+                  <CardHeader>
+                    <CardTitle>{group.title}</CardTitle>
+                    <p className="text-sm leading-6 text-muted-foreground">{group.summary}</p>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    <div className="overflow-x-auto">
+                      <table className="w-full min-w-[760px] text-left text-sm">
+                        <thead className="bg-muted/50">
+                          <tr><th className="p-3">Stage</th><th className="p-3">Status</th><th className="p-3">Current evidence</th></tr>
+                        </thead>
+                        <tbody className="divide-y divide-border text-muted-foreground">
+                          {group.stages.map(([stage, status, evidence]) => (
+                            <tr key={stage}>
+                              <th className="p-3 align-top text-foreground">{stage}</th>
+                              <td className="p-3 align-top"><Badge variant="outline">{status}</Badge></td>
+                              <td className="p-3">{evidence}</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                    <p className="rounded-md border border-border bg-muted/25 px-4 py-3 text-sm leading-6 text-muted-foreground">
+                      <strong className="text-foreground">Boundary:</strong> {group.boundary}
+                    </p>
                   </CardContent>
                 </Card>
               ))}
