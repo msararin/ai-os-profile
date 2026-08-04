@@ -7,10 +7,10 @@ const caseStudies = [
   {
     // Claims: CL-001, CL-003, CL-012, CL-016, CL-017
     title: "NBO–NRT Telco on Azure Databricks",
-    status: "In Design",
+    status: "In Progress",
     category: "Decision intelligence",
     summary:
-      "A governed design for connecting fresher Telco signals to eligible, ranked next-best-offer decisions and feedback on Azure Databricks.",
+      "Research and composite design validated; dataset generation and Azure Databricks implementation not started.",
     boundary:
       "Discovery and PoC planning only. No production latency, operator validity, NBO implementation, or production-readiness claim.",
     cta: "View use-case design",
