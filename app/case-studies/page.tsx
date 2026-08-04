@@ -10,9 +10,9 @@ const caseStudies = [
     status: "In Progress",
     category: "Decision intelligence",
     summary:
-      "Research and composite design validated; dataset generation and Azure Databricks implementation not started.",
+      "Local composite implementation proven across 11 tables and 805 bounded rows; modeling and Azure Databricks implementation not started.",
     boundary:
-      "Discovery and PoC planning only. No production latency, operator validity, NBO implementation, or production-readiness claim.",
+      "Local composite evidence only. No real Telco customer data, model, Azure Databricks, production latency, operator validity, or production-readiness claim.",
     cta: "View use-case design",
     href: "/case-studies/nbo-nrt-azure-databricks",
   },
