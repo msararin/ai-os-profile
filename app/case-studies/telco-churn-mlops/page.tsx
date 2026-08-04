@@ -26,11 +26,11 @@ const executiveFacts = [
   },
   {
     label: "Delivery evidence",
-    value: "Bronze, Silver, and Features accepted",
+    value: "Bronze, Silver, Features, and MLflow verified",
   },
   {
     label: "Next gate",
-    value: "MLflow experiment evidence",
+    value: "Parked before Model Registry",
   },
   {
     label: "Claim ceiling",
@@ -44,15 +44,15 @@ const mlopsProgress = [
   { label: "Bronze", status: "Done", tone: "done" },
   { label: "Silver", status: "Done", tone: "done" },
   { label: "Features", status: "Done", tone: "done" },
-  { label: "MLflow", status: "Next", tone: "next" },
-  { label: "Model Registry", status: "Planned", tone: "planned" },
-  { label: "Batch Inference", status: "Planned", tone: "planned" },
-  { label: "Monitoring", status: "Planned", tone: "planned" },
+  { label: "MLflow", status: "Done", tone: "done" },
+  { label: "Model Registry", status: "Parked", tone: "planned" },
+  { label: "Batch Inference", status: "Parked", tone: "planned" },
+  { label: "Monitoring", status: "Parked", tone: "planned" },
 ]
 export const metadata: Metadata = {
   title: "Telco Churn MLOps Learning Use Case | Sararin",
   description:
-    "Preparation view for a governed IBM Telco Customer Churn MLOps learning and demonstration use case.",
+    "Parked view of a governed IBM Telco Customer Churn MLOps learning and demonstration use case.",
 }
 
 export default function TelcoChurnMLOpsCaseStudyPage() {
@@ -69,19 +69,20 @@ export default function TelcoChurnMLOpsCaseStudyPage() {
           <div className="flex flex-wrap gap-2">
             <Badge variant="outline">IBM Telco Customer Churn</Badge>
             <Badge variant="outline">Azure Databricks MLOps</Badge>
-            <Badge>Prep</Badge>
+            <Badge>Parked</Badge>
           </div>
           <h1 className="mt-4 max-w-5xl text-3xl font-semibold tracking-tight text-foreground sm:text-5xl">
             Telco Churn MLOps
           </h1>
           <p className="mt-4 max-w-4xl text-base leading-7 text-muted-foreground sm:text-lg">
-            Governed customer-churn retention decision support, prepared as a time-boxed learning
+            Governed customer-churn retention decision support, retained as a time-boxed learning
             and demonstration use case.
           </p>
           <Alert className="mt-6 border-primary/25 bg-primary/5">
             <AlertDescription className="text-sm leading-6">
-              <strong>Prep:</strong> This case-study presentation is being prepared. The page
-              separates the intended demonstration from production or real-world outcome claims.
+              <strong>Parked:</strong> This learning use case is intentionally paused. Completed
+              evidence through MLflow is preserved; Model Registry, batch inference, and monitoring
+              were not executed.
             </AlertDescription>
           </Alert>
         </div>
@@ -122,7 +123,7 @@ export default function TelcoChurnMLOpsCaseStudyPage() {
               <CardContent className="space-y-3 text-sm leading-6 text-muted-foreground">
                 <div className="rounded-md border border-primary/25 bg-primary/5 px-4 py-3">
                   <p className="text-xs font-semibold uppercase tracking-wide text-primary">Status</p>
-                  <p className="mt-1 text-lg font-semibold text-foreground">Prep</p>
+                  <p className="mt-1 text-lg font-semibold text-foreground">Parked</p>
                 </div>
                 <p>
                   The IBM dataset is fictional/sample data for learning and demonstration. It is not
