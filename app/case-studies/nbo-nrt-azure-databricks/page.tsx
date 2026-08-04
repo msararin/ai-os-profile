@@ -328,13 +328,32 @@ const progressGroups = [
   {
     title: "B. Data Implementation",
     summary:
-      "Ready for separately bounded local composite data implementation authorization.",
+      "Local composite data implementation is proven; cloud loading and platform implementation have not started.",
     stages: [
-      ["Composite Dataset Generation", "NOT STARTED", "No composite dataset rows exist."],
       [
-        "Generated Composite Row Validation",
-        "NOT STARTED",
-        "No generated rows are available for schema, null, domain, consistency, or provenance validation.",
+        "Local Composite Dataset Generation",
+        "COMPLETED",
+        "11 related local tables and 805 rows were generated deterministically: 50 Bank Marketing methodology rows and 755 explicitly synthetic Telco decision-loop rows.",
+      ],
+      [
+        "Local Composite Validation",
+        "VALIDATED",
+        "47/47 assertions passed across schema, integrity, temporal order, evidence-lane separation, lineage, and decision trace.",
+      ],
+      [
+        "Clean-room Reproducibility",
+        "VALIDATED",
+        "All 11 table hashes and the generation-manifest hash matched on a clean-room rerun.",
+      ],
+      [
+        "Phase 5B Gate",
+        "PASSED",
+        "PASS_READY_FOR_BOUNDED_MODELING_AUTHORIZATION",
+      ],
+      [
+        "Claim Level",
+        "LOCAL_COMPOSITE_IMPLEMENTATION_EVIDENCE_ONLY",
+        "Local deterministic composite implementation evidence only; not real Telco customer data and not cloud or model evidence.",
       ],
       ["ADLS Landing", "NOT STARTED", "No upload package or Owner upload authorization exists."],
       ["Unity Catalog Onboarding", "NOT STARTED", "Begins only after an authorized ADLS landing."],
@@ -343,7 +362,7 @@ const progressGroups = [
       ["Features", "NOT STARTED", "No NBO–NRT model-ready feature table."],
     ],
     boundary:
-      "Required order: Composite generation → generated-row validation → ADLS landing → Unity Catalog onboarding → Bronze → Silver → Features.",
+      "Phase 5B proves local composite generation and validation only. The 50-row Bank methodology lane is distinct from the 755-row synthetic Telco loop. ADLS → Unity Catalog → Bronze → Silver → Features have not started.",
   },
   {
     title: "C. MLOps Lifecycle",
@@ -374,8 +393,8 @@ const cockpitEvidenceSummary = [
     "The target contract v0.1.0 contains 108 fields across two isolated evidence lanes. Phase 5A reproducibility passed 57/57 assertions.",
   ],
   [
-    "Dataset Implementation: Not Started.",
-    "No composite rows have been generated, locally validated, landed in ADLS, or loaded into Azure Databricks.",
+    "Local Composite Data Implementation — Proven.",
+    "A deterministic NBO-NRT demonstration dataset was implemented locally across 11 related tables and 805 rows: 50 Bank Marketing methodology rows and 755 explicitly synthetic Telco decision-loop rows. All 47 validation assertions passed, and clean-room table and manifest hashes matched. Model development and Azure Databricks execution have not started.",
   ],
 ]
 
