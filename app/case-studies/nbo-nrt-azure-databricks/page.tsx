@@ -402,27 +402,29 @@ function statusBadgeClass(status: string) {
   const normalized = status.toLowerCase()
 
   if (
-    ["completed", "passed", "validated", "selected", "research complete"].some((value) =>
-      normalized.includes(value),
-    )
+    new Set([
+      "completed",
+      "selected",
+      "designed",
+      "validated",
+      "passed",
+      "evidence verified",
+      "research complete",
+    ]).has(normalized)
   ) {
-    return "border-emerald-600/30 bg-emerald-500/10 text-emerald-800 dark:text-emerald-300"
+    return "border-emerald-700 bg-emerald-100 text-emerald-900 dark:border-emerald-500 dark:bg-emerald-950 dark:text-emerald-200"
   }
 
-  if (
-    ["conditional", "ready", "in progress", "in design"].some((value) =>
-      normalized.includes(value),
-    )
-  ) {
-    return "border-amber-600/30 bg-amber-500/10 text-amber-800 dark:text-amber-300"
+  if (normalized === "in progress") {
+    return "border-amber-700 bg-amber-100 text-amber-950 dark:border-amber-500 dark:bg-amber-950 dark:text-amber-200"
   }
 
-  if (
-    ["not started", "not built", "parked", "planned"].some((value) =>
-      normalized.includes(value),
-    )
-  ) {
-    return "border-slate-400/40 bg-slate-500/10 text-slate-700 dark:text-slate-300"
+  if (normalized === "not started" || normalized === "not built") {
+    return "border-slate-500 bg-slate-200 text-slate-950 dark:border-slate-500 dark:bg-slate-800 dark:text-slate-100"
+  }
+
+  if (normalized.includes("blocked") || normalized.includes("failed")) {
+    return "border-red-700 bg-red-100 text-red-950 dark:border-red-500 dark:bg-red-950 dark:text-red-200"
   }
 
   return "border-border bg-muted/40 text-muted-foreground"
@@ -463,8 +465,8 @@ export default function NboNrtAzureDatabricksPage() {
             <div className="flex flex-wrap gap-2">
               <Badge variant="outline">Telco decision intelligence</Badge>
               <Badge variant="outline">Azure Databricks</Badge>
-              <Badge className={statusBadgeClass("Bounded PoC — In Design")}>
-                Bounded PoC — In Design
+              <Badge className={statusBadgeClass("In Progress")}>
+                In Progress
               </Badge>
             </div>
             <h1 className="mt-4 max-w-5xl text-3xl font-semibold tracking-tight text-foreground sm:text-5xl">
