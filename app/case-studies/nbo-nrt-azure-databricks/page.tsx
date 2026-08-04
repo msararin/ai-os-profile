@@ -398,6 +398,36 @@ const cockpitEvidenceSummary = [
   ],
 ]
 
+function statusBadgeClass(status: string) {
+  const normalized = status.toLowerCase()
+
+  if (
+    ["completed", "passed", "validated", "selected", "research complete"].some((value) =>
+      normalized.includes(value),
+    )
+  ) {
+    return "border-emerald-600/30 bg-emerald-500/10 text-emerald-800 dark:text-emerald-300"
+  }
+
+  if (
+    ["conditional", "ready", "in progress", "in design"].some((value) =>
+      normalized.includes(value),
+    )
+  ) {
+    return "border-amber-600/30 bg-amber-500/10 text-amber-800 dark:text-amber-300"
+  }
+
+  if (
+    ["not started", "not built", "parked", "planned"].some((value) =>
+      normalized.includes(value),
+    )
+  ) {
+    return "border-slate-400/40 bg-slate-500/10 text-slate-700 dark:text-slate-300"
+  }
+
+  return "border-border bg-muted/40 text-muted-foreground"
+}
+
 const nextSteps = [
   "Define owner-created PoC contracts for product, event, transaction, payment, and offer data.",
   "Generate synthetic or representative non-production inputs with explicit provenance.",
@@ -433,7 +463,9 @@ export default function NboNrtAzureDatabricksPage() {
             <div className="flex flex-wrap gap-2">
               <Badge variant="outline">Telco decision intelligence</Badge>
               <Badge variant="outline">Azure Databricks</Badge>
-              <Badge>Bounded PoC — In Design</Badge>
+              <Badge className={statusBadgeClass("Bounded PoC — In Design")}>
+                Bounded PoC — In Design
+              </Badge>
             </div>
             <h1 className="mt-4 max-w-5xl text-3xl font-semibold tracking-tight text-foreground sm:text-5xl">
               NBO–NRT Telco on Azure Databricks
@@ -532,7 +564,9 @@ export default function NboNrtAzureDatabricksPage() {
                   <CardHeader>
                     <div className="flex flex-wrap items-start justify-between gap-3">
                       <CardTitle>{item.phase}</CardTitle>
-                      <Badge variant="outline">{item.status}</Badge>
+                      <Badge variant="outline" className={statusBadgeClass(item.status)}>
+                        {item.status}
+                      </Badge>
                     </div>
                   </CardHeader>
                   <CardContent className="space-y-4 text-sm leading-6 text-muted-foreground">
@@ -551,7 +585,7 @@ export default function NboNrtAzureDatabricksPage() {
                             <thead className="bg-muted/50"><tr><th className="p-2">Sub-phase</th><th className="p-2">Status</th><th className="p-2">Result</th></tr></thead>
                             <tbody className="divide-y divide-border">
                               {item.subphases.map(([subphase, status, result]) => (
-                                <tr key={subphase}><th className="p-2 align-top text-foreground">{subphase}</th><td className="p-2 align-top"><Badge variant="outline">{status}</Badge></td><td className="p-2">{result}</td></tr>
+                                <tr key={subphase}><th className="p-2 align-top text-foreground">{subphase}</th><td className="p-2 align-top"><Badge variant="outline" className={statusBadgeClass(status)}>{status}</Badge></td><td className="p-2">{result}</td></tr>
                               ))}
                             </tbody>
                           </table>
@@ -611,7 +645,7 @@ export default function NboNrtAzureDatabricksPage() {
                           {group.stages.map(([stage, status, evidence]) => (
                             <tr key={stage}>
                               <th className="p-3 align-top text-foreground">{stage}</th>
-                              <td className="p-3 align-top"><Badge variant="outline">{status}</Badge></td>
+                              <td className="p-3 align-top"><Badge variant="outline" className={statusBadgeClass(status)}>{status}</Badge></td>
                               <td className="p-3">{evidence}</td>
                             </tr>
                           ))}
@@ -635,7 +669,7 @@ export default function NboNrtAzureDatabricksPage() {
               {disclosures.map((item) => (
                 <details key={item.title} className="group rounded-lg border border-border bg-card">
                   <summary className="flex cursor-pointer list-none items-center justify-between gap-4 p-5 font-semibold text-foreground">
-                    <span>{item.title}</span><span className="flex items-center gap-3">{item.status ? <Badge variant="outline">{item.status}</Badge> : null}<span aria-hidden="true" className="text-primary group-open:rotate-45">+</span></span>
+                    <span>{item.title}</span><span className="flex items-center gap-3">{item.status ? <Badge variant="outline" className={statusBadgeClass(item.status)}>{item.status}</Badge> : null}<span aria-hidden="true" className="text-primary group-open:rotate-45">+</span></span>
                   </summary>
                   <div className="space-y-3 border-t border-border px-5 py-4 text-sm leading-6 text-muted-foreground">{item.body.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</div>
                 </details>
