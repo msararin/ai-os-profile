@@ -6,13 +6,13 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 const caseStudies = [
   {
     title: "Telco Churn MLOps Learning Use Case",
-    status: "Prep",
+    status: "Parked",
     category: "MLOps learning",
     summary:
       "A time-boxed learning and demonstration use case for a governed customer-churn retention decision-support workflow.",
     boundary:
       "Sample data only. No production accuracy, causal impact, campaign uplift, or real-operator validity claim.",
-    cta: "View preparation status",
+    cta: "View parked status",
     href: "/case-studies/telco-churn-mlops",
   },
   {
