@@ -14,201 +14,113 @@ export const metadata: Metadata = {
 const phases = [
   {
     phase: "Phase 1 — Data Foundation and Ingestion",
-    status: "In Progress",
-    description: "Establish traceable non-production source inputs for the PoC.",
+    status: "Complete",
+    description: "Establish traceable non-production source inputs and governed Bronze evidence.",
     currentResult:
-      "Research, working-set selection, contract design, local composite generation, and ADLS landing with byte-level read-back are proven. Databricks Bronze ingestion has not started.",
-    actions: [
-      "Define owner-created data contracts",
-      "Generate or load synthetic or representative product, customer-event, transaction, and payment samples",
-      "Apply source metadata and identifier-protection controls",
-      "Ingest into Bronze",
-    ],
-    expectedResult: "Traceable, protected source inputs and Bronze ingestion read-back evidence.",
-    subphases: [
-      ["Data-source research", "Evidence Verified", "Public candidate sources and documentation reviewed"],
-      ["Candidate comparison", "Evidence Verified", "Candidates compared against PoC needs, constraints, provenance, and reproducibility"],
-      ["Working-set selection", "Evidence Verified", "Working set selected with documented rationale"],
-      ["Source-contract design", "Design Complete", "Target contract designed across isolated evidence lanes"],
-      ["Synthetic-data design", "Evidence Verified", "Generation method, constraints, provenance, and evidence-lane separation were executed and validated locally"],
-      ["Dataset generation", "Evidence Verified", "11 related local tables and 805 rows generated across two explicitly separated evidence lanes"],
-      ["ADLS landing and read-back", "Evidence Verified", "12/12 local-to-ADLS byte hashes matched; authoritative manifest hash and row-count read-back passed"],
-      ["Databricks Bronze ingestion", "Not Started", "No NBO–NRT ingestion read-back"],
-    ],
+      "Research, composite generation, ADLS landing, Unity Catalog access, Bronze ingestion, and the Bronze Quality Gate are complete.",
     remark:
-      "Source-specific labels remain traceability labels only. No operator schema or production ingestion is claimed.",
-    details: [
-      "Source table inventory",
-      "Schema summary and row counts",
-      "Timestamp fields",
-      "Identifier treatment",
-      "Ingestion validation",
+      "Hands-on development evidence only. File Events remains deferred and did not block batch ingestion. No production customer data or production-readiness claim.",
+    subphases: [
+      ["Data-source research", "Verified", "10 public candidates assessed and bounded source roles selected."],
+      ["Target contract", "Verified", "Contract v0.1.0, 108 fields, and two isolated evidence lanes."],
+      ["Synthetic composite", "Verified", "11 canonical CSV tables and 805 source rows generated and validated."],
+      ["ADLS landing and read-back", "Proven", "12/12 local-to-ADLS byte hashes matched."],
+      ["Unity Catalog access", "Proven", "Governed access to the landed package verified."],
+      ["Bronze ingestion", "Complete", "12 governed Bronze tables created with 806 total table rows."],
+      ["Bronze Quality Gate", "Complete", "Row counts, source-file counts, metadata, table checks, and cross-table closure passed."],
     ],
   },
   {
     phase: "Phase 2 — Data Preparation and Feature Readiness",
-    status: "Design Ready",
-    description: "Convert raw inputs into validated, model-ready entities and features.",
+    status: "Complete",
+    description: "Prepare bounded Silver and model-ready synthetic experiment data.",
     currentResult:
-      "Target preparation structure, evidence lanes, provenance expectations, and model-ready design are prepared. No NBO–NRT Silver or feature read-back exists yet.",
-    actions: [
-      "Validate Bronze",
-      "Standardize and clean Silver",
-      "Reconcile customer, product, offer, event, transaction, and payment fields",
-      "Create event-time and freshness metadata",
-      "Apply leakage and quality checks",
-    ],
-    expectedResult: "Validated Silver tables, model-ready features, and quality and freshness evidence.",
-    subphases: [
-      ["Target contract structure", "Design Complete", "Required source domains and target fields defined"],
-      ["Evidence-lane separation", "Design Complete", "Candidate evidence kept in isolated lanes"],
-      ["Provenance requirements", "Design Complete", "Source, derivation, and reproducibility expectations specified"],
-      ["Preparation logic", "Design Ready", "Cleaning, validation, temporal, and freshness requirements defined"],
-      ["Dataset profiling", "Not Started", "No generated NBO dataset profiled"],
-      ["Silver transformation", "Not Started", "No NBO–NRT Silver table"],
-      ["Feature preparation", "Not Started", "No NBO–NRT model-ready feature table"],
-      ["Quality and freshness read-back", "Not Started", "No executed evidence"],
-    ],
+      "Silver preparation, dataset profiling, model-ready data construction, quality checks, and read-back evidence are complete for the synthetic experiment lane.",
     remark:
-      "Bronze, Silver, and feature preparation are PoC implementation choices, not source-system facts.",
-    details: [
-      "Transformation rules",
-      "Null and duplicate checks",
-      "Feature list and temporal rules",
-      "Quality metrics",
+      "This is assumption-derived synthetic experiment data, not observed operator behavior or production feature truth.",
+    subphases: [
+      ["Target contract structure", "Verified", "Required source domains and target fields reconciled."],
+      ["Evidence-lane separation", "Verified", "Methodology and synthetic decision-loop lanes remain isolated."],
+      ["Provenance requirements", "Verified", "Source, derivation, run, and lineage fields retained."],
+      ["Preparation logic", "Complete", "Cleaning, temporal, null, and quality rules executed."],
+      ["Dataset profiling", "Complete", "Simulation dataset profile and class distribution recorded."],
+      ["Silver transformation", "Complete", "Bounded Silver preparation executed and read back."],
+      ["Feature preparation", "Complete", "Model-ready simulation dataset created."],
+      ["Quality and freshness read-back", "Verified", "Quality gate and model-ready checks passed."],
     ],
   },
   {
     phase: "Phase 3 — Eligibility and Candidate Generation",
-    status: "Design Ready",
-    description: "Build valid customer-offer combinations before ranking.",
+    status: "Complete",
+    description: "Implement bounded policy, candidate, and decision-loop preparation.",
     currentResult:
-      "Eligibility, exclusion, candidate-generation, versioning, and trace requirements are designed. No actual customer-offer candidate table has been generated.",
-    actions: [
-      "Define generic PoC eligibility rules",
-      "Apply exclusions and policy constraints",
-      "Generate customer-offer candidates",
-      "Remove invalid combinations",
-      "Persist the candidate table",
-    ],
-    expectedResult: "Eligible customer-offer candidates with rule trace and filtering counts.",
-    subphases: [
-      ["Eligibility concept", "Design Complete", "Eligibility separated from model ranking"],
-      ["Rule and exclusion structure", "Design Complete", "Generic PoC rule categories defined"],
-      ["Candidate-table contract", "Design Complete", "Candidate fields and trace requirements defined"],
-      ["Candidate versioning", "Design Ready", "Rule and candidate version expectations defined"],
-      ["Rule implementation", "Not Started", "No executable PoC rule set"],
-      ["Candidate generation", "Not Started", "No customer-offer combinations generated"],
-      ["Candidate persistence", "Not Started", "No persisted candidate table"],
-      ["Before/after candidate counts", "Not Started", "No executed filtering evidence"],
-    ],
+      "Eligibility/policy contracts, candidate generation, decision-table persistence, and candidate/ranking inputs are implemented in the synthetic experiment lane.",
     remark:
-      "Eligibility and exclusion logic are owner-created PoC assumptions, not operator production rules.",
-    details: [
-      "Rule register and rule version",
-      "Candidate-volume summary",
-      "Rejected combinations",
+      "Rules and relationships are PoC assumptions. They are not operator production rules or observed customer-behavior truth.",
+    subphases: [
+      ["Eligibility concept", "Verified", "Eligibility remains separated from model ranking."],
+      ["Rule and exclusion structure", "Complete", "Bounded behavior-policy contract created and read back."],
+      ["Candidate-table contract", "Complete", "Candidate fields, lineage, and trace requirements implemented."],
+      ["Candidate versioning", "Verified", "Rule, run, and candidate-version fields retained."],
+      ["Rule implementation", "Complete", "Synthetic policy logic executed."],
+      ["Candidate generation", "Complete", "Customer-offer candidates generated for the experiment lane."],
+      ["Candidate persistence", "Complete", "Candidate and simulation decision tables persisted and read back."],
+      ["Candidate/ranking reconciliation", "Verified", "Decision-loop and ranking records reconciled within the bounded experiment."],
     ],
-    candidateExample: true,
   },
   {
     phase: "Phase 4 — Baseline Ranking and Model Governance",
-    status: "Planned",
-    description: "Rank eligible offers and create traceable model evidence.",
+    status: "Complete with quality gap",
+    description: "Train, track, register, read back, and evaluate the synthetic baseline model.",
     currentResult:
-      "The baseline modeling direction and governance evidence requirements are defined. No NBO model has been trained, logged, registered, or scored.",
-    actions: [
-      "Train a propensity or ranking baseline",
-      "Compare candidate approaches",
-      "Log parameters, metrics, and artifacts in MLflow",
-      "Register the selected model and verify read-back",
-      "Score and rank candidates",
-    ],
-    expectedResult: "A governed baseline model and traceable ranked customer-offer output.",
-    subphases: [
-      ["Baseline model direction", "Design Complete", "Propensity or ranking baseline selected for the first PoC"],
-      ["RL target direction", "Given Recommendation", "Retained as future direction, not implemented"],
-      ["MLflow evidence contract", "Design Complete", "Parameters, metrics, artifacts, lineage, and signature requirements defined"],
-      ["Registry evidence contract", "Design Complete", "Model registration and read-back requirements defined"],
-      ["Model training", "Not Started", "No NBO model run"],
-      ["Model comparison", "Not Started", "No NBO model comparison"],
-      ["Model registration", "Not Started", "No NBO registered model"],
-      ["Candidate scoring and ranking", "Not Started", "No scored candidate table"],
-    ],
+      "Training, MLflow tracking, Unity Catalog model registration, Candidate alias assignment, and registered-model read-back are complete. Model quality is not approved.",
     remark:
-      "Reinforcement Learning remains the target direction from the given recommendation; the first PoC uses a simpler baseline to prove the lifecycle.",
-    details: [
-      "Feature set and train/test method",
-      "Metrics and model comparison",
-      "Registry state and model signature",
-      "Ranking logic",
+      "Lifecycle execution passed; business readiness did not. Candidate is not Champion. Production promotion is not authorized.",
+    subphases: [
+      ["Baseline model training", "Complete", "Synthetic propensity baseline trained on 10,000 rows."],
+      ["MLflow tracking", "Complete", "Parameters, metrics, artifacts, and lineage logged."],
+      ["Model registration", "Complete", "Model registered in Unity Catalog as version 1 with Candidate alias."],
+      ["Registered-model read-back", "Verified", "Prediction and probability read-back matched."],
+      ["Default threshold 0.50", "Failed", "No positive predictions; precision, recall, and F1 were 0."],
+      ["Threshold analysis", "Complete", "Best-F1 threshold 0.24 analyzed."],
+      ["Threshold 0.24", "Not approved", "High recall with low precision; operational selection requires business capacity and cost criteria."],
+      ["Model discrimination", "Weak-to-moderate", "ROC AUC 0.6294 and PR AUC 0.3941."],
+      ["Production promotion", "Not authorized", "Synthetic experiment only; no Champion promotion."],
     ],
   },
   {
     phase: "Phase 5 — Top-N NBO Output and NRT Delivery Preparation",
-    status: "Planned",
-    description: "Produce a governed Top-N recommendation output and simulate downstream handoff.",
+    status: "In Progress",
+    description: "Carry governed ranking evidence toward a simulated downstream delivery boundary.",
     currentResult:
-      "Top-N output structure, simulated NRT delivery boundary, TMF680-aligned abstraction, and decision-trace requirements are defined. No delivery payload or latency evidence exists yet.",
-    actions: [
-      "Select Top 1 or Top N offers",
-      "Persist a Gold recommendation output as a PoC implementation choice",
-      "Create a TMF680-aligned payload",
-      "Simulate downstream handoff",
-      "Preserve model and decision traceability",
-    ],
-    expectedResult:
-      "Top-N NBO recommendations prepared for simulated NRT delivery, with ranking score, model version, decision timestamp, eligibility trace, model-to-decision lineage, and observed processing latency.",
-    subphases: [
-      ["Top-N output contract", "Design Complete", "Ranking score, model version, decision timestamp, and trace fields defined"],
-      ["NRT delivery abstraction", "Design Complete", "Simulated lower-latency delivery boundary defined"],
-      ["TMF680-aligned output", "Design Ready", "Public PoC abstraction defined"],
-      ["LID680 boundary", "Evidence Bounded", "Retained only as a traceability label"],
-      ["Gold output design", "Design Complete", "Persisted ranked recommendation output specified"],
-      ["Top-N generation", "Not Started", "No actual recommendation output"],
-      ["Payload generation", "Not Started", "No simulated TMF680-aligned payload"],
-      ["Latency measurement", "Not Started", "No observed NRT-oriented latency evidence"],
-    ],
+      "Synthetic ranking and selected-decision evidence exist. TMF680-aligned payload delivery, NRT latency evidence, and downstream integration are not complete.",
     remark:
-      "LID680 is retained only as a traceability label; no internal system meaning or production integration is asserted.",
-    details: [
-      "Top-N output schema and payload example",
-      "Model version and score",
-      "Eligibility trace and decision timestamp",
-      "Observed processing latency",
+      "LID680 remains a traceability label only. No internal meaning, real delivery integration, or NRT SLA is asserted.",
+    subphases: [
+      ["Ranking-result evidence", "Verified", "Synthetic ranking-result records and score evidence are available."],
+      ["Selected-decision evidence", "Verified", "Synthetic next-best-offer decisions are persisted and traceable."],
+      ["Top-N output contract", "Complete", "Score, model version, decision time, and trace fields defined."],
+      ["TMF680-aligned payload", "Not started", "No simulated payload read-back yet."],
+      ["Simulated NRT delivery", "Not started", "No downstream delivery execution."],
+      ["Latency measurement", "Not started", "No NRT-oriented end-to-end latency evidence."],
     ],
   },
   {
     phase: "Phase 6 — Feedback, Monitoring, and Next Cycle",
-    status: "Planned",
-    description: "Demonstrate how outcome evidence feeds monitoring and the next model cycle.",
+    status: "In Progress",
+    description: "Use synthetic outcomes to define feedback and future monitoring controls.",
     currentResult:
-      "Feedback categories, reward assumptions, monitoring dimensions, and next-cycle controls are defined. No feedback, drift, or retraining evidence exists yet.",
-    actions: [
-      "Generate representative response events",
-      "Calculate illustrative immediate or delayed outcomes as a PoC working assumption",
-      "Monitor quality, freshness, latency, score distribution, recommendation distribution, and outcome signals",
-      "Compare model versions",
-      "Define retraining or policy-update triggers",
-    ],
-    expectedResult: "Traceable feedback, monitoring, drift evidence, and a governed next-cycle decision.",
-    subphases: [
-      ["Feedback-event concept", "Design Complete", "Representative response-event categories defined"],
-      ["Reward design", "Design Complete — Assumption Only", "Immediate and delayed outcome concepts defined"],
-      ["Monitoring dimensions", "Design Complete", "Quality, freshness, latency, score, recommendation, and outcome monitoring defined"],
-      ["Next-cycle decision structure", "Design Ready", "Retraining or policy-update decision path defined"],
-      ["Feedback generation", "Not Started", "No response records"],
-      ["Reward calculation", "Not Started", "No executed reward evidence"],
-      ["Drift monitoring", "Not Started", "No measured drift"],
-      ["Retraining or policy update", "Not Started", "No next-cycle execution"],
-    ],
+      "Synthetic exposure/response evidence and threshold analysis exist. Drift monitoring, production thresholds, and retraining governance are not complete.",
     remark:
-      "Reward values, attribution rules, and observation windows are PoC assumptions; monitoring thresholds are not production standards.",
-    details: [
-      "Response-event schema and outcome taxonomy",
-      "Monitoring metrics and threshold assumptions",
-      "Model comparison",
-      "Retraining decision",
+      "Reward values, attribution windows, and thresholds remain PoC assumptions. Monitoring is not production-standard evidence.",
+    subphases: [
+      ["Exposure and response records", "Verified", "Synthetic offer-exposure and response-event evidence exists."],
+      ["Outcome analysis", "Complete", "Selected-score and threshold outcome analysis completed."],
+      ["Reward design", "Design complete", "Immediate and delayed outcomes remain explicit assumptions."],
+      ["Monitoring dimensions", "Design complete", "Quality, freshness, latency, score, recommendation, and outcome dimensions defined."],
+      ["Drift monitoring", "Not started", "No measured production or real-world drift."],
+      ["Operational threshold", "Not approved", "Business-capacity and cost-based selection is required."],
+      ["Retraining or policy update", "Not started", "No governed next-cycle execution."],
     ],
   },
 ]
@@ -227,11 +139,11 @@ const alignment = [
   ],
   [
     "NBO model direction",
-    "Reinforcement Learning retained as the target direction; baseline propensity or ranking proposed for the first PoC.",
+    "Reinforcement Learning remains the target direction; the completed v1 experiment uses a simpler propensity baseline.",
   ],
   [
     "TMF680 to LID680",
-    "TMF680-aligned recommendation output with a simulated downstream handoff. “LID680” is retained only as a traceability label; no internal system meaning or responsibility is asserted.",
+    "TMF680-aligned recommendation output with a simulated downstream handoff. “LID680” is retained only as a traceability label.",
   ],
   [
     "PII hashing checkpoints",
@@ -239,240 +151,49 @@ const alignment = [
   ],
 ]
 
-const disclosures = [
-  {
-    title: "Data-source evidence mapping",
-    status: "Research complete",
-    body: [
-      "Ten public candidates were assessed. Bank Marketing and the pinned TMF620 schema asset were acquired and profiled for bounded methodology and schema roles.",
-      "OTTO and MIND are documentation/reference sources only; no OTTO or MIND data bytes are integrated. No public source is treated as a complete Telco NBO–NRT dataset.",
-    ],
-  },
-  {
-    title: "Assumptions and Owner-Created Components",
-    body: [
-      "Owner-created contracts, synthetic inputs, eligibility rules, representative response events, reward definitions, observation windows, and timing targets remain explicit PoC assumptions.",
-      "Five-minute execution and ten-minute end-to-end values are illustrative assumptions only—not operator requirements, source cadence, production SLAs, or confirmed latency commitments.",
-    ],
-  },
-  {
-    title: "Data Contracts and Schemas",
-    body: [
-      "Product, event, transaction, payment, offer, candidate, recommendation, and response contracts will be owner-created or representative non-production artifacts until verified source contracts exist.",
-    ],
-  },
-  {
-    title: "Telco Business Rules",
-    body: [
-      "Eligibility, exclusion, channel, candidate-generation, ranking, and selection rules are generic PoC assumptions, not operator production rules.",
-    ],
-  },
-  {
-    title: "TMF680 / LID680 Boundary",
-    body: [
-      "The PoC target is a TMF680-aligned contract and simulated downstream handoff. LID680 is retained only as a traceability label; no internal meaning, responsibility, or production integration is asserted.",
-    ],
-  },
-  {
-    title: "Telemetry and Governance",
-    body: [
-      "Planned evidence includes data and model lineage, run parameters, metrics, artifacts, registry read-back, decision trace, validation results, latency, monitoring, and explicit unresolved gaps.",
-    ],
-  },
-]
-
-const progressGroups = [
-  {
-    title: "A. Data Discovery and Design",
-    summary:
-      "Research, bounded source-role selection, target-contract design, and design reproducibility are complete.",
-    stages: [
-      [
-        "Candidate Research",
-        "COMPLETED",
-        "10 public candidates assessed across licence, provenance, access, temporal structure, customer-offer linkage, exposure semantics, recommendation utility, leakage risk, and demonstration value.",
-      ],
-      [
-        "Composite Source Selection",
-        "SELECTED",
-        "4 bounded roles: Bank Marketing and TMF620 acquired/profiled; OTTO and MIND retained as documentation/reference sources only.",
-      ],
-      [
-        "Target Data Contract",
-        "DESIGNED",
-        "Contract v0.1.0 with 108 fields across two isolated evidence lanes.",
-      ],
-      [
-        "Phase 5A Reproducibility",
-        "VALIDATED",
-        "57/57 deterministic assertions passed; design artifacts and the evidence packet were reconciled.",
-      ],
-      [
-        "Phase 5A Gate",
-        "PASSED",
-        "PASS_READY_FOR_BOUNDED_IMPLEMENTATION_AUTHORIZATION",
-      ],
-      [
-        "Independent Checker",
-        "PASS",
-        "Packet-only review; no direct repository, generated-data, cloud, or implementation observation.",
-      ],
-      [
-        "Claim Level",
-        "DRAFT_LOCAL_ONLY",
-        "Verified Phase 5A research, selection, contract, and reproducibility evidence only.",
-      ],
-    ],
-    boundary:
-      "Phase 5A validates design reproducibility and evidence sufficiency only. It does not prove generated composite rows, Phase 5B activity, cloud loading, Databricks tables, model execution, or production readiness.",
-  },
-  {
-    title: "B. Data Implementation",
-    summary:
-      "Local composite implementation and ADLS landing with byte-level read-back are proven; Databricks platform implementation has not started.",
-    stages: [
-      [
-        "Local Composite Dataset Generation",
-        "COMPLETED",
-        "11 related local tables and 805 rows were generated deterministically: 50 Bank Marketing methodology rows and 755 explicitly synthetic Telco decision-loop rows.",
-      ],
-      [
-        "Local Composite Validation",
-        "VALIDATED",
-        "47/47 assertions passed across schema, integrity, temporal order, evidence-lane separation, lineage, and decision trace.",
-      ],
-      [
-        "Clean-room Reproducibility",
-        "VALIDATED",
-        "All 11 table hashes and the generation-manifest hash matched on a clean-room rerun.",
-      ],
-      [
-        "Phase 5B Gate",
-        "PASSED",
-        "PASS_READY_FOR_BOUNDED_MODELING_AUTHORIZATION",
-      ],
-      [
-        "Claim Level",
-        "DRAFT_LOCAL_ONLY · LOCAL_COMPOSITE_DATA_PROVEN · ADLS_LANDING_AND_READBACK_PROVEN · DATABRICKS_BRONZE_NOT_STARTED",
-        "Bounded local composite and ADLS byte-level evidence only; not real Telco customer data, Databricks execution, model evidence, or production readiness.",
-      ],
-      [
-        "ADLS Landing",
-        "PROVEN",
-        "✅ Proven — 12 artifacts · 11 canonical CSV tables · 805 rows. Local ↔ ADLS SHA-256: 12/12 matched. Manifest verified · ADLS read-back passed.",
-      ],
-      ["Unity Catalog Onboarding", "NOT STARTED", "No NBO–NRT Unity Catalog onboarding evidence."],
-      ["Bronze", "NOT STARTED", "No NBO–NRT Bronze table or read-back evidence."],
-      ["Silver", "NOT STARTED", "No NBO–NRT Silver transformation or read-back evidence."],
-      ["Features", "NOT STARTED", "No NBO–NRT model-ready feature table."],
-    ],
-    boundary:
-      "Progress reflects completed hands-on evidence, not conceptual understanding alone. The governed composite package keeps the 50-row Bank Marketing methodology lane distinct from the 755-row explicitly synthetic Telco decision-loop lane. It is not production customer data. Unity Catalog → Bronze → Silver → Features have not started.",
-  },
-  {
-    title: "C. MLOps Lifecycle",
-    summary:
-      "NBO model and MLOps execution have not started; prior use-case evidence is not inherited.",
-    stages: [
-      ["MLflow", "NOT STARTED", "No NBO experiment run or artifact evidence."],
-      ["Model Registry", "NOT STARTED", "No NBO registered model or registry read-back."],
-      ["Batch/NRT Inference", "NOT STARTED", "No batch or simulated NRT inference evidence."],
-      ["Monitoring", "NOT STARTED", "No NBO quality, drift, latency, recommendation, or outcome monitoring."],
-    ],
-    boundary:
-      "Features and model governance must exist before Top-N NBO/NRT output; output evidence must exist before feedback and monitoring are claimed.",
-  },
-]
-
-const cockpitEvidenceSummary = [
-  [
-    "Data Research: Completed.",
-    "Ten public candidates were assessed for licence, provenance, access, temporal structure, customer-offer linkage, exposure semantics, recommendation utility, leakage risk, and demonstration value.",
-  ],
-  [
-    "Composite Working Set: Selected.",
-    "Bank Marketing and TMF620 were acquired and profiled for bounded methodology and schema roles. OTTO and MIND were retained as documentation/reference sources only.",
-  ],
-  [
-    "Dataset Contract: Designed and Validated.",
-    "The target contract v0.1.0 contains 108 fields across two isolated evidence lanes. Phase 5A reproducibility passed 57/57 assertions.",
-  ],
-  [
-    "Local Composite Data Implementation — Proven.",
-    "A deterministic NBO-NRT demonstration dataset was implemented locally across 11 related tables and 805 rows: 50 Bank Marketing methodology rows and 755 explicitly synthetic Telco decision-loop rows. Model development and Databricks execution have not started.",
-  ],
-  [
-    "ADLS Landing — Proven.",
-    "The one governed composite package landed in ADLS with byte-level read-back matched against the local package. Databricks Bronze ingestion has not started.",
-  ],
-]
-
-const phase5cEvidenceLinks = [
-  [
-    "View ADLS configuration evidence",
-    "https://github.com/msararin/nbo-nrt-mlops-usecase/blob/1ffbab01d313680c0ab8a7cc44696a6dd606961f/evidence/phase5c-adls-landing/screenshots/01-adls-gen2-storage-created-redacted.png",
-  ],
-  [
-    "View ADLS artifact inventory",
-    "https://github.com/msararin/nbo-nrt-mlops-usecase/blob/1ffbab01d313680c0ab8a7cc44696a6dd606961f/evidence/phase5c-adls-landing/screenshots/02-adls-cli-list-12-artifacts.png",
-  ],
-  [
-    "View hash and row-count read-back evidence",
-    "https://github.com/msararin/nbo-nrt-mlops-usecase/blob/1ffbab01d313680c0ab8a7cc44696a6dd606961f/evidence/phase5c-adls-landing/screenshots/03-adls-hash-rowcount-final-pass.png",
-  ],
-  [
-    "View Phase 5C evidence index",
-    "https://github.com/msararin/nbo-nrt-mlops-usecase/blob/1ffbab01d313680c0ab8a7cc44696a6dd606961f/evidence/phase5c-adls-landing/README.md",
-  ],
+const modelMetrics = [
+  ["Training rows", "8,002"],
+  ["Test rows", "1,998"],
+  ["Positive rate", "31.48%"],
+  ["ROC AUC", "0.6294"],
+  ["PR AUC", "0.3941"],
+  ["Threshold 0.50 F1", "0.0000"],
+  ["Analyzed threshold", "0.24 — not approved"],
+  ["Threshold 0.24 F1", "0.4955"],
+  ["Threshold 0.24 precision", "0.3421"],
+  ["Threshold 0.24 recall", "0.8984"],
 ]
 
 function statusBadgeClass(status: string) {
   const normalized = status.toLowerCase()
 
   if (
-    new Set([
-      "completed",
-      "selected",
-      "designed",
-      "validated",
-      "passed",
-      "proven",
-      "evidence verified",
-      "research complete",
-    ]).has(normalized)
+    ["complete", "completed", "verified", "proven", "passed", "selected", "designed"].includes(
+      normalized,
+    )
   ) {
-    return "border-emerald-700 bg-emerald-100 text-emerald-900 dark:border-emerald-500 dark:bg-emerald-950 dark:text-emerald-200"
+    return "border-emerald-700 bg-emerald-100 text-emerald-950 dark:border-emerald-500 dark:bg-emerald-950 dark:text-emerald-100"
   }
 
-  if (normalized === "in progress") {
-    return "border-amber-700 bg-amber-100 text-amber-950 dark:border-amber-500 dark:bg-amber-950 dark:text-amber-200"
+  if (
+    normalized.includes("in progress") ||
+    normalized.includes("quality gap") ||
+    normalized.includes("weak-to-moderate") ||
+    normalized.includes("not approved")
+  ) {
+    return "border-amber-700 bg-amber-100 text-amber-950 dark:border-amber-500 dark:bg-amber-950 dark:text-amber-100"
   }
 
-  if (normalized === "not started" || normalized === "not built") {
+  if (normalized.includes("failed")) {
+    return "border-red-700 bg-red-100 text-red-950 dark:border-red-500 dark:bg-red-950 dark:text-red-100"
+  }
+
+  if (normalized.includes("not started") || normalized.includes("not authorized")) {
     return "border-slate-500 bg-slate-200 text-slate-950 dark:border-slate-500 dark:bg-slate-800 dark:text-slate-100"
   }
 
-  if (normalized.includes("blocked") || normalized.includes("failed")) {
-    return "border-red-700 bg-red-100 text-red-950 dark:border-red-500 dark:bg-red-950 dark:text-red-200"
-  }
-
-  return "border-border bg-muted/40 text-muted-foreground"
+  return "border-sky-600 bg-sky-100 text-sky-950 dark:border-sky-500 dark:bg-sky-950 dark:text-sky-100"
 }
-
-const nextSteps = [
-  "Use the proven landed composite package as bounded input for separately authorized Bronze ingestion and Silver validation.",
-  "Create eligibility rules and a customer-offer candidate dataset.",
-  "Train and compare a propensity or ranking baseline.",
-  "Log parameters, metrics, artifacts, and lineage in MLflow.",
-  "Register the selected baseline model and verify read-back.",
-  "Generate a Top-N recommendation table with model and decision trace.",
-  "Apply identifier-protection controls at defined PoC checkpoints.",
-  "Measure observed batch or micro-batch latency.",
-  "Generate a simulated TMF680-aligned output.",
-  "Demonstrate representative response events and the next model-cycle path.",
-  "Add data-quality, freshness, recommendation-distribution, and outcome monitoring.",
-  "Publish evidence separating implemented, measured, assumed, and unproven elements.",
-]
 
 export default function NboNrtAzureDatabricksPage() {
   return (
@@ -481,69 +202,61 @@ export default function NboNrtAzureDatabricksPage() {
       <div className="mx-auto w-full max-w-5xl px-4 pt-4 sm:px-6 lg:px-8">
         <div className="flex justify-end">
           <div className="text-right text-sm leading-6 text-muted-foreground">
-            <p>Evidence on this page reconciled through 4 Aug 2026</p>
+            <p>Evidence on this page reconciled through 5 Aug 2026</p>
             <p>Curated static release — not a continuous live-status feed</p>
           </div>
         </div>
       </div>
+
       <main className="flex-1">
         <section className="border-b border-border bg-background">
           <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
             <div className="flex flex-wrap gap-2">
               <Badge variant="outline">Telco decision intelligence</Badge>
               <Badge variant="outline">Azure Databricks</Badge>
-              <Badge className={statusBadgeClass("In Progress")}>
-                In Progress
-              </Badge>
+              <Badge className={statusBadgeClass("In Progress")}>In Progress</Badge>
             </div>
             <h1 className="mt-4 max-w-5xl text-3xl font-semibold tracking-tight text-foreground sm:text-5xl">
               NBO–NRT Telco on Azure Databricks
             </h1>
             <p className="mt-4 max-w-4xl text-base leading-7 text-muted-foreground sm:text-lg">
-              From fragmented customer signals to governed next-best decisions in near real time.
+              From governed synthetic data to a registered Candidate model—with model-quality and
+              production boundaries disclosed.
             </p>
             <Alert className="mt-6 border-amber-500/30 bg-amber-500/5">
               <AlertDescription className="text-sm leading-6">
-                This page presents a bounded PoC architecture and execution plan derived from the
-                given recommendation. Source-specific labels are abstracted, and no
-                operator-specific implementation or production SLA is claimed.
+                <strong>Synthetic experiment only.</strong> The data-to-MLflow lifecycle executed,
+                but threshold 0.50 failed for the positive class, threshold 0.24 is not approved,
+                model discrimination is weak-to-moderate, and business/production readiness remain
+                unproven.
               </AlertDescription>
             </Alert>
-            <p className="mt-4 max-w-4xl text-sm leading-6 text-muted-foreground">
-              <strong className="text-foreground">Execution position:</strong> Ready to execute a
-              bounded PoC under transparent assumptions.
-            </p>
           </div>
         </section>
 
         <section className="py-10">
           <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
             <h2 className="text-2xl font-semibold tracking-tight text-foreground">
-              Proposed First Executable Slice
+              Current evidence snapshot
             </h2>
-            <p className="mt-3 max-w-4xl text-sm leading-6 text-muted-foreground">
-              A bounded implementation slice designed to prove the core NBO decision flow before
-              any operator-specific integration.
-            </p>
-            <div className="mt-5 overflow-x-auto rounded-lg border border-border">
-              <table className="w-full min-w-[720px] text-left text-sm">
-                <thead className="bg-muted/50 text-foreground">
-                  <tr><th className="p-3">Area</th><th className="p-3">Initial PoC scope</th></tr>
-                </thead>
-                <tbody className="divide-y divide-border text-muted-foreground">
-                  <tr><th className="p-3 text-foreground">Input</th><td className="p-3">Synthetic or representative non-production product, customer-event, transaction, and payment samples</td></tr>
-                  <tr><th className="p-3 text-foreground">Process</th><td className="p-3">Bronze → Silver → eligibility → candidate generation → baseline ranking</td></tr>
-                  <tr><th className="p-3 text-foreground">Output</th><td className="p-3">Top-N NBO recommendations prepared for simulated NRT delivery, with ranking score, model version, decision timestamp, eligibility trace, and decision trace.</td></tr>
-                  <tr><th className="p-3 text-foreground">Control</th><td className="p-3">Identifier protection, MLflow experiment tracking, registered-model read-back, access boundaries, and latency measurement</td></tr>
-                  <tr><th className="p-3 text-foreground">Proof</th><td className="p-3">Repeatable batch or micro-batch execution with persisted read-back evidence</td></tr>
-                </tbody>
-              </table>
+            <div className="mt-5 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+              {[
+                ["Data to Bronze", "Complete", "ADLS, Unity Catalog, 12 Bronze tables, and Bronze Quality Gate."],
+                ["Silver / model-ready", "Complete", "Bounded synthetic preparation and model-ready gate passed."],
+                ["MLflow / Registry", "Verified", "Training, tracking, registration, Candidate alias, and read-back."],
+                ["Business readiness", "Not approved", "No approved operating threshold, Champion, or production promotion."],
+              ].map(([title, status, detail]) => (
+                <Card key={title}>
+                  <CardContent className="space-y-3 p-5">
+                    <p className="font-semibold text-foreground">{title}</p>
+                    <Badge variant="outline" className={statusBadgeClass(status)}>
+                      {status}
+                    </Badge>
+                    <p className="text-sm leading-6 text-muted-foreground">{detail}</p>
+                  </CardContent>
+                </Card>
+              ))}
             </div>
-            <p className="mt-4 max-w-4xl text-sm leading-6 text-muted-foreground">
-              <strong className="text-foreground">PoC boundary:</strong> This slice uses owner-created
-              or representative non-production contracts. It does not assert operator-specific
-              schemas, interfaces, business rules, or production service levels.
-            </p>
           </div>
         </section>
 
@@ -553,17 +266,24 @@ export default function NboNrtAzureDatabricksPage() {
               Alignment to the Given Recommendation
             </h2>
             <p className="mt-3 max-w-4xl text-sm leading-6 text-muted-foreground">
-              The table translates the given recommendation into a public, non-proprietary PoC
-              abstraction. Source-specific labels are retained for traceability only. The mapping
-              does not assert undocumented system semantics, ownership, interface behavior, or
-              production implementation.
+              Source-specific labels are retained for traceability only. The public mapping does not
+              assert undocumented system semantics, ownership, production interfaces, or production
+              performance.
             </p>
             <div className="mt-5 overflow-x-auto rounded-lg border border-border bg-background">
               <table className="w-full min-w-[760px] text-left text-sm">
-                <thead className="bg-muted/50"><tr><th className="p-3">Recommendation area</th><th className="p-3">Public PoC abstraction</th></tr></thead>
+                <thead className="bg-muted/50">
+                  <tr>
+                    <th className="p-3">Recommendation area</th>
+                    <th className="p-3">Public PoC abstraction</th>
+                  </tr>
+                </thead>
                 <tbody className="divide-y divide-border text-muted-foreground">
                   {alignment.map(([area, abstraction]) => (
-                    <tr key={area}><th className="p-3 align-top text-foreground">{area}</th><td className="p-3">{abstraction}</td></tr>
+                    <tr key={area}>
+                      <th className="p-3 align-top text-foreground">{area}</th>
+                      <td className="p-3">{abstraction}</td>
+                    </tr>
                   ))}
                 </tbody>
               </table>
@@ -572,20 +292,14 @@ export default function NboNrtAzureDatabricksPage() {
         </section>
 
         <section className="py-10">
-          <div className="mx-auto grid max-w-6xl gap-5 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
-            <Card><CardHeader><CardTitle>The decision to improve</CardTitle></CardHeader><CardContent className="text-sm leading-6 text-muted-foreground">Which eligible offer should be ranked for a customer at the current decision interval, with traceable data, decision output, and later feedback?</CardContent></Card>
-            <Card><CardHeader><CardTitle>Business challenge</CardTitle></CardHeader><CardContent className="text-sm leading-6 text-muted-foreground">Batch-oriented customer and offer signals may be stale when an offer is delivered. The target is a governed lower-latency recommendation flow aligned with defined business, data, and model intervals.</CardContent></Card>
-          </div>
-        </section>
-
-        <section className="border-y border-border bg-muted/25 py-10">
           <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-            <h2 className="text-2xl font-semibold tracking-tight text-foreground">PoC execution phases</h2>
+            <h2 className="text-2xl font-semibold tracking-tight text-foreground">
+              PoC execution phases
+            </h2>
             <p className="mt-3 max-w-4xl text-sm leading-6 text-muted-foreground">
-              <strong className="text-foreground">Execution flexibility:</strong> Phases represent
-              the current PoC delivery path. Activities may be refined, repeated, or reordered when
-              evidence, data quality, or model results require adjustment. Any change must remain
-              traceable through evidence and decision records.
+              Green means the activity executed or was verified. Amber means an active quality,
+              approval, or readiness gap. Red marks a failed gate. Gray marks work that has not
+              started or is not authorized.
             </p>
             <div className="mt-6 grid gap-5 lg:grid-cols-2">
               {phases.map((item) => (
@@ -599,36 +313,49 @@ export default function NboNrtAzureDatabricksPage() {
                     </div>
                   </CardHeader>
                   <CardContent className="space-y-4 text-sm leading-6 text-muted-foreground">
-                    <p><strong className="text-foreground">Description:</strong> {item.description}</p>
-                    <p><strong className="text-foreground">Current Result:</strong> {item.currentResult}</p>
-                    <p><strong className="text-foreground">Remark:</strong> {item.remark}</p>
+                    <p>
+                      <strong className="text-foreground">Description:</strong> {item.description}
+                    </p>
+                    <p>
+                      <strong className="text-foreground">Current result:</strong>{" "}
+                      {item.currentResult}
+                    </p>
+                    <p>
+                      <strong className="text-foreground">Boundary:</strong> {item.remark}
+                    </p>
                     <details className="group rounded-md border border-border bg-background">
                       <summary className="flex cursor-pointer list-none items-center justify-between gap-4 p-4 font-semibold text-foreground">
-                        <span>Details</span><span aria-hidden="true" className="text-primary group-open:rotate-45">+</span>
+                        <span>Sub-phase evidence</span>
+                        <span aria-hidden="true" className="text-primary group-open:rotate-45">
+                          +
+                        </span>
                       </summary>
-                      <div className="space-y-3 border-t border-border p-4">
-                        <div><strong className="text-foreground">Action:</strong><ul className="mt-1 list-disc space-y-1 pl-5">{item.actions.map((value) => <li key={value}>{value}</li>)}</ul></div>
-                        <p><strong className="text-foreground">Expected Result:</strong> {item.expectedResult}</p>
-                        <div className="overflow-x-auto">
-                          <table className="w-full min-w-[760px] text-left text-xs">
-                            <thead className="bg-muted/50"><tr><th className="p-2">Sub-phase</th><th className="p-2">Status</th><th className="p-2">Result</th></tr></thead>
-                            <tbody className="divide-y divide-border">
-                              {item.subphases.map(([subphase, status, result]) => (
-                                <tr key={subphase}><th className="p-2 align-top text-foreground">{subphase}</th><td className="p-2 align-top"><Badge variant="outline" className={statusBadgeClass(status)}>{status}</Badge></td><td className="p-2">{result}</td></tr>
-                              ))}
-                            </tbody>
-                          </table>
-                        </div>
-                        <p className="font-semibold text-foreground">Validation and technical notes</p>
-                        <ul className="list-disc space-y-1 pl-5">{item.details.map((value) => <li key={value}>{value}</li>)}</ul>
-                        {item.candidateExample ? (
-                          <div className="overflow-x-auto">
-                            <table className="w-full min-w-[820px] text-left text-xs">
-                              <thead className="bg-muted/50"><tr>{["customer_id_hash","offer_id","eligibility_status","exclusion_reason","event_timestamp","candidate_version"].map((column) => <th className="p-2" key={column}>{column}</th>)}</tr></thead>
-                              <tbody><tr className="border-t border-border"><td className="p-2 text-muted-foreground" colSpan={6}>Example schema only — no candidate rows exist yet.</td></tr></tbody>
-                            </table>
-                          </div>
-                        ) : null}
+                      <div className="overflow-x-auto border-t border-border p-4">
+                        <table className="w-full min-w-[760px] text-left text-xs">
+                          <thead className="bg-muted/50">
+                            <tr>
+                              <th className="p-2">Sub-phase</th>
+                              <th className="p-2">Status</th>
+                              <th className="p-2">Evidence / result</th>
+                            </tr>
+                          </thead>
+                          <tbody className="divide-y divide-border">
+                            {item.subphases.map(([subphase, status, result]) => (
+                              <tr key={subphase}>
+                                <th className="p-2 align-top text-foreground">{subphase}</th>
+                                <td className="p-2 align-top">
+                                  <Badge
+                                    variant="outline"
+                                    className={statusBadgeClass(status)}
+                                  >
+                                    {status}
+                                  </Badge>
+                                </td>
+                                <td className="p-2">{result}</td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
                       </div>
                     </details>
                   </CardContent>
@@ -638,132 +365,98 @@ export default function NboNrtAzureDatabricksPage() {
           </div>
         </section>
 
-        <section className="py-10" aria-labelledby="nbo-progress-title">
-          <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-            <h2 id="nbo-progress-title" className="text-2xl font-semibold tracking-tight text-foreground">
-              NBO–NRT progress and next executable boundary
-            </h2>
-            <p className="mt-3 max-w-4xl text-sm leading-6 text-muted-foreground">
-              Research and design progress are reported separately from dataset, cloud, and MLOps
-              implementation so completed evidence is visible without implying that the solution is built.
-            </p>
-            <div className="mt-6 grid gap-4 md:grid-cols-2">
-              {cockpitEvidenceSummary.map(([title, description]) => (
-                <Card key={title}>
-                  <CardContent className="space-y-2 p-5 text-sm leading-6 text-muted-foreground">
-                    <p className="font-semibold text-foreground">{title}</p>
-                    <p>{description}</p>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-            <div className="mt-8 space-y-6">
-              {progressGroups.map((group) => (
-                <Card key={group.title}>
-                  <CardHeader>
-                    <CardTitle>{group.title}</CardTitle>
-                    <p className="text-sm leading-6 text-muted-foreground">{group.summary}</p>
-                  </CardHeader>
-                  <CardContent className="space-y-4">
-                    <div className="overflow-x-auto">
-                      <table className="w-full min-w-[760px] text-left text-sm">
-                        <thead className="bg-muted/50">
-                          <tr><th className="p-3">Stage</th><th className="p-3">Status</th><th className="p-3">Current evidence</th></tr>
-                        </thead>
-                        <tbody className="divide-y divide-border text-muted-foreground">
-                          {group.stages.map(([stage, status, evidence]) => (
-                            <tr key={stage}>
-                              <th className="p-3 align-top text-foreground">{stage}</th>
-                              <td className="p-3 align-top"><Badge variant="outline" className={statusBadgeClass(status)}>{status}</Badge></td>
-                              <td className="p-3">{evidence}</td>
-                            </tr>
-                          ))}
-                        </tbody>
-                      </table>
-                    </div>
-                    <p className="rounded-md border border-border bg-muted/25 px-4 py-3 text-sm leading-6 text-muted-foreground">
-                      <strong className="text-foreground">Boundary:</strong> {group.boundary}
-                    </p>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-            <Card className="mt-6 border-emerald-700/40">
-              <CardHeader>
-                <CardTitle>ADLS Landing ✅ Proven</CardTitle>
-                <p className="text-sm leading-6 text-muted-foreground">
-                  12 artifacts · 11 canonical CSV tables · 805 rows
-                  <br />
-                  Byte-level read-back integrity: 12/12 matched
-                </p>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <p className="text-sm leading-6 text-muted-foreground">
-                  This is one governed NBO–NRT composite dataset package containing explicitly synthetic
-                  Telco decision-loop data and Bank Marketing methodology-lane evidence. It is not
-                  production customer data.
-                </p>
-                <div className="flex flex-wrap gap-3 text-sm">
-                  {phase5cEvidenceLinks.map(([label, href]) => (
-                    <a
-                      key={href}
-                      href={href}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="font-medium text-primary underline underline-offset-4 hover:text-primary/80"
-                    >
-                      {label}
-                    </a>
-                  ))}
-                </div>
-                <p className="rounded-md border border-slate-500 bg-slate-200 px-4 py-3 text-sm font-semibold text-slate-950 dark:border-slate-500 dark:bg-slate-800 dark:text-slate-100">
-                  Databricks Bronze ⬜ Not started
-                </p>
-                <p className="text-sm leading-6 text-muted-foreground">
-                  Progress reflects completed hands-on evidence, not conceptual understanding alone.
-                </p>
-              </CardContent>
-            </Card>
-          </div>
-        </section>
-
-        <section className="py-10">
-          <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-            <h2 className="text-2xl font-semibold tracking-tight text-foreground">Expandable sections</h2>
-            <div className="mt-6 space-y-3">
-              {disclosures.map((item) => (
-                <details key={item.title} className="group rounded-lg border border-border bg-card">
-                  <summary className="flex cursor-pointer list-none items-center justify-between gap-4 p-5 font-semibold text-foreground">
-                    <span>{item.title}</span><span className="flex items-center gap-3">{item.status ? <Badge variant="outline" className={statusBadgeClass(item.status)}>{item.status}</Badge> : null}<span aria-hidden="true" className="text-primary group-open:rotate-45">+</span></span>
-                  </summary>
-                  <div className="space-y-3 border-t border-border px-5 py-4 text-sm leading-6 text-muted-foreground">{item.body.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</div>
-                </details>
-              ))}
-            </div>
-          </div>
-        </section>
-
         <section className="border-y border-border bg-muted/25 py-10">
           <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-            <h2 className="text-2xl font-semibold tracking-tight text-foreground">Current evidence and readiness</h2>
-            <div className="mt-4 max-w-4xl space-y-3 text-sm leading-6 text-muted-foreground">
-              <p>NBO–NRT-specific local composite generation and ADLS landing/read-back evidence are proven within the bounded claim above.</p>
-              <p>Databricks Bronze and later layers, model training, MLflow, registry governance, inference, monitoring, and production readiness are not yet proven.</p>
+            <h2 className="text-2xl font-semibold tracking-tight text-foreground">
+              Model Run V1 — bounded appendix
+            </h2>
+            <div className="mt-5 grid gap-5 lg:grid-cols-2">
+              <Card>
+                <CardHeader>
+                  <CardTitle>Lifecycle evidence</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-3 text-sm leading-6 text-muted-foreground">
+                  <p>Simulation training dataset: <strong className="text-foreground">10,000 rows</strong></p>
+                  <p>MLflow run: <code>b12f16ab527c419b8a394f6f3d3d9f5a</code></p>
+                  <p>
+                    Registered model:{" "}
+                    <code>adb_nbo_nrt_mlops_dev.models.nbo_response_propensity_baseline</code>
+                  </p>
+                  <p>Version 1 · Alias <strong className="text-foreground">Candidate</strong></p>
+                  <p>Prediction and probability read-back: <strong className="text-foreground">verified</strong></p>
+                </CardContent>
+              </Card>
+              <Card>
+                <CardHeader>
+                  <CardTitle>Quality and threshold evidence</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="overflow-x-auto">
+                    <table className="w-full min-w-[420px] text-left text-sm">
+                      <tbody className="divide-y divide-border text-muted-foreground">
+                        {modelMetrics.map(([metric, value]) => (
+                          <tr key={metric}>
+                            <th className="p-2 text-foreground">{metric}</th>
+                            <td className="p-2">{value}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </CardContent>
+              </Card>
             </div>
+            <Alert className="mt-5 border-red-500/40 bg-red-500/5">
+              <AlertDescription className="text-sm leading-6">
+                <strong>Default threshold 0.50 failed for the positive class.</strong> Threshold
+                0.24 was analyzed, not approved. The Candidate alias must not be promoted to
+                Champion without real-world validation, approved business thresholds, and production
+                governance.
+              </AlertDescription>
+            </Alert>
+            <p className="mt-4 text-sm leading-6 text-muted-foreground">
+              Canonical evidence:{" "}
+              <a
+                className="font-medium text-primary underline underline-offset-4"
+                href="https://github.com/msararin/robert-knowledge-base/blob/5de785a272873823245746a1995d01d720e6afcc/kb/NBO_NRT_MODEL_RUN_V1_COCKPIT_STATUS_2026-08-05.md"
+                target="_blank"
+                rel="noreferrer"
+              >
+                NBO-NRT Model Run V1 Cockpit Status
+              </a>
+            </p>
           </div>
         </section>
 
         <section className="py-10">
           <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-            <h2 className="text-2xl font-semibold tracking-tight text-foreground">Executable next steps</h2>
-            <ol className="mt-4 list-decimal space-y-2 pl-5 text-sm leading-6 text-muted-foreground">{nextSteps.map((step) => <li key={step}>{step}</li>)}</ol>
-          </div>
-        </section>
-
-        <section className="border-t border-border py-10">
-          <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-            <h2 className="text-2xl font-semibold tracking-tight text-foreground">Evidence and source boundary</h2>
-            <p className="mt-4 max-w-4xl text-sm leading-6 text-muted-foreground">The canonical NBO–NRT Knowledge Base governs this page. The recommendation mapping is a public abstraction, and source-specific labels retain no undocumented semantics. The previous Churn use case informs layout only. No proprietary data, production credentials, operator-specific implementation, or production result is presented.</p>
+            <h2 className="text-2xl font-semibold tracking-tight text-foreground">
+              Current claim boundary
+            </h2>
+            <div className="mt-4 max-w-4xl space-y-3 text-sm leading-6 text-muted-foreground">
+              <p>
+                <strong className="text-foreground">Pipeline and MLOps execution:</strong> PASS
+              </p>
+              <p>
+                <strong className="text-foreground">Model registration and read-back:</strong> PASS
+              </p>
+              <p>
+                <strong className="text-foreground">Default threshold classification:</strong> FAIL
+              </p>
+              <p>
+                <strong className="text-foreground">Model discrimination:</strong> WEAK-TO-MODERATE
+              </p>
+              <p>
+                <strong className="text-foreground">Business readiness:</strong> NOT READY
+              </p>
+              <p>
+                <strong className="text-foreground">Production promotion:</strong> NOT AUTHORIZED
+              </p>
+              <p className="rounded-md border border-border bg-muted/25 px-4 py-3 font-semibold text-foreground">
+                SYNTHETIC_EXPERIMENT_ONLY — not operator behavior truth and not production
+                performance evidence.
+              </p>
+            </div>
           </div>
         </section>
       </main>
