@@ -17,7 +17,7 @@ const phases = [
     status: "In Progress",
     description: "Establish traceable non-production source inputs for the PoC.",
     currentResult:
-      "Research, candidate comparison, working-set selection, source-contract design, and synthetic-data design are complete. Dataset generation and Databricks ingestion have not started.",
+      "Research, working-set selection, contract design, local composite generation, and ADLS landing with byte-level read-back are proven. Databricks Bronze ingestion has not started.",
     actions: [
       "Define owner-created data contracts",
       "Generate or load synthetic or representative product, customer-event, transaction, and payment samples",
@@ -30,8 +30,9 @@ const phases = [
       ["Candidate comparison", "Evidence Verified", "Candidates compared against PoC needs, constraints, provenance, and reproducibility"],
       ["Working-set selection", "Evidence Verified", "Working set selected with documented rationale"],
       ["Source-contract design", "Design Complete", "Target contract designed across isolated evidence lanes"],
-      ["Synthetic-data design", "Design Complete — Not Executed", "Generation method, constraints, and provenance requirements specified"],
-      ["Dataset generation", "Not Started", "No NBO–NRT synthetic records generated"],
+      ["Synthetic-data design", "Evidence Verified", "Generation method, constraints, provenance, and evidence-lane separation were executed and validated locally"],
+      ["Dataset generation", "Evidence Verified", "11 related local tables and 805 rows generated across two explicitly separated evidence lanes"],
+      ["ADLS landing and read-back", "Evidence Verified", "12/12 local-to-ADLS byte hashes matched; authoritative manifest hash and row-count read-back passed"],
       ["Databricks Bronze ingestion", "Not Started", "No NBO–NRT ingestion read-back"],
     ],
     remark:
@@ -328,7 +329,7 @@ const progressGroups = [
   {
     title: "B. Data Implementation",
     summary:
-      "Local composite data implementation is proven; cloud loading and platform implementation have not started.",
+      "Local composite implementation and ADLS landing with byte-level read-back are proven; Databricks platform implementation has not started.",
     stages: [
       [
         "Local Composite Dataset Generation",
@@ -352,17 +353,21 @@ const progressGroups = [
       ],
       [
         "Claim Level",
-        "LOCAL_COMPOSITE_IMPLEMENTATION_EVIDENCE_ONLY",
-        "Local deterministic composite implementation evidence only; not real Telco customer data and not cloud or model evidence.",
+        "DRAFT_LOCAL_ONLY · LOCAL_COMPOSITE_DATA_PROVEN · ADLS_LANDING_AND_READBACK_PROVEN · DATABRICKS_BRONZE_NOT_STARTED",
+        "Bounded local composite and ADLS byte-level evidence only; not real Telco customer data, Databricks execution, model evidence, or production readiness.",
       ],
-      ["ADLS Landing", "NOT STARTED", "No upload package or Owner upload authorization exists."],
-      ["Unity Catalog Onboarding", "NOT STARTED", "Begins only after an authorized ADLS landing."],
+      [
+        "ADLS Landing",
+        "PROVEN",
+        "✅ Proven — 12 artifacts · 11 canonical CSV tables · 805 rows. Local ↔ ADLS SHA-256: 12/12 matched. Manifest verified · ADLS read-back passed.",
+      ],
+      ["Unity Catalog Onboarding", "NOT STARTED", "No NBO–NRT Unity Catalog onboarding evidence."],
       ["Bronze", "NOT STARTED", "No NBO–NRT Bronze table or read-back evidence."],
       ["Silver", "NOT STARTED", "No NBO–NRT Silver transformation or read-back evidence."],
       ["Features", "NOT STARTED", "No NBO–NRT model-ready feature table."],
     ],
     boundary:
-      "Phase 5B proves local composite generation and validation only. The 50-row Bank methodology lane is distinct from the 755-row synthetic Telco loop. ADLS → Unity Catalog → Bronze → Silver → Features have not started.",
+      "Progress reflects completed hands-on evidence, not conceptual understanding alone. The governed composite package keeps the 50-row Bank Marketing methodology lane distinct from the 755-row explicitly synthetic Telco decision-loop lane. It is not production customer data. Unity Catalog → Bronze → Silver → Features have not started.",
   },
   {
     title: "C. MLOps Lifecycle",
@@ -394,7 +399,30 @@ const cockpitEvidenceSummary = [
   ],
   [
     "Local Composite Data Implementation — Proven.",
-    "A deterministic NBO-NRT demonstration dataset was implemented locally across 11 related tables and 805 rows: 50 Bank Marketing methodology rows and 755 explicitly synthetic Telco decision-loop rows. All 47 validation assertions passed, and clean-room table and manifest hashes matched. Model development and Azure Databricks execution have not started.",
+    "A deterministic NBO-NRT demonstration dataset was implemented locally across 11 related tables and 805 rows: 50 Bank Marketing methodology rows and 755 explicitly synthetic Telco decision-loop rows. Model development and Databricks execution have not started.",
+  ],
+  [
+    "ADLS Landing — Proven.",
+    "The one governed composite package landed in ADLS with byte-level read-back matched against the local package. Databricks Bronze ingestion has not started.",
+  ],
+]
+
+const phase5cEvidenceLinks = [
+  [
+    "View ADLS configuration evidence",
+    "https://github.com/msararin/nbo-nrt-mlops-usecase/blob/1ffbab01d313680c0ab8a7cc44696a6dd606961f/evidence/phase5c-adls-landing/screenshots/01-adls-gen2-storage-created-redacted.png",
+  ],
+  [
+    "View ADLS artifact inventory",
+    "https://github.com/msararin/nbo-nrt-mlops-usecase/blob/1ffbab01d313680c0ab8a7cc44696a6dd606961f/evidence/phase5c-adls-landing/screenshots/02-adls-cli-list-12-artifacts.png",
+  ],
+  [
+    "View hash and row-count read-back evidence",
+    "https://github.com/msararin/nbo-nrt-mlops-usecase/blob/1ffbab01d313680c0ab8a7cc44696a6dd606961f/evidence/phase5c-adls-landing/screenshots/03-adls-hash-rowcount-final-pass.png",
+  ],
+  [
+    "View Phase 5C evidence index",
+    "https://github.com/msararin/nbo-nrt-mlops-usecase/blob/1ffbab01d313680c0ab8a7cc44696a6dd606961f/evidence/phase5c-adls-landing/README.md",
   ],
 ]
 
@@ -408,6 +436,7 @@ function statusBadgeClass(status: string) {
       "designed",
       "validated",
       "passed",
+      "proven",
       "evidence verified",
       "research complete",
     ]).has(normalized)
@@ -431,9 +460,7 @@ function statusBadgeClass(status: string) {
 }
 
 const nextSteps = [
-  "Define owner-created PoC contracts for product, event, transaction, payment, and offer data.",
-  "Generate synthetic or representative non-production inputs with explicit provenance.",
-  "Implement Bronze ingestion and Silver validation.",
+  "Use the proven landed composite package as bounded input for separately authorized Bronze ingestion and Silver validation.",
   "Create eligibility rules and a customer-offer candidate dataset.",
   "Train and compare a propensity or ranking baseline.",
   "Log parameters, metrics, artifacts, and lineage in MLflow.",
@@ -661,6 +688,42 @@ export default function NboNrtAzureDatabricksPage() {
                 </Card>
               ))}
             </div>
+            <Card className="mt-6 border-emerald-700/40">
+              <CardHeader>
+                <CardTitle>ADLS Landing ✅ Proven</CardTitle>
+                <p className="text-sm leading-6 text-muted-foreground">
+                  12 artifacts · 11 canonical CSV tables · 805 rows
+                  <br />
+                  Byte-level read-back integrity: 12/12 matched
+                </p>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <p className="text-sm leading-6 text-muted-foreground">
+                  This is one governed NBO–NRT composite dataset package containing explicitly synthetic
+                  Telco decision-loop data and Bank Marketing methodology-lane evidence. It is not
+                  production customer data.
+                </p>
+                <div className="flex flex-wrap gap-3 text-sm">
+                  {phase5cEvidenceLinks.map(([label, href]) => (
+                    <a
+                      key={href}
+                      href={href}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="font-medium text-primary underline underline-offset-4 hover:text-primary/80"
+                    >
+                      {label}
+                    </a>
+                  ))}
+                </div>
+                <p className="rounded-md border border-slate-500 bg-slate-200 px-4 py-3 text-sm font-semibold text-slate-950 dark:border-slate-500 dark:bg-slate-800 dark:text-slate-100">
+                  Databricks Bronze ⬜ Not started
+                </p>
+                <p className="text-sm leading-6 text-muted-foreground">
+                  Progress reflects completed hands-on evidence, not conceptual understanding alone.
+                </p>
+              </CardContent>
+            </Card>
           </div>
         </section>
 
@@ -684,8 +747,8 @@ export default function NboNrtAzureDatabricksPage() {
           <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
             <h2 className="text-2xl font-semibold tracking-tight text-foreground">Current evidence and readiness</h2>
             <div className="mt-4 max-w-4xl space-y-3 text-sm leading-6 text-muted-foreground">
-              <p>Prior foundation evidence exists, but it does not prove the NBO–NRT-specific flow.</p>
-              <p>NBO-specific contracts, latency, candidate generation, ranking, registry governance, delivery, identifier-protection checkpoints, reward feedback, drift monitoring, and production readiness are not yet proven.</p>
+              <p>NBO–NRT-specific local composite generation and ADLS landing/read-back evidence are proven within the bounded claim above.</p>
+              <p>Databricks Bronze and later layers, model training, MLflow, registry governance, inference, monitoring, and production readiness are not yet proven.</p>
             </div>
           </div>
         </section>
