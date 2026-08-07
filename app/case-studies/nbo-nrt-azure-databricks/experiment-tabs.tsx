@@ -156,71 +156,89 @@ function ExperimentOne() {
 }
 
 function ExperimentTwo() {
-  const nextPath = [
-    ["1", "Inventory Silver and candidate grain", "Confirm the smaller post-Silver dataset, keys, timestamps, feature grain, and one-row-per-decision × customer × offer contract."],
-    ["2", "Audit label provenance", "Determine how label/reward was generated, whether exposure actually occurred, the response window, and whether label-generating inputs overlap model features."],
-    ["3", "Register assumptions and rule classes", "Separate verified hard eligibility, assumed hard rules, and soft ranking assumptions; keep reason codes and support NO_OFFER."],
-    ["4", "Run Champion v0", "Use RULE_BASED_ELIGIBILITY_AND_RANKING so the first baseline does not depend on an unverified response label."],
-    ["5", "Evaluate low-volume stability", "Treat metrics as unstable and learning-only. Use the small dataset to expose data/decision weaknesses before adding synthetic volume."],
-    ["6", "Authorize Challenger only after audit", "A supervised challenger is allowed only as SYNTHETIC_PROXY_MODEL_FOR_LEARNING after generator leakage and target lineage are mapped."],
-    ["7", "Compare before scaling volume", "If a challenger is run, compare full proxy features, generator-dependent features removed, and a segment/rule holdout before deciding whether volume generation is useful."],
-    ["8", "Continue MLOps evidence", "Log rule/model version, MLflow evidence where applicable, Gold decision output, reason codes, telemetry, monitoring design, and the next gate decision."],
+  const flow = [
+    ["1", "Synthetic World Specification", "AIOS Data Team owns the experiment-world contract before any new data is released.", "G0 / G1", "Define"],
+    ["2", "Customer population + latent state", "Define bounded customer population structure and hidden state that can drive behavior without leaking oracle truth into features.", "G2 / G4", "Design"],
+    ["3", "Observable Telco behavior", "Generate observable customer behavior from the latent world while preserving realistic variability and provenance.", "G2 / G3", "Design"],
+    ["4", "Context / event generation", "Generate decision context, event timing, channel and related observable signals that connect customer state to a decision opportunity.", "G2 / G3", "Design"],
+    ["5", "Offer interaction", "Create offer-fit and candidate interaction logic using observed seed structure where available and explicit assumptions where the seed is sparse.", "G3 / G5", "Design"],
+    ["6", "Exposure", "Represent what was actually shown, preserve action/candidate membership and avoid treating non-selection as rejection.", "G3 / G5", "Design"],
+    ["7", "Probabilistic response", "Generate stochastic customer outcomes rather than deterministic labels; keep response timing, uncertainty and assumption lineage explicit.", "G5", "Design"],
+    ["8", "Hidden evaluation truth", "Keep latent/oracle information sealed from training features so generalization, leakage and holdout checks remain meaningful.", "G4 / G6 / G7", "Gate-controlled"],
   ]
 
-  const auditQuestions = [
-    "Which process created the candidate table?",
-    "Which process created the label or reward?",
-    "Which source columns were used?",
-    "Was random noise or a probability distribution used?",
-    "Were the rules deterministic or probabilistic?",
-    "Was the customer actually exposed to the offer?",
-    "What event defines a positive response?",
-    "What event defines a negative response?",
-    "What is the response window?",
-    "Can a customer respond through another channel?",
-    "Are label-generating variables also included as model features?",
-    "Does the generator encode the same relationship the model is expected to discover?",
+  const gates = [
+    ["G0", "Purpose & Claim", "Lock what the synthetic experiment is allowed to demonstrate and what it must not claim."],
+    ["G1", "Provenance / Reproducibility", "Require versioned rules, source/assumption labels, deterministic controls and reproducible generation evidence."],
+    ["G2", "Statistical Realism", "Check that generated distributions are plausible extensions of the governed seed rather than literal row replication."],
+    ["G3", "Behavioral Coherence", "Check that customer, context, eligibility, offer, exposure and response relationships remain internally coherent."],
+    ["G4", "Leakage / Oracle Separation", "Prevent hidden state, generator shortcuts or identifiers from becoming an easy proxy for evaluation truth."],
+    ["G5", "Outcome Independence", "Require stochastic outcome generation and prevent one feature, offer or rule from deterministically controlling the label."],
+    ["G6", "Hidden Challenge / Holdout", "Reserve a hidden challenge or holdout mechanism so the generated world can test generalization rather than memorization."],
+    ["G7", "Data Release Authorization", "Only after prior gates pass may the prepared Experiment 2 dataset be released to downstream modeling or MLOps execution."],
   ]
 
-  const assumptionFields = ["assumption_id", "assumption", "reason", "evidence", "evidence_status", "affected_tables", "risk_if_wrong", "mitigation", "validation_needed", "owner", "status"]
-  const requiredEvidence = ["DATA_ASSUMPTION_REGISTER.md", "LABEL_PROVENANCE_AUDIT.md", "CANDIDATE_GRAIN_AND_JOIN_CONTRACT.md", "GENERATOR_INPUT_TO_FEATURE_MAP.csv", "NBO_BASELINE_RISK_REGISTER.md", "CLAIM_BOUNDARY.md", "DECISION_TELEMETRY_SCHEMA.md", "BASELINE_GATE_DECISION.md"]
-  const riskRows = [
-    ["Unknown label-generation process", "Critical", "Supervised model claims deferred"],
-    ["No observed exposure", "High", "Do not interpret non-selection as rejection"],
-    ["No genuine non-response", "High", "No negative ground-truth claim"],
-    ["No counterfactual", "Critical for uplift", "No causal or incremental-value claim"],
-    ["Generator leakage", "High", "Generator-input mapping and ablation tests"],
-    ["Low volume", "Medium", "Treat metrics as unstable and learning-only"],
-    ["Synthetic reward", "High", "Document formula, version, inputs, and seed"],
-    ["Assumed eligibility", "Medium–High", "Separate verified rules from assumptions"],
-    ["Forced recommendation", "Medium", "Include NO_OFFER action"],
-    ["Misleading metrics", "High", "Report engineering and scientific evidence separately"],
-  ]
+  const provenanceLabels = ["OBSERVED_DISTRIBUTION", "OBSERVED_CONDITIONAL", "ASSUMPTION_DERIVED", "EXPLORATION_POLICY", "CONTROLLED_NOISE", "CONTROLLED_MISSINGNESS", "DRIFT_SCENARIO"]
 
   return <div className="space-y-10">
-    <section><div className="flex flex-wrap items-center gap-3"><h2 className="text-2xl font-semibold tracking-tight text-foreground">Experiment 2 — Baseline before volume expansion</h2><Badge variant="outline" className={statusBadgeClass("pending")}>GATE_A_PENDING_DATA_AUDIT</Badge></div><p className="mt-3 max-w-4xl text-sm leading-7 text-muted-foreground">This experiment deliberately stops at the smaller dataset produced after Silver, before the 10,000-row volume-generation step used in Experiment 1. The question is whether the governed Silver output can already support a transparent learning baseline and reveal what must be fixed before generating more data.</p><Alert className="mt-5 border-amber-500/30 bg-amber-500/5"><AlertDescription className="text-sm leading-6"><strong>Current label status: LABEL_PROVENANCE_UNKNOWN.</strong> Existing labels are not treated as ground truth until the label-generation process, exposure definition, response window, generator inputs, and leakage risks are audited.</AlertDescription></Alert></section>
+    <section>
+      <div className="flex flex-wrap items-center gap-3">
+        <h2 className="text-2xl font-semibold tracking-tight text-foreground">Experiment 2 — Data Preparation Status</h2>
+        <Badge variant="outline">AIOS DATA TEAM OWNS</Badge>
+      </div>
+      <p className="mt-3 max-w-4xl text-sm leading-7 text-muted-foreground">Experiment 2 starts from a detailed Silver-layer audit, not from a request to create more rows. The audit found governance metadata but sparse customer behavior, sparse offer semantics, deterministic heuristic ranking, synthetic sampled response and no business reward. The bounded response is to prepare a richer synthetic world through <strong className="text-foreground">Behavior Simulation v2 + Offer Enrichment v2</strong> under explicit data-readiness gates before downstream modeling.</p>
+      <Alert className="mt-5 border-amber-500/30 bg-amber-500/5"><AlertDescription className="text-sm leading-6"><strong>Key decision:</strong> do not confuse scale with readiness. First build and validate the world, provenance, behavioral coherence, oracle separation and outcome independence; modeling waits for G7 Data Release Authorization.</AlertDescription></Alert>
+    </section>
 
-    <section className="grid gap-5 lg:grid-cols-2"><Card><CardHeader><CardTitle>Champion v0</CardTitle></CardHeader><CardContent className="space-y-3 text-sm leading-7 text-muted-foreground"><Badge variant="outline">RULE_BASED_ELIGIBILITY_AND_RANKING</Badge><p>Customer Context → Eligibility Filtering → Candidate Generation → Deterministic Ranking → Top-N or NO_OFFER → Gold Decision Output.</p><p>Use hard eligibility, soft ranking, suppression/contact-frequency controls, traceable reason codes, versioned policy configuration, and decision telemetry.</p></CardContent></Card><Card><CardHeader><CardTitle>Challenger v0</CardTitle></CardHeader><CardContent className="space-y-3 text-sm leading-7 text-muted-foreground"><Badge variant="outline">SYNTHETIC_PROXY_MODEL_FOR_LEARNING</Badge><p>Not the Champion. It may be evaluated only after label provenance and generator dependencies are documented.</p><p>Any metrics describe consistency with the synthetic data-generating process, not expected real-world performance.</p></CardContent></Card></section>
+    <details className="group rounded-lg border border-border bg-background">
+      <summary className="cursor-pointer list-none p-5 font-semibold text-foreground">Key Decision — why Behavior Simulation v2 + Offer Enrichment v2</summary>
+      <div className="space-y-4 border-t border-border p-5 text-sm leading-7 text-muted-foreground">
+        <p><strong className="text-foreground">Observed from the Silver audit:</strong> governance structure existed, but the learning world remained too thin in customer behavior and offer semantics; ranking was heuristic/deterministic, response was synthetically sampled, and no business reward had been established.</p>
+        <p><strong className="text-foreground">Decision:</strong> authorize a data-preparation experiment that strengthens the synthetic world before relying on larger volume or model metrics.</p>
+        <p><strong className="text-foreground">Ownership:</strong> AIOS Data Team owns synthetic-world specification and readiness evidence. ML work remains downstream of the data-release gate.</p>
+      </div>
+    </details>
 
-    <section><h3 className="text-xl font-semibold text-foreground">Why run this before pumping volume?</h3><div className="mt-4 grid gap-4 md:grid-cols-3"><Card><CardContent className="p-5 text-sm leading-7 text-muted-foreground"><strong className="text-foreground">Scientific check</strong><p className="mt-2">Find whether apparent signal is real within the current synthetic design or mostly encoded by the generator.</p></CardContent></Card><Card><CardContent className="p-5 text-sm leading-7 text-muted-foreground"><strong className="text-foreground">Data check</strong><p className="mt-2">Expose grain, leakage, label, feature, and eligibility problems while the dataset is still easy to inspect.</p></CardContent></Card><Card><CardContent className="p-5 text-sm leading-7 text-muted-foreground"><strong className="text-foreground">MLOps check</strong><p className="mt-2">Prove repeatable transformation, scoring, Gold output, reason-code lineage, and telemetry without confusing scale with correctness.</p></CardContent></Card></div></section>
+    <section>
+      <h3 className="text-xl font-semibold text-foreground">Data Preparation flow</h3>
+      <p className="mt-3 max-w-4xl text-sm leading-7 text-muted-foreground">Summary stays visible; assumptions, rules, evidence and blockers stay expandable.</p>
+      <div className="mt-5 space-y-4">
+        {flow.map(([step,title,prepares,gate,status]) => <details key={step} className="group rounded-lg border border-border bg-background">
+          <summary className="cursor-pointer list-none p-5">
+            <div className="flex flex-wrap items-start justify-between gap-4">
+              <div><p className="font-semibold text-foreground"><span className="mr-3 inline-flex h-7 w-7 items-center justify-center rounded-full bg-primary text-xs font-bold text-primary-foreground">{step}</span>{title}</p><p className="mt-2 text-sm leading-6 text-muted-foreground">{prepares}</p></div>
+              <div className="flex flex-wrap gap-2"><Badge variant="outline">{status}</Badge><Badge variant="outline">{gate}</Badge></div>
+            </div>
+          </summary>
+          <div className="grid gap-4 border-t border-border p-5 text-sm leading-7 text-muted-foreground md:grid-cols-2">
+            <div><p className="font-semibold text-foreground">Reference principle</p><p className="mt-2">Use governed seed evidence where available, distinguish observed relationships from assumptions, and preserve lineage through every generated relationship.</p></div>
+            <div><p className="font-semibold text-foreground">What remains inside the gate</p><p className="mt-2">Objective, required evidence, assumptions, technical rules, validation evidence, blocker/open question and pass/fail decision.</p></div>
+          </div>
+        </details>)}
+      </div>
+    </section>
 
-    <section><h3 className="text-xl font-semibold text-foreground">Execution path</h3><div className="mt-5 grid gap-4 md:grid-cols-2">{nextPath.map(([step,title,detail]) => <Card key={step}><CardHeader><CardTitle className="text-lg"><span className="mr-2 text-primary">{step}.</span>{title}</CardTitle></CardHeader><CardContent className="text-sm leading-7 text-muted-foreground">{detail}</CardContent></Card>)}</div></section>
+    <details className="group rounded-lg border border-border bg-background">
+      <summary className="cursor-pointer list-none p-5 font-semibold text-foreground">Reference Principles — how synthetic preparation is grounded</summary>
+      <div className="space-y-5 border-t border-border p-5 text-sm leading-7 text-muted-foreground">
+        <div className="rounded-md border border-border bg-muted/20 p-4 font-mono text-xs leading-6 text-foreground sm:text-sm">Observed seed distributions<br/>+ observed conditional relationships<br/>+ controlled assumptions<br/>+ exploration policy<br/>+ stochastic noise<br/>+ delayed outcomes<br/>+ controlled missingness<br/>+ drift scenarios<br/>= governed synthetic experiment world</div>
+        <ul className="list-disc space-y-2 pl-5"><li>Do not duplicate rows to manufacture scale.</li><li>Do not overwrite canonical Bronze or Silver data.</li><li>Use a separate versioned simulation lane.</li><li>Generate outcomes probabilistically; no offer or feature may be hard-coded to always win.</li><li>Sparse seed cells require smoothing/backoff rather than direct probability copying.</li><li>Preserve deterministic reproducibility, customer-level split integrity and complete provenance labels.</li></ul>
+        <div className="flex flex-wrap gap-2">{provenanceLabels.map((label) => <Badge key={label} variant="outline">{label}</Badge>)}</div>
+      </div>
+    </details>
 
-    <section><h3 className="text-xl font-semibold text-foreground">Candidate grain and decision contract</h3><Card className="mt-5"><CardContent className="space-y-4 p-5 text-sm leading-7 text-muted-foreground"><p><strong className="text-foreground">Canonical grain:</strong> ONE_ROW_PER_DECISION_ID × CUSTOMER_ID × OFFER_ID.</p><p><strong className="text-foreground">Required fields:</strong> decision_id, customer_id/customer_token, decision_time, offer_id, is_eligible, eligibility_reason_codes, policy_version, feature_snapshot_time, data_provenance, candidate_generation_version.</p><p><strong className="text-foreground">Outcome fields when available:</strong> was_exposed, exposure_time, response, response_time, reward, reward_definition, label, label_source, label_version.</p><Alert className="border-amber-500/30 bg-amber-500/5"><AlertDescription>No candidate may be interpreted as a genuine negative unless was_exposed = true and the response window has completed without a qualifying response.</AlertDescription></Alert></CardContent></Card></section>
+    <section>
+      <h3 className="text-xl font-semibold text-foreground">G0–G7 readiness gates</h3>
+      <div className="mt-5 grid gap-4 md:grid-cols-2">{gates.map(([gate,title,objective]) => <details key={gate} className="group rounded-lg border border-border bg-background"><summary className="cursor-pointer list-none p-5"><div className="flex items-start justify-between gap-4"><div><p className="font-semibold text-foreground">{gate} — {title}</p><p className="mt-2 text-sm leading-6 text-muted-foreground">{objective}</p></div><Badge variant="outline">Gate</Badge></div></summary><div className="border-t border-border p-5 text-sm leading-7 text-muted-foreground"><p><strong className="text-foreground">Expandable evidence contract:</strong> objective → required evidence → current status → blocker/open question → pass/fail decision.</p></div></details>)}</div>
+    </section>
 
-    <section><h3 className="text-xl font-semibold text-foreground">Assumption register</h3><p className="mt-3 max-w-4xl text-sm leading-7 text-muted-foreground">Every unverified rule or design decision must be recorded rather than silently embedded in the experiment.</p><div className="mt-5 flex flex-wrap gap-2">{assumptionFields.map((field) => <Badge key={field} variant="outline">{field}</Badge>)}</div><p className="mt-4 text-sm leading-7 text-muted-foreground">Evidence status must distinguish Observed, Inferred, Synthetic, or Unknown; each assumption also records the risk if wrong, mitigation, validation needed, owner, and lifecycle status.</p></section>
-
-    <section><h3 className="text-xl font-semibold text-foreground">Label Provenance Audit</h3><div className="mt-5 grid gap-3 md:grid-cols-2">{auditQuestions.map((question, index) => <Card key={question}><CardContent className="p-4 text-sm leading-6 text-muted-foreground"><strong className="mr-2 text-foreground">{index + 1}.</strong>{question}</CardContent></Card>)}</div><div className="mt-5 flex flex-wrap gap-2">{["OBSERVED_LABEL_VERIFIED", "PROXY_LABEL_VERIFIED", "SYNTHETIC_LABEL_VERIFIED", "LABEL_PROVENANCE_PARTIALLY_KNOWN", "LABEL_PROVENANCE_UNKNOWN"].map((status) => <Badge key={status} variant="outline">{status}</Badge>)}</div></section>
-
-    <section><h3 className="text-xl font-semibold text-foreground">Generator leakage control</h3><p className="mt-3 max-w-4xl text-sm leading-7 text-muted-foreground">If the label is synthetic, map every label-generation input against model features and classify direct generator dependency, structural dependency, rule replication, conditional dependency, and stochastic components.</p><div className="mt-5 grid gap-4 md:grid-cols-3"><Card><CardHeader><CardTitle className="text-lg">Experiment A</CardTitle></CardHeader><CardContent className="text-sm leading-7 text-muted-foreground"><p>Full proxy feature set.</p><p className="mt-2"><strong className="text-foreground">Claim:</strong> TECHNICAL_REPRODUCIBILITY_ONLY</p></CardContent></Card><Card><CardHeader><CardTitle className="text-lg">Experiment B</CardTitle></CardHeader><CardContent className="text-sm leading-7 text-muted-foreground"><p>Remove generator-dependent features.</p><p className="mt-2"><strong className="text-foreground">Claim:</strong> GENERATOR_DEPENDENCY_SENSITIVITY</p></CardContent></Card><Card><CardHeader><CardTitle className="text-lg">Experiment C</CardTitle></CardHeader><CardContent className="text-sm leading-7 text-muted-foreground"><p>Hold out a segment, offer category, time period, or unseen interaction.</p><p className="mt-2"><strong className="text-foreground">Claim:</strong> LIMITED_SYNTHETIC_GENERALIZATION_TEST</p></CardContent></Card></div></section>
-
-    <section><h3 className="text-xl font-semibold text-foreground">Hard rules versus soft assumptions</h3><div className="mt-5 grid gap-4 md:grid-cols-3"><Card><CardHeader><CardTitle className="text-lg">Verified hard eligibility</CardTitle></CardHeader><CardContent className="text-sm leading-7 text-muted-foreground">Supported by product, legal, operational, or catalogue evidence: prepaid/postpaid compatibility, active-offer validity, device compatibility, geographic eligibility, plan eligibility, or regulatory restriction.</CardContent></Card><Card><CardHeader><CardTitle className="text-lg">Assumed hard eligibility</CardTitle></CardHeader><CardContent className="text-sm leading-7 text-muted-foreground">Temporarily required for the demo but unsupported by evidence. Mark ASSUMED_HARD_RULE_FOR_DEMO and minimize because a wrong hard rule removes candidates completely.</CardContent></Card><Card><CardHeader><CardTitle className="text-lg">Soft ranking assumptions</CardTitle></CardHeader><CardContent className="text-sm leading-7 text-muted-foreground">Affordability fit, usage fit, segment affinity, channel preference, or price sensitivity should adjust score rather than eliminate an offer unless evidence supports exclusion.</CardContent></Card></div></section>
-
-    <section><h3 className="text-xl font-semibold text-foreground">Risk register</h3><div className="mt-5 overflow-x-auto rounded-lg border border-border"><table className="w-full min-w-[760px] text-left text-sm"><thead className="bg-muted/50"><tr><th className="p-3">Risk</th><th className="p-3">Severity</th><th className="p-3">Current mitigation</th></tr></thead><tbody className="divide-y divide-border text-muted-foreground">{riskRows.map(([risk,severity,mitigation]) => <tr key={risk}><th className="p-3 text-foreground">{risk}</th><td className="p-3">{severity}</td><td className="p-3">{mitigation}</td></tr>)}</tbody></table></div></section>
-
-    <section><h3 className="text-xl font-semibold text-foreground">Gate logic and claim boundary</h3><div className="mt-5 overflow-x-auto rounded-lg border border-border"><table className="w-full min-w-[760px] text-left text-sm"><thead className="bg-muted/50"><tr><th className="p-3">Gate</th><th className="p-3">Meaning</th><th className="p-3">Current state</th></tr></thead><tbody className="divide-y divide-border text-muted-foreground"><tr><th className="p-3 text-foreground">Gate A</th><td className="p-3">Rule-based baseline authorization after Silver/grain/rule/assumption audit.</td><td className="p-3">Pending data audit</td></tr><tr><th className="p-3 text-foreground">Gate B</th><td className="p-3">Proxy supervised challenger only after label-generation and leakage audit.</td><td className="p-3">Not authorized</td></tr><tr><th className="p-3 text-foreground">Gate C</th><td className="p-3">Real model-performance claim requires observed exposure/response and representative evaluation data.</td><td className="p-3">Not authorized</td></tr><tr><th className="p-3 text-foreground">Gate D</th><td className="p-3">Causal, contextual-bandit, or RL claim requires exploration/control, logged action probabilities, policy history, reward delay, and offline policy evaluation.</td><td className="p-3">Not authorized</td></tr></tbody></table></div><Alert className="mt-5 border-slate-500/30 bg-slate-500/5"><AlertDescription className="text-sm leading-6"><strong>Approved public claim:</strong> this phase demonstrates a governed and reproducible NBO decision pipeline using synthetic or composite data on Azure Databricks. It covers candidate generation, policy-based ranking, experiment tracking, scoring, output governance, and monitoring design. Model effectiveness and commercial uplift have not been validated against observed customer exposure and response data.</AlertDescription></Alert></section>
-
-    <section><h3 className="text-xl font-semibold text-foreground">Required evidence files</h3><div className="mt-5 grid gap-3 md:grid-cols-2">{requiredEvidence.map((file) => <Card key={file}><CardContent className="p-4"><code className="text-sm text-foreground">{file}</code></CardContent></Card>)}</div><div className="mt-5 flex flex-wrap gap-2"><Badge variant="outline">PROCEED_WITH_RULE_BASED_LEARNING_BASELINE</Badge><Badge variant="outline">SUPERVISED_LABEL_TRUST_NOT_ESTABLISHED</Badge><Badge variant="outline">REAL_WORLD_MODEL_EFFECTIVENESS_NOT_CLAIMED</Badge><Badge variant="outline">RL_AND_BANDIT_NOT_AUTHORIZED</Badge></div></section>
+    <details className="group rounded-lg border border-border bg-background">
+      <summary className="cursor-pointer list-none p-5 font-semibold text-foreground">Supporting governance controls</summary>
+      <div className="space-y-4 border-t border-border p-5 text-sm leading-7 text-muted-foreground">
+        <p>Label provenance, assumption register, candidate grain, generator-to-feature leakage mapping, risk register and decision telemetry remain required supporting controls, but they sit under the relevant data-preparation gates rather than defining the Experiment 2 story by themselves.</p>
+        <p><strong className="text-foreground">Claim boundary:</strong> synthetic/composite learning evidence only. Real customer propensity, commercial uplift, causal effectiveness, production readiness, contextual-bandit readiness and RL readiness are not established by this preparation work.</p>
+      </div>
+    </details>
   </div>
 }
 
