@@ -26,7 +26,7 @@ export default function NboNrtAzureDatabricksPage() {
       <div className="mx-auto w-full max-w-5xl px-4 pt-4 sm:px-6 lg:px-8">
         <div className="flex justify-end">
           <div className="text-right text-sm leading-6 text-muted-foreground">
-            <p>Evidence on this page reconciled through 5 Aug 2026</p>
+            <p>Evidence on this page reconciled through 7 Aug 2026</p>
             <p>Curated static release — not a continuous live-status feed</p>
           </div>
         </div>
@@ -64,7 +64,67 @@ export default function NboNrtAzureDatabricksPage() {
           </div>
         </section>
 
-        <ExperimentTabs />
+        <div className="nbo-nrt-cockpit">
+          <ExperimentTabs />
+        </div>
+
+        <style>{`
+          .nbo-nrt-cockpit details {
+            transition: border-color 160ms ease, box-shadow 160ms ease, background-color 160ms ease;
+          }
+          .nbo-nrt-cockpit details > summary {
+            position: relative;
+            padding-right: 9.5rem !important;
+            background: color-mix(in srgb, hsl(var(--muted)) 42%, transparent);
+            border-radius: 0.5rem;
+            transition: background-color 160ms ease, color 160ms ease;
+          }
+          .nbo-nrt-cockpit details > summary:hover {
+            background: color-mix(in srgb, hsl(var(--primary)) 10%, hsl(var(--muted)) 38%);
+          }
+          .nbo-nrt-cockpit details > summary::after {
+            content: "Click to expand ↓";
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            border: 1px solid hsl(var(--border));
+            border-radius: 9999px;
+            padding: 0.25rem 0.6rem;
+            background: hsl(var(--background));
+            color: hsl(var(--primary));
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.01em;
+            white-space: nowrap;
+          }
+          .nbo-nrt-cockpit details[open] > summary::after {
+            content: "Details shown ↑";
+          }
+          .nbo-nrt-cockpit details[open] {
+            border-color: color-mix(in srgb, hsl(var(--primary)) 45%, hsl(var(--border)));
+            box-shadow: 0 0 0 1px color-mix(in srgb, hsl(var(--primary)) 14%, transparent);
+          }
+          @media (max-width: 640px) {
+            .nbo-nrt-cockpit details > summary {
+              padding-right: 2.75rem !important;
+            }
+            .nbo-nrt-cockpit details > summary::after {
+              content: "+";
+              right: 0.8rem;
+              width: 1.7rem;
+              height: 1.7rem;
+              display: inline-flex;
+              align-items: center;
+              justify-content: center;
+              padding: 0;
+              font-size: 1rem;
+            }
+            .nbo-nrt-cockpit details[open] > summary::after {
+              content: "−";
+            }
+          }
+        `}</style>
       </main>
       <SiteFooter />
     </div>
