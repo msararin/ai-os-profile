@@ -179,6 +179,32 @@ function ExperimentTwo() {
   ]
 
   const provenanceLabels = ["OBSERVED_DISTRIBUTION", "OBSERVED_CONDITIONAL", "ASSUMPTION_DERIVED", "EXPLORATION_POLICY", "CONTROLLED_NOISE", "CONTROLLED_MISSINGNESS", "DRIFT_SCENARIO"]
+  const glossary: Record<string, string> = {
+    "stochastic": "มีความสุ่มหรือความไม่แน่นอนแบบควบคุมได้ เช่น ลูกค้าที่มีบริบทคล้ายกันไม่จำเป็นต้องตอบสนองต่อ offer เหมือนกันทุกครั้ง",
+    "preserve lineage": "เก็บสายทางของข้อมูลไว้ครบว่า record นี้มาจาก source, rule, run หรือ transformation ใด เพื่อย้อนตรวจสอบและทำซ้ำได้",
+    "provenance": "ข้อมูลที่บอกที่มาและสถานะของข้อมูลหรือกฎ เช่น มาจากสิ่งที่สังเกตจริง ความสัมพันธ์ที่คำนวณได้ หรือสมมติฐานที่สร้างขึ้น",
+    "deterministic controls": "กลไกควบคุมที่ทำให้ใช้ input, configuration และ seed เดิมแล้วสามารถสร้างผลลัพธ์เดิมเพื่อทดสอบซ้ำได้",
+    "candidate grain": "ระดับความละเอียดของ candidate record เช่น หนึ่งแถวต่อ decision × customer × offer เพื่อป้องกันการ join หรือ label ผิดระดับ",
+    "real customer propensity": "แนวโน้มจริงของลูกค้าในการตอบสนองต่อ offer ซึ่งต้องพิสูจน์จากพฤติกรรมลูกค้าที่สังเกตได้จริง ไม่ใช่จาก synthetic data",
+  }
+  const glossaryPattern = /(Real customer propensity|preserve lineage|deterministic controls|candidate grain|provenance|stochastic)/gi
+  const withGlossary = (text: string) => text.split(glossaryPattern).map((part, index) => {
+    const key = part.toLowerCase()
+    const definition = glossary[key]
+    if (!definition) return part
+    return <span key={`${part}-${index}`} className="group/term relative inline-block cursor-help border-b border-dotted border-current" tabIndex={0}>{part}<span role="tooltip" className="pointer-events-none absolute bottom-full left-1/2 z-50 mb-2 hidden w-72 -translate-x-1/2 rounded-md border border-border bg-popover px-3 py-2 font-sans text-xs font-normal leading-5 text-popover-foreground shadow-lg group-hover/term:block group-focus/term:block">{definition}</span></span>
+  })
+
+  const principleExplanations = [
+    ["Observed seed distributions", "การกระจายที่เห็นจริงจาก seed", "ใช้ข้อมูลตั้งต้นเป็นฐานก่อนสร้างสิ่งใหม่ เช่น สัดส่วน segment หรือ response state ที่พบจริงใน governed seed"],
+    ["Observed conditional relationships", "ความสัมพันธ์ที่สังเกตได้", "ดูความสัมพันธ์ระหว่างตัวแปร ไม่ใช่แค่สัดส่วนเดี่ยว เช่น segment × event × channel มี pattern แตกต่างกัน"],
+    ["Controlled assumptions", "สมมติฐานที่สร้างเพิ่มอย่างควบคุม", "ใช้เมื่อ seed ไม่มีความหลากหลายพอ เช่น เพิ่มกรณี 0, 1, 2 หรือ 4 eligible offers และติดป้าย ASSUMPTION_DERIVED"],
+    ["Exploration policy", "นโยบายการสำรวจทางเลือก", "ไม่เลือก rank 1 ทุกครั้ง เพื่อให้ action space มีความหลากหลายและบันทึก probability ของ action ที่เลือกไว้"],
+    ["Stochastic noise", "ความไม่แน่นอนแบบสุ่มที่ควบคุมได้", "ลูกค้าที่คล้ายกันไม่ต้องตอบเหมือนกัน 100% เช่น คนหนึ่ง click แต่อีกคน ignore จาก probability draw"],
+    ["Delayed outcomes", "ผลลัพธ์ที่เกิดคนละเวลา", "จำลอง view → click → accept ที่เกิดห่างกัน ไม่บังคับให้ทุก outcome เกิดทันทีในแถวเดียว"],
+    ["Controlled missingness", "ข้อมูลขาดแบบตั้งใจและ trace ได้", "ใช้ทดสอบ robustness เช่น optional context มาช้าหรือหายบางส่วน แต่ key fields ต้องไม่ถูกทำลาย"],
+    ["Drift scenarios", "สถานการณ์ที่ distribution เปลี่ยน", "ใช้ทดสอบ monitoring เช่น channel migration, response-rate decay หรือ offer category ใหม่ โดยไม่ปนกับ baseline เงียบ ๆ"],
+  ]
 
   return <div className="space-y-10">
     <section>
@@ -187,7 +213,7 @@ function ExperimentTwo() {
         <Badge variant="outline">AIOS DATA TEAM OWNS</Badge>
       </div>
       <p className="mt-3 max-w-4xl text-sm leading-7 text-muted-foreground">Experiment 2 starts from a detailed Silver-layer audit, not from a request to create more rows. The audit found governance metadata but sparse customer behavior, sparse offer semantics, deterministic heuristic ranking, synthetic sampled response and no business reward. The bounded response is to prepare a richer synthetic world through <strong className="text-foreground">Behavior Simulation v2 + Offer Enrichment v2</strong> under explicit data-readiness gates before downstream modeling.</p>
-      <Alert className="mt-5 border-amber-500/30 bg-amber-500/5"><AlertDescription className="text-sm leading-6"><strong>Key decision:</strong> do not confuse scale with readiness. First build and validate the world, provenance, behavioral coherence, oracle separation and outcome independence; modeling waits for G7 Data Release Authorization.</AlertDescription></Alert>
+      <Alert className="mt-5 border-amber-500/30 bg-amber-500/5"><AlertDescription className="text-sm leading-6"><strong>Key decision:</strong> {withGlossary("do not confuse scale with readiness. First build and validate the world, provenance, behavioral coherence, oracle separation and outcome independence; modeling waits for G7 Data Release Authorization.")}</AlertDescription></Alert>
     </section>
 
     <details className="group rounded-lg border border-border bg-background">
@@ -206,12 +232,12 @@ function ExperimentTwo() {
         {flow.map(([step,title,prepares,gate,status]) => <details key={step} className="group rounded-lg border border-border bg-background">
           <summary className="cursor-pointer list-none p-5">
             <div className="flex flex-wrap items-start justify-between gap-4">
-              <div><p className="font-semibold text-foreground"><span className="mr-3 inline-flex h-7 w-7 items-center justify-center rounded-full bg-primary text-xs font-bold text-primary-foreground">{step}</span>{title}</p><p className="mt-2 text-sm leading-6 text-muted-foreground">{prepares}</p></div>
+              <div><p className="font-semibold text-foreground"><span className="mr-3 inline-flex h-7 w-7 items-center justify-center rounded-full bg-primary text-xs font-bold text-primary-foreground">{step}</span>{title}</p><p className="mt-2 text-sm leading-6 text-muted-foreground">{withGlossary(prepares)}</p></div>
               <div className="flex flex-wrap gap-2"><Badge variant="outline">{status}</Badge><Badge variant="outline">{gate}</Badge></div>
             </div>
           </summary>
           <div className="grid gap-4 border-t border-border p-5 text-sm leading-7 text-muted-foreground md:grid-cols-2">
-            <div><p className="font-semibold text-foreground">Reference principle</p><p className="mt-2">Use governed seed evidence where available, distinguish observed relationships from assumptions, and preserve lineage through every generated relationship.</p></div>
+            <div><p className="font-semibold text-foreground">Reference principle</p><p className="mt-2">{withGlossary("Use governed seed evidence where available, distinguish observed relationships from assumptions, and preserve lineage through every generated relationship.")}</p></div>
             <div><p className="font-semibold text-foreground">What remains inside the gate</p><p className="mt-2">Objective, required evidence, assumptions, technical rules, validation evidence, blocker/open question and pass/fail decision.</p></div>
           </div>
         </details>)}
@@ -221,22 +247,28 @@ function ExperimentTwo() {
     <details className="group rounded-lg border border-border bg-background">
       <summary className="cursor-pointer list-none p-5 font-semibold text-foreground">Reference Principles — how synthetic preparation is grounded</summary>
       <div className="space-y-5 border-t border-border p-5 text-sm leading-7 text-muted-foreground">
-        <div className="rounded-md border border-border bg-muted/20 p-4 font-mono text-xs leading-6 text-foreground sm:text-sm">Observed seed distributions<br/>+ observed conditional relationships<br/>+ controlled assumptions<br/>+ exploration policy<br/>+ stochastic noise<br/>+ delayed outcomes<br/>+ controlled missingness<br/>+ drift scenarios<br/>= governed synthetic experiment world</div>
-        <ul className="list-disc space-y-2 pl-5"><li>Do not duplicate rows to manufacture scale.</li><li>Do not overwrite canonical Bronze or Silver data.</li><li>Use a separate versioned simulation lane.</li><li>Generate outcomes probabilistically; no offer or feature may be hard-coded to always win.</li><li>Sparse seed cells require smoothing/backoff rather than direct probability copying.</li><li>Preserve deterministic reproducibility, customer-level split integrity and complete provenance labels.</li></ul>
+        <details className="group/principle rounded-md border border-border bg-muted/20">
+          <summary className="cursor-pointer list-none p-4 font-mono text-xs leading-6 text-foreground sm:text-sm">Observed seed distributions<br/>+ observed conditional relationships<br/>+ controlled assumptions<br/>+ exploration policy<br/>+ {withGlossary("stochastic")} noise<br/>+ delayed outcomes<br/>+ controlled missingness<br/>+ drift scenarios<br/>= governed synthetic experiment world</summary>
+          <div className="space-y-3 border-t border-border p-4 font-sans text-sm leading-7 text-muted-foreground">
+            {principleExplanations.map(([term,thai,example]) => <div key={term}><p className="font-semibold text-foreground">{term} — {thai}</p><p className="mt-1">ตัวอย่าง: {example}</p></div>)}
+            <p className="rounded-md border border-border bg-background p-3 font-semibold text-foreground">แนวคิดสำคัญ: เราไม่ได้ “ปั๊มจำนวนแถว” แต่สร้างโลกจำลองที่แยกชัดว่าอะไร observed, อะไรเป็นความสัมพันธ์ที่พบ, อะไรเป็น assumption และอะไรคือความไม่แน่นอนที่ตั้งใจใส่เข้ามา</p>
+          </div>
+        </details>
+        <ul className="list-disc space-y-2 pl-5"><li>Do not duplicate rows to manufacture scale.</li><li>Do not overwrite canonical Bronze or Silver data.</li><li>Use a separate versioned simulation lane.</li><li>{withGlossary("Generate outcomes stochastically; no offer or feature may be hard-coded to always win.")}</li><li>Sparse seed cells require smoothing/backoff rather than direct probability copying.</li><li>{withGlossary("Preserve deterministic reproducibility, customer-level split integrity and complete provenance labels.")}</li></ul>
         <div className="flex flex-wrap gap-2">{provenanceLabels.map((label) => <Badge key={label} variant="outline">{label}</Badge>)}</div>
       </div>
     </details>
 
     <section>
       <h3 className="text-xl font-semibold text-foreground">G0–G7 readiness gates</h3>
-      <div className="mt-5 grid gap-4 md:grid-cols-2">{gates.map(([gate,title,objective]) => <details key={gate} className="group rounded-lg border border-border bg-background"><summary className="cursor-pointer list-none p-5"><div className="flex items-start justify-between gap-4"><div><p className="font-semibold text-foreground">{gate} — {title}</p><p className="mt-2 text-sm leading-6 text-muted-foreground">{objective}</p></div><Badge variant="outline">Gate</Badge></div></summary><div className="border-t border-border p-5 text-sm leading-7 text-muted-foreground"><p><strong className="text-foreground">Expandable evidence contract:</strong> objective → required evidence → current status → blocker/open question → pass/fail decision.</p></div></details>)}</div>
+      <div className="mt-5 grid gap-4 md:grid-cols-2">{gates.map(([gate,title,objective]) => <details key={gate} className="group rounded-lg border border-border bg-background"><summary className="cursor-pointer list-none p-5"><div className="flex items-start justify-between gap-4"><div><p className="font-semibold text-foreground">{gate} — {title}</p><p className="mt-2 text-sm leading-6 text-muted-foreground">{withGlossary(objective)}</p></div><Badge variant="outline">Gate</Badge></div></summary><div className="border-t border-border p-5 text-sm leading-7 text-muted-foreground"><p><strong className="text-foreground">Expandable evidence contract:</strong> objective → required evidence → current status → blocker/open question → pass/fail decision.</p></div></details>)}</div>
     </section>
 
     <details className="group rounded-lg border border-border bg-background">
       <summary className="cursor-pointer list-none p-5 font-semibold text-foreground">Supporting governance controls</summary>
       <div className="space-y-4 border-t border-border p-5 text-sm leading-7 text-muted-foreground">
-        <p>Label provenance, assumption register, candidate grain, generator-to-feature leakage mapping, risk register and decision telemetry remain required supporting controls, but they sit under the relevant data-preparation gates rather than defining the Experiment 2 story by themselves.</p>
-        <p><strong className="text-foreground">Claim boundary:</strong> synthetic/composite learning evidence only. Real customer propensity, commercial uplift, causal effectiveness, production readiness, contextual-bandit readiness and RL readiness are not established by this preparation work.</p>
+        <p>{withGlossary("Label provenance, assumption register, candidate grain, generator-to-feature leakage mapping, risk register and decision telemetry remain required supporting controls, but they sit under the relevant data-preparation gates rather than defining the Experiment 2 story by themselves.")}</p>
+        <p><strong className="text-foreground">Claim boundary:</strong> {withGlossary("synthetic/composite learning evidence only. Real customer propensity, commercial uplift, causal effectiveness, production readiness, contextual-bandit readiness and RL readiness are not established by this preparation work.")}</p>
       </div>
     </details>
   </div>
