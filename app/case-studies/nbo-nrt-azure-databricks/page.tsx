@@ -105,6 +105,25 @@ export default function NboNrtAzureDatabricksPage() {
             border-color: color-mix(in srgb, hsl(var(--primary)) 45%, hsl(var(--border)));
             box-shadow: 0 0 0 1px color-mix(in srgb, hsl(var(--primary)) 14%, transparent);
           }
+
+          /* Experiment 1 only: reserve enough room for the right-side affordance so long titles wrap instead of colliding. */
+          @media (min-width: 641px) {
+            .nbo-nrt-cockpit > section > div > div.rounded-b-xl > div > section:first-of-type details > summary {
+              padding-right: 13.5rem !important;
+              overflow-wrap: anywhere;
+            }
+          }
+
+          /* Experiment 1 only: M5 is an inferred traceability label, not a known internal-system definition. */
+          .nbo-nrt-cockpit > section > div > div.rounded-b-xl > div > section:nth-of-type(2) tbody > tr:nth-child(4) > th::after {
+            content: "*";
+          }
+          .nbo-nrt-cockpit > section > div > div.rounded-b-xl > div > section:nth-of-type(2) tbody > tr:nth-child(4) > td::after {
+            content: "  M5* is assumed from the provided context; its actual internal meaning is unknown.";
+            font-weight: 600;
+            color: hsl(var(--foreground));
+          }
+
           @media (max-width: 640px) {
             .nbo-nrt-cockpit details > summary {
               padding-right: 2.75rem !important;
