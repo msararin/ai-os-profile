@@ -58,7 +58,9 @@ export function Experiment2StatusInjector() {
           return text === "Define" || text === "Design" || text === "Gate-controlled" || text.startsWith("Completed")
         })
         const statusNode = badges.at(-1)
-        if (statusNode) statusNode.textContent = status
+        if (statusNode && normalizedText(statusNode.textContent) !== status) {
+          statusNode.textContent = status
+        }
       }
 
       const gateSection = Array.from(root.querySelectorAll<HTMLElement>("section")).find((node) =>
@@ -79,19 +81,19 @@ export function Experiment2StatusInjector() {
 
     const scheduleInstall = () => {
       install()
-      window.setTimeout(install, 50)
-      window.setTimeout(install, 200)
-      window.setTimeout(install, 600)
+      window.setTimeout(install, 100)
     }
 
     scheduleInstall()
-    const observer = new MutationObserver(scheduleInstall)
+    const observer = new MutationObserver(install)
     observer.observe(document.body, { childList: true, subtree: true })
-    document.addEventListener("click", scheduleInstall, true)
+
+    const handleClick = () => window.setTimeout(install, 0)
+    document.addEventListener("click", handleClick, true)
 
     return () => {
       observer.disconnect()
-      document.removeEventListener("click", scheduleInstall, true)
+      document.removeEventListener("click", handleClick, true)
     }
   }, [])
 
