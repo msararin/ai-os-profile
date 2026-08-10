@@ -20,6 +20,18 @@ const stepStatus: Record<string, string> = {
 export function Experiment2StatusInjector() {
   useEffect(() => {
     const install = () => {
+      const experiment2Tab = Array.from(document.querySelectorAll<HTMLButtonElement>("button")).find((node) =>
+        normalizedText(node.textContent).startsWith("Experiment 2 — Post-Silver low-volume baseline"),
+      )
+      if (experiment2Tab) {
+        const targetTabText = "Experiment 2 — Post-Silver low-volume baseline (Currently Active)"
+        if (normalizedText(experiment2Tab.textContent) !== targetTabText) {
+          experiment2Tab.textContent = targetTabText
+        }
+        experiment2Tab.style.backgroundColor = "rgba(245, 158, 11, 0.14)"
+        experiment2Tab.style.borderBottomColor = "rgb(217, 119, 6)"
+      }
+
       const heading = Array.from(document.querySelectorAll<HTMLHeadingElement>("h2")).find(
         (node) => normalizedText(node.textContent) === "Experiment 2 — Data Preparation Status",
       )
@@ -27,12 +39,17 @@ export function Experiment2StatusInjector() {
       if (!root) return
 
       const intro = heading?.parentElement
-      if (intro && !intro.querySelector("[data-exp2-current-status]")) {
-        const badge = document.createElement("span")
-        badge.dataset.exp2CurrentStatus = "true"
-        badge.className = "inline-flex items-center rounded-full border border-amber-600/40 bg-amber-500/10 px-3 py-1 text-xs font-semibold text-amber-900 dark:text-amber-100"
-        badge.textContent = "DATA GATE REOPENED — candidate-set repair"
-        intro.appendChild(badge)
+      if (intro) {
+        let badge = intro.querySelector<HTMLElement>("[data-exp2-current-status]")
+        if (!badge) {
+          badge = document.createElement("span")
+          badge.dataset.exp2CurrentStatus = "true"
+          badge.className = "inline-flex items-center rounded-full border border-amber-600/40 bg-amber-500/10 px-3 py-1 text-xs font-semibold text-amber-900 dark:text-amber-100"
+          intro.appendChild(badge)
+        }
+        if (normalizedText(badge.textContent) !== "BASELINE UNDER INVESTIGATION") {
+          badge.textContent = "BASELINE UNDER INVESTIGATION"
+        }
       }
 
       const bundle = root.querySelector<HTMLDetailsElement>("[data-exp2-flow-bundle]")
