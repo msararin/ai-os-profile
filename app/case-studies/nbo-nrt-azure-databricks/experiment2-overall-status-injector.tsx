@@ -18,42 +18,42 @@ function createOverallStatus() {
 
     <div class="mt-5 space-y-5 text-sm leading-7 text-muted-foreground">
       <div class="rounded-lg border border-emerald-600/25 bg-emerald-500/5 p-4">
-        <p class="font-semibold text-foreground">Data preparation / handoff — ผ่านแล้ว</p>
+        <p class="font-semibold text-foreground">Data preparation / handoff — Complete</p>
         <ul class="mt-2 list-disc space-y-1 pl-5">
           <li>RC1 candidate set repaired</li>
-          <li>Databricks readback ผ่าน</li>
-          <li>temporal / leakage / exposure checks ผ่าน</li>
-          <li>training table และ preprocessed table พร้อม</li>
+          <li>Databricks readback passed</li>
+          <li>Temporal / leakage / exposure checks passed</li>
+          <li>Training table and preprocessed table are ready</li>
         </ul>
       </div>
 
       <div class="grid gap-4 lg:grid-cols-3">
         <div class="rounded-lg border border-emerald-600/25 bg-emerald-500/5 p-4">
-          <p class="font-semibold text-foreground">1. Feature engineering / split — ผ่านแล้ว</p>
+          <p class="font-semibold text-foreground">1. Feature engineering / split — Complete</p>
           <ul class="mt-2 list-disc space-y-1 pl-5">
-            <li>primary temporal split ล็อกแล้ว</li>
+            <li>Primary temporal split locked</li>
             <li>TRAIN <strong class="text-foreground">3,768</strong> / TEST <strong class="text-foreground">1,032</strong></li>
-            <li>Spark-native preprocessing fit บน <strong class="text-foreground">TRAIN only</strong> ผ่าน</li>
-            <li>leakage preflight ผ่าน</li>
+            <li>Spark-native preprocessing fit on <strong class="text-foreground">TRAIN only</strong> passed</li>
+            <li>Leakage preflight passed</li>
           </ul>
         </div>
 
         <div class="rounded-lg border border-emerald-600/25 bg-emerald-500/5 p-4">
-          <p class="font-semibold text-foreground">2. Baseline training — ทำแล้ว</p>
+          <p class="font-semibold text-foreground">2. Baseline training — Complete</p>
           <ul class="mt-2 list-disc space-y-1 pl-5">
-            <li>Spark ML Logistic Regression train สำเร็จ</li>
-            <li>TEST scoring สำเร็จ</li>
-            <li>Experiment 2 มี <strong class="text-foreground">actual model training evidence</strong> แล้ว</li>
+            <li>Spark ML Logistic Regression trained successfully</li>
+            <li>TEST scoring completed successfully</li>
+            <li>Experiment 2 now has <strong class="text-foreground">actual model training evidence</strong></li>
           </ul>
         </div>
 
         <div class="rounded-lg border border-amber-600/30 bg-amber-500/5 p-4">
-          <p class="font-semibold text-foreground">3. Model evaluation — พบปัญหาและกำลัง investigate</p>
+          <p class="font-semibold text-foreground">3. Model evaluation — Issue found; investigation in progress</p>
           <ul class="mt-2 list-disc space-y-1 pl-5">
             <li>TRAIN ROC-AUC ≈ <strong class="text-foreground">0.625</strong></li>
             <li>TEST ROC-AUC ≈ <strong class="text-foreground">0.449</strong></li>
-            <li>TEST PR-AUC ≈ <strong class="text-foreground">0.071</strong>, ใกล้ random baseline</li>
-            <li>default classification threshold ให้ prediction เป็น negative ทั้งหมด</li>
+            <li>TEST PR-AUC ≈ <strong class="text-foreground">0.071</strong>, close to the random baseline</li>
+            <li>The default classification threshold predicts every TEST row as negative</li>
           </ul>
         </div>
       </div>
@@ -61,10 +61,10 @@ function createOverallStatus() {
       <div class="rounded-lg border border-amber-600/30 bg-amber-500/5 p-4">
         <p class="font-semibold text-foreground">Investigation status</p>
         <ul class="mt-2 list-disc space-y-1 pl-5">
-          <li>input distribution ของบาง feature ค่อนข้าง stable แต่ <strong class="text-foreground">feature → outcome relationship ไม่ stable ระหว่าง TRAIN และ TEST</strong></li>
-          <li>หลัง inspect generator ยัง <strong class="text-foreground">ไม่มีหลักฐานว่า time เป็น explicit rule ที่สร้าง concept drift โดยตรง</strong></li>
-          <li>current hypothesis ชี้ไปที่ interaction ของ <strong class="text-foreground">selection policy + hidden latent variables + response funnel + sampling effects</strong> มากกว่า</li>
-          <li>ยังไม่ควร claim <code>temporal concept drift</code> จนกว่าจะ isolate causal mechanism หรือ reproduce drift pattern ได้ชัดเจน</li>
+          <li>Some feature input distributions are relatively stable, but the <strong class="text-foreground">feature → outcome relationship is not stable between TRAIN and TEST</strong></li>
+          <li>After inspecting the generator, there is <strong class="text-foreground">no evidence yet that time is an explicit rule directly creating concept drift</strong></li>
+          <li>The current hypothesis points more toward the interaction of <strong class="text-foreground">selection policy + hidden latent variables + response funnel + sampling effects</strong></li>
+          <li>Do not claim <code>temporal concept drift</code> until the causal mechanism is isolated or the drift pattern can be reproduced clearly</li>
         </ul>
       </div>
     </div>
