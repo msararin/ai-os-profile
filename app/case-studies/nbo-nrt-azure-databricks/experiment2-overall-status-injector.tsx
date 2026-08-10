@@ -78,7 +78,9 @@ export function Experiment2OverallStatusInjector() {
       const heading = Array.from(document.querySelectorAll<HTMLHeadingElement>("h2")).find(
         (node) => normalizedText(node.textContent) === "Experiment 2 — Data Preparation Status",
       )
-      const root = heading?.closest<HTMLDivElement>("div.space-y-10")
+      if (!heading) return
+
+      const root = heading.closest<HTMLDivElement>("div.space-y-10")
       if (!root || root.querySelector("[data-exp2-overall-status]")) return
 
       const introSection = heading.closest<HTMLElement>("section")
