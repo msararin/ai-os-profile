@@ -63,10 +63,57 @@ function createOverallStatus() {
         <ul class="mt-2 list-disc space-y-1 pl-5">
           <li>Some feature input distributions are relatively stable, but the <strong class="text-foreground">feature → outcome relationship is not stable between TRAIN and TEST</strong></li>
           <li>After inspecting the generator, there is <strong class="text-foreground">no evidence yet that time is an explicit rule directly creating concept drift</strong></li>
-          <li>The current hypothesis points more toward the interaction of <strong class="text-foreground">selection policy + hidden latent variables + response funnel + sampling effects</strong></li>
+          <li>First-pass screening does not support policy-version change, major cohort shift, response-timing shift, or Logistic Regression simplicity as the primary explanation</li>
           <li>Do not claim <code>temporal concept drift</code> until the causal mechanism is isolated or the drift pattern can be reproduced clearly</li>
         </ul>
       </div>
+
+      <details class="rounded-lg border border-border bg-muted/20">
+        <summary class="cursor-pointer list-none p-4 font-semibold text-foreground">Root-cause investigation — hypothesis results</summary>
+        <div class="space-y-4 border-t border-border p-4">
+          <div>
+            <p class="font-semibold text-foreground">H1 · Selection-policy effect — Not supported by policy-version change</p>
+            <p>TRAIN and TEST both used <code>synthetic-decision-time-heuristic-v1</code>. Candidate-set repair fixed the ranking-structure blocker, but did not solve model generalization.</p>
+          </div>
+
+          <div>
+            <p class="font-semibold text-foreground">H2 · Hidden / latent generator-side effect — Not supported as primary</p>
+            <p><code>outcome_probability_assumption</code> carries modest label signal, but the positive-vs-negative separation remains present in both TRAIN and TEST rather than collapsing at the temporal boundary.</p>
+          </div>
+
+          <div>
+            <p class="font-semibold text-foreground">H3 · Response-funnel effect — Partially supported, not primary</p>
+            <p>ACCEPTED rises from <strong class="text-foreground">5.33%</strong> in TRAIN to <strong class="text-foreground">7.17%</strong> in TEST, while CLICKED / VIEWED / IGNORED shares and response timing remain broadly stable.</p>
+          </div>
+
+          <div>
+            <p class="font-semibold text-foreground">H4 · Sampling / cohort effect — Not supported as primary</p>
+            <p>Checked device capability, subscriber type, tenure, spend, usage, utilization and contract-duration composition remain broadly stable across TRAIN and TEST.</p>
+          </div>
+
+          <div>
+            <p class="font-semibold text-foreground">H5 · Model specification / nonlinear interactions — Not supported as primary</p>
+            <div class="mt-2 overflow-x-auto">
+              <table class="w-full min-w-[620px] text-left text-xs">
+                <thead class="bg-muted/50">
+                  <tr><th class="p-2">Model</th><th class="p-2">TRAIN ROC-AUC</th><th class="p-2">TRAIN PR-AUC</th><th class="p-2">TEST ROC-AUC</th><th class="p-2">TEST PR-AUC</th></tr>
+                </thead>
+                <tbody class="divide-y divide-border">
+                  <tr><th class="p-2 text-foreground">Logistic Regression</th><td class="p-2">~0.625</td><td class="p-2">~0.085</td><td class="p-2">~0.449</td><td class="p-2">~0.071</td></tr>
+                  <tr><th class="p-2 text-foreground">Random Forest</th><td class="p-2">0.8302</td><td class="p-2">0.4288</td><td class="p-2">0.4667</td><td class="p-2">0.0673</td></tr>
+                  <tr><th class="p-2 text-foreground">GBT</th><td class="p-2">0.8716</td><td class="p-2">0.4224</td><td class="p-2">0.4966</td><td class="p-2">0.0730</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="mt-2">RF and GBT learn much stronger TRAIN discrimination, but the gain does not generalize. GBT reaches only approximately random TEST ROC-AUC; RF remains below random. Increasing complexity alone does not solve the future-period failure.</p>
+          </div>
+
+          <div class="rounded-md border border-amber-600/30 bg-amber-500/5 p-3">
+            <p class="font-semibold text-foreground">Current synthesis</p>
+            <p>The remaining investigation should focus on which model-visible feature→label relationships change across the temporal boundary, and whether the synthetic outcome-generation mechanism creates relationships that are unstable or insufficiently observable in the RC1 feature set. No tuning or promotion is authorized yet.</p>
+          </div>
+        </div>
+      </details>
     </div>
   `
   return section
