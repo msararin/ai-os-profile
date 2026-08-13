@@ -155,94 +155,198 @@ function ExperimentOne() {
   </div>
 }
 
-function ExperimentTwo() {
-  const sharedFoundation = [
-    ["Governed dataset handoff", "Passed", "RC1 model-visible data preparation and release controls passed before downstream modeling."],
-    ["Temporal and leakage controls", "Passed", "TRAIN / TEST separation, temporal checks, leakage preflight and exposure controls were validated before modeling."],
-    ["Synthetic decision environment", "Passed", "Both lanes use the same bounded synthetic NBO/NRT world and the same synthetic-learning claim ceiling."],
-    ["Persisted lineage", "Verified", "Unity Catalog artifacts preserve the restart point and allow recovery without silently regenerating the experiment data."],
+function ExperimentTwoA() {
+  const flow = [
+    ["1", "Synthetic World Specification", "AIOS Data Team owns the experiment-world contract before any new data is released.", "G0 / G1", "Define"],
+    ["2", "Customer population + latent state", "Define bounded customer population structure and hidden state that can drive behavior without leaking oracle truth into features.", "G2 / G4", "Design"],
+    ["3", "Observable Telco behavior", "Generate observable customer behavior from the latent world while preserving realistic variability and provenance.", "G2 / G3", "Design"],
+    ["4", "Context / event generation", "Generate decision context, event timing, channel and related observable signals that connect customer state to a decision opportunity.", "G2 / G3", "Design"],
+    ["5", "Offer interaction", "Create offer-fit and candidate interaction logic using observed seed structure where available and explicit assumptions where the seed is sparse.", "G3 / G5", "Design"],
+    ["6", "Exposure", "Represent what was actually shown, preserve action/candidate membership and avoid treating non-selection as rejection.", "G3 / G5", "Design"],
+    ["7", "Probabilistic response", "Generate stochastic customer outcomes rather than deterministic labels; keep response timing, uncertainty and assumption lineage explicit.", "G5", "Design"],
+    ["8", "Hidden evaluation truth", "Keep latent/oracle information sealed from training features so generalization, leakage and holdout checks remain meaningful.", "G4 / G6 / G7", "Gate-controlled"],
   ]
 
-  const supervisedSteps = [
-    ["1", "Train supervised response baseline", "Train a Spark ML Logistic Regression baseline on the governed TRAIN partition.", "A simple classifier establishes whether observable features can generalize to held-out response labels.", "TRAIN ROC-AUC ≈ 0.625.", "Training performance alone is not enough to approve the model."],
-    ["2", "Evaluate held-out TEST", "Score the locked TEST partition and compare discrimination against the random baseline.", "Held-out evaluation tests whether the response model generalizes beyond the training period.", "TEST ROC-AUC ≈ 0.449; TEST PR-AUC ≈ 0.071, near the random baseline for the imbalanced label.", "This does not support model promotion or production response prediction."],
-    ["3", "Record the generalization issue", "Keep the failed held-out evidence visible rather than tuning it away or replacing it with policy results.", "A model-quality failure is different from an infrastructure failure or a policy-evaluation result.", "Status: GENERALIZATION ISSUE / INVESTIGATION.", "Experiment 2B does not remediate or validate Experiment 2A."],
+  const gates = [
+    ["G0", "Purpose & Claim", "Lock what the synthetic experiment is allowed to demonstrate and what it must not claim."],
+    ["G1", "Provenance / Reproducibility", "Require versioned rules, source/assumption labels, deterministic controls and reproducible generation evidence."],
+    ["G2", "Statistical Realism", "Check that generated distributions are plausible extensions of the governed seed rather than literal row replication."],
+    ["G3", "Behavioral Coherence", "Check that customer, context, eligibility, offer, exposure and response relationships remain internally coherent."],
+    ["G4", "Leakage / Oracle Separation", "Prevent hidden state, generator shortcuts or identifiers from becoming an easy proxy for evaluation truth."],
+    ["G5", "Outcome Independence", "Require stochastic outcome generation and prevent one feature, offer or rule from deterministically controlling the label."],
+    ["G6", "Hidden Challenge / Holdout", "Reserve a hidden challenge or holdout mechanism so the generated world can test generalization rather than memorization."],
+    ["G7", "Data Release Authorization", "Only after prior gates pass may the prepared Experiment 2 dataset be released to downstream modeling or MLOps execution."],
   ]
 
-  const opeSteps = [
-    ["1", "Use persisted logged interactions", "Resume from simulation.bandit_logged_interactions_v0_2 after the Databricks session reset.", "Persisted logged actions, greedy actions, behavior propensities and observed rewards make the OPE calculation reproducible without regenerating the world.", "10,000 rows recovered; zero null or non-positive chosen-action probabilities.", "Evidence remains bounded to the synthetic logged interaction distribution."],
-    ["2", "Define deterministic greedy target policy", "Compare the logged chosen action with greedy_action and construct the IPS importance weight from chosen_action_probability.", "This asks what expected reward would look like if the action-selection rule changed while staying inside logged support.", "Target/logged action match rate 84.54%; mean importance weight 0.9986; max weight 1.3889.", "High overlap helps support, but it also means the target policy is not radically different from the behavior policy."],
-    ["3", "Check TRAIN / TEST OPE consistency", "Calculate behavior reward, IPS and SNIPS separately on TRAIN and held-out TEST.", "The split checks whether estimated policy lift keeps the same direction outside the training partition.", "TRAIN: IPS +1.24 pp, SNIPS +1.53 pp. TEST: IPS +2.02 pp, SNIPS +1.25 pp.", "Directional consistency is evidence for offline policy value, not production conversion uplift."],
-    ["4", "Quantify TEST uncertainty", "Bootstrap the TEST partition for 500 replicates using deterministic seed 20260813.", "Confidence intervals show whether the positive point estimate survives sampling variation within the held-out synthetic data.", "IPS lift 95% CI: +0.60 to +3.22 pp. SNIPS lift 95% CI: +0.31 to +2.15 pp; both intervals remain above zero.", "Bootstrap support does not remove the synthetic-to-production validity gap."],
-    ["5", "Next gate — action-level support", "Inspect support / positivity by target action before increasing policy complexity.", "Overall averages can hide an action with weak logged support.", "Next diagnostic queued: action-level target share, match rate, propensity and max importance weight.", "No stronger policy-improvement claim until action-level support is checked."],
-  ]
+  const provenanceLabels = ["OBSERVED_DISTRIBUTION", "OBSERVED_CONDITIONAL", "ASSUMPTION_DERIVED", "EXPLORATION_POLICY", "CONTROLLED_NOISE", "CONTROLLED_MISSINGNESS", "DRIFT_SCENARIO"]
+  const glossary: Record<string, string> = {
+    "stochastic": "มีความสุ่มหรือความไม่แน่นอนแบบควบคุมได้ เช่น ลูกค้าที่มีบริบทคล้ายกันไม่จำเป็นต้องตอบสนองต่อ offer เหมือนกันทุกครั้ง",
+    "preserve lineage": "เก็บสายทางของข้อมูลไว้ครบว่า record นี้มาจาก source, rule, run หรือ transformation ใด เพื่อย้อนตรวจสอบและทำซ้ำได้",
+    "provenance": "ข้อมูลที่บอกที่มาและสถานะของข้อมูลหรือกฎ เช่น มาจากสิ่งที่สังเกตจริง ความสัมพันธ์ที่คำนวณได้ หรือสมมติฐานที่สร้างขึ้น",
+    "deterministic controls": "กลไกควบคุมที่ทำให้ใช้ input, configuration และ seed เดิมแล้วสามารถสร้างผลลัพธ์เดิมเพื่อทดสอบซ้ำได้",
+    "candidate grain": "ระดับความละเอียดของ candidate record เช่น หนึ่งแถวต่อ decision × customer × offer เพื่อป้องกันการ join หรือ label ผิดระดับ",
+    "real customer propensity": "แนวโน้มจริงของลูกค้าในการตอบสนองต่อ offer ซึ่งต้องพิสูจน์จากพฤติกรรมลูกค้าที่สังเกตได้จริง ไม่ใช่จาก synthetic data",
+  }
+  const glossaryPattern = /(Real customer propensity|preserve lineage|deterministic controls|candidate grain|provenance|stochastic)/gi
+  const withGlossary = (text: string) => text.split(glossaryPattern).map((part, index) => {
+    const key = part.toLowerCase()
+    const definition = glossary[key]
+    if (!definition) return part
+    return <span key={`${part}-${index}`} className="group/term relative inline-block cursor-help border-b border-dotted border-current" tabIndex={0}>{part}<span role="tooltip" className="pointer-events-none absolute bottom-full left-1/2 z-50 mb-2 hidden w-72 -translate-x-1/2 rounded-md border border-border bg-popover px-3 py-2 font-sans text-xs font-normal leading-5 text-popover-foreground shadow-lg group-hover/term:block group-focus/term:block">{definition}</span></span>
+  })
 
-  const laneComparison = [
-    ["Business question", "Who is likely to respond?", "Which action-selection policy has higher expected logged reward?"],
-    ["Method", "Supervised Logistic Regression", "Contextual-bandit offline policy evaluation"],
-    ["Primary metrics", "ROC-AUC / PR-AUC", "IPS / SNIPS + bootstrap CI"],
-    ["Held-out result", "Generalization issue", "Positive TEST policy-value estimate with statistical support"],
-    ["Promotion meaning", "Not promotable", "Passed only inside the synthetic logged environment"],
+  const principleExplanations = [
+    ["Observed seed distributions", "การกระจายที่เห็นจริงจาก seed", "ใช้ข้อมูลตั้งต้นเป็นฐานก่อนสร้างสิ่งใหม่ เช่น สัดส่วน segment หรือ response state ที่พบจริงใน governed seed"],
+    ["Observed conditional relationships", "ความสัมพันธ์ที่สังเกตได้", "ดูความสัมพันธ์ระหว่างตัวแปร ไม่ใช่แค่สัดส่วนเดี่ยว เช่น segment × event × channel มี pattern แตกต่างกัน"],
+    ["Controlled assumptions", "สมมติฐานที่สร้างเพิ่มอย่างควบคุม", "ใช้เมื่อ seed ไม่มีความหลากหลายพอ เช่น เพิ่มกรณี 0, 1, 2 หรือ 4 eligible offers และติดป้าย ASSUMPTION_DERIVED"],
+    ["Exploration policy", "นโยบายการสำรวจทางเลือก", "ไม่เลือก rank 1 ทุกครั้ง เพื่อให้ action space มีความหลากหลายและบันทึก probability ของ action ที่เลือกไว้"],
+    ["Stochastic noise", "ความไม่แน่นอนแบบสุ่มที่ควบคุมได้", "ลูกค้าที่คล้ายกันไม่ต้องตอบเหมือนกัน 100% เช่น คนหนึ่ง click แต่อีกคน ignore จาก probability draw"],
+    ["Delayed outcomes", "ผลลัพธ์ที่เกิดคนละเวลา", "จำลอง view → click → accept ที่เกิดห่างกัน ไม่บังคับให้ทุก outcome เกิดทันทีในแถวเดียว"],
+    ["Controlled missingness", "ข้อมูลขาดแบบตั้งใจและ trace ได้", "ใช้ทดสอบ robustness เช่น optional context มาช้าหรือหายบางส่วน แต่ key fields ต้องไม่ถูกทำลาย"],
+    ["Drift scenarios", "สถานการณ์ที่ distribution เปลี่ยน", "ใช้ทดสอบ monitoring เช่น channel migration, response-rate decay หรือ offer category ใหม่ โดยไม่ปนกับ baseline เงียบ ๆ"],
   ]
 
   return <div className="space-y-10">
     <section>
       <div className="flex flex-wrap items-center gap-3">
-        <h2 className="text-2xl font-semibold tracking-tight text-foreground">Experiment 2 — Shared Foundation, Two Evidence Lanes</h2>
-        <Badge variant="outline">2A + 2B</Badge>
+        <h2 className="text-2xl font-semibold tracking-tight text-foreground">Experiment 2 — Data Preparation Status</h2>
+        <Badge variant="outline">AIOS DATA TEAM OWNS</Badge>
       </div>
-      <p className="mt-3 max-w-4xl text-sm leading-7 text-muted-foreground">Experiment 2 now separates two sibling evaluations that share the same governed synthetic foundation but answer different questions. <strong className="text-foreground">Experiment 2A</strong> evaluates supervised response prediction. <strong className="text-foreground">Experiment 2B</strong> evaluates an action-selection policy from logged bandit interactions. A positive result in 2B does not repair the model-quality issue in 2A.</p>
-      <Alert className="mt-5 border-sky-500/30 bg-sky-500/5"><AlertDescription className="text-sm leading-6"><strong>Structure rule:</strong> shared data lineage and claim ceiling; separate methods, metrics, failure modes and promotion gates.</AlertDescription></Alert>
+      <p className="mt-3 max-w-4xl text-sm leading-7 text-muted-foreground">Experiment 2 starts from a detailed Silver-layer audit, not from a request to create more rows. The audit found governance metadata but sparse customer behavior, sparse offer semantics, deterministic heuristic ranking, synthetic sampled response and no business reward. The bounded response is to prepare a richer synthetic world through <strong className="text-foreground">Behavior Simulation v2 + Offer Enrichment v2</strong> under explicit data-readiness gates before downstream modeling.</p>
+      <Alert className="mt-5 border-amber-500/30 bg-amber-500/5"><AlertDescription className="text-sm leading-6"><strong>Key decision:</strong> {withGlossary("do not confuse scale with readiness. First build and validate the world, provenance, behavioral coherence, oracle separation and outcome independence; modeling waits for G7 Data Release Authorization.")}</AlertDescription></Alert>
+    </section>
+
+    <details className="group rounded-lg border border-border bg-background">
+      <summary className="cursor-pointer list-none p-5 font-semibold text-foreground">Key Decision — why Behavior Simulation v2 + Offer Enrichment v2</summary>
+      <div className="space-y-4 border-t border-border p-5 text-sm leading-7 text-muted-foreground">
+        <p><strong className="text-foreground">Observed from the Silver audit:</strong> governance structure existed, but the learning world remained too thin in customer behavior and offer semantics; ranking was heuristic/deterministic, response was synthetically sampled, and no business reward had been established.</p>
+        <p><strong className="text-foreground">Decision:</strong> authorize a data-preparation experiment that strengthens the synthetic world before relying on larger volume or model metrics.</p>
+        <p><strong className="text-foreground">Ownership:</strong> AIOS Data Team owns synthetic-world specification and readiness evidence. ML work remains downstream of the data-release gate.</p>
+      </div>
+    </details>
+
+    <section>
+      <h3 className="text-xl font-semibold text-foreground">Data Preparation flow</h3>
+      <p className="mt-3 max-w-4xl text-sm leading-7 text-muted-foreground">Summary stays visible; assumptions, rules, evidence and blockers stay expandable.</p>
+      <div className="mt-5 space-y-4">
+        {flow.map(([step,title,prepares,gate,status]) => <details key={step} className="group rounded-lg border border-border bg-background">
+          <summary className="cursor-pointer list-none p-5">
+            <div className="flex flex-wrap items-start justify-between gap-4">
+              <div><p className="font-semibold text-foreground"><span className="mr-3 inline-flex h-7 w-7 items-center justify-center rounded-full bg-primary text-xs font-bold text-primary-foreground">{step}</span>{title}</p><p className="mt-2 text-sm leading-6 text-muted-foreground">{withGlossary(prepares)}</p></div>
+              <div className="flex flex-wrap gap-2"><Badge variant="outline">{status}</Badge><Badge variant="outline">{gate}</Badge></div>
+            </div>
+          </summary>
+          <div className="grid gap-4 border-t border-border p-5 text-sm leading-7 text-muted-foreground md:grid-cols-2">
+            <div><p className="font-semibold text-foreground">Reference principle</p><p className="mt-2">{withGlossary("Use governed seed evidence where available, distinguish observed relationships from assumptions, and preserve lineage through every generated relationship.")}</p></div>
+            <div><p className="font-semibold text-foreground">What remains inside the gate</p><p className="mt-2">Objective, required evidence, assumptions, technical rules, validation evidence, blocker/open question and pass/fail decision.</p></div>
+          </div>
+        </details>)}
+      </div>
+    </section>
+
+    <details className="group rounded-lg border border-border bg-background">
+      <summary className="cursor-pointer list-none p-5 font-semibold text-foreground">Reference Principles — how synthetic preparation is grounded</summary>
+      <div className="space-y-5 border-t border-border p-5 text-sm leading-7 text-muted-foreground">
+        <details className="group/principle rounded-md border border-border bg-muted/20">
+          <summary className="cursor-pointer list-none p-4 font-mono text-xs leading-6 text-foreground sm:text-sm">Observed seed distributions<br/>+ observed conditional relationships<br/>+ controlled assumptions<br/>+ exploration policy<br/>+ {withGlossary("stochastic")} noise<br/>+ delayed outcomes<br/>+ controlled missingness<br/>+ drift scenarios<br/>= governed synthetic experiment world</summary>
+          <div className="space-y-3 border-t border-border p-4 font-sans text-sm leading-7 text-muted-foreground">
+            {principleExplanations.map(([term,thai,example]) => <div key={term}><p className="font-semibold text-foreground">{term} — {thai}</p><p className="mt-1">ตัวอย่าง: {example}</p></div>)}
+            <p className="rounded-md border border-border bg-background p-3 font-semibold text-foreground">แนวคิดสำคัญ: เราไม่ได้ “ปั๊มจำนวนแถว” แต่สร้างโลกจำลองที่แยกชัดว่าอะไร observed, อะไรเป็นความสัมพันธ์ที่พบ, อะไรเป็น assumption และอะไรคือความไม่แน่นอนที่ตั้งใจใส่เข้ามา</p>
+          </div>
+        </details>
+        <ul className="list-disc space-y-2 pl-5"><li>Do not duplicate rows to manufacture scale.</li><li>Do not overwrite canonical Bronze or Silver data.</li><li>Use a separate versioned simulation lane.</li><li>{withGlossary("Generate outcomes stochastically; no offer or feature may be hard-coded to always win.")}</li><li>Sparse seed cells require smoothing/backoff rather than direct probability copying.</li><li>{withGlossary("Preserve deterministic reproducibility, customer-level split integrity and complete provenance labels.")}</li></ul>
+        <div className="flex flex-wrap gap-2">{provenanceLabels.map((label) => <Badge key={label} variant="outline">{label}</Badge>)}</div>
+      </div>
+    </details>
+
+    <section>
+      <h3 className="text-xl font-semibold text-foreground">G0–G7 readiness gates</h3>
+      <div className="mt-5 grid gap-4 md:grid-cols-2">{gates.map(([gate,title,objective]) => <details key={gate} className="group rounded-lg border border-border bg-background"><summary className="cursor-pointer list-none p-5"><div className="flex items-start justify-between gap-4"><div><p className="font-semibold text-foreground">{gate} — {title}</p><p className="mt-2 text-sm leading-6 text-muted-foreground">{withGlossary(objective)}</p></div><Badge variant="outline">Gate</Badge></div></summary><div className="border-t border-border p-5 text-sm leading-7 text-muted-foreground"><p><strong className="text-foreground">Expandable evidence contract:</strong> objective → required evidence → current status → blocker/open question → pass/fail decision.</p></div></details>)}</div>
+    </section>
+
+    <details className="group rounded-lg border border-border bg-background">
+      <summary className="cursor-pointer list-none p-5 font-semibold text-foreground">Supporting governance controls</summary>
+      <div className="space-y-4 border-t border-border p-5 text-sm leading-7 text-muted-foreground">
+        <p>{withGlossary("Label provenance, assumption register, candidate grain, generator-to-feature leakage mapping, risk register and decision telemetry remain required supporting controls, but they sit under the relevant data-preparation gates rather than defining the Experiment 2 story by themselves.")}</p>
+        <p><strong className="text-foreground">Claim boundary:</strong> {withGlossary("synthetic/composite learning evidence only. Real customer propensity, commercial uplift, causal effectiveness, production readiness, contextual-bandit readiness and RL readiness are not established by this preparation work.")}</p>
+      </div>
+    </details>
+  </div>
+}
+
+function ExperimentTwoB() {
+  const sharedFoundation = [
+    ["Governed synthetic world", "Same", "Experiment 2B starts from the same bounded synthetic NBO/NRT decision environment prepared for Experiment 2A."],
+    ["RC1 / data-preparation foundation", "Same", "The repaired candidate-set and model-visible handoff remain the shared upstream foundation; no separate data world was regenerated for 2B."],
+    ["Temporal and leakage controls", "Same", "TRAIN / TEST discipline, leakage checks, exposure semantics, and persisted lineage remain shared controls."],
+    ["Claim ceiling", "Same", "Both lanes remain bounded to SYNTHETIC_LEARNING_AND_MLOPS_EVIDENCE_ONLY."],
+  ]
+
+  const differences = [
+    ["Scientific question", "Can observable features generalize to held-out response labels?", "Does a deterministic greedy target policy have higher offline estimated reward than the logged behavior policy?"],
+    ["Method", "Supervised response modeling", "Logged contextual-bandit offline policy evaluation"],
+    ["Core inputs", "Features + response label", "Context + chosen action + logged propensity + observed reward"],
+    ["Primary metrics", "ROC-AUC / PR-AUC", "IPS / SNIPS, bootstrap uncertainty, action support, importance-weight stability, ESS"],
+    ["Current verdict", "Generalization issue remains separate", "Positive held-out offline policy-value evidence with statistical and support diagnostics"],
+  ]
+
+  const steps = [
+    ["1", "Recover persisted logged interactions", "Resumed from adb_nbo_nrt_mlops_dev.simulation.bandit_logged_interactions_v0_2 after notebook in-memory state reset.", "10,000 rows; null chosen-action probabilities 0; non-positive probabilities 0."],
+    ["2", "Reconstruct deterministic greedy target policy", "Used greedy_action, chosen_action, chosen_action_probability and observed_reward to reconstruct target-match and importance-weight state.", "Overall target/logged match rate 84.54%; mean importance weight 0.9986; max 1.3889."],
+    ["3", "Evaluate TRAIN and held-out TEST", "Calculated behavior reward, IPS and SNIPS separately by split.", "TEST IPS lift +2.018 pp; TEST SNIPS lift +1.250 pp. TRAIN direction is also positive."],
+    ["4", "Bootstrap held-out uncertainty", "Ran 500 TEST bootstrap replicates with deterministic seed 20260813.", "IPS lift 95% CI [+0.598, +3.220] pp; SNIPS lift 95% CI [+0.313, +2.148] pp — both above zero."],
+    ["5", "Check empirical action-level support", "Verified overlap separately for LOYALTY, DATA, ROAMING, VOICE and BUNDLE.", "Action match rates range 80.23%–91.92%; matched propensity floor 0.72; max importance weight 1.3889; no action-level blind spot observed."],
+    ["6", "Check effective sample size", "Measured ESS per greedy action to detect hidden weight concentration.", "ESS retention ranges 98.78%–99.78% of matched logged rows across all five actions."],
+  ]
+
+  return <div className="space-y-10">
+    <section>
+      <div className="flex flex-wrap items-center gap-3">
+        <h2 className="text-2xl font-semibold tracking-tight text-foreground">Experiment 2B — Offline Policy Evaluation</h2>
+        <Badge variant="outline" className={statusBadgeClass("Passed")}>PASS WITH STATISTICAL SUPPORT</Badge>
+      </div>
+      <p className="mt-3 max-w-4xl text-sm leading-7 text-muted-foreground">Experiment 2B is a new evidence lane, not a replacement for Experiment 2A. It reuses the same governed synthetic foundation but asks a different scientific question: whether an alternative action-selection policy has higher estimated value under logged behavior-policy data.</p>
     </section>
 
     <details className="group rounded-lg border border-border bg-background" open>
-      <summary className="cursor-pointer list-none p-5 font-semibold text-foreground">Shared Foundation — what stays the same across 2A and 2B</summary>
-      <div className="space-y-4 border-t border-border p-5 text-sm leading-7 text-muted-foreground">
-        <p>Both lanes use the same NBO/NRT business context, governed synthetic experiment world, model-visible release controls, TRAIN / TEST discipline, persisted Unity Catalog lineage and <strong className="text-foreground">SYNTHETIC_LEARNING_AND_MLOPS_EVIDENCE_ONLY</strong> claim ceiling.</p>
-        <div className="grid gap-4 md:grid-cols-2">
-          {sharedFoundation.map(([title,status,evidence]) => <Card key={title}><CardHeader className="pb-3"><div className="flex flex-wrap items-start justify-between gap-3"><CardTitle className="text-base">{title}</CardTitle><Badge variant="outline" className={statusBadgeClass(status)}>{status}</Badge></div></CardHeader><CardContent className="text-sm leading-6 text-muted-foreground">{evidence}</CardContent></Card>)}
-        </div>
+      <summary className="cursor-pointer list-none p-5 font-semibold text-foreground">Shared foundation — what is common with Experiment 2A</summary>
+      <div className="grid gap-4 border-t border-border p-5 md:grid-cols-2">
+        {sharedFoundation.map(([title,status,body]) => <Card key={title}><CardHeader className="pb-3"><div className="flex flex-wrap items-start justify-between gap-3"><CardTitle className="text-base">{title}</CardTitle><Badge variant="outline">{status}</Badge></div></CardHeader><CardContent className="text-sm leading-6 text-muted-foreground">{body}</CardContent></Card>)}
       </div>
     </details>
 
-    <details className="group rounded-lg border border-border bg-background">
-      <summary className="cursor-pointer list-none p-5 font-semibold text-foreground">What is different — 2A vs 2B</summary>
+    <details className="group rounded-lg border border-border bg-background" open>
+      <summary className="cursor-pointer list-none p-5 font-semibold text-foreground">What is different — Experiment 2A vs Experiment 2B</summary>
       <div className="overflow-x-auto border-t border-border p-5">
-        <table className="w-full min-w-[760px] text-left text-sm">
-          <thead className="bg-muted/50"><tr><th className="p-3">Dimension</th><th className="p-3">Experiment 2A — Supervised Response Modeling</th><th className="p-3">Experiment 2B — Offline Policy Evaluation</th></tr></thead>
-          <tbody className="divide-y divide-border text-muted-foreground">{laneComparison.map(([dimension,a,b]) => <tr key={dimension}><th className="p-3 align-top text-foreground">{dimension}</th><td className="p-3 align-top">{a}</td><td className="p-3 align-top">{b}</td></tr>)}</tbody>
-        </table>
+        <table className="w-full min-w-[820px] text-left text-sm"><thead className="bg-muted/50"><tr><th className="p-3">Dimension</th><th className="p-3">Experiment 2A</th><th className="p-3">Experiment 2B</th></tr></thead><tbody className="divide-y divide-border text-muted-foreground">{differences.map(([dimension,a,b]) => <tr key={dimension}><th className="p-3 align-top text-foreground">{dimension}</th><td className="p-3 align-top">{a}</td><td className="p-3 align-top">{b}</td></tr>)}</tbody></table>
       </div>
     </details>
 
+    <Alert className="border-sky-500/30 bg-sky-500/5"><AlertDescription className="text-sm leading-7"><strong>Why we branched:</strong> Experiment 2A exposed a supervised-model generalization problem. Rather than tune away that evidence or use a different metric to make the same model look successful, Experiment 2B opens a separate policy-evaluation lane that the persisted logged-interaction data can legitimately support. A PASS in 2B does not repair, validate, or overwrite the 2A generalization issue.</AlertDescription></Alert>
+
     <section>
-      <div className="flex flex-wrap items-center justify-between gap-3">
-        <div><p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">Experiment 2A</p><h3 className="mt-1 text-xl font-semibold text-foreground">Supervised Response Modeling</h3></div>
-        <Badge variant="outline" className={statusBadgeClass("Quality gap")}>GENERALIZATION ISSUE / INVESTIGATION</Badge>
-      </div>
-      <p className="mt-3 max-w-4xl text-sm leading-7 text-muted-foreground">Purpose: test whether the available model-visible features can predict the response label on held-out data.</p>
-      <div className="mt-5 space-y-4">
-        {supervisedSteps.map(([step,title,what,why,evidence,limitation]) => <details key={step} className="group rounded-lg border border-border bg-background"><summary className="cursor-pointer list-none p-5 font-semibold text-foreground"><span className="mr-3 inline-flex h-7 w-7 items-center justify-center rounded-full bg-amber-600 text-xs font-bold text-white">{step}</span>{title}</summary><div className="grid gap-4 border-t border-border p-5 text-sm leading-7 text-muted-foreground md:grid-cols-2"><div><p className="font-semibold text-foreground">What we did</p><p className="mt-1">{what}</p></div><div><p className="font-semibold text-foreground">Why it matters</p><p className="mt-1">{why}</p></div><div><p className="font-semibold text-foreground">Evidence</p><p className="mt-1">{evidence}</p></div><div><p className="font-semibold text-foreground">Limitation</p><p className="mt-1">{limitation}</p></div></div></details>)}
-      </div>
+      <h3 className="text-xl font-semibold text-foreground">Experiment 2B evidence path</h3>
+      <p className="mt-3 max-w-4xl text-sm leading-7 text-muted-foreground">Logged interaction → target policy → IPS / SNIPS → held-out TEST → bootstrap uncertainty → action-level support → weight stability → ESS.</p>
+      <div className="mt-5 space-y-4">{steps.map(([step,title,what,evidence]) => <details key={step} className="group rounded-lg border border-border bg-background"><summary className="cursor-pointer list-none p-5 font-semibold text-foreground"><span className="mr-3 inline-flex h-7 w-7 items-center justify-center rounded-full bg-emerald-700 text-xs font-bold text-white">{step}</span>{title}</summary><div className="grid gap-4 border-t border-border p-5 text-sm leading-7 text-muted-foreground md:grid-cols-2"><div><p className="font-semibold text-foreground">What we did</p><p className="mt-1">{what}</p></div><div><p className="font-semibold text-foreground">Evidence</p><p className="mt-1">{evidence}</p></div></div></details>)}</div>
     </section>
 
     <section>
-      <div className="flex flex-wrap items-center justify-between gap-3">
-        <div><p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">Experiment 2B</p><h3 className="mt-1 text-xl font-semibold text-foreground">Offline Policy Evaluation</h3></div>
-        <div className="flex flex-wrap gap-2"><Badge variant="outline" className={statusBadgeClass("Passed")}>PASS WITH STATISTICAL SUPPORT</Badge><Badge variant="outline">SYNTHETIC BOUNDARY</Badge></div>
+      <h3 className="text-xl font-semibold text-foreground">Current bounded verdict</h3>
+      <div className="mt-4 grid gap-3 text-sm leading-6 text-muted-foreground md:grid-cols-2">
+        <p><strong className="text-foreground">Experiment 2B — OPE:</strong> PASS_WITH_STATISTICAL_SUPPORT</p>
+        <p><strong className="text-foreground">Held-out action coverage:</strong> PASS</p>
+        <p><strong className="text-foreground">Weight stability:</strong> PASS at observed max-weight level</p>
+        <p><strong className="text-foreground">ESS:</strong> PASS — 98.78%–99.78% retention by action</p>
+        <p><strong className="text-foreground">Production uplift claim:</strong> PROHIBITED / NOT ESTABLISHED</p>
+        <p><strong className="text-foreground">Experiment 2A supervised issue:</strong> UNCHANGED / SEPARATE</p>
       </div>
-      <p className="mt-3 max-w-4xl text-sm leading-7 text-muted-foreground">Purpose: estimate whether an always-greedy target policy has higher expected reward than the logged behavior policy, without deploying the policy.</p>
-      <div className="mt-5 space-y-4">
-        {opeSteps.map(([step,title,what,why,evidence,limitation]) => <details key={step} className="group rounded-lg border border-border bg-background"><summary className="cursor-pointer list-none p-5 font-semibold text-foreground"><span className="mr-3 inline-flex h-7 w-7 items-center justify-center rounded-full bg-emerald-700 text-xs font-bold text-white">{step}</span>{title}</summary><div className="grid gap-4 border-t border-border p-5 text-sm leading-7 text-muted-foreground md:grid-cols-2"><div><p className="font-semibold text-foreground">What we did</p><p className="mt-1">{what}</p></div><div><p className="font-semibold text-foreground">Why it matters</p><p className="mt-1">{why}</p></div><div><p className="font-semibold text-foreground">Evidence</p><p className="mt-1">{evidence}</p></div><div><p className="font-semibold text-foreground">Limitation</p><p className="mt-1">{limitation}</p></div></div></details>)}
-      </div>
+      <Alert className="mt-5 border-amber-500/30 bg-amber-500/5"><AlertDescription className="text-sm leading-7"><strong>Claim boundary:</strong> Within the synthetic logged interaction environment, the deterministic greedy target policy demonstrates statistically supported positive offline-policy-value lift on held-out TEST under IPS and SNIPS, with strong empirical action support and stable effective sample size. This does not establish production conversion uplift, causal commercial impact, online safety, or operator validity.</AlertDescription></Alert>
     </section>
-
-    <Alert className="border-amber-500/30 bg-amber-500/5"><AlertDescription className="text-sm leading-6"><strong>Claim boundary:</strong> Experiment 2B provides statistically supported positive offline-policy-value evidence only within the synthetic logged interaction distribution. It does not establish production conversion uplift, causal commercial impact, or operator validity, and it does not resolve Experiment 2A’s supervised-model generalization issue.</AlertDescription></Alert>
   </div>
 }
 
 export function ExperimentTabs() {
-  const [active, setActive] = useState<"one" | "two">("one")
-  const tabClass = (key: "one" | "two") => `border-b-2 px-5 py-4 text-sm font-semibold transition ${active === key ? "border-primary text-foreground" : "border-transparent text-muted-foreground hover:text-foreground"}`
-  return <section className="border-y border-border bg-muted/20 py-10"><div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8"><div className="mb-7"><h2 className="text-2xl font-semibold tracking-tight text-foreground">Experiment evidence</h2><p className="mt-2 max-w-4xl text-sm leading-6 text-muted-foreground">The top-level Cockpit remains shared. Experiment 2 is now shown as two sibling evidence lanes—2A supervised response modeling and 2B offline policy evaluation—because they use the same governed foundation but answer different questions and have independent gates.</p></div><div className="flex flex-wrap border-b border-border"><button className={tabClass("one")} onClick={() => setActive("one")}>Experiment 1 — Volume-expanded synthetic baseline</button><button className={tabClass("two")} onClick={() => setActive("two")}>Experiment 2 — 2A / 2B evidence lanes</button></div><div className="rounded-b-xl border border-t-0 border-border bg-background p-5 sm:p-7">{active === "one" ? <ExperimentOne /> : <ExperimentTwo />}</div></div></section>
+  const [active, setActive] = useState<"one" | "twoA" | "twoB">("one")
+  const tabClass = (key: "one" | "twoA" | "twoB") => `border-b-2 px-5 py-4 text-sm font-semibold transition ${active === key ? "border-primary text-foreground" : "border-transparent text-muted-foreground hover:text-foreground"}`
+  return <section className="border-y border-border bg-muted/20 py-10"><div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8"><div className="mb-7"><h2 className="text-2xl font-semibold tracking-tight text-foreground">Experiment evidence</h2><p className="mt-2 max-w-4xl text-sm leading-6 text-muted-foreground">The top-level Cockpit remains shared. Experiment 2A preserves the existing Experiment 2 evidence unchanged; Experiment 2B is an additive offline-policy-evaluation lane that shares the same governed foundation but answers a different question.</p></div><div className="flex flex-wrap border-b border-border"><button className={tabClass("one")} onClick={() => setActive("one")}>Experiment 1 — Volume-expanded synthetic baseline</button><button className={tabClass("twoA")} onClick={() => setActive("twoA")}>Experiment 2A — Post-Silver low-volume baseline</button><button className={tabClass("twoB")} onClick={() => setActive("twoB")}>Experiment 2B — Offline Policy Evaluation</button></div><div className="rounded-b-xl border border-t-0 border-border bg-background p-5 sm:p-7">{active === "one" ? <ExperimentOne /> : active === "twoA" ? <ExperimentTwoA /> : <ExperimentTwoB />}</div></div></section>
 }
