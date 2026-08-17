@@ -5,6 +5,7 @@ import { Experiment2CandidateDecisionInjector } from "./experiment2-candidate-de
 import { Experiment2OverallStatusInjector } from "./experiment2-overall-status-injector"
 import { Experiment2StatusInjector } from "./experiment2-status-injector"
 import { Experiment2BStructureInjector } from "./experiment2b-structure-injector"
+import { Experiment3InvestigationTrailInjector } from "./experiment3-investigation-trail-injector"
 
 export default function NboNrtAzureDatabricksLayout({ children }: { children: ReactNode }) {
   return (
@@ -15,6 +16,7 @@ export default function NboNrtAzureDatabricksLayout({ children }: { children: Re
       <Experiment2OverallStatusInjector />
       <Experiment2StatusInjector />
       <Experiment2BStructureInjector />
+      <Experiment3InvestigationTrailInjector />
       {children}
     </>
   )
