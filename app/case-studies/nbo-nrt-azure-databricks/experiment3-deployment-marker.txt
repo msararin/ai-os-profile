@@ -1,0 +1,2 @@
+Experiment 3 cockpit deployment retrigger — 2026-08-17.
+No content or claim change; marker exists only to trigger the production deployment pipeline for the already-merged Experiment 3 UI.
