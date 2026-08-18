@@ -68,14 +68,14 @@ function createExperiment3Panel() {
         <div class="rounded-xl border border-border bg-muted/20 p-5">
           <p class="font-semibold text-foreground">How to read ε (epsilon)</p>
           <p class="mt-2 text-sm leading-7 text-muted-foreground"><strong class="text-foreground">Lower ε</strong> means the policy behaves more greedily: it relies more heavily on the action it currently estimates as best. <strong class="text-foreground">Higher ε</strong> creates a larger exploration budget so alternative actions can still generate learning evidence.</p>
-          <p class="mt-3 text-sm leading-7 text-muted-foreground">The saved provisional bands include <code>0.00–0.05</code>, <code>0.05–0.15</code>, and <code>0.15–0.30</code>. Read them as increasing levels of uncertainty / willingness to explore, not as production traffic commitments.</p>
+          <p class="mt-3 text-sm leading-7 text-muted-foreground">The validated schedule uses score-gap bands <code>[0.00,0.05)</code>, <code>[0.05,0.15)</code>, <code>[0.15,0.30)</code>, and <code>[0.30,+∞)</code> with exploration probabilities <code>0.35</code>, <code>0.25</code>, <code>0.15</code>, and <code>0.05</code> respectively. These are synthetic experiment-policy values, not production traffic commitments.</p>
         </div>
         <div class="rounded-xl border border-border bg-muted/20 p-5">
           <p class="font-semibold text-foreground">How to read policy shares</p>
-          <p class="mt-2 text-sm leading-7 text-muted-foreground">Example provisional splits such as <code>0.90 / 0.10</code>, <code>0.80 / 0.20</code>, <code>0.65 / 0.35</code>, and <code>0.55 / 0.45</code> translate confidence into behavior.</p>
+          <p class="mt-2 text-sm leading-7 text-muted-foreground">Within the exploration budget, the validated rank-2 / rank-3 shares move from <code>0.55 / 0.45</code> when alternatives are close to <code>0.90 / 0.10</code> when rank 2 is clearly separated from rank 3.</p>
           <ul class="mt-3 list-disc space-y-2 pl-5 text-sm leading-7 text-muted-foreground">
-            <li><code>0.90 / 0.10</code> — strong exploitation; only a small bounded share remains for exploration.</li>
-            <li><code>0.55 / 0.45</code> — much less certainty; exploration is almost as important as exploitation.</li>
+            <li><code>0.55 / 0.45</code> — alternatives are close; learning is spread more evenly.</li>
+            <li><code>0.90 / 0.10</code> — rank 2 is much clearer; most exploration mass goes to rank 2.</li>
           </ul>
         </div>
       </div>
@@ -84,7 +84,7 @@ function createExperiment3Panel() {
     <section class="grid gap-4 md:grid-cols-2">
       <div class="rounded-xl border border-border bg-background p-5">
         <p class="font-semibold text-foreground">Why score gaps matter</p>
-        <p class="mt-2 text-sm leading-7 text-muted-foreground">The policy contract includes score-gap boundaries such as <code>rank2_rank3_gap_upper</code>. A small gap means the alternatives look similar, so confidence in one clear winner is weaker and exploration can reasonably increase. A large gap means the current evidence separates the preferred action more clearly, so the policy can exploit more.</p>
+        <p class="mt-2 text-sm leading-7 text-muted-foreground">The policy contract uses score-gap boundaries to turn relative confidence into decision freedom. A small rank1-rank2 gap means the top actions look similar, so exploration rises. A large gap means the current winner is clearer, so exploration falls.</p>
       </div>
       <div class="rounded-xl border border-border bg-background p-5">
         <p class="font-semibold text-foreground">What the policy is learning</p>
@@ -105,11 +105,11 @@ function createExperiment3Panel() {
         </div>
         <div>
           <p class="font-semibold text-foreground">Evidence state</p>
-          <p class="mt-2">Policy contract: <code>adaptive_epsilon_greedy_v0_1</code>. Assumption class: <code>ASSUMPTION_DERIVED_SIMULATION_POLICY</code>. Contract status: <code>PROVISIONAL</code>.</p>
+          <p class="mt-2">Policy contract: <code>adaptive_epsilon_greedy_v0_1</code>. Assumption class: <code>ASSUMPTION_DERIVED_SIMULATION_POLICY</code>. Contract status: <code>PROVISIONAL</code>. Read-back: <code>PASS</code> with <code>16</code> rows and all <code>16</code> gap combinations present.</p>
         </div>
         <div>
           <p class="font-semibold text-foreground">Current limitation</p>
-          <p class="mt-2">The prior attempted persistence check returned <code>contract_row_count = 0</code>, so persisted contract read-back is not yet established and must not be presented as complete evidence.</p>
+          <p class="mt-2">Policy-contract persistence/read-back is established, but <code>SYNTHETIC_DECISIONS_GENERATED = 0</code>. The next evidence must execute the adaptive policy and log selected-action probability / propensity for each generated decision.</p>
         </div>
       </div>
     </details>
@@ -120,7 +120,8 @@ function createExperiment3Panel() {
         <p><strong class="text-foreground">Policy direction:</strong> ADAPTIVE EPSILON-GREEDY CONTEXTUAL BANDIT</p>
         <p><strong class="text-foreground">Learning objective:</strong> BALANCE EXPLOITATION AND EXPLORATION</p>
         <p><strong class="text-foreground">Contract status:</strong> PROVISIONAL</p>
-        <p><strong class="text-foreground">Persisted contract read-back:</strong> NOT YET ESTABLISHED</p>
+        <p><strong class="text-foreground">Persisted contract read-back:</strong> PASS — 16 rows / 16 combinations</p>
+        <p><strong class="text-foreground">Synthetic decisions generated:</strong> 0</p>
       </div>
       <div class="mt-5 rounded-lg border border-amber-500/30 bg-amber-500/5 p-4 text-sm leading-7 text-muted-foreground"><strong class="text-foreground">Claim boundary:</strong> Synthetic experiment policy only; not observed customer behavior and not production policy evidence. Experiment 3 does not establish online exploration safety, production policy value, causal uplift, or reinforcement-learning deployment readiness.</div>
     </section>
