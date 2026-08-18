@@ -181,8 +181,15 @@
   color: #475569 !important;
 }
 
+[data-semantic-status-container="caution"] {
+  border-color: rgb(217 119 6 / 0.45) !important;
+  background-color: rgb(245 158 11 / 0.08) !important;
+  color: inherit !important;
+}
+
 .dark [data-semantic-status="pass"] { color: #A7F3D0 !important; }
 .dark [data-semantic-status="active"] { color: #C7D2FE !important; }
 .dark [data-semantic-status="caution"] { color: #FDE68A !important; }
 .dark [data-semantic-status="fail"] { color: #FECACA !important; }
 .dark [data-semantic-status="neutral"] { color: #CBD5E1 !important; }
+.dark [data-semantic-status-container="caution"] { background-color: rgb(120 53 15 / 0.18) !important; }
