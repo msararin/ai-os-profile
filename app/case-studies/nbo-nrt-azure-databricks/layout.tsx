@@ -6,6 +6,7 @@ import { Experiment2OverallStatusInjector } from "./experiment2-overall-status-i
 import { Experiment2StatusInjector } from "./experiment2-status-injector"
 import { Experiment2BStructureInjector } from "./experiment2b-structure-injector"
 import { Experiment3InvestigationTrailInjector } from "./experiment3-investigation-trail-injector"
+import { Experiment3DefaultViewInjector } from "./experiment3-default-view-injector"
 
 export default function NboNrtAzureDatabricksLayout({ children }: { children: ReactNode }) {
   return (
@@ -17,6 +18,7 @@ export default function NboNrtAzureDatabricksLayout({ children }: { children: Re
       <Experiment2StatusInjector />
       <Experiment2BStructureInjector />
       <Experiment3InvestigationTrailInjector />
+      <Experiment3DefaultViewInjector />
       {children}
     </>
   )
