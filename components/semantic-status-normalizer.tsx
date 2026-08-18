@@ -49,14 +49,29 @@ function isStatusSurface(node: HTMLElement) {
   return false
 }
 
+function normalizeContainer(node: HTMLElement, label: string, semantic: SemanticStatus) {
+  if (label === "UNDER CONSTRUCTION") {
+    const container = node.closest<HTMLElement>("div.rounded-xl, div.rounded-lg")
+    if (container) container.dataset.semanticStatusContainer = semantic
+  }
+
+  if (label === "RCA OPEN") {
+    const card = node.closest<HTMLElement>('[data-slot="card"]')
+    if (card) card.dataset.semanticStatusContainer = semantic
+  }
+}
+
 export function SemanticStatusNormalizer() {
   useEffect(() => {
     const apply = () => {
       const nodes = Array.from(document.querySelectorAll<HTMLElement>("span, p, [data-slot='badge']"))
       nodes.forEach((node) => {
         if (!isStatusSurface(node)) return
-        const semantic = exactStatusMap[normalizedText(node.textContent)]
-        if (semantic) node.dataset.semanticStatus = semantic
+        const label = normalizedText(node.textContent)
+        const semantic = exactStatusMap[label]
+        if (!semantic) return
+        node.dataset.semanticStatus = semantic
+        normalizeContainer(node, label, semantic)
       })
     }
 
