@@ -1,5 +1,6 @@
 "use client"
 
+import { ArchitectureStatusColorNormalizer } from "./architecture-status-color-normalizer"
 import { SiteHeader } from "./site-header"
 import { SiteFooter } from "./site-footer"
 import { PageMetadata } from "./page-metadata"
@@ -7,6 +8,7 @@ import { PageMetadata } from "./page-metadata"
 export function PageLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex min-h-screen flex-col">
+      <ArchitectureStatusColorNormalizer />
       <SiteHeader />
       {/* Top-right metadata block */}
       <div className="mx-auto w-full max-w-5xl px-4 pt-4 sm:px-6 lg:px-8">
