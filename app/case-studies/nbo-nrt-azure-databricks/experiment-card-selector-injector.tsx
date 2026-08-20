@@ -12,7 +12,7 @@ const cards = [
     eyebrow: "Experiment 1",
     title: "Volume-expanded synthetic baseline",
     description: "Completed baseline lane for end-to-end MLOps execution, threshold analysis, registration and read-back evidence.",
-    tone: "default",
+    tone: "foundation",
     sourceIndex: 0,
   },
   {
@@ -20,7 +20,7 @@ const cards = [
     eyebrow: "Experiment 2A",
     title: "Post-Silver low-volume baseline",
     description: "Supervised-model lane that preserves the original Experiment 2 evidence and its generalization investigation.",
-    tone: "default",
+    tone: "investigation",
     sourceIndex: 1,
   },
   {
@@ -50,7 +50,7 @@ function createExperiment3Panel() {
     <section>
       <div class="flex flex-wrap items-center gap-3">
         <h2 class="text-2xl font-semibold tracking-tight text-foreground">Experiment 3 — Adaptive Contextual Bandit Policy</h2>
-        <span class="inline-flex items-center rounded-full border border-amber-600/40 bg-amber-500/10 px-3 py-1 text-xs font-semibold text-amber-900 dark:text-amber-100">CURRENTLY ACTIVE</span>
+        <span class="inline-flex items-center rounded-full border border-indigo-500/40 bg-indigo-500/10 px-3 py-1 text-xs font-semibold text-indigo-800 dark:text-indigo-200">CURRENTLY ACTIVE</span>
       </div>
       <p class="mt-3 max-w-4xl text-sm leading-7 text-muted-foreground">Experiment 3 evolves directly from Experiment 2B. Experiment 2B established bounded offline-policy-evaluation evidence for a fixed deterministic greedy target policy in the synthetic logged environment. Experiment 3 asks the next question: how should the policy choose offers when it must both use what it currently believes works best and continue learning from alternative actions?</p>
     </section>
@@ -172,15 +172,19 @@ export function ExperimentCardSelectorInjector() {
           cardButton.setAttribute("aria-pressed", selected ? "true" : "false")
           const base = "group min-h-44 rounded-xl border p-5 text-left transition focus:outline-none focus:ring-2 focus:ring-primary/40"
           const inactive = card.tone === "active"
-            ? "border-amber-500/35 bg-amber-500/5 hover:border-amber-500/60 hover:bg-amber-500/10"
+            ? "border-indigo-500/35 bg-indigo-500/5 hover:border-indigo-500/60 hover:bg-indigo-500/10"
             : card.tone === "complete"
               ? "border-emerald-600/30 bg-emerald-500/5 hover:border-emerald-600/50 hover:bg-emerald-500/10"
-              : "border-border bg-background hover:border-primary/40 hover:bg-muted/30"
+              : card.tone === "investigation"
+                ? "border-amber-500/35 bg-amber-500/5 hover:border-amber-500/60 hover:bg-amber-500/10"
+                : "border-slate-400/30 bg-slate-500/5 hover:border-slate-400/55 hover:bg-slate-500/10"
           const active = card.tone === "active"
-            ? "border-amber-500 bg-amber-500/12 shadow-sm ring-1 ring-amber-500/25"
+            ? "border-indigo-500 bg-indigo-500/12 shadow-sm ring-1 ring-indigo-500/25"
             : card.tone === "complete"
               ? "border-emerald-600 bg-emerald-500/10 shadow-sm ring-1 ring-emerald-600/20"
-              : "border-primary bg-primary/5 shadow-sm ring-1 ring-primary/20"
+              : card.tone === "investigation"
+                ? "border-amber-500 bg-amber-500/12 shadow-sm ring-1 ring-amber-500/25"
+                : "border-slate-500 bg-slate-500/10 shadow-sm ring-1 ring-slate-500/20"
           cardButton.className = `${base} ${selected ? active : inactive}`
         })
       }
@@ -191,7 +195,7 @@ export function ExperimentCardSelectorInjector() {
         button.dataset.cardKey = card.match
         button.innerHTML = `
           <div class="flex items-start justify-between gap-3">
-            <span class="text-xs font-bold uppercase tracking-[0.12em] ${card.tone === "active" ? "text-amber-800 dark:text-amber-200" : card.tone === "complete" ? "text-emerald-800 dark:text-emerald-200" : "text-muted-foreground"}">${card.eyebrow}</span>
+            <span class="text-xs font-bold uppercase tracking-[0.12em] ${card.tone === "active" ? "text-indigo-700 dark:text-indigo-200" : card.tone === "complete" ? "text-emerald-800 dark:text-emerald-200" : card.tone === "investigation" ? "text-amber-800 dark:text-amber-200" : "text-slate-600 dark:text-slate-300"}">${card.eyebrow}</span>
             <span class="text-lg text-muted-foreground transition-transform group-hover:translate-x-0.5">→</span>
           </div>
           <div class="mt-4 text-base font-semibold leading-6 text-foreground">${card.title}</div>
