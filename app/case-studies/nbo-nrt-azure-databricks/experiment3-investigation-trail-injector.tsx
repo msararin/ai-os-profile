@@ -6,12 +6,10 @@ function normalizedText(value: string | null | undefined) {
   return (value ?? "").replace(/\s+/g, " ").trim()
 }
 
-function stepBlock(number: string, title: string, summary: string, body: string, tone = "primary") {
-  const badgeClass = tone === "amber"
-    ? "bg-amber-600 text-white"
-    : tone === "slate"
-      ? "bg-slate-700 text-white"
-      : "bg-primary text-primary-foreground"
+function stepBlock(number: string, title: string, summary: string, body: string, tone = "complete") {
+  const badgeClass = tone === "active"
+    ? "bg-indigo-600 text-white"
+    : "bg-emerald-600 text-white"
   return `
     <details class="group rounded-lg border border-border bg-background">
       <summary class="cursor-pointer list-none p-4">
@@ -44,7 +42,9 @@ function createInvestigationTrail() {
       <div class="mt-4 grid grid-cols-2 gap-2 text-[11px] font-semibold sm:grid-cols-4 lg:grid-cols-7">
         ${[
           ["01", "Observe"], ["02", "Hypothesize"], ["03", "Check"], ["04", "Evidence"], ["05", "Interpret"], ["06", "Bound"], ["07", "Decide"],
-        ].map(([n, label]) => `<span class="rounded-md border border-border bg-muted/30 px-2 py-2 text-center text-muted-foreground"><strong class="text-foreground">${n}</strong><br/>${label}</span>`).join("")}
+        ].map(([n, label]) => n === "07"
+          ? `<span class="rounded-md border border-indigo-500/40 bg-indigo-500/10 px-2 py-2 text-center text-indigo-800 ring-1 ring-indigo-500/20 dark:text-indigo-200"><strong>${n}</strong><br/>${label}</span>`
+          : `<span class="rounded-md border border-emerald-600/30 bg-emerald-500/10 px-2 py-2 text-center text-emerald-800 dark:text-emerald-200"><strong>${n}</strong><br/>${label}</span>`).join("")}
       </div>
     </summary>
     <div class="space-y-3 border-t border-border p-5">
@@ -118,7 +118,6 @@ function createInvestigationTrail() {
            <li>Canonical Bronze/Silver mutation = <code>NONE</code></li>
          </ul>
          <p class="mt-3">Therefore this does not establish online exploration safety, real-customer response, production policy value, causal uplift, commercial benefit, or reinforcement-learning deployment readiness.</p>`,
-        "slate",
       )}
       ${stepBlock(
         "07",
@@ -128,7 +127,7 @@ function createInvestigationTrail() {
          <p class="mt-2"><strong class="text-foreground">Current execution value:</strong> synthetic decisions generated = <code>0</code>.</p>
          <p class="mt-2"><strong class="text-foreground">Next evidence:</strong> generate decisions under <code>adaptive_epsilon_greedy_v0_1</code> and log the selected-action probability / propensity with the policy version so later OPE can reconstruct how each action was chosen.</p>
          <p class="mt-2">No production-readiness threshold is asserted at this step.</p>`,
-        "amber",
+        "active",
       )}
     </div>
   `
