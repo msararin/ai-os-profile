@@ -150,6 +150,24 @@ const nonClaims = [
   "No realtime agent tracking.",
 ]
 
+function statusBadgeClass(status: string) {
+  const normalized = status.toLowerCase()
+  if (normalized.includes("available")) {
+    return "border-emerald-600/40 bg-emerald-500/10 text-emerald-800 dark:text-emerald-200"
+  }
+  if (
+    normalized.includes("under construction") ||
+    normalized.includes("partial") ||
+    normalized.includes("not exposed")
+  ) {
+    return "border-amber-500/40 bg-amber-500/10 text-amber-800 dark:text-amber-200"
+  }
+  if (normalized.includes("static snapshot") || normalized.includes("disabled")) {
+    return "border-slate-400/40 bg-slate-500/10 text-slate-700 dark:text-slate-300"
+  }
+  return ""
+}
+
 export default function SystemHealthPage() {
   return (
     <PageLayout>
@@ -258,7 +276,9 @@ export default function SystemHealthPage() {
                         </td>
                         <td className="px-4 py-3 text-muted-foreground">{layer.visibility}</td>
                         <td className="px-4 py-3">
-                          <Badge variant="secondary">{layer.status}</Badge>
+                          <Badge variant="outline" className={statusBadgeClass(layer.status)}>
+                            {layer.status}
+                          </Badge>
                         </td>
                         <td className="px-4 py-3 text-muted-foreground">{layer.shown}</td>
                         <td className="px-4 py-3 text-muted-foreground">{layer.notShown}</td>
@@ -299,7 +319,7 @@ export default function SystemHealthPage() {
                   <CardHeader>
                     <div className="flex flex-wrap items-center justify-between gap-2">
                       <CardTitle className="text-lg">{surface.title}</CardTitle>
-                      <Badge variant={surface.href ? "default" : "secondary"}>
+                      <Badge variant="outline" className={statusBadgeClass(surface.status)}>
                         {surface.status}
                       </Badge>
                     </div>
