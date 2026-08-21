@@ -34,12 +34,11 @@ function classifyStatus(label: string): StatusTone | null {
     label === "FAILED" ||
     label === "ESCALATE" ||
     label === "BLOCKED" ||
+    label.includes("BLOCKED") ||
     label === "CLAIM_BLOCKED" ||
     label === "NOT_APPROVED" ||
     label === "NOT APPROVED" ||
-    label === "INVALID" ||
-    label.includes("COMPARISON BLOCKED") ||
-    label.includes("CLAIM BLOCKED")
+    label === "INVALID"
   ) return "fail"
 
   if (
@@ -54,9 +53,12 @@ function classifyStatus(label: string): StatusTone | null {
     label === "DOWNGRADED" ||
     label.includes("PENDING") ||
     label.includes("UNRESOLVED") ||
+    label.includes("MISSING") ||
+    label.includes("NOT CLAIMED") ||
+    label.includes("NOT VERIFIED") ||
+    label.includes("REQUIRES APPROVAL") ||
+    label.includes("NO OVERALL OPERATIONAL PASS") ||
     label === "CAPPED" ||
-    label === "BOUNDARY" ||
-    label === "BOUNDARY VISIBLE" ||
     label.includes("WEAK / MISSING") ||
     label.includes("MISSING / NOT EXPOSED") ||
     label.includes("MISSING / MANUAL ONLY") ||
@@ -70,9 +72,8 @@ function classifyStatus(label: string): StatusTone | null {
     label === "CURRENTLY ACTIVE" ||
     label.includes("CURRENTLY ACTIVE") ||
     label.startsWith("STARTED") ||
-    label === "SCOPED ENFORCEMENT" ||
-    label === "SCOPED EXECUTION" ||
-    label === "SCOPED"
+    label === "NEXT TECHNICAL STEP" ||
+    label.includes("CURRENT FOCUS")
   ) return "active"
 
   if (
@@ -82,15 +83,23 @@ function classifyStatus(label: string): StatusTone | null {
     label === "COMPLETED" ||
     label === "VALIDATED" ||
     label === "PRESENT" ||
+    label.startsWith("PRESENT ") ||
     label === "EXISTS" ||
     label === "STRONG" ||
     label === "FOUNDATION READY" ||
     label === "DECISION-READY" ||
     label.startsWith("AVAILABLE —") ||
+    label.startsWith("IMPLEMENTED") ||
+    label.includes("STRESS COMPLETE") ||
     (label.startsWith("PROTECTED —") && label.includes("CLOSEOUT"))
   ) return "pass"
 
   if (
+    label === "BOUNDARY" ||
+    label === "BOUNDARY VISIBLE" ||
+    label === "SCOPED" ||
+    label === "SCOPED ENFORCEMENT" ||
+    label === "SCOPED EXECUTION" ||
     label === "NOT_STARTED" ||
     label === "NOT STARTED" ||
     label === "PARKED" ||
