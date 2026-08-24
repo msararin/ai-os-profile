@@ -5,29 +5,29 @@ import { useEffect } from "react"
 function clarifiedHeader() {
   return `
     <div class="w-full">
-      <div class="flex flex-wrap items-center gap-2">
-        <p class="text-xs font-bold uppercase tracking-[0.12em] text-amber-800 dark:text-amber-200">Experiment 3 execution track</p>
-        <span class="inline-flex rounded-full border border-slate-400/40 bg-slate-500/5 px-2.5 py-1 text-[11px] font-bold text-slate-700 dark:text-slate-300">NOT PART OF STEP 01–07</span>
+      <div>
+        <p class="text-xs font-bold uppercase tracking-[0.12em] text-indigo-800 dark:text-indigo-200">Modeling Execution Track</p>
+        <h3 class="mt-2 text-xl font-semibold text-foreground">What we are building and where we are now</h3>
+        <p class="mt-2 max-w-4xl text-sm leading-6 text-muted-foreground">This is the delivery view of Experiment 3. It is separate from the STEP 01–07 investigation trail, which explains how we reasoned and validated the approach.</p>
       </div>
-      <p class="mt-2 max-w-4xl text-sm leading-6 text-muted-foreground">The STEP 01–07 section above is the investigation / reasoning journey. The hierarchy below is the separate modeling delivery track.</p>
 
-      <div class="mt-4 space-y-3" aria-label="Experiment 3 execution hierarchy at section start">
+      <div class="mt-4 space-y-3" aria-label="Experiment 3 modeling execution track">
         <div class="rounded-lg border border-emerald-600/30 bg-background p-3 text-sm">
           <div class="flex flex-wrap items-center justify-between gap-2">
-            <strong class="text-foreground">3.2A Feature Contract</strong>
+            <strong class="text-foreground">Feature Contract</strong>
             <span class="font-semibold text-emerald-700 dark:text-emerald-300">CLOSED / PASS</span>
           </div>
         </div>
 
         <div class="rounded-lg border border-indigo-500/30 bg-background p-3 text-sm">
           <div class="flex flex-wrap items-center justify-between gap-2">
-            <strong class="text-foreground">3.2B Training Formulation</strong>
+            <strong class="text-foreground">Training Formulation</strong>
             <span class="font-semibold text-indigo-700 dark:text-indigo-300">IN PROGRESS</span>
           </div>
           <div class="mt-3 space-y-2 border-l-2 border-indigo-500/20 pl-4">
             <div class="rounded-md border border-amber-500/35 bg-amber-500/5 p-3">
               <div class="flex flex-wrap items-center justify-between gap-2">
-                <strong class="text-foreground">↳ 3.2B.1 Action × Context Support</strong>
+                <strong class="text-foreground">↳ Action × Context Support</strong>
                 <span class="font-semibold text-amber-700 dark:text-amber-300">GUARDRAIL REQUIRED</span>
               </div>
             </div>
