@@ -2,7 +2,7 @@ export function PageMetadata() {
   return (
     <div className="text-right text-xs text-muted-foreground leading-relaxed">
       <p>Public proof surface</p>
-      <p>Evidence reconciled through 20 July 2026</p>
+      <p>Evidence reconciled through 24 Aug 2026</p>
       <p>Release scope: Architecture, Achievements, Knowledge Sharing</p>
       <p>Source: GPT KB + Git</p>
       <p>Curated static release — not a continuous live-status feed</p>
