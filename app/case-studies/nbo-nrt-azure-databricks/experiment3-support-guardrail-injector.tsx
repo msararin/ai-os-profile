@@ -24,8 +24,9 @@ function createSupportSection() {
   section.innerHTML = `
     <div class="flex flex-wrap items-start justify-between gap-3">
       <div>
-        <p class="text-xs font-bold uppercase tracking-[0.12em] text-amber-800 dark:text-amber-200">Experiment 3.2B.1</p>
-        <h3 class="mt-2 text-xl font-semibold text-foreground">3.2B.1 — Action × Context Support</h3>
+        <p class="text-xs font-bold uppercase tracking-[0.12em] text-amber-800 dark:text-amber-200">Experiment 3 execution path</p>
+        <h3 class="mt-2 text-xl font-semibold text-foreground">Training Formulation → 3.2B.1 Action × Context Support</h3>
+        <p class="mt-2 max-w-3xl text-xs leading-5 text-muted-foreground">Execution hierarchy — separate from the 7-step investigation trail above. The numbered investigation trail explains the reasoning journey; 3.2A / 3.2B / 3.2B.1 shows the modeling delivery hierarchy.</p>
       </div>
       <span class="inline-flex rounded-full border border-amber-500/40 bg-amber-500/10 px-3 py-1 text-xs font-bold text-amber-900 dark:text-amber-100">CONDITIONALLY ACCEPTABLE / GUARDRAIL REQUIRED</span>
     </div>
@@ -82,11 +83,37 @@ function createSupportSection() {
       </div>
     </div>
 
-    <div class="mt-5 grid gap-3 md:grid-cols-2" aria-label="Current Experiment 3 progress">
-      <div class="rounded-lg border border-emerald-600/30 bg-background p-3 text-sm"><strong class="text-foreground">3.2A Feature Contract</strong><span class="ml-2 font-semibold text-emerald-700 dark:text-emerald-300">CLOSED / PASS</span></div>
-      <div class="rounded-lg border border-indigo-500/30 bg-background p-3 text-sm"><strong class="text-foreground">3.2B Training Formulation</strong><span class="ml-2 font-semibold text-indigo-700 dark:text-indigo-300">IN PROGRESS</span></div>
-      <div class="rounded-lg border border-amber-500/35 bg-background p-3 text-sm"><strong class="text-foreground">3.2B.1 Action × Context Support</strong><span class="ml-2 font-semibold text-amber-700 dark:text-amber-300">GUARDRAIL REQUIRED</span></div>
-      <div class="rounded-lg border border-red-500/30 bg-background p-3 text-sm"><strong class="text-foreground">Candidate-policy training</strong><span class="ml-2 font-semibold text-red-700 dark:text-red-300">NOT YET AUTHORIZED</span></div>
+    <div class="mt-6" aria-label="Experiment 3 execution hierarchy">
+      <p class="text-xs font-bold uppercase tracking-[0.12em] text-muted-foreground">Current execution hierarchy</p>
+      <div class="mt-3 space-y-3">
+        <div class="rounded-lg border border-emerald-600/30 bg-background p-3 text-sm">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <strong class="text-foreground">3.2A Feature Contract</strong>
+            <span class="font-semibold text-emerald-700 dark:text-emerald-300">CLOSED / PASS</span>
+          </div>
+        </div>
+
+        <div class="rounded-lg border border-indigo-500/30 bg-background p-3 text-sm">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <strong class="text-foreground">3.2B Training Formulation</strong>
+            <span class="font-semibold text-indigo-700 dark:text-indigo-300">IN PROGRESS</span>
+          </div>
+          <div class="mt-3 space-y-2 border-l-2 border-indigo-500/20 pl-4">
+            <div class="rounded-md border border-amber-500/35 bg-amber-500/5 p-3">
+              <div class="flex flex-wrap items-center justify-between gap-2">
+                <strong class="text-foreground">↳ 3.2B.1 Action × Context Support</strong>
+                <span class="font-semibold text-amber-700 dark:text-amber-300">GUARDRAIL REQUIRED</span>
+              </div>
+            </div>
+            <div class="rounded-md border border-red-500/30 bg-red-500/5 p-3">
+              <div class="flex flex-wrap items-center justify-between gap-2">
+                <strong class="text-foreground">↳ Candidate-policy training</strong>
+                <span class="font-semibold text-red-700 dark:text-red-300">NOT YET AUTHORIZED</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <details class="group mt-6 rounded-lg border border-border bg-background">
