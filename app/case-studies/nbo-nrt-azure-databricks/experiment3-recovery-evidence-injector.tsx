@@ -73,13 +73,13 @@ function createRepresentationalCapacityEvidence() {
     <div class="space-y-5 border-t border-border p-5 text-sm leading-7 text-muted-foreground">
       <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
         <p><strong class="text-foreground">TRAIN contexts:</strong> <code>8,002</code></p>
-        <p><strong class="text-foreground">Actions scored:</strong> <code>5</code> per context</p>
+        <p><strong class="text-foreground">Candidates scored:</strong> <code>40,010</code></p>
+        <p><strong class="text-foreground">Actions per context:</strong> <code>5</code></p>
         <p><strong class="text-foreground">Distinct winning actions:</strong> <code>1</code></p>
         <p><strong class="text-foreground">Dominant action:</strong> <code>LOYALTY</code></p>
         <p><strong class="text-foreground">LOYALTY winning contexts:</strong> <code>8,002</code></p>
         <p><strong class="text-foreground">Dominant winner share:</strong> <code>100.0000%</code></p>
         <p><strong class="text-foreground">TEST:</strong> <code>NOT TOUCHED</code></p>
-        <p><strong class="text-foreground">Retraining in probe:</strong> <code>NO</code></p>
       </div>
 
       <div class="rounded-md border border-amber-600/30 bg-amber-500/5 p-4">
@@ -89,10 +89,27 @@ function createRepresentationalCapacityEvidence() {
       </div>
 
       <div class="rounded-md border border-border bg-muted/20 p-4">
+        <p class="font-semibold text-foreground">Winner margin — narrow and highly stable</p>
+        <div class="mt-3 grid gap-3 sm:grid-cols-3">
+          <p><strong class="text-foreground">Average <span title="Difference between the highest and second-highest predicted reward probability within the same context.">Top-1 vs Top-2 gap</span>:</strong> <code>0.007389</code> ≈ <code>0.739 pp</code></p>
+          <p><strong class="text-foreground">Minimum gap:</strong> <code>0.006182</code> ≈ <code>0.618 pp</code></p>
+          <p><strong class="text-foreground">Maximum gap:</strong> <code>0.007812</code> ≈ <code>0.781 pp</code></p>
+        </div>
+        <p class="mt-3">LOYALTY therefore wins every context, but by a small margin that remains in a very narrow range. The stronger signal is not the size of the lead by itself; it is the <strong class="text-foreground">stability of the relative action ordering across contexts</strong>.</p>
+        <details class="mt-3 rounded-md border border-border bg-background">
+          <summary class="cursor-pointer list-none p-3 font-semibold text-foreground">How to read this margin <span class="ml-1 text-xs font-normal text-muted-foreground">Expand ↓</span></summary>
+          <div class="border-t border-border p-3">
+            <p>The context can move the overall predicted reward level up or down, while LOYALTY remains only about <code>0.62–0.78</code> percentage points ahead of the runner-up. That narrow, repeatable gap is consistent with a model whose context terms shift the score level but do not materially reorder actions.</p>
+            <p class="mt-2">This does <strong class="text-foreground">not</strong> mean LOYALTY is the true best offer. It means the current model formulation ranks LOYALTY highest everywhere in this TRAIN-only synthetic probe.</p>
+          </div>
+        </details>
+      </div>
+
+      <div class="rounded-md border border-border bg-muted/20 p-4">
         <p class="font-semibold text-foreground">Why the main-effects formulation produces this limitation</p>
         <p class="mt-2">The persisted Spark Logistic Regression pipeline contains context main effects plus a <code>chosen_action</code> main effect, but no explicit <code>context × action</code> interaction terms. Conceptually, its score can be written as:</p>
         <p class="mt-2 font-mono text-xs sm:text-sm">score(x, a) = β_context · x + β_action · a + b</p>
-        <p class="mt-2">When five actions are compared for the <strong class="text-foreground">same context</strong>, the context contribution <code>β_context · x</code> is shared across all five alternatives. The action ordering is therefore driven by the learned action contribution rather than by context-specific action preference. The observed result — <code>LOYALTY</code> winning <code>100%</code> of contexts — is consistent with that representational constraint.</p>
+        <p class="mt-2">When five actions are compared for the <strong class="text-foreground">same context</strong>, the context contribution <code>β_context · x</code> is shared across all five alternatives. The action ordering is therefore driven by the learned action contribution rather than by context-specific action preference. The observed result — <code>LOYALTY</code> winning <code>100%</code> of contexts with a narrow <code>0.618–0.781 pp</code> Top-1/Top-2 margin — is consistent with that representational constraint.</p>
       </div>
 
       <div class="grid gap-4 md:grid-cols-2">
@@ -107,8 +124,9 @@ function createRepresentationalCapacityEvidence() {
       </div>
 
       <div class="rounded-md border border-indigo-500/25 bg-indigo-500/5 p-4">
-        <p class="font-semibold text-foreground">Next formulation step</p>
-        <p class="mt-1">Repair personalization capacity before Candidate Generation by introducing controlled <code>context × action</code> interactions, then retrain on TRAIN only and rerun the same probe. The purpose is to test whether winner identity begins to vary meaningfully across context. Existing B1/B2 gates and downstream C–F statuses remain unchanged until that evidence exists.</p>
+        <p class="font-semibold text-foreground">Current status and next formulation step</p>
+        <p class="mt-1"><strong class="text-foreground">Training formulation remains IN PROGRESS.</strong> Recovery is proven, and the baseline personalization-capacity limitation is now evidenced. Before Candidate Generation, the next controlled step is to introduce <code>context × action</code> interactions, retrain on TRAIN only, and rerun the same probe to test whether winner identity begins to vary meaningfully across context.</p>
+        <p class="mt-2">Existing B1/B2 gates and downstream C–F statuses remain unchanged. TEST remains untouched until the formulation repair is validated on TRAIN.</p>
       </div>
     </div>
   `
@@ -150,9 +168,16 @@ function createPersonalizationCapacityNote() {
       <p class="mt-1 text-xs text-muted-foreground"><code>LOYALTY</code> wins all <code>8,002</code> TRAIN contexts; the current formulation changes scores but not the identity of the best action. <span class="font-semibold">Expand ↓</span></p>
     </summary>
     <div class="space-y-3 border-t border-border p-3 text-sm leading-6 text-muted-foreground">
-      <p><strong class="text-foreground">Observed probe:</strong> distinct winning actions = <code>1</code>; dominant action = <code>LOYALTY</code>; winning contexts = <code>8,002</code>; dominant winner share = <code>100.0000%</code>.</p>
-      <p><strong class="text-foreground">Interpretation:</strong> the baseline reward model does not personalize action preference across context. Probability values can move with context while action ranking remains fixed.</p>
+      <p><strong class="text-foreground">Observed probe:</strong> <code>40,010</code> candidates scored across <code>8,002</code> TRAIN contexts × <code>5</code> actions; distinct winning actions = <code>1</code>; dominant action = <code>LOYALTY</code>; winner share = <code>100.0000%</code>.</p>
+      <p><strong class="text-foreground">Winner margin:</strong> average <span title="Difference between the highest and second-highest predicted reward probability within the same context.">Top-1 vs Top-2 gap</span> = <code>0.739 pp</code>; observed range = <code>0.618–0.781 pp</code>. The lead is small but strikingly stable across context.</p>
+      <p><strong class="text-foreground">Interpretation:</strong> context changes predicted reward levels, but action ordering remains effectively invariant. The baseline reward model therefore does not personalize action preference across context.</p>
       <p><strong class="text-foreground">Why:</strong> the persisted Logistic Regression uses context main effects plus a <code>chosen_action</code> main effect, with no explicit <code>context × action</code> interactions. For a fixed context, <code>β_context · x</code> is common to every candidate action, so the action term drives the ordering. This is a representational-capacity limitation, not a held-out accuracy verdict.</p>
+      <details class="rounded-md border border-border bg-muted/20">
+        <summary class="cursor-pointer list-none p-3 font-semibold text-foreground">What this does — and does not — establish <span class="ml-1 text-xs font-normal text-muted-foreground">Expand ↓</span></summary>
+        <div class="border-t border-border p-3">
+          <p>This establishes that the current TRAIN-only baseline formulation cannot express context-dependent best-action changes in the observed probe. It does not establish that LOYALTY is the true best offer, nor does it establish TEST performance, causal uplift, production value, online safety, or operator validity.</p>
+        </div>
+      </details>
       <p><strong class="text-foreground">Next:</strong> introduce controlled context × action interactions, retrain on TRAIN only, and rerun the same probe before Candidate Generation. TEST remains untouched; B1/B2 and C–F statuses do not change from this evidence alone.</p>
     </div>
   `
