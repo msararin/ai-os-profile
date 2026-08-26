@@ -118,7 +118,7 @@ export default function CaseStudiesPage() {
                         variant="outline"
                         className="border-foreground/25 bg-foreground/5 text-foreground"
                       >
-                        FLAGSHIP CASE STUDY
+                        FLAGSHIP CASE STUDY ⭐
                       </Badge>
                     ) : null}
                   </div>
