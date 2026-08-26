@@ -8,7 +8,9 @@ const caseStudies = [
     // Claims: CL-001, CL-003, CL-012, CL-016, CL-017
     title: "NBO–NRT Telco on Azure Databricks",
     status: "In Progress",
+    statusTone: "active",
     category: "Decision intelligence",
+    flagship: true,
     summary:
       "Local composite implementation proven across 11 tables and 805 bounded rows; modeling and Azure Databricks implementation not started.",
     boundary:
@@ -19,7 +21,9 @@ const caseStudies = [
   {
     title: "Telco Churn MLOps Learning Use Case",
     status: "Parked",
+    statusTone: "parked",
     category: "MLOps learning",
+    flagship: false,
     summary:
       "A time-boxed learning and demonstration use case for a governed customer-churn retention decision-support workflow.",
     boundary:
@@ -30,7 +34,9 @@ const caseStudies = [
   {
     title: "Evidence Discipline for AI-Assisted Delivery",
     status: "In progress",
+    statusTone: "active",
     category: "AI-assisted delivery",
+    flagship: false,
     summary:
       "A developing case study on turning delivery evidence, assumptions, and recovery constraints into a safe public story before an entry is treated as complete.",
     boundary: "Not yet a completed case study or validation claim.",
@@ -40,7 +46,9 @@ const caseStudies = [
   {
     title: "Company M AI Adoption Measurement Study",
     status: "Bounded evidence",
+    statusTone: "complete",
     category: "AI adoption measurement",
+    flagship: false,
     summary:
       "A bounded evidence case study on how AI adoption work becomes measurable, traceable, and claim-safe across controlled execution rounds.",
     boundary: "Not a production, ROI, full automation, or real-world business outcome claim.",
@@ -48,6 +56,18 @@ const caseStudies = [
     href: "/case-studies/case-003/round3-evidence-ladder",
   },
 ]
+
+function statusBadgeClass(statusTone: string) {
+  if (statusTone === "active") {
+    return "border-indigo-500/40 bg-indigo-500/10 text-indigo-800 dark:text-indigo-200"
+  }
+
+  if (statusTone === "complete") {
+    return "border-emerald-600/30 bg-emerald-500/10 text-emerald-800 dark:text-emerald-200"
+  }
+
+  return "border-slate-400/40 bg-slate-500/5 text-slate-700 dark:text-slate-300"
+}
 
 export default function CaseStudiesPage() {
   return (
@@ -90,7 +110,17 @@ export default function CaseStudiesPage() {
                 <CardHeader>
                   <div className="mb-3 flex flex-wrap gap-2">
                     <Badge variant="outline">{study.category}</Badge>
-                    <Badge variant="outline">{study.status}</Badge>
+                    <Badge variant="outline" className={statusBadgeClass(study.statusTone)}>
+                      {study.status}
+                    </Badge>
+                    {study.flagship ? (
+                      <Badge
+                        variant="outline"
+                        className="border-foreground/25 bg-foreground/5 text-foreground"
+                      >
+                        FLAGSHIP CASE STUDY
+                      </Badge>
+                    ) : null}
                   </div>
                   <CardTitle>{study.title}</CardTitle>
                 </CardHeader>
