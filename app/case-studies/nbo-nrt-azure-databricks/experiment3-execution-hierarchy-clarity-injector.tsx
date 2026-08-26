@@ -9,6 +9,7 @@ function clarifiedHeader() {
         <p class="text-xs font-bold uppercase tracking-[0.12em] text-indigo-800 dark:text-indigo-200">Modeling Execution Track</p>
         <h3 class="mt-2 text-xl font-semibold text-foreground">What we are building and where we are now</h3>
         <p class="mt-2 max-w-4xl text-sm leading-6 text-muted-foreground">This is the delivery view of Experiment 3. It is separate from the STEP 01–07 Investigation Trail, which explains how we reasoned and validated the approach.</p>
+        <p class="mt-2 max-w-4xl text-sm leading-6 text-muted-foreground"><strong class="text-foreground">Current focus:</strong> recovery is proven; the TRAIN-only personalization-capacity probe found a stable single-action winner, so Training Formulation remains in progress while controlled <code>context × action</code> interaction repair is prepared.</p>
       </div>
       <span class="mt-4 inline-flex rounded-full border border-amber-500/40 bg-amber-500/10 px-3 py-1 text-xs font-bold text-amber-900 dark:text-amber-100">CONDITIONALLY ACCEPTABLE / GUARDRAIL REQUIRED</span>
     </div>
@@ -41,9 +42,25 @@ function executionSequence() {
             <strong class="text-foreground">B — Training Formulation</strong>
             <span class="font-semibold text-indigo-700 dark:text-indigo-300">IN PROGRESS</span>
           </div>
-          <p class="mt-1 text-xs text-muted-foreground">Defines how the learning problem can be trained safely under the available evidence. <span class="font-semibold">Expand ↓</span></p>
+          <p class="mt-1 text-xs text-muted-foreground">Defines how the learning problem can be trained safely under the available evidence. Current focus: repair context-dependent action preference before Candidate Generation. <span class="font-semibold">Expand ↓</span></p>
         </summary>
         <div class="space-y-3 border-t border-indigo-500/20 p-4">
+          <details class="rounded-md border border-amber-600/30 bg-amber-500/5" open>
+            <summary class="cursor-pointer list-none p-3">
+              <div class="flex flex-wrap items-center justify-between gap-2">
+                <strong class="text-foreground">Current formulation finding — personalization capacity</strong>
+                <span class="font-semibold text-amber-700 dark:text-amber-300">REPAIR NEXT</span>
+              </div>
+              <p class="mt-1 text-xs text-muted-foreground"><code>LOYALTY</code> wins all <code>8,002</code> TRAIN contexts; the winner margin is small but highly stable. <span class="font-semibold">Expand ↓</span></p>
+            </summary>
+            <div class="border-t border-border p-3 text-sm leading-6 text-muted-foreground">
+              <p><strong class="text-foreground">Probe result:</strong> <code>40,010</code> context-action candidates scored; distinct winning actions = <code>1</code>; <code>LOYALTY</code> winner share = <code>100%</code>.</p>
+              <p class="mt-2"><strong class="text-foreground">Winner margin:</strong> average <span title="Difference between the highest and second-highest predicted reward probability within the same context.">Top-1 vs Top-2 gap</span> = <code>0.739 pp</code>, with a narrow <code>0.618–0.781 pp</code> range.</p>
+              <p class="mt-2"><strong class="text-foreground">Meaning:</strong> context changes predicted reward levels, but action ordering remains effectively invariant. This is a representational-capacity limitation of the main-effects baseline, not a held-out accuracy verdict and not evidence that LOYALTY is truly the best offer.</p>
+              <p class="mt-2"><strong class="text-foreground">Next:</strong> introduce controlled <code>context × action</code> interactions, retrain on TRAIN only, and rerun the same probe. TEST remains untouched and no downstream stage is authorized by this finding alone.</p>
+            </div>
+          </details>
+
           <details class="rounded-md border border-amber-500/35 bg-background" open>
             <summary class="cursor-pointer list-none p-3">
               <div class="flex flex-wrap items-center justify-between gap-2">
