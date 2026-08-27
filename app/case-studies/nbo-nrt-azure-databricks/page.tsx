@@ -15,7 +15,8 @@ export const metadata: Metadata = {
 function statusBadgeClass(status: string) {
   const normalized = status.toLowerCase()
   if (["complete", "completed", "verified", "proven", "passed"].includes(normalized)) return "border-emerald-700 bg-emerald-100 text-emerald-950 dark:border-emerald-500 dark:bg-emerald-950 dark:text-emerald-100"
-  if (normalized.includes("in progress") || normalized.includes("not approved")) return "border-amber-700 bg-amber-100 text-amber-950 dark:border-amber-500 dark:bg-amber-950 dark:text-amber-100"
+  if (normalized.includes("in progress")) return "border-indigo-500 bg-indigo-100 text-indigo-900 dark:border-indigo-500 dark:bg-indigo-950 dark:text-indigo-100"
+  if (normalized.includes("not approved") || normalized.includes("blocked") || normalized.includes("failed")) return "border-red-600 bg-red-100 text-red-900 dark:border-red-500 dark:bg-red-950 dark:text-red-100"
   return "border-slate-500 bg-slate-200 text-slate-950 dark:border-slate-500 dark:bg-slate-800 dark:text-slate-100"
 }
 
@@ -26,7 +27,7 @@ export default function NboNrtAzureDatabricksPage() {
       <div className="mx-auto w-full max-w-5xl px-4 pt-4 sm:px-6 lg:px-8">
         <div className="flex justify-end">
           <div className="text-right text-sm leading-6 text-muted-foreground">
-            <p>Evidence on this page reconciled through 13 Aug 2026</p>
+            <p>Evidence on this page reconciled through 27 Aug 2026</p>
             <p>Curated static release — not a continuous live-status feed</p>
           </div>
         </div>
@@ -38,6 +39,14 @@ export default function NboNrtAzureDatabricksPage() {
               <Badge variant="outline">Telco decision intelligence</Badge>
               <Badge variant="outline">Azure Databricks</Badge>
               <Badge className={statusBadgeClass("In Progress")}>In Progress</Badge>
+            </div>
+            <div className="mt-3 inline-flex flex-wrap items-center gap-x-3 gap-y-2 rounded-lg border border-border bg-muted/20 px-3 py-2 text-[11px] font-medium text-muted-foreground" aria-label="Status color legend">
+              <span className="font-semibold text-foreground">Status colors:</span>
+              <span><span className="mr-1 inline-block h-2 w-2 rounded-full bg-emerald-500" />Passed / completed</span>
+              <span><span className="mr-1 inline-block h-2 w-2 rounded-full bg-indigo-500" />Active / in progress</span>
+              <span><span className="mr-1 inline-block h-2 w-2 rounded-full bg-amber-500" />Caution / issue</span>
+              <span><span className="mr-1 inline-block h-2 w-2 rounded-full bg-red-500" />Blocked / failed</span>
+              <span><span className="mr-1 inline-block h-2 w-2 rounded-full bg-slate-500" />Parked / future</span>
             </div>
             <h1 className="mt-4 max-w-5xl text-3xl font-semibold tracking-tight text-foreground sm:text-5xl">NBO–NRT Telco on Azure Databricks</h1>
             <p className="mt-4 max-w-4xl text-base leading-7 text-muted-foreground sm:text-lg">From governed synthetic data to a registered Candidate model—with model-quality and production boundaries disclosed.</p>
