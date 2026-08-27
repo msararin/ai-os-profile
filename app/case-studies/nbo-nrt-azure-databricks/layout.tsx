@@ -10,6 +10,7 @@ import { Experiment3DefaultViewInjector } from "./experiment3-default-view-injec
 import { Experiment3SupportGuardrailInjector } from "./experiment3-support-guardrail-injector"
 import { Experiment3ExecutionHierarchyClarityInjector } from "./experiment3-execution-hierarchy-clarity-injector"
 import { Experiment3RecoveryEvidenceInjector } from "./experiment3-recovery-evidence-injector"
+import { Experiment3ModelTaxonomyInjector } from "./experiment3-model-taxonomy-injector"
 
 export default function NboNrtAzureDatabricksLayout({ children }: { children: ReactNode }) {
   return (
@@ -25,6 +26,7 @@ export default function NboNrtAzureDatabricksLayout({ children }: { children: Re
       <Experiment3SupportGuardrailInjector />
       <Experiment3ExecutionHierarchyClarityInjector />
       <Experiment3RecoveryEvidenceInjector />
+      <Experiment3ModelTaxonomyInjector />
       {children}
     </>
   )
