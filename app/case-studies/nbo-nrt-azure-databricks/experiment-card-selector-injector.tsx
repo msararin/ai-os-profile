@@ -19,7 +19,7 @@ const cards = [
     match: "Experiment 2A — Post-Silver low-volume baseline",
     eyebrow: "Experiment 2A",
     title: "Post-Silver low-volume baseline",
-    description: "Supervised-model lane that preserves the original Experiment 2 evidence and its generalization investigation.",
+    description: "Supervised-model lane with completed data preparation and a characterized held-out generalization issue; retained as diagnostic evidence rather than promoted.",
     tone: "investigation",
     sourceIndex: 1,
   },
@@ -55,9 +55,9 @@ function createExperiment3Panel() {
       <p class="mt-3 max-w-4xl text-sm leading-7 text-muted-foreground">Experiment 3 evolves directly from Experiment 2B. Experiment 2B established bounded offline-policy-evaluation evidence for a fixed deterministic greedy target policy in the synthetic logged environment. Experiment 3 asks the next question: how should the policy choose offers when it must both use what it currently believes works best and continue learning from alternative actions?</p>
     </section>
 
-    <section class="rounded-xl border border-amber-500/30 bg-amber-500/5 p-5 sm:p-6">
-      <p class="text-xs font-bold uppercase tracking-[0.12em] text-amber-800 dark:text-amber-200">The core trade-off</p>
-      <div class="mt-3 text-lg font-semibold leading-8 text-foreground sm:text-xl">Exploitation <span class="font-normal text-muted-foreground">(ใช้สิ่งที่รู้ว่าดี)</span> <span class="mx-2 text-amber-700 dark:text-amber-300">↔</span> Exploration <span class="font-normal text-muted-foreground">(ลองสิ่งใหม่เพื่อเรียนรู้เพิ่ม)</span></div>
+    <section class="rounded-xl border border-indigo-500/30 bg-indigo-500/5 p-5 sm:p-6">
+      <p class="text-xs font-bold uppercase tracking-[0.12em] text-indigo-800 dark:text-indigo-200">The core trade-off</p>
+      <div class="mt-3 text-lg font-semibold leading-8 text-foreground sm:text-xl">Exploitation <span class="font-normal text-muted-foreground">(ใช้สิ่งที่รู้ว่าดี)</span> <span class="mx-2 text-indigo-700 dark:text-indigo-300">↔</span> Exploration <span class="font-normal text-muted-foreground">(ลองสิ่งใหม่เพื่อเรียนรู้เพิ่ม)</span></div>
       <p class="mt-4 max-w-4xl text-sm leading-7 text-muted-foreground"><strong class="text-foreground">We are not choosing offers randomly, but we are also not locking ourselves into one choice.</strong> The policy exploits what it currently believes works best while still exploring enough alternatives to learn better decisions.</p>
     </section>
 
