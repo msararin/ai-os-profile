@@ -24,11 +24,11 @@ export function Experiment2StatusInjector() {
         normalizedText(node.textContent).startsWith("Experiment 2 — Post-Silver low-volume baseline"),
       )
       if (experiment2Tab) {
-        const targetTabText = "Experiment 2 — Post-Silver low-volume baseline (Currently Active)"
+        const targetTabText = "Experiment 2 — Post-Silver low-volume baseline"
         if (normalizedText(experiment2Tab.textContent) !== targetTabText) {
           experiment2Tab.textContent = targetTabText
         }
-        experiment2Tab.style.backgroundColor = "rgba(245, 158, 11, 0.14)"
+        experiment2Tab.style.backgroundColor = "rgba(245, 158, 11, 0.10)"
         experiment2Tab.style.borderBottomColor = "rgb(217, 119, 6)"
       }
 
@@ -44,11 +44,11 @@ export function Experiment2StatusInjector() {
         if (!badge) {
           badge = document.createElement("span")
           badge.dataset.exp2CurrentStatus = "true"
-          badge.className = "inline-flex items-center rounded-full border border-amber-600/40 bg-amber-500/10 px-3 py-1 text-xs font-semibold text-amber-900 dark:text-amber-100"
           intro.appendChild(badge)
         }
-        if (normalizedText(badge.textContent) !== "BASELINE UNDER INVESTIGATION") {
-          badge.textContent = "BASELINE UNDER INVESTIGATION"
+        badge.className = "inline-flex items-center rounded-full border border-emerald-600/35 bg-emerald-500/10 px-3 py-1 text-xs font-semibold text-emerald-900 dark:text-emerald-100"
+        if (normalizedText(badge.textContent) !== "DATA PREPARATION / HANDOFF — COMPLETE") {
+          badge.textContent = "DATA PREPARATION / HANDOFF — COMPLETE"
         }
       }
 

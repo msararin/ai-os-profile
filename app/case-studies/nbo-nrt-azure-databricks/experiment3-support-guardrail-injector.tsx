@@ -20,11 +20,11 @@ function learningTerm(label: string, mean: string, why: string, principle: strin
 function createSupportSection() {
   const section = document.createElement("section")
   section.dataset.experiment3SupportGuardrail = "true"
-  section.className = "rounded-xl border border-amber-500/35 bg-amber-500/5 p-5 sm:p-6"
+  section.className = "rounded-xl border border-indigo-500/35 bg-indigo-500/5 p-5 sm:p-6"
   section.innerHTML = `
     <div class="flex flex-wrap items-start justify-between gap-3">
       <div>
-        <p class="text-xs font-bold uppercase tracking-[0.12em] text-amber-800 dark:text-amber-200">Experiment 3 execution path</p>
+        <p class="text-xs font-bold uppercase tracking-[0.12em] text-indigo-800 dark:text-indigo-200">Experiment 3 execution path</p>
         <h3 class="mt-2 text-xl font-semibold text-foreground">Training Formulation → 3.2B.1 Action × Context Support</h3>
         <p class="mt-2 max-w-3xl text-xs leading-5 text-muted-foreground">Execution hierarchy — separate from the 7-step investigation trail above. The numbered investigation trail explains the reasoning journey; 3.2A / 3.2B / 3.2B.1 shows the modeling delivery hierarchy.</p>
       </div>

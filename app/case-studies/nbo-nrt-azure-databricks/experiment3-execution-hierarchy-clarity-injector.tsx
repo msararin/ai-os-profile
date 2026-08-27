@@ -11,7 +11,7 @@ function clarifiedHeader() {
         <p class="mt-2 max-w-4xl text-sm leading-6 text-muted-foreground">This is the delivery view of Experiment 3. It is separate from the STEP 01–07 Investigation Trail, which explains how we reasoned and validated the approach.</p>
         <p class="mt-2 max-w-4xl text-sm leading-6 text-muted-foreground"><strong class="text-foreground">Current focus:</strong> recovery is proven; the TRAIN-only personalization-capacity probe found a stable single-action winner, so Training Formulation remains in progress while controlled <code>context × action</code> interaction repair is prepared.</p>
       </div>
-      <span class="mt-4 inline-flex rounded-full border border-amber-500/40 bg-amber-500/10 px-3 py-1 text-xs font-bold text-amber-900 dark:text-amber-100">CONDITIONALLY ACCEPTABLE / GUARDRAIL REQUIRED</span>
+      <span class="mt-4 inline-flex rounded-full border border-indigo-500/40 bg-indigo-500/10 px-3 py-1 text-xs font-bold text-indigo-800 dark:text-indigo-200">IN PROGRESS</span>
     </div>
   `
 }
