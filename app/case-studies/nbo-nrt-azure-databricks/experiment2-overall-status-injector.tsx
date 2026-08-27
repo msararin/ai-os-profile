@@ -13,7 +13,7 @@ function createOverallStatus() {
   section.innerHTML = `
     <div class="flex flex-wrap items-center justify-between gap-3">
       <h3 class="text-xl font-semibold text-foreground">Experiment 2 — Overall Status</h3>
-      <span class="inline-flex items-center rounded-full border border-amber-600/40 bg-amber-500/10 px-3 py-1 text-xs font-semibold text-amber-900 dark:text-amber-100">BASELINE UNDER INVESTIGATION</span>
+      <span class="inline-flex items-center rounded-full border border-amber-600/40 bg-amber-500/10 px-3 py-1 text-xs font-semibold text-amber-900 dark:text-amber-100">GENERALIZATION ISSUE CHARACTERIZED</span>
     </div>
 
     <div class="mt-5 space-y-5 text-sm leading-7 text-muted-foreground">
@@ -48,7 +48,7 @@ function createOverallStatus() {
         </div>
 
         <div class="rounded-lg border border-amber-600/30 bg-amber-500/5 p-4">
-          <p class="font-semibold text-foreground">3. Model evaluation — Issue found; investigation in progress</p>
+          <p class="font-semibold text-foreground">3. Model evaluation — Generalization issue characterized</p>
           <ul class="mt-2 list-disc space-y-1 pl-5">
             <li>TRAIN ROC-AUC ≈ <strong class="text-foreground">0.625</strong></li>
             <li>TEST ROC-AUC ≈ <strong class="text-foreground">0.449</strong></li>
@@ -59,12 +59,12 @@ function createOverallStatus() {
       </div>
 
       <div class="rounded-lg border border-amber-600/30 bg-amber-500/5 p-4">
-        <p class="font-semibold text-foreground">Investigation status</p>
+        <p class="font-semibold text-foreground">Investigation conclusion</p>
         <ul class="mt-2 list-disc space-y-1 pl-5">
           <li>Some feature input distributions are relatively stable, but the <strong class="text-foreground">feature → outcome relationship is not stable between TRAIN and TEST</strong></li>
-          <li>After inspecting the generator, there is <strong class="text-foreground">no evidence yet that time is an explicit rule directly creating concept drift</strong></li>
+          <li>After inspecting the generator, there is <strong class="text-foreground">no evidence that time is an explicit rule directly creating concept drift</strong></li>
           <li>First-pass screening does not support policy-version change, major cohort shift, response-timing shift, or Logistic Regression simplicity as the primary explanation</li>
-          <li>Do not claim <code>temporal concept drift</code> until the causal mechanism is isolated or the drift pattern can be reproduced clearly</li>
+          <li><code>Temporal concept drift</code> was not established as the causal mechanism</li>
         </ul>
       </div>
 
@@ -110,7 +110,7 @@ function createOverallStatus() {
 
           <div class="rounded-md border border-amber-600/30 bg-amber-500/5 p-3">
             <p class="font-semibold text-foreground">Current synthesis</p>
-            <p>The remaining investigation should focus on which model-visible feature→label relationships change across the temporal boundary, and whether the synthetic outcome-generation mechanism creates relationships that are unstable or insufficiently observable in the RC1 feature set. No tuning or promotion is authorized yet.</p>
+            <p>The held-out generalization failure is established and the main candidate explanations were screened, but no single causal mechanism was proven. The supervised baseline is therefore retained as <strong class="text-foreground">diagnostic evidence rather than promoted</strong>. Its learning informed the move into the separate policy-learning lanes used in Experiment 2B and Experiment 3.</p>
           </div>
         </div>
       </details>
