@@ -33,14 +33,14 @@ const caseStudies = [
   },
   {
     title: "Evidence Discipline for AI-Assisted Delivery",
-    status: "In progress",
-    statusTone: "active",
+    status: "Parked",
+    statusTone: "parked",
     category: "AI-assisted delivery",
     flagship: false,
     summary:
       "A developing case study on turning delivery evidence, assumptions, and recovery constraints into a safe public story before an entry is treated as complete.",
     boundary: "Not yet a completed case study or validation claim.",
-    cta: "View in-progress story",
+    cta: "View parked story",
     href: "/case-studies/evidence-discipline-ai-assisted-delivery",
   },
   {
@@ -118,7 +118,7 @@ export default function CaseStudiesPage() {
                         variant="outline"
                         className="border-foreground/25 bg-foreground/5 text-foreground"
                       >
-                        FLAGSHIP CASE STUDY
+                        FLAGSHIP CASE STUDY ⭐
                       </Badge>
                     ) : null}
                   </div>
