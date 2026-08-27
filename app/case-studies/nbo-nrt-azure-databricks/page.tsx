@@ -50,6 +50,31 @@ export default function NboNrtAzureDatabricksPage() {
             </div>
             <h1 className="mt-4 max-w-5xl text-3xl font-semibold tracking-tight text-foreground sm:text-5xl">NBO–NRT Telco on Azure Databricks</h1>
             <p className="mt-4 max-w-4xl text-base leading-7 text-muted-foreground sm:text-lg">From governed synthetic data to a registered Candidate model—with model-quality and production boundaries disclosed.</p>
+
+            <div className="mt-6 rounded-xl border border-indigo-500/25 bg-indigo-500/5 p-5 sm:p-6">
+              <p className="text-xs font-bold uppercase tracking-[0.12em] text-indigo-800 dark:text-indigo-200">Business objective</p>
+              <p className="mt-3 max-w-4xl text-lg font-semibold leading-8 text-foreground">
+                Build a governed Next-Best-Offer decisioning approach for Telco that can choose a more relevant offer for each customer context while preserving enough exploration to keep learning over time.
+              </p>
+              <p className="mt-3 max-w-4xl text-sm leading-7 text-muted-foreground">
+                The goal is not simply to predict response. It is to create a decision system that balances customer relevance, policy learning, evidence quality, and operational governance before any production claim is made.
+              </p>
+              <div className="mt-5 grid gap-3 md:grid-cols-3">
+                <div className="rounded-lg border border-border bg-background p-4">
+                  <p className="font-semibold text-foreground">Improve decision relevance</p>
+                  <p className="mt-1 text-sm leading-6 text-muted-foreground">Choose offers using customer and decision context instead of relying on one static rule.</p>
+                </div>
+                <div className="rounded-lg border border-border bg-background p-4">
+                  <p className="font-semibold text-foreground">Preserve learning</p>
+                  <p className="mt-1 text-sm leading-6 text-muted-foreground">Avoid locking permanently into the current winner so alternative actions can continue generating evidence.</p>
+                </div>
+                <div className="rounded-lg border border-border bg-background p-4">
+                  <p className="font-semibold text-foreground">Govern the decision path</p>
+                  <p className="mt-1 text-sm leading-6 text-muted-foreground">Keep data lineage, model evidence, policy logic, and claim boundaries auditable across the decision lifecycle.</p>
+                </div>
+              </div>
+            </div>
+
             <Alert className="mt-6 border-amber-500/30 bg-amber-500/5">
               <AlertDescription className="text-sm leading-6"><strong>Synthetic experiment only.</strong> The data-to-MLflow lifecycle executed, but threshold 0.50 failed for the positive class, threshold 0.24 is not approved, model discrimination is weak-to-moderate, and business/production readiness remain unproven.</AlertDescription>
             </Alert>
