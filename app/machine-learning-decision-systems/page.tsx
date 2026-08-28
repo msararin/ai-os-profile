@@ -47,13 +47,13 @@ const lenses = [
 ]
 
 const capabilities = [
-  ["Supervised ML", "Learn patterns from labeled outcomes.", BrainCircuit],
-  ["Reward / Response Modeling", "Estimate expected response for a context and action.", Blocks],
-  ["Context × Action Modeling", "Represent how different actions behave in different customer contexts.", Network],
-  ["Contextual Decisioning", "Choose one action for the current context under explicit constraints.", BriefcaseBusiness],
-  ["Policy Learning", "Define how action selection should balance reward, support, and continued learning.", Bot],
-  ["Offline Policy Evaluation", "Estimate policy value from governed logged interactions before online use.", FlaskConical],
-  ["MLOps / Evidence", "Persist, recover, trace, validate, and govern data and model artifacts.", Database],
+  { title: "Supervised ML", body: "Learn patterns from labeled outcomes.", icon: BrainCircuit },
+  { title: "Reward / Response Modeling", body: "Estimate expected response for a context and action.", icon: Blocks },
+  { title: "Context × Action Modeling", body: "Represent how different actions behave in different customer contexts.", icon: Network },
+  { title: "Contextual Decisioning", body: "Choose one action for the current context under explicit constraints.", icon: BriefcaseBusiness },
+  { title: "Policy Learning", body: "Define how action selection should balance reward, support, and continued learning.", icon: Bot },
+  { title: "Offline Policy Evaluation", body: "Estimate policy value from governed logged interactions before online use.", icon: FlaskConical },
+  { title: "MLOps / Evidence", body: "Persist, recover, trace, validate, and govern data and model artifacts.", icon: Database },
 ]
 
 export default function MachineLearningDecisionSystemsPage() {
@@ -208,7 +208,7 @@ export default function MachineLearningDecisionSystemsPage() {
               </p>
             </div>
             <ol className="mt-8 grid gap-3 md:grid-cols-2 xl:grid-cols-7">
-              {capabilities.map(([title, body, Icon], index) => (
+              {capabilities.map(({ title, body, icon: Icon }, index) => (
                 <li key={title} className="relative rounded-xl border border-border bg-card p-4">
                   <div className="flex items-center justify-between gap-3">
                     <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-indigo-700 text-xs font-bold text-white">{index + 1}</span>
