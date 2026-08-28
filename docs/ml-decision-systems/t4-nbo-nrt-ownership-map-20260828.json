@@ -1,0 +1,508 @@
+{
+  "contract": {
+    "phase": "T4",
+    "status": "CANDIDATE",
+    "date": "2026-08-28",
+    "base_sha": "a7e9bccf123c7be8587af062e3c980a925bf3eb1",
+    "scope": "NBO-NRT Cockpit knowledge currently rendered at the canonical route plus its canonical Experiment 3 decision record",
+    "canonical_route": "/case-studies/nbo-nrt-azure-databricks",
+    "rule": "Every candidate has exactly one primary_home. related_lenses may point to other lenses but must not repeat primary_home.",
+    "no_touch": [
+      "No content migration or deletion",
+      "No UI or navigation change",
+      "No evidence integration or Event Ledger work",
+      "No TEST, model, MLflow Registry, Unity Catalog data, or experiment-state mutation"
+    ]
+  },
+  "primary_homes": {
+    "business_decisions": "Business objective, decision problem, action space, success criteria, constraints, claim boundaries, and decision risks.",
+    "models_experiments": "Hypotheses, reward models, representation diagnostics, policy learning, TRAIN diagnostics, held-out evaluation, OPE, and comparisons.",
+    "engineering_evidence": "Unity Catalog, MLflow, recovery, artifact identity and lineage, ledger controls, TEST controls, provenance, and reproducibility."
+  },
+  "candidate_universe": {
+    "included": [
+      "app/case-studies/nbo-nrt-azure-databricks/page.tsx",
+      "app/case-studies/nbo-nrt-azure-databricks/experiment-tabs.tsx",
+      "app/case-studies/nbo-nrt-azure-databricks/data-preparation-infographic-injector.tsx",
+      "app/case-studies/nbo-nrt-azure-databricks/experiment-card-selector-injector.tsx",
+      "app/case-studies/nbo-nrt-azure-databricks/experiment2-candidate-decision-injector.tsx",
+      "app/case-studies/nbo-nrt-azure-databricks/experiment2-overall-status-injector.tsx",
+      "app/case-studies/nbo-nrt-azure-databricks/experiment2-status-injector.tsx",
+      "app/case-studies/nbo-nrt-azure-databricks/experiment2b-structure-injector.tsx",
+      "app/case-studies/nbo-nrt-azure-databricks/experiment3-execution-hierarchy-clarity-injector.tsx",
+      "app/case-studies/nbo-nrt-azure-databricks/experiment3-investigation-trail-injector.tsx",
+      "app/case-studies/nbo-nrt-azure-databricks/experiment3-model-taxonomy-injector.tsx",
+      "app/case-studies/nbo-nrt-azure-databricks/experiment3-recovery-evidence-injector.tsx",
+      "app/case-studies/nbo-nrt-azure-databricks/experiment3-support-guardrail-injector.tsx",
+      "docs/nbo-nrt/experiment3-policy-learning-decision-record-20260828.md"
+    ],
+    "excluded": [
+      {
+        "surface": "/case-studies/telco-churn-mlops",
+        "reason": "Separate case study; it may be cross-linked later but is not a migration candidate for NBO-NRT."
+      },
+      {
+        "surface": "/knowledge-sharing",
+        "reason": "External LinkedIn archive; post bodies are not repository-owned canonical NBO-NRT content."
+      },
+      {
+        "surface": "app/case-studies/nbo-nrt-azure-databricks/layout.tsx",
+        "reason": "Layout wrapper only; no knowledge content."
+      },
+      {
+        "surface": "app/case-studies/nbo-nrt-azure-databricks/experiment3-default-view-injector.tsx",
+        "reason": "Default-tab behavior only; no knowledge content."
+      },
+      {
+        "surface": "app/case-studies/nbo-nrt-azure-databricks/experiment3-deployment-marker.txt",
+        "reason": "Deployment or rendering mechanics, not knowledge items."
+      }
+    ]
+  },
+  "items": [
+    {
+      "id": "NBO-K001",
+      "title": "Mission and business objective",
+      "current_source": "page.tsx",
+      "current_locator": "Hero and Business objective",
+      "primary_home": "business_decisions",
+      "related_lenses": ["models_experiments", "engineering_evidence"],
+      "migration_phase": "T5",
+      "boundary": "Decision intent only; no production-value claim."
+    },
+    {
+      "id": "NBO-K002",
+      "title": "Decision relevance, learning, and governance outcomes",
+      "current_source": "page.tsx",
+      "current_locator": "Business objective outcome cards",
+      "primary_home": "business_decisions",
+      "related_lenses": ["models_experiments", "engineering_evidence"],
+      "migration_phase": "T5",
+      "boundary": "Desired outcomes, not measured uplift."
+    },
+    {
+      "id": "NBO-K003",
+      "title": "Current evidence snapshot",
+      "current_source": "page.tsx",
+      "current_locator": "Current evidence snapshot",
+      "primary_home": "engineering_evidence",
+      "related_lenses": ["business_decisions", "models_experiments"],
+      "migration_phase": "T7",
+      "boundary": "Presentation remains static until T9 evidence integration."
+    },
+    {
+      "id": "NBO-K004",
+      "title": "Experiment 1 data-preparation journey",
+      "current_source": "experiment-tabs.tsx; data-preparation-infographic-injector.tsx",
+      "current_locator": "Data Preparation - From Multi-Agent Research to Model-Ready Volume",
+      "primary_home": "engineering_evidence",
+      "related_lenses": ["models_experiments"],
+      "migration_phase": "T7",
+      "boundary": "Synthetic preparation and provenance only."
+    },
+    {
+      "id": "NBO-K005",
+      "title": "Recommendation-to-PoC alignment",
+      "current_source": "experiment-tabs.tsx",
+      "current_locator": "Alignment to the Given Recommendation",
+      "primary_home": "business_decisions",
+      "related_lenses": ["engineering_evidence"],
+      "migration_phase": "T5",
+      "boundary": "Traceability labels do not assert undocumented internal semantics."
+    },
+    {
+      "id": "NBO-K006",
+      "title": "PoC execution phases and sub-phase evidence",
+      "current_source": "experiment-tabs.tsx",
+      "current_locator": "PoC execution phases",
+      "primary_home": "engineering_evidence",
+      "related_lenses": ["business_decisions", "models_experiments"],
+      "migration_phase": "T7",
+      "boundary": "Execution status is not business readiness."
+    },
+    {
+      "id": "NBO-K007",
+      "title": "Model Run V1 lifecycle, registration, and read-back",
+      "current_source": "experiment-tabs.tsx",
+      "current_locator": "Model Run V1 - bounded appendix / Lifecycle evidence",
+      "primary_home": "engineering_evidence",
+      "related_lenses": ["models_experiments"],
+      "migration_phase": "T7",
+      "boundary": "Lifecycle proof only; Candidate is not Champion."
+    },
+    {
+      "id": "NBO-K008",
+      "title": "Model Run V1 quality and threshold evidence",
+      "current_source": "experiment-tabs.tsx",
+      "current_locator": "Model Run V1 - bounded appendix / Quality and threshold evidence",
+      "primary_home": "models_experiments",
+      "related_lenses": ["business_decisions", "engineering_evidence"],
+      "migration_phase": "T6",
+      "boundary": "Threshold 0.24 analyzed, not approved."
+    },
+    {
+      "id": "NBO-K009",
+      "title": "Experiment 1 claim boundary and readiness decision",
+      "current_source": "experiment-tabs.tsx",
+      "current_locator": "Current claim boundary",
+      "primary_home": "business_decisions",
+      "related_lenses": ["models_experiments", "engineering_evidence"],
+      "migration_phase": "T5",
+      "boundary": "SYNTHETIC_EXPERIMENT_ONLY; production promotion not authorized."
+    },
+    {
+      "id": "NBO-K010",
+      "title": "Experiment 2A purpose and synthetic-world decision",
+      "current_source": "experiment-tabs.tsx; experiment2-status-injector.tsx",
+      "current_locator": "Experiment 2 - Data Preparation Status and Key Decision",
+      "primary_home": "models_experiments",
+      "related_lenses": ["business_decisions", "engineering_evidence"],
+      "migration_phase": "T6",
+      "boundary": "Experiment design rationale, not operator-world truth."
+    },
+    {
+      "id": "NBO-K011",
+      "title": "Experiment 2A data-preparation flow",
+      "current_source": "experiment-tabs.tsx; experiment2b-structure-injector.tsx",
+      "current_locator": "Data Preparation flow",
+      "primary_home": "engineering_evidence",
+      "related_lenses": ["models_experiments"],
+      "migration_phase": "T7",
+      "boundary": "Preparation custody and gates remain explicit."
+    },
+    {
+      "id": "NBO-K012",
+      "title": "Synthetic-world reference principles",
+      "current_source": "experiment-tabs.tsx",
+      "current_locator": "Reference Principles - how synthetic preparation is grounded",
+      "primary_home": "models_experiments",
+      "related_lenses": ["engineering_evidence"],
+      "migration_phase": "T6",
+      "boundary": "Observed seed structure and controlled assumptions remain distinguishable."
+    },
+    {
+      "id": "NBO-K013",
+      "title": "Experiment 2A G0-G7 readiness gates",
+      "current_source": "experiment-tabs.tsx",
+      "current_locator": "G0-G7 readiness gates",
+      "primary_home": "engineering_evidence",
+      "related_lenses": ["models_experiments", "business_decisions"],
+      "migration_phase": "T7",
+      "boundary": "Gate evidence remains separate from model interpretation."
+    },
+    {
+      "id": "NBO-K014",
+      "title": "Experiment 2A supporting governance controls",
+      "current_source": "experiment-tabs.tsx",
+      "current_locator": "Supporting governance controls",
+      "primary_home": "engineering_evidence",
+      "related_lenses": ["business_decisions", "models_experiments"],
+      "migration_phase": "T7",
+      "boundary": "Controls do not imply successful outcomes."
+    },
+    {
+      "id": "NBO-K015",
+      "title": "Experiment 2 overall status and root-cause investigation",
+      "current_source": "experiment2-overall-status-injector.tsx",
+      "current_locator": "Experiment 2 - Overall Status",
+      "primary_home": "models_experiments",
+      "related_lenses": ["business_decisions", "engineering_evidence"],
+      "migration_phase": "T6",
+      "boundary": "Observation, interpretation, and decision remain separated."
+    },
+    {
+      "id": "NBO-K016",
+      "title": "Experiment 2 candidate-set decision and readiness gate",
+      "current_source": "experiment2-candidate-decision-injector.tsx",
+      "current_locator": "Candidate-Set Readiness Gate - G2.1 A-I",
+      "primary_home": "models_experiments",
+      "related_lenses": ["business_decisions", "engineering_evidence"],
+      "migration_phase": "T6",
+      "boundary": "Candidate readiness is bounded to the synthetic lane."
+    },
+    {
+      "id": "NBO-K017",
+      "title": "Experiment 2A/2B shared foundation and differences",
+      "current_source": "experiment-tabs.tsx; experiment2b-structure-injector.tsx",
+      "current_locator": "Shared foundation and What is different",
+      "primary_home": "models_experiments",
+      "related_lenses": ["engineering_evidence", "business_decisions"],
+      "migration_phase": "T6",
+      "boundary": "2A and 2B remain separate lanes with a shared foundation."
+    },
+    {
+      "id": "NBO-K018",
+      "title": "Experiment 2B offline-policy-evaluation evidence path",
+      "current_source": "experiment-tabs.tsx",
+      "current_locator": "Experiment 2B evidence path",
+      "primary_home": "models_experiments",
+      "related_lenses": ["engineering_evidence", "business_decisions"],
+      "migration_phase": "T6",
+      "boundary": "Offline synthetic OPE only; no online-policy safety claim."
+    },
+    {
+      "id": "NBO-K019",
+      "title": "Experiment 2B bounded verdict",
+      "current_source": "experiment-tabs.tsx",
+      "current_locator": "Current bounded verdict",
+      "primary_home": "business_decisions",
+      "related_lenses": ["models_experiments", "engineering_evidence"],
+      "migration_phase": "T5",
+      "boundary": "Statistical support in the synthetic logged environment only."
+    },
+    {
+      "id": "NBO-K020",
+      "title": "Experiment 3 mission, action space, and policy objective",
+      "current_source": "experiment-card-selector-injector.tsx; experiment3-policy-learning-decision-record-20260828.md",
+      "current_locator": "Experiment 3 - Adaptive Contextual Bandit Policy; Why this is currently a one-step contextual decision",
+      "primary_home": "business_decisions",
+      "related_lenses": ["models_experiments", "engineering_evidence"],
+      "migration_phase": "T5",
+      "boundary": "Constrained contextual-bandit direction; not sequential RL proof."
+    },
+    {
+      "id": "NBO-K021",
+      "title": "Policy numbers and business meaning",
+      "current_source": "experiment-card-selector-injector.tsx",
+      "current_locator": "Making the policy numbers meaningful",
+      "primary_home": "business_decisions",
+      "related_lenses": ["models_experiments"],
+      "migration_phase": "T5",
+      "boundary": "Interpretation remains tied to the bounded evidence."
+    },
+    {
+      "id": "NBO-K022",
+      "title": "Policy contract and logging meaning",
+      "current_source": "experiment-card-selector-injector.tsx; experiment3-policy-learning-decision-record-20260828.md",
+      "current_locator": "Policy contract and logging meaning; Current Policy V1 design direction; Why no learned-policy comparator yet",
+      "primary_home": "models_experiments",
+      "related_lenses": ["engineering_evidence", "business_decisions"],
+      "migration_phase": "T6",
+      "boundary": "Policy formulation is distinct from logging custody."
+    },
+    {
+      "id": "NBO-K023",
+      "title": "Experiment 3 current bounded status",
+      "current_source": "experiment-card-selector-injector.tsx",
+      "current_locator": "Current bounded status",
+      "primary_home": "business_decisions",
+      "related_lenses": ["models_experiments", "engineering_evidence"],
+      "migration_phase": "T5",
+      "boundary": "TRAIN-only progress; TEST remains untouched."
+    },
+    {
+      "id": "NBO-K024",
+      "title": "Experiment 3 A-F modeling execution hierarchy",
+      "current_source": "experiment3-execution-hierarchy-clarity-injector.tsx",
+      "current_locator": "What we are building and where we are now",
+      "primary_home": "models_experiments",
+      "related_lenses": ["business_decisions", "engineering_evidence"],
+      "migration_phase": "T6",
+      "boundary": "Stage status must not be inferred from downstream plans."
+    },
+    {
+      "id": "NBO-K025",
+      "title": "Reward Model V1, V1-D, V2, and RL taxonomy",
+      "current_source": "experiment3-model-taxonomy-injector.tsx; experiment3-policy-learning-decision-record-20260828.md",
+      "current_locator": "Experiment 3 model taxonomy; Reward Model taxonomy remains unchanged",
+      "primary_home": "models_experiments",
+      "related_lenses": ["engineering_evidence", "business_decisions"],
+      "migration_phase": "T6",
+      "boundary": "V1-D is durability evolution; RL remains a separate policy lane."
+    },
+    {
+      "id": "NBO-K026",
+      "title": "Experiment 3 question-led investigation trail",
+      "current_source": "experiment3-investigation-trail-injector.tsx; experiment3-policy-learning-decision-record-20260828.md",
+      "current_locator": "Experiment 3 investigation trail; Decision-making method",
+      "primary_home": "models_experiments",
+      "related_lenses": ["business_decisions", "engineering_evidence"],
+      "migration_phase": "T6",
+      "boundary": "Question to evidence to interpretation to decision order is preserved."
+    },
+    {
+      "id": "NBO-K027",
+      "title": "Action-by-context support diagnostic and policy guardrail",
+      "current_source": "experiment3-support-guardrail-injector.tsx; experiment3-policy-learning-decision-record-20260828.md",
+      "current_locator": "Training Formulation - 3.2B.1 Action x Context Support; What remains unproved; Immediate next gate",
+      "primary_home": "models_experiments",
+      "related_lenses": ["engineering_evidence", "business_decisions"],
+      "migration_phase": "T6",
+      "boundary": "Unrestricted policy learning is not authorized."
+    },
+    {
+      "id": "NBO-K028",
+      "title": "Notebook-state recovery bootstrap",
+      "current_source": "experiment3-recovery-evidence-injector.tsx",
+      "current_locator": "Execution continuity evidence - reward-model recovery and clean-notebook bootstrap",
+      "primary_home": "engineering_evidence",
+      "related_lenses": ["models_experiments"],
+      "migration_phase": "T7",
+      "boundary": "Recovery proof does not change training authorization."
+    },
+    {
+      "id": "NBO-K029",
+      "title": "Unity Catalog to MLflow artifact identity and load-back",
+      "current_source": "experiment3-recovery-evidence-injector.tsx; experiment3-model-taxonomy-injector.tsx; experiment3-policy-learning-decision-record-20260828.md",
+      "current_locator": "Recovery evidence and post-load scoring; MLflow persistence/load-back statements; Execution discipline durable source of truth",
+      "primary_home": "engineering_evidence",
+      "related_lenses": ["models_experiments", "business_decisions"],
+      "migration_phase": "T7",
+      "boundary": "Durability and identity proof only; not model-quality proof."
+    },
+    {
+      "id": "NBO-K030",
+      "title": "Reward-model representational-capacity diagnostic",
+      "current_source": "experiment3-recovery-evidence-injector.tsx; experiment3-model-taxonomy-injector.tsx; experiment3-policy-learning-decision-record-20260828.md",
+      "current_locator": "Personalization-capacity evidence - main-effects baseline; What V2 has already proved",
+      "primary_home": "models_experiments",
+      "related_lenses": ["business_decisions", "engineering_evidence"],
+      "migration_phase": "T6",
+      "boundary": "TRAIN formulation limitation; not held-out accuracy."
+    },
+    {
+      "id": "NBO-K031",
+      "title": "Winner-margin and context-action ranking interpretation",
+      "current_source": "experiment3-recovery-evidence-injector.tsx; experiment3-execution-hierarchy-clarity-injector.tsx; experiment3-policy-learning-decision-record-20260828.md",
+      "current_locator": "Top-1 versus Top-2 gap and personalization interpretation; Winner interpretation must use three dimensions",
+      "primary_home": "models_experiments",
+      "related_lenses": ["business_decisions"],
+      "migration_phase": "T6",
+      "boundary": "TRAIN-only diagnostic; no causal or production claim."
+    },
+    {
+      "id": "NBO-K033",
+      "title": "TEST isolation and held-out-use contract",
+      "current_source": "docs/nbo-nrt/experiment3-policy-learning-decision-record-20260828.md; experiment3-model-taxonomy-injector.tsx; experiment3-recovery-evidence-injector.tsx; experiment3-execution-hierarchy-clarity-injector.tsx",
+      "current_locator": "Scope TEST statement; Decision-making method Gate-before-TEST clause and TEST preconditions; Why TEST is still untouched; Claim boundary held-out TEST bullet and final TEST statement; exact TRAIN-only / TEST-untouched statements in the named Experiment 3 injectors",
+      "primary_home": "engineering_evidence",
+      "related_lenses": ["models_experiments", "business_decisions"],
+      "migration_phase": "T7",
+      "boundary": "TEST must not become a development or validation set."
+    },
+    {
+      "id": "NBO-K034",
+      "title": "Experiment 3 authorization and claim boundary",
+      "current_source": "docs/nbo-nrt/experiment3-policy-learning-decision-record-20260828.md; experiment-card-selector-injector.tsx; experiment3-support-guardrail-injector.tsx",
+      "current_locator": "Decision-record Claim boundary authorization bullets for production readiness, causal uplift, operator business truth, and online policy safety only; Current bounded status; support-guardrail claim boundary",
+      "primary_home": "business_decisions",
+      "related_lenses": ["models_experiments", "engineering_evidence"],
+      "migration_phase": "T5",
+      "boundary": "No production readiness, causal uplift, operator truth, or online safety claim."
+    },
+    {
+      "id": "NBO-K035",
+      "title": "Cockpit synthesis and status-only presentation prohibition",
+      "current_source": "docs/nbo-nrt/experiment3-policy-learning-decision-record-20260828.md",
+      "current_locator": "Cockpit note",
+      "primary_home": "engineering_evidence",
+      "related_lenses": ["business_decisions", "models_experiments"],
+      "migration_phase": "T7",
+      "boundary": "Surface reasoning and evidence relationships, not status alone."
+    }
+  ],
+  "occurrence_reconciliation": [
+    {"knowledge_id": "NBO-K001", "occurrences": ["page.tsx: Hero and Business objective"]},
+    {"knowledge_id": "NBO-K002", "occurrences": ["page.tsx: Improve decision relevance / Preserve learning / Govern the decision path"]},
+    {"knowledge_id": "NBO-K003", "occurrences": ["page.tsx: Current evidence snapshot"]},
+    {"knowledge_id": "NBO-K004", "occurrences": ["experiment-tabs.tsx: Data Preparation - From Multi-Agent Research to Model-Ready Volume", "data-preparation-infographic-injector.tsx: visual explanation attached to the same data-preparation journey"]},
+    {"knowledge_id": "NBO-K005", "occurrences": ["experiment-tabs.tsx: Alignment to the Given Recommendation"]},
+    {"knowledge_id": "NBO-K006", "occurrences": ["experiment-tabs.tsx: PoC execution phases and Sub-phase evidence"]},
+    {"knowledge_id": "NBO-K007", "occurrences": ["experiment-tabs.tsx: Model Run V1 - Lifecycle evidence"]},
+    {"knowledge_id": "NBO-K008", "occurrences": ["experiment-tabs.tsx: Model Run V1 - Quality and threshold evidence"]},
+    {"knowledge_id": "NBO-K009", "occurrences": ["experiment-tabs.tsx: Current claim boundary after Model Run V1"]},
+    {"knowledge_id": "NBO-K010", "occurrences": ["experiment-tabs.tsx: Experiment 2 - Data Preparation Status and Key Decision", "experiment2-status-injector.tsx: status explanation attached to Experiment 2 introduction"]},
+    {"knowledge_id": "NBO-K011", "occurrences": ["experiment-tabs.tsx: Experiment 2A Data Preparation flow", "experiment2b-structure-injector.tsx: shared-foundation structure referencing the Experiment 2A preparation flow"]},
+    {"knowledge_id": "NBO-K012", "occurrences": ["experiment-tabs.tsx: Reference Principles - how synthetic preparation is grounded"]},
+    {"knowledge_id": "NBO-K013", "occurrences": ["experiment-tabs.tsx: G0-G7 readiness gates"]},
+    {"knowledge_id": "NBO-K014", "occurrences": ["experiment-tabs.tsx: Supporting governance controls"]},
+    {"knowledge_id": "NBO-K015", "occurrences": ["experiment2-overall-status-injector.tsx: Experiment 2 - Overall Status and Root-cause investigation"]},
+    {"knowledge_id": "NBO-K016", "occurrences": ["experiment2-candidate-decision-injector.tsx: Candidate-Set Readiness Gate - G2.1 A-I"]},
+    {"knowledge_id": "NBO-K017", "occurrences": ["experiment-tabs.tsx: Experiment 2B Shared foundation and What is different", "experiment2b-structure-injector.tsx: Experiment 2A/2B structural separation"]},
+    {"knowledge_id": "NBO-K018", "occurrences": ["experiment-tabs.tsx: Experiment 2B evidence path"]},
+    {"knowledge_id": "NBO-K019", "occurrences": ["experiment-tabs.tsx: Experiment 2B Current bounded verdict"]},
+    {"knowledge_id": "NBO-K020", "occurrences": ["experiment-card-selector-injector.tsx: Experiment 3 - Adaptive Contextual Bandit Policy mission and action space", "experiment3-policy-learning-decision-record-20260828.md: Why this is currently a one-step contextual decision"]},
+    {"knowledge_id": "NBO-K021", "occurrences": ["experiment-card-selector-injector.tsx: Making the policy numbers meaningful"]},
+    {"knowledge_id": "NBO-K022", "occurrences": ["experiment-card-selector-injector.tsx: Policy contract and logging meaning", "experiment3-policy-learning-decision-record-20260828.md: Current Policy V1 design direction", "experiment3-policy-learning-decision-record-20260828.md: Why no learned-policy comparator yet"]},
+    {"knowledge_id": "NBO-K023", "occurrences": ["experiment-card-selector-injector.tsx: Current bounded status only"]},
+    {"knowledge_id": "NBO-K024", "occurrences": ["experiment3-execution-hierarchy-clarity-injector.tsx: What we are building and where we are now / A-F modeling execution sequence"]},
+    {"knowledge_id": "NBO-K025", "occurrences": ["experiment3-model-taxonomy-injector.tsx: Reward Model V1 / V1-D / V2 / RL taxonomy statements only", "experiment3-policy-learning-decision-record-20260828.md: Reward Model taxonomy remains unchanged"]},
+    {"knowledge_id": "NBO-K026", "occurrences": ["experiment3-investigation-trail-injector.tsx: question-led Experiment 3 investigation trail", "experiment3-policy-learning-decision-record-20260828.md: Decision-making method excluding TEST-control sentences owned by NBO-K033"]},
+    {"knowledge_id": "NBO-K027", "occurrences": ["experiment3-support-guardrail-injector.tsx: Training Formulation - 3.2B.1 Action x Context Support", "experiment3-policy-learning-decision-record-20260828.md: What remains unproved", "experiment3-policy-learning-decision-record-20260828.md: Immediate next gate in full, including B1 questions and B2 deferral"]},
+    {"knowledge_id": "NBO-K028", "occurrences": ["experiment3-recovery-evidence-injector.tsx: clean-notebook recovery bootstrap and post-recovery scoring continuity"]},
+    {"knowledge_id": "NBO-K029", "occurrences": ["experiment3-recovery-evidence-injector.tsx: Unity Catalog / MLflow identity and load-back evidence", "experiment3-model-taxonomy-injector.tsx: MLflow persistence and load-back durability statements only", "experiment3-policy-learning-decision-record-20260828.md: Execution discipline and durable source of truth"]},
+    {"knowledge_id": "NBO-K030", "occurrences": ["experiment3-recovery-evidence-injector.tsx: Personalization-capacity evidence - main-effects baseline and V2 contrast", "experiment3-model-taxonomy-injector.tsx: V2 TRAIN formulation and personalization-capacity proof", "experiment3-policy-learning-decision-record-20260828.md: What V2 has already proved"]},
+    {"knowledge_id": "NBO-K031", "occurrences": ["experiment3-recovery-evidence-injector.tsx: Top-1 versus Top-2 winner-margin evidence and interpretation", "experiment3-execution-hierarchy-clarity-injector.tsx: winner-margin interpretation inside the modeling hierarchy", "experiment3-policy-learning-decision-record-20260828.md: Winner interpretation must use three dimensions"]},
+    {"knowledge_id": "NBO-K033", "occurrences": ["experiment3-policy-learning-decision-record-20260828.md: Scope line - TEST remains untouched", "experiment3-policy-learning-decision-record-20260828.md: Decision-making method - Gate before TEST clause plus Before touching TEST bullets", "experiment3-policy-learning-decision-record-20260828.md: Why TEST is still untouched section in full", "experiment3-policy-learning-decision-record-20260828.md: Claim boundary - held-out TEST performance bullet plus final TEST remains untouched statement only", "experiment3-model-taxonomy-injector.tsx: line 56 held-out OPE remains downstream; lines 68/74/103/150 held-out TEST limitation or TEST remains untouched clauses only", "experiment3-recovery-evidence-injector.tsx: lines 44/82/122/129/151/178/181 held-out TEST limitation or TEST remains untouched clauses only", "experiment3-execution-hierarchy-clarity-injector.tsx: line 60 TEST remains untouched clause only"]},
+    {"knowledge_id": "NBO-K034", "occurrences": ["experiment3-policy-learning-decision-record-20260828.md: Claim boundary bullets for production readiness, causal uplift, operator business truth, and online policy safety only - explicitly excludes the held-out TEST bullet and final TEST statement owned by NBO-K033", "experiment-card-selector-injector.tsx: Current bounded status authorization and non-TEST claim-limit statements", "experiment3-support-guardrail-injector.tsx: Claim boundary prohibiting production uplift, causal impact, production safety, unrestricted readiness, and unsupported trust"]},
+    {"knowledge_id": "NBO-K035", "occurrences": ["experiment3-policy-learning-decision-record-20260828.md: Cockpit note requiring reasoning rather than status-only presentation"]}
+  ],
+  "cross_links": [
+    {
+      "id": "NBO-XL001",
+      "source_item": "NBO-K027",
+      "source_lens": "models_experiments",
+      "destination_item": "NBO-K033",
+      "destination_lens": "engineering_evidence",
+      "target_anchor": "#knowledge-nbo-k033",
+      "purpose": "Explain why support and formulation must be locked before held-out evaluation.",
+      "permitted_summary": "TEST remains sealed until the TRAIN-only formulation and support contract are fixed.",
+      "prohibited_duplication": "Do not reproduce the TEST-isolation control or held-out-use rationale in the model article."
+    },
+    {
+      "id": "NBO-XL002",
+      "source_item": "NBO-K034",
+      "source_lens": "business_decisions",
+      "destination_item": "NBO-K033",
+      "destination_lens": "engineering_evidence",
+      "target_anchor": "#knowledge-nbo-k033",
+      "purpose": "Connect credibility and authorization limits to the held-out control.",
+      "permitted_summary": "Held-out evidence is not yet authorized for the current design stage.",
+      "prohibited_duplication": "Do not copy the TEST procedure into the business claim-boundary article."
+    },
+    {
+      "id": "NBO-XL003",
+      "source_item": "NBO-K025",
+      "source_lens": "models_experiments",
+      "destination_item": "NBO-K029",
+      "destination_lens": "engineering_evidence",
+      "target_anchor": "#knowledge-nbo-k029",
+      "purpose": "Resolve the durable artifact identity used by the reward-model taxonomy.",
+      "permitted_summary": "The active reward estimator is persisted and load-back verified under the engineering identity record.",
+      "prohibited_duplication": "Do not copy run, path, recovery, or load-back procedure into the taxonomy article."
+    },
+    {
+      "id": "NBO-XL004",
+      "source_item": "NBO-K030",
+      "source_lens": "models_experiments",
+      "destination_item": "NBO-K028",
+      "destination_lens": "engineering_evidence",
+      "target_anchor": "#knowledge-nbo-k028",
+      "purpose": "Show how the model used for the diagnostic was recovered across notebook sessions.",
+      "permitted_summary": "Execution continuity was independently proven through the recovery bootstrap.",
+      "prohibited_duplication": "Do not reproduce recovery commands or custody evidence in the diagnostic article."
+    },
+    {
+      "id": "NBO-XL005",
+      "source_item": "NBO-K023",
+      "source_lens": "business_decisions",
+      "destination_item": "NBO-K027",
+      "destination_lens": "models_experiments",
+      "target_anchor": "#knowledge-nbo-k027",
+      "purpose": "Support the business-facing policy restriction with the formulation diagnostic.",
+      "permitted_summary": "Unrestricted policy learning remains blocked by uneven action-by-context support.",
+      "prohibited_duplication": "Do not copy support tables, thresholds, or the diagnostic reasoning into the status article."
+    },
+    {
+      "id": "NBO-XL006",
+      "source_item": "NBO-K027",
+      "source_lens": "models_experiments",
+      "destination_item": "NBO-K029",
+      "destination_lens": "engineering_evidence",
+      "target_anchor": "#knowledge-nbo-k029",
+      "purpose": "Trace support-count evidence to its governed source and artifact identity.",
+      "permitted_summary": "Supporting counts must resolve to governed, reproducible evidence.",
+      "prohibited_duplication": "Do not duplicate artifact lineage or load-back evidence in the support diagnostic."
+    }
+  ]
+}
