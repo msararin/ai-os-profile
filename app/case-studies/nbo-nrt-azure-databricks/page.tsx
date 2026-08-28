@@ -4,6 +4,7 @@ import { SiteHeader } from "@/components/site-header"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/components/ui/card"
+import { BusinessDecisionsLens } from "./business-decisions-lens"
 import { ExperimentTabs } from "./experiment-tabs"
 
 export const metadata: Metadata = {
@@ -129,14 +130,10 @@ export default function NboNrtAzureDatabricksPage() {
             </nav>
 
             <div className="mt-8 grid gap-4 lg:grid-cols-3">
-              <section id="business-decisions" className="scroll-mt-24 rounded-xl border border-border bg-background p-5" aria-labelledby="business-decisions-heading">
-                <p className="text-xs font-semibold uppercase tracking-[0.12em] text-muted-foreground">Primary home</p>
-                <h3 id="business-decisions-heading" className="mt-2 text-lg font-semibold text-foreground">Business &amp; Decisions</h3>
-                <p className="mt-3 text-sm leading-6 text-muted-foreground">Shell reserved for the business objective, decision space, success criteria, constraints, and bounded implications.</p>
-                <Badge variant="outline" className="mt-4">Content migration begins in T5</Badge>
-              </section>
+              <BusinessDecisionsLens />
 
               <section id="models-experiments" className="scroll-mt-24 rounded-xl border border-border bg-background p-5" aria-labelledby="models-experiments-heading">
+                <span id="knowledge-nbo-k027" className="scroll-mt-24" aria-hidden="true" />
                 <p className="text-xs font-semibold uppercase tracking-[0.12em] text-muted-foreground">Primary home</p>
                 <h3 id="models-experiments-heading" className="mt-2 text-lg font-semibold text-foreground">Models &amp; Experiments</h3>
                 <p className="mt-3 text-sm leading-6 text-muted-foreground">Shell reserved for question-led model and policy experiments, evaluation evidence, interpretations, and boundaries.</p>
@@ -144,6 +141,7 @@ export default function NboNrtAzureDatabricksPage() {
               </section>
 
               <section id="engineering-evidence" className="scroll-mt-24 rounded-xl border border-border bg-background p-5" aria-labelledby="engineering-evidence-heading">
+                <span id="knowledge-nbo-k033" className="scroll-mt-24" aria-hidden="true" />
                 <p className="text-xs font-semibold uppercase tracking-[0.12em] text-muted-foreground">Primary home</p>
                 <h3 id="engineering-evidence-heading" className="mt-2 text-lg font-semibold text-foreground">Engineering &amp; Evidence</h3>
                 <p className="mt-3 text-sm leading-6 text-muted-foreground">Shell reserved for governed data, artifact identity, MLflow, lineage, recovery, and TEST controls.</p>
@@ -153,13 +151,13 @@ export default function NboNrtAzureDatabricksPage() {
 
             <Alert className="mt-6 border-slate-500/30 bg-background">
               <AlertDescription className="text-sm leading-6">
-                <strong>Structure only.</strong> Existing Cockpit and experiment content remains intact below. No evidence, status, or experiment state has been migrated or changed in this phase.
+                <strong>Migration boundary.</strong> Existing Cockpit and experiment content remains intact below. The Business narrative now has a primary home; no underlying evidence, gate status, or experiment state changed in this phase.
               </AlertDescription>
             </Alert>
           </div>
         </section>
 
-        <div className="nbo-nrt-cockpit">
+        <div id="legacy-experiment-evidence" className="nbo-nrt-cockpit scroll-mt-24">
           <ExperimentTabs />
         </div>
 
