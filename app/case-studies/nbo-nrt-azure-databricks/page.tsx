@@ -98,6 +98,67 @@ export default function NboNrtAzureDatabricksPage() {
           </div>
         </section>
 
+        <section className="border-y border-border bg-muted/20 py-10" aria-labelledby="cockpit-lenses-heading">
+          <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+            <div className="max-w-3xl">
+              <p className="text-xs font-bold uppercase tracking-[0.14em] text-indigo-700 dark:text-indigo-300">Cockpit structure</p>
+              <h2 id="cockpit-lenses-heading" className="mt-3 text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
+                One decision system, three review lenses
+              </h2>
+              <p className="mt-3 text-sm leading-7 text-muted-foreground sm:text-base">
+                Choose the question you need to answer. Each lens has one primary home, while related material will cross-link instead of being duplicated.
+              </p>
+            </div>
+
+            <nav className="mt-6 grid gap-4 md:grid-cols-3" aria-label="NBO-NRT Cockpit lenses">
+              <a href="#business-decisions" className="rounded-xl border border-border bg-background p-5 transition-colors hover:border-indigo-500/50 hover:bg-indigo-500/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500">
+                <p className="text-xs font-bold uppercase tracking-[0.12em] text-indigo-700 dark:text-indigo-300">Why?</p>
+                <p className="mt-2 font-semibold text-foreground">Business &amp; Decisions</p>
+                <p className="mt-2 text-sm leading-6 text-muted-foreground">Start with the decision, available actions, constraints, and claim boundaries.</p>
+              </a>
+              <a href="#models-experiments" className="rounded-xl border border-border bg-background p-5 transition-colors hover:border-indigo-500/50 hover:bg-indigo-500/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500">
+                <p className="text-xs font-bold uppercase tracking-[0.12em] text-indigo-700 dark:text-indigo-300">Learn?</p>
+                <p className="mt-2 font-semibold text-foreground">Models &amp; Experiments</p>
+                <p className="mt-2 text-sm leading-6 text-muted-foreground">Follow formulation, experiment questions, evaluation, limitations, and decisions.</p>
+              </a>
+              <a href="#engineering-evidence" className="rounded-xl border border-border bg-background p-5 transition-colors hover:border-indigo-500/50 hover:bg-indigo-500/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500">
+                <p className="text-xs font-bold uppercase tracking-[0.12em] text-indigo-700 dark:text-indigo-300">Trust?</p>
+                <p className="mt-2 font-semibold text-foreground">Engineering &amp; Evidence</p>
+                <p className="mt-2 text-sm leading-6 text-muted-foreground">Trace data, artifacts, lineage, recovery, controls, and reproducibility.</p>
+              </a>
+            </nav>
+
+            <div className="mt-8 grid gap-4 lg:grid-cols-3">
+              <section id="business-decisions" className="scroll-mt-24 rounded-xl border border-border bg-background p-5" aria-labelledby="business-decisions-heading">
+                <p className="text-xs font-semibold uppercase tracking-[0.12em] text-muted-foreground">Primary home</p>
+                <h3 id="business-decisions-heading" className="mt-2 text-lg font-semibold text-foreground">Business &amp; Decisions</h3>
+                <p className="mt-3 text-sm leading-6 text-muted-foreground">Shell reserved for the business objective, decision space, success criteria, constraints, and bounded implications.</p>
+                <Badge variant="outline" className="mt-4">Content migration begins in T5</Badge>
+              </section>
+
+              <section id="models-experiments" className="scroll-mt-24 rounded-xl border border-border bg-background p-5" aria-labelledby="models-experiments-heading">
+                <p className="text-xs font-semibold uppercase tracking-[0.12em] text-muted-foreground">Primary home</p>
+                <h3 id="models-experiments-heading" className="mt-2 text-lg font-semibold text-foreground">Models &amp; Experiments</h3>
+                <p className="mt-3 text-sm leading-6 text-muted-foreground">Shell reserved for question-led model and policy experiments, evaluation evidence, interpretations, and boundaries.</p>
+                <Badge variant="outline" className="mt-4">Content migration begins in T6</Badge>
+              </section>
+
+              <section id="engineering-evidence" className="scroll-mt-24 rounded-xl border border-border bg-background p-5" aria-labelledby="engineering-evidence-heading">
+                <p className="text-xs font-semibold uppercase tracking-[0.12em] text-muted-foreground">Primary home</p>
+                <h3 id="engineering-evidence-heading" className="mt-2 text-lg font-semibold text-foreground">Engineering &amp; Evidence</h3>
+                <p className="mt-3 text-sm leading-6 text-muted-foreground">Shell reserved for governed data, artifact identity, MLflow, lineage, recovery, and TEST controls.</p>
+                <Badge variant="outline" className="mt-4">Content migration begins in T7</Badge>
+              </section>
+            </div>
+
+            <Alert className="mt-6 border-slate-500/30 bg-background">
+              <AlertDescription className="text-sm leading-6">
+                <strong>Structure only.</strong> Existing Cockpit and experiment content remains intact below. No evidence, status, or experiment state has been migrated or changed in this phase.
+              </AlertDescription>
+            </Alert>
+          </div>
+        </section>
+
         <div className="nbo-nrt-cockpit">
           <ExperimentTabs />
         </div>
