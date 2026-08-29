@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/components/ui/card"
 import { BusinessDecisionsLens } from "./business-decisions-lens"
 import { ExperimentTabs } from "./experiment-tabs"
+import { EngineeringEvidenceLens } from "./engineering-evidence-lens"
 import { ModelsExperimentsLens } from "./models-experiments-lens"
 
 export const metadata: Metadata = {
@@ -135,20 +136,12 @@ export default function NboNrtAzureDatabricksPage() {
 
               <ModelsExperimentsLens />
 
-              <section id="engineering-evidence" className="scroll-mt-24 rounded-xl border border-border bg-background p-5" aria-labelledby="engineering-evidence-heading">
-                <span id="knowledge-nbo-k028" className="scroll-mt-24" aria-hidden="true" />
-                <span id="knowledge-nbo-k029" className="scroll-mt-24" aria-hidden="true" />
-                <span id="knowledge-nbo-k033" className="scroll-mt-24" aria-hidden="true" />
-                <p className="text-xs font-semibold uppercase tracking-[0.12em] text-muted-foreground">Primary home</p>
-                <h3 id="engineering-evidence-heading" className="mt-2 text-lg font-semibold text-foreground">Engineering &amp; Evidence</h3>
-                <p className="mt-3 text-sm leading-6 text-muted-foreground">Shell reserved for governed data, artifact identity, MLflow, lineage, recovery, and TEST controls.</p>
-                <Badge variant="outline" className="mt-4">Content migration begins in T7</Badge>
-              </section>
+              <EngineeringEvidenceLens />
             </div>
 
             <Alert className="mt-6 border-slate-500/30 bg-background">
               <AlertDescription className="text-sm leading-6">
-                <strong>Migration boundary.</strong> Existing Cockpit and experiment content remains intact below. Business and Models narratives now have primary homes; no underlying evidence, gate status, or experiment state changed in this phase.
+                <strong>Migration boundary.</strong> Existing Cockpit and experiment content remains intact below. All three narratives now have primary homes; no underlying evidence, gate status, Event Ledger, or experiment state changed in this phase.
               </AlertDescription>
             </Alert>
           </div>
