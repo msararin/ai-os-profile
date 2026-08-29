@@ -1,7 +1,7 @@
 # T6 Models & Experiments Migration Evidence
 
-Date: 2026-08-29  
-Base: `0be8bb62642cdd63fde0c8d679445f712ecb42dc`  
+Date: 2026-08-29
+Base: `0be8bb62642cdd63fde0c8d679445f712ecb42dc`
 Scope: Models & Experiments content migration only
 
 ## Route Ledger
@@ -82,7 +82,7 @@ The bounded repair adds:
 - a seven-step investigation trail;
 - mobile taxonomy cards below `md`, with the full table retained for `md` and above.
 
-Responsive contract: mobile-first grids collapse at 390 px; links/status groups wrap; wide evidence tables remain scoped to desktop or `overflow-x-auto`; the new taxonomy uses cards rather than horizontal scrolling on mobile. Vercel preview viewport execution remains required before merge.
+Responsive contract: mobile-first grids collapse at 390 px; links/status groups wrap; wide evidence tables remain scoped to desktop or `overflow-x-auto`; the new taxonomy uses cards rather than horizontal scrolling on mobile. Pixel viewport execution was planned but the owner explicitly authorized progression after rough visual review; the release therefore remains `PASS_WITH_BOUNDARIES` and makes no screenshot or pixel-perfect claim.
 
 ### Independent post-repair reader receipt
 
@@ -99,7 +99,7 @@ Reviewer note: the opening now states the decision, action/reward framing, evide
 
 ### Preview deployment and viewport boundary
 
-- PR: `#126`; exact head after the content push: `cd845e02b5f623d73ba6c3950959d62cad2edaf4`
+- PR: `#126`; content deployment head: `cd845e02b5f623d73ba6c3950959d62cad2edaf4`; evidence-only update head before this final receipt repair: `2ee1a6cf035203a60d1b09c9f69848114ba74e6c`
 - Deployment Preflight run 420: **PASS**
 - Vercel `v0-ai-os-profile`: **READY / SUCCESS**
 - Vercel `ai-os-profile`: first attempt reported an error, automatic retry completed **READY / SUCCESS**
