@@ -4,6 +4,7 @@
   "private": true,
   "packageManager": "pnpm@11.1.3",
   "scripts": {
+    "test:nbo-event-ledger": "node scripts/validate-nbo-event-ledger-contract.mjs",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
