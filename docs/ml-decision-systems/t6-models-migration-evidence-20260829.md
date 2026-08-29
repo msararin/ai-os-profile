@@ -96,3 +96,15 @@ Responsive contract: mobile-first grids collapse at 390 px; links/status groups 
 - Reviewer boundary: no browser binary was available, so screenshot/viewport execution was not claimed
 
 Reviewer note: the opening now states the decision, action/reward framing, evidence interpretation, current support restriction, and next authorized step inside the first summary. Local 1–5 jumps wrap on mobile and the detailed lens remains progressively disclosed. The at-a-glance label was tightened to “policy-learning lane: separate, not sequential RL” so contextual-bandit learning is not conflated with sequential RL.
+
+### Preview deployment and viewport boundary
+
+- PR: `#126`; exact head after the content push: `cd845e02b5f623d73ba6c3950959d62cad2edaf4`
+- Deployment Preflight run 420: **PASS**
+- Vercel `v0-ai-os-profile`: **READY / SUCCESS**
+- Vercel `ai-os-profile`: first attempt reported an error, automatic retry completed **READY / SUCCESS**
+- Actual viewport checker: `/root/t6_preview_viewport_agent` (independent sub-agent; provider/model/token/cost not exposed)
+- Browser result: **BLOCKED_ENVIRONMENT** before page render. Two independent browser sessions returned `CDP operation refresh tabs was superseded by browser recovery`; no viewport size was observed and no screenshot claim is made.
+- Direct anonymous preview fetch reached Vercel deployment protection rather than application HTML, so it is not used as responsive proof.
+
+Responsive verdict before merge: **PASS_WITH_BOUNDARIES**. Deterministic source/build evidence proves mobile-first grids, wrapped controls, breakpoint-specific taxonomy cards/table, and scoped overflow. The independent reader found the responsive contract credible at 390/1024/1440 by code inspection. Pixel layout remains unverified because the browser runtime was unavailable. This limitation is explicit and production HTML/route validation remains mandatory immediately after merge; any observed regression triggers T6-only rollback.
