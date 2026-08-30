@@ -119,10 +119,10 @@ export function EngineeringEvidenceLens() {
     </div>
 
     <nav className="mt-5 flex flex-wrap gap-2 text-xs" aria-label="Engineering evidence questions">
-      {[["#knowledge-nbo-k003","Snapshot"],["#knowledge-nbo-k004","Data path"],["#knowledge-nbo-k007","Lifecycle"],["#knowledge-nbo-k028","Recovery"],["#knowledge-nbo-k033","TEST custody"]].map(([href,label],i)=><a key={href} href={href} className="rounded-full border border-border bg-background px-3 py-2 font-semibold text-foreground hover:border-sky-500">{i+1}. {label}</a>)}
+      {[["#knowledge-nbo-k003","Snapshot"],["#knowledge-nbo-k004","Data path"],["#knowledge-nbo-k007","Lifecycle"],["#knowledge-nbo-k028","Recovery"],["#knowledge-nbo-k033","TEST custody"],["#knowledge-nbo-k036","Runtime proof"]].map(([href,label],i)=><a key={href} href={href} className="rounded-full border border-border bg-background px-3 py-2 font-semibold text-foreground hover:border-sky-500">{i+1}. {label}</a>)}
     </nav>
 
-    <Alert className="mt-5 border-amber-500/30 bg-amber-500/5"><AlertDescription className="text-sm leading-6"><strong>Trust boundary.</strong> Static evidence homes only until T9 integration. No Event Ledger infrastructure is created here. No TEST access, training, scoring, model/registry, or Unity Catalog data mutation is authorized.</AlertDescription></Alert>
+    <Alert className="mt-5 border-emerald-500/30 bg-emerald-500/5"><AlertDescription className="text-sm leading-6"><strong>Runtime-tested evidence.</strong> The Event Ledger contract was executed on Azure Databricks: successful paths, expected-failure paths, and post-failure state integrity were verified. Boundary: serialized single writer only; no concurrent multi-writer safety, TEST access, model training, or production business outcome is claimed.</AlertDescription></Alert>
 
     <div className="mt-6 space-y-4">
       <Article id="K003" title="What is the current evidence snapshot?">
@@ -185,7 +185,29 @@ export function EngineeringEvidenceLens() {
       <Article id="K035" title="How should the Cockpit present engineering evidence?">
         <p><strong className="text-foreground">Observation:</strong> the decision record requires the Cockpit to surface reasoning behind decisions, not only resulting status. Its former “NO COCKPIT DEPLOYMENT” label described the authority of that historical save—not today’s deployment state.</p>
         <p><strong className="text-foreground">Static Event Ledger home:</strong> the intended evidence relationship is Runtime execution → durable Unity Catalog / MLflow identity and lineage → append-oriented execution history → KB synthesis → Cockpit. The history must preserve prior decisions through superseding events rather than silent rewrites.</p>
-        <p><strong className="text-foreground">Decision:</strong> preserve progressive disclosure and the relationship among observation, interpretation, decision, artifacts, lineage, gates, and TEST isolation. This is a conceptual custody home only; Event Ledger schema, tables, logging, querying, and UI integration remain isolated to T8/T9.</p>
+        <p><strong className="text-foreground">Decision:</strong> preserve progressive disclosure and the relationship among observation, interpretation, decision, artifacts, lineage, gates, and TEST isolation. The public surface presents a sanitized evidence summary; raw execution receipts remain retained for internal reconciliation.</p>
+      </Article>
+
+      <Article id="K036" title="Was the Event Ledger contract tested on the actual Databricks runtime?">
+        <div className="flex flex-wrap items-center gap-2">
+          <Badge variant="outline" className="border-emerald-700 bg-emerald-100 text-emerald-950 dark:border-emerald-500 dark:bg-emerald-950 dark:text-emerald-100">RUNTIME VERIFIED</Badge>
+          <Badge variant="outline">PASS WITH BOUNDARIES</Badge>
+        </div>
+        <p><strong className="text-foreground">Yes—tested, not inferred.</strong> The contract was executed on the actual Azure Databricks runtime on 30 Aug 2026. Evidence retained includes successful outputs, expected-error receipts, and read-back checks after each rejected mutation.</p>
+        <details className="rounded-lg border border-border bg-background">
+          <summary className="cursor-pointer p-3 font-semibold text-foreground">View tested runtime evidence summary</summary>
+          <div className="space-y-2 border-t border-border p-3">
+            {[
+              ["Schema and append-only contract", "PASS", "Ledger 45/45; projection 13/13; append-only enabled."],
+              ["Parent, child, and supersede lineage", "PASS", "Three immutable events retained with valid parent and correction links."],
+              ["Idempotency and collision guard", "PASS", "Replay created no row; changed digest was rejected; state remained unchanged."],
+              ["Projection pointer guard", "PASS", "Version advanced 1 → 2; stale version 1 writer was rejected."],
+              ["UPDATE and DELETE immutability", "PASS", "Both mutations were rejected by Delta; digest, timestamp, notes, and row count survived read-back."],
+              ["Final integrity closeout", "PASS", "3 ledger rows, 1 projection row, zero prohibited execution flags."],
+            ].map(([name,status,result]) => <div key={name} className="rounded-md bg-muted/20 p-3"><div className="flex flex-wrap items-center justify-between gap-2"><p className="font-semibold text-foreground">{name}</p><span className="font-semibold text-emerald-700 dark:text-emerald-300">{status}</span></div><p className="mt-1">{result}</p></div>)}
+          </div>
+        </details>
+        <p><strong className="text-foreground">Evidence custody:</strong> sanitized results are available here without Databricks access; detailed execution receipts are retained internally. <strong className="text-foreground">Boundary:</strong> serialized single writer only under <code>SYNTHETIC_LEARNING_AND_MLOPS_EVIDENCE_ONLY</code>. Multi-writer safety and production readiness were not tested or claimed.</p>
       </Article>
     </div>
   </section>
