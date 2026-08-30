@@ -30,7 +30,7 @@ export default function NboNrtAzureDatabricksPage() {
       <div className="mx-auto w-full max-w-5xl px-4 pt-4 sm:px-6 lg:px-8">
         <div className="flex justify-end">
           <div className="text-right text-sm leading-6 text-muted-foreground">
-            <p>Evidence on this page reconciled through 27 Aug 2026</p>
+            <p>Evidence on this page reconciled through 30 Aug 2026</p>
             <p>Curated static release — not a continuous live-status feed</p>
           </div>
         </div>
