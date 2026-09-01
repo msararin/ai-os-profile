@@ -5,6 +5,7 @@
   "packageManager": "pnpm@11.1.3",
   "scripts": {
     "test:nbo-event-ledger": "node scripts/validate-nbo-event-ledger-contract.mjs",
+    "test:nbo-runtime-proof-surface": "node scripts/validate-nbo-runtime-proof-surface.mjs",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",

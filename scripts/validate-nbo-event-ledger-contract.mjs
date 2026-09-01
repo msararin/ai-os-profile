@@ -79,4 +79,8 @@ for(const forbidden of [" DELETE "," UPDATE ","INSERT OVERWRITE","CREATE OR REPL
 const ddl=readFileSync("infra/databricks/nbo-nrt/event-ledger/001_create_event_ledger.sql","utf8")
 for(const col of ["log_id","parent_step_id","supersedes_log_id","test_touched","model_training_performed","artifact_persisted","artifact_loadback_verified","event_digest","idempotency_key"]) assert(ddl.includes(col),`DDL missing ${col}`)
 
-console.log(JSON.stringify({verdict:"PASS",boundary:"LOCAL_SQLITE_BEHAVIORAL_CONTRACT_ONLY",tests:{schema_read:true,append:true,idempotent_replay:true,collision_rejected:true,stale_digest_rejected:true,canonical_fixture:true,supersede_preserves_history:true,parent_link:true,explicit_flags:true,json_validation:true,t8_scope_guard:true,projection_cas:true,projection_version_sequence:true,ledger_sql_no_mutation:true},ledger_rows:3,latest_gate_log_id:gate.latest_log_id},null,2))
+const verifier=readFileSync("infra/databricks/nbo-nrt/event-ledger/004_verify_runtime_contract.sql","utf8").toUpperCase()
+assert.equal((verifier.match(/ORDINAL_POSITION - MIN\(ORDINAL_POSITION\) OVER \(\) \+ 1/g)??[]).length,2,"both runtime schemas must normalize ordinal metadata")
+assert.equal((verifier.match(/WHEN 'LONG' THEN 'BIGINT'/g)??[]).length,2,"both runtime schemas must normalize Databricks LONG to BIGINT")
+
+console.log(JSON.stringify({verdict:"PASS",boundary:"LOCAL_SQLITE_BEHAVIORAL_CONTRACT_ONLY",tests:{schema_read:true,append:true,idempotent_replay:true,collision_rejected:true,stale_digest_rejected:true,canonical_fixture:true,supersede_preserves_history:true,parent_link:true,explicit_flags:true,json_validation:true,t8_scope_guard:true,projection_cas:true,projection_version_sequence:true,ledger_sql_no_mutation:true,runtime_metadata_normalization:true},ledger_rows:3,latest_gate_log_id:gate.latest_log_id},null,2))
