@@ -1,0 +1,37 @@
+{
+  "change_class": "PUBLIC_COCKPIT_RUNTIME_PROOF",
+  "summary": "Release the reconciled T8 Databricks runtime proof through the T9 desktop-first Cockpit evidence surface.",
+  "owner_intended_meaning": "A reviewer can inspect what was genuinely tested, without Databricks access and without conflating ML, LLM/Agent, and governance-runtime evidence.",
+  "canonical_source": [
+    "docs/ml-decision-systems/t8-databricks-runtime-receipt-20260830.md",
+    "docs/ml-decision-systems/t9-runtime-proof-integration-evidence-20260901.md"
+  ],
+  "affected_public_routes": ["/case-studies/nbo-nrt-azure-databricks"],
+  "affected_files": [
+    "app/case-studies/nbo-nrt-azure-databricks/page.tsx",
+    "app/case-studies/nbo-nrt-azure-databricks/runtime-proof.tsx",
+    "docs/governance/cockpit-change-control/v0.1/COCKPIT_CHANGE_CONTROL_DEFINITION_OF_DONE_V0_1.md",
+    "docs/governance/cockpit-change-control/v0.1/COCKPIT_CHANGE_CONTROL_SPEC_V0_1.md",
+    "docs/governance/cockpit-change-control/releases/t8-t9-release-20260901.json",
+    "docs/governance/cockpit-change-control/releases/t8-t9-release-20260901.md",
+    "docs/ml-decision-systems/t8-databricks-runtime-receipt-20260830.md",
+    "docs/ml-decision-systems/t8-event-ledger-evidence-20260829.md",
+    "docs/ml-decision-systems/t9-runtime-proof-integration-evidence-20260901.md",
+    "infra/databricks/nbo-nrt/event-ledger/004_verify_runtime_contract.sql",
+    "infra/databricks/nbo-nrt/event-ledger/README.md",
+    "package.json",
+    "scripts/validate-nbo-event-ledger-contract.mjs",
+    "scripts/validate-nbo-runtime-proof-surface.mjs"
+  ],
+  "protected_not_in_scope": ["all other public routes", "Databricks data and tables", "TEST data", "models, training, scoring, registry and artifacts"],
+  "owner_semantic_acceptance_required": "yes",
+  "owner_semantic_acceptance_status": "accepted_with_bounded_visual_risk",
+  "deploy_allowed": "no",
+  "deployment_performed": "no",
+  "claim_boundary": "Source/build and reconciled governance-runtime evidence only. Rendered responsive and interaction checks remain NOT_VERIFIED / OWNER_ACCEPTED_RISK. Deployment authority is a separate owner decision outside this pre-go-live manifest.",
+  "base_sha": "4b3cdeb7cd3038eeef6771389a0f79d4c9aff06f",
+  "application_candidate_head": "fb58674bdefd701ea5e530bd9bb2b8285dc268da",
+  "application_candidate_tree": "8c42296ec4ef599ea8e2e2f04d4bf70c71b7ddb0",
+  "visual_interaction_risk": "NOT_VERIFIED_OWNER_ACCEPTED_RISK",
+  "rollback": "Revert the release merge on main; retain the append-only Databricks evidence tables."
+}

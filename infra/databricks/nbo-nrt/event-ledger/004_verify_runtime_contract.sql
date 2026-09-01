@@ -51,8 +51,11 @@ WITH expected(column_name, ordinal_position, data_type, is_nullable) AS (
 ), actual AS (
   SELECT
     column_name,
-    ordinal_position + 1 AS ordinal_position,
-    CASE WHEN UPPER(data_type) = 'LONG' THEN 'BIGINT' ELSE UPPER(data_type) END AS data_type,
+    ordinal_position - MIN(ordinal_position) OVER () + 1 AS ordinal_position,
+    CASE UPPER(data_type)
+      WHEN 'LONG' THEN 'BIGINT'
+      ELSE UPPER(data_type)
+    END AS data_type,
     UPPER(is_nullable) AS is_nullable
   FROM adb_nbo_nrt_mlops_dev.information_schema.columns
   WHERE table_schema='governance' AND table_name='experiment_execution_event_ledger_v0_2'
@@ -81,8 +84,11 @@ WITH expected(column_name, ordinal_position, data_type, is_nullable) AS (
 ), actual AS (
   SELECT
     column_name,
-    ordinal_position + 1 AS ordinal_position,
-    CASE WHEN UPPER(data_type) = 'LONG' THEN 'BIGINT' ELSE UPPER(data_type) END AS data_type,
+    ordinal_position - MIN(ordinal_position) OVER () + 1 AS ordinal_position,
+    CASE UPPER(data_type)
+      WHEN 'LONG' THEN 'BIGINT'
+      ELSE UPPER(data_type)
+    END AS data_type,
     UPPER(is_nullable) AS is_nullable
   FROM adb_nbo_nrt_mlops_dev.information_schema.columns
   WHERE table_schema='governance' AND table_name='experiment_gate_status_v0_2'

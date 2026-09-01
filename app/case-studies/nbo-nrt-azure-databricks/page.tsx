@@ -8,6 +8,7 @@ import { BusinessDecisionsLens } from "./business-decisions-lens"
 import { ExperimentTabs } from "./experiment-tabs"
 import { EngineeringEvidenceLens } from "./engineering-evidence-lens"
 import { ModelsExperimentsLens } from "./models-experiments-lens"
+import { RuntimeProof } from "./runtime-proof"
 
 export const metadata: Metadata = {
   title: "NBO–NRT Telco on Azure Databricks",
@@ -100,6 +101,8 @@ export default function NboNrtAzureDatabricksPage() {
             </div>
           </div>
         </section>
+
+        <RuntimeProof />
 
         <section className="border-y border-border bg-muted/20 py-10" aria-labelledby="cockpit-lenses-heading">
           <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
