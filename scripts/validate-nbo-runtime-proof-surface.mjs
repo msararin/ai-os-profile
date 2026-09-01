@@ -6,6 +6,8 @@ const proof = readFileSync("app/case-studies/nbo-nrt-azure-databricks/runtime-pr
 
 assert(page.includes('import { RuntimeProof } from "./runtime-proof"'), "runtime proof component must be imported")
 assert(page.includes("<RuntimeProof />"), "runtime proof component must be mounted")
+assert(page.includes('href="#governance-runtime-proof"'), "hero must link directly to runtime proof")
+assert(page.includes("New · tested proof added"), "hero must make the new runtime proof visibly discoverable")
 assert(page.includes("reconciled through 30 Aug 2026"), "page evidence date must reflect runtime reconciliation")
 
 for (const text of [
@@ -41,6 +43,7 @@ console.log(JSON.stringify({
   boundary: "LOCAL_PUBLIC_SURFACE_CONTRACT_ONLY",
   checks: {
     mounted: true,
+    hero_entry_point: true,
     evidence_date: true,
     evidence_classes_separated: true,
     expandable_proof: true,

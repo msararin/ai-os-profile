@@ -55,6 +55,18 @@ export default function NboNrtAzureDatabricksPage() {
             <h1 className="mt-4 max-w-5xl text-3xl font-semibold tracking-tight text-foreground sm:text-5xl">NBO–NRT Telco on Azure Databricks</h1>
             <p className="mt-4 max-w-4xl text-base leading-7 text-muted-foreground sm:text-lg">From governed synthetic data to a registered Candidate model—with model-quality and production boundaries disclosed.</p>
 
+            <a
+              href="#governance-runtime-proof"
+              className="mt-6 flex max-w-4xl flex-col gap-3 rounded-xl border border-emerald-500/40 bg-emerald-500/10 p-5 transition-colors hover:border-emerald-500/70 hover:bg-emerald-500/15 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 sm:flex-row sm:items-center sm:justify-between"
+            >
+              <span>
+                <span className="text-xs font-bold uppercase tracking-[0.14em] text-emerald-800 dark:text-emerald-200">New · tested proof added</span>
+                <span className="mt-2 block text-lg font-semibold text-foreground">Databricks runtime controls verified—with evidence you can review here.</span>
+                <span className="mt-1 block text-sm leading-6 text-muted-foreground">Append-only history, replay safety, correction lineage, projection control, and immutability were tested on 30 Aug 2026.</span>
+              </span>
+              <span className="shrink-0 font-semibold text-emerald-800 dark:text-emerald-200">View tested proof ↓</span>
+            </a>
+
             <div className="mt-6 rounded-xl border border-indigo-500/25 bg-indigo-500/5 p-5 sm:p-6">
               <p className="text-xs font-bold uppercase tracking-[0.12em] text-indigo-800 dark:text-indigo-200">Business objective</p>
               <p className="mt-3 max-w-4xl text-lg font-semibold leading-8 text-foreground">
