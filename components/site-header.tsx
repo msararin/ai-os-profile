@@ -6,7 +6,8 @@ import { cn } from "@/lib/utils"
 
 const navigation = [
   { name: "Home", href: "/" },
-  { name: "AI Operating System", href: "/ai-operating-system" },
+  { name: "ML & Decision Systems", href: "/machine-learning-decision-systems" },
+  { name: "LLM & Agent Systems", href: "/ai-operating-system" },
   { name: "Knowledge Sharing", href: "/knowledge-sharing" },
   { name: "Achievements", href: "/achievements" },
   { name: "Case Studies", href: "/case-studies" },
