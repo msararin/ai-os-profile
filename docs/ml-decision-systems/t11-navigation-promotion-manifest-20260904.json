@@ -1,0 +1,79 @@
+{
+  "phase_id": "T11-NAVIGATION-PROMOTION-20260904",
+  "change_class": "PUBLIC_COCKPIT_NAVIGATION",
+  "objective": "Make the Machine Learning and Decision Systems work visibly discoverable and distinguish it from the complementary LLM and Agent Systems domain.",
+  "entry_condition": "T2 landing route and NBO-NRT Cockpit already exist on production main; owner explicitly authorizes T11 navigation promotion and deployment on 2026-09-04.",
+  "base_sha": "87d2c8ea945ae26191b6e54871d55848b2f93168",
+  "affected_routes": [
+    "/machine-learning-decision-systems",
+    "/ai-operating-system"
+  ],
+  "candidate_files": [
+    {
+      "path": "components/site-header.tsx",
+      "sha256": "e14b0e083a823e1f4ecea0896972910150621f93bedc63406e84505b87ccb7c1"
+    },
+    {
+      "path": "docs/ml-decision-systems/t11-navigation-promotion-evidence-20260904.md",
+      "sha256": "9a565b50f0d2f5cd1b10b04de06f4c8ab3152cfa33f79539895dd425e45ab570"
+    },
+    {
+      "path": "docs/ml-decision-systems/t11-navigation-promotion-manifest-20260904.json",
+      "sha256_binding": "SELF_EXCLUDED_FROM_EMBEDDED_HASH; final full staged Git tree and manifest hash are retained in the independent final review and pull-request receipt"
+    }
+  ],
+  "protected_surfaces": [
+    "canonical KB repository",
+    "NBO-NRT experiment evidence and Experiment 2A/2B",
+    "Databricks, TEST, MLflow, model and runtime objects",
+    "authentication, telemetry and deployment configuration",
+    "public evidence claim boundaries"
+  ],
+  "claim_boundary": "Navigation discoverability only; no model-quality, runtime, production-readiness, causal-uplift, online-safety or operator-business-truth claim upgrade.",
+  "validation": {
+    "typescript": "PASS",
+    "eslint": "PASS_0_ERRORS_5_PREEXISTING_WARNINGS",
+    "next_build": "PASS_47_OF_47_ROUTES",
+    "diff_check": "PASS",
+    "legacy_public_surface_regression": "46_OF_54_PASS; 8 baseline failures outside candidate scope retained as debt, not claimed PASS",
+    "desktop_scope": "DESKTOP_FIRST; narrow-screen horizontal-scroll risk owner accepted and deferred"
+  },
+  "review_history": {
+    "qa_sentinel": {
+      "agent_task_id": "/root/qa_cockpit_nav",
+      "executed_role": "READ_ONLY_QA_SENTINEL",
+      "actual_or_simulated": "ACTUAL_AGENT_EXECUTION",
+      "provider_model_tokens_cost": "NOT_EXPOSED",
+      "initial_verdict": "BLOCKED_PRE_COMMIT",
+      "findings": "Required frozen tree, T11 authority packet, correct regression execution, desktop boundary, and stakeholder comprehension proof.",
+      "remediation": "Candidate staged and hashed; T11 evidence added; server-backed regression executed; desktop risk bounded; stakeholder comprehension confirmed.",
+      "final_exact_tree_verdict": "PENDING_AFTER_MANIFEST_FREEZE"
+    },
+    "stakeholder_simulation": {
+      "agent_task_id": "/root/stakeholder_cockpit_nav",
+      "executed_role": "READ_ONLY_STAKEHOLDER_SIMULATION",
+      "actual_or_simulated": "SIMULATED_STAKEHOLDER_LENS_ONLY",
+      "provider_model_tokens_cost": "NOT_EXPOSED",
+      "persona": "Desktop portfolio visitor evaluating the distinction between ML and LLM work and looking for the NBO-NRT proof path.",
+      "acceptance_questions": [
+        "Are ML and LLM visible as distinct peer problem classes?",
+        "Can the visitor reach the Machine Learning and Decision Systems page and NBO-NRT Cockpit?",
+        "Does the wording avoid upgrading evidence or production claims?"
+      ],
+      "answers": [
+        "Yes; both peer destinations are explicit in global navigation.",
+        "Yes; the ML destination contains prominent NBO-NRT Cockpit links.",
+        "Yes; the destination retains synthetic and production claim boundaries."
+      ],
+      "misleading_interpretation": "NONE_FOUND",
+      "comprehension_verdict": "PASS",
+      "final_exact_tree_verdict": "PENDING_AFTER_MANIFEST_FREEZE"
+    }
+  },
+  "owner_semantic_acceptance": "ACCEPTED_AND_DEPLOY_REQUESTED_2026-09-04",
+  "deployment_allowed": true,
+  "rollback": "Revert the bounded T11 merge to restore the former navigation label and remove the ML navigation entry without changing either destination route.",
+  "exit_claim": "PRODUCTION_NAVIGATION_VERIFIED_WITH_DESKTOP_FIRST_BOUNDARY",
+  "freeze_timestamp_utc": "2026-09-04T00:28:27Z",
+  "next_action": "Freeze the full three-file staged tree, rerun both independent reviews on that digest, commit, open protected PR, merge after gates pass, and verify the deployed production navigation."
+}
