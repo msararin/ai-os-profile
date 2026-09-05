@@ -1,0 +1,16 @@
+{
+  "candidate_id": "COCKPIT_EXP3_PHASE1_ACHIEVEMENT_20260906",
+  "base_sha": "974e77f7d4a3b8e44b06d4b2191676013766d19b",
+  "freeze_timestamp_utc": "2026-09-05T17:22:00Z",
+  "implementation_digest_sha256": "06b0c8f8d8b547d1312ded5fd82be9854a4d8ff8c2b71c7d8f9336db5bc05b39",
+  "implementation_files": [
+    {"path": "app/achievements/achievements-exp3-recovery-injector.tsx", "sha256": "fe5f22f42e90e47604a7aea93a7bdf27f329fed646e4b3d63c855c807f3f323d"},
+    {"path": "app/achievements/page.tsx", "sha256": "345b67e7eca037fc1ce3423882a6fc964bf3ca765fde28c7f8b79aae13f43741"},
+    {"path": "scripts/validate-exp3-phase1-achievement.mjs", "sha256": "27c8643ae81c1a039f84f5d21d742e7b5c921c7ecbe3745bd6291167e0e147e1"},
+    {"path": "scripts/verify-exp3-achievement-implementation-freeze.mjs", "sha256": "a9883d1d760bd4a33c61e33907df637a224d09214c9089bfe69fe3d5d948a0d9"},
+    {"path": "docs/governance/cockpit-change-control/v0.1/COCKPIT_CHANGE_CONTROL_DEFINITION_OF_DONE_V0_1.md", "sha256": "db00626f30ceb7da5146749ad31259ee1cf9ead9fb324cd8df97420d00aa1ba0"},
+    {"path": "docs/governance/cockpit-change-control/releases/exp3-phase1-achievement-20260906.json", "sha256": "1548c900db771cfcc66d4d281d09ed38e90485f822d3c00996d3ab1218969120"}
+  ],
+  "evidence_layer": "append-only metadata bound to this implementation digest",
+  "deployment_performed": "NO"
+}

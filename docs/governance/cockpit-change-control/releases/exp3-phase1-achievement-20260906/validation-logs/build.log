@@ -1,0 +1,71 @@
+▲ Next.js 16.2.6 (Turbopack)
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 1853ms
+  Skipping validation of types
+  Finished TypeScript config validation in 3ms ...
+  Collecting page data using 9 workers ...
+  Generating static pages using 9 workers (0/47) ...
+  Generating static pages using 9 workers (11/47) 
+  Generating static pages using 9 workers (23/47) 
+  Generating static pages using 9 workers (35/47) 
+✓ Generating static pages using 9 workers (47/47) in 248ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ○ /about
+├ ○ /achievement-learning
+├ ○ /achievements
+├ ○ /achievements/public-surface-governance
+├ ○ /ai-agent-launch-checklist
+├ ○ /ai-operating-system
+├ ○ /ai-operating-system/agent-review-dashboard
+├ ○ /ai-operating-system/context-continuity
+├ ƒ /api/auth/[...nextauth]
+├ ƒ /api/internal/telemetry/oidc-proof
+├ ƒ /api/internal/telemetry/operator
+├ ƒ /api/observability
+├ ○ /architecture
+├ ○ /architecture/internal-cockpit-governance
+├ ○ /architecture/optimize-worker/durable-continuity
+├ ○ /architecture/public-surface-governance
+├ ○ /architecture/system-health
+├ ○ /architecture/system-health/agent-orchestration
+├ ○ /architecture/system-health/evidence-readiness
+├ ○ /architecture/system-health/llmops-readiness
+├ ○ /architecture/system-health/monitoring
+├ ○ /architecture/system-health/observability
+├ ○ /architecture/system-health/runtime-authority-evidence
+├ ○ /architecture/system-health/window-b-runtime-authority-snapshot
+├ ○ /case-studies
+├ ○ /case-studies/case-003/round3-evidence-ladder
+├ ○ /case-studies/evidence-discipline-ai-assisted-delivery
+├ ○ /case-studies/nbo-nrt-azure-databricks
+├ ○ /case-studies/telco-churn-mlops
+├ ○ /contact
+├ ○ /how-we-build
+├ ƒ /internal/telemetry
+├ ƒ /internal/telemetry/operator
+├ ○ /knowledge-sharing
+├ ○ /lean-value-tree
+├ ○ /machine-learning-decision-systems
+├ ○ /org-roles
+├ ○ /org-roles/big-crew-architecture-gate
+├ ○ /org-roles/data-team
+├ ○ /org-roles/qa-sentinel
+├ ○ /org-roles/repo-custodian
+├ ○ /org-roles/runner-execution-layer
+├ ○ /portfolio
+├ ○ /principles
+├ ○ /role-fit
+├ ○ /workstreams
+└ ○ /writing
+
+
+ƒ Proxy (Middleware)
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+

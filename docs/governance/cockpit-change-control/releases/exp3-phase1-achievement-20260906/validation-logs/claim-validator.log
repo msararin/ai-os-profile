@@ -1,0 +1,7 @@
+{
+  "verdict": "PASS",
+  "file": "app/achievements/achievements-exp3-recovery-injector.tsx",
+  "required_checks": 13,
+  "missing": [],
+  "prohibited_claims_found": []
+}

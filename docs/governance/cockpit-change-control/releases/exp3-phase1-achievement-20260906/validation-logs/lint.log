@@ -1,0 +1,16 @@
+
+<WORKTREE>/app/layout.tsx
+  6:7  warning  '_geist' is assigned a value but never used      @typescript-eslint/no-unused-vars
+  7:7  warning  '_geistMono' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+<WORKTREE>/app/role-fit/page.tsx
+  3:10  warning  'Badge' is defined but never used  @typescript-eslint/no-unused-vars
+
+<WORKTREE>/components/ui/use-toast.ts
+  18:7  warning  'actionTypes' is assigned a value but only used as a type  @typescript-eslint/no-unused-vars
+
+<WORKTREE>/hooks/use-toast.ts
+  18:7  warning  'actionTypes' is assigned a value but only used as a type  @typescript-eslint/no-unused-vars
+
+✖ 5 problems (0 errors, 5 warnings)
+

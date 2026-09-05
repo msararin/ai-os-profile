@@ -1,0 +1,31 @@
+{
+  "candidate_id": "COCKPIT_EXP3_PHASE1_ACHIEVEMENT_20260906",
+  "implementation_digest_sha256": "06b0c8f8d8b547d1312ded5fd82be9854a4d8ff8c2b71c7d8f9336db5bc05b39",
+  "runner": "Codex local execution",
+  "validation_timestamp_utc": "2026-09-05T17:19:00Z",
+  "results": {
+    "typecheck": "PASS",
+    "lint": "PASS_WITH_5_PRE_EXISTING_OUT_OF_SCOPE_WARNINGS",
+    "production_build": "PASS_47_ROUTES",
+    "claim_validator": "PASS_13_REQUIRED_0_PROHIBITED",
+    "change_control": "PASS_0_BLOCKERS_0_WARNINGS",
+    "public_surface_review": "PASS_10_0_0_3_NA_NO_DEPLOY",
+    "desktop_render": "PASS_VISIBLE_CARD_1280x720",
+    "mobile_card_render": "NOT_VERIFIED_DEFERRED",
+    "mobile_page": "NOT_VERIFIED_DEFERRED"
+  },
+  "private_raw_log_custody": {
+    "typecheck_sha256": "9636e1d7b8c1607f4fe80b92c2822e2e87e7149faf88854c34379f8b69c2c26a",
+    "lint_sha256": "44a8885b9b17433982e6f2b432e290126244187835d0082ec2672f865b91c2a3",
+    "build_sha256": "327dc48ce9e59a2755b1ef346d485cffca1863c8e95283e4a3dbf1702a263b28",
+    "claim_validator_sha256": "dfb140f7795f902c647a8babaf43285410e0045db80081bbb5b5876b17886305",
+    "change_control_sha256": "2b564ad2dce6daebcd33b254ce70d8aaf2179a50be714ca2f294ccc15d90d1f6",
+    "public_review_sha256": "66802c0868118e66fbaa204018adb675104876e7a65ce2725693684ad102ad82"
+  },
+  "screenshots": {
+    "desktop_sha256": "b6943711819447443215299642a7827638fdb0614357ca00839e6bfefa5d7984",
+    "mobile": "NOT_CAPTURED"
+  },
+  "validator_limitation": "The claim validator is substring-based and does not prove semantic equivalence or source truth.",
+  "deployment_performed": "NO"
+}
