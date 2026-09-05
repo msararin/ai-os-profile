@@ -1,0 +1,25 @@
+{
+  "source_repository": "git@github.com:msararin/nbo-nrt-mlops-usecase.git",
+  "source_commit": "dbf625f53a9418342f663b3b8971493fa7e701ac",
+  "source_commit_verified_locally": true,
+  "source_main_clean_and_tracking_origin_main": true,
+  "artifacts": [
+    {"path": "evidence/exp3/phase1/PHASE1_CLOSEOUT.md", "git_blob": "d88e58bd2fe9588276be112dec4dd3f71f3f46cc", "sha256": "2ade02a8d82929100c30cd621a538e2cf53eb528733c9ac176a1c9dde66e0aa1"},
+    {"path": "evidence/exp3/phase1/telemetry-receipt.json", "git_blob": "61918ee9f9757013c8ccf9a18a4aaa95acd7630b", "sha256": "cec4b5623fe0831218d6614a849ce3d87d40eaebc0c3c06cfbc41b78f70ec7ee"},
+    {"path": "evidence/exp3/phase1/step4/integration-receipt.json", "git_blob": "9431eea728ab1ae1523b3bf0acdc85a361c8be6c", "sha256": "3481096374b5f6e233fb2a04bc5fff2bf947fd1280db398b5ccabdf660d9674e"}
+  ],
+  "reconciled_claims": {
+    "reward_model_v2_recovery": "CLOSED / PASS",
+    "train_rows": 8002,
+    "context_states": 7660,
+    "actions": 5,
+    "candidate_rows": 38300,
+    "negative_expected_candidate_rows": 38301,
+    "negative_result": "DRIFT_DETECTED",
+    "tests": "18/18 PASS",
+    "checker": "CHECK_PASS_WITH_LIMITATIONS",
+    "prime_gate": "PHASE1_ACCEPT_WITH_LIMITATIONS",
+    "b1": "ACTIVE"
+  },
+  "public_boundary": "No source-row data, secrets, local filesystem path, or raw provider payload is included."
+}

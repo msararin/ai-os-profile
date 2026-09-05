@@ -103,6 +103,25 @@ Critical/High test, either independent review, or a source-of-truth conflict.
 
 ## Definition Of Done
 
+### Prime Gate RCA amendment — terminating review binding (2026-09-06)
+
+The phrase “exact staged candidate” is implemented as two cryptographically
+bound layers to prevent a self-referential, non-terminating review loop:
+
+1. `T_impl` contains the frozen implementation and governance-source files.
+   A freeze manifest records its ordered file inventory, SHA-256 values,
+   aggregate digest, base SHA, and UTC freeze timestamp.
+2. `T_meta` is append-only evidence containing validation receipts, rendered
+   evidence, reviewer work products, and the final deterministic verifier
+   receipt. Every reviewer receipt binds to the same `T_impl` digest.
+
+Adding `T_meta` does not invalidate a review when a deterministic verifier
+proves every `T_impl` byte remains unchanged. The final commit must enclose both
+layers, and post-commit binding must verify that the committed `T_impl` matches
+the freeze manifest. Any `T_impl` change still invalidates both reviews. This
+amendment does not waive reviewer independence, evidence completeness, owner
+acceptance, deployment gates, or claim boundaries.
+
 A covered public/cockpit change is done only when all required gates are satisfied:
 
 1. Change-control manifest exists and parses as JSON.

@@ -1,0 +1,18 @@
+{
+  "route": "/achievements",
+  "environment": "local Next.js development server",
+  "desktop": {
+    "viewport": "1280x720",
+    "headline_present": true,
+    "phase1_limitation_status_present": true,
+    "b1_active_boundary_present": true,
+    "horizontal_overflow": false
+  },
+  "mobile": {
+    "status": "NOT_VERIFIED_DEFERRED",
+    "retained_artifact": false
+  },
+  "classification": "DESKTOP_CARD_PASS_MOBILE_DEFERRED",
+  "limitation": "The retained desktop artifact visibly confirms the changed EXP3 card. No reliable mobile artifact is retained, so mobile rendering remains unverified and is not claimed.",
+  "deployment_performed": "NO"
+}

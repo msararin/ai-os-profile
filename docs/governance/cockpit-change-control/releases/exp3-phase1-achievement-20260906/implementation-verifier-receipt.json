@@ -1,0 +1,10 @@
+{
+  "candidate_id": "COCKPIT_EXP3_PHASE1_ACHIEVEMENT_20260906",
+  "verdict": "PASS",
+  "implementation_digest_sha256": "06b0c8f8d8b547d1312ded5fd82be9854a4d8ff8c2b71c7d8f9336db5bc05b39",
+  "files_checked": 6,
+  "mismatches": [],
+  "source": "staged Git index blobs via git show :path",
+  "mobile_validation": "NOT_VERIFIED_DEFERRED",
+  "deployment_performed": "NO"
+}

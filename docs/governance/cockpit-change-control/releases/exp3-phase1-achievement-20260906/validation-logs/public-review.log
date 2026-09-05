@@ -1,0 +1,6 @@
+Public Surface Runner
+Profile: public_surface_go_live_v0_1
+Review packet: <WORKTREE>/PUBLIC_SURFACE_REVIEW_PACKET.html
+Checks: 10 PASS, 0 WARN, 0 BLOCK, 3 NOT_APPLICABLE
+Final status: READY_FOR_GO_LIVE_CONSIDERATION
+Boundary: no deploy, no publish, no go-live approval

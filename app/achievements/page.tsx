@@ -1433,10 +1433,10 @@ export default function AchievementsPage() {
               Public-safe evidence of what was built, what is proven, what is caveated, and what is not published.
             </p>
             <p className="mt-4 text-sm font-medium text-white/80">
-              Evidence reconciled through 20 July 2026 · curated static release, not a continuous live-status feed
+          Evidence reconciled through 5 September 2026 · curated static release, not a continuous live-status feed
             </p>
             <p className="mt-2 text-sm text-white/75">
-              Latest validated milestones: traceable delivery, non-destructive recovery, decision-grade telemetry, and role-based operating design
+          Latest validated milestones: durable ML experiment continuity, traceable delivery, non-destructive recovery, decision-grade telemetry, and role-based operating design
             </p>
           </div>
         </div>
