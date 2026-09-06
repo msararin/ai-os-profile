@@ -16,7 +16,9 @@
     "public:deployment-protocol": "node scripts/check-deployment-operating-set.mjs",
     "check:public-dashboard-leakage": "node scripts/check-public-dashboard-leakage.mjs",
     "telemetry:decision:test": "node scripts/test-internal-telemetry-decision-snapshot.mjs",
-    "telemetry:decision:verify": "node scripts/verify-internal-telemetry-decision-snapshot.mjs"
+    "telemetry:decision:verify": "node scripts/verify-internal-telemetry-decision-snapshot.mjs",
+    "test:cockpit-source": "node scripts/check-cockpit-lifecycle.mjs",
+    "test:cockpit-browser": "playwright test"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",
@@ -75,6 +77,7 @@
     "zod": "^3.24.1"
   },
   "devDependencies": {
+    "@playwright/test": "1.63.0",
     "@tailwindcss/postcss": "^4.2.0",
     "@types/node": "^22",
     "@types/react": "^19",

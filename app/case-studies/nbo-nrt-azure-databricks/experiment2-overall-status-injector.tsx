@@ -1,7 +1,3 @@
-"use client"
-
-import { useEffect } from "react"
-
 function normalizedText(value: string | null | undefined) {
   return (value ?? "").replace(/\s+/g, " ").trim()
 }
@@ -119,27 +115,16 @@ function createOverallStatus() {
   return section
 }
 
-export function Experiment2OverallStatusInjector() {
-  useEffect(() => {
-    const install = () => {
-      const heading = Array.from(document.querySelectorAll<HTMLHeadingElement>("h2")).find(
-        (node) => normalizedText(node.textContent) === "Experiment 2 — Data Preparation Status",
-      )
-      if (!heading) return
+export function enhanceExperiment2OverallStatus(scope: HTMLElement) {
+  const heading = Array.from(scope.querySelectorAll<HTMLHeadingElement>("h2")).find(
+    (node) => normalizedText(node.textContent) === "Experiment 2 — Data Preparation Status",
+  )
+  if (!heading) return
 
-      const root = heading.closest<HTMLDivElement>("div.space-y-10")
-      if (!root || root.querySelector("[data-exp2-overall-status]")) return
+  const root = heading.closest<HTMLDivElement>("div.space-y-10")
+  if (!root || root.querySelector("[data-exp2-overall-status]")) return
 
-      const introSection = heading.closest<HTMLElement>("section")
-      if (!introSection) return
-      introSection.insertAdjacentElement("afterend", createOverallStatus())
-    }
-
-    install()
-    const observer = new MutationObserver(install)
-    observer.observe(document.body, { childList: true, subtree: true })
-    return () => observer.disconnect()
-  }, [])
-
-  return null
+  const introSection = heading.closest<HTMLElement>("section")
+  if (!introSection) return
+  introSection.insertAdjacentElement("afterend", createOverallStatus())
 }

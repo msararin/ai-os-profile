@@ -1,7 +1,3 @@
-"use client"
-
-import { useEffect } from "react"
-
 function createTaxonomyOverview() {
   const section = document.createElement("details")
   section.dataset.experiment3ModelTaxonomy = "true"
@@ -158,26 +154,15 @@ function updateExecutionTrack(panel: HTMLElement) {
   }
 }
 
-export function Experiment3ModelTaxonomyInjector() {
-  useEffect(() => {
-    const install = () => {
-      const panel = document.querySelector<HTMLElement>("[data-experiment3-panel]")
-      if (!panel) return
+export function enhanceExperiment3ModelTaxonomy(scope: HTMLElement) {
+  const panel = scope.querySelector<HTMLElement>("[data-experiment3-panel]")
+  if (!panel) return
 
-      retitleHistoricalV1(panel)
-      updateExecutionTrack(panel)
+  retitleHistoricalV1(panel)
+  updateExecutionTrack(panel)
 
-      if (!panel.querySelector("[data-experiment3-model-taxonomy]")) {
-        const v1Evidence = panel.querySelector<HTMLElement>("[data-experiment3-representational-capacity-evidence]")
-        if (v1Evidence) v1Evidence.insertAdjacentElement("afterend", createTaxonomyOverview())
-      }
-    }
-
-    install()
-    const observer = new MutationObserver(install)
-    observer.observe(document.body, { childList: true, subtree: true })
-    return () => observer.disconnect()
-  }, [])
-
-  return null
+  if (!panel.querySelector("[data-experiment3-model-taxonomy]")) {
+    const v1Evidence = panel.querySelector<HTMLElement>("[data-experiment3-representational-capacity-evidence]")
+    if (v1Evidence) v1Evidence.insertAdjacentElement("afterend", createTaxonomyOverview())
+  }
 }

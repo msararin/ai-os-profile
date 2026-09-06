@@ -1,6 +1,8 @@
 "use client"
 
-import { useState } from "react"
+import { memo, useLayoutEffect, useRef, useState } from "react"
+import { experimentCards } from "./experiment-card-selector-injector"
+import { buildExperimentThree, enhanceLegacyExperiment } from "./experiment-enhancements"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -345,8 +347,81 @@ function ExperimentTwoB() {
   </div>
 }
 
+type LegacyLane = "one" | "twoA" | "twoB"
+type ExperimentLane = LegacyLane | "three"
+const lanes: readonly ExperimentLane[] = ["one", "twoA", "twoB", "three"]
+
+// Ownership boundary: these three lane trees and their UI primitives are static.
+// No state/context/event-driven children may be added without removing the imperative
+// enhancement pass. Memo + keyed lifetime prevents parent updates reconciling moved nodes.
+// React only removes the complete wrapper on a lane change; native details remain usable.
+const StaticLegacyPanel = memo(function StaticLegacyPanel({ lane }: { lane: LegacyLane }) {
+  const root = useRef<HTMLDivElement>(null)
+  useLayoutEffect(() => {
+    if (root.current) enhanceLegacyExperiment(root.current)
+  }, [])
+  return <div ref={root} data-experiment-lane={lane} className="rounded-b-xl border border-t-0 border-border bg-background p-5 sm:p-7">
+    {lane === "one" ? <ExperimentOne /> : lane === "twoA" ? <ExperimentTwoA /> : <ExperimentTwoB />}
+  </div>
+})
+
+// React owns only this empty host. The detached builder owns every descendant.
+const ExperimentThreePanel = memo(function ExperimentThreePanel() {
+  const host = useRef<HTMLDivElement>(null)
+  useLayoutEffect(() => {
+    const panel = buildExperimentThree()
+    host.current?.appendChild(panel)
+    return () => panel.remove()
+  }, [])
+  return <div ref={host} />
+})
+
+function cardClass(tone: typeof experimentCards[number]["tone"], selected: boolean) {
+  const base = "group min-h-44 rounded-xl border p-5 text-left transition focus:outline-none focus:ring-2 focus:ring-primary/40"
+  const inactive = tone === "active"
+    ? "border-indigo-500/35 bg-indigo-500/5 hover:border-indigo-500/60 hover:bg-indigo-500/10"
+    : tone === "complete"
+      ? "border-emerald-600/30 bg-emerald-500/5 hover:border-emerald-600/50 hover:bg-emerald-500/10"
+      : tone === "investigation"
+        ? "border-amber-500/35 bg-amber-500/5 hover:border-amber-500/60 hover:bg-amber-500/10"
+        : "border-slate-400/30 bg-slate-500/5 hover:border-slate-400/55 hover:bg-slate-500/10"
+  const active = tone === "active"
+    ? "border-indigo-500 bg-indigo-500/12 shadow-sm ring-1 ring-indigo-500/25"
+    : tone === "complete"
+      ? "border-emerald-600 bg-emerald-500/10 shadow-sm ring-1 ring-emerald-600/20"
+      : tone === "investigation"
+        ? "border-amber-500 bg-amber-500/12 shadow-sm ring-1 ring-amber-500/25"
+        : "border-slate-500 bg-slate-500/10 shadow-sm ring-1 ring-slate-500/20"
+  return `${base} ${selected ? active : inactive}`
+}
+
 export function ExperimentTabs() {
-  const [active, setActive] = useState<"one" | "twoA" | "twoB">("one")
-  const tabClass = (key: "one" | "twoA" | "twoB") => `border-b-2 px-5 py-4 text-sm font-semibold transition ${active === key ? "border-primary text-foreground" : "border-transparent text-muted-foreground hover:text-foreground"}`
-  return <section className="border-y border-border bg-muted/20 py-10"><div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8"><div className="mb-7"><h2 className="text-2xl font-semibold tracking-tight text-foreground">Experiment evidence</h2><p className="mt-2 max-w-4xl text-sm leading-6 text-muted-foreground">The top-level Cockpit remains shared. Experiment 2A preserves the existing Experiment 2 evidence unchanged; Experiment 2B is an additive offline-policy-evaluation lane that shares the same governed foundation but answers a different question.</p></div><div className="flex flex-wrap border-b border-border"><button className={tabClass("one")} onClick={() => setActive("one")}>Experiment 1 — Volume-expanded synthetic baseline</button><button className={tabClass("twoA")} onClick={() => setActive("twoA")}>Experiment 2A — Post-Silver low-volume baseline</button><button className={tabClass("twoB")} onClick={() => setActive("twoB")}>Experiment 2B — Offline Policy Evaluation</button></div><div className="rounded-b-xl border border-t-0 border-border bg-background p-5 sm:p-7">{active === "one" ? <ExperimentOne /> : active === "twoA" ? <ExperimentTwoA /> : <ExperimentTwoB />}</div></div></section>
+  const [active, setActive] = useState<ExperimentLane>("three")
+  const [lastLegacy, setLastLegacy] = useState<LegacyLane>("one")
+  const selectLane = (lane: ExperimentLane) => {
+    if (lane !== "three") setLastLegacy(lane)
+    setActive(lane)
+  }
+  return <section className="border-y border-border bg-muted/20 py-10">
+    <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <div className="mb-7">
+        <h2 className="text-2xl font-semibold tracking-tight text-foreground">Experiment evidence</h2>
+        <p className="mt-2 max-w-4xl text-sm leading-6 text-muted-foreground">The top-level Cockpit remains shared. Experiment 2A preserves the existing Experiment 2 evidence unchanged; Experiment 2B is an additive offline-policy-evaluation lane that shares the same governed foundation but answers a different question.</p>
+      </div>
+      <div data-experiment-card-selector="true" className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+        {experimentCards.map((card, index) => <button key={card.match} type="button" data-card-key={card.match}
+          aria-pressed={active === lanes[index]} className={cardClass(card.tone, active === lanes[index])}
+          onClick={() => selectLane(lanes[index])}>
+          <div className="flex items-start justify-between gap-3">
+            <span className={`text-xs font-bold uppercase tracking-[0.12em] ${card.tone === "active" ? "text-indigo-700 dark:text-indigo-200" : card.tone === "complete" ? "text-emerald-800 dark:text-emerald-200" : card.tone === "investigation" ? "text-amber-800 dark:text-amber-200" : "text-slate-600 dark:text-slate-300"}`}>{card.eyebrow}</span>
+            <span className="text-lg text-muted-foreground transition-transform group-hover:translate-x-0.5">→</span>
+          </div>
+          <div className="mt-4 text-base font-semibold leading-6 text-foreground">{card.title}</div>
+          <p className="mt-3 text-sm leading-6 text-muted-foreground">{card.description}</p>
+        </button>)}
+      </div>
+      <div hidden={active === "three"}><StaticLegacyPanel key={lastLegacy} lane={lastLegacy} /></div>
+      <div data-experiment-lane="three" hidden={active !== "three"}><ExperimentThreePanel /></div>
+    </div>
+  </section>
 }

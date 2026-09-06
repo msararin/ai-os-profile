@@ -13,6 +13,7 @@ jobs:
   preflight:
     name: Lint, typecheck, and build
     runs-on: ubuntu-latest
+    timeout-minutes: 10
 
     steps:
       - name: Checkout
@@ -55,6 +56,9 @@ jobs:
       - name: Lint
         run: pnpm lint
 
+      - name: Cockpit lifecycle contract
+        run: pnpm test:cockpit-source
+
       - name: Typecheck
         run: pnpm typecheck
 
@@ -63,3 +67,18 @@ jobs:
 
       - name: Public dashboard leakage check
         run: pnpm check:public-dashboard-leakage
+
+      - name: Install browser for Cockpit regression
+        run: pnpm exec playwright install --with-deps chromium
+
+      - name: Cockpit browser regression against production build
+        timeout-minutes: 4
+        run: pnpm test:cockpit-browser
+
+      - name: Retain browser failure evidence
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cockpit-browser-failure
+          path: test-results/
+          retention-days: 7
