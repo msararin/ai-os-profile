@@ -8,6 +8,12 @@ const linkedInPosts = [
     date: "Sep 6, 2026",
   },
   {
+    urn: "urn:li:share:7502010534624579585",
+    height: 1153,
+    title: "LinkedIn Post - Sep 5, 2026",
+    date: "Sep 5, 2026",
+  },
+  {
     urn: "urn:li:share:7499753781463560192",
     height: 2631,
     title: "LinkedIn Post - Aug 30, 2026",
