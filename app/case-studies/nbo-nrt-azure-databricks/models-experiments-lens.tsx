@@ -16,7 +16,7 @@ const gateItems = [
 const hierarchy = [
   ["A", "Feature Contract", "CLOSED / PASS"],
   ["B", "Training Formulation", "IN PROGRESS"],
-  ["B1", "Action × context support", "GUARDRAIL REQUIRED"],
+  ["B1", "Action × context support", "ACTIVE · RULE UNRESOLVED"],
   ["B2", "Candidate-policy training", "NOT YET AUTHORIZED"],
   ["C", "Candidate Generation", "NOT STARTED"],
   ["D", "Candidate Policy", "NOT STARTED"],
@@ -212,14 +212,20 @@ export function ModelsExperimentsLens() {
       <article id="knowledge-nbo-k027" data-knowledge-id="NBO-K027" className="mt-7 rounded-xl border border-amber-500/35 bg-amber-500/5 p-5" aria-labelledby="k027-heading">
         <p className="text-xs font-bold uppercase tracking-[0.12em] text-amber-800 dark:text-amber-200">Question 5 · Current gate</p>
         <h4 id="k027-heading" className="mt-2 text-xl font-semibold text-foreground">Is action-by-context support strong enough for unrestricted policy learning?</h4>
-        <p className="mt-3 text-lg font-semibold leading-8 text-foreground"><span className="text-sm text-muted-foreground">Interpretation · </span>DATA_USABLE = YES; CONDITIONAL_SUPPORT_IMBALANCE = DETECTED; UNRESTRICTED_POLICY_LEARNING = NOT_YET_AUTHORIZED.</p>
+        <p className="mt-3 text-lg font-semibold leading-8 text-foreground">B1 ACTIVE · historical THIN_SUPPORT rule NOT_DURABLY_PRESERVED · B2 NOT AUTHORIZED.</p>
+        <p className="mt-3 text-sm leading-7 text-muted-foreground">The notebook acceptance test recovered 8,002 TRAIN rows and reproduced 7,660 context states × 5 actions = 38,300 candidates. These are recovery invariants, not a new support classification or B1 verdict.</p>
+        <p className="mt-3 text-sm leading-7 text-muted-foreground">The exact historical THIN_SUPPORT rule remains unresolved. Support reconstruction and localization, followed by an explicit versioned B1 support contract, remain the next scientific step after Phase 1 acceptance requirements are addressed.</p>
+        <details className="mt-4 rounded-lg border border-border bg-background p-4">
+        <summary className="cursor-pointer font-semibold text-foreground">Earlier support diagnostic and threshold wording · provenance unresolved</summary>
+        <p className="mt-3 text-sm leading-7 text-muted-foreground">Preserved from the earlier page: DATA_USABLE = YES; CONDITIONAL_SUPPORT_IMBALANCE = DETECTED. The relationship between the following 110-cell diagnostic and the current 38,300-candidate universe has not been established by this acceptance test.</p>
         <div className="mt-4 grid gap-3 md:grid-cols-2 lg:grid-cols-4 text-sm leading-6 text-muted-foreground">
           <div className="rounded-lg border border-border bg-background p-3">109/110 cells observed · min/avg/max 1/91.74/684</div>
           <div className="rounded-lg border border-border bg-background p-3">1 zero cell: DIGITAL + APP_OPEN + WEB → ROAMING</div>
           <div className="rounded-lg border border-border bg-background p-3">&lt;5: 10 (9.2%) · &lt;10: 23 (21.1%)</div>
           <div className="rounded-lg border border-border bg-background p-3">&lt;20: 40 (36.7%) · &lt;30: 58 (53.2%)</div>
         </div>
-        <p className="mt-4 text-sm leading-7 text-muted-foreground"><strong className="text-foreground">Decision · bounded synthetic guardrail v1:</strong> 0 BLOCK · 1–9 RESTRICTED · 10–29 CAUTION · 30+ NORMAL. B2 remains blocked until B1 support/formulation is fixed; these are not general or production thresholds.</p>
+        <p className="mt-4 text-sm leading-7 text-muted-foreground"><strong className="text-foreground">Earlier page wording · bounded synthetic guardrail v1:</strong> 0 BLOCK · 1–9 RESTRICTED · 10–29 CAUTION · 30+ NORMAL. No mapping to the checkpoint&apos;s historical THIN_SUPPORT rule is established. Do not use these bands as the current B1 classification contract.</p>
+        </details>
         <details className="mt-4 rounded-lg border border-border bg-background">
           <summary className="cursor-pointer list-none p-4 text-sm font-semibold text-foreground">B1 questions that must change the next decision ↓</summary>
           <ul className="list-disc space-y-2 border-t border-border p-4 pl-8 text-sm leading-6 text-muted-foreground">
@@ -240,7 +246,7 @@ export function ModelsExperimentsLens() {
           <h4 id="k030-heading" className="text-lg font-semibold text-foreground">Did the reward model have enough representational capacity?</h4>
           <p className="mt-3 text-sm leading-7 text-muted-foreground"><strong className="text-foreground">V1 TRAIN probe:</strong> 8,002 contexts × 5 actions = 40,010 candidates; LOYALTY won 100%; average gap 0.739 pp, range 0.618–0.781. Context changed scores but not action ordering—a formulation limitation, not an accuracy or true-best claim.</p>
           <p className="mt-3 text-sm leading-7 text-muted-foreground"><strong className="text-foreground">V2 TRAIN repair proof:</strong> four winners, no global winner, structured context patterns; margins avg/median/min/max 3.949/2.747/0.371/12.230 pp. Still no held-out, causal, operator, or production claim.</p>
-          <a href="#knowledge-nbo-k028" className="mt-3 inline-block text-sm font-semibold text-primary underline-offset-4 hover:underline">Execution continuity was independently proven through the recovery bootstrap →</a>
+          <a href="#exp3-durable-acceptance" className="mt-3 inline-block text-sm font-semibold text-primary underline-offset-4 hover:underline">Read the notebook recovery and drift-test evidence →</a>
         </article>
 
         <article id="knowledge-nbo-k031" data-knowledge-id="NBO-K031" className="rounded-xl border border-border bg-background p-5" aria-labelledby="k031-heading">

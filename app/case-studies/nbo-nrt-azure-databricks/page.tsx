@@ -31,7 +31,8 @@ export default function NboNrtAzureDatabricksPage() {
       <div className="mx-auto w-full max-w-5xl px-4 pt-4 sm:px-6 lg:px-8">
         <div className="flex justify-end">
           <div className="text-right text-sm leading-6 text-muted-foreground">
-            <p>Evidence on this page reconciled through 30 Aug 2026</p>
+            <p>Baseline evidence: 30 Aug 2026 · EXP3 notebook acceptance update: 7 Sep 2026</p>
+            <a href="#exp3-durable-acceptance" className="font-semibold text-primary underline underline-offset-4">View the EXP3 recovery and drift test →</a>
             <p>Curated static release — not a continuous live-status feed</p>
           </div>
         </div>
@@ -60,7 +61,7 @@ export default function NboNrtAzureDatabricksPage() {
               className="mt-6 flex max-w-4xl flex-col gap-3 rounded-xl border border-emerald-500/40 bg-emerald-500/10 p-5 transition-colors hover:border-emerald-500/70 hover:bg-emerald-500/15 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 sm:flex-row sm:items-center sm:justify-between"
             >
               <span>
-                <span className="text-xs font-bold uppercase tracking-[0.14em] text-emerald-800 dark:text-emerald-200">New · tested proof added</span>
+                <span className="text-xs font-bold uppercase tracking-[0.14em] text-emerald-800 dark:text-emerald-200">30 Aug 2026 · Event Ledger proof</span>
                 <span className="mt-2 block text-lg font-semibold text-foreground">Databricks runtime controls verified—with evidence you can review here.</span>
                 <span className="mt-1 block text-sm leading-6 text-muted-foreground">Append-only history, replay safety, correction lineage, projection control, and immutability were tested on 30 Aug 2026.</span>
               </span>
