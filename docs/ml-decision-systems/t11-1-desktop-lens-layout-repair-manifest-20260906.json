@@ -1,0 +1,52 @@
+{
+  "phase": "T11.1",
+  "date": "2026-09-06",
+  "lane": "desktop_cockpit_layout_repair",
+  "requested_outcome": "Make detailed Cockpit lenses full-width on desktop while preserving the three-column selector navigation.",
+  "files": [
+    "app/case-studies/nbo-nrt-azure-databricks/page.tsx",
+    "docs/ml-decision-systems/t11-1-desktop-lens-layout-repair-evidence-20260906.md",
+    "docs/ml-decision-systems/t11-1-desktop-lens-layout-repair-manifest-20260906.json"
+  ],
+  "base_sha": "0321fd67d427ab2540b528feff6c423635a7e3f2",
+  "initial_reviewed_staged_tree": "7afb1a5483cda1657290055808a643a76475a0a9",
+  "freeze_timestamp": "2026-09-06T02:57:58Z",
+  "excluded_surfaces": [
+    "lens_content",
+    "runtime_evidence",
+    "canonical_kb",
+    "databricks_data",
+    "experiment_state",
+    "mobile_and_tablet_redesign"
+  ],
+  "required_gates": [
+    "diff_check",
+    "typescript",
+    "eslint",
+    "production_build",
+    "qa_sentinel",
+    "simulated_stakeholder_lens",
+    "production_deployment",
+    "live_desktop_verification"
+  ],
+  "pre_deployment_status": "VALIDATED_LOCAL_ONLY",
+  "reviewers": {
+    "qa_sentinel": {
+      "identity": "/root/qa_layout_fix",
+      "initial_verdict": "IMPLEMENTATION_PASS_EVIDENCE_RECONCILIATION_REQUIRED",
+      "final_verdict": "PENDING_FINAL_FROZEN_TREE_REVIEW",
+      "provider": "not_exposed",
+      "model": "not_exposed",
+      "tokens": "not_exposed",
+      "cost": "not_exposed"
+    },
+    "stakeholder": {
+      "identity": "/root/stakeholder_layout_fix",
+      "verdict": "PASS_SIMULATED_STAKEHOLDER_LENS_ONLY",
+      "provider": "not_exposed",
+      "model": "not_exposed",
+      "tokens": "not_exposed",
+      "cost": "not_exposed"
+    }
+  }
+}
