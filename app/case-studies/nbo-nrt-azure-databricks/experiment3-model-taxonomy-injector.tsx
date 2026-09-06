@@ -105,6 +105,11 @@ function retitleHistoricalV1(panel: HTMLElement) {
   }
 }
 
+function setInnerHTMLIfChanged(element: HTMLElement, html: string) {
+  // Replacing identical HTML still emits childList mutations and retriggers install.
+  if (element.innerHTML !== html) element.innerHTML = html
+}
+
 function updateExecutionTrack(panel: HTMLElement) {
   const track = panel.querySelector<HTMLElement>("[data-experiment3-support-guardrail]")
   if (!track) return
@@ -112,7 +117,7 @@ function updateExecutionTrack(panel: HTMLElement) {
   const headerParagraphs = Array.from(track.querySelectorAll<HTMLElement>(":scope > div p"))
   const currentFocus = headerParagraphs.find((node) => node.textContent?.includes("Current focus:"))
   if (currentFocus) {
-    currentFocus.innerHTML = `<strong class="text-foreground">Current focus:</strong> Baseline V1 is closed as the reference, V1-D execution durability is proven, and interaction-aware Reward Model V2 has passed the TRAIN-side personalization-capacity diagnostic. The next distinct lane is RL / Policy Learning, subject to the existing support and authorization gates.`
+    setInnerHTMLIfChanged(currentFocus, `<strong class="text-foreground">Current focus:</strong> Baseline V1 is closed as the reference, V1-D execution durability is proven, and interaction-aware Reward Model V2 has passed the TRAIN-side personalization-capacity diagnostic. The next distinct lane is RL / Policy Learning, subject to the existing support and authorization gates.`)
   }
 
   const executionSequence = track.querySelector<HTMLElement>('[aria-label="Experiment 3 A-F modeling execution sequence"]')
@@ -125,7 +130,7 @@ function updateExecutionTrack(panel: HTMLElement) {
 
   const bSummaryText = bStage.querySelector<HTMLElement>("summary p")
   if (bSummaryText) {
-    bSummaryText.innerHTML = `Reward-model formulation has progressed from V1 reference to V2 TRAIN formulation pass; overall B remains in progress because policy-learning authorization is still gated. <span class="font-semibold">Expand ↓</span>`
+    setInnerHTMLIfChanged(bSummaryText, `Reward-model formulation has progressed from V1 reference to V2 TRAIN formulation pass; overall B remains in progress because policy-learning authorization is still gated. <span class="font-semibold">Expand ↓</span>`)
   }
 
   const currentFinding = Array.from(bStage.querySelectorAll<HTMLDetailsElement>(":scope > div > details")).find((details) =>
