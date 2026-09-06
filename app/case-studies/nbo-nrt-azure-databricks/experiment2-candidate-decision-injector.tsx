@@ -1,7 +1,3 @@
-"use client"
-
-import { useEffect } from "react"
-
 function normalizedText(value: string | null | undefined) {
   return (value ?? "").replace(/\s+/g, " ").trim()
 }
@@ -105,107 +101,77 @@ function createStepsDone() {
   return steps
 }
 
-export function Experiment2CandidateDecisionInjector() {
-  useEffect(() => {
-    const install = () => {
-      const heading = Array.from(document.querySelectorAll<HTMLHeadingElement>("h2")).find(
-        (node) => normalizedText(node.textContent) === "Experiment 2 — Data Preparation Status",
-      )
-      const root = heading?.closest<HTMLDivElement>("div.space-y-10")
-      if (!root) return
+export function enhanceExperiment2CandidateDecision(scope: HTMLElement) {
+  const heading = Array.from(scope.querySelectorAll<HTMLHeadingElement>("h2")).find(
+    (node) => normalizedText(node.textContent) === "Experiment 2 — Data Preparation Status",
+  )
+  const root = heading?.closest<HTMLDivElement>("div.space-y-10")
+  if (!root) return
 
-      const children = Array.from(root.children) as HTMLElement[]
-      const originalDecision = children.find(
-        (node) =>
-          node.tagName === "DETAILS" &&
-          normalizedText(node.querySelector(":scope > summary")?.textContent).startsWith("Key Decision — why Behavior Simulation"),
-      )
-      const flowSection = children.find((node) =>
-        Array.from(node.querySelectorAll<HTMLHeadingElement>("h3")).some(
-          (title) => normalizedText(title.textContent) === "Data Preparation flow",
-        ),
-      )
-      const referencePrinciples = children.find(
-        (node) =>
-          node.tagName === "DETAILS" &&
-          normalizedText(node.querySelector(":scope > summary")?.textContent).startsWith("Reference Principles"),
-      )
-      const gatesSection = children.find((node) =>
-        Array.from(node.querySelectorAll<HTMLHeadingElement>("h3")).some(
-          (title) => normalizedText(title.textContent) === "G0–G7 readiness gates",
-        ),
-      )
-      const supportingGovernance = children.find(
-        (node) =>
-          node.tagName === "DETAILS" &&
-          normalizedText(node.querySelector(":scope > summary")?.textContent) === "Supporting governance controls",
-      )
+  const children = Array.from(root.children) as HTMLElement[]
+  const originalDecision = children.find(
+    (node) =>
+      node.tagName === "DETAILS" &&
+      normalizedText(node.querySelector(":scope > summary")?.textContent).startsWith("Key Decision — why Behavior Simulation"),
+  )
+  const flowSection = children.find((node) =>
+    Array.from(node.querySelectorAll<HTMLHeadingElement>("h3")).some(
+      (title) => normalizedText(title.textContent) === "Data Preparation flow",
+    ),
+  )
+  const referencePrinciples = children.find(
+    (node) =>
+      node.tagName === "DETAILS" &&
+      normalizedText(node.querySelector(":scope > summary")?.textContent).startsWith("Reference Principles"),
+  )
+  const gatesSection = children.find((node) =>
+    Array.from(node.querySelectorAll<HTMLHeadingElement>("h3")).some(
+      (title) => normalizedText(title.textContent) === "G0–G7 readiness gates",
+    ),
+  )
+  const supportingGovernance = children.find(
+    (node) =>
+      node.tagName === "DETAILS" &&
+      normalizedText(node.querySelector(":scope > summary")?.textContent) === "Supporting governance controls",
+  )
 
-      let bundle = root.querySelector<HTMLDetailsElement>("[data-exp2-flow-bundle]")
-      if (!bundle && flowSection && referencePrinciples && gatesSection) {
-        bundle = document.createElement("details")
-        bundle.dataset.exp2FlowBundle = "true"
-        bundle.className = "group rounded-lg border border-border bg-background"
+  let bundle = root.querySelector<HTMLDetailsElement>("[data-exp2-flow-bundle]")
+  if (!bundle && flowSection && referencePrinciples && gatesSection) {
+    bundle = document.createElement("details")
+    bundle.dataset.exp2FlowBundle = "true"
+    bundle.className = "group rounded-lg border border-border bg-background"
 
-        const summary = document.createElement("summary")
-        summary.className = "cursor-pointer list-none p-5 font-semibold text-foreground"
-        summary.textContent = "Data Preparation — full flow, principles & G0–G7 gates"
+    const summary = document.createElement("summary")
+    summary.className = "cursor-pointer list-none p-5 font-semibold text-foreground"
+    summary.textContent = "Data Preparation — full flow, principles & G0–G7 gates"
 
-        const body = document.createElement("div")
-        body.className = "space-y-8 border-t border-border p-5"
-        bundle.append(summary, body)
+    const body = document.createElement("div")
+    body.className = "space-y-8 border-t border-border p-5"
+    bundle.append(summary, body)
 
-        const anchor = originalDecision ?? flowSection
-        root.insertBefore(bundle, anchor)
-        if (originalDecision) body.append(originalDecision)
-        body.append(flowSection, referencePrinciples, gatesSection)
-        if (supportingGovernance) body.append(supportingGovernance)
-      }
+    const anchor = originalDecision ?? flowSection
+    root.insertBefore(bundle, anchor)
+    if (originalDecision) body.append(originalDecision)
+    body.append(flowSection, referencePrinciples, gatesSection)
+    if (supportingGovernance) body.append(supportingGovernance)
+  }
 
-      if (!bundle) return
-      const bundleBody = bundle.querySelector<HTMLElement>(":scope > div")
-      if (bundleBody && originalDecision && originalDecision.parentElement !== bundleBody) bundleBody.prepend(originalDecision)
-      if (bundleBody && supportingGovernance && supportingGovernance.parentElement !== bundleBody) bundleBody.append(supportingGovernance)
+  if (!bundle) return
+  const bundleBody = bundle.querySelector<HTMLElement>(":scope > div")
+  if (bundleBody && originalDecision && originalDecision.parentElement !== bundleBody) bundleBody.prepend(originalDecision)
+  if (bundleBody && supportingGovernance && supportingGovernance.parentElement !== bundleBody) bundleBody.append(supportingGovernance)
 
-      const firstSection = root.querySelector<HTMLElement>(":scope > section:first-child")
-      const introStrong = firstSection?.querySelector<HTMLElement>("strong")
-      if (introStrong && normalizedText(introStrong.textContent) === "Key decision:") {
-        introStrong.textContent = "Data-preparation principle:"
-      }
+  const firstSection = root.querySelector<HTMLElement>(":scope > section:first-child")
+  const introStrong = firstSection?.querySelector<HTMLElement>("strong")
+  if (introStrong && normalizedText(introStrong.textContent) === "Key decision:") {
+    introStrong.textContent = "Data-preparation principle:"
+  }
 
-      let decision = root.querySelector<HTMLDetailsElement>("[data-exp2-candidate-decision]")
-      if (!decision) decision = createCandidateDecision()
-      if (decision.previousElementSibling !== bundle) bundle.insertAdjacentElement("afterend", decision)
+  let decision = root.querySelector<HTMLDetailsElement>("[data-exp2-candidate-decision]")
+  if (!decision) decision = createCandidateDecision()
+  if (decision.previousElementSibling !== bundle) bundle.insertAdjacentElement("afterend", decision)
 
-      let steps = root.querySelector<HTMLDetailsElement>("[data-exp2-steps-done]")
-      if (!steps) steps = createStepsDone()
-      if (steps.previousElementSibling !== decision) decision.insertAdjacentElement("afterend", steps)
-    }
-
-    const scheduleInstall = () => {
-      install()
-      window.setTimeout(install, 50)
-      window.setTimeout(install, 200)
-      window.setTimeout(install, 600)
-    }
-
-    scheduleInstall()
-    const observer = new MutationObserver(scheduleInstall)
-    observer.observe(document.body, { childList: true, subtree: true })
-
-    const handleClick = (event: MouseEvent) => {
-      const target = event.target as HTMLElement | null
-      if (target?.closest("button")) scheduleInstall()
-    }
-    document.addEventListener("click", handleClick, true)
-    document.addEventListener("visibilitychange", scheduleInstall)
-
-    return () => {
-      observer.disconnect()
-      document.removeEventListener("click", handleClick, true)
-      document.removeEventListener("visibilitychange", scheduleInstall)
-    }
-  }, [])
-
-  return null
+  let steps = root.querySelector<HTMLDetailsElement>("[data-exp2-steps-done]")
+  if (!steps) steps = createStepsDone()
+  if (steps.previousElementSibling !== decision) decision.insertAdjacentElement("afterend", steps)
 }

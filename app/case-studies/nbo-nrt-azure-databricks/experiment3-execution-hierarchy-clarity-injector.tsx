@@ -1,7 +1,3 @@
-"use client"
-
-import { useEffect } from "react"
-
 function clarifiedHeader() {
   return `
     <div class="w-full">
@@ -126,46 +122,33 @@ function executionSequence() {
   `
 }
 
-export function Experiment3ExecutionHierarchyClarityInjector() {
-  useEffect(() => {
-    const install = () => {
-      const section = document.querySelector<HTMLElement>("[data-experiment3-support-guardrail]")
-      if (!section || section.dataset.executionHierarchyClarified === "true") return
+export function enhanceExperiment3ExecutionHierarchyClarity(scope: HTMLElement) {
+  const section = scope.querySelector<HTMLElement>("[data-experiment3-support-guardrail]")
+  if (!section || section.dataset.executionHierarchyClarified === "true") return
 
-      const header = section.querySelector<HTMLElement>(":scope > div")
-      if (!header) return
+  const header = section.querySelector<HTMLElement>(":scope > div")
+  if (!header) throw new Error("Experiment 3 support header is missing")
 
-      header.className = ""
-      header.innerHTML = clarifiedHeader()
+  header.className = ""
+  header.innerHTML = clarifiedHeader()
 
-      const duplicateHierarchy = section.querySelector<HTMLElement>(
-        '[aria-label="Experiment 3 execution hierarchy"]',
-      )
-      duplicateHierarchy?.remove()
+  const duplicateHierarchy = section.querySelector<HTMLElement>(
+    '[aria-label="Experiment 3 execution hierarchy"]',
+  )
+  duplicateHierarchy?.remove()
 
-      const sequenceLabel = Array.from(section.querySelectorAll<HTMLElement>("p")).find(
-        (node) => node.textContent?.trim() === "Experiment 3 business sequence",
-      )
-      const sequenceContainer = sequenceLabel?.parentElement
-      if (sequenceContainer) {
-        sequenceContainer.innerHTML = executionSequence()
-      }
+  const sequenceLabel = Array.from(section.querySelectorAll<HTMLElement>("p")).find(
+    (node) => node.textContent?.trim() === "Experiment 3 business sequence",
+  )
+  const sequenceContainer = sequenceLabel?.parentElement
+  if (!sequenceContainer) throw new Error("Experiment 3 business sequence is missing")
+  sequenceContainer.innerHTML = executionSequence()
 
-      const technicalEvidence = Array.from(section.querySelectorAll<HTMLElement>("summary")).find((node) =>
-        node.textContent?.includes("Technical evidence — support counts and Candidate Policy v1 guardrail"),
-      )
-      if (technicalEvidence) {
-        technicalEvidence.innerHTML = `B1 — Action × Context Support · Evidence — historical support and Candidate Policy v1 guardrail <span class="ml-2 text-xs font-normal text-muted-foreground">Expand evidence ↓</span>`
-      }
+  const technicalEvidence = Array.from(section.querySelectorAll<HTMLElement>("summary")).find((node) =>
+    node.textContent?.includes("Technical evidence — support counts and Candidate Policy v1 guardrail"),
+  )
+  if (!technicalEvidence) throw new Error("Experiment 3 technical evidence is missing")
+  technicalEvidence.innerHTML = `B1 — Action × Context Support · Evidence — historical support and Candidate Policy v1 guardrail <span class="ml-2 text-xs font-normal text-muted-foreground">Expand evidence ↓</span>`
 
-      section.dataset.executionHierarchyClarified = "true"
-    }
-
-    install()
-    const observer = new MutationObserver(install)
-    observer.observe(document.body, { childList: true, subtree: true })
-    return () => observer.disconnect()
-  }, [])
-
-  return null
+  section.dataset.executionHierarchyClarified = "true"
 }

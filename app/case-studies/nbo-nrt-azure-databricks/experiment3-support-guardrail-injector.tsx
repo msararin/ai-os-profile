@@ -1,7 +1,3 @@
-"use client"
-
-import { useEffect } from "react"
-
 function learningTerm(label: string, mean: string, why: string, principle: string) {
   return `
     <span class="group relative inline-flex">
@@ -163,23 +159,12 @@ function createSupportSection() {
   return section
 }
 
-export function Experiment3SupportGuardrailInjector() {
-  useEffect(() => {
-    const install = () => {
-      const panel = document.querySelector<HTMLElement>("[data-experiment3-panel]")
-      if (!panel || panel.querySelector("[data-experiment3-support-guardrail]")) return
+export function enhanceExperiment3SupportGuardrail(scope: HTMLElement) {
+  const panel = scope.querySelector<HTMLElement>("[data-experiment3-panel]")
+  if (!panel || panel.querySelector("[data-experiment3-support-guardrail]")) return
 
-      const trail = panel.querySelector<HTMLElement>("[data-experiment3-investigation-trail]")
-      if (!trail) return
+  const trail = panel.querySelector<HTMLElement>("[data-experiment3-investigation-trail]")
+  if (!trail) return
 
-      trail.insertAdjacentElement("afterend", createSupportSection())
-    }
-
-    install()
-    const observer = new MutationObserver(install)
-    observer.observe(document.body, { childList: true, subtree: true })
-    return () => observer.disconnect()
-  }, [])
-
-  return null
+  trail.insertAdjacentElement("afterend", createSupportSection())
 }

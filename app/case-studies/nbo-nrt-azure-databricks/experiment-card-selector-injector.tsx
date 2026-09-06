@@ -1,12 +1,4 @@
-"use client"
-
-import { useEffect } from "react"
-
-function normalizedText(value: string | null | undefined) {
-  return (value ?? "").replace(/\s+/g, " ").trim()
-}
-
-const cards = [
+export const experimentCards = [
   {
     match: "Experiment 1 — Volume-expanded synthetic baseline",
     eyebrow: "Experiment 1",
@@ -41,7 +33,7 @@ const cards = [
   },
 ] as const
 
-function createExperiment3Panel() {
+export function createExperiment3Panel() {
   const panel = document.createElement("div")
   panel.dataset.experiment3Panel = "true"
   panel.className = "space-y-8 rounded-b-xl border border-t-0 border-border bg-background p-5 sm:p-7"
@@ -127,110 +119,4 @@ function createExperiment3Panel() {
     </section>
   `
   return panel
-}
-
-export function ExperimentCardSelectorInjector() {
-  useEffect(() => {
-    const install = () => {
-      const heading = Array.from(document.querySelectorAll<HTMLHeadingElement>("h2")).find(
-        (node) => normalizedText(node.textContent) === "Experiment evidence",
-      )
-      const section = heading?.closest<HTMLElement>("section")
-      if (!section || section.querySelector("[data-experiment-card-selector]")) return
-
-      const buttons = Array.from(section.querySelectorAll<HTMLButtonElement>("button"))
-      const sourceCards = cards.filter((card) => card.sourceIndex !== null)
-      const tabButtons = sourceCards.map((card) =>
-        buttons.find((button) => normalizedText(button.textContent).startsWith(card.match)),
-      )
-      if (tabButtons.some((button) => !button)) return
-
-      const originalRow = tabButtons[0]?.parentElement
-      if (!originalRow) return
-      originalRow.classList.add("sr-only")
-      originalRow.setAttribute("aria-hidden", "true")
-
-      const contentPanel = Array.from(originalRow.parentElement?.children ?? []).find(
-        (node) => node instanceof HTMLElement && node.classList.contains("rounded-b-xl"),
-      ) as HTMLElement | undefined
-      if (!contentPanel) return
-
-      const selector = document.createElement("div")
-      selector.dataset.experimentCardSelector = "true"
-      selector.className = "grid gap-4 md:grid-cols-2 xl:grid-cols-4"
-
-      const experiment3Panel = createExperiment3Panel()
-      let experiment3Active = false
-
-      const renderSelection = () => {
-        const currentButtons = selector.querySelectorAll<HTMLButtonElement>("button[data-card-key]")
-        currentButtons.forEach((cardButton, index) => {
-          const card = cards[index]
-          const selected = card.sourceIndex === null
-            ? experiment3Active
-            : !experiment3Active && (tabButtons[card.sourceIndex]?.className.includes("border-primary") ?? false)
-          cardButton.setAttribute("aria-pressed", selected ? "true" : "false")
-          const base = "group min-h-44 rounded-xl border p-5 text-left transition focus:outline-none focus:ring-2 focus:ring-primary/40"
-          const inactive = card.tone === "active"
-            ? "border-indigo-500/35 bg-indigo-500/5 hover:border-indigo-500/60 hover:bg-indigo-500/10"
-            : card.tone === "complete"
-              ? "border-emerald-600/30 bg-emerald-500/5 hover:border-emerald-600/50 hover:bg-emerald-500/10"
-              : card.tone === "investigation"
-                ? "border-amber-500/35 bg-amber-500/5 hover:border-amber-500/60 hover:bg-amber-500/10"
-                : "border-slate-400/30 bg-slate-500/5 hover:border-slate-400/55 hover:bg-slate-500/10"
-          const active = card.tone === "active"
-            ? "border-indigo-500 bg-indigo-500/12 shadow-sm ring-1 ring-indigo-500/25"
-            : card.tone === "complete"
-              ? "border-emerald-600 bg-emerald-500/10 shadow-sm ring-1 ring-emerald-600/20"
-              : card.tone === "investigation"
-                ? "border-amber-500 bg-amber-500/12 shadow-sm ring-1 ring-amber-500/25"
-                : "border-slate-500 bg-slate-500/10 shadow-sm ring-1 ring-slate-500/20"
-          cardButton.className = `${base} ${selected ? active : inactive}`
-        })
-      }
-
-      cards.forEach((card) => {
-        const button = document.createElement("button")
-        button.type = "button"
-        button.dataset.cardKey = card.match
-        button.innerHTML = `
-          <div class="flex items-start justify-between gap-3">
-            <span class="text-xs font-bold uppercase tracking-[0.12em] ${card.tone === "active" ? "text-indigo-700 dark:text-indigo-200" : card.tone === "complete" ? "text-emerald-800 dark:text-emerald-200" : card.tone === "investigation" ? "text-amber-800 dark:text-amber-200" : "text-slate-600 dark:text-slate-300"}">${card.eyebrow}</span>
-            <span class="text-lg text-muted-foreground transition-transform group-hover:translate-x-0.5">→</span>
-          </div>
-          <div class="mt-4 text-base font-semibold leading-6 text-foreground">${card.title}</div>
-          <p class="mt-3 text-sm leading-6 text-muted-foreground">${card.description}</p>
-        `
-        button.addEventListener("click", () => {
-          if (card.sourceIndex === null) {
-            experiment3Active = true
-            contentPanel.hidden = true
-            experiment3Panel.hidden = false
-          } else {
-            experiment3Active = false
-            experiment3Panel.hidden = true
-            contentPanel.hidden = false
-            tabButtons[card.sourceIndex]?.click()
-          }
-          window.setTimeout(renderSelection, 0)
-        })
-        selector.appendChild(button)
-      })
-
-      originalRow.insertAdjacentElement("afterend", selector)
-      contentPanel.insertAdjacentElement("afterend", experiment3Panel)
-      renderSelection()
-
-      const observer = new MutationObserver(renderSelection)
-      tabButtons.forEach((button) => observer.observe(button!, { attributes: true, attributeFilter: ["class"] }))
-      selector.dataset.selectionObserverReady = "true"
-    }
-
-    install()
-    const observer = new MutationObserver(install)
-    observer.observe(document.body, { childList: true, subtree: true })
-    return () => observer.disconnect()
-  }, [])
-
-  return null
 }

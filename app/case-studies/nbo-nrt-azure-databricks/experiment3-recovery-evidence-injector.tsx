@@ -1,7 +1,3 @@
-"use client"
-
-import { useEffect } from "react"
-
 function createRecoveryEvidence() {
   const details = document.createElement("details")
   details.dataset.experiment3RecoveryEvidence = "true"
@@ -184,52 +180,41 @@ function createPersonalizationCapacityNote() {
   return note
 }
 
-export function Experiment3RecoveryEvidenceInjector() {
-  useEffect(() => {
-    const install = () => {
-      const experiment3Panel = document.querySelector<HTMLElement>("[data-experiment3-panel]")
-      if (!experiment3Panel) return
+export function enhanceExperiment3RecoveryEvidence(scope: HTMLElement) {
+  const experiment3Panel = scope.querySelector<HTMLElement>("[data-experiment3-panel]")
+  if (!experiment3Panel) return
 
-      let recoveryEvidence = experiment3Panel.querySelector<HTMLElement>("[data-experiment3-recovery-evidence]")
-      if (!recoveryEvidence) {
-        const investigationTrail = experiment3Panel.querySelector<HTMLElement>("[data-experiment3-investigation-trail]")
-        if (investigationTrail) {
-          recoveryEvidence = createRecoveryEvidence()
-          investigationTrail.insertAdjacentElement("afterend", recoveryEvidence)
-        }
-      }
-
-      if (recoveryEvidence && !experiment3Panel.querySelector("[data-experiment3-representational-capacity-evidence]")) {
-        recoveryEvidence.insertAdjacentElement("afterend", createRepresentationalCapacityEvidence())
-      }
-
-      const executionSequence = experiment3Panel.querySelector<HTMLElement>(
-        '[aria-label="Experiment 3 A-F modeling execution sequence"]',
-      )
-      if (!executionSequence) return
-
-      const trainingFormulation = Array.from(executionSequence.querySelectorAll<HTMLDetailsElement>(":scope > details")).find(
-        (details) => details.querySelector("summary")?.textContent?.includes("B — Training Formulation"),
-      )
-      const trainingBody = trainingFormulation?.querySelector<HTMLElement>(":scope > div")
-      if (!trainingBody) return
-
-      let continuityNote = experiment3Panel.querySelector<HTMLElement>("[data-experiment3-recovery-execution-note]")
-      if (!continuityNote) {
-        continuityNote = createExecutionContinuityNote()
-        trainingBody.insertAdjacentElement("afterbegin", continuityNote)
-      }
-
-      if (!experiment3Panel.querySelector("[data-experiment3-personalization-capacity-note]")) {
-        continuityNote.insertAdjacentElement("afterend", createPersonalizationCapacityNote())
-      }
+  let recoveryEvidence = experiment3Panel.querySelector<HTMLElement>("[data-experiment3-recovery-evidence]")
+  if (!recoveryEvidence) {
+    const investigationTrail = experiment3Panel.querySelector<HTMLElement>("[data-experiment3-investigation-trail]")
+    if (investigationTrail) {
+      recoveryEvidence = createRecoveryEvidence()
+      investigationTrail.insertAdjacentElement("afterend", recoveryEvidence)
     }
+  }
 
-    install()
-    const observer = new MutationObserver(install)
-    observer.observe(document.body, { childList: true, subtree: true })
-    return () => observer.disconnect()
-  }, [])
+  if (recoveryEvidence && !experiment3Panel.querySelector("[data-experiment3-representational-capacity-evidence]")) {
+    recoveryEvidence.insertAdjacentElement("afterend", createRepresentationalCapacityEvidence())
+  }
 
-  return null
+  const executionSequence = experiment3Panel.querySelector<HTMLElement>(
+    '[aria-label="Experiment 3 A-F modeling execution sequence"]',
+  )
+  if (!executionSequence) return
+
+  const trainingFormulation = Array.from(executionSequence.querySelectorAll<HTMLDetailsElement>(":scope > details")).find(
+    (details) => details.querySelector("summary")?.textContent?.includes("B — Training Formulation"),
+  )
+  const trainingBody = trainingFormulation?.querySelector<HTMLElement>(":scope > div")
+  if (!trainingBody) return
+
+  let continuityNote = experiment3Panel.querySelector<HTMLElement>("[data-experiment3-recovery-execution-note]")
+  if (!continuityNote) {
+    continuityNote = createExecutionContinuityNote()
+    trainingBody.insertAdjacentElement("afterbegin", continuityNote)
+  }
+
+  if (!experiment3Panel.querySelector("[data-experiment3-personalization-capacity-note]")) {
+    continuityNote.insertAdjacentElement("afterend", createPersonalizationCapacityNote())
+  }
 }

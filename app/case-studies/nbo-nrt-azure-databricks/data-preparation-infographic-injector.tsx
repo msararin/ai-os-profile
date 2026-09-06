@@ -1,7 +1,3 @@
-"use client"
-
-import { useEffect } from "react"
-
 const infographicSections = [
   {
     number: "1",
@@ -30,41 +26,29 @@ const infographicSections = [
   },
 ]
 
-export function DataPreparationInfographicInjector() {
-  useEffect(() => {
-    const installInfographics = () => {
-      const detailsElements = document.querySelectorAll<HTMLDetailsElement>("details")
+export function enhanceDataPreparationInfographic(scope: HTMLElement) {
+  const detailsElements = scope.querySelectorAll<HTMLDetailsElement>("details")
 
-      for (const details of detailsElements) {
-        const summary = details.querySelector<HTMLElement>(":scope > summary")
-        const summaryText = summary?.textContent?.replace(/\s+/g, " ").trim() ?? ""
-        const section = infographicSections.find(({ title }) => summaryText.includes(title))
+  for (const details of detailsElements) {
+    const summary = details.querySelector<HTMLElement>(":scope > summary")
+    const summaryText = summary?.textContent?.replace(/\s+/g, " ").trim() ?? ""
+    const section = infographicSections.find(({ title }) => summaryText.includes(title))
 
-        if (!summary || !section) continue
-        if (details.querySelector(`[data-data-prep-infographic="${section.number}"]`)) continue
+    if (!summary || !section) continue
+    if (details.querySelector(`[data-data-prep-infographic="${section.number}"]`)) continue
 
-        const figure = document.createElement("figure")
-        figure.dataset.dataPrepInfographic = section.number
-        figure.className = "border-t border-border bg-muted/10 p-3 sm:p-4"
+    const figure = document.createElement("figure")
+    figure.dataset.dataPrepInfographic = section.number
+    figure.className = "border-t border-border bg-muted/10 p-3 sm:p-4"
 
-        const image = document.createElement("img")
-        image.src = section.src
-        image.alt = `${section.number}. ${section.title}`
-        image.loading = "lazy"
-        image.decoding = "async"
-        image.className = "h-auto w-full rounded-lg border border-border bg-background shadow-sm"
+    const image = document.createElement("img")
+    image.src = section.src
+    image.alt = `${section.number}. ${section.title}`
+    image.loading = "lazy"
+    image.decoding = "async"
+    image.className = "h-auto w-full rounded-lg border border-border bg-background shadow-sm"
 
-        figure.appendChild(image)
-        summary.insertAdjacentElement("afterend", figure)
-      }
-    }
-
-    installInfographics()
-    const observer = new MutationObserver(installInfographics)
-    observer.observe(document.body, { childList: true, subtree: true })
-
-    return () => observer.disconnect()
-  }, [])
-
-  return null
+    figure.appendChild(image)
+    summary.insertAdjacentElement("afterend", figure)
+  }
 }

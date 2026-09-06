@@ -1,7 +1,3 @@
-"use client"
-
-import { useEffect } from "react"
-
 function normalizedText(value: string | null | undefined) {
   return (value ?? "").replace(/\s+/g, " ").trim()
 }
@@ -134,25 +130,14 @@ function createInvestigationTrail() {
   return details
 }
 
-export function Experiment3InvestigationTrailInjector() {
-  useEffect(() => {
-    const install = () => {
-      const heading = Array.from(document.querySelectorAll<HTMLHeadingElement>("h3")).find(
-        (node) => normalizedText(node.textContent) === "Making the policy numbers meaningful",
-      )
-      const experiment3Panel = heading?.closest<HTMLElement>("[data-experiment3-panel]")
-      if (!heading || !experiment3Panel || experiment3Panel.querySelector("[data-experiment3-investigation-trail]")) return
+export function enhanceExperiment3InvestigationTrail(scope: HTMLElement) {
+  const heading = Array.from(scope.querySelectorAll<HTMLHeadingElement>("h3")).find(
+    (node) => normalizedText(node.textContent) === "Making the policy numbers meaningful",
+  )
+  const experiment3Panel = heading?.closest<HTMLElement>("[data-experiment3-panel]")
+  if (!heading || !experiment3Panel || experiment3Panel.querySelector("[data-experiment3-investigation-trail]")) return
 
-      const section = heading.closest<HTMLElement>("section")
-      if (!section) return
-      section.insertAdjacentElement("afterend", createInvestigationTrail())
-    }
-
-    install()
-    const observer = new MutationObserver(install)
-    observer.observe(document.body, { childList: true, subtree: true })
-    return () => observer.disconnect()
-  }, [])
-
-  return null
+  const section = heading.closest<HTMLElement>("section")
+  if (!section) return
+  section.insertAdjacentElement("afterend", createInvestigationTrail())
 }
