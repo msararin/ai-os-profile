@@ -1,0 +1,36 @@
+{
+  "evidence_id": "EXP3-NOTEBOOK-ACCEPTANCE-20260907",
+  "evidence_type": "Owner-exported Databricks notebook with code and outputs",
+  "source_html_sha256": "f6547322618a8b11a3f5d475dd46fcd5adf8b7f81cf3e1898cf4f4db5be44c21",
+  "experiment_id": "EXP3",
+  "checkpoint_id": "EXP3-B1-PAUSED-SAFE-001",
+  "current_gate": "B1",
+  "current_gate_status": "ACTIVE",
+  "discovery_state": "VALID",
+  "contract_version": 1,
+  "recipe_version": 1,
+  "observed": {
+    "candidate_rows": 38300,
+    "distinct_actions": 5,
+    "distinct_train_context_states": 7660,
+    "train_rows": 8002
+  },
+  "positive_resume_state": "VALID",
+  "negative_resume_state": "DRIFT_DETECTED",
+  "negative_candidate_rows": {
+    "expected": 38301,
+    "observed": 38300
+  },
+  "resume_blocked": true,
+  "original_expected_unchanged": true,
+  "boundary": "Inspected recovery code filters TRAIN; no TEST evaluation, model/policy training or greedy selection in inspected cells.",
+  "limitations": [
+    "Runtime reset event not directly evidenced",
+    "Source table version NOT_CAPTURED",
+    "Full acceptance trace envelope not captured",
+    "Export is a snapshot, not full execution history"
+  ],
+  "thin_support_rule": "NOT_DURABLY_PRESERVED",
+  "phase1_full_dod": "NOT_ESTABLISHED_BY_THIS_EXPORT",
+  "public_scope": "Derived summary; original export retained privately. No new independent reviewer or historical gate approval is implied."
+}

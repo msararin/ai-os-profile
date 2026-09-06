@@ -119,7 +119,7 @@ export function EngineeringEvidenceLens() {
     </div>
 
     <nav className="mt-5 flex flex-wrap gap-2 text-xs" aria-label="Engineering evidence questions">
-      {[["#knowledge-nbo-k003","Snapshot"],["#knowledge-nbo-k004","Data path"],["#knowledge-nbo-k007","Lifecycle"],["#knowledge-nbo-k028","Recovery"],["#knowledge-nbo-k033","TEST custody"],["#knowledge-nbo-k036","Runtime proof"]].map(([href,label],i)=><a key={href} href={href} className="rounded-full border border-border bg-background px-3 py-2 font-semibold text-foreground hover:border-sky-500">{i+1}. {label}</a>)}
+      {[["#knowledge-nbo-k003","Snapshot"],["#knowledge-nbo-k004","Data path"],["#knowledge-nbo-k007","Lifecycle"],["#exp3-durable-acceptance","EXP3 recovery test"],["#knowledge-nbo-k033","TEST custody"],["#knowledge-nbo-k036","Runtime proof"]].map(([href,label],i)=><a key={href} href={href} className="rounded-full border border-border bg-background px-3 py-2 font-semibold text-foreground hover:border-sky-500">{i+1}. {label}</a>)}
     </nav>
 
     <Alert className="mt-5 border-emerald-500/30 bg-emerald-500/5"><AlertDescription className="text-sm leading-6"><strong>Runtime-tested evidence.</strong> The Event Ledger contract was executed on Azure Databricks: successful paths, expected-failure paths, and post-failure state integrity were verified. Boundary: serialized single writer only; no concurrent multi-writer safety, TEST access, model training, or production business outcome is claimed.</AlertDescription></Alert>
@@ -163,7 +163,33 @@ export function EngineeringEvidenceLens() {
         <p><strong className="text-foreground">Interpretation:</strong> controls improve auditability; they do not prove a successful outcome. <strong className="text-foreground">Boundary:</strong> no real customer propensity, commercial uplift, causal effectiveness, production readiness, contextual-bandit readiness, or RL readiness is established.</p>
       </Article>
 
-      <Article id="K028" title="Can a clean notebook recover the active Experiment 3 execution path?">
+      <section id="exp3-durable-acceptance" className="scroll-mt-24 rounded-xl border border-emerald-500/30 bg-emerald-500/5 p-5" aria-labelledby="exp3-durable-acceptance-heading">
+        <p className="text-sm font-semibold text-muted-foreground">Experiment 3 · notebook acceptance · Sep 7, 2026</p>
+        <h4 id="exp3-durable-acceptance-heading" className="mt-2 text-xl font-semibold text-foreground">Can durable artifacts restore TRAIN and stop an invalid resume?</h4>
+        <p className="mt-3 text-sm leading-7 text-muted-foreground">A separate Databricks notebook read the B1 checkpoint, discovered the versioned Contract and Recipe, and verified artifact hashes. It rebuilt the TRAIN frame from that recipe and executed the persisted assertion code.</p>
+        <ol className="mt-4 list-decimal space-y-2 pl-5 text-sm leading-7 text-muted-foreground">
+          <li><strong className="text-foreground">Discover:</strong> VALID; Contract v1 and Recipe v1 loaded; checkpoint PAUSED_SAFE; B1 ACTIVE.</li>
+          <li><strong className="text-foreground">Recover:</strong> 8,002 TRAIN rows reconstructed, including recipe-defined interaction columns.</li>
+          <li><strong className="text-foreground">Assert:</strong> 8,002 rows · 7,660 distinct context states · 5 actions · 38,300 candidate rows. Resume VALID with no mismatches.</li>
+          <li><strong className="text-foreground">Challenge:</strong> expected candidate count changed only in a test copy to 38,301. Observed 38,300; DRIFT_DETECTED; resume blocked; original expectations unchanged.</li>
+        </ol>
+        <p className="mt-4 text-sm leading-7 text-muted-foreground"><strong className="text-foreground">What this establishes:</strong> notebook recovery and drift blocking supported by exported code and outputs. The raw export is retained privately; the public summary includes its SHA-256 fingerprint.</p>
+        <details className="mt-4 rounded-lg border border-border bg-background p-4">
+          <summary className="cursor-pointer font-semibold text-foreground">How AI coordination and MLOps worked together</summary>
+          <ul className="mt-3 list-disc space-y-2 pl-5 text-sm leading-7 text-muted-foreground">
+            <li><strong className="text-foreground">MLOps execution:</strong> the owner ran the Databricks acceptance cells; durable artifacts, hashes and assertion outputs supply the technical evidence.</li>
+            <li><strong className="text-foreground">AI implementation and custody:</strong> Codex repaired artifact discovery and performed local repository checks under the Repo Custodian responsibility lens. That lens is not a separate independent reviewer.</li>
+            <li><strong className="text-foreground">Information and review roles:</strong> separate AI agents handled Information Architecture, QA and a simulated stakeholder perspective for this content update. Their work concerns communication and evidence review, not a new scientific B1 decision.</li>
+            <li><strong className="text-foreground">Authority:</strong> the owner retains scientific and publication decisions. Earlier Big Crew / AIOS governance context and named historical gate receipts are separate from this round; no autonomous end-to-end LLMOps platform validation is implied.</li>
+          </ul>
+        </details>
+        <p className="mt-3 text-sm leading-7 text-muted-foreground"><strong className="text-foreground">Still open:</strong> the export does not directly establish a runtime reset event, the source-table version, or a full acceptance trace envelope. Full Phase 1 DoD completion is not established. B1 remains ACTIVE and the historical THIN_SUPPORT rule remains NOT_DURABLY_PRESERVED.</p>
+        <p className="mt-3 text-sm leading-7 text-muted-foreground">Inspected cells filter TRAIN; no TEST evaluation, model/policy training or greedy action selection appears in this test. The test does not re-evaluate Reward Model V2 or establish policy quality, production readiness or uplift.</p>
+        <a href="/evidence/exp3-notebook-acceptance-20260907.json" className="mt-3 inline-block text-sm font-semibold text-primary underline underline-offset-4">Read the evidence summary and source fingerprint →</a>
+        <p className="mt-2"><a href="#knowledge-nbo-k027" className="text-sm font-semibold text-primary hover:underline">View the active B1 scientific gate →</a></p>
+      </section>
+
+      <Article id="K028" title="Historical V1 recovery: could a clean notebook restore model execution?">
         <p><strong className="text-foreground">Observation:</strong> <code>00_RECOVERY_BOOTSTRAP = PASS</code>; Unity Catalog recovered 8,002 TRAIN rows; MLflow loaded run <code>c764041889644a68acf02339b0faae54</code> / <code>reward_model_v1</code>; five rows scored successfully on Azure Databricks Serverless with MLflow 3.8.1.</p>
         <p><strong className="text-foreground">Recovery chain:</strong> UC TRAIN → MLflow artifact → UC Volume temp bridge → Spark ML → scoring. <code>MLFLOW_DFS_TMP</code> and <code>dfs_tmpdir</code>: <code>/Volumes/adb_nbo_nrt_mlops_dev/models/mlflow_tmp</code>.</p>
         <p><strong className="text-foreground">Interpretation:</strong> notebook variables are disposable; durable custody restored execution continuity. <strong className="text-foreground">Decision:</strong> no TEST touch, retraining, or authorization change. Related model impact: <a href="#knowledge-nbo-k030" className="font-semibold text-primary hover:underline">the diagnostic could resume from the recovered artifact</a>.</p>
