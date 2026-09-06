@@ -1,0 +1,54 @@
+{
+  "profile": "public_surface_go_live_v0_1",
+  "surface_type": "knowledge-sharing-update",
+  "public_route_or_surface": "/knowledge-sharing",
+  "expected_entry_identifier": "urn:li:share:7502460604037726208",
+  "expected_entry_present": true,
+  "changed_files": [
+    "app/knowledge-sharing/page.tsx",
+    "docs/governance/change-packets/knowledge-sharing-linkedin-7502460604037726208/public-surface-review-input.json",
+    "docs/governance/change-packets/knowledge-sharing-linkedin-7502460604037726208/PUBLIC_SURFACE_REVIEW_PACKET.html",
+    "docs/governance/change-packets/knowledge-sharing-linkedin-7502460604037726208/public-surface-review-result.json"
+  ],
+  "public_copy": "Add the owner-provided LinkedIn post urn:li:share:7502460604037726208 as the newest item in the existing Knowledge Sharing archive, using the supplied embed height of 1476 pixels and updating the archive cutoff to 6 Sep 2026.",
+  "evidence_refs": [
+    "Owner-provided LinkedIn embed iframe",
+    "app/knowledge-sharing/page.tsx",
+    "docs/governance/must-preserve-registry.md"
+  ],
+  "deployment_occurred": false,
+  "deployment_url": null,
+  "route_smoke_result": {
+    "status": "pass",
+    "reason": "Production build generated the static /knowledge-sharing route; live route verification remains required after deployment."
+  },
+  "build_result": {
+    "status": "pass",
+    "reason": "pnpm build completed successfully and generated 47/47 routes."
+  },
+  "typecheck_result": {
+    "status": "pass",
+    "reason": "pnpm exec tsc --noEmit completed successfully."
+  },
+  "lint_result": {
+    "status": "pass",
+    "reason": "pnpm exec eslint app/knowledge-sharing/page.tsx completed successfully."
+  },
+  "visual_spot_check": {
+    "status": "pending",
+    "reason": "Required after deployment; LinkedIn embed availability may vary by browser or network."
+  },
+  "declared_claim_boundary": {
+    "public_may_claim": [
+      "The owner-provided LinkedIn post is included in the public Knowledge Sharing archive.",
+      "The archive identifies owner-provided posts through 6 Sep 2026."
+    ],
+    "public_must_not_claim": [
+      "The LinkedIn embed is reachable from every browser, privacy configuration, or network.",
+      "The post content was independently verified beyond the owner-provided iframe identifier."
+    ],
+    "internal_only": [
+      "Private paths, credentials, provider telemetry, prompts, and non-public evidence."
+    ]
+  }
+}

@@ -1,0 +1,161 @@
+{
+  "profile": "public_surface_go_live_v0_1",
+  "profile_name": "Public Surface Runner",
+  "generated_at": "2026-09-06T20:24:29.406Z",
+  "rules_sha256": "6d598344e1c8c24942460935723237db324c50ca5669d868c795aa14b3724e82",
+  "surface_type": "knowledge-sharing-update",
+  "public_route_or_surface": "/knowledge-sharing",
+  "expected_entry_identifier": "urn:li:share:7502460604037726208",
+  "changed_files": [
+    "app/knowledge-sharing/page.tsx",
+    "docs/governance/change-packets/knowledge-sharing-linkedin-7502460604037726208/public-surface-review-input.json",
+    "docs/governance/change-packets/knowledge-sharing-linkedin-7502460604037726208/PUBLIC_SURFACE_REVIEW_PACKET.html",
+    "docs/governance/change-packets/knowledge-sharing-linkedin-7502460604037726208/public-surface-review-result.json"
+  ],
+  "public_copy_summary": "Add the owner-provided LinkedIn post urn:li:share:7502460604037726208 as the newest item in the existing Knowledge Sharing archive, using the supplied embed height of 1476 pixels and updating the archive cutoff to 6 Sep 2026.",
+  "evidence_refs": [
+    "Owner-provided LinkedIn embed iframe",
+    "app/knowledge-sharing/page.tsx",
+    "docs/governance/must-preserve-registry.md"
+  ],
+  "declared_claim_boundary": {
+    "public_may_claim": [
+      "The owner-provided LinkedIn post is included in the public Knowledge Sharing archive.",
+      "The archive identifies owner-provided posts through 6 Sep 2026."
+    ],
+    "public_must_not_claim": [
+      "The LinkedIn embed is reachable from every browser, privacy configuration, or network.",
+      "The post content was independently verified beyond the owner-provided iframe identifier."
+    ],
+    "internal_only": [
+      "Private paths, credentials, provider telemetry, prompts, and non-public evidence."
+    ]
+  },
+  "checks": [
+    {
+      "id": "SURFACE_IDENTIFIED",
+      "name": "Public surface identified",
+      "result": "PASS",
+      "evidence": "/knowledge-sharing",
+      "note": "Public surface is explicitly identified."
+    },
+    {
+      "id": "EXPECTED_ENTRY_PRESENT",
+      "name": "Expected public entry present",
+      "result": "PASS",
+      "evidence": "urn:li:share:7502460604037726208",
+      "note": "Expected public entry is present or traceable."
+    },
+    {
+      "id": "CLAIM_SAFE_WORDING",
+      "name": "Claim-safe wording",
+      "result": "PASS",
+      "evidence": "Public copy avoids blocked maturity and proof claims.",
+      "note": "Claim wording is bounded."
+    },
+    {
+      "id": "NO_PRIVATE_PATH_LEAK",
+      "name": "No private KB or local path leak",
+      "result": "PASS",
+      "evidence": "No private local or KB path patterns detected.",
+      "note": "No private path leakage found."
+    },
+    {
+      "id": "NO_SECRET_OR_RECEIPT_LEAK",
+      "name": "No secrets, receipts, telemetry, prompt logs, or internal evidence JSON exposed",
+      "result": "PASS",
+      "evidence": "No secret or receipt patterns detected.",
+      "note": "No secret or receipt leakage found."
+    },
+    {
+      "id": "NO_ROUND3_OVERCLAIM",
+      "name": "No Round 3 execution or success overclaim",
+      "result": "PASS",
+      "evidence": "No Round 3 execution, success, proof, or production-readiness claim detected.",
+      "note": "Round 3 boundary is clean."
+    },
+    {
+      "id": "BUILD_TYPECHECK_LINT_CAPTURED_IF_APPLICABLE",
+      "name": "Build/typecheck/lint evidence captured if applicable",
+      "result": "PASS",
+      "evidence": "build: pnpm build completed successfully and generated 47/47 routes. | typecheck: pnpm exec tsc --noEmit completed successfully. | lint: pnpm exec eslint app/knowledge-sharing/page.tsx completed successfully.",
+      "note": "Technical evidence is captured or explicitly not applicable."
+    },
+    {
+      "id": "ROUTE_SMOKE_CAPTURED_IF_APPLICABLE",
+      "name": "Route smoke evidence captured if applicable",
+      "result": "PASS",
+      "evidence": "Production build generated the static /knowledge-sharing route; live route verification remains required after deployment.",
+      "note": "Route smoke evidence supplied."
+    },
+    {
+      "id": "DEPLOYMENT_REF_CAPTURED_IF_DEPLOYED",
+      "name": "Deployment or preview URL captured if deployment occurred",
+      "result": "NOT_APPLICABLE",
+      "evidence": "No deployment reference.",
+      "note": "No deployment occurred."
+    },
+    {
+      "id": "PUBLIC_INTERNAL_BOUNDARY_CLEAR",
+      "name": "Public copy distinguishes internal evidence from public claim",
+      "result": "PASS",
+      "evidence": "Claim boundary fields supplied.",
+      "note": "Public/internal claim boundary is explicit."
+    },
+    {
+      "id": "FORBIDDEN_TERMS_CONTEXT_ONLY",
+      "name": "Forbidden terms only appear in boundary or forbidden sections",
+      "result": "PASS",
+      "evidence": "Forbidden terms are not used as positive public claims.",
+      "note": "Forbidden term context is acceptable."
+    },
+    {
+      "id": "VISUAL_SPOT_CHECK_OPTIONAL",
+      "name": "Visual Spot Checker",
+      "result": "WARN",
+      "evidence": "Required after deployment; LinkedIn embed availability may vary by browser or network.",
+      "note": "Optional lightweight visibility check only; no screenshot diffing, design QA, accessibility approval, or visual regression."
+    },
+    {
+      "id": "OWNER_REVIEW_SURFACE_AVAILABLE",
+      "name": "Owner review surface available",
+      "result": "PASS",
+      "evidence": "PUBLIC_SURFACE_REVIEW_PACKET.html",
+      "note": "One-click owner review packet is generated by this command."
+    }
+  ],
+  "warnings": [
+    {
+      "id": "VISUAL_SPOT_CHECK_OPTIONAL",
+      "name": "Visual Spot Checker",
+      "result": "WARN",
+      "evidence": "Required after deployment; LinkedIn embed availability may vary by browser or network.",
+      "note": "Optional lightweight visibility check only; no screenshot diffing, design QA, accessibility approval, or visual regression."
+    }
+  ],
+  "blocks": [],
+  "deployment_occurred": false,
+  "deployment_url": "",
+  "route_smoke_result": {
+    "status": "pass",
+    "reason": "Production build generated the static /knowledge-sharing route; live route verification remains required after deployment."
+  },
+  "build_result": {
+    "status": "pass",
+    "reason": "pnpm build completed successfully and generated 47/47 routes."
+  },
+  "typecheck_result": {
+    "status": "pass",
+    "reason": "pnpm exec tsc --noEmit completed successfully."
+  },
+  "lint_result": {
+    "status": "pass",
+    "reason": "pnpm exec eslint app/knowledge-sharing/page.tsx completed successfully."
+  },
+  "visual_spot_check": {
+    "status": "pending",
+    "reason": "Required after deployment; LinkedIn embed availability may vary by browser or network."
+  },
+  "final_status": "READY_WITH_WARNINGS_OWNER_REVIEW_REQUIRED",
+  "boundary_statement": "Local owner review only. No deploy, no publish, no preview promotion, no production modification, no go-live approval."
+}
