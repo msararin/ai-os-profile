@@ -146,7 +146,7 @@ export default function NboNrtAzureDatabricksPage() {
               </a>
             </nav>
 
-            <div className="mt-8 grid gap-4 lg:grid-cols-3">
+            <div className="mt-8 grid gap-4">
               <BusinessDecisionsLens />
 
               <ModelsExperimentsLens />
