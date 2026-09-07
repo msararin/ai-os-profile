@@ -58,7 +58,7 @@ export function RuntimeProof() {
             </span>
           </summary>
           <div className="border-t border-border p-5 sm:p-6">
-            <div className="overflow-x-auto rounded-lg border border-border">
+            <div className="max-w-full overflow-x-auto rounded-lg border border-border">
               <table className="min-w-[720px] w-full text-left text-sm">
                 <thead className="bg-muted/50 text-foreground"><tr><th className="px-4 py-3 font-semibold">Control</th><th className="px-4 py-3 font-semibold">Captured result</th><th className="px-4 py-3 font-semibold">Verdict</th></tr></thead>
                 <tbody className="divide-y divide-border">
