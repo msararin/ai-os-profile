@@ -165,10 +165,10 @@ export function BusinessDecisionsLens() {
         </AlertDescription>
       </Alert>
 
-      <div className="mt-6 flex flex-wrap gap-3 text-sm">
-        <a href="#models-experiments" className="font-semibold text-primary underline-offset-4 hover:underline">Review model and experiment reasoning →</a>
-        <a href="#engineering-evidence" className="font-semibold text-primary underline-offset-4 hover:underline">Trace engineering and evidence controls →</a>
-        <a href="#legacy-experiment-evidence" className="font-semibold text-primary underline-offset-4 hover:underline">Compare with retained legacy evidence →</a>
+      <div className="mt-6 flex min-w-0 max-w-full flex-wrap gap-3 text-sm">
+        <a href="#models-experiments" className="min-w-0 max-w-full break-words font-semibold text-primary underline-offset-4 hover:underline">Review model and experiment reasoning →</a>
+        <a href="#engineering-evidence" className="min-w-0 max-w-full break-words font-semibold text-primary underline-offset-4 hover:underline">Trace engineering and evidence controls →</a>
+        <a href="#legacy-experiment-evidence" className="min-w-0 max-w-full break-words font-semibold text-primary underline-offset-4 hover:underline">Compare with retained legacy evidence →</a>
       </div>
     </section>
   )

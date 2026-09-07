@@ -235,9 +235,9 @@ export function ModelsExperimentsLens() {
             <li>Derive any next threshold from the TRAIN support distribution; do not choose one arbitrarily.</li>
           </ul>
         </details>
-        <div className="mt-4 flex flex-wrap gap-3 text-sm">
-          <a href="#knowledge-nbo-k033" className="font-semibold text-primary underline-offset-4 hover:underline">TEST remains sealed until the TRAIN-only formulation and support contract are fixed →</a>
-          <a href="#knowledge-nbo-k029" className="font-semibold text-primary underline-offset-4 hover:underline">Supporting counts must resolve to governed, reproducible evidence →</a>
+        <div className="mt-4 flex min-w-0 max-w-full flex-wrap gap-3 text-sm">
+          <a href="#knowledge-nbo-k033" className="min-w-0 max-w-full break-words font-semibold text-primary underline-offset-4 hover:underline">TEST remains sealed until the TRAIN-only formulation and support contract are fixed →</a>
+          <a href="#knowledge-nbo-k029" className="min-w-0 max-w-full break-words font-semibold text-primary underline-offset-4 hover:underline">Supporting counts must resolve to governed, reproducible evidence →</a>
         </div>
       </article>
 
@@ -256,10 +256,10 @@ export function ModelsExperimentsLens() {
         </article>
       </div>
 
-      <div className="mt-6 flex flex-wrap gap-3 text-sm">
-        <a href="#business-decisions" className="font-semibold text-primary underline-offset-4 hover:underline">Return to Business &amp; Decisions →</a>
-        <a href="#engineering-evidence" className="font-semibold text-primary underline-offset-4 hover:underline">Trace Engineering &amp; Evidence custody →</a>
-        <a href="#legacy-experiment-evidence" className="font-semibold text-primary underline-offset-4 hover:underline">Compare with retained legacy evidence →</a>
+      <div className="mt-6 flex min-w-0 max-w-full flex-wrap gap-3 text-sm">
+        <a href="#business-decisions" className="min-w-0 max-w-full break-words font-semibold text-primary underline-offset-4 hover:underline">Return to Business &amp; Decisions →</a>
+        <a href="#engineering-evidence" className="min-w-0 max-w-full break-words font-semibold text-primary underline-offset-4 hover:underline">Trace Engineering &amp; Evidence custody →</a>
+        <a href="#legacy-experiment-evidence" className="min-w-0 max-w-full break-words font-semibold text-primary underline-offset-4 hover:underline">Compare with retained legacy evidence →</a>
       </div>
     </section>
   )

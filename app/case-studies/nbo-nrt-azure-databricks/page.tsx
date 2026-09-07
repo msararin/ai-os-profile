@@ -9,6 +9,7 @@ import { ExperimentTabs } from "./experiment-tabs"
 import { EngineeringEvidenceLens } from "./engineering-evidence-lens"
 import { ModelsExperimentsLens } from "./models-experiments-lens"
 import { RuntimeProof } from "./runtime-proof"
+import { CaseStudySectionNav } from "./case-study-section-nav"
 
 export const metadata: Metadata = {
   title: "NBO–NRT Telco on Azure Databricks",
@@ -37,8 +38,9 @@ export default function NboNrtAzureDatabricksPage() {
           </div>
         </div>
       </div>
-      <main className="flex-1">
-        <section className="border-b border-border bg-background">
+      <CaseStudySectionNav />
+      <main className="flex-1 xl:pl-64">
+        <section id="case-study-overview" className="scroll-mt-24 border-b border-border bg-background">
           <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
             <div className="flex flex-wrap gap-2">
               <Badge variant="outline">Telco decision intelligence</Badge>
@@ -117,7 +119,7 @@ export default function NboNrtAzureDatabricksPage() {
 
         <RuntimeProof />
 
-        <section className="border-y border-border bg-muted/20 py-10" aria-labelledby="cockpit-lenses-heading">
+        <section id="cockpit-lenses" className="scroll-mt-24 border-y border-border bg-muted/20 py-10" aria-labelledby="cockpit-lenses-heading">
           <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
             <div className="max-w-3xl">
               <p className="text-xs font-bold uppercase tracking-[0.14em] text-indigo-700 dark:text-indigo-300">Cockpit structure</p>
