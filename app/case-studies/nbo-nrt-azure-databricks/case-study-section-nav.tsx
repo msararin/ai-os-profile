@@ -57,7 +57,7 @@ export function CaseStudySectionNav() {
       <nav
         aria-label="Case study sections"
         data-case-study-section-nav
-        className="hidden xl:fixed xl:left-6 xl:top-24 xl:z-40 xl:block xl:w-56"
+        className="hidden 2xl:fixed 2xl:left-4 2xl:top-24 2xl:z-40 2xl:block 2xl:w-48 min-[1800px]:left-6 min-[1800px]:w-56"
       >
         <div className="rounded-lg border border-border bg-background/95 p-3 shadow-sm backdrop-blur">
           <p className="px-2 text-xs font-semibold uppercase tracking-[0.12em] text-muted-foreground">

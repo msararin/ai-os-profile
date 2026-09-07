@@ -109,7 +109,7 @@ function Article({ id, title, children }: { id: string; title: string; children:
 }
 
 export function EngineeringEvidenceLens() {
-  return <section id="engineering-evidence" className="min-w-0 scroll-mt-24 rounded-xl border border-sky-500/30 bg-sky-500/[0.03] p-5 [&_a]:break-words [&_code]:break-all" aria-labelledby="engineering-evidence-heading">
+  return <section id="engineering-evidence" className="min-w-0 scroll-mt-24 rounded-xl border border-sky-500/30 bg-sky-500/[0.03] p-5 lg:col-span-3 [&_a]:break-words [&_code]:break-all" aria-labelledby="engineering-evidence-heading">
     <p className="text-xs font-semibold uppercase tracking-[0.12em] text-sky-700 dark:text-sky-300">Primary home · How can we trust it?</p>
     <h3 id="engineering-evidence-heading" className="mt-2 text-lg font-semibold text-foreground">Engineering &amp; Evidence</h3>
     <p className="mt-3 text-sm leading-6 text-muted-foreground">Trace what was observed, how evidence was persisted and recovered, what it means, and which decision it permits—without turning execution facts into model or business claims.</p>

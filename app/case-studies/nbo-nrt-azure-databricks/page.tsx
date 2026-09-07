@@ -39,7 +39,7 @@ export default function NboNrtAzureDatabricksPage() {
         </div>
       </div>
       <CaseStudySectionNav />
-      <main className="flex-1 xl:pl-64">
+      <main className="flex-1">
         <section id="case-study-overview" className="scroll-mt-24 border-b border-border bg-background">
           <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
             <div className="flex flex-wrap gap-2">
