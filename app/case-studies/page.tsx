@@ -5,6 +5,20 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 
 const caseStudies = [
   {
+    title: "Text to Audio — Listen to Your Documents",
+    status: "Invited beta",
+    statusTone: "active",
+    category: "Document listening",
+    flagship: false,
+    summary:
+      "No time to read? Turn documents or pasted Thai–English–Chinese text into an MP3 to listen to whenever it suits you.",
+    boundary:
+      "Invitation code required. Speech generation is available while the host is online; pronunciation is still being tested.",
+    cta: "View use case",
+    href: "/case-studies/txttoaudio",
+    reportHref: "/case-studies/txttoaudio#report",
+  },
+  {
     // Claims: CL-001, CL-003, CL-012, CL-016, CL-017
     title: "NBO–NRT Telco on Azure Databricks",
     status: "In Progress",
@@ -130,6 +144,15 @@ export default function CaseStudiesPage() {
                     <p className="rounded-md border border-border bg-muted/25 px-3 py-2 text-xs leading-5">
                       {study.boundary}
                     </p>
+                    {study.reportHref ? (
+                      <Link
+                        href={study.reportHref}
+                        className="block rounded-lg border border-border bg-muted/20 p-4 transition-colors hover:bg-muted/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                      >
+                        <span className="block text-sm font-semibold text-foreground">Local validation report →</span>
+                        <span className="mt-1 block text-xs leading-5">Test results, review decisions and what remains before launch.</span>
+                      </Link>
+                    ) : null}
                   </div>
                   <Link
                     href={study.href}

@@ -1,0 +1,128 @@
+[
+  {
+    "name": "python-docx",
+    "version": "1.2.0",
+    "purpose": "Extract text from Word DOCX files.",
+    "url": "https://github.com/python-openxml/python-docx",
+    "license": "MIT — installed notice"
+  },
+  {
+    "name": "PyThaiNLP",
+    "version": "5.3.7",
+    "purpose": "Find Thai word boundaries before splitting long passages.",
+    "url": "https://github.com/PyThaiNLP/pythainlp",
+    "license": "Apache-2.0 — project declaration"
+  },
+  {
+    "name": "regex",
+    "version": "2026.9.10",
+    "purpose": "Handle Unicode graphemes and decorative emoji without splitting Thai tone marks.",
+    "url": "https://pypi.org/project/regex/",
+    "license": "Apache-2.0 AND CNRI-Python — installed metadata"
+  },
+  {
+    "name": "VachanaTTS model",
+    "version": "revision 6fa5f03a26f8",
+    "purpose": "Generate the Thai voice in the local prototype.",
+    "url": "https://huggingface.co/VIZINTZOR/VachanaTTS",
+    "license": "MIT declared for the model; separate runtime unresolved"
+  },
+  {
+    "name": "vachanatts runtime",
+    "version": "0.0.7",
+    "purpose": "Load the Thai voice and turn Thai text into speech samples.",
+    "url": "https://pypi.org/project/vachanatts/0.0.7/",
+    "license": "UNRESOLVED — installed wheel has no license evidence; do not assume model license applies"
+  },
+  {
+    "name": "Kokoro / Kokoro-82M",
+    "version": "code 0.9.4; model revision f3ff3571791e",
+    "purpose": "Generate English and Mandarin speech locally; Mandarin voice zf_xiaobei.",
+    "url": "https://github.com/hexgrad/kokoro",
+    "license": "Apache-2.0 — code metadata and model card"
+  },
+  {
+    "name": "ONNX Runtime",
+    "version": "1.30.0",
+    "purpose": "Execute the Thai ONNX model.",
+    "url": "https://github.com/microsoft/onnxruntime",
+    "license": "MIT — installed notice"
+  },
+  {
+    "name": "PyTorch",
+    "version": "2.14.0",
+    "purpose": "Execute Kokoro’s English neural speech model.",
+    "url": "https://github.com/pytorch/pytorch",
+    "license": "See upstream LICENSE and bundled third-party notices"
+  },
+  {
+    "name": "spaCy / en_core_web_sm",
+    "version": "3.8.16 / 3.8.0",
+    "purpose": "Provide English linguistic processing used by the speech pipeline.",
+    "url": "https://github.com/explosion/spaCy",
+    "license": "Model MIT and LICENSES_SOURCES observed; review each package’s notices"
+  },
+  {
+    "name": "SoundFile",
+    "version": "0.14.0",
+    "purpose": "Write generated speech samples to intermediate audio files.",
+    "url": "https://github.com/bastibe/python-soundfile",
+    "license": "See upstream license and libsndfile dependency notices"
+  },
+  {
+    "name": "FFmpeg",
+    "version": "8.1.1 local binary",
+    "purpose": "Normalize and join audio sections, then encode the final MP3.",
+    "url": "https://ffmpeg.org/legal.html",
+    "license": "GPL-3.0-or-later for the tested enabled-GPL build; build-dependent"
+  },
+  {
+    "name": "FastAPI / Uvicorn",
+    "version": "0.141.1 / 0.52.4",
+    "purpose": "Serve the private upload, audio-job and download API.",
+    "url": "https://fastapi.tiangolo.com/",
+    "license": "FastAPI MIT observed; review Uvicorn notices separately"
+  },
+  {
+    "name": "Next.js / React",
+    "version": "existing website stack",
+    "purpose": "Build the upload editor, audio player, use-case card and report.",
+    "url": "https://nextjs.org/",
+    "license": "See each project’s LICENSE and the website lockfile"
+  },
+  {
+    "name": "pytest / Playwright",
+    "version": "test tooling",
+    "purpose": "Test backend behavior and real browser upload, playback and downloads.",
+    "url": "https://playwright.dev/",
+    "license": "See each project’s LICENSE; these are development tools"
+  },
+  {
+    "name": "Misaki Chinese frontend",
+    "version": "0.9.4",
+    "purpose": "Convert Chinese text to the phonemes used by Kokoro.",
+    "url": "https://github.com/hexgrad/misaki",
+    "license": "Apache-2.0 — installed metadata"
+  },
+  {
+    "name": "jieba / pypinyin",
+    "version": "0.42.1 / 0.55.0",
+    "purpose": "Segment Chinese words and derive Mandarin pronunciations.",
+    "url": "https://pypi.org/project/pypinyin/",
+    "license": "MIT — installed metadata for both packages"
+  },
+  {
+    "name": "cn2an",
+    "version": "0.5.24",
+    "purpose": "Convert Arabic numerals to Chinese spoken forms.",
+    "url": "https://pypi.org/project/cn2an/",
+    "license": "MIT — installed metadata"
+  },
+  {
+    "name": "OpenCC Python reimplementation",
+    "version": "0.1.7",
+    "purpose": "Convert traditional characters to simplified for speech while preserving the original preview.",
+    "url": "https://pypi.org/project/opencc-python-reimplemented/",
+    "license": "Apache License — installed metadata"
+  }
+]
