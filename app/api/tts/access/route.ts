@@ -11,6 +11,16 @@ export async function POST(request: Request) {
   const codes = (process.env.TTS_BETA_ACCESS_CODES ?? '').split(',').map(code => code.trim()), secret = process.env.TTS_BETA_SESSION_SECRET
   if (codes.length !== 2 || new Set(codes).size !== 2 || codes.some(code => !/^\d{8}$/.test(code)) || !secret || secret.length < 32) return reply('Tester access is not configured.', 503)
   try {
+    const worker = process.env.TTS_WORKER_URL, serverSecret = process.env.TTS_SERVER_SECRET
+    if (!worker || !serverSecret || serverSecret.length < 32) return reply('Tester access is temporarily unavailable.', 503)
+    const base = new URL(worker)
+    const local = ['localhost', '127.0.0.1', '[::1]'].includes(base.hostname)
+    if ((!local && base.protocol !== 'https:') || !['https:', 'http:'].includes(base.protocol) || base.username || base.password || base.search || base.hash || base.pathname !== '/') return reply('Tester access is temporarily unavailable.', 503)
+    const budget = await fetch(new URL('/access-attempt', base), { method: 'POST', redirect: 'error', cache: 'no-store', signal: AbortSignal.timeout(10000), headers: { Authorization: `Bearer ${serverSecret}`, 'X-TTS-Owner': createHmac('sha256', serverSecret).update('access-budget').digest('hex') } })
+    if (budget.status === 429) return Response.json({ detail: 'ลองรหัสหลายครั้งเกินไป กรุณารอ 1 นาที' }, { status: 429, headers: { 'Cache-Control': 'private, no-store', 'Retry-After': '60' } })
+    if (!budget.ok) return reply('Tester access is temporarily unavailable.', 503)
+  } catch { return reply('Tester access is temporarily unavailable.', 503) }
+  try {
     const reader = request.body?.getReader()
     if (!reader) return reply('Enter your invitation code.', 400)
     let body = new Uint8Array()
