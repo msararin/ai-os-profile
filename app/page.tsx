@@ -216,6 +216,19 @@ export default function HomePage() {
             </Button>
           </div>
 
+          <section aria-label="LLM and ML capability areas" className="mt-10 grid gap-4 md:grid-cols-2">
+            <Link href="/ai-operating-system" className="rounded-xl border border-teal-200 bg-white p-6 shadow-sm transition-colors hover:border-teal-600">
+              <h2 className="text-xl font-semibold text-foreground">LLM &amp; Agent Systems</h2>
+              <p className="mt-3 text-sm leading-6 text-muted-foreground">Language-model workflows, agent orchestration and human control. Inspect the contribution, architecture decisions, tested results and limits.</p>
+              <span className="mt-4 inline-block font-medium text-teal-700">Explore LLM systems →</span>
+            </Link>
+            <Link href="/machine-learning-decision-systems" className="rounded-xl border border-indigo-200 bg-white p-6 shadow-sm transition-colors hover:border-indigo-600">
+              <h2 className="text-xl font-semibold text-foreground">ML &amp; Decision Systems</h2>
+              <p className="mt-3 text-sm leading-6 text-muted-foreground">Applied machine learning, decision modelling and MLOps. Follow business questions through experiments, model evidence and engineering results.</p>
+              <span className="mt-4 inline-block font-medium text-indigo-700">Explore ML systems →</span>
+            </Link>
+          </section>
+
           <div className="mt-10 grid max-w-full gap-5">
             {evidenceGroups.map((group) => (
               <section

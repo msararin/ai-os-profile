@@ -1,4 +1,14 @@
 import { test, expect } from "@playwright/test"
+test("CTO and hiring readers can discover LLM and ML evidence from the public site", async ({page}) => {
+  await page.goto('/')
+  await expect(page.getByRole('region',{name:'LLM and ML capability areas'})).toBeVisible()
+  await page.getByRole('navigation').getByRole('link',{name:'LLM & Agent Systems',exact:true}).click()
+  await expect(page.getByRole('heading',{name:'My contribution and scope'})).toBeVisible()
+  await expect(page.getByRole('heading',{name:'Architecture and trade-offs'})).toBeVisible()
+  await expect(page.getByRole('heading',{name:'Selected evidence and limitations'})).toBeVisible()
+  await page.getByRole('navigation').getByRole('link',{name:'ML & Decision Systems',exact:true}).click()
+  await expect(page.getByRole('heading',{name:'Machine Learning & Decision Systems',exact:true})).toBeVisible()
+})
 test("public case study retains measured proof and limitations without execution recipe", async ({ page }) => {
   const errors: string[]=[]; page.on("pageerror",error=>errors.push(error.message))
   await page.goto("/case-studies/nbo-nrt-azure-databricks")
