@@ -3,7 +3,14 @@ import path from 'node:path'
 import assert from 'node:assert/strict'
 import vm from 'node:vm'
 function files(root) { return existsSync(root) ? readdirSync(root,{withFileTypes:true}).flatMap(e=>e.isDirectory()?files(path.join(root,e.name)):[path.join(root,e.name)]) : [] }
-const blocked=['69,881','26,957','store_NfYL3Uteyb0tW1MJ','b12f16ab527c419b8a394f6f3d3d9f5a','INTERNAL_TELEMETRY_SANITIZED_SNAPSHOT_V1','Tier A to','OWNER_GOOGLE_SUB','GOOGLE_CLIENT_SECRET','OWNER-PRIVATE-CANARY-9261']
+const blocked=[
+  '69,881', '26,957', 'store_NfYL3Uteyb0tW1MJ',
+  'b12f16ab527c419b8a394f6f3d3d9f5a',
+  'INTERNAL_TELEMETRY_SANITIZED_SNAPSHOT_V1', 'Tier A to',
+  'OWNER_GOOGLE_SUB',
+  'GOOGLE_CLIENT_SECRET',
+  'OWNER-PRIVATE-CANARY-9261', // Synthetic fixture marker, never a credential.
+]
 const targets=[...files('.next/static'),...files('.next/server/app').filter(f=>/\.(html|rsc)$/.test(f)),...files('public').filter(f=>/\.(html|json|txt|svg)$/.test(f))]
 const leaks=[]
 for(const file of targets) { const text=readFileSync(file,'utf8'); for(const marker of blocked) if(text.includes(marker)) leaks.push(`${file}: ${marker}`) }
