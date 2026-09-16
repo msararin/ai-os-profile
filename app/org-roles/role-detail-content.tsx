@@ -51,7 +51,7 @@ export const repoCustodianCardDetail: CapabilityCardDetail = {
     "Protects source custody, exact-SHA work, recoverability, and repository evidence without turning local proof into production claims.",
   chips: ["Source custody", "Worktree isolation", "Recovery readiness"],
   boundary: "Production evidence: NOT_PROVEN",
-  href: "/org-roles/repo-custodian",
+  href: "/how-we-build",
 }
 
 export const dataTeamDetail: RoleDetail = {
@@ -60,7 +60,7 @@ export const dataTeamDetail: RoleDetail = {
   purpose: "Turns dashboard-shaped telemetry into evidence-first validation and claim-safe insight.",
   chips: ["Telemetry semantics", "Data quality", "Insight readiness"],
   boundary: "No production telemetry proof by default",
-  href: "/org-roles/data-team",
+  href: "/how-we-build",
   hero:
     "From dashboard-first reporting to evidence-first telemetry validation. Data Team explains whether telemetry, field counts, classification rules, and claim boundaries are strong enough for public-safe insight.",
   atAGlance: [
@@ -207,7 +207,7 @@ export const runnerDetail: RoleDetail = {
   purpose: "Executes scoped work inside approved boundaries while preserving handoff, evidence, and escalation discipline.",
   chips: ["Scoped execution", "Evidence capture", "Escalation routing"],
   boundary: "Not Gate or approval authority",
-  href: "/org-roles/runner-execution-layer",
+  href: "/how-we-build",
   hero:
     "Runner / Super Runner executes scoped work inside approved boundaries. It coordinates handoff, evidence capture, and escalation. It does not approve, verify itself, or expand scope.",
   atAGlance: [
@@ -365,7 +365,7 @@ export const bigCrewArchitectureGateDetail: RoleDetail = {
     "Keeps prototype-to-production decisions bounded, evidence-led, and public-safe before source work expands.",
   chips: ["Architecture gate", "Claim boundary", "Production slice"],
   boundary: "Draft public-safe slice; taxonomy not PASS/DONE/VERIFIED",
-  href: "/org-roles/big-crew-architecture-gate",
+  href: "/how-we-build",
   hero:
     "Big Crew Architecture Gate is a controlled review layer for deciding whether a prototype, internal tool, or AI workflow is ready to become a maintainable production-facing application. This page is a public-safe draft slice, not a maturity claim.",
   atAGlance: [
@@ -517,7 +517,7 @@ export const qaSentinelDetail: RoleDetail = {
     "Protects evidence sufficiency, validation readiness, claim discipline, and release or handoff quality boundaries.",
   chips: ["Evidence sufficiency", "Validation readiness", "Checker Designer capability"],
   boundary: "Checker Designer is a capability, not a separate role",
-  href: "/org-roles/qa-sentinel",
+  href: "/how-we-build",
   hero:
     "QA Sentinel is Big Crew's callable v0.1 quality role. It identifies failure modes, weak assumptions, missing evidence, and release blockers, and uses the Checker Designer capability when the work is specifically about designing acceptance criteria or deterministic validation plans.",
   atAGlance: [
@@ -724,7 +724,7 @@ export function RoleDetailPage({ detail }: { detail: RoleDetail }) {
       <section className="border-b border-border bg-background">
         <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-16 lg:px-8">
           <Link
-            href="/org-roles"
+            href="/how-we-build"
             className="mb-5 inline-flex text-sm font-medium text-primary hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
           >
             Back to org roles

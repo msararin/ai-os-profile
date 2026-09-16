@@ -1,4 +1,3 @@
-import { redirect } from "next/navigation"
 import {
   AlertTriangle,
   BarChart3,
@@ -9,7 +8,7 @@ import {
   ShieldCheck,
 } from "lucide-react"
 
-import { auth, isAllowedInternalEmail } from "@/auth"
+import { requireOwner } from "@/lib/owner-access"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import {
@@ -183,14 +182,9 @@ const ownerInsightMetrics = [
 ]
 
 export default async function InternalTelemetryPage() {
-  const session = await auth()
-  const email = session?.user?.email
+  await requireOwner()
 
-  if (!email || !isAllowedInternalEmail(email)) {
-    redirect("/api/auth/signin?callbackUrl=/internal/telemetry")
-  }
-
-  const data = getInternalTelemetryDashboardData()
+  const data = await getInternalTelemetryDashboardData()
 
   return (
     <main className="min-h-screen bg-background">

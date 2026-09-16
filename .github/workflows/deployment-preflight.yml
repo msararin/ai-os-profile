@@ -62,11 +62,21 @@ jobs:
       - name: Typecheck
         run: pnpm typecheck
 
+      - name: Owner authorization unit checks
+        run: pnpm test:owner-security
+
       - name: Build
         run: pnpm build
 
+      - name: Assert reviewed build mode
+        run: |
+          node -e "process.exit(require('./package.json').scripts.build.includes('--webpack') ? 0 : 1)"
+
       - name: Public dashboard leakage check
         run: pnpm check:public-dashboard-leakage
+
+      - name: Owner build leakage checks
+        run: pnpm test:owner-leakage
 
       - name: Install browser for Cockpit regression
         run: pnpm exec playwright install --with-deps chromium
@@ -74,6 +84,9 @@ jobs:
       - name: Cockpit browser regression against production build
         timeout-minutes: 4
         run: pnpm test:cockpit-browser
+
+      - name: Owner HTTP and browser security regression
+        run: pnpm test:owner-browser
 
       - name: Retain browser failure evidence
         if: failure()

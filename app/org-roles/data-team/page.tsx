@@ -1,5 +1,2 @@
-import { RoleDetailPage, dataTeamDetail } from "../role-detail-content"
-
-export default function DataTeamPage() {
-  return <RoleDetailPage detail={dataTeamDetail} />
-}
+import { redirect } from "next/navigation"
+export default function Page() { redirect("/cockpit/methodology") }

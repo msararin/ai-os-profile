@@ -1,14 +1,14 @@
-import { auth, isAllowedInternalEmail } from "@/auth"
+import { ownerApiDenial, sameOrigin, privateHeaders } from "@/lib/owner-access"
 import { put } from "@vercel/blob"
 import { createHash } from "node:crypto"
 
 export const runtime = "nodejs"
 
 export async function POST(request: Request) {
-  const session = await auth()
-  if (!session?.user?.email || !isAllowedInternalEmail(session.user.email)) {
-    return new Response("Unauthorized", { status: 401 })
-  }
+  const denied = await ownerApiDenial()
+  if (denied) return denied
+  if (!sameOrigin(request)) return Response.json({ error: "Forbidden" }, { status: 403, headers: privateHeaders })
+  if (process.env.VERCEL_ENV !== "preview") return Response.json({ error: "Not found" }, { status: 404, headers: privateHeaders })
   if (request.headers.get("content-length") && request.headers.get("content-length") !== "0") {
     return Response.json({ operation: "REJECTED", reason: "request body is not accepted" }, { status: 400 })
   }
@@ -26,14 +26,14 @@ export async function POST(request: Request) {
     return Response.json({
       oidcAvailable: Boolean(process.env.VERCEL_OIDC_TOKEN),
       storeBindingAvailable: Boolean(process.env.BLOB_STORE_ID),
-      storeIdentityMatched: process.env.BLOB_STORE_ID === "store_NfYL3Uteyb0tW1MJ",
+      storeIdentityMatched: Boolean(process.env.EXPECTED_BLOB_STORE_ID) && process.env.BLOB_STORE_ID === process.env.EXPECTED_BLOB_STORE_ID,
       operation: "FAILED_CLOSED",
     }, { status: 502 })
   }
   return Response.json({
     oidcAvailable: Boolean(process.env.VERCEL_OIDC_TOKEN),
     storeBindingAvailable: Boolean(process.env.BLOB_STORE_ID),
-    storeIdentityMatched: process.env.BLOB_STORE_ID === "store_NfYL3Uteyb0tW1MJ",
+    storeIdentityMatched: Boolean(process.env.EXPECTED_BLOB_STORE_ID) && process.env.BLOB_STORE_ID === process.env.EXPECTED_BLOB_STORE_ID,
     operation: "UPLOADED",
     pathname,
     digest,

@@ -1,0 +1,7 @@
+private-content
+.env*
+!.env.local.example
+node_modules
+.next
+.git
+test-results

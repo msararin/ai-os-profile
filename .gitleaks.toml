@@ -1,0 +1,14 @@
+title = "Default secret rules with one synthetic leakage-test marker"
+
+[extend]
+useDefault = true
+
+[[rules]]
+id = "generic-api-key"
+
+[[rules.allowlists]]
+description = "Known synthetic canary in the leakage test; never a credential"
+condition = "AND"
+regexTarget = "secret"
+regexes = ['''^OWNER-PRIVATE-CANARY-9261$''']
+paths = ['''^scripts/check-owner-leakage\.mjs$''']

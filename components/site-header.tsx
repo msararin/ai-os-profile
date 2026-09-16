@@ -6,13 +6,11 @@ import { cn } from "@/lib/utils"
 
 const navigation = [
   { name: "Home", href: "/" },
-  { name: "ML & Decision Systems", href: "/machine-learning-decision-systems" },
-  { name: "LLM & Agent Systems", href: "/ai-operating-system" },
-  { name: "Knowledge Sharing", href: "/knowledge-sharing" },
-  { name: "Achievements", href: "/achievements" },
   { name: "Case Studies", href: "/case-studies" },
-  { name: "System Health", href: "/architecture/system-health" },
-  { name: "About Sararin", href: "/about" },
+  { name: "How I Work", href: "/how-we-build" },
+  { name: "Knowledge & Insights", href: "/knowledge-sharing" },
+  { name: "About", href: "/about" },
+  { name: "Contact", href: "/contact" },
 ]
 
 export function SiteHeader() {
