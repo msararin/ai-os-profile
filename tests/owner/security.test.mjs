@@ -5,6 +5,7 @@ import ts from 'typescript'
 import { createHash } from 'node:crypto'
 import { createRequire } from 'node:module'
 import { ownerStatus } from '../../lib/owner-policy.ts'
+import { extractReport } from '../../scripts/lib/archive-report.mjs'
 
 const require = createRequire(import.meta.url)
 function moduleAt(file, mocks) {
@@ -14,6 +15,23 @@ function moduleAt(file, mocks) {
   return module.exports
 }
 const now = Date.now()
+test('saved report extraction preserves nested measurements without executing archived expressions',()=>{
+  const result=extractReport('const phases = [{title:"Trial",metrics:[["F1",0],["Missing",null]],step:dangerous()}]; export default function Page(){return <h1>Original result</h1>}','fixture.tsx')
+  assert.deepEqual(result.sections[0].value[0].metrics,[["F1",0],["Missing",null]])
+  assert.deepEqual(result.sections[0].value[0].step,{unresolvedSourceExpression:'dangerous()'})
+  assert(result.text.includes('Original result'))
+})
+test('report source binding and guarded inline preview retain the private boundary',async()=>{
+  const id='a'.repeat(24),sha='b'.repeat(64),original={entry:{id,title:'report.tsx',sha256:sha},bytes:Buffer.from('source')}
+  let allowed=true,mismatch=false
+  const lib=moduleAt('lib/cockpit/library.ts',{'server-only':{},'@/lib/owner-access':{requireOwner:async()=>{if(!allowed)throw Error('denied')}},'./store':{privateIndex:async()=>({entries:[original.entry]}),privateArtifact:async key=>key===id?original:{bytes:Buffer.from(JSON.stringify({version:1,sourceId:id,sourceSha256:mismatch?'c'.repeat(64):sha,sections:[{title:'Metrics',value:{f1:0,missing:null}}],text:[]}))}}})
+  assert.equal((await lib.readableReport(id)).report.sections[0].value.f1,0)
+  mismatch=true;assert.equal((await lib.readableReport(id)).report,null)
+  allowed=false;await assert.rejects(()=>lib.library(),/denied/);await assert.rejects(()=>lib.readableReport(id),/denied/)
+  const route=moduleAt('app/api/cockpit/preview/[id]/route.ts',{'@/lib/owner-access':{ownerApiDenial:async()=>null,privateHeaders:{'Cache-Control':'private, no-store'}},'@/lib/cockpit/store':{privateArtifact:async()=>({entry:{title:'report.html'},bytes:Buffer.from('<script>dangerous()</script>')})}})
+  const response=await route.GET(new Request('https://example.test'),{params:Promise.resolve({id})})
+  assert.equal(response.status,200);assert(response.headers.get('content-security-policy').startsWith("sandbox; default-src 'none'"));assert(!response.headers.get('content-security-policy').includes('allow-scripts'));assert(response.headers.get('cache-control').includes('no-store'))
+})
 test('historical evidence preserves exported values and missingness, stable drill-down, and owner authorization', async () => {
   const snapshot = JSON.parse(readFileSync('data/telemetry/internal-candidate-snapshot.json','utf8'))
   let allowed=true, spendReads=0
@@ -68,7 +86,7 @@ test('Google callbacks bind only verified Google sub and ignore session update p
   assert.deepEqual(config.providers[0].checks,['pkce','state','nonce'])
 })
 test('private API guards deny independently of proxy, before reading data/artifact or making writes', async () => {
-  for (const status of [401,403]) for (const [file,method] of [['app/api/cockpit/telemetry/route.ts','GET'],['app/api/cockpit/artifacts/[id]/route.ts','GET'],['app/api/cockpit/[...path]/route.ts','POST'],['app/api/internal/telemetry/operator/route.ts','POST'],['app/api/internal/telemetry/oidc-proof/route.ts','POST']]) {
+  for (const status of [401,403]) for (const [file,method] of [['app/api/cockpit/preview/[id]/route.ts','GET'],['app/api/cockpit/telemetry/route.ts','GET'],['app/api/cockpit/artifacts/[id]/route.ts','GET'],['app/api/cockpit/[...path]/route.ts','POST'],['app/api/internal/telemetry/operator/route.ts','POST'],['app/api/internal/telemetry/oidc-proof/route.ts','POST']]) {
     const unexpected=()=>{throw Error('private side effect before authorization')}
     const route=moduleAt(file, {'@/lib/owner-access':{ownerApiDenial:async()=>new Response('denied',{status}),sameOrigin:unexpected},'@/lib/cockpit/operations':{operations:unexpected},'@/lib/cockpit/store':{privateArtifact:unexpected},'@/lib/owner-audit':{audit:unexpected},'@vercel/blob':{get:unexpected,put:unexpected}})
     const response=await route[method](new Request('http://localhost/private'),{params:Promise.resolve({id:'unknown'})})
@@ -76,7 +94,7 @@ test('private API guards deny independently of proxy, before reading data/artifa
   }
 })
 test('operational source schema rejects unknown raw payload fields, broken joins and inconsistent costs', () => {
-  const {operationsSchema}=moduleAt('lib/cockpit/operations.ts',{'server-only':{},'@/lib/owner-access':{requireOwner(){throw Error('unexpected')}}})
+  const {operationsSchema}=moduleAt('lib/cockpit/operations.ts',{'server-only':{},'@/lib/owner-access':{requireOwner(){throw Error('unexpected')}},'./store':{},'./library':{operationsArtifactId:'fixture'}})
   const base={schemaVersion:1,generatedAt:new Date().toISOString(),source:'test-fixture',coverage:'synthetic test only',sanitized:true,runs:[],receipts:[],workstreams:[],deployments:[]}
   assert.equal(operationsSchema.safeParse(base).success,true)
   for(const addition of [{rawPrompt:'private'},{oauthToken:'private'},{sanitized:false}]) assert.equal(operationsSchema.safeParse({...base,...addition}).success,false)

@@ -2,6 +2,8 @@ import "server-only"
 import { readFile, stat } from "node:fs/promises"
 import { z } from "zod"
 import { requireOwner } from "@/lib/owner-access"
+import { privateArtifact } from "./store"
+import { operationsArtifactId } from "./library"
 const id = z.string().regex(/^[A-Za-z0-9._:-]{1,100}$/)
 const label = z.string().min(1).max(240).refine(value => !/[\r\n]|Bearer |sk-[A-Za-z0-9]|AIza|-----BEGIN|https?:|\/Users\//.test(value))
 const nullableLabel = label.nullable()
@@ -19,10 +21,17 @@ export type Operations = z.infer<typeof operationsSchema>
 export async function operations(): Promise<{ state: "available" | "stale" | "unavailable"; data: Operations | null }> {
   await requireOwner()
   const file = process.env.COCKPIT_OPERATIONS_PATH
-  if (!file) return { state: "unavailable", data: null }
   try {
-    if ((await stat(file)).size > 5_000_000) throw new Error("size")
-    const data = operationsSchema.parse(JSON.parse(await readFile(file, "utf8")))
+    let raw: string
+    if(file) {
+      if ((await stat(file)).size > 5_000_000) throw new Error("size")
+      raw=await readFile(file,"utf8")
+    } else {
+      const saved=await privateArtifact(operationsArtifactId)
+      if(!saved)return {state:"unavailable",data:null}
+      raw=saved.bytes.toString("utf8")
+    }
+    const data = operationsSchema.parse(JSON.parse(raw))
     return { state: Date.now() - Date.parse(data.generatedAt) > 86400000 ? "stale" : "available", data }
   } catch { return { state: "unavailable", data: null } }
 }
