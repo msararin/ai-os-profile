@@ -32,6 +32,16 @@ test('report source binding and guarded inline preview retain the private bounda
   const response=await route.GET(new Request('https://example.test'),{params:Promise.resolve({id})})
   assert.equal(response.status,200);assert(response.headers.get('content-security-policy').startsWith("sandbox; default-src 'none'"));assert(!response.headers.get('content-security-policy').includes('allow-scripts'));assert(response.headers.get('cache-control').includes('no-store'))
 })
+test('only the four saved learning editions allow same-origin navigation, never scripts',async()=>{
+  for(const title of ['cockpit/learning/nbo-nrt/one.html','cockpit/learning/nbo-nrt/three.html','cockpit/learning/nbo-nrt/other.html','report.html']) {
+    const route=moduleAt('app/api/cockpit/preview/[id]/route.ts',{'@/lib/owner-access':{ownerApiDenial:async()=>null,privateHeaders:{}},'@/lib/cockpit/store':{privateArtifact:async()=>({entry:{title},bytes:Buffer.from('<p>fixture</p>')})}})
+    const response=await route.GET(new Request('https://example.test'),{params:Promise.resolve({id:'a'.repeat(24)})})
+    const csp=response.headers.get('content-security-policy')
+    assert.equal(csp.includes('allow-same-origin'),title.endsWith('/one.html')||title.endsWith('/three.html'))
+    assert(!csp.includes('allow-scripts'));assert(csp.includes("default-src 'none'"));assert(csp.includes("form-action 'none'"))
+  }
+})
+
 test('historical evidence preserves exported values and missingness, stable drill-down, and owner authorization', async () => {
   const snapshot = JSON.parse(readFileSync('data/telemetry/internal-candidate-snapshot.json','utf8'))
   let allowed=true, spendReads=0
