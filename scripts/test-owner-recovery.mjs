@@ -26,6 +26,25 @@ try {
   for(const view of ['runs','routes','providers','cost','validation','failures','history']){await page.goto(base+'/cockpit/telemetry?view='+view+'&days=30');await page.getByRole('heading',{name:'Detailed telemetry'}).waitFor();assert(!(await page.locator('main').innerText()).includes('No validated operational source is connected'))}
   results.push({name:'all telemetry views connected to recorded source; archive history retained',pass:true})
   await page.goto(base+'/cockpit');await page.getByRole('heading',{name:'Continue from your saved work'}).waitFor();await page.screenshot({path:output+'/overview.png',fullPage:true})
+  if(process.env.OWNER_JOURNAL_TEST==='1') {
+    for(const lane of ['one','two-a','two-b','three']) {
+      await page.goto(base+'/cockpit/learning/nbo-nrt?experiment='+lane)
+      const iframe=page.locator('iframe');await iframe.waitFor()
+      const frame=page.frameLocator('iframe')
+      await frame.getByRole('heading',{name:'One decision system, three review lenses'}).waitFor()
+      assert.equal(await frame.locator('script,iframe,form,object,embed').count(),0)
+      assert((await frame.locator('details').count())>40)
+      const detail=frame.locator('details').first(),summary=detail.locator('summary').first()
+      const wasOpen=await detail.getAttribute('open');await summary.click();assert.notEqual(await detail.getAttribute('open'),wasOpen)
+      assert.equal(await frame.locator('[data-experiment-card-selector] a').count(),4)
+      await frame.locator('[data-experiment-card-selector] a').nth(lane==='three'?0:3).click()
+      await frame.getByRole('heading',{name:lane==='three'?'Data Preparation — From Multi-Agent Research to Model-Ready Volume':'Experiment 3 — Adaptive Contextual Bandit Policy',exact:true}).waitFor()
+      results.push({name:'Learning journal '+lane+' preserves lenses, native details and experiment navigation',pass:true})
+    }
+    await page.goto(base+'/cockpit/learning/nbo-nrt');await page.frameLocator('iframe').getByRole('heading',{name:'One decision system, three review lenses'}).waitFor();await page.screenshot({path:output+'/learning-journal-desktop.png'})
+    await page.setViewportSize({width:390,height:844});await page.screenshot({path:output+'/learning-journal-mobile.png'})
+    await context.clearCookies();await page.goto(base+'/cockpit/learning/nbo-nrt');assert(page.url().includes('/login'))
+  }
   await context.clearCookies();assert.equal((await context.request.get(base+'/api/cockpit/preview/2a8c591bac84d097b2bd65d5')).status(),401)
   assert.deepEqual(errors,[]);results.push({name:'anonymous preview denied and no browser runtime errors',pass:true})
   writeFileSync(output+'/results.json',JSON.stringify({claim:'Local owner-session fixture against preserved private data; not real production login',results},null,2));console.log(JSON.stringify(results,null,2))

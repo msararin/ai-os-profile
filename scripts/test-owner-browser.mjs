@@ -34,7 +34,7 @@ try {
   for(let i=0;i<100;i++){try{if((await request('/login')).status===200){ready=true;break}}catch{}await new Promise(r=>setTimeout(r,100))}
   assert(ready,'test server started')
   const ownerCookie=await cookie(),wrongCookie=await cookie('wrong-sub'),expiredCookie=await cookie(owner,Date.now()-1000)
-  const pages=['/cockpit','/cockpit/workstreams','/cockpit/telemetry','/cockpit/telemetry?view=history','/cockpit/telemetry/history/'+'f'.repeat(24),'/cockpit/evidence','/cockpit/methodology','/cockpit/experiments','/cockpit/deployments','/cockpit/security','/cockpit/evidence/'+artifactId,'/cockpit/telemetry/runs/fixture-run-1','/internal/telemetry','/internal/telemetry/operator']
+  const pages=['/cockpit/learning/nbo-nrt','/cockpit','/cockpit/workstreams','/cockpit/telemetry','/cockpit/telemetry?view=history','/cockpit/telemetry/history/'+'f'.repeat(24),'/cockpit/evidence','/cockpit/methodology','/cockpit/experiments','/cockpit/deployments','/cockpit/security','/cockpit/evidence/'+artifactId,'/cockpit/telemetry/runs/fixture-run-1','/internal/telemetry','/internal/telemetry/operator']
   await check('all private pages: anonymous redirect; wrong-sub 403; expired/invalid denied',async()=>{
     for(const route of pages){const response=await request(route);assert.equal(response.status,307,route);assert((response.headers.get('location')??'').endsWith('/login'));assert(!(await response.text()).includes('OWNER-PRIVATE-CANARY'))}
     for(const [value,status] of [[wrongCookie,403],[expiredCookie,307],[`${salt}=tampered`,307]]) assert.equal((await request('/cockpit',{headers:{cookie:value}})).status,status)
