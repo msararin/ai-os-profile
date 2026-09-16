@@ -6,6 +6,8 @@ import { cn } from "@/lib/utils"
 
 const navigation = [
   { name: "Home", href: "/" },
+  { name: "LLM & Agent Systems", href: "/ai-operating-system" },
+  { name: "ML & Decision Systems", href: "/machine-learning-decision-systems" },
   { name: "Case Studies", href: "/case-studies" },
   { name: "How I Work", href: "/how-we-build" },
   { name: "Knowledge & Insights", href: "/knowledge-sharing" },
@@ -25,7 +27,7 @@ export function SiteHeader() {
               key={item.href}
               href={item.href}
               className={cn(
-                "rounded px-2 py-1 text-sm font-medium transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-1 sm:px-3",
+                "shrink-0 whitespace-nowrap rounded px-2 py-1 text-sm font-medium transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-1 sm:px-3",
                 pathname === item.href || (item.href !== "/" && pathname.startsWith(`${item.href}/`))
                   ? "text-primary"
                   : "text-muted-foreground"

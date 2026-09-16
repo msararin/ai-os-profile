@@ -34,7 +34,7 @@ try {
   for(let i=0;i<100;i++){try{if((await request('/login')).status===200){ready=true;break}}catch{}await new Promise(r=>setTimeout(r,100))}
   assert(ready,'test server started')
   const ownerCookie=await cookie(),wrongCookie=await cookie('wrong-sub'),expiredCookie=await cookie(owner,Date.now()-1000)
-  const pages=['/cockpit','/cockpit/workstreams','/cockpit/telemetry','/cockpit/evidence','/cockpit/methodology','/cockpit/experiments','/cockpit/deployments','/cockpit/security','/cockpit/evidence/'+artifactId,'/cockpit/telemetry/runs/fixture-run-1','/internal/telemetry','/internal/telemetry/operator']
+  const pages=['/cockpit','/cockpit/workstreams','/cockpit/telemetry','/cockpit/telemetry?view=history','/cockpit/telemetry/history/'+'f'.repeat(24),'/cockpit/evidence','/cockpit/methodology','/cockpit/experiments','/cockpit/deployments','/cockpit/security','/cockpit/evidence/'+artifactId,'/cockpit/telemetry/runs/fixture-run-1','/internal/telemetry','/internal/telemetry/operator']
   await check('all private pages: anonymous redirect; wrong-sub 403; expired/invalid denied',async()=>{
     for(const route of pages){const response=await request(route);assert.equal(response.status,307,route);assert((response.headers.get('location')??'').endsWith('/login'));assert(!(await response.text()).includes('OWNER-PRIVATE-CANARY'))}
     for(const [value,status] of [[wrongCookie,403],[expiredCookie,307],[`${salt}=tampered`,307]]) assert.equal((await request('/cockpit',{headers:{cookie:value}})).status,status)
@@ -65,6 +65,16 @@ try {
   async function browserCookie(value){await context.clearCookies();await context.addCookies([{name:salt,value:value.slice(salt.length+1),domain:'localhost',path:'/',httpOnly:true,secure:true,sameSite:'Lax'}])}
   await browserCookie(wrongCookie);await page.goto(base+'/cockpit');assert.equal(await page.title(),'Access denied');await page.screenshot({path:path.join(output,'unauthorized.png'),fullPage:true})
   await browserCookie(ownerCookie);await page.goto(base+'/cockpit');await page.getByRole('heading',{name:'Your operating picture'}).waitFor();await page.screenshot({path:path.join(output,'cockpit-home-fixture.png'),fullPage:true})
+  await check('historical records and protected drill-down preserve source limitations',async()=>{
+    await page.goto(base+'/cockpit/telemetry?view=history')
+    await page.getByRole('heading',{name:'Historical telemetry · all available evidence'}).waitFor()
+    await page.getByRole('heading',{name:'Captured provider / model records'}).waitFor()
+    await page.locator('#history-model a').first().click()
+    await page.getByRole('heading',{name:'Captured record'}).waitFor()
+    assert((await page.locator('main').innerText()).includes('Not exposed in source'))
+    assert((await page.locator('main').innerText()).includes('not automatically an executed run'))
+    await page.screenshot({path:path.join(output,'historical-record-owner-fixture.png'),fullPage:true})
+  })
   await page.goto(base+'/cockpit/telemetry');await page.getByText('fixture-run-1',{exact:false}).first().waitFor();await page.screenshot({path:path.join(output,'telemetry-fixture.png'),fullPage:true})
   await page.goto(base+'/cockpit/telemetry/runs/fixture-run-1');await page.locator('summary').click();await page.screenshot({path:path.join(output,'run-evidence-fixture.png'),fullPage:true})
   await check('browser drill-down and logout destroy browser access; secure cookie properties',async()=>{

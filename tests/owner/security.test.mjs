@@ -14,6 +14,33 @@ function moduleAt(file, mocks) {
   return module.exports
 }
 const now = Date.now()
+test('historical evidence preserves exported values and missingness, stable drill-down, and owner authorization', async () => {
+  const snapshot = JSON.parse(readFileSync('data/telemetry/internal-candidate-snapshot.json','utf8'))
+  let allowed=true, spendReads=0
+  const history=moduleAt('lib/cockpit/history.ts', {
+    'server-only':{},
+    '@/data/telemetry/internal-candidate-snapshot.json':{default:snapshot},
+    '@/lib/owner-access':{requireOwner:async()=>{if(!allowed)throw Error('denied')}},
+    '@/lib/telemetry-ledger/decision-snapshot':{loadInternalTelemetryDecisionSnapshot:()=>{spendReads++;return {status:'UNAVAILABLE'}}},
+    '@/lib/telemetry-ledger/preserved-historical':{getPreservedHistoricalEvidence:()=>({classification:'SYNTHETIC/BACKFILL'})},
+  })
+  const result=await history.historicalTelemetry()
+  assert.equal(result.records.filter(r=>r.kind==='model').length,snapshot.modelRows.length)
+  assert.equal(result.records.filter(r=>r.kind==='task').length,snapshot.taskRows.length)
+  assert.equal(new Set(result.records.map(r=>r.id)).size,result.records.length)
+  const first=result.records.find(r=>r.kind==='model'),detail=await history.historicalRecord(first.id)
+  assert.deepEqual(detail.record.fields,snapshot.modelRows[0])
+  assert.equal(detail.record.fields.totalTokens,null)
+  assert.equal(detail.record.fields.provider,'not_applicable_local_codex_execution')
+  assert.equal(detail.record.artifactDate,snapshot.modelRows[0].sourceArtifactDate)
+  assert.equal((await history.historicalTelemetry()).records[0].id,first.id)
+  assert.equal(await history.historicalRecord('../escape'),null)
+  assert.equal(await history.historicalRecord('f'.repeat(24)),null)
+  const before=spendReads;allowed=false
+  await assert.rejects(()=>history.historicalTelemetry(),/denied/)
+  await assert.rejects(()=>history.historicalRecord(first.id),/denied/)
+  assert.equal(spendReads,before)
+})
 const session = { valid: true, googleSub: 'test-owner', ownerExpiresAt: now + 60000, expires: new Date(now + 60000).toISOString() }
 test('owner policy denies missing, invalid, expired, wrong-sub, and missing configuration; rebind revokes old owner', () => {
   assert.equal(ownerStatus(null, 'test-owner', now), 401)

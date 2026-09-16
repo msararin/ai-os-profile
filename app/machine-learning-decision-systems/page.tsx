@@ -78,7 +78,7 @@ export default function MachineLearningDecisionSystemsPage() {
                   href="/case-studies/nbo-nrt-azure-databricks"
                   className="inline-flex min-h-11 items-center justify-center gap-2 rounded-md bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground transition hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
                 >
-                  Explore NBO-NRT AIOS Cockpit
+                  Explore NBO-NRT case evidence
                   <ArrowRight className="h-4 w-4" aria-hidden="true" />
                 </Link>
                 <a

@@ -13,6 +13,7 @@ export default defineConfig({
   use: {
     baseURL: externalURL || "http://127.0.0.1:3221",
     browserName: "chromium",
+    ...(process.env.OWNER_TEST_BROWSER_CHANNEL ? { channel: process.env.OWNER_TEST_BROWSER_CHANNEL } : {}),
     trace: "retain-on-failure",
     screenshot: "only-on-failure",
   },
