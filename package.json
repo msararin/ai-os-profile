@@ -7,7 +7,7 @@
     "test:nbo-event-ledger": "node scripts/validate-nbo-event-ledger-contract.mjs",
     "test:nbo-runtime-proof-surface": "node scripts/validate-nbo-runtime-proof-surface.mjs",
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build --webpack",
     "start": "next start",
     "lint": "eslint . --max-warnings 0",
     "typecheck": "tsc --noEmit",
@@ -18,7 +18,10 @@
     "telemetry:decision:test": "node scripts/test-internal-telemetry-decision-snapshot.mjs",
     "telemetry:decision:verify": "node scripts/verify-internal-telemetry-decision-snapshot.mjs",
     "test:cockpit-source": "node scripts/check-cockpit-lifecycle.mjs",
-    "test:cockpit-browser": "playwright test"
+    "test:cockpit-browser": "playwright test",
+    "test:owner-security": "node --test tests/owner/security.test.mjs",
+    "test:owner-leakage": "node scripts/check-owner-leakage.mjs",
+    "test:owner-browser": "node scripts/test-owner-browser.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",

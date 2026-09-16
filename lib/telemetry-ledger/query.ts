@@ -1,3 +1,4 @@
+import { requireOwner } from "@/lib/owner-access"
 import DatabaseConstructor from "better-sqlite3"
 import candidateSnapshot from "@/data/telemetry/internal-candidate-snapshot.json"
 import { loadInternalTelemetryDecisionSnapshot } from "@/lib/telemetry-ledger/decision-snapshot"
@@ -505,7 +506,8 @@ function topEntries(rows: DashboardMetricRow[], limit = 8) {
   return rows.slice(0, limit)
 }
 
-export function getInternalTelemetryDashboardData(telemetryRange = normalizeTelemetryRange()): InternalTelemetryDashboardData {
+export async function getInternalTelemetryDashboardData(telemetryRange = normalizeTelemetryRange()): Promise<InternalTelemetryDashboardData> {
+  await requireOwner()
   const dbPath = getDbPath()
   if (!dbPath) {
     return snapshotDashboardData(telemetryRange)

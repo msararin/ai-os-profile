@@ -1,0 +1,1 @@
+export default function Forbidden() { return <main className="mx-auto max-w-xl p-12"><h1 className="text-3xl font-semibold">403 · Access denied</h1><p className="mt-4">This area is available only to its owner.</p></main> }

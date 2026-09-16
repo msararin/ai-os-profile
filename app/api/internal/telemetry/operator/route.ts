@@ -1,4 +1,4 @@
-import { auth, isAllowedInternalEmail } from "@/auth"
+import { ownerApiDenial, sameOrigin, privateHeaders } from "@/lib/owner-access"
 import { get, put } from "@vercel/blob"
 import { createHash, randomUUID } from "node:crypto"
 
@@ -6,11 +6,10 @@ export const runtime = "nodejs"
 let lastRun = 0
 
 export async function POST(request: Request) {
+  const denied = await ownerApiDenial()
+  if (denied) return denied
+  if (!sameOrigin(request)) return Response.json({ error: "Forbidden" }, { status: 403, headers: privateHeaders })
   if (process.env.VERCEL_ENV !== "preview") return Response.json({ ok: false, reason: "preview_only" }, { status: 404 })
-  const origin = request.headers.get("origin")
-  if (origin && !origin.includes("vercel.app")) return Response.json({ ok: false, reason: "origin_rejected" }, { status: 403 })
-  const session = await auth()
-  if (!session?.user?.email || !isAllowedInternalEmail(session.user.email)) return new Response("Unauthorized", { status: 401 })
   if (Date.now() - lastRun < 60_000) return Response.json({ ok: false, reason: "rate_limited" }, { status: 429 })
   lastRun = Date.now()
   const payload = JSON.stringify({ schemaVersion: "aios.telemetry.shadow.v1", classification: "test", source: "operator-oidc-roundtrip", rows: [] })

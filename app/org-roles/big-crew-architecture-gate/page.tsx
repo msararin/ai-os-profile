@@ -1,8 +1,2 @@
-import {
-  RoleDetailPage,
-  bigCrewArchitectureGateDetail,
-} from "../role-detail-content"
-
-export default function BigCrewArchitectureGatePage() {
-  return <RoleDetailPage detail={bigCrewArchitectureGateDetail} />
-}
+import { redirect } from "next/navigation"
+export default function Page() { redirect("/cockpit/methodology") }

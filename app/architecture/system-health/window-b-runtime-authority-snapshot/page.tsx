@@ -1,5 +1,2 @@
 import { redirect } from "next/navigation"
-
-export default function LegacyRuntimeAuthoritySnapshotRoute() {
-  redirect("/architecture/system-health/runtime-authority-evidence")
-}
+export default function Page() { redirect("/cockpit/methodology") }

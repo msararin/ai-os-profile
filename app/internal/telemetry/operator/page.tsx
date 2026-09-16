@@ -1,11 +1,9 @@
-import { redirect } from "next/navigation"
-import { auth, isAllowedInternalEmail } from "@/auth"
+import { requireOwner } from "@/lib/owner-access"
 
 export const dynamic = "force-dynamic"
 
 export default async function TelemetryOperatorPage() {
-  const session = await auth()
-  if (!session?.user?.email || !isAllowedInternalEmail(session.user.email)) redirect("/api/auth/signin?callbackUrl=/internal/telemetry/operator")
+  await requireOwner()
   if (process.env.VERCEL_ENV !== "preview") return <main className="p-8">Operator unavailable outside Preview.</main>
   return (
     <main className="mx-auto max-w-xl space-y-4 p-8">

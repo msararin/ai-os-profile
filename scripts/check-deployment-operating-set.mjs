@@ -34,55 +34,14 @@ const blockedClaimTerms = [
   "Playwright visual regression",
 ]
 
+// Public/private mission replaces published internal role mechanics with bounded proof.
 const routeContracts = [
-  {
-    name: "Public Surface Governance architecture surface",
-    routeFile: "app/architecture/public-surface-governance/page.tsx",
-    parentFile: "app/architecture/page.tsx",
-    href: "/architecture/public-surface-governance",
-    parentRequired: true,
-    parentSnippets: [
-      'title: "Public Surface Governance"',
-      "Public Surface Governance",
-      "Surface Story Guild",
-      "governance/design surface",
-      "implementation support",
-      "owner approval",
-    ],
-    routeSnippets: [
-      "How We Update Public Surfaces",
-      "claim boundaries",
-      "evidence",
-      "Surface Story Guild",
-      "Prime Gate",
-      "Public Surface Runner Team",
-      "Lyn owns final positioning",
-      "Minor typo fixes",
-    ],
-  },
-  {
-    name: "Public Surface Governance achievement surface",
-    routeFile: "app/achievements/public-surface-governance/page.tsx",
-    parentFile: "app/achievements/page.tsx",
-    parentRequired: true,
-    parentSnippets: [
-      "date: '2026-06-21'",
-      "Public Surface Governance and Deployment Discoverability Improved",
-      "public-surface governance, deployment discoverability containment, claim-safe story control",
-      "implementation and validation support",
-      "production-readiness certification",
-      "Lightweight governance without adding manual deployment ceremony",
-    ],
-    routeSnippets: [
-      "Public Surface Governance and Deployment Discoverability Improved",
-      "Public-safe result",
-      "Evidence / artifacts",
-      "Skills demonstrated",
-      "Caveat / status",
-      "implementation and validation support",
-      "production readiness is certified",
-    ],
-  },
+  { name: "Public publishing boundaries", routeFile: "app/architecture/public-surface-governance/page.tsx", parentFile: "app/architecture/page.tsx", parentRequired: true,
+    parentSnippets: ["Evidence and boundaries", "Selected proof", "not universal reliability"],
+    routeSnippets: ["Privacy principle", "Evidence principle", "implementation recipe", "authorization boundaries"] },
+  { name: "Public achievement evidence", routeFile: "app/achievements/public-surface-governance/page.tsx", parentFile: "app/achievements/page.tsx", parentRequired: true,
+    parentSnippets: ["5 of 5", "Two stale", "synthetic", "not a production deployment"],
+    routeSnippets: ["Evidence-led communication", "limitations", "private workspace"] },
 ]
 
 const forbiddenPositiveClaims = [

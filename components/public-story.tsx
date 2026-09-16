@@ -1,0 +1,5 @@
+import Link from "next/link"
+import { PageLayout } from "@/components/page-layout"
+export function PublicStory({ title, subtitle, sections }: { title: string; subtitle: string; sections: string[][] }) {
+  return <PageLayout><section className="border-b bg-slate-950 text-white"><div className="mx-auto max-w-6xl px-6 py-16"><p className="text-xs font-semibold uppercase tracking-[.2em] text-teal-300">Sararin.ai / Selected work</p><h1 className="mt-5 max-w-4xl text-4xl font-semibold tracking-tight sm:text-5xl">{title}</h1><p className="mt-6 max-w-3xl text-lg leading-8 text-slate-300">{subtitle}</p></div></section><div className="mx-auto max-w-6xl px-6 py-12"><div className="grid gap-6 md:grid-cols-2">{sections.map(([heading,body])=><section key={heading} className="rounded-xl border border-border bg-card p-7"><h2 className="text-xl font-semibold">{heading}</h2><p className="mt-4 text-base leading-7 text-muted-foreground">{body}</p></section>)}</div><div className="mt-10 flex gap-6 text-sm font-medium text-primary"><Link href="/case-studies">Explore case studies →</Link><Link href="/contact">Discuss a project →</Link></div></div></PageLayout>
+}
