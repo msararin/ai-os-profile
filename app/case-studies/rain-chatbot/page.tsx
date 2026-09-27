@@ -18,12 +18,12 @@ const sources = [
 ]
 
 const delivery = [
-  ["ค้นชื่อ / ปักหมุด / โลเคชันจากเพื่อน", "ตกลงแล้ว", "ยังไม่มีหลักฐาน", "ยังไม่ทดสอบ", "พิกัด → deterministic reverse geocode → ผู้ใช้ยืนยันก่อนบันทึก"],
-  ["พิกัดเป็น source of truth", "ตกลงแล้ว", "ยังไม่มีหลักฐาน", "ยังไม่ทดสอบ", "LLM อธิบาย/แปลเท่านั้น ห้ามเดาภูมิศาสตร์"],
-  ["ฝนตอนนี้ / 3 ชั่วโมง / แนวโน้ม 3 วัน", "ตกลงแล้ว", "ยังไม่มีหลักฐาน", "ยังไม่ทดสอบ", "เรียกดูตามคำขอ; ใช้จุดเปอร์เซ็นต์เทียบวันก่อน ไม่ใช้ MoM"],
-  ["ไทย / English / 简体中文", "ตกลงแล้ว", "ยังไม่มีหลักฐาน", "ยังไม่ทดสอบ", "ทุกภาษาต้องมาจากผลคำนวณเดียวกัน"],
-  ["Open-Meteo coordinate forecast", "เลือกเป็นแหล่ง R1", "ยังไม่มี runtime receipt", "ตรวจเอกสารแล้ว", "ยังไม่ยืนยัน response, freshness หรือ accuracy ของระบบ"],
-  ["LINE OA · @777bsqns", "บัญชียืนยันแล้ว", "มี QR จากเจ้าของ", "ยังไม่ทดสอบ bot response", "การมี QR ไม่ใช่หลักฐานว่าบอตพร้อมใช้งาน"],
+  ["ค้นชื่อ / ปักหมุด / โลเคชันจากเพื่อน", "ตกลงแล้ว", "Implementation not itemized in owner trial", "Feature receipt pending", "พิกัด → deterministic reverse geocode → ผู้ใช้ยืนยันก่อนบันทึก"],
+  ["พิกัดเป็น source of truth", "ตกลงแล้ว", "Design contract retained", "Independent receipt pending", "LLM อธิบาย/แปลเท่านั้น ห้ามเดาภูมิศาสตร์"],
+  ["ฝนตอนนี้ / 3 ชั่วโมง / แนวโน้ม 3 วัน", "ตกลงแล้ว", "Live service confirmed; horizons not itemized", "Feature receipt pending", "Owner trial confirms a useful location-linked answer; exact menu/horizon exercised was not retained"],
+  ["ไทย / English / 简体中文", "ตกลงแล้ว", "Implementation not itemized in owner trial", "Language-parity receipt pending", "ทุกภาษาต้องมาจากผลคำนวณเดียวกัน"],
+  ["Open-Meteo coordinate forecast", "เลือกเป็นแหล่ง R1", "Source contract retained", "API-runtime receipt pending", "Owner trial does not independently establish API provenance or comparative accuracy"],
+  ["LINE OA · @777bsqns", "บัญชียืนยันแล้ว", "Live bot available", "Owner-tested operational", "QR identifies the channel; operational status is confirmed separately by the owner"],
 ]
 
 const Cell = ({ children }: { children: ReactNode }) => <td className="p-4 align-top leading-6 text-muted-foreground">{children}</td>
@@ -33,20 +33,20 @@ export default function RainChatbotCaseStudyPage() {
     <header className="border-b border-border bg-background">
       <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
         <Link href="/case-studies" className="text-sm font-medium text-primary hover:underline">← Back to Case Studies</Link>
-        <div className="mt-5 flex flex-wrap gap-2"><Badge variant="outline">Community weather information</Badge><Badge variant="outline">Specification defined</Badge><Badge variant="outline">Implementation & validation pending</Badge></div>
+        <div className="mt-5 flex flex-wrap gap-2"><Badge variant="outline">For local residents</Badge><Badge variant="outline">Live pilot</Badge><Badge variant="outline">Accuracy validation ongoing</Badge></div>
         <h1 className="mt-4 max-w-4xl text-3xl font-semibold tracking-tight sm:text-5xl">Rain Forecast Chatbot</h1>
-        <p lang="th" className="mt-4 max-w-4xl text-xl leading-8">ช่วยประชาชนเข้าใจพยากรณ์ฝนที่สัมพันธ์กับพื้นที่ของตน โดยไม่ต้องตีความแผนที่อากาศเอง</p>
-        <p className="mt-3 max-w-4xl leading-7 text-muted-foreground">Making forecast information easier to access and understand—without confusing precise location selection with proven neighbourhood-level accuracy.</p>
-        <div className="mt-6 rounded-lg border border-amber-300/60 bg-amber-50 p-4 text-sm leading-6 text-amber-950 dark:bg-amber-950/20 dark:text-amber-100"><strong>Evidence status · 27 September 2026:</strong> requirements and bounded architecture are documented. The chatbot workflow, live API response, forecast accuracy, multilingual replies and service readiness have not been demonstrated end to end.</div>
+        <p lang="th" className="mt-4 max-w-4xl text-xl leading-8">ช่วยคนท้องที่เข้าใจพยากรณ์ฝนที่สัมพันธ์กับพื้นที่ของตน โดยไม่ต้องตีความแผนที่อากาศเอง</p>
+        <p className="mt-3 max-w-4xl leading-7 text-muted-foreground">A live pilot for local residents—making forecast information easier to access without confusing precise location selection with proven neighbourhood-level accuracy.</p>
+        <div className="mt-6 rounded-lg border border-emerald-300/60 bg-emerald-50 p-4 text-sm leading-6 text-emerald-950 dark:bg-emerald-950/20 dark:text-emerald-100"><strong>Operational status · 27 September 2026:</strong> the owner used the live chatbot and confirmed that it was useful because the answer removed the need to interpret radar manually. Comparative forecast accuracy, feature-level independent receipts and evidence from a broader group of local residents remain separate validation gates.</div>
       </div>
     </header>
 
     <main className="mx-auto max-w-6xl space-y-10 px-4 py-10 sm:px-6 lg:px-8">
       <section className="grid gap-5 md:grid-cols-3">
         {[
-          ["The public problem", "พยากรณ์ภาพรวมจังหวัดอาจไม่ตอบว่า พื้นที่ที่ฉันสนใจ วันนี้และอีก 3 วันฝนมีแนวโน้มอย่างไร ขณะที่เรดาร์ต้องดูตำแหน่ง เวลา และ legend"],
-          ["The intended experience", "เลือกพื้นที่ ยืนยันชื่อพื้นที่ แล้วรับสรุปภาษาคนที่ผูกกับพิกัด ช่วงเวลา และแหล่งข้อมูล"],
-          ["The honest claim", "จุดเด่นที่คาดหวังคือเข้าถึงง่าย สรุปง่าย และผูกกับพื้นที่—not proven accuracy. ความแม่นและประโยชน์จริงต้องวัด"],
+          ["The local resident’s problem", "คนท้องที่ต้องการรู้ว่า พื้นที่ที่ตนอาศัยหรือกำลังเดินทางอยู่ วันนี้และอีก 3 วันฝนมีแนวโน้มอย่างไร โดยไม่ต้องอ่านเรดาร์เอง"],
+          ["The designed experience", "ออกแบบให้คนท้องที่เลือกและยืนยันพื้นที่ แล้วรับสรุปภาษาคนที่ผูกกับพิกัด ช่วงเวลา และแหล่งข้อมูล; feature-level receipt ยังรอบันทึก"],
+          ["Observed owner trial", "ทดลองใช้จริงแล้วและพบว่ามีประโยชน์ เพราะรับคำตอบที่ผูกกับพื้นที่โดยไม่ต้องอ่านเรดาร์เอง ผลนี้เป็น owner trial ยังไม่ใช่ผลศึกษาจากคนท้องที่กลุ่มใหญ่"],
         ].map(([title, text]) => <Card key={title}><CardHeader><CardTitle>{title}</CardTitle></CardHeader><CardContent className="text-sm leading-7 text-muted-foreground"><p>{text}</p></CardContent></Card>)}
       </section>
 
@@ -73,12 +73,12 @@ export default function RainChatbotCaseStudyPage() {
       </section>
 
       <section className="grid gap-6 lg:grid-cols-2">
-        <Card><CardHeader><CardTitle>Chatbot vs. weather map or radar</CardTitle></CardHeader><CardContent className="space-y-4 text-sm leading-7 text-muted-foreground"><p><strong className="text-foreground">Chatbot’s intended advantage:</strong> lower interpretation effort, concise wording and an explicit link to the confirmed location.</p><p><strong className="text-foreground">Map/radar advantage:</strong> preserves spatial context, movement and source detail that a short message can hide.</p><p><strong className="text-foreground">Colour rule:</strong> blue, green or yellow means only what the displayed source legend says. Forecast probability, model precipitation and radar reflectivity are different quantities.</p><p>No superiority claim is made. A fair comparison requires user-comprehension and forecast-versus-observation tests.</p></CardContent></Card>
-        <Card><CardHeader><CardTitle>What must be proven next</CardTitle></CardHeader><CardContent className="text-sm leading-7 text-muted-foreground"><ul className="list-disc space-y-2 pl-5"><li>Live response, model/grid metadata, freshness and failure behaviour.</li><li>End-to-end LINE webhook, reply, deduplication and language parity.</li><li>Location confirmation prevents wrong-area saves without LLM geography guesses.</li><li>Archived forecasts versus observations, including missed rain and false alarms.</li><li>Whether users understand area, timing and uncertainty more accurately or faster.</li></ul></CardContent></Card>
+        <Card><CardHeader><CardTitle>Chatbot vs. weather map or radar</CardTitle></CardHeader><CardContent className="space-y-4 text-sm leading-7 text-muted-foreground"><p><strong className="text-foreground">Observed in the owner trial:</strong> the chatbot reduced interpretation effort by giving a concise answer linked to the selected location, so the owner did not need to read radar manually.</p><p><strong className="text-foreground">Map/radar advantage:</strong> preserves spatial context, movement and source detail that a short message can hide.</p><p><strong className="text-foreground">Colour rule:</strong> blue, green or yellow means only what the displayed source legend says. Forecast probability, model precipitation and radar reflectivity are different quantities.</p><p>The owner trial supports usefulness, not superior forecast accuracy. A broader comparison still requires local-user comprehension and forecast-versus-observation tests.</p></CardContent></Card>
+        <Card><CardHeader><CardTitle>What evidence must be retained next</CardTitle></CardHeader><CardContent className="text-sm leading-7 text-muted-foreground"><ul className="list-disc space-y-2 pl-5"><li>Independent live-response receipt with model/grid metadata, freshness and failure behaviour.</li><li>Feature-level LINE webhook, reply, deduplication and language-parity receipts.</li><li>Evidence that location confirmation prevents wrong-area saves without LLM geography guesses.</li><li>Archived forecasts versus observations, including missed rain and false alarms.</li><li>A broader local-resident test of area, timing and uncertainty comprehension.</li></ul></CardContent></Card>
       </section>
 
       <section className="grid gap-6 lg:grid-cols-[1.05fr_0.95fr]">
-        <Card><CardHeader><CardTitle>LINE project account · @777bsqns</CardTitle></CardHeader><CardContent className="grid gap-5 sm:grid-cols-[220px_1fr] sm:items-center"><Image src="/case-studies/rain-chatbot/line-qr-original.png" alt="Owner-provided LINE add-friend QR for @777bsqns" width={1086} height={978} unoptimized className="h-auto w-full rounded-lg bg-white"/><div className="space-y-4 text-sm leading-7 text-muted-foreground"><p>QR นี้ยืนยันช่องทางบัญชีที่เจ้าของให้ไว้เท่านั้น ยังไม่ยืนยันว่าบอตตอบกลับหรือพร้อมให้บริการ</p><p>The original QR download is separate from the case-study download.</p><a href="/case-studies/rain-chatbot/line-qr-original.png" download="Rain_Chatbot_LINE_QR_original.png" className="inline-flex rounded-md bg-primary px-4 py-2 font-medium text-primary-foreground">Download original QR image</a></div></CardContent></Card>
+        <Card><CardHeader><CardTitle>LINE project account · @777bsqns</CardTitle></CardHeader><CardContent className="grid gap-5 sm:grid-cols-[220px_1fr] sm:items-center"><Image src="/case-studies/rain-chatbot/line-qr-original.png" alt="Owner-provided LINE add-friend QR for @777bsqns" width={1086} height={978} unoptimized className="h-auto w-full rounded-lg bg-white"/><div className="space-y-4 text-sm leading-7 text-muted-foreground"><p>QR ระบุช่องทางบัญชี ส่วนสถานะใช้งานได้จริงยืนยันแยกต่างหากจาก owner trial—ไม่ได้สรุปจากการมี QR เพียงอย่างเดียว</p><p>The original QR download is separate from the case-study download.</p><a href="/case-studies/rain-chatbot/line-qr-original.png" download="Rain_Chatbot_LINE_QR_original.png" className="inline-flex rounded-md bg-primary px-4 py-2 font-medium text-primary-foreground">Download original QR image</a></div></CardContent></Card>
         <Card><CardHeader><CardTitle>Download this case study</CardTitle></CardHeader><CardContent className="space-y-4 text-sm leading-7 text-muted-foreground"><p>Downloadable Thai/English HTML with the same status boundaries and source notes. Its QR loads from the canonical public asset and requires a network connection.</p><a href="/downloads/rain-chatbot-case-study.html" download className="inline-flex rounded-md border border-border px-4 py-2 font-medium text-primary hover:bg-muted">Download Case Study HTML</a></CardContent></Card>
       </section>
 

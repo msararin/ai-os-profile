@@ -14,14 +14,17 @@ for (const marker of [
   "แนวโน้ม 3 วัน",
   "简体中文",
   "จุดเปอร์เซ็นต์เทียบวันก่อน",
-  "การมี QR ไม่ใช่หลักฐานว่าบอตพร้อมใช้งาน",
+  "สถานะใช้งานได้จริงยืนยันแยกต่างหากจาก owner trial",
+  "คนท้องที่",
+  "ไม่ต้องอ่านเรดาร์เอง",
   "RainViewer Weather Maps API",
 ]) assert.ok(page.includes(marker), `missing page marker: ${marker}`)
 
-assert.ok(index.includes("Specification defined"), "index status is not aligned")
+assert.ok(index.includes("Live pilot"), "index status is not aligned")
 assert.ok(index.includes('title: "Rain Forecast Chatbot"'), "index title is not aligned")
-assert.ok(index.includes("live API behaviour"), "index boundary is not aligned")
-assert.ok(download.includes("IMPLEMENTATION & VALIDATION PENDING"), "download status boundary missing")
+assert.ok(index.includes("owner-tested"), "index owner-trial boundary is not aligned")
+assert.ok(index.includes("Comparative accuracy"), "index accuracy boundary is not aligned")
+assert.ok(download.includes("LIVE PILOT / OWNER-TESTED USEFULNESS"), "download status boundary missing")
 assert.ok(download.includes("https://sararin.ai/case-studies/rain-chatbot/line-qr-original.png"), "download does not reference the original QR")
 assert.ok(qr.size > 50_000, "original QR asset is unexpectedly small")
 
