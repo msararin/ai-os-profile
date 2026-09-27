@@ -1,0 +1,28 @@
+import assert from "node:assert/strict"
+import fs from "node:fs"
+
+const page = fs.readFileSync("app/case-studies/rain-chatbot/page.tsx", "utf8")
+const index = fs.readFileSync("app/case-studies/page.tsx", "utf8")
+const download = fs.readFileSync("public/downloads/rain-chatbot-case-study.html", "utf8")
+const qr = fs.statSync("public/case-studies/rain-chatbot/line-qr-original.png")
+
+for (const marker of [
+  "Agreed ≠ built ≠ tested",
+  "เลือกตำแหน่งได้ถึงแขวง ≠ พยากรณ์แม่นระดับแขวง",
+  "deterministic reverse geocode",
+  "ห้ามเดาภูมิศาสตร์",
+  "แนวโน้ม 3 วัน",
+  "简体中文",
+  "จุดเปอร์เซ็นต์เทียบวันก่อน",
+  "การมี QR ไม่ใช่หลักฐานว่าบอตพร้อมใช้งาน",
+  "RainViewer Weather Maps API",
+]) assert.ok(page.includes(marker), `missing page marker: ${marker}`)
+
+assert.ok(index.includes("Specification defined"), "index status is not aligned")
+assert.ok(index.includes('title: "Rain Forecast Chatbot"'), "index title is not aligned")
+assert.ok(index.includes("live API behaviour"), "index boundary is not aligned")
+assert.ok(download.includes("IMPLEMENTATION & VALIDATION PENDING"), "download status boundary missing")
+assert.ok(download.includes("https://sararin.ai/case-studies/rain-chatbot/line-qr-original.png"), "download does not reference the original QR")
+assert.ok(qr.size > 50_000, "original QR asset is unexpectedly small")
+
+console.log("PASS_RAIN_CHATBOT_CASE_STUDY_CONTRACT")
