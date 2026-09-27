@@ -6,12 +6,12 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 const caseStudies = [
   {
     title: "Rain Forecast Chatbot",
-    status: "Specification defined",
+    status: "Live pilot",
     statusTone: "active",
     category: "Community weather information",
     flagship: false,
-    summary: "A coordinate-linked, multilingual rain-forecast concept designed to reduce map-reading effort after the user confirms the selected area.",
-    boundary: "Requirements are documented; implementation, live API behaviour, forecast accuracy, user benefit and bot readiness are not yet verified.",
+    summary: "A live rain-forecast chatbot for local residents, designed to reduce map-reading effort after the user confirms the selected area.",
+    boundary: "Operational use and usefulness in avoiding manual radar reading are owner-tested. Comparative accuracy and broader local-user evidence remain pending.",
     cta: "View evidence-bounded case study",
     href: "/case-studies/rain-chatbot",
   },
