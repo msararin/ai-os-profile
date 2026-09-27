@@ -5,6 +5,17 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 
 const caseStudies = [
   {
+    title: "Local Rain Forecast Chatbot",
+    status: "In development",
+    statusTone: "active",
+    category: "Community weather information",
+    flagship: false,
+    summary: "Making coordinate-based rain forecasts easier to understand, starting with Thung Song Hong, Bangkok.",
+    boundary: "Model-grid detail varies. Observed rain, superior forecast accuracy and live service readiness are not yet verified.",
+    cta: "View case study and LINE QR",
+    href: "/case-studies/rain-chatbot",
+  },
+  {
     title: "Text to Audio — Listen to Your Documents",
     status: "Invited beta",
     statusTone: "active",
