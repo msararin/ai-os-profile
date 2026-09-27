@@ -6,6 +6,7 @@
   "scripts": {
     "test:nbo-event-ledger": "node scripts/validate-nbo-event-ledger-contract.mjs",
     "test:nbo-runtime-proof-surface": "node scripts/validate-nbo-runtime-proof-surface.mjs",
+    "test:rain-chatbot-case-study": "node scripts/validate-rain-chatbot-case-study.mjs",
     "dev": "next dev",
     "build": "next build --webpack",
     "start": "next start",
