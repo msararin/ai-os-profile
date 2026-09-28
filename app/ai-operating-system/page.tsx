@@ -12,7 +12,7 @@ export default function Page() { return <PageLayout>
     <p className="text-sm font-semibold uppercase tracking-wide text-teal-700">Applied LLMs · Agent systems · Governed delivery</p>
     <h1 className="mt-4 text-4xl font-semibold tracking-tight sm:text-6xl">LLM &amp; Agent Systems</h1>
     <p className="mt-6 max-w-3xl text-lg leading-8 text-muted-foreground">Multi-step AI work needs more than fluent output: reliable context, reviewable execution and decisions people can own. This portfolio shows how I connect those concerns in a working prototype.</p>
-    <div className="mt-8 flex flex-wrap gap-5"><Link className="font-medium text-teal-700 underline" href="#contribution">My contribution</Link><Link className="font-medium text-teal-700 underline" href="/case-studies/evidence-discipline-ai-assisted-delivery">Read the evidence case study →</Link></div>
+    <div className="mt-8 flex flex-wrap gap-5"><Link className="font-medium text-teal-700 underline" href="#contribution">My contribution</Link></div>
   </div></section>
   <section id="contribution" className="mx-auto max-w-6xl px-6 py-12"><h2 className="text-2xl font-semibold">My contribution and scope</h2>
     <p className="mt-4 max-w-4xl leading-7 text-muted-foreground">I configured and combined existing LLM assistants, coding agents and local inference tools with a Git-backed context layer, evidence classification and a human-reviewed delivery workflow. The contribution is the operating design, integration and evaluation around those tools. This work does not claim authorship of the foundation models or agent products.</p>
