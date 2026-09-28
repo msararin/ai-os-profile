@@ -32,22 +32,6 @@ const portfolioItems: PortfolioItem[] = [
     status: "Current",
   },
   {
-    id: "case-r01-evidence-before-claims",
-    title: "Evidence Discipline for AI-Assisted Delivery",
-    subtitle: "Governance signal for AI-assisted delivery claims",
-    domain: "AI Governance",
-    description: "A draft portfolio candidate showing how AI-assisted work keeps internal artifacts, evidence, and public claims separate before anything is promoted publicly.",
-    keyPatterns: [
-      "Evidence before claims in AI-assisted delivery",
-      "State discipline across artifacts, receipts, and public-facing claims",
-      "Prevention of false completion claims before promotion",
-      "External mockup role review with explicit claim boundaries",
-    ],
-    lessons: "External mockup role review applied (single model call, three analytical lenses). This remains a draft portfolio candidate, not a public case-study page, independent validation, or execution closeout.",
-    status: "Draft portfolio candidate",
-    statusNote: "Draft portfolio candidate",
-  },
-  {
     id: "data-reliability",
     title: "Data Reliability Foundation",
     subtitle: "Core Banking System Validation",
