@@ -57,18 +57,6 @@ const caseStudies = [
     href: "/case-studies/telco-churn-mlops",
   },
   {
-    title: "Evidence Discipline for AI-Assisted Delivery",
-    status: "Parked",
-    statusTone: "parked",
-    category: "AI-assisted delivery",
-    flagship: false,
-    summary:
-      "A developing case study on turning delivery evidence, assumptions, and recovery constraints into a safe public story before an entry is treated as complete.",
-    boundary: "Not yet a completed case study or validation claim.",
-    cta: "View parked story",
-    href: "/case-studies/evidence-discipline-ai-assisted-delivery",
-  },
-  {
     title: "Company M AI Adoption Measurement Study",
     status: "Bounded evidence",
     statusTone: "complete",
