@@ -7,7 +7,9 @@ const download = fs.readFileSync("public/downloads/rain-chatbot-case-study.html"
 const qr = fs.statSync("public/case-studies/rain-chatbot/line-qr-original.png")
 
 for (const marker of [
-  "Agreed ≠ built ≠ tested",
+  "Evidence already established vs. additional validation",
+  "The chatbot has been tested in real use.",
+  "ทดสอบใช้งานจริงบน live chatbot แล้ว",
   "เลือกตำแหน่งได้ถึงแขวง ≠ พยากรณ์แม่นระดับแขวง",
   "deterministic reverse geocode",
   "ห้ามเดาภูมิศาสตร์",
@@ -24,7 +26,8 @@ assert.ok(index.includes("Live pilot"), "index status is not aligned")
 assert.ok(index.includes('title: "Rain Forecast Chatbot"'), "index title is not aligned")
 assert.ok(index.includes("owner-tested"), "index owner-trial boundary is not aligned")
 assert.ok(index.includes("Comparative accuracy"), "index accuracy boundary is not aligned")
-assert.ok(download.includes("LIVE PILOT / OWNER-TESTED USEFULNESS"), "download status boundary missing")
+assert.ok(download.includes("LIVE PILOT / TESTED IN REAL USE / OWNER-TESTED USEFULNESS"), "download status boundary missing")
+assert.ok(download.includes("บอตผ่านการทดสอบใช้งานจริงแล้ว"), "download real-use test evidence missing")
 assert.ok(download.includes("https://sararin.ai/case-studies/rain-chatbot/line-qr-original.png"), "download does not reference the original QR")
 assert.ok(qr.size > 50_000, "original QR asset is unexpectedly small")
 
