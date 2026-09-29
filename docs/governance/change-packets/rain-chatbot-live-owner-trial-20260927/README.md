@@ -12,6 +12,8 @@ The owner corrected the prior public status and supplied direct trial evidence:
 
 This supersedes the prior statements that implementation, bot response and user benefit were entirely unverified.
 
+Public wording must therefore lead with the evidence that already exists: the live bot was tested in real use and the tested answer was useful because it removed the need to interpret radar manually. Missing feature-level receipts are additional validation gaps; they must not be presented in a way that implies the chatbot has never been tested.
+
 ## Claim boundary
 
 Allowed:
