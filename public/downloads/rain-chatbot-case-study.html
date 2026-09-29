@@ -7,7 +7,7 @@
 <h1>Rain Forecast Chatbot</h1>
 <p><strong>ช่วยคนท้องที่เข้าใจพยากรณ์ฝนที่สัมพันธ์กับพื้นที่ของตน โดยไม่ต้องตีความแผนที่อากาศเอง</strong></p>
 <p>Coordinate-linked forecast information, translated into plain language without claiming neighbourhood-level accuracy.</p>
-<div class="status"><strong>สถานะ ณ 27 กันยายน 2026: LIVE PILOT / OWNER-TESTED USEFULNESS</strong><br>เจ้าของทดลองใช้ระบบจริงและยืนยันว่าใช้งานได้และมีประโยชน์ เพราะได้รับคำตอบโดยไม่ต้องอ่านเรดาร์เอง ส่วนความแม่นเทียบแหล่งอื่นและผลจากคนท้องที่กลุ่มใหญ่ยังต้องประเมินแยกกัน</div>
+<div class="status"><strong>สถานะ ณ 27 กันยายน 2026: LIVE PILOT / TESTED IN REAL USE / OWNER-TESTED USEFULNESS</strong><br>ทดสอบใช้งานจริงบน live chatbot แล้ว และยืนยันว่าใช้งานได้และมีประโยชน์ เพราะได้รับคำตอบที่ผูกกับพื้นที่โดยไม่ต้องอ่านเรดาร์เอง การตรวจที่ยังต้องทำเพิ่มไม่ใช่หลักฐานว่า “ยังไม่เคยทดสอบ”; เป็นการเก็บ receipt รายฟีเจอร์ การเทียบความแม่น และการทดสอบกับคนท้องที่กลุ่มใหญ่</div>
 
 <div class="grid"><section class="card"><h2>ปัญหาของคนท้องที่</h2><p>พยากรณ์ภาพรวมจังหวัดอาจไม่ตอบว่า พื้นที่ที่ตนอาศัยหรือกำลังเดินทางอยู่มีแนวโน้มฝนอย่างไร ขณะที่การอ่านเรดาร์ต้องตรวจตำแหน่ง เวลา และ legend ของแหล่งนั้น</p></section><section class="card"><h2>ผลจาก owner trial</h2><p>ทดลองใช้จริงแล้วและพบว่ามีประโยชน์ เพราะรับคำตอบที่ผูกกับพื้นที่โดยไม่ต้องอ่านเรดาร์เอง ผลนี้ยังไม่ใช่ผลศึกษาจากคนท้องที่กลุ่มใหญ่</p></section></div>
 
@@ -19,12 +19,12 @@
 <tr><td>TMD / Bangkok radar</td><td>ภาพเรดาร์และ timestamp</td><td>สีต้องอ่านตาม legend; radar reflectivity ไม่ใช่ forecast probability</td><td>Candidate; endpoint, coverage, freshness และสิทธิ์ยังต้องพิสูจน์</td></tr>
 <tr><td>RainViewer</td><td>radar tiles ตามพิกัด/zoom และ color scheme</td><td>สีฟ้า เขียว เหลืองเปลี่ยนความหมายตาม scheme</td><td>Candidate; ยังไม่อนุมัติ production</td></tr></tbody></table>
 
-<h2>Agreed ≠ built ≠ tested</h2><table><thead><tr><th>ความสามารถ</th><th>ข้อกำหนด</th><th>พัฒนาแล้ว</th><th>ทดสอบแล้ว</th></tr></thead><tbody>
-<tr><td>เลือกและยืนยันพื้นที่</td><td>ตกลงแล้ว</td><td>Owner trial ไม่ได้แยกผลราย feature</td><td>Feature receipt pending</td></tr>
-<tr><td>ฝนตอนนี้ / 3 ชั่วโมง / 3 วัน แบบ on demand</td><td>ตกลงแล้ว</td><td>ยืนยัน live service; ไม่ได้บันทึก horizon ที่ทดลอง</td><td>Feature receipt pending</td></tr>
-<tr><td>ไทย / English / 简体中文</td><td>ตกลงแล้ว; ผลคำนวณเดียวกัน</td><td>Owner trial ไม่ได้แยกผลรายภาษา</td><td>Language-parity receipt pending</td></tr>
-<tr><td>Open-Meteo coordinate forecast</td><td>เลือกเป็น R1</td><td>เก็บ source contract แล้ว</td><td>API-runtime/provenance receipt pending</td></tr>
-<tr><td>LINE @777bsqns</td><td>บัญชียืนยันแล้ว</td><td>Live bot available</td><td>Owner-tested operational</td></tr></tbody></table>
+<h2>หลักฐานที่มีแล้ว vs. การตรวจเพิ่มเติม</h2><p><strong>บอตผ่านการทดสอบใช้งานจริงแล้ว</strong> ตารางนี้แยกผลที่ยืนยันแล้วออกจาก receipt เชิงลึกที่ยังไม่ได้เก็บระหว่าง owner trial</p><table><thead><tr><th>ความสามารถ</th><th>ข้อกำหนด</th><th>หลักฐานที่ยืนยันแล้ว</th><th>การตรวจเพิ่มเติมที่ควรเก็บ</th></tr></thead><tbody>
+<tr><td>เลือกและยืนยันพื้นที่</td><td>ตกลงแล้ว</td><td>ทดสอบ live bot จริงและได้รับคำตอบที่ผูกกับพื้นที่</td><td>Receipt แยกตาม search / pin / friend location และขั้นยืนยัน</td></tr>
+<tr><td>ฝนตอนนี้ / 3 ชั่วโมง / 3 วัน แบบ on demand</td><td>ตกลงแล้ว</td><td>Real-use test ยืนยันว่าคำตอบพยากรณ์ที่ผูกกับพื้นที่มีประโยชน์</td><td>บันทึกว่า trial ใช้เมนูและ horizon ใด</td></tr>
+<tr><td>ไทย / English / 简体中文</td><td>ตกลงแล้ว; ผลคำนวณเดียวกัน</td><td>ทดสอบ live bot แล้ว แต่ trial note ไม่ได้ระบุภาษาที่ใช้</td><td>ทดสอบและเก็บหลักฐาน language parity</td></tr>
+<tr><td>Open-Meteo coordinate forecast</td><td>เลือกเป็น R1</td><td>ทดสอบคำตอบพยากรณ์จริงและเก็บ source contract แล้ว</td><td>API request/response, model/grid และ freshness metadata</td></tr>
+<tr><td>LINE @777bsqns</td><td>บัญชียืนยันแล้ว</td><td>Owner-tested บน live bot: ใช้งานได้และมีประโยชน์</td><td>Webhook, reply และ deduplication receipts</td></tr></tbody></table>
 <p class="note">หากแสดงการเปลี่ยนแปลงโอกาสฝนรายวัน ให้ใช้ “จุดเปอร์เซ็นต์เทียบวันก่อน” ไม่ใช้ MoM และต้องแสดงพื้นที่ เวลา แหล่งข้อมูล freshness และ missing/stale/conflicting state.</p>
 
 <h2>Chatbot กับแผนที่/เรดาร์</h2><div class="grid"><div class="card"><h3>Chatbot — observed owner benefit</h3><p>ลดภาระการตีความ ให้คำตอบสั้น และผูกกับพื้นที่ที่ยืนยันแล้ว เจ้าของจึงไม่ต้องอ่านเรดาร์เอง</p></div><div class="card"><h3>Map/radar — retained advantage</h3><p>รักษาบริบทเชิงพื้นที่ การเคลื่อนที่ และรายละเอียดที่ข้อความสั้นอาจซ่อน</p></div></div><p>Owner trial ยืนยัน usefulness แต่ไม่ใช่หลักฐานว่า forecast แม่นกว่า การเปรียบเทียบยังต้องมี local-user test และเทียบพยากรณ์ล่วงหน้ากับข้อมูลสังเกตจริง รวม missed rain และ false alarms.</p>
