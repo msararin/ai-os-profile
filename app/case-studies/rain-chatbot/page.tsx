@@ -18,12 +18,12 @@ const sources = [
 ]
 
 const delivery = [
-  ["ค้นชื่อ / ปักหมุด / โลเคชันจากเพื่อน", "ตกลงแล้ว", "Implementation not itemized in owner trial", "Feature receipt pending", "พิกัด → deterministic reverse geocode → ผู้ใช้ยืนยันก่อนบันทึก"],
-  ["พิกัดเป็น source of truth", "ตกลงแล้ว", "Design contract retained", "Independent receipt pending", "LLM อธิบาย/แปลเท่านั้น ห้ามเดาภูมิศาสตร์"],
-  ["ฝนตอนนี้ / 3 ชั่วโมง / แนวโน้ม 3 วัน", "ตกลงแล้ว", "Live service confirmed; horizons not itemized", "Feature receipt pending", "Owner trial confirms a useful location-linked answer; exact menu/horizon exercised was not retained"],
-  ["ไทย / English / 简体中文", "ตกลงแล้ว", "Implementation not itemized in owner trial", "Language-parity receipt pending", "ทุกภาษาต้องมาจากผลคำนวณเดียวกัน"],
-  ["Open-Meteo coordinate forecast", "เลือกเป็นแหล่ง R1", "Source contract retained", "API-runtime receipt pending", "Owner trial does not independently establish API provenance or comparative accuracy"],
-  ["LINE OA · @777bsqns", "บัญชียืนยันแล้ว", "Live bot available", "Owner-tested operational", "QR identifies the channel; operational status is confirmed separately by the owner"],
+  ["ค้นชื่อ / ปักหมุด / โลเคชันจากเพื่อน", "ตกลงแล้ว", "Real-use trial completed on the live bot; a selected-area answer was observed", "Retain a receipt for each input path and its confirmation step", "พิกัด → deterministic reverse geocode → ผู้ใช้ยืนยันก่อนบันทึก"],
+  ["พิกัดเป็น source of truth", "ตกลงแล้ว", "A live location-linked answer was tested; the coordinate-first design contract is retained", "Retain an implementation trace for coordinate resolution and deterministic reverse geocoding", "LLM อธิบาย/แปลเท่านั้น ห้ามเดาภูมิศาสตร์"],
+  ["ฝนตอนนี้ / 3 ชั่วโมง / แนวโน้ม 3 วัน", "ตกลงแล้ว", "Real-use test confirmed a useful location-linked forecast answer", "Retain which exact menu and horizon were exercised", "The real-use result proves usefulness of the tested answer, not every horizon"],
+  ["ไทย / English / 简体中文", "ตกลงแล้ว", "The live bot was tested; the language exercised was not retained in the trial note", "Run and retain a same-result language-parity test", "ทุกภาษาต้องมาจากผลคำนวณเดียวกัน"],
+  ["Open-Meteo coordinate forecast", "เลือกเป็นแหล่ง R1", "A live forecast answer was tested and the source contract is retained", "Retain API request/response, model/grid and freshness metadata", "The real-use trial does not prove API provenance or comparative accuracy"],
+  ["LINE OA · @777bsqns", "บัญชียืนยันแล้ว", "Owner-tested on the live bot: operational and useful", "Retain webhook, reply and deduplication receipts", "QR identifies the channel; operation and usefulness come from the real-use trial"],
 ]
 
 const Cell = ({ children }: { children: ReactNode }) => <td className="p-4 align-top leading-6 text-muted-foreground">{children}</td>
@@ -33,11 +33,11 @@ export default function RainChatbotCaseStudyPage() {
     <header className="border-b border-border bg-background">
       <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
         <Link href="/case-studies" className="text-sm font-medium text-primary hover:underline">← Back to Case Studies</Link>
-        <div className="mt-5 flex flex-wrap gap-2"><Badge variant="outline">For local residents</Badge><Badge variant="outline">Live pilot</Badge><Badge variant="outline">Accuracy validation ongoing</Badge></div>
+        <div className="mt-5 flex flex-wrap gap-2"><Badge variant="outline">For local residents</Badge><Badge variant="outline">Live pilot</Badge><Badge variant="outline">Tested in real use</Badge><Badge variant="outline">Accuracy validation ongoing</Badge></div>
         <h1 className="mt-4 max-w-4xl text-3xl font-semibold tracking-tight sm:text-5xl">Rain Forecast Chatbot</h1>
         <p lang="th" className="mt-4 max-w-4xl text-xl leading-8">ช่วยคนท้องที่เข้าใจพยากรณ์ฝนที่สัมพันธ์กับพื้นที่ของตน โดยไม่ต้องตีความแผนที่อากาศเอง</p>
         <p className="mt-3 max-w-4xl leading-7 text-muted-foreground">A live pilot for local residents—making forecast information easier to access without confusing precise location selection with proven neighbourhood-level accuracy.</p>
-        <div className="mt-6 rounded-lg border border-emerald-300/60 bg-emerald-50 p-4 text-sm leading-6 text-emerald-950 dark:bg-emerald-950/20 dark:text-emerald-100"><strong>Operational status · 27 September 2026:</strong> the owner used the live chatbot and confirmed that it was useful because the answer removed the need to interpret radar manually. Comparative forecast accuracy, feature-level independent receipts and evidence from a broader group of local residents remain separate validation gates.</div>
+        <div className="mt-6 rounded-lg border border-emerald-300/60 bg-emerald-50 p-4 text-sm leading-6 text-emerald-950 dark:bg-emerald-950/20 dark:text-emerald-100"><strong>Test evidence · 27 September 2026:</strong> ทดสอบใช้งานจริงบน live chatbot แล้ว และพบว่ามีประโยชน์ เพราะคำตอบที่ผูกกับพื้นที่ช่วยให้ไม่ต้องอ่านเรดาร์เอง นี่คือ real-use evidence ที่ยืนยันการใช้งานและประโยชน์ของคำตอบที่ทดลอง ส่วน comparative accuracy, feature-by-feature receipts และผลจากคนท้องที่กลุ่มใหญ่เป็นการตรวจเพิ่มเติม—not evidence that the bot has never been tested.</div>
       </div>
     </header>
 
@@ -68,8 +68,9 @@ export default function RainChatbotCaseStudyPage() {
       </section>
 
       <section>
-        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">Delivery truth</p><h2 className="mt-2 text-2xl font-semibold">Agreed ≠ built ≠ tested</h2>
-        <div className="mt-5 overflow-x-auto rounded-lg border border-border"><table className="min-w-[980px] w-full text-left text-sm"><thead className="bg-muted/60"><tr><th className="p-4">Capability</th><th className="p-4">Requirement</th><th className="p-4">Built evidence</th><th className="p-4">Test evidence</th><th className="p-4">Boundary / next proof</th></tr></thead><tbody>{delivery.map(([a,b,c,d,e]) => <tr key={a} className="border-t border-border"><th className="p-4 align-top font-medium">{a}</th><Cell>{b}</Cell><Cell>{c}</Cell><Cell>{d}</Cell><Cell>{e}</Cell></tr>)}</tbody></table></div>
+        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">Delivery truth</p><h2 className="mt-2 text-2xl font-semibold">Evidence already established vs. additional validation</h2>
+        <p className="mt-3 max-w-4xl text-sm leading-7 text-muted-foreground"><strong className="text-foreground">The chatbot has been tested in real use.</strong> The table separates that established evidence from more granular receipts that were not captured during the owner trial.</p>
+        <div className="mt-5 overflow-x-auto rounded-lg border border-border"><table className="min-w-[1080px] w-full text-left text-sm"><thead className="bg-muted/60"><tr><th className="p-4">Capability</th><th className="p-4">Requirement</th><th className="p-4">Evidence already established</th><th className="p-4">Additional validation to retain</th><th className="p-4">Claim boundary</th></tr></thead><tbody>{delivery.map(([a,b,c,d,e]) => <tr key={a} className="border-t border-border"><th className="p-4 align-top font-medium">{a}</th><Cell>{b}</Cell><Cell>{c}</Cell><Cell>{d}</Cell><Cell>{e}</Cell></tr>)}</tbody></table></div>
       </section>
 
       <section className="grid gap-6 lg:grid-cols-2">
