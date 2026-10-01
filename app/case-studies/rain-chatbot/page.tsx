@@ -33,10 +33,11 @@ export default function RainChatbotCaseStudyPage() {
     <header className="border-b border-border bg-background">
       <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
         <Link href="/case-studies" className="text-sm font-medium text-primary hover:underline">← Back to Case Studies</Link>
-        <div className="mt-5 flex flex-wrap gap-2"><Badge variant="outline">For local residents</Badge><Badge variant="outline">Live pilot</Badge><Badge variant="outline">Tested in real use</Badge><Badge variant="outline">Accuracy validation ongoing</Badge></div>
+        <div className="mt-5 flex flex-wrap gap-2"><Badge variant="outline">For local residents</Badge><Badge variant="outline">Service closed</Badge><Badge variant="outline">Tested in real use</Badge><Badge variant="outline">Accuracy validation incomplete</Badge></div>
         <h1 className="mt-4 max-w-4xl text-3xl font-semibold tracking-tight sm:text-5xl">Rain Forecast Chatbot</h1>
         <p lang="th" className="mt-4 max-w-4xl text-xl leading-8">ช่วยคนท้องที่เข้าใจพยากรณ์ฝนที่สัมพันธ์กับพื้นที่ของตน โดยไม่ต้องตีความแผนที่อากาศเอง</p>
-        <p className="mt-3 max-w-4xl leading-7 text-muted-foreground">A live pilot for local residents—making forecast information easier to access without confusing precise location selection with proven neighbourhood-level accuracy.</p>
+        <p className="mt-3 max-w-4xl leading-7 text-muted-foreground">A completed pilot for local residents—making forecast information easier to access without confusing precise location selection with proven neighbourhood-level accuracy.</p>
+        <div className="mt-6 rounded-lg border border-amber-300/60 bg-amber-50 p-4 text-sm leading-6 text-amber-950 dark:bg-amber-950/20 dark:text-amber-100"><strong>Service status · 1 October 2026:</strong> ปิดให้บริการแล้ว เนื่องจากสถานการณ์ผ่อนคลายลงและปัจจุบันมีบริการทางเลือกอื่นให้ใช้งานจำนวนมาก</div>
         <div className="mt-6 rounded-lg border border-emerald-300/60 bg-emerald-50 p-4 text-sm leading-6 text-emerald-950 dark:bg-emerald-950/20 dark:text-emerald-100"><strong>Test evidence · 27 September 2026:</strong> ทดสอบใช้งานจริงบน live chatbot แล้ว และพบว่ามีประโยชน์ เพราะคำตอบที่ผูกกับพื้นที่ช่วยให้ไม่ต้องอ่านเรดาร์เอง นี่คือ real-use evidence ที่ยืนยันการใช้งานและประโยชน์ของคำตอบที่ทดลอง ส่วน comparative accuracy, feature-by-feature receipts และผลจากคนท้องที่กลุ่มใหญ่เป็นการตรวจเพิ่มเติม—not evidence that the bot has never been tested.</div>
       </div>
     </header>

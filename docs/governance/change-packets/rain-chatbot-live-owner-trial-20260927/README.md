@@ -39,3 +39,7 @@ Still not allowed without additional evidence:
 - canonical KB current-state record after production verification
 
 Final deployment and KB receipts are appended by the repository and KB pull requests.
+
+## Service closure
+
+On 1 October 2026, the owner recorded that the service had closed because the situation had eased and many alternative services were available. This is a lifecycle update, not a retraction of the prior real-use evidence: the service was tested while live and the owner found the selected-location answer useful because it avoided manual radar interpretation.

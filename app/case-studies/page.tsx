@@ -6,12 +6,12 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 const caseStudies = [
   {
     title: "Rain Forecast Chatbot",
-    status: "Live pilot",
-    statusTone: "active",
+    status: "Service closed",
+    statusTone: "parked",
     category: "Community weather information",
     flagship: false,
-    summary: "A live rain-forecast chatbot for local residents, designed to reduce map-reading effort after the user confirms the selected area.",
-    boundary: "Operational use and usefulness in avoiding manual radar reading are owner-tested. Comparative accuracy and broader local-user evidence remain pending.",
+    summary: "A completed rain-forecast chatbot pilot for local residents, designed to reduce map-reading effort after the user confirms the selected area.",
+    boundary: "The service closed after conditions eased and alternatives became widely available. Operational use and usefulness in avoiding manual radar reading remain owner-tested historical evidence. Comparative accuracy was not completed before closure.",
     cta: "View evidence-bounded case study",
     href: "/case-studies/rain-chatbot",
   },
