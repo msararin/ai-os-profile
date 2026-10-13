@@ -77,7 +77,7 @@ export default function ContactPage() {
                 </a>
               </Button>
               <p className="text-xs text-muted-foreground mt-3">
-                Generic version • Last updated: May 2026
+                Generic version • Last updated: October 2026
               </p>
               <p className="text-xs text-primary mt-2">
                 💡 Want a customized version for your role? <a href="mailto:msararin@gmail.com" className="underline">Let me know</a>
