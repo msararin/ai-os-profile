@@ -13,6 +13,7 @@ const navigation = [
   { name: "Knowledge & Insights", href: "/knowledge-sharing" },
   { name: "About", href: "/about" },
   { name: "Contact", href: "/contact" },
+  { name: "Internal Cockpit", href: "/login" },
 ]
 
 export function SiteHeader() {
