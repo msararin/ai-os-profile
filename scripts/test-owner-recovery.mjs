@@ -35,7 +35,7 @@ try {
     assert(directionText.includes('3B has not started'))
     const dataPreparation=direction.locator('#exp3-data-preparation-changes')
     await dataPreparation.waitFor()
-    const dataPreparationText=await dataPreparation.innerText()
+    const dataPreparationText=await dataPreparation.textContent()??''
     assert(dataPreparationText.includes('Design agreed — implementation pending'))
     assert(dataPreparationText.includes('separates displayed actions from actual purchases and allows organic purchases'))
     assert(dataPreparationText.includes('B1_COMPLETE = NO'))
