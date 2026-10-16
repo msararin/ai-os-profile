@@ -99,7 +99,7 @@ try {
     await page.getByRole('link',{name:'Experiment 4',exact:true}).click()
     const roadmap=page.locator('#exp4-roadmap')
     await roadmap.getByRole('heading',{name:'Experiment 4 — Business-grounded Package-fit Learning',exact:true}).waitFor()
-    const roadmapText=await roadmap.innerText()
+    const roadmapText=await roadmap.textContent()??''
     assert(roadmapText.includes('E4-G1'))
     assert(roadmapText.includes('E4-G7'))
     assert(roadmapText.includes('G2 current'))
