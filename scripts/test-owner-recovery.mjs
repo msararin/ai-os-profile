@@ -33,6 +33,8 @@ try {
     const directionText=await direction.innerText()
     assert(directionText.includes('B1 is not complete'))
     assert(directionText.includes('3B has not started'))
+    assert(directionText.includes('Choose the add-on package that best fits the need at that moment'))
+    assert(directionText.includes('ML will compete with a reasoned business-rule baseline'))
     assert(directionText.includes('fresh-process recovery test remain pending'))
     results.push({name:'current backward-design direction is separated from historical Experiment 3 evidence',pass:true})
     for(const lane of ['one','two-a','two-b','three']) {
