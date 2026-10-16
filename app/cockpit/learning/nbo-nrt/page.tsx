@@ -39,7 +39,7 @@ export default async function LearningJournal({searchParams}:{searchParams:Promi
               </tbody>
             </table>
           </div>
-          <p className="mt-3 text-xs leading-5 text-slate-500">Design input validated against the current structure of <a className="underline" href="https://www.ais.th/consumers/package/addon/internet" target="_blank" rel="noreferrer">AIS add-on package information ↗</a>. This is market grounding, not implementation or outcome evidence.</p>
+          <p className="mt-3 text-xs leading-5 text-slate-500">Design input checked on 16 October 2026 against the current structure of <a className="underline" href="https://www.ais.th/consumers/package/addon/internet" target="_blank" rel="noreferrer">AIS add-on package information ↗</a>. This is market grounding, not implementation or outcome evidence.</p>
         </section>
         <p className="mt-4 text-sm leading-6 text-slate-600"><strong>Evidence boundary:</strong> the direction record is committed on the Experiment 3 evidence branch. The new execution contract, fixed metrics and budget, implementation, training, and fresh-process recovery test remain pending.</p>
       </Panel>
