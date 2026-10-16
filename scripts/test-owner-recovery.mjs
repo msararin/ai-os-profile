@@ -39,7 +39,7 @@ try {
     if(await preservedEdition.count()) assert(await preservedEdition.evaluate((frame,directionNode)=>Boolean(frame.compareDocumentPosition(directionNode)&Node.DOCUMENT_POSITION_FOLLOWING),await direction.elementHandle()))
     await page.getByRole('link',{name:'Experiment 4',exact:true}).click()
     const roadmap=page.locator('#exp4-roadmap');await roadmap.waitFor()
-    const roadmapText=await roadmap.innerText()
+    const roadmapText=await roadmap.textContent()??''
     assert(roadmapText.includes('E4-G1'))
     assert(roadmapText.includes('E4-G7'))
     assert(roadmapText.includes('G2 current'))
