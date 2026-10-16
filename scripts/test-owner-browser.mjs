@@ -85,6 +85,16 @@ try {
     assert((await decision.innerText()).includes('Complete off-machine custody, clean-process pause/resume and verified restore are not yet proven'))
     await page.screenshot({path:path.join(output,'technical-decision-td-001.png'),fullPage:true})
   })
+  await check('learning journal separates the accepted backward-design direction from unexecuted 3B',async()=>{
+    await page.goto(base+'/cockpit/learning/nbo-nrt')
+    const direction=page.locator('#exp3-current-direction')
+    await direction.getByRole('heading',{name:'Backward design: learn what good looks like before continuing 3B',exact:true}).waitFor()
+    const directionText=await direction.innerText()
+    assert(directionText.includes('B1 is not complete'))
+    assert(directionText.includes('3B has not started'))
+    assert(directionText.includes('fresh-process recovery test remain pending'))
+    await page.screenshot({path:path.join(output,'exp3-backward-design-direction.png'),fullPage:true})
+  })
   await check('browser drill-down and logout destroy browser access; secure cookie properties',async()=>{
     const sessionCookie=(await context.cookies()).find(x=>x.name===salt);assert(sessionCookie?.httpOnly&&sessionCookie?.secure&&sessionCookie?.sameSite==='Lax')
     await page.getByRole('button',{name:'Sign out',exact:true}).click();await page.waitForURL('**/login');await page.goto(base+'/cockpit');await page.waitForURL('**/login')
