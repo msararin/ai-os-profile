@@ -23,20 +23,22 @@ export default async function LearningJournal({searchParams}:{searchParams:Promi
           <div className="rounded-lg border border-slate-200 bg-white p-4"><dt className="font-semibold text-slate-900">What remains unchanged</dt><dd className="mt-2 text-sm leading-6 text-slate-600">Preserve the original dataset, contract, checkpoint and results. Historical TEST remains untouched. B1 is not complete, 3B has not started, and no production uplift is claimed.</dd></div>
         </dl>
         <section id="exp3-data-preparation-changes" className="mt-6 border-t border-slate-200 pt-6">
-          <p className="text-xs font-semibold uppercase tracking-widest text-teal-700">Data preparation changes · Design agreed — implementation pending</p>
-          <h3 className="mt-2 text-lg font-semibold text-slate-900">ปรับการเตรียมข้อมูลให้ฝึกการตัดสินใจทางธุรกิจได้</h3>
-          <p className="mt-1 text-sm font-medium text-slate-600">Business-grounded synthetic data preparation</p>
+          <p className="text-xs font-semibold uppercase tracking-widest text-teal-700">Data preparation changes · Owner-approved experiment separation · implementation pending</p>
+          <h3 className="mt-2 text-lg font-semibold text-slate-900">จากการปรับ Data preparation สู่การแยก Experiment 4</h3>
+          <p className="mt-1 text-sm font-medium text-slate-600">From data-preparation redesign to a separate business-grounded experiment</p>
           <div className="mt-4 grid gap-4 lg:grid-cols-2">
             <div className="rounded-lg border border-slate-200 bg-white p-4 text-sm leading-7 text-slate-700">
-              <p>ปรับทิศทางการเตรียมข้อมูลจากโลกจำลองที่จับคู่กลุ่มลูกค้ากับ offer แบบง่าย เป็นการเลือกแพ็กเกจเสริม ณ เวลาที่ลูกค้าเปิดหน้าตรวจการใช้งาน โดยเลือกไม่เสนอได้ ข้อมูลชุดใหม่จะสะท้อนโควตาคงเหลือ อายุแพ็กเกจ การใช้งานย้อนหลัง สิทธิ์ที่มีอยู่ และประวัติการเสนอ พร้อมตรวจสิทธิ์และความเข้ากันได้ก่อนให้ ML เลือก</p>
-              <p className="mt-3">แยกข้อเสนอที่แสดงออกจากแพ็กเกจที่ซื้อจริง และจำลองการซื้อเองแม้ไม่ได้รับข้อเสนอ รุ่นแรกใช้หนึ่งการตัดสินใจต่อลูกค้า ติดตาม 7 วัน และซื้อได้ไม่เกินหนึ่งแพ็กเกจ เป้าหมายคือมูลค่าสุทธิจำลองภายใต้เกณฑ์ความเหมาะสมกับลูกค้า ไม่ใช่จำนวนการซื้ออย่างเดียว</p>
+              <p className="font-semibold text-slate-900">Experiment 3 — Paused; B1 incomplete</p>
+              <p className="mt-2">พักเส้นทางเดิมหลังพบความเบาบางสูงในคู่ exact context–action ของ TRAIN และเกณฑ์ support classification ของ B1 ยังไม่ครบ ข้อมูลเดิม 8,002 แถวสร้างจักรวาล 38,300 คู่ โดย 30,604 คู่ไม่มีตัวอย่างและ 7,653 คู่พบหนึ่งครั้ง หลักฐานเดิมยังคงเดิมและ B1_COMPLETE = NO</p>
+              <p className="mt-3">ตัวเลขนี้ไม่พิสูจน์ว่าข้อมูลเดิมเรียนรู้ไม่ได้ทุกวิธี และ zero observed count ไม่เท่ากับ zero logging propensity การพักเป็นการตัดสินใจด้านขอบเขต ไม่ใช่ formal support-test failure</p>
             </div>
             <div className="rounded-lg border border-slate-200 bg-white p-4 text-sm leading-7 text-slate-700">
-              <p>The new data-preparation design models a usage-check add-on recommendation, including NO_OFFER, rather than a simple segment-to-offer mapping. It separates displayed actions from actual purchases and allows organic purchases.</p>
-              <p className="mt-3">The first cycle uses one decision, a seven-day purchase window and at most one purchase. The objective is simulated net contribution subject to suitability constraints. Catalogue prices and costs are versioned assumptions; oracle outputs stay outside training. ML will be compared with a reasoned business-rule baseline.</p>
+              <p className="font-semibold text-slate-900">Experiment 4 — Business-grounded Package-fit Learning</p>
+              <p className="mt-2">The redesign became a separate experiment because it changes the business framing, action catalogue, simulator and evaluation. It selects an eligible add-on or NO_OFFER at usage check using quota, expiry, usage history, purchase eligibility and contact constraints.</p>
+              <p className="mt-3">Displayed recommendations remain separate from actual purchases, including organic or different-product purchases. ML will be compared with a reasoned business-rule baseline; oracle outputs stay outside training, with an equal-expected-reward control. Prices, costs and behavior are simulated assumptions, not operator outcomes.</p>
             </div>
           </div>
-          <p className="mt-3 text-xs leading-5 text-slate-500"><strong>Boundary:</strong> Design agreed; implementation pending. Prices, costs and behavior are experimental assumptions, not operator economics. No data has been generated and no model has been trained. Historical B1 remains open; B1_COMPLETE = NO. This change does not conclude that the historical data cannot support learning.</p>
+          <p className="mt-3 text-xs leading-5 text-slate-500"><strong>Current evidence:</strong> the design and business rules are recorded. Quota and contact-control fixtures passed 17 checks on the owner’s Mac. This is fixture evidence only: the new dataset has not been generated, no model has been trained, the execution contract is not frozen, and Spark/model recovery is not established.</p>
         </section>
         <p className="mt-4 text-sm leading-6 text-slate-600"><strong>Evidence boundary:</strong> the direction record is committed on the Experiment 3 evidence branch. The new execution contract, fixed metrics and budget, implementation, training, and fresh-process recovery test remain pending.</p>
       </Panel>
