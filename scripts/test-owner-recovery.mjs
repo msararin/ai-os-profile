@@ -27,6 +27,14 @@ try {
   results.push({name:'all telemetry views connected to recorded source; archive history retained',pass:true})
   await page.goto(base+'/cockpit');await page.getByRole('heading',{name:'Continue from your saved work'}).waitFor();await page.screenshot({path:output+'/overview.png',fullPage:true})
   if(process.env.OWNER_JOURNAL_TEST==='1') {
+    await page.goto(base+'/cockpit/learning/nbo-nrt')
+    const direction=page.locator('#exp3-current-direction')
+    await direction.getByRole('heading',{name:'Backward design: learn what good looks like before continuing 3B',exact:true}).waitFor()
+    const directionText=await direction.innerText()
+    assert(directionText.includes('B1 is not complete'))
+    assert(directionText.includes('3B has not started'))
+    assert(directionText.includes('fresh-process recovery test remain pending'))
+    results.push({name:'current backward-design direction is separated from historical Experiment 3 evidence',pass:true})
     for(const lane of ['one','two-a','two-b','three']) {
       await page.goto(base+'/cockpit/learning/nbo-nrt?experiment='+lane)
       const iframe=page.locator('iframe');await iframe.waitFor()
