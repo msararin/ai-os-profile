@@ -23,7 +23,7 @@ export default async function LearningJournal({searchParams}:{searchParams:Promi
           <div className="rounded-lg border border-slate-200 bg-white p-4"><dt className="font-semibold text-slate-900">What remains unchanged</dt><dd className="mt-2 text-sm leading-6 text-slate-600">Preserve the original dataset, contract, checkpoint and results. Historical TEST remains untouched. B1 is not complete, 3B has not started, and no production uplift is claimed.</dd></div>
         </dl>
         <section id="exp3-data-preparation-changes" className="mt-6 border-t border-slate-200 pt-6">
-          <p className="text-xs font-semibold uppercase tracking-widest text-teal-700">Data preparation changes · Owner-approved experiment separation · implementation pending</p>
+          <p className="text-xs font-semibold uppercase tracking-widest text-teal-700">Data preparation changes · Experiment 4 roadmap recorded · G2 current</p>
           <h3 className="mt-2 text-lg font-semibold text-slate-900">จากการปรับ Data preparation สู่การแยก Experiment 4</h3>
           <p className="mt-1 text-sm font-medium text-slate-600">From data-preparation redesign to a separate business-grounded experiment</p>
           <div className="mt-4 grid gap-4 lg:grid-cols-2">
@@ -38,7 +38,26 @@ export default async function LearningJournal({searchParams}:{searchParams:Promi
               <p className="mt-3">Displayed recommendations remain separate from actual purchases, including organic or different-product purchases. ML will be compared with a reasoned business-rule baseline; oracle outputs stay outside training, with an equal-expected-reward control. Prices, costs and behavior are simulated assumptions, not operator outcomes.</p>
             </div>
           </div>
-          <p className="mt-3 text-xs leading-5 text-slate-500"><strong>Current evidence:</strong> the design and business rules are recorded. Quota and contact-control fixtures passed 17 checks on the owner’s Mac. This is fixture evidence only: the new dataset has not been generated, no model has been trained, the execution contract is not frozen, and Spark/model recovery is not established.</p>
+          <div className="mt-4 overflow-x-auto rounded-lg border border-slate-200 bg-white">
+            <table className="min-w-[760px] w-full text-left text-sm">
+              <thead className="bg-slate-50 text-slate-800"><tr><th className="px-4 py-3 font-semibold">Gate</th><th className="px-4 py-3 font-semibold">ขั้น / Stage</th><th className="px-4 py-3 font-semibold">สถานะ / Status</th></tr></thead>
+              <tbody className="divide-y divide-slate-200 text-slate-600">
+                <tr><th className="px-4 py-3 font-semibold text-slate-800">E4-G1</th><td className="px-4 py-3">กำหนดโจทย์และเกณฑ์จบ / Define question and completion criteria</td><td className="px-4 py-3">IN_PROGRESS — design drafted; contract not frozen</td></tr>
+                <tr><th className="px-4 py-3 font-semibold text-slate-800">E4-G2</th><td className="px-4 py-3">ตรวจโลกจำลองและกฎธุรกิจ / Validate simulator and business rules</td><td className="px-4 py-3">CURRENT — ledger/contact 17 checks pass only</td></tr>
+                <tr><th className="px-4 py-3 font-semibold text-slate-800">E4-G3</th><td className="px-4 py-3">สร้างและตรวจข้อมูล / Generate and validate data</td><td className="px-4 py-3">NOT_STARTED</td></tr>
+                <tr><th className="px-4 py-3 font-semibold text-slate-800">E4-G4</th><td className="px-4 py-3">สร้างตัวเปรียบเทียบ / Establish baselines</td><td className="px-4 py-3">NOT_STARTED</td></tr>
+                <tr><th className="px-4 py-3 font-semibold text-slate-800">E4-G5</th><td className="px-4 py-3">ฝึกโมเดลและสร้างวิธีเลือก offer / Train model and derive policy</td><td className="px-4 py-3">NOT_STARTED</td></tr>
+                <tr><th className="px-4 py-3 font-semibold text-slate-800">E4-G6</th><td className="px-4 py-3">ประเมินผลบนข้อมูลที่กันไว้ / Evaluate frozen policies</td><td className="px-4 py-3">NOT_STARTED</td></tr>
+                <tr><th className="px-4 py-3 font-semibold text-slate-800">E4-G7</th><td className="px-4 py-3">โหลดกลับ ทำซ้ำ และปิดการทดลอง / Reload, reproduce and close out</td><td className="px-4 py-3">NOT_STARTED</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div className="mt-4 grid gap-4 md:grid-cols-2">
+            <div className="rounded-lg border border-slate-200 bg-white p-4 text-sm leading-6 text-slate-700"><strong className="text-slate-900">Engineering completion</strong><p className="mt-2">พิสูจน์ว่ากฎ ข้อมูล การประเมิน หลักฐาน และ fresh-process reproduction ถูกต้องตาม contract ที่ freeze แล้ว</p></div>
+            <div className="rounded-lg border border-slate-200 bg-white p-4 text-sm leading-6 text-slate-700"><strong className="text-slate-900">Learning performance</strong><p className="mt-2">ML อาจชนะ เสมอ หรือแย่กว่ากฎธุรกิจได้ การชนะ baseline ไม่ใช่เงื่อนไขบังคับของการปิดการทดลองอย่างซื่อสัตย์</p></div>
+          </div>
+          <p className="mt-3 text-sm leading-6 text-slate-700"><strong>Backward design:</strong> เริ่มจากสิ่งที่ต้องพิสูจน์ตอนจบ แล้วออกแบบ constraints, data separation, baselines, null control, evaluation และการทำซ้ำย้อนกลับมาก่อนสร้างข้อมูลหรือฝึกโมเดล</p>
+          <p className="mt-3 text-xs leading-5 text-slate-500"><strong>Current evidence:</strong> the design and business rules are recorded. Quota and contact-control fixtures passed 17 checks on the owner’s Mac. This is fixture evidence only: the full simulator has not passed, the new dataset has not been generated, no model has been trained, the execution contract is not frozen, and Spark/model recovery is not established. Next: complete action filters and purchase/null fixtures, then freeze the contract.</p>
         </section>
         <p className="mt-4 text-sm leading-6 text-slate-600"><strong>Evidence boundary:</strong> the direction record is committed on the Experiment 3 evidence branch. The new execution contract, fixed metrics and budget, implementation, training, and fresh-process recovery test remain pending.</p>
       </Panel>
