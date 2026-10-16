@@ -22,24 +22,21 @@ export default async function LearningJournal({searchParams}:{searchParams:Promi
           <div className="rounded-lg border border-slate-200 bg-white p-4"><dt className="font-semibold text-slate-900">What we want to learn</dt><dd className="mt-2 text-sm leading-6 text-slate-600">Data → validation → learning → evaluation → save/reload → fresh-process reproducibility, with preregistered positive and null-control scenarios.</dd></div>
           <div className="rounded-lg border border-slate-200 bg-white p-4"><dt className="font-semibold text-slate-900">What remains unchanged</dt><dd className="mt-2 text-sm leading-6 text-slate-600">Preserve the original dataset, contract, checkpoint and results. Historical TEST remains untouched. B1 is not complete, 3B has not started, and no production uplift is claimed.</dd></div>
         </dl>
-        <section id="exp3-business-frame" className="mt-6 border-t border-slate-200 pt-6">
-          <p className="text-xs font-semibold uppercase tracking-widest text-teal-700">Primary business case</p>
-          <h3 className="mt-2 text-lg font-semibold text-slate-900">Choose the add-on package that best fits the need at that moment</h3>
-          <p className="mt-3 text-sm leading-6 text-slate-700">ML will compete with a reasoned business-rule baseline. High data usage alone is not enough: real add-ons differ by allowance, speed, validity period, post-quota behavior, and voice-call conditions.</p>
-          <div className="mt-4 overflow-x-auto rounded-lg border border-slate-200 bg-white">
-            <table className="min-w-[760px] w-full text-left text-sm">
-              <thead className="bg-slate-50 text-slate-800"><tr><th className="px-4 py-3 font-semibold">Element</th><th className="px-4 py-3 font-semibold">Agreed design boundary</th></tr></thead>
-              <tbody className="divide-y divide-slate-200 text-slate-600">
-                <tr><th className="px-4 py-3 align-top font-semibold text-slate-800">Decision point</th><td className="px-4 py-3">Customer opens the usage view in the app; show one offer or show no offer.</td></tr>
-                <tr><th className="px-4 py-3 align-top font-semibold text-slate-800">Context</th><td className="px-4 py-3">Remaining quota, days to package expiry, recent usage, active add-ons, offer history, and relevant product attributes.</td></tr>
-                <tr><th className="px-4 py-3 align-top font-semibold text-slate-800">Eligible actions</th><td className="px-4 py-3">Short-duration data, long-duration data, voice minutes, combined data and voice, or no offer.</td></tr>
-                <tr><th className="px-4 py-3 align-top font-semibold text-slate-800">Before ML</th><td className="px-4 py-3">Enforce purchase eligibility, package compatibility, contact limits, and product-specific data or voice restrictions.</td></tr>
-                <tr><th className="px-4 py-3 align-top font-semibold text-slate-800">Baseline</th><td className="px-4 py-3">Select the lowest-priced eligible package that covers estimated need; choose no offer when no need is estimated.</td></tr>
-                <tr><th className="px-4 py-3 align-top font-semibold text-slate-800">Measured outcomes</th><td className="px-4 py-3">Simulated net value, purchase, offer suitability, and offer frequency.</td></tr>
-              </tbody>
-            </table>
+        <section id="exp3-data-preparation-changes" className="mt-6 border-t border-slate-200 pt-6">
+          <p className="text-xs font-semibold uppercase tracking-widest text-teal-700">Data preparation changes · Design agreed — implementation pending</p>
+          <h3 className="mt-2 text-lg font-semibold text-slate-900">ปรับการเตรียมข้อมูลให้ฝึกการตัดสินใจทางธุรกิจได้</h3>
+          <p className="mt-1 text-sm font-medium text-slate-600">Business-grounded synthetic data preparation</p>
+          <div className="mt-4 grid gap-4 lg:grid-cols-2">
+            <div className="rounded-lg border border-slate-200 bg-white p-4 text-sm leading-7 text-slate-700">
+              <p>ปรับทิศทางการเตรียมข้อมูลจากโลกจำลองที่จับคู่กลุ่มลูกค้ากับ offer แบบง่าย เป็นการเลือกแพ็กเกจเสริม ณ เวลาที่ลูกค้าเปิดหน้าตรวจการใช้งาน โดยเลือกไม่เสนอได้ ข้อมูลชุดใหม่จะสะท้อนโควตาคงเหลือ อายุแพ็กเกจ การใช้งานย้อนหลัง สิทธิ์ที่มีอยู่ และประวัติการเสนอ พร้อมตรวจสิทธิ์และความเข้ากันได้ก่อนให้ ML เลือก</p>
+              <p className="mt-3">แยกข้อเสนอที่แสดงออกจากแพ็กเกจที่ซื้อจริง และจำลองการซื้อเองแม้ไม่ได้รับข้อเสนอ รุ่นแรกใช้หนึ่งการตัดสินใจต่อลูกค้า ติดตาม 7 วัน และซื้อได้ไม่เกินหนึ่งแพ็กเกจ เป้าหมายคือมูลค่าสุทธิจำลองภายใต้เกณฑ์ความเหมาะสมกับลูกค้า ไม่ใช่จำนวนการซื้ออย่างเดียว</p>
+            </div>
+            <div className="rounded-lg border border-slate-200 bg-white p-4 text-sm leading-7 text-slate-700">
+              <p>The new data-preparation design models a usage-check add-on recommendation, including NO_OFFER, rather than a simple segment-to-offer mapping. It separates displayed actions from actual purchases and allows organic purchases.</p>
+              <p className="mt-3">The first cycle uses one decision, a seven-day purchase window and at most one purchase. The objective is simulated net contribution subject to suitability constraints. Catalogue prices and costs are versioned assumptions; oracle outputs stay outside training. ML will be compared with a reasoned business-rule baseline.</p>
+            </div>
           </div>
-          <p className="mt-3 text-xs leading-5 text-slate-500">Design input checked on 16 October 2026 against the current structure of <a className="underline" href="https://www.ais.th/consumers/package/addon/internet" target="_blank" rel="noreferrer">AIS add-on package information ↗</a>. This is market grounding, not implementation or outcome evidence.</p>
+          <p className="mt-3 text-xs leading-5 text-slate-500"><strong>Boundary:</strong> Design agreed; implementation pending. Prices, costs and behavior are experimental assumptions, not operator economics. No data has been generated and no model has been trained. Historical B1 remains open; B1_COMPLETE = NO. This change does not conclude that the historical data cannot support learning.</p>
         </section>
         <p className="mt-4 text-sm leading-6 text-slate-600"><strong>Evidence boundary:</strong> the direction record is committed on the Experiment 3 evidence branch. The new execution contract, fixed metrics and budget, implementation, training, and fresh-process recovery test remain pending.</p>
       </Panel>
