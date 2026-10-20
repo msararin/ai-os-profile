@@ -64,7 +64,7 @@ try {
   await page.goto(base+'/login');await page.screenshot({path:path.join(output,'login.png'),fullPage:true})
   async function browserCookie(value){await context.clearCookies();await context.addCookies([{name:salt,value:value.slice(salt.length+1),domain:'localhost',path:'/',httpOnly:true,secure:true,sameSite:'Lax'}])}
   await browserCookie(wrongCookie);await page.goto(base+'/cockpit');assert.equal(await page.title(),'Access denied');await page.screenshot({path:path.join(output,'unauthorized.png'),fullPage:true})
-  await browserCookie(ownerCookie);await page.goto(base+'/cockpit');await page.getByRole('heading',{name:'Your operating picture'}).waitFor();await page.screenshot({path:path.join(output,'cockpit-home-fixture.png'),fullPage:true})
+  await browserCookie(ownerCookie);await page.goto(base+'/cockpit');await page.getByRole('heading',{name:'Your operating picture'}).waitFor();const overviewText=await page.locator('main').innerText();assert(overviewText.includes('Recorded runs in all available evidence'));assert(overviewText.includes('Last recorded event:'));assert(overviewText.includes('Recorded cost'));await page.screenshot({path:path.join(output,'cockpit-home-fixture.png'),fullPage:true})
   await check('historical records and protected drill-down preserve source limitations',async()=>{
     await page.goto(base+'/cockpit/telemetry?view=history')
     await page.getByRole('heading',{name:'Historical telemetry · all available evidence'}).waitFor()
@@ -75,7 +75,7 @@ try {
     assert((await page.locator('main').innerText()).includes('not automatically an executed run'))
     await page.screenshot({path:path.join(output,'historical-record-owner-fixture.png'),fullPage:true})
   })
-  await page.goto(base+'/cockpit/telemetry');await page.getByText('fixture-run-1',{exact:false}).first().waitFor();await page.screenshot({path:path.join(output,'telemetry-fixture.png'),fullPage:true})
+  await page.goto(base+'/cockpit/telemetry');await page.getByText('fixture-run-1',{exact:false}).first().waitFor();const telemetryText=await page.locator('main').innerText();assert(telemetryText.includes('Saved snapshot — not a live feed.'));assert(telemetryText.includes('Showing 2 of 2 recorded runs for all available evidence'));await page.screenshot({path:path.join(output,'telemetry-fixture.png'),fullPage:true})
   await page.goto(base+'/cockpit/telemetry/runs/fixture-run-1');await page.locator('summary').click();await page.screenshot({path:path.join(output,'run-evidence-fixture.png'),fullPage:true})
   await check('engineering evidence separates the local execution decision from experiment results',async()=>{
     await page.goto(base+'/cockpit/experiments?q=engineering')
