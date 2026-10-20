@@ -9,7 +9,7 @@ export default async function Telemetry({ searchParams }: { searchParams: Promis
   const params = await searchParams
   const days = ["1","7","30"].includes(params.days??"") ? Number(params.days) : "all"
   const { data, state } = await operations()
-  const view = views.includes(params.view??"") ? params.view! : data ? "runs" : "history"
+  const view = views.includes(params.view??"") ? params.view! : "history"
   const now = Date.now()
   const start = days === "all" ? null : days === 1 ? Date.parse(new Date().toISOString().slice(0,10)+"T00:00:00Z") : now - days * 86400000
   const runs = data?.runs.filter(r=>start===null || (Date.parse(r.timestamp)>=start && Date.parse(r.timestamp)<=now)) ?? []
