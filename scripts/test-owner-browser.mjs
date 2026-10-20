@@ -75,7 +75,8 @@ try {
     assert((await page.locator('main').innerText()).includes('not automatically an executed run'))
     await page.screenshot({path:path.join(output,'historical-record-owner-fixture.png'),fullPage:true})
   })
-  await page.goto(base+'/cockpit/telemetry');await page.getByText('fixture-run-1',{exact:false}).first().waitFor();const telemetryText=await page.locator('main').innerText();assert(telemetryText.includes('Saved snapshot — not a live feed.'));assert(telemetryText.includes('Showing 2 of 2 recorded runs for all available evidence'));await page.screenshot({path:path.join(output,'telemetry-fixture.png'),fullPage:true})
+  await page.goto(base+'/cockpit/telemetry');await page.getByRole('heading',{name:'Historical telemetry · all available evidence'}).waitFor();assert((await page.locator('main').innerText()).includes('Captured provider / model records'))
+  await page.goto(base+'/cockpit/telemetry?view=runs');await page.getByText('fixture-run-1',{exact:false}).first().waitFor();const telemetryText=await page.locator('main').innerText();assert(telemetryText.includes('Saved snapshot — not a live feed.'));assert(telemetryText.includes('Showing 2 of 2 recorded runs for all available evidence'));await page.screenshot({path:path.join(output,'telemetry-fixture.png'),fullPage:true})
   await page.goto(base+'/cockpit/telemetry/runs/fixture-run-1');await page.locator('summary').click();await page.screenshot({path:path.join(output,'run-evidence-fixture.png'),fullPage:true})
   await check('engineering evidence separates the local execution decision from experiment results',async()=>{
     await page.goto(base+'/cockpit/experiments?q=engineering')
