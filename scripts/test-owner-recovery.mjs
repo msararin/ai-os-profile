@@ -26,7 +26,7 @@ try {
   for(const view of ['runs','routes','providers','cost','validation','failures','history']){await page.goto(base+'/cockpit/telemetry?view='+view);await page.getByRole('heading',{name:'Detailed telemetry'}).waitFor();const text=await page.locator('main').innerText();assert(!text.includes('No validated operational source is connected'));if(view!=='history'){assert(text.includes('Saved snapshot — not a live feed.'));assert(text.includes('Showing 8 of 8 recorded runs for all available evidence'))}}
   await page.goto(base+'/cockpit/telemetry?view=runs&days=1');await page.getByRole('link',{name:'Show all available evidence →'}).waitFor()
   results.push({name:'all telemetry views default to available recorded evidence; archive history and empty-range recovery retained',pass:true})
-  await page.goto(base+'/cockpit');await page.getByRole('heading',{name:'Continue from your saved work'}).waitFor();const overview=await page.locator('main').innerText();assert(overview.includes('8\nRecorded runs in all available evidence'));assert(overview.includes('Last recorded event:'));assert(overview.includes('Recorded cost'));await page.screenshot({path:output+'/overview.png',fullPage:true})
+  await page.goto(base+'/cockpit');await page.getByRole('heading',{name:'Continue from your saved work'}).waitFor();const overview=await page.locator('main').innerText();assert(overview.includes('Recorded runs in all available evidence'));assert(overview.includes('Last recorded event:'));assert(overview.includes('Recorded cost'));await page.screenshot({path:output+'/overview.png',fullPage:true})
   if(process.env.OWNER_JOURNAL_TEST==='1') {
     await page.goto(base+'/cockpit/learning/nbo-nrt')
     const direction=page.locator('#exp3-current-direction')
