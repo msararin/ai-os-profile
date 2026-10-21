@@ -4,6 +4,25 @@ import { Empty, Panel, PrivateLink } from "@/components/cockpit-ui"
 
 const editions = [{key:"one",label:"Experiment 1"},{key:"two-a",label:"Experiment 2A"},{key:"two-b",label:"Experiment 2B"},{key:"three",label:"Experiment 3"},{key:"four",label:"Experiment 4"}]
 
+const exp4FeatureGroups = [
+  ["1–13", "ประวัติใช้งาน โควตา วันหมดอายุ ประวัติข้อเสนอ และความต้องการที่คาดว่ายังขาด", "Usage history, entitlements, expiry, offer history, and forecast uncovered demand", 13],
+  ["14–23", "คุณสมบัติแพ็กเกจ ราคา ต้นทุน ประโยชน์ โควตาที่คาดว่าจะเหลือ และจำนวน action ที่อนุญาต", "Candidate attributes, price, cost, benefit, forecast unused quota, and allowed-action count", 10],
+  ["24–28", "ตัวบอก action ที่กำลังประเมิน", "Evaluated-action indicators", 5],
+  ["29–33", "สิทธิ์ซื้อแต่ละสินค้า", "Purchase-eligibility indicators", 5],
+  ["34–38", "สิทธิ์เสนอแต่ละ action", "Final allowed-action indicators", 5],
+] as const
+
+const exp4Features = [
+  "history_data_total_gb", "history_voice_total_minutes", "base_remaining_data_gb", "base_remaining_voice_minutes", "base_expiry_days",
+  "active_addon_remaining_data_gb", "active_addon_remaining_voice_minutes", "active_addon_expiry_days", "prior_offer_count_7d", "hours_since_last_offer",
+  "no_prior_offer", "forecast_uncovered_data_gb", "forecast_uncovered_voice_minutes", "candidate_data_gb", "candidate_voice_minutes",
+  "candidate_validity_days", "candidate_price_thb", "candidate_variable_cost_thb", "candidate_delta_data_gb", "candidate_delta_voice_minutes",
+  "candidate_unused_data_gb", "candidate_unused_voice_minutes", "allowed_action_count",
+  "action indicator — COMBO", "action indicator — DATA_LONG", "action indicator — DATA_SHORT", "action indicator — NO_OFFER", "action indicator — VOICE",
+  "purchase eligibility — COMBO", "purchase eligibility — DATA_LONG", "purchase eligibility — DATA_SHORT", "purchase eligibility — NO_OFFER", "purchase eligibility — VOICE",
+  "final allowed action — COMBO", "final allowed action — DATA_LONG", "final allowed action — DATA_SHORT", "final allowed action — NO_OFFER", "final allowed action — VOICE",
+] as const
+
 export default async function LearningJournal({searchParams}:{searchParams:Promise<{experiment?:string}>}) {
   await requireOwner()
   const {experiment}=await searchParams
@@ -41,7 +60,7 @@ export default async function LearningJournal({searchParams}:{searchParams:Promi
               <thead className="bg-slate-50 text-slate-800"><tr><th className="px-4 py-3 font-semibold">Gate</th><th className="px-4 py-3 font-semibold">ขั้น / Stage</th><th className="px-4 py-3 font-semibold">สถานะ / Status</th></tr></thead>
               <tbody className="divide-y divide-slate-200 text-slate-600">
                 <tr><th className="px-4 py-3 font-semibold text-slate-800">E4-G1</th><td className="px-4 py-3">กำหนดโจทย์และเกณฑ์จบ / Define question and completion criteria</td><td className="px-4 py-3">IN_PROGRESS — design drafted; contract not frozen</td></tr>
-                <tr><th className="px-4 py-3 font-semibold text-slate-800">E4-G2</th><td className="px-4 py-3">ตรวจโลกจำลองและกฎธุรกิจ / Validate simulator and business rules</td><td className="px-4 py-3">CURRENT — ledger/contact 17 checks pass only</td></tr>
+                <tr><th className="px-4 py-3 font-semibold text-slate-800">E4-G2</th><td className="px-4 py-3">ตรวจโลกจำลองและกฎธุรกิจ / Validate simulator and business rules</td><td className="px-4 py-3">CURRENT — 17 ledger/contact, 11 action-filter and 20 purchase/null PASS entries; gate incomplete</td></tr>
                 <tr><th className="px-4 py-3 font-semibold text-slate-800">E4-G3</th><td className="px-4 py-3">สร้างและตรวจข้อมูล / Generate and validate data</td><td className="px-4 py-3">NOT_STARTED</td></tr>
                 <tr><th className="px-4 py-3 font-semibold text-slate-800">E4-G4</th><td className="px-4 py-3">สร้างตัวเปรียบเทียบ / Establish baselines</td><td className="px-4 py-3">NOT_STARTED</td></tr>
                 <tr><th className="px-4 py-3 font-semibold text-slate-800">E4-G5</th><td className="px-4 py-3">ฝึกโมเดลและสร้างวิธีเลือก offer / Train model and derive policy</td><td className="px-4 py-3">NOT_STARTED</td></tr>
@@ -55,7 +74,71 @@ export default async function LearningJournal({searchParams}:{searchParams:Promi
             <div className="rounded-lg border border-slate-200 bg-white p-4 text-sm leading-6 text-slate-700"><strong className="text-slate-900">Engineering completion</strong><p className="mt-2">พิสูจน์ว่ากฎ ข้อมูล การประเมิน หลักฐาน และ fresh-process reproduction ถูกต้องตาม contract ที่ freeze แล้ว</p></div>
             <div className="rounded-lg border border-slate-200 bg-white p-4 text-sm leading-6 text-slate-700"><strong className="text-slate-900">Learning performance</strong><p className="mt-2">ML อาจชนะ เสมอ หรือแย่กว่ากฎธุรกิจได้ การชนะ baseline ไม่ใช่เงื่อนไขบังคับของการปิดการทดลองอย่างซื่อสัตย์</p></div>
           </div>
-          <p className="mt-3 text-xs leading-5 text-slate-500"><strong>Current evidence:</strong> the design and business rules are recorded. Quota and contact-control fixtures passed 17 checks on the owner’s Mac. This is fixture evidence only: the full simulator has not passed, the new dataset has not been generated, no model has been trained, the execution contract is not frozen, and Spark/model recovery is not established. Next: complete action filters and purchase/null fixtures, then freeze the contract.</p>
+          <section id="exp4-business-to-features" className="mt-6 border-t border-slate-200 pt-6">
+            <p className="text-xs font-semibold uppercase tracking-widest text-teal-700">Feature design journal · 21 October 2026</p>
+            <h2 className="mt-2 text-xl font-semibold text-slate-900">จากโจทย์ธุรกิจสู่ 38 Features</h2>
+            <p className="mt-1 text-sm font-medium text-slate-600">From Business Decisions to 38 Model Features</p>
+            <p className="mt-3 leading-7 text-slate-700">หนึ่งแถวแทน <strong>ลูกค้าหนึ่งคน × action หนึ่งรายการ</strong> ตอนฝึก แถวนั้นใช้ action ที่เสนอจริงและ <code>observed_reward</code> ของเหตุการณ์นั้นเป็น label; ตอนเลือกข้อเสนอ ระบบสร้าง representation เดียวกันเพื่อประเมินแต่ละ action ที่ผ่านข้อจำกัดแล้ว โดยไม่ส่ง oracle หรือผลลัพธ์ในอนาคตให้ learner.</p>
+
+            <div className="mt-5 overflow-x-auto rounded-lg border border-slate-200 bg-white">
+              <table className="min-w-[760px] w-full text-left text-sm">
+                <thead className="bg-slate-50 text-slate-800"><tr><th className="px-4 py-3 font-semibold">ช่อง / Fields</th><th className="px-4 py-3 font-semibold">กลุ่ม / Group</th><th className="px-4 py-3 text-right font-semibold">จำนวน / Count</th></tr></thead>
+                <tbody className="divide-y divide-slate-200 text-slate-600">{exp4FeatureGroups.map(([range,th,en,count])=><tr key={range}><th className="whitespace-nowrap px-4 py-3 font-semibold text-slate-800">{range}</th><td className="px-4 py-3"><span className="block">{th}</span><span className="mt-1 block text-xs text-slate-500">{en}</span></td><td className="px-4 py-3 text-right tabular-nums">{count}</td></tr>)}</tbody>
+              </table>
+            </div>
+
+            <div className="mt-5 grid gap-4 lg:grid-cols-2">
+              <div className="rounded-lg border border-slate-200 bg-white p-4">
+                <h3 className="font-semibold text-slate-900">เกณฑ์การเลือก / Selection criteria</h3>
+                <ol className="mt-3 list-decimal space-y-2 pl-5 text-sm leading-6 text-slate-700">
+                  <li>รู้ได้ ณ เวลาตัดสินใจ / available at decision time.</li>
+                  <li>เกี่ยวข้องกับ customer need, offer attributes หรือ business constraints.</li>
+                  <li>ใช้นิยามเดียวกันตอนฝึกและตอนประเมิน action.</li>
+                  <li>ลำดับคงที่ เป็น finite numeric และ non-null ตาม contract.</li>
+                  <li>ไม่ใช้ผลหลังการเสนอหรือ simulator truth เป็นตัวทำนาย.</li>
+                </ol>
+              </div>
+              <div className="rounded-lg border border-slate-200 bg-white p-4">
+                <h3 className="font-semibold text-slate-900">สิ่งที่แยกออก / Kept outside features</h3>
+                <ul className="mt-3 list-disc space-y-2 pl-5 text-sm leading-6 text-slate-700">
+                  <li><code>observed_reward</code> คือ label ไม่ใช่ feature.</li>
+                  <li>สินค้าที่ซื้อจริงและเวลาซื้อเป็น outcomes.</li>
+                  <li>Hidden price sensitivity และ oracle expected reward เป็นเฉลยที่แยกจาก learner.</li>
+                  <li>Customer ID และ split ใช้จัดการ/เชื่อมแถว ไม่เข้า feature vector.</li>
+                </ul>
+              </div>
+            </div>
+
+            <details className="mt-5 rounded-lg border border-slate-200 bg-white p-4">
+              <summary className="cursor-pointer font-semibold text-slate-900">ดูรายชื่อ 38 features ตามลำดับ contract / View the ordered 38-feature schema</summary>
+              <p className="mt-2 text-xs leading-5 text-slate-500">Fields 24–38 use the contract’s fixed indicator order: COMBO, DATA_LONG, DATA_SHORT, NO_OFFER, VOICE.</p>
+              <div className="mt-3 overflow-x-auto">
+                <table className="min-w-[620px] w-full text-left text-sm"><thead className="border-b border-slate-200 text-slate-700"><tr><th className="px-3 py-2 font-semibold">#</th><th className="px-3 py-2 font-semibold">Contract field</th></tr></thead><tbody className="divide-y divide-slate-100">{exp4Features.map((feature,index)=><tr key={feature}><td className="w-16 px-3 py-2 tabular-nums text-slate-500">{index+1}</td><td className="px-3 py-2 font-mono text-xs text-slate-700">{feature}</td></tr>)}</tbody></table>
+              </div>
+            </details>
+
+            <div className="mt-5 rounded-lg border border-teal-200 bg-teal-50/60 p-4">
+              <p className="text-xs font-semibold uppercase tracking-widest text-teal-800">ตัวอย่างคำนวณเท่านั้น · Worked example, not a dataset result</p>
+              <p className="mt-3 text-sm leading-6 text-slate-700">ลูกค้าใช้ย้อนหลัง 7 วัน: เน็ต 7 GB / โทร 70 นาที; แพ็กเกจหลักเหลือ 3 GB / 20 นาทีและหมดอายุใน 7 วัน; ไม่มีแพ็กเกจเสริม; เคยได้รับข้อเสนอหนึ่งครั้งเมื่อ 72 ชั่วโมงก่อน; สมมติว่าผ่านสิทธิ์ซื้อและเงื่อนไขเสนอทุกสินค้า.</p>
+              <div className="mt-4 grid gap-3 md:grid-cols-2">
+                <div className="rounded-lg bg-white p-3 text-sm leading-6 text-slate-700"><strong className="text-slate-900">Forecast gap</strong><br/>4 GB / 50 minutes</div>
+                <div className="rounded-lg bg-white p-3 text-sm leading-6 text-slate-700"><strong className="text-slate-900">DATA_LONG candidate</strong><br/>8 GB · 14 days · THB 119 · cost THB 35</div>
+                <div className="rounded-lg bg-white p-3 text-sm leading-6 text-slate-700"><strong className="text-slate-900">Immediate-activation benefit</strong><br/>ลด data gap 4 GB; ไม่ลด voice gap</div>
+                <div className="rounded-lg bg-white p-3 text-sm leading-6 text-slate-700"><strong className="text-slate-900">Bounded-horizon remainder</strong><br/>คาดว่าเหลือ 4 GB ณ สิ้นวันที่ 7—ยังไม่เรียกว่าโควตาสูญเปล่า เพราะแพ็กเกจยังไม่หมดอายุ</div>
+              </div>
+              <p className="mt-3 text-sm text-slate-700"><code>allowed_action_count = 5</code> รวม <code>NO_OFFER</code>.</p>
+              <div className="mt-3 overflow-x-auto rounded-lg bg-white">
+                <table className="min-w-[700px] w-full text-center text-xs"><thead className="border-b border-slate-200 text-slate-700"><tr><th className="px-3 py-2 text-left">Indicator order</th><th className="px-3 py-2">COMBO</th><th className="px-3 py-2">DATA_LONG</th><th className="px-3 py-2">DATA_SHORT</th><th className="px-3 py-2">NO_OFFER</th><th className="px-3 py-2">VOICE</th></tr></thead><tbody className="divide-y divide-slate-100 text-slate-700"><tr><th className="px-3 py-2 text-left font-medium">Action</th><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td></tr><tr><th className="px-3 py-2 text-left font-medium">Purchase eligibility</th><td>1</td><td>1</td><td>1</td><td>0</td><td>1</td></tr><tr><th className="px-3 py-2 text-left font-medium">Allowed actions</th><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td></tr></tbody></table>
+              </div>
+              <p className="mt-3 text-xs leading-5 text-slate-600"><code>NO_OFFER</code> ไม่ใช่สินค้า จึงมี purchase eligibility = 0 แต่เป็น action ที่เลือกได้เสมอ.</p>
+            </div>
+
+            <div className="mt-5 rounded-lg border border-amber-200 bg-amber-50 p-4 text-sm leading-6 text-slate-700">
+              <p className="font-semibold text-amber-900">ขอบเขตหลักฐาน / Evidence boundary</p>
+              <ul className="mt-2 list-disc space-y-1 pl-5"><li>38 features เป็นแบบออกแบบที่ยังต้อง implement, test และวัดผล—not validated features และไม่รับประกันว่า representation นี้เพียงพอให้เรียนรู้ได้ดี.</li><li>Candidate benefit และ unused quota มาจาก forecast ภายใต้สมมติฐานเปิดใช้ทันที ไม่ใช่การใช้จริงในอนาคต.</li><li>ราคา ต้นทุน และพฤติกรรมซื้อเป็นสมมติฐานจำลอง ไม่ใช่ข้อมูลจริงของผู้ให้บริการ.</li><li>Synthetic evaluation ไม่พิสูจน์ production uplift.</li></ul>
+            </div>
+          </section>
+          <p className="mt-5 text-xs leading-5 text-slate-500"><strong>Current evidence:</strong> owner confirmed the Mac fast-forward to <code>885fcb3</code>. Contract status is <code>IMPLEMENTATION_REVIEW; NOT_FROZEN</code>. Ledger/contact fixtures: 17 PASS; action filters: 11 PASS; purchase/null: 20 recorded PASS entries (19 checks/check groups plus one descriptive observation). Purchase/null evidence commit <code>fa5cb69</code> was pushed and its remote receipt/log hashes were verified. The 38-feature assembly, baseline choices and deterministic draws remain pending. E4-G1 is not frozen; E4-G2 is incomplete; dataset generation and model training are <code>NOT_STARTED</code>. Experiment 3 remains <code>PAUSED_SAFE</code>; <code>B1_COMPLETE=NO</code>.</p>
         <p className="mt-4 text-sm leading-6 text-slate-600"><strong>Simulation boundary:</strong> prices, costs and behavior are assumptions—not actual operator outcomes.</p>
       </Panel>
     </div>}
