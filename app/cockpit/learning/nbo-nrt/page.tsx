@@ -47,7 +47,7 @@ export default async function LearningJournal({searchParams}:{searchParams:Promi
     </div>}
     {selected.key==="four"&&<div id="exp4-roadmap">
       <Panel title="Experiment 4 — Business-grounded Package-fit Learning">
-        <p className="text-xs font-semibold uppercase tracking-widest text-teal-700">Backward-design roadmap · G2 current · execution contract pending</p>
+        <p className="text-xs font-semibold uppercase tracking-widest text-teal-700">Backward-design roadmap · G1/G2 complete · frozen scope · G3 smoke passed</p>
         <h2 className="mt-3 text-xl font-semibold text-slate-900">เรียนรู้ว่าแพ็กเกจเสริมใดเหมาะกับ context นี้—or NO_OFFER</h2>
         <p className="mt-3 leading-7 text-slate-700">Backward design starts with what must be proved at the end, then works backward through constraints, data separation, baselines, null control, evaluation and reproducibility before generating data or training a model. ML is not required to beat the business-rule baseline.</p>
         <div className="mt-5 grid gap-4 lg:grid-cols-2">
@@ -59,9 +59,9 @@ export default async function LearningJournal({searchParams}:{searchParams:Promi
             <table className="min-w-[760px] w-full text-left text-sm">
               <thead className="bg-slate-50 text-slate-800"><tr><th className="px-4 py-3 font-semibold">Gate</th><th className="px-4 py-3 font-semibold">ขั้น / Stage</th><th className="px-4 py-3 font-semibold">สถานะ / Status</th></tr></thead>
               <tbody className="divide-y divide-slate-200 text-slate-600">
-                <tr><th className="px-4 py-3 font-semibold text-slate-800">E4-G1</th><td className="px-4 py-3">กำหนดโจทย์และเกณฑ์จบ / Define question and completion criteria</td><td className="px-4 py-3">IN_PROGRESS — design drafted; contract not frozen</td></tr>
-                <tr><th className="px-4 py-3 font-semibold text-slate-800">E4-G2</th><td className="px-4 py-3">ตรวจโลกจำลองและกฎธุรกิจ / Validate simulator and business rules</td><td className="px-4 py-3">CURRENT — 17 ledger/contact, 11 action-filter and 20 purchase/null PASS entries; gate incomplete</td></tr>
-                <tr><th className="px-4 py-3 font-semibold text-slate-800">E4-G3</th><td className="px-4 py-3">สร้างและตรวจข้อมูล / Generate and validate data</td><td className="px-4 py-3">NOT_STARTED</td></tr>
+                <tr><th className="px-4 py-3 font-semibold text-slate-800">E4-G1</th><td className="px-4 py-3">กำหนดโจทย์และเกณฑ์จบ / Define question and completion criteria</td><td className="px-4 py-3">COMPLETE — scope frozen in EXP4_FREEZE:v1</td></tr>
+                <tr><th className="px-4 py-3 font-semibold text-slate-800">E4-G2</th><td className="px-4 py-3">ตรวจโลกจำลองและกฎธุรกิจ / Validate simulator and business rules</td><td className="px-4 py-3">COMPLETE — bounded simulator/component fixtures passed</td></tr>
+                <tr><th className="px-4 py-3 font-semibold text-slate-800">E4-G3</th><td className="px-4 py-3">สร้างและตรวจข้อมูล / Generate and validate data</td><td className="px-4 py-3">SMOKE_PASS — 200 customers / 410 candidate rows; full data NOT_COMPLETE</td></tr>
                 <tr><th className="px-4 py-3 font-semibold text-slate-800">E4-G4</th><td className="px-4 py-3">สร้างตัวเปรียบเทียบ / Establish baselines</td><td className="px-4 py-3">NOT_STARTED</td></tr>
                 <tr><th className="px-4 py-3 font-semibold text-slate-800">E4-G5</th><td className="px-4 py-3">ฝึกโมเดลและสร้างวิธีเลือก offer / Train model and derive policy</td><td className="px-4 py-3">NOT_STARTED</td></tr>
                 <tr><th className="px-4 py-3 font-semibold text-slate-800">E4-G6</th><td className="px-4 py-3">ประเมินผลบนข้อมูลที่กันไว้ / Evaluate frozen policies</td><td className="px-4 py-3">NOT_STARTED</td></tr>
@@ -74,6 +74,33 @@ export default async function LearningJournal({searchParams}:{searchParams:Promi
             <div className="rounded-lg border border-slate-200 bg-white p-4 text-sm leading-6 text-slate-700"><strong className="text-slate-900">Engineering completion</strong><p className="mt-2">พิสูจน์ว่ากฎ ข้อมูล การประเมิน หลักฐาน และ fresh-process reproduction ถูกต้องตาม contract ที่ freeze แล้ว</p></div>
             <div className="rounded-lg border border-slate-200 bg-white p-4 text-sm leading-6 text-slate-700"><strong className="text-slate-900">Learning performance</strong><p className="mt-2">ML อาจชนะ เสมอ หรือแย่กว่ากฎธุรกิจได้ การชนะ baseline ไม่ใช่เงื่อนไขบังคับของการปิดการทดลองอย่างซื่อสัตย์</p></div>
           </div>
+          <section id="exp4-g2-closeout" className="mt-6 rounded-xl border border-emerald-200 bg-emerald-50/60 p-5">
+            <p className="text-xs font-semibold uppercase tracking-widest text-emerald-800">G2 closeout · bounded validation complete · 21 October 2026</p>
+            <h2 className="mt-2 text-xl font-semibold text-slate-900">กฎธุรกิจและส่วนประกอบของ simulator เชื่อมกันตาม frozen design แล้ว</h2>
+            <p className="mt-1 text-sm font-medium text-slate-600">Business rules and simulator components are wired and verified within the frozen fixture boundary.</p>
+            <p className="mt-3 leading-7 text-slate-700">G2 ปิดเมื่อ owner-run fixtures พิสูจน์การเชื่อมต่อของ ledger/contact rules, action filters, purchase/null outcomes, baselines, deterministic random streams และ 38-feature/reward integration บน hand-constructed contexts โดยใช้ข้อจำกัดเดียวกันสำหรับ learner, baselines และ oracle.</p>
+
+            <div className="mt-4 overflow-x-auto rounded-lg border border-emerald-200 bg-white">
+              <table className="min-w-[700px] w-full text-left text-sm">
+                <thead className="bg-emerald-50 text-slate-800"><tr><th className="px-4 py-3 font-semibold">Evidence set</th><th className="px-4 py-3 font-semibold">Result</th><th className="px-4 py-3 font-semibold">Evidence commit</th></tr></thead>
+                <tbody className="divide-y divide-slate-200 text-slate-700">
+                  <tr><td className="px-4 py-3">Ledger / contact rules</td><td className="px-4 py-3">17 PASS</td><td className="px-4 py-3 font-mono text-xs">business-ledger-65498…</td></tr>
+                  <tr><td className="px-4 py-3">Action filters</td><td className="px-4 py-3">11 PASS</td><td className="px-4 py-3 font-mono text-xs">e045dbe</td></tr>
+                  <tr><td className="px-4 py-3">Purchase / null control</td><td className="px-4 py-3">19 checks/groups + 1 descriptive q record</td><td className="px-4 py-3 font-mono text-xs">fa5cb69</td></tr>
+                  <tr><td className="px-4 py-3">Business baselines</td><td className="px-4 py-3">16 PASS</td><td className="px-4 py-3 font-mono text-xs">abde993</td></tr>
+                  <tr><td className="px-4 py-3">Deterministic random stream</td><td className="px-4 py-3">16 PASS</td><td className="px-4 py-3 font-mono text-xs">12a77b5</td></tr>
+                  <tr><td className="px-4 py-3">38-feature / component integration</td><td className="px-4 py-3">20 PASS</td><td className="px-4 py-3 font-mono text-xs">df0e8d6</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div className="mt-4 grid gap-4 lg:grid-cols-2">
+              <div className="rounded-lg bg-white p-4 text-sm leading-6 text-slate-700"><p className="font-semibold text-slate-900">หลักการที่ใช้ / Principles</p><ul className="mt-2 list-disc space-y-1 pl-5"><li>Backward design: freeze สิ่งที่ต้องพิสูจน์ก่อนขยายข้อมูล.</li><li>Business constraints first และใช้ shared filters ทุก policy.</li><li>แยก learner, outcome, latent และ evaluator-only oracle.</li><li>Deterministic draws และ fixed feature order เพื่อทำซ้ำได้.</li><li>ML ชนะ เสมอ หรือแพ้ baseline ได้โดยไม่เปลี่ยนกติกาเพื่อให้ชนะ.</li></ul></div>
+              <div className="rounded-lg bg-white p-4 text-sm leading-6 text-slate-700"><p className="font-semibold text-slate-900">การเก็บหลักฐาน / Evidence custody</p><p className="mt-2">Freeze record: <code>93a9ee3</code>. หลักฐานแต่ละชุดเก็บใต้ <code>evidence/exp4/</code> พร้อม script, <code>receipt.json</code> และ <code>run.log</code>; remote receipt/log SHA-256 ถูกตรวจอ่านกลับ. Final integration run คือ <code>exp4-features-integration-f7827…</code> โดย receipt SHA-256 <code>d87b425…979e47</code> และ log SHA-256 <code>2144987…4800c</code>.</p></div>
+            </div>
+
+            <p className="mt-4 text-xs leading-5 text-emerald-900"><strong>Completion boundary:</strong> G2 COMPLETE หมายถึง bounded component/fixture requirements ผ่านแล้ว—not full generator validation, model learning, empirical calibration, production uplift หรือ fresh-process Spark/model recovery. หลัง G2 มี G3 smoke PASS สำหรับ 200 customers / 410 candidate rows และ six-table same-process Parquet read-back; full G3 data ยัง <code>NOT_COMPLETE</code> และ model training ยัง <code>NOT_STARTED</code>.</p>
+          </section>
           <section id="exp4-business-to-features" className="mt-6 border-t border-slate-200 pt-6">
             <p className="text-xs font-semibold uppercase tracking-widest text-teal-700">Feature design journal · 21 October 2026</p>
             <h2 className="mt-2 text-xl font-semibold text-slate-900">จากโจทย์ธุรกิจสู่ 38 Features</h2>
@@ -135,10 +162,10 @@ export default async function LearningJournal({searchParams}:{searchParams:Promi
 
             <div className="mt-5 rounded-lg border border-amber-200 bg-amber-50 p-4 text-sm leading-6 text-slate-700">
               <p className="font-semibold text-amber-900">ขอบเขตหลักฐาน / Evidence boundary</p>
-              <ul className="mt-2 list-disc space-y-1 pl-5"><li>38 features เป็นแบบออกแบบที่ยังต้อง implement, test และวัดผล—not validated features และไม่รับประกันว่า representation นี้เพียงพอให้เรียนรู้ได้ดี.</li><li>Candidate benefit และ unused quota มาจาก forecast ภายใต้สมมติฐานเปิดใช้ทันที ไม่ใช่การใช้จริงในอนาคต.</li><li>ราคา ต้นทุน และพฤติกรรมซื้อเป็นสมมติฐานจำลอง ไม่ใช่ข้อมูลจริงของผู้ให้บริการ.</li><li>Synthetic evaluation ไม่พิสูจน์ production uplift.</li></ul>
+              <ul className="mt-2 list-disc space-y-1 pl-5"><li>ลำดับและ wiring ของ 38 features ผ่าน bounded integration fixtures และ G3 smoke read-back แล้ว แต่ยังไม่รับประกันว่า representation นี้เพียงพอให้โมเดลเรียนรู้ได้ดี.</li><li>Candidate benefit และ unused quota มาจาก forecast ภายใต้สมมติฐานเปิดใช้ทันที ไม่ใช่การใช้จริงในอนาคต.</li><li>ราคา ต้นทุน และพฤติกรรมซื้อเป็นสมมติฐานจำลอง ไม่ใช่ข้อมูลจริงของผู้ให้บริการ.</li><li>Synthetic evaluation ไม่พิสูจน์ production uplift.</li></ul>
             </div>
           </section>
-          <p className="mt-5 text-xs leading-5 text-slate-500"><strong>Current evidence:</strong> owner confirmed the Mac fast-forward to <code>885fcb3</code>. Contract status is <code>IMPLEMENTATION_REVIEW; NOT_FROZEN</code>. Ledger/contact fixtures: 17 PASS; action filters: 11 PASS; purchase/null: 20 recorded PASS entries (19 checks/check groups plus one descriptive observation). Purchase/null evidence commit <code>fa5cb69</code> was pushed and its remote receipt/log hashes were verified. The 38-feature assembly, baseline choices and deterministic draws remain pending. E4-G1 is not frozen; E4-G2 is incomplete; dataset generation and model training are <code>NOT_STARTED</code>. Experiment 3 remains <code>PAUSED_SAFE</code>; <code>B1_COMPLETE=NO</code>.</p>
+          <p className="mt-5 text-xs leading-5 text-slate-500"><strong>Current evidence:</strong> experiment branch checkpoint <code>47776f3</code>. G1/G2 are complete under <code>EXP4_FREEZE:v1</code>; G3 smoke passed and its failed-before-fix plus passing artifacts are retained remotely. G3 full data is <code>NOT_COMPLETE</code>; model training, evaluation, save and reload are <code>NOT_STARTED</code>. Fresh-process Spark resume is <code>NOT_PERFORMED</code>. Experiment 3 remains <code>PAUSED_SAFE</code>; <code>B1_COMPLETE=NO</code>.</p>
         <p className="mt-4 text-sm leading-6 text-slate-600"><strong>Simulation boundary:</strong> prices, costs and behavior are assumptions—not actual operator outcomes.</p>
       </Panel>
     </div>}
