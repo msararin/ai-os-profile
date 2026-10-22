@@ -54,26 +54,30 @@ export default async function LearningJournal({searchParams}:{searchParams:Promi
           <div className="rounded-lg border border-slate-200 bg-white p-4 text-sm leading-7 text-slate-700"><p className="font-semibold text-slate-900">Business decision</p><p className="mt-2">At usage check, select an eligible add-on or NO_OFFER using quota, expiry, usage history, purchase eligibility and contact constraints.</p></div>
           <div className="rounded-lg border border-slate-200 bg-white p-4 text-sm leading-7 text-slate-700"><p className="font-semibold text-slate-900">Evidence discipline</p><p className="mt-2">Recommendation and actual purchase remain separate, including organic or different-product purchases. Oracle outputs stay outside training; a reasoned baseline and equal-expected-reward control are retained.</p></div>
         </div>
-        <section id="exp4-gates" className="mt-6">
-          <div className="overflow-x-auto rounded-lg border border-slate-200 bg-white">
-            <table className="min-w-[760px] w-full text-left text-sm">
-              <thead className="bg-slate-50 text-slate-800"><tr><th className="px-4 py-3 font-semibold">Gate</th><th className="px-4 py-3 font-semibold">ขั้น / Stage</th><th className="px-4 py-3 font-semibold">สถานะ / Status</th></tr></thead>
-              <tbody className="divide-y divide-slate-200 text-slate-600">
-                <tr><th className="px-4 py-3 font-semibold text-slate-800">E4-G1</th><td className="px-4 py-3">กำหนดโจทย์และเกณฑ์จบ / Define question and completion criteria</td><td className="px-4 py-3">COMPLETE — scope frozen in EXP4_FREEZE:v1</td></tr>
-                <tr><th className="px-4 py-3 font-semibold text-slate-800">E4-G2</th><td className="px-4 py-3">ตรวจโลกจำลองและกฎธุรกิจ / Validate simulator and business rules</td><td className="px-4 py-3">COMPLETE — bounded simulator/component fixtures passed</td></tr>
-                <tr><th className="px-4 py-3 font-semibold text-slate-800">E4-G3</th><td className="px-4 py-3">สร้างและตรวจข้อมูล / Generate and validate data</td><td className="px-4 py-3">SMOKE_PASS — 200 customers / 410 candidate rows; full data NOT_COMPLETE</td></tr>
-                <tr><th className="px-4 py-3 font-semibold text-slate-800">E4-G4</th><td className="px-4 py-3">สร้างตัวเปรียบเทียบ / Establish baselines</td><td className="px-4 py-3">NOT_STARTED</td></tr>
-                <tr><th className="px-4 py-3 font-semibold text-slate-800">E4-G5</th><td className="px-4 py-3">ฝึกโมเดลและสร้างวิธีเลือก offer / Train model and derive policy</td><td className="px-4 py-3">NOT_STARTED</td></tr>
-                <tr><th className="px-4 py-3 font-semibold text-slate-800">E4-G6</th><td className="px-4 py-3">ประเมินผลบนข้อมูลที่กันไว้ / Evaluate frozen policies</td><td className="px-4 py-3">NOT_STARTED</td></tr>
-                <tr><th className="px-4 py-3 font-semibold text-slate-800">E4-G7</th><td className="px-4 py-3">โหลดกลับ ทำซ้ำ และปิดการทดลอง / Reload, reproduce and close out</td><td className="px-4 py-3">NOT_STARTED</td></tr>
-              </tbody>
-            </table>
-          </div>
-        </section>
+        <section id="exp4-gates" className="mt-6 space-y-3">
+          <h2 className="text-xl font-semibold text-slate-900">บันทึกตาม Gate / Gate journal</h2>
+          <p className="text-sm text-slate-600">กดหัวข้อเพื่อขยายหรือพับรายละเอียด เปิดหลายหัวข้อพร้อมกันได้ / Expand or collapse each gate independently.</p>
+          <details id="exp4-gate-1" className="rounded-xl border border-slate-200 bg-white">
+            <summary className="cursor-pointer rounded-xl p-4 text-slate-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-700">
+              <span className="font-semibold">E4-G1 — กำหนดโจทย์และเกณฑ์จบ / Define question and completion criteria</span>
+              <span className="mt-2 block text-xs font-semibold text-emerald-800">COMPLETE — scope frozen in EXP4_FREEZE:v1</span>
+              <span className="mt-2 block text-sm leading-6 text-slate-600">โจทย์และเกณฑ์จบถูก freeze แล้ว / Scope and completion criteria frozen.</span>
+            </summary>
+            <div className="border-t border-slate-200 p-4 text-sm leading-7 text-slate-700">
           <div className="mt-4 grid gap-4 md:grid-cols-2">
             <div className="rounded-lg border border-slate-200 bg-white p-4 text-sm leading-6 text-slate-700"><strong className="text-slate-900">Engineering completion</strong><p className="mt-2">พิสูจน์ว่ากฎ ข้อมูล การประเมิน หลักฐาน และ fresh-process reproduction ถูกต้องตาม contract ที่ freeze แล้ว</p></div>
             <div className="rounded-lg border border-slate-200 bg-white p-4 text-sm leading-6 text-slate-700"><strong className="text-slate-900">Learning performance</strong><p className="mt-2">ML อาจชนะ เสมอ หรือแย่กว่ากฎธุรกิจได้ การชนะ baseline ไม่ใช่เงื่อนไขบังคับของการปิดการทดลองอย่างซื่อสัตย์</p></div>
           </div>
+
+            </div>
+          </details>
+          <details id="exp4-gate-2" className="rounded-xl border border-slate-200 bg-white">
+            <summary className="cursor-pointer rounded-xl p-4 text-slate-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-700">
+              <span className="font-semibold">E4-G2 — ตรวจโลกจำลองและกฎธุรกิจ / Validate simulator and business rules</span>
+              <span className="mt-2 block text-xs font-semibold text-emerald-800">COMPLETE — bounded simulator/component fixtures passed</span>
+              <span className="mt-2 block text-sm leading-6 text-slate-600">ผ่าน bounded fixtures; รวมหลักการและ 38 features / Bounded fixtures passed; principles and 38 features.</span>
+            </summary>
+            <div className="border-t border-slate-200 p-4 text-sm leading-7 text-slate-700">
           <section id="exp4-g2-closeout" className="mt-6 rounded-xl border border-emerald-200 bg-emerald-50/60 p-5">
             <p className="text-xs font-semibold uppercase tracking-widest text-emerald-800">G2 closeout · bounded validation complete · 21 October 2026</p>
             <h2 className="mt-2 text-xl font-semibold text-slate-900">กฎธุรกิจและส่วนประกอบของ simulator เชื่อมกันตาม frozen design แล้ว</h2>
@@ -165,7 +169,61 @@ export default async function LearningJournal({searchParams}:{searchParams:Promi
               <ul className="mt-2 list-disc space-y-1 pl-5"><li>ลำดับและ wiring ของ 38 features ผ่าน bounded integration fixtures และ G3 smoke read-back แล้ว แต่ยังไม่รับประกันว่า representation นี้เพียงพอให้โมเดลเรียนรู้ได้ดี.</li><li>Candidate benefit และ unused quota มาจาก forecast ภายใต้สมมติฐานเปิดใช้ทันที ไม่ใช่การใช้จริงในอนาคต.</li><li>ราคา ต้นทุน และพฤติกรรมซื้อเป็นสมมติฐานจำลอง ไม่ใช่ข้อมูลจริงของผู้ให้บริการ.</li><li>Synthetic evaluation ไม่พิสูจน์ production uplift.</li></ul>
             </div>
           </section>
+
+            </div>
+          </details>
+          <details id="exp4-gate-3" className="rounded-xl border border-slate-200 bg-white">
+            <summary className="cursor-pointer rounded-xl p-4 text-slate-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-700">
+              <span className="font-semibold">E4-G3 — สร้างและตรวจข้อมูล / Generate and validate data</span>
+              <span className="mt-2 block text-xs font-semibold text-amber-800">SMOKE_PASS — 200 customers / 410 candidate rows; full data NOT_COMPLETE</span>
+              <span className="mt-2 block text-sm leading-6 text-slate-600">Smoke ผ่าน 200 customers / 410 candidate rows; full data ยังไม่เสร็จ / Full data incomplete.</span>
+            </summary>
+            <div className="border-t border-slate-200 p-4 text-sm leading-7 text-slate-700">
           <p className="mt-5 text-xs leading-5 text-slate-500"><strong>Current evidence:</strong> experiment branch checkpoint <code>47776f3</code>. G1/G2 are complete under <code>EXP4_FREEZE:v1</code>; G3 smoke passed and its failed-before-fix plus passing artifacts are retained remotely. G3 full data is <code>NOT_COMPLETE</code>; model training, evaluation, save and reload are <code>NOT_STARTED</code>. Fresh-process Spark resume is <code>NOT_PERFORMED</code>. Experiment 3 remains <code>PAUSED_SAFE</code>; <code>B1_COMPLETE=NO</code>.</p>
+            </div>
+          </details>
+          <details id="exp4-gate-4" className="rounded-xl border border-slate-200 bg-white">
+            <summary className="cursor-pointer rounded-xl p-4 text-slate-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-700">
+              <span className="font-semibold">E4-G4 — สร้างตัวเปรียบเทียบ / Establish baselines</span>
+              <span className="mt-2 block text-xs font-semibold text-slate-600">NOT_STARTED</span>
+              <span className="mt-2 block text-sm leading-6 text-slate-600">ยังไม่เริ่มขั้นสร้างตัวเปรียบเทียบ / Baseline stage not started.</span>
+            </summary>
+            <div className="border-t border-slate-200 p-4 text-sm leading-7 text-slate-700">
+              <p>ขั้นต่อไปตาม roadmap: สร้างตัวเปรียบเทียบ / Establish baselines.</p>
+            </div>
+          </details>
+          <details id="exp4-gate-5" className="rounded-xl border border-slate-200 bg-white">
+            <summary className="cursor-pointer rounded-xl p-4 text-slate-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-700">
+              <span className="font-semibold">E4-G5 — ฝึกโมเดลและสร้างวิธีเลือก offer / Train model and derive policy</span>
+              <span className="mt-2 block text-xs font-semibold text-slate-600">NOT_STARTED</span>
+              <span className="mt-2 block text-sm leading-6 text-slate-600">ยังไม่เริ่มฝึกโมเดล / Model training not started.</span>
+            </summary>
+            <div className="border-t border-slate-200 p-4 text-sm leading-7 text-slate-700">
+              <p>ขั้นต่อไปตาม roadmap: ฝึกโมเดลและสร้างวิธีเลือก offer / Train model and derive policy.</p>
+            </div>
+          </details>
+          <details id="exp4-gate-6" className="rounded-xl border border-slate-200 bg-white">
+            <summary className="cursor-pointer rounded-xl p-4 text-slate-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-700">
+              <span className="font-semibold">E4-G6 — ประเมินผลบนข้อมูลที่กันไว้ / Evaluate frozen policies</span>
+              <span className="mt-2 block text-xs font-semibold text-slate-600">NOT_STARTED</span>
+              <span className="mt-2 block text-sm leading-6 text-slate-600">ยังไม่เริ่มประเมิน frozen policies / Frozen-policy evaluation not started.</span>
+            </summary>
+            <div className="border-t border-slate-200 p-4 text-sm leading-7 text-slate-700">
+              <p>ขั้นต่อไปตาม roadmap: ประเมินผลบนข้อมูลที่กันไว้ / Evaluate frozen policies.</p>
+            </div>
+          </details>
+          <details id="exp4-gate-7" className="rounded-xl border border-slate-200 bg-white">
+            <summary className="cursor-pointer rounded-xl p-4 text-slate-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-700">
+              <span className="font-semibold">E4-G7 — โหลดกลับ ทำซ้ำ และปิดการทดลอง / Reload, reproduce and close out</span>
+              <span className="mt-2 block text-xs font-semibold text-slate-600">NOT_STARTED</span>
+              <span className="mt-2 block text-sm leading-6 text-slate-600">ยังไม่เริ่ม reload และปิดการทดลอง / Reload and closeout not started.</span>
+            </summary>
+            <div className="border-t border-slate-200 p-4 text-sm leading-7 text-slate-700">
+              <p>ขั้นต่อไปตาม roadmap: โหลดกลับ ทำซ้ำ และปิดการทดลอง / Reload, reproduce and close out.</p>
+            </div>
+          </details>
+        </section>
+
         <p className="mt-4 text-sm leading-6 text-slate-600"><strong>Simulation boundary:</strong> prices, costs and behavior are assumptions—not actual operator outcomes.</p>
       </Panel>
     </div>}
