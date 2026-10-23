@@ -31,7 +31,7 @@ export default async function LearningJournal({searchParams}:{searchParams:Promi
   const entry=manifest?.entries.find(item=>item.title===`cockpit/learning/nbo-nrt/${selected.key}.html`)
   return <div className="space-y-5">
     <PrivateLink href="/cockpit/experiments">← Experiments</PrivateLink>
-    <div><p className="text-xs font-semibold uppercase tracking-widest text-teal-700">Private learning journal</p><h1 className="mt-2 text-3xl font-semibold">NBO / NRT — บันทึกการเรียนรู้</h1><p className="mt-3 text-sm leading-7 text-slate-600">ฉบับล่าสุดที่เคยเผยแพร่ก่อนปรับหน้าสาธารณะ เก็บลำดับเรื่อง มุมมอง Business / Models / Engineering และรายละเอียดการทดลองไว้สำหรับกลับมาอ่านทบทวน สถานะและผลทดลองเป็นข้อมูลตามฉบับเดิม</p></div>
+    <div><p className="text-xs font-semibold uppercase tracking-widest text-teal-700">Private learning journal</p><h1 className="mt-2 text-3xl font-semibold">NBO / NRT — บันทึกการเรียนรู้</h1><p className="mt-3 text-sm leading-7 text-slate-600">{selected.key==="four"?"บันทึก Experiment 4 พร้อมสถานะปัจจุบันและประวัติตามวันที่ / Experiment 4 journal with current status and dated historical checkpoints.":"ฉบับล่าสุดที่เคยเผยแพร่ก่อนปรับหน้าสาธารณะ เก็บลำดับเรื่อง มุมมอง Business / Models / Engineering และรายละเอียดการทดลองไว้สำหรับกลับมาอ่านทบทวน สถานะและผลทดลองเป็นข้อมูลตามฉบับเดิม"}</p></div>
     <nav aria-label="Saved experiments" className="flex flex-wrap gap-2">{editions.map(item=><a key={item.key} href={`?experiment=${item.key}`} aria-current={item.key===selected.key?"page":undefined} className={`rounded-lg border px-4 py-2 text-sm ${item.key===selected.key?"border-teal-800 bg-teal-800 text-white":"border-slate-300 bg-white text-slate-700"}`}>{item.label}</a>)}</nav>
     {selected.key!=="four"&&(entry?<><p className="text-sm text-slate-600">กดหัวข้อในหน้าเพื่อขยายอ่านรายละเอียดได้ · <a className="underline" href={`/api/cockpit/preview/${entry.id}`} target="_blank" rel="noreferrer">เปิดฉบับเต็มในแท็บใหม่ ↗</a></p><iframe key={entry.id} title={`NBO NRT learning journal — ${selected.label}`} src={`/api/cockpit/preview/${entry.id}`} sandbox="allow-same-origin" referrerPolicy="no-referrer" className="h-[85vh] min-h-[640px] w-full rounded-xl border border-slate-200 bg-white"/><p className="text-xs leading-6 text-slate-500">Preserved published edition · source 54f5b447 · Rendered reading copy with expandable sections and experiment links. Original source files remain in Evidence.</p></>:<Empty>This saved edition is unavailable. Its content has not been replaced with an inferred reconstruction.</Empty>)}
     {selected.key==="three"&&<div id="exp3-current-direction">
@@ -47,9 +47,21 @@ export default async function LearningJournal({searchParams}:{searchParams:Promi
     </div>}
     {selected.key==="four"&&<div id="exp4-roadmap">
       <Panel title="Experiment 4 — Business-grounded Package-fit Learning">
+        <div id="exp4-current-status" className="mb-5 rounded-xl border border-teal-200 bg-teal-50 p-4">
+          <p className="text-sm font-semibold text-teal-900">Experiment 4 — IN PROGRESS / อยู่ระหว่างดำเนินการ</p>
+          <p className="mt-1 text-xs text-slate-600">สถานะปัจจุบัน ณ 23 ตุลาคม 2026 / Current checkpoint · 23 October 2026</p>
+          <div className="mt-3 flex flex-wrap gap-2 text-xs font-semibold">
+            <span className="rounded-full bg-emerald-100 px-3 py-1 text-emerald-900">G1 · Complete</span>
+            <span className="rounded-full bg-emerald-100 px-3 py-1 text-emerald-900">G2 · Complete — bounded validation</span>
+            <span className="rounded-full bg-emerald-100 px-3 py-1 text-emerald-900">G3 · Complete — data and custody</span>
+            <span className="rounded-full bg-amber-100 px-3 py-1 text-amber-900">G4 · Implementation ready — runtime unverified</span>
+            <span className="rounded-full bg-slate-200 px-3 py-1 text-slate-800">G5–G7 · Not complete</span>
+          </div>
+          <p className="mt-3 text-sm leading-6 text-slate-700">G3 สร้างและตรวจข้อมูลพร้อมทบทวนการเก็บหลักฐานครบแล้ว; G4 เตรียมโค้ดพร้อมและ sync ลง Mac แล้ว แต่ยังไม่ได้รับผลรัน / G3 data generation, validation and custody review are complete; G4 implementation is ready, with runtime results still unconfirmed.</p>
+        </div>
         <details id="exp4-overview" className="group/overview rounded-xl border border-slate-200 bg-slate-50/60 p-5">
           <summary className="cursor-pointer rounded-md focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-teal-700">
-        <p className="text-xs font-semibold uppercase tracking-widest text-teal-700">Backward-design roadmap · G1/G2 complete · frozen scope · G3 smoke passed</p>
+        <p className="text-xs font-semibold uppercase tracking-widest text-teal-700">Backward-design roadmap · G1/G2/G3 complete · G4 implementation ready · Experiment in progress</p>
         <h2 className="mt-3 text-xl font-semibold text-slate-900">เรียนรู้ว่าแพ็กเกจเสริมใดเหมาะกับ context นี้—or NO_OFFER</h2>
             <span className="mt-2 block text-xs font-medium text-teal-800"><span className="group-open/overview:hidden">ขยายรายละเอียด / Expand details</span><span className="hidden group-open/overview:inline">พับรายละเอียด / Collapse details</span></span>
           </summary>
@@ -65,11 +77,11 @@ export default async function LearningJournal({searchParams}:{searchParams:Promi
               <tbody className="divide-y divide-slate-200 text-slate-600">
                 <tr><th className="px-4 py-3 font-semibold text-slate-800">E4-G1</th><td className="px-4 py-3">กำหนดโจทย์และเกณฑ์จบ / Define question and completion criteria</td><td className="px-4 py-3">COMPLETE — scope frozen in EXP4_FREEZE:v1</td></tr>
                 <tr><th className="px-4 py-3 font-semibold text-slate-800">E4-G2</th><td className="px-4 py-3">ตรวจโลกจำลองและกฎธุรกิจ / Validate simulator and business rules</td><td className="px-4 py-3">COMPLETE — bounded simulator/component fixtures passed</td></tr>
-                <tr><th className="px-4 py-3 font-semibold text-slate-800">E4-G3</th><td className="px-4 py-3">สร้างและตรวจข้อมูล / Generate and validate data</td><td className="px-4 py-3">SMOKE_PASS — 200 customers / 410 candidate rows; full data NOT_COMPLETE</td></tr>
-                <tr><th className="px-4 py-3 font-semibold text-slate-800">E4-G4</th><td className="px-4 py-3">สร้างตัวเปรียบเทียบ / Establish baselines</td><td className="px-4 py-3">NOT_STARTED</td></tr>
+                <tr><th className="px-4 py-3 font-semibold text-slate-800">E4-G3</th><td className="px-4 py-3">สร้างและตรวจข้อมูล / Generate and validate data</td><td className="px-4 py-3">COMPLETE — data generation/validation and reviewed custody · 120,000 customers / สร้าง ตรวจ และทบทวนการเก็บหลักฐานครบ</td></tr>
+                <tr><th className="px-4 py-3 font-semibold text-slate-800">E4-G4</th><td className="px-4 py-3">สร้างตัวเปรียบเทียบ / Establish baselines</td><td className="px-4 py-3">IMPLEMENTATION_READY — รอผล runtime ที่ยืนยัน / runtime NOT_VERIFIED; NOT_COMPLETE</td></tr>
                 <tr><th className="px-4 py-3 font-semibold text-slate-800">E4-G5</th><td className="px-4 py-3">ฝึกโมเดลและสร้างวิธีเลือก offer / Train model and derive policy</td><td className="px-4 py-3">NOT_STARTED</td></tr>
                 <tr><th className="px-4 py-3 font-semibold text-slate-800">E4-G6</th><td className="px-4 py-3">ประเมินผลบนข้อมูลที่กันไว้ / Evaluate frozen policies</td><td className="px-4 py-3">NOT_STARTED</td></tr>
-                <tr><th className="px-4 py-3 font-semibold text-slate-800">E4-G7</th><td className="px-4 py-3">โหลดกลับ ทำซ้ำ และปิดการทดลอง / Reload, reproduce and close out</td><td className="px-4 py-3">NOT_STARTED</td></tr>
+                <tr><th className="px-4 py-3 font-semibold text-slate-800">E4-G7</th><td className="px-4 py-3">โหลดกลับ ทำซ้ำ และปิดการทดลอง / Reload, reproduce and close out</td><td className="px-4 py-3">NOT_COMPLETE — recovery/reproduction pending</td></tr>
               </tbody>
             </table>
           </div>
@@ -107,7 +119,39 @@ export default async function LearningJournal({searchParams}:{searchParams:Promi
               <div className="rounded-lg bg-white p-4 text-sm leading-6 text-slate-700"><p className="font-semibold text-slate-900">การเก็บหลักฐาน / Evidence custody</p><p className="mt-2">Freeze record: <code>93a9ee3</code>. หลักฐานแต่ละชุดเก็บใต้ <code>evidence/exp4/</code> พร้อม script, <code>receipt.json</code> และ <code>run.log</code>; remote receipt/log SHA-256 ถูกตรวจอ่านกลับ. Final integration run คือ <code>exp4-features-integration-f7827…</code> โดย receipt SHA-256 <code>d87b425…979e47</code> และ log SHA-256 <code>2144987…4800c</code>.</p></div>
             </div>
 
-            <p className="mt-4 text-xs leading-5 text-emerald-900"><strong>Completion boundary:</strong> G2 COMPLETE หมายถึง bounded component/fixture requirements ผ่านแล้ว—not full generator validation, model learning, empirical calibration, production uplift หรือ fresh-process Spark/model recovery. หลัง G2 มี G3 smoke PASS สำหรับ 200 customers / 410 candidate rows และ six-table same-process Parquet read-back; full G3 data ยัง <code>NOT_COMPLETE</code> และ model training ยัง <code>NOT_STARTED</code>.</p>
+            <p className="mt-4 text-xs leading-5 text-emerald-900"><strong>Historical checkpoint · 21 October 2026 / สถานะ ณ วันบันทึกเดิม:</strong> G2 COMPLETE หมายถึง bounded component/fixture requirements ผ่านแล้ว—not full generator validation, model learning, empirical calibration, production uplift หรือ fresh-process Spark/model recovery. หลัง G2 มี G3 smoke PASS สำหรับ 200 customers / 410 candidate rows และ six-table same-process Parquet read-back; full G3 data ยัง <code>NOT_COMPLETE</code> และ model training ยัง <code>NOT_STARTED</code>.</p>
+          </details>
+          <details id="exp4-g3-closeout" className="group/g3 mt-6 rounded-xl border border-emerald-200 bg-emerald-50/60 p-5">
+            <summary className="cursor-pointer rounded-md focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-emerald-700">
+              <p className="text-xs font-semibold uppercase tracking-widest text-emerald-800">G3 COMPLETE · data generation/validation and reviewed custody · 23 October 2026</p>
+              <h2 className="mt-2 text-xl font-semibold text-slate-900">G3 Complete — สร้างและตรวจข้อมูลครบ 120,000 customers</h2>
+              <p className="mt-1 text-sm font-medium text-slate-600">120,000 synthetic customers generated and validated; evidence custody reviewed.</p>
+              <span className="mt-2 block text-xs font-medium text-emerald-800"><span className="group-open/g3:hidden">ขยายรายละเอียด / Expand details</span><span className="hidden group-open/g3:inline">พับรายละเอียด / Collapse details</span></span>
+            </summary>
+            <p className="mt-3 text-sm leading-7 text-slate-700">ตอนนี้มีข้อมูลจำลองที่ตรวจสอบและเก็บหลักฐานครบ พร้อมใช้เปรียบเทียบวิธีเลือกข้อเสนอในขั้นต่อไป / Validated, traceable synthetic data is ready for the next step: comparing offer-selection methods.</p>
+            <div className="mt-4 overflow-x-auto rounded-lg border border-emerald-200 bg-white">
+              <table className="min-w-[620px] w-full text-left text-sm">
+                <thead className="bg-emerald-50"><tr><th className="px-4 py-3">ขอบเขต / Coverage</th><th className="px-4 py-3">ผลที่ตรวจ / Reviewed result</th></tr></thead>
+                <tbody className="divide-y divide-slate-200 text-slate-700">
+                  <tr><td className="px-4 py-3">PRIMARY / NULL × seeds 101, 202, 303</td><td className="px-4 py-3">6 batches · 18 splits · 120,000 customers</td></tr>
+                  <tr><td className="px-4 py-3">แต่ละ batch / Per batch</td><td className="px-4 py-3">TRAIN 12,000 + VALIDATION 3,000 + EVALUATION 5,000</td></tr>
+                  <tr><td className="px-4 py-3">ทุก split / All 18 splits</td><td className="px-4 py-3">PASS — IDs, features, propensity, reward, schemas, actual null constraints; same-process Spark Parquet write/read-back</td></tr>
+                  <tr><td className="px-4 py-3">Equal-expected-reward control</td><td className="px-4 py-3">NULL ทั้ง 9 splits: PASS — expected reward เท่ากันระหว่าง allowed actions ใน context เดียวกัน / equal expected reward within each context</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div className="mt-4 grid gap-4 lg:grid-cols-2">
+              <div className="rounded-lg bg-white p-4 text-sm leading-6 text-slate-700"><h3 className="font-semibold text-slate-900">หลักการ / Principles</h3><p className="mt-2">ใช้ business rules และ random streams ที่ freeze ไว้; 38 features มีลำดับคงที่ และแยก learner, oracle และ latent variables / Frozen rules and random streams, ordered features, and separate learner, evaluator and latent paths.</p><p className="mt-2">77,711 contexts มีเพียง NO_OFFER; 42,289 มีมากกว่าหนึ่ง allowed action จึงต้องรายงานประชากรที่มีทางเลือกแยกในขั้นต่อไป / Report the population with more than one allowed action separately; do not alter eligibility to improve results.</p></div>
+              <div className="rounded-lg bg-white p-4 text-sm leading-6 text-slate-700"><h3 className="font-semibold text-slate-900">การเก็บหลักฐาน / Evidence custody</h3><p className="mt-2">ข้อมูล logs, schemas และ receipts เก็บใน Git พร้อมต้นฉบับบน Mac ผู้ใช้ตรวจ SHA-256/ขนาดของ committed artifacts 137 ไฟล์ต่อ batch รวม <strong>822 ไฟล์</strong> และตรวจ remote ancestry / Owner verified committed bytes and remote reachability for all 822 manifest-linked files; original outputs remain on Mac.</p></div>
+            </div>
+            <p className="mt-4 text-sm leading-6 text-slate-700"><strong>ขอบเขตการพิสูจน์ / Verification boundary:</strong> ไม่ใช่ clean remote restore หรือ fresh-process Spark recovery; ณ checkpoint G3 fresh-process resume ยัง <code>NOT_PERFORMED</code>. ยังไม่ได้ฝึกโมเดล จึงยังสรุปไม่ได้ว่า ML ชนะหรือแพ้ baseline / No model training or learned-policy performance claim; synthetic validation does not establish real business uplift.</p>
+            <p className="mt-3 text-sm leading-6 text-slate-700"><strong>ประวัติ / History:</strong> G3 smoke เดิมผ่าน 200 customers / 410 candidate rows ที่ checkpoint <code>47776f3</code>; สถานะ full data ที่ยังไม่ครบในบันทึก 21 October เป็นประวัติเดิม ปัจจุบันเลื่อนเป็น G3 COMPLETE ตาม review วันที่ 23 October / Historical receipts retain their original run-time statuses; this later review advances G3 only.</p>
+            <p className="mt-3 text-sm leading-6 text-slate-700"><strong>ขั้นต่อไป / Next:</strong> G4 implementation พร้อมและ sync ลง Mac ที่ <code>8d0fb2f</code>; ให้คำสั่งรันแล้วแต่ยังไม่ได้รับผล จึงยังไม่ยืนยันว่าเริ่มหรือผ่าน / Runtime not verified; G4 remains NOT_COMPLETE. G5–G7 are not complete; Experiment 4 remains IN PROGRESS.</p>
+            <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-sm">
+              <a className="underline text-teal-800" href="https://github.com/msararin/nbo-nrt-mlops-usecase/blob/27638db0f0e325072cac933230ef89d9992979df/docs/experiments/exp4/G3_FULL_DATA_REVIEW_2026-10-23.md" target="_blank" rel="noreferrer">G3 review · 27638db ↗</a>
+              <a className="underline text-teal-800" href="https://github.com/msararin/nbo-nrt-mlops-usecase/tree/fbe5eb31637b3b159dc101063278fff1d8237851/evidence/exp4/full_data" target="_blank" rel="noreferrer">G3 evidence snapshot · fbe5eb3 ↗</a>
+              <a className="underline text-teal-800" href="https://github.com/msararin/nbo-nrt-mlops-usecase/blob/8d0fb2fb7938c38741016386bd096ca0557ff6ab/docs/experiments/exp4/G4_IMPLEMENTATION_REVIEW_2026-10-23.md" target="_blank" rel="noreferrer">G4 implementation review · runtime unverified ↗</a>
+            </div>
           </details>
           <details id="exp4-business-to-features" className="group/features mt-6 rounded-xl border border-teal-200 bg-teal-50/60 p-5">
             <summary className="cursor-pointer rounded-md focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-teal-700">
@@ -176,7 +220,7 @@ export default async function LearningJournal({searchParams}:{searchParams:Promi
               <ul className="mt-2 list-disc space-y-1 pl-5"><li>ลำดับและ wiring ของ 38 features ผ่าน bounded integration fixtures และ G3 smoke read-back แล้ว แต่ยังไม่รับประกันว่า representation นี้เพียงพอให้โมเดลเรียนรู้ได้ดี.</li><li>Candidate benefit และ unused quota มาจาก forecast ภายใต้สมมติฐานเปิดใช้ทันที ไม่ใช่การใช้จริงในอนาคต.</li><li>ราคา ต้นทุน และพฤติกรรมซื้อเป็นสมมติฐานจำลอง ไม่ใช่ข้อมูลจริงของผู้ให้บริการ.</li><li>Synthetic evaluation ไม่พิสูจน์ production uplift.</li></ul>
             </div>
           </details>
-          <p className="mt-5 text-xs leading-5 text-slate-500"><strong>Current evidence:</strong> experiment branch checkpoint <code>47776f3</code>. G1/G2 are complete under <code>EXP4_FREEZE:v1</code>; G3 smoke passed and its failed-before-fix plus passing artifacts are retained remotely. G3 full data is <code>NOT_COMPLETE</code>; model training, evaluation, save and reload are <code>NOT_STARTED</code>. Fresh-process Spark resume is <code>NOT_PERFORMED</code>. Experiment 3 remains <code>PAUSED_SAFE</code>; <code>B1_COMPLETE=NO</code>.</p>
+          <p id="exp4-current-evidence" className="mt-5 text-xs leading-6 text-slate-600"><strong>Current evidence · 23 October 2026 / หลักฐานปัจจุบัน:</strong> G1/G2/G3 COMPLETE under <code>EXP4_FREEZE:v1</code>; G3 review <code>27638db</code> covers 120,000 customers and reviewed custody. G4 implementation <code>8d0fb2f</code> is ready; runtime <code>NOT_VERIFIED</code>, G4 <code>NOT_COMPLETE</code>. G5 training and G6 evaluation are <code>NOT_STARTED</code>; G7 recovery/reproduction/closeout is <code>NOT_COMPLETE</code>. At the G3 checkpoint, fresh-process Spark resume is <code>NOT_PERFORMED</code>. Experiment 4 remains <strong>IN PROGRESS</strong>. ข้อความใน Journal วันที่ 21 October เป็นสถานะในอดีต / Earlier journal entries retain their dated historical status.</p>
         <p className="mt-4 text-sm leading-6 text-slate-600"><strong>Simulation boundary:</strong> prices, costs and behavior are assumptions—not actual operator outcomes.</p>
       </Panel>
     </div>}
