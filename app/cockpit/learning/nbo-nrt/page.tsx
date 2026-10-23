@@ -47,8 +47,12 @@ export default async function LearningJournal({searchParams}:{searchParams:Promi
     </div>}
     {selected.key==="four"&&<div id="exp4-roadmap">
       <Panel title="Experiment 4 — Business-grounded Package-fit Learning">
+        <details id="exp4-overview" className="group/overview rounded-xl border border-slate-200 bg-slate-50/60 p-5">
+          <summary className="cursor-pointer rounded-md focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-teal-700">
         <p className="text-xs font-semibold uppercase tracking-widest text-teal-700">Backward-design roadmap · G1/G2 complete · frozen scope · G3 smoke passed</p>
         <h2 className="mt-3 text-xl font-semibold text-slate-900">เรียนรู้ว่าแพ็กเกจเสริมใดเหมาะกับ context นี้—or NO_OFFER</h2>
+            <span className="mt-2 block text-xs font-medium text-teal-800"><span className="group-open/overview:hidden">ขยายรายละเอียด / Expand details</span><span className="hidden group-open/overview:inline">พับรายละเอียด / Collapse details</span></span>
+          </summary>
         <p className="mt-3 leading-7 text-slate-700">Backward design starts with what must be proved at the end, then works backward through constraints, data separation, baselines, null control, evaluation and reproducibility before generating data or training a model. ML is not required to beat the business-rule baseline.</p>
         <div className="mt-5 grid gap-4 lg:grid-cols-2">
           <div className="rounded-lg border border-slate-200 bg-white p-4 text-sm leading-7 text-slate-700"><p className="font-semibold text-slate-900">Business decision</p><p className="mt-2">At usage check, select an eligible add-on or NO_OFFER using quota, expiry, usage history, purchase eligibility and contact constraints.</p></div>
@@ -74,6 +78,7 @@ export default async function LearningJournal({searchParams}:{searchParams:Promi
             <div className="rounded-lg border border-slate-200 bg-white p-4 text-sm leading-6 text-slate-700"><strong className="text-slate-900">Engineering completion</strong><p className="mt-2">พิสูจน์ว่ากฎ ข้อมูล การประเมิน หลักฐาน และ fresh-process reproduction ถูกต้องตาม contract ที่ freeze แล้ว</p></div>
             <div className="rounded-lg border border-slate-200 bg-white p-4 text-sm leading-6 text-slate-700"><strong className="text-slate-900">Learning performance</strong><p className="mt-2">ML อาจชนะ เสมอ หรือแย่กว่ากฎธุรกิจได้ การชนะ baseline ไม่ใช่เงื่อนไขบังคับของการปิดการทดลองอย่างซื่อสัตย์</p></div>
           </div>
+        </details>
           <details id="exp4-g2-closeout" className="group/g2 mt-6 rounded-xl border border-emerald-200 bg-emerald-50/60 p-5">
             <summary className="cursor-pointer rounded-md focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-emerald-700">
             <p className="text-xs font-semibold uppercase tracking-widest text-emerald-800">G2 closeout · bounded validation complete · 21 October 2026</p>
@@ -104,10 +109,13 @@ export default async function LearningJournal({searchParams}:{searchParams:Promi
 
             <p className="mt-4 text-xs leading-5 text-emerald-900"><strong>Completion boundary:</strong> G2 COMPLETE หมายถึง bounded component/fixture requirements ผ่านแล้ว—not full generator validation, model learning, empirical calibration, production uplift หรือ fresh-process Spark/model recovery. หลัง G2 มี G3 smoke PASS สำหรับ 200 customers / 410 candidate rows และ six-table same-process Parquet read-back; full G3 data ยัง <code>NOT_COMPLETE</code> และ model training ยัง <code>NOT_STARTED</code>.</p>
           </details>
-          <section id="exp4-business-to-features" className="mt-6 border-t border-slate-200 pt-6">
+          <details id="exp4-business-to-features" className="group/features mt-6 rounded-xl border border-teal-200 bg-teal-50/60 p-5">
+            <summary className="cursor-pointer rounded-md focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-teal-700">
             <p className="text-xs font-semibold uppercase tracking-widest text-teal-700">Feature design journal · 21 October 2026</p>
             <h2 className="mt-2 text-xl font-semibold text-slate-900">จากโจทย์ธุรกิจสู่ 38 Features</h2>
             <p className="mt-1 text-sm font-medium text-slate-600">From Business Decisions to 38 Model Features</p>
+              <span className="mt-2 block text-xs font-medium text-teal-800"><span className="group-open/features:hidden">ขยายรายละเอียด / Expand details</span><span className="hidden group-open/features:inline">พับรายละเอียด / Collapse details</span></span>
+            </summary>
             <p className="mt-3 leading-7 text-slate-700">หนึ่งแถวแทน <strong>ลูกค้าหนึ่งคน × action หนึ่งรายการ</strong> ตอนฝึก แถวนั้นใช้ action ที่เสนอจริงและ <code>observed_reward</code> ของเหตุการณ์นั้นเป็น label; ตอนเลือกข้อเสนอ ระบบสร้าง representation เดียวกันเพื่อประเมินแต่ละ action ที่ผ่านข้อจำกัดแล้ว โดยไม่ส่ง oracle หรือผลลัพธ์ในอนาคตให้ learner.</p>
 
             <div className="mt-5 overflow-x-auto rounded-lg border border-slate-200 bg-white">
@@ -167,7 +175,7 @@ export default async function LearningJournal({searchParams}:{searchParams:Promi
               <p className="font-semibold text-amber-900">ขอบเขตหลักฐาน / Evidence boundary</p>
               <ul className="mt-2 list-disc space-y-1 pl-5"><li>ลำดับและ wiring ของ 38 features ผ่าน bounded integration fixtures และ G3 smoke read-back แล้ว แต่ยังไม่รับประกันว่า representation นี้เพียงพอให้โมเดลเรียนรู้ได้ดี.</li><li>Candidate benefit และ unused quota มาจาก forecast ภายใต้สมมติฐานเปิดใช้ทันที ไม่ใช่การใช้จริงในอนาคต.</li><li>ราคา ต้นทุน และพฤติกรรมซื้อเป็นสมมติฐานจำลอง ไม่ใช่ข้อมูลจริงของผู้ให้บริการ.</li><li>Synthetic evaluation ไม่พิสูจน์ production uplift.</li></ul>
             </div>
-          </section>
+          </details>
           <p className="mt-5 text-xs leading-5 text-slate-500"><strong>Current evidence:</strong> experiment branch checkpoint <code>47776f3</code>. G1/G2 are complete under <code>EXP4_FREEZE:v1</code>; G3 smoke passed and its failed-before-fix plus passing artifacts are retained remotely. G3 full data is <code>NOT_COMPLETE</code>; model training, evaluation, save and reload are <code>NOT_STARTED</code>. Fresh-process Spark resume is <code>NOT_PERFORMED</code>. Experiment 3 remains <code>PAUSED_SAFE</code>; <code>B1_COMPLETE=NO</code>.</p>
         <p className="mt-4 text-sm leading-6 text-slate-600"><strong>Simulation boundary:</strong> prices, costs and behavior are assumptions—not actual operator outcomes.</p>
       </Panel>
