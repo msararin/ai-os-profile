@@ -74,10 +74,13 @@ export default async function LearningJournal({searchParams}:{searchParams:Promi
             <div className="rounded-lg border border-slate-200 bg-white p-4 text-sm leading-6 text-slate-700"><strong className="text-slate-900">Engineering completion</strong><p className="mt-2">พิสูจน์ว่ากฎ ข้อมูล การประเมิน หลักฐาน และ fresh-process reproduction ถูกต้องตาม contract ที่ freeze แล้ว</p></div>
             <div className="rounded-lg border border-slate-200 bg-white p-4 text-sm leading-6 text-slate-700"><strong className="text-slate-900">Learning performance</strong><p className="mt-2">ML อาจชนะ เสมอ หรือแย่กว่ากฎธุรกิจได้ การชนะ baseline ไม่ใช่เงื่อนไขบังคับของการปิดการทดลองอย่างซื่อสัตย์</p></div>
           </div>
-          <section id="exp4-g2-closeout" className="mt-6 rounded-xl border border-emerald-200 bg-emerald-50/60 p-5">
+          <details id="exp4-g2-closeout" className="group/g2 mt-6 rounded-xl border border-emerald-200 bg-emerald-50/60 p-5">
+            <summary className="cursor-pointer rounded-md focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-emerald-700">
             <p className="text-xs font-semibold uppercase tracking-widest text-emerald-800">G2 closeout · bounded validation complete · 21 October 2026</p>
             <h2 className="mt-2 text-xl font-semibold text-slate-900">กฎธุรกิจและส่วนประกอบของ simulator เชื่อมกันตาม frozen design แล้ว</h2>
             <p className="mt-1 text-sm font-medium text-slate-600">Business rules and simulator components are wired and verified within the frozen fixture boundary.</p>
+              <span className="mt-2 block text-xs font-medium text-emerald-800"><span className="group-open/g2:hidden">ขยายรายละเอียด / Expand details</span><span className="hidden group-open/g2:inline">พับรายละเอียด / Collapse details</span></span>
+            </summary>
             <p className="mt-3 leading-7 text-slate-700">G2 ปิดเมื่อ owner-run fixtures พิสูจน์การเชื่อมต่อของ ledger/contact rules, action filters, purchase/null outcomes, baselines, deterministic random streams และ 38-feature/reward integration บน hand-constructed contexts โดยใช้ข้อจำกัดเดียวกันสำหรับ learner, baselines และ oracle.</p>
 
             <div className="mt-4 overflow-x-auto rounded-lg border border-emerald-200 bg-white">
@@ -100,7 +103,7 @@ export default async function LearningJournal({searchParams}:{searchParams:Promi
             </div>
 
             <p className="mt-4 text-xs leading-5 text-emerald-900"><strong>Completion boundary:</strong> G2 COMPLETE หมายถึง bounded component/fixture requirements ผ่านแล้ว—not full generator validation, model learning, empirical calibration, production uplift หรือ fresh-process Spark/model recovery. หลัง G2 มี G3 smoke PASS สำหรับ 200 customers / 410 candidate rows และ six-table same-process Parquet read-back; full G3 data ยัง <code>NOT_COMPLETE</code> และ model training ยัง <code>NOT_STARTED</code>.</p>
-          </section>
+          </details>
           <section id="exp4-business-to-features" className="mt-6 border-t border-slate-200 pt-6">
             <p className="text-xs font-semibold uppercase tracking-widest text-teal-700">Feature design journal · 21 October 2026</p>
             <h2 className="mt-2 text-xl font-semibold text-slate-900">จากโจทย์ธุรกิจสู่ 38 Features</h2>
