@@ -70,7 +70,7 @@ export default function Page() {
       </div>
     </header>
 
-    <main className="mx-auto max-w-6xl space-y-12 px-6 py-12">
+    <main className="mx-auto max-w-6xl space-y-12 px-6 py-12 [overflow-wrap:anywhere]">
       <section className="grid gap-6 lg:grid-cols-[0.8fr_1.2fr]">
         <div><p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">Business question</p><h2 className="mt-3 text-3xl font-semibold tracking-tight">What must be true before an offer decision is worth using?</h2></div>
         <div className="space-y-4 text-base leading-7 text-muted-foreground"><p>The case began by connecting synthetic data preparation, model evaluation, registration, and prediction read-back. Each experiment then exposed a different missing condition: usable model behavior, a credible decision world, sufficient context–action support, and finally a business-grounded definition of package fit.</p><p>The result is not a story of four increasingly successful models. It is a record of four evidence-led decisions: what the data allowed, what the test established, where the boundary failed, and why the next experiment changed direction.</p></div>
@@ -85,8 +85,8 @@ export default function Page() {
       <section>
         <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">Experiment path</p><h2 className="mt-2 text-3xl font-semibold">Data, conditions, evidence, and turning points</h2>
         <div className="mt-7 space-y-6">
-          {experiments.map((experiment) => <Card key={experiment.number}>
-            <CardHeader className="gap-3 border-b border-border sm:flex-row sm:items-start sm:justify-between"><div className="flex gap-4"><span className="text-3xl font-semibold text-primary">{experiment.number}</span><div><p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">Experiment {Number(experiment.number)}</p><CardTitle className="mt-2 text-2xl">{experiment.title}</CardTitle></div></div><Badge variant="outline" className="w-fit">{experiment.status}</Badge></CardHeader>
+          {experiments.map((experiment) => <Card key={experiment.number} className="min-w-0">
+            <CardHeader className="flex min-w-0 flex-col gap-3 border-b border-border sm:flex-row sm:items-start sm:justify-between"><div className="flex min-w-0 gap-4"><span className="text-3xl font-semibold text-primary">{experiment.number}</span><div><p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">Experiment {Number(experiment.number)}</p><CardTitle className="mt-2 text-2xl">{experiment.title}</CardTitle></div></div><Badge variant="outline" className="w-fit max-w-full whitespace-normal sm:max-w-[260px]">{experiment.status}</Badge></CardHeader>
             <CardContent className="grid gap-5 pt-6 md:grid-cols-2 xl:grid-cols-3">
               {[["Data", experiment.data], ["Conditions", experiment.conditions], ["Observed evidence", experiment.observed], ["Turning point", experiment.turningPoint], ["Decision", experiment.decision]].map(([heading, body], index) => <div key={heading} className={index >= 3 ? "rounded-lg border border-teal-200 bg-teal-50/60 p-4 dark:border-teal-900 dark:bg-teal-950/20" : "rounded-lg border border-border p-4"}><h3 className="font-semibold text-foreground">{heading}</h3><p className="mt-2 text-sm leading-6 text-muted-foreground">{body}</p></div>)}
             </CardContent>
