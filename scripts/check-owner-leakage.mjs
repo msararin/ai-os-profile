@@ -4,6 +4,7 @@ import assert from 'node:assert/strict'
 import vm from 'node:vm'
 function files(root) { return existsSync(root) ? readdirSync(root,{withFileTypes:true}).flatMap(e=>e.isDirectory()?files(path.join(root,e.name)):[path.join(root,e.name)]) : [] }
 const blocked=[
+  "Telco Churn — Internal archive", "Spark Connect Preprocessing Overhead",
   '69,881', '26,957', 'store_NfYL3Uteyb0tW1MJ',
   'b12f16ab527c419b8a394f6f3d3d9f5a',
   'INTERNAL_TELEMETRY_SANITIZED_SNAPSHOT_V1', 'Tier A to',
