@@ -34,10 +34,24 @@ try {
   for(let i=0;i<100;i++){try{if((await request('/login')).status===200){ready=true;break}}catch{}await new Promise(r=>setTimeout(r,100))}
   assert(ready,'test server started')
   const ownerCookie=await cookie(),wrongCookie=await cookie('wrong-sub'),expiredCookie=await cookie(owner,Date.now()-1000)
-  const pages=['/cockpit/learning/nbo-nrt','/cockpit','/cockpit/workstreams','/cockpit/telemetry','/cockpit/telemetry?view=history','/cockpit/telemetry/history/'+'f'.repeat(24),'/cockpit/evidence','/cockpit/methodology','/cockpit/experiments','/cockpit/experiments?q=engineering','/cockpit/deployments','/cockpit/security','/cockpit/evidence/'+artifactId,'/cockpit/telemetry/runs/fixture-run-1','/internal/telemetry','/internal/telemetry/operator']
+  const pages=['/cockpit/learning/telco-churn','/cockpit/learning/nbo-nrt','/cockpit','/cockpit/workstreams','/cockpit/telemetry','/cockpit/telemetry?view=history','/cockpit/telemetry/history/'+'f'.repeat(24),'/cockpit/evidence','/cockpit/methodology','/cockpit/experiments','/cockpit/experiments?q=engineering','/cockpit/deployments','/cockpit/security','/cockpit/evidence/'+artifactId,'/cockpit/telemetry/runs/fixture-run-1','/internal/telemetry','/internal/telemetry/operator']
   await check('all private pages: anonymous redirect; wrong-sub 403; expired/invalid denied',async()=>{
     for(const route of pages){const response=await request(route);assert.equal(response.status,307,route);assert((response.headers.get('location')??'').endsWith('/login'));assert(!(await response.text()).includes('OWNER-PRIVATE-CANARY'))}
     for(const [value,status] of [[wrongCookie,403],[expiredCookie,307],[`${salt}=tampered`,307]]) assert.equal((await request('/cockpit',{headers:{cookie:value}})).status,status)
+  })
+  await check('churn archive is owner-only and removed from public discovery',async()=>{
+    const route='/cockpit/learning/telco-churn'
+    for(const [value,status] of [[wrongCookie,403],[expiredCookie,307],[`${salt}=tampered`,307]]) assert.equal((await request(route,{headers:{cookie:value}})).status,status)
+    const archive=await request(route,{headers:{cookie:ownerCookie}})
+    assert.equal(archive.status,200)
+    const html=await archive.text()
+    assert(html.includes('Telco Churn — Internal archive'))
+    assert(html.includes('Spark Connect Preprocessing Overhead'))
+    const removed=await request('/case-studies/telco-churn-mlops')
+    assert.equal(removed.status,404)
+    assert(!(await removed.text()).includes('Spark Connect Preprocessing Overhead'))
+    for(const route of ['/case-studies','/sitemap.xml']) assert(!(await (await request(route)).text()).includes('/case-studies/telco-churn-mlops'))
+    assert((await (await request('/cockpit/experiments',{headers:{cookie:ownerCookie}})).text()).includes('/cockpit/learning/telco-churn'))
   })
   const apis=[['GET','/api/cockpit/telemetry'],['GET','/api/cockpit/artifacts/'+artifactId],['GET','/api/cockpit/search'],['POST','/api/internal/telemetry/operator'],['POST','/api/internal/telemetry/oidc-proof']]
   await check('every private API independently rejects anonymous, non-owner and expired sessions',async()=>{
