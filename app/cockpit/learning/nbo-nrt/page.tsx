@@ -55,10 +55,10 @@ export default async function LearningJournal({searchParams}:{searchParams:Promi
             <span className="rounded-full bg-emerald-100 px-3 py-1 text-emerald-900">G2 · Complete — bounded validation</span>
             <span className="rounded-full bg-emerald-100 px-3 py-1 text-emerald-900">G3 · Complete — data and custody</span>
             <span className="rounded-full bg-emerald-100 px-3 py-1 text-emerald-900">G4 · Complete — business baselines</span>
-            <span className="rounded-full bg-emerald-100 px-3 py-1 text-emerald-900">G5 · Complete — six fixed models</span>
+            <span className="rounded-full bg-emerald-100 px-3 py-1 text-emerald-900">G5 · Complete — 6 Random Forest runs</span>
             <span className="rounded-full bg-slate-200 px-3 py-1 text-slate-800">G6 · Not started; G7 · Not complete</span>
           </div>
-          <p className="mt-3 text-sm leading-6 text-slate-700">G3/G4/G5 สำเร็จพร้อมหลักฐาน ฝึกและบันทึกครบ 6 โมเดลแล้ว ยังไม่ประเมินว่า ML เลือกแพ็กเกจได้ดีกว่า baseline / Data, baselines and six fixed models are complete with reviewed custody; policy merit remains for G6 and recovery/reproduction for G7.</p>
+          <p className="mt-3 text-sm leading-6 text-slate-700">G3/G4/G5 สำเร็จพร้อมหลักฐาน ฝึก Random Forest แยก 6 รอบและบันทึกโมเดลของแต่ละรอบแล้ว ยังไม่ประเมินว่า ML เลือกแพ็กเกจได้ดีกว่า baseline / Data, baselines and six Random Forest training runs are complete with reviewed custody; policy merit remains for G6 and recovery/reproduction for G7.</p>
         </div>
         <details id="exp4-overview" className="group/overview rounded-xl border border-slate-200 bg-slate-50/60 p-5">
           <summary className="cursor-pointer rounded-md focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-teal-700">
@@ -80,7 +80,7 @@ export default async function LearningJournal({searchParams}:{searchParams:Promi
                 <tr><th className="px-4 py-3 font-semibold text-slate-800">E4-G2</th><td className="px-4 py-3">ตรวจโลกจำลองและกฎธุรกิจ / Validate simulator and business rules</td><td className="px-4 py-3">COMPLETE — bounded simulator/component fixtures passed</td></tr>
                 <tr><th className="px-4 py-3 font-semibold text-slate-800">E4-G3</th><td className="px-4 py-3">สร้างและตรวจข้อมูล / Generate and validate data</td><td className="px-4 py-3">COMPLETE — data generation/validation and reviewed custody · 120,000 customers / สร้าง ตรวจ และทบทวนการเก็บหลักฐานครบ</td></tr>
                 <tr><th className="px-4 py-3 font-semibold text-slate-800">E4-G4</th><td className="px-4 py-3">สร้างตัวเปรียบเทียบ / Establish baselines</td><td className="px-4 py-3">COMPLETE — 12 TRAIN/VALIDATION splits; 90,000 customers; reviewed baseline evidence</td></tr>
-                <tr><th className="px-4 py-3 font-semibold text-slate-800">E4-G5</th><td className="px-4 py-3">ฝึกโมเดลและสร้างวิธีเลือก offer / Train model and derive policy</td><td className="px-4 py-3">COMPLETE — six fixed models trained and saved; reviewed diagnostics and custody</td></tr>
+                <tr><th className="px-4 py-3 font-semibold text-slate-800">E4-G5</th><td className="px-4 py-3">ฝึกโมเดลและสร้างวิธีเลือก offer / Train model and derive policy</td><td className="px-4 py-3">COMPLETE — six Random Forest runs completed; each trained model saved; reviewed diagnostics and custody</td></tr>
                 <tr><th className="px-4 py-3 font-semibold text-slate-800">E4-G6</th><td className="px-4 py-3">ประเมินผลบนข้อมูลที่กันไว้ / Evaluate frozen policies</td><td className="px-4 py-3">NOT_STARTED</td></tr>
                 <tr><th className="px-4 py-3 font-semibold text-slate-800">E4-G7</th><td className="px-4 py-3">โหลดกลับ ทำซ้ำ และปิดการทดลอง / Reload, reproduce and close out</td><td className="px-4 py-3">NOT_COMPLETE — recovery/reproduction pending</td></tr>
               </tbody>
@@ -121,6 +121,73 @@ export default async function LearningJournal({searchParams}:{searchParams:Promi
             </div>
 
             <p className="mt-4 text-xs leading-5 text-emerald-900"><strong>Historical checkpoint · 21 October 2026 / สถานะ ณ วันบันทึกเดิม:</strong> G2 COMPLETE หมายถึง bounded component/fixture requirements ผ่านแล้ว—not full generator validation, model learning, empirical calibration, production uplift หรือ fresh-process Spark/model recovery. หลัง G2 มี G3 smoke PASS สำหรับ 200 customers / 410 candidate rows และ six-table same-process Parquet read-back; full G3 data ยัง <code>NOT_COMPLETE</code> และ model training ยัง <code>NOT_STARTED</code>.</p>
+          <details id="exp4-business-to-features" className="group/features mt-6 rounded-xl border border-teal-200 bg-teal-50/60 p-5">
+            <summary className="cursor-pointer rounded-md focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-teal-700">
+            <p className="text-xs font-semibold uppercase tracking-widest text-teal-700">G2 · Feature design journal · 21 October 2026</p>
+            <h2 className="mt-2 text-xl font-semibold text-slate-900">จากโจทย์ธุรกิจสู่ 38 Features</h2>
+            <p className="mt-1 text-sm font-medium text-slate-600">From Business Decisions to 38 Model Features</p>
+              <span className="mt-2 block text-xs font-medium text-teal-800"><span className="group-open/features:hidden">ขยายรายละเอียด / Expand details</span><span className="hidden group-open/features:inline">พับรายละเอียด / Collapse details</span></span>
+            </summary>
+            <p className="mt-3 leading-7 text-slate-700">หนึ่งแถวแทน <strong>ลูกค้าหนึ่งคน × action หนึ่งรายการ</strong> ตอนฝึก แถวนั้นใช้ action ที่เสนอจริงและ <code>observed_reward</code> ของเหตุการณ์นั้นเป็น label; ตอนเลือกข้อเสนอ ระบบสร้าง representation เดียวกันเพื่อประเมินแต่ละ action ที่ผ่านข้อจำกัดแล้ว โดยไม่ส่ง oracle หรือผลลัพธ์ในอนาคตให้ learner.</p>
+
+            <div className="mt-5 overflow-x-auto rounded-lg border border-slate-200 bg-white">
+              <table className="min-w-[760px] w-full text-left text-sm">
+                <thead className="bg-slate-50 text-slate-800"><tr><th className="px-4 py-3 font-semibold">ช่อง / Fields</th><th className="px-4 py-3 font-semibold">กลุ่ม / Group</th><th className="px-4 py-3 text-right font-semibold">จำนวน / Count</th></tr></thead>
+                <tbody className="divide-y divide-slate-200 text-slate-600">{exp4FeatureGroups.map(([range,th,en,count])=><tr key={range}><th className="whitespace-nowrap px-4 py-3 font-semibold text-slate-800">{range}</th><td className="px-4 py-3"><span className="block">{th}</span><span className="mt-1 block text-xs text-slate-500">{en}</span></td><td className="px-4 py-3 text-right tabular-nums">{count}</td></tr>)}</tbody>
+              </table>
+            </div>
+
+            <div className="mt-5 grid gap-4 lg:grid-cols-2">
+              <div className="rounded-lg border border-slate-200 bg-white p-4">
+                <h3 className="font-semibold text-slate-900">เกณฑ์การเลือก / Selection criteria</h3>
+                <ol className="mt-3 list-decimal space-y-2 pl-5 text-sm leading-6 text-slate-700">
+                  <li>รู้ได้ ณ เวลาตัดสินใจ / available at decision time.</li>
+                  <li>เกี่ยวข้องกับ customer need, offer attributes หรือ business constraints.</li>
+                  <li>ใช้นิยามเดียวกันตอนฝึกและตอนประเมิน action.</li>
+                  <li>ลำดับคงที่ เป็น finite numeric และ non-null ตาม contract.</li>
+                  <li>ไม่ใช้ผลหลังการเสนอหรือ simulator truth เป็นตัวทำนาย.</li>
+                </ol>
+              </div>
+              <div className="rounded-lg border border-slate-200 bg-white p-4">
+                <h3 className="font-semibold text-slate-900">สิ่งที่แยกออก / Kept outside features</h3>
+                <ul className="mt-3 list-disc space-y-2 pl-5 text-sm leading-6 text-slate-700">
+                  <li><code>observed_reward</code> คือ label ไม่ใช่ feature.</li>
+                  <li>สินค้าที่ซื้อจริงและเวลาซื้อเป็น outcomes.</li>
+                  <li>Hidden price sensitivity และ oracle expected reward เป็นเฉลยที่แยกจาก learner.</li>
+                  <li>Customer ID และ split ใช้จัดการ/เชื่อมแถว ไม่เข้า feature vector.</li>
+                </ul>
+              </div>
+            </div>
+
+            <details className="mt-5 rounded-lg border border-slate-200 bg-white p-4">
+              <summary className="cursor-pointer font-semibold text-slate-900">ดูรายชื่อ 38 features ตามลำดับ contract / View the ordered 38-feature schema</summary>
+              <p className="mt-2 text-xs leading-5 text-slate-500">Fields 24–38 use the contract’s fixed indicator order: COMBO, DATA_LONG, DATA_SHORT, NO_OFFER, VOICE.</p>
+              <div className="mt-3 overflow-x-auto">
+                <table className="min-w-[620px] w-full text-left text-sm"><thead className="border-b border-slate-200 text-slate-700"><tr><th className="px-3 py-2 font-semibold">#</th><th className="px-3 py-2 font-semibold">Contract field</th></tr></thead><tbody className="divide-y divide-slate-100">{exp4Features.map((feature,index)=><tr key={feature}><td className="w-16 px-3 py-2 tabular-nums text-slate-500">{index+1}</td><td className="px-3 py-2 font-mono text-xs text-slate-700">{feature}</td></tr>)}</tbody></table>
+              </div>
+            </details>
+
+            <div className="mt-5 rounded-lg border border-teal-200 bg-teal-50/60 p-4">
+              <p className="text-xs font-semibold uppercase tracking-widest text-teal-800">ตัวอย่างคำนวณเท่านั้น · Worked example, not a dataset result</p>
+              <p className="mt-3 text-sm leading-6 text-slate-700">ลูกค้าใช้ย้อนหลัง 7 วัน: เน็ต 7 GB / โทร 70 นาที; แพ็กเกจหลักเหลือ 3 GB / 20 นาทีและหมดอายุใน 7 วัน; ไม่มีแพ็กเกจเสริม; เคยได้รับข้อเสนอหนึ่งครั้งเมื่อ 72 ชั่วโมงก่อน; สมมติว่าผ่านสิทธิ์ซื้อและเงื่อนไขเสนอทุกสินค้า.</p>
+              <div className="mt-4 grid gap-3 md:grid-cols-2">
+                <div className="rounded-lg bg-white p-3 text-sm leading-6 text-slate-700"><strong className="text-slate-900">Forecast gap</strong><br/>4 GB / 50 minutes</div>
+                <div className="rounded-lg bg-white p-3 text-sm leading-6 text-slate-700"><strong className="text-slate-900">DATA_LONG candidate</strong><br/>8 GB · 14 days · THB 119 · cost THB 35</div>
+                <div className="rounded-lg bg-white p-3 text-sm leading-6 text-slate-700"><strong className="text-slate-900">Immediate-activation benefit</strong><br/>ลด data gap 4 GB; ไม่ลด voice gap</div>
+                <div className="rounded-lg bg-white p-3 text-sm leading-6 text-slate-700"><strong className="text-slate-900">Bounded-horizon remainder</strong><br/>คาดว่าเหลือ 4 GB ณ สิ้นวันที่ 7—ยังไม่เรียกว่าโควตาสูญเปล่า เพราะแพ็กเกจยังไม่หมดอายุ</div>
+              </div>
+              <p className="mt-3 text-sm text-slate-700"><code>allowed_action_count = 5</code> รวม <code>NO_OFFER</code>.</p>
+              <div className="mt-3 overflow-x-auto rounded-lg bg-white">
+                <table className="min-w-[700px] w-full text-center text-xs"><thead className="border-b border-slate-200 text-slate-700"><tr><th className="px-3 py-2 text-left">Indicator order</th><th className="px-3 py-2">COMBO</th><th className="px-3 py-2">DATA_LONG</th><th className="px-3 py-2">DATA_SHORT</th><th className="px-3 py-2">NO_OFFER</th><th className="px-3 py-2">VOICE</th></tr></thead><tbody className="divide-y divide-slate-100 text-slate-700"><tr><th className="px-3 py-2 text-left font-medium">Action</th><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td></tr><tr><th className="px-3 py-2 text-left font-medium">Purchase eligibility</th><td>1</td><td>1</td><td>1</td><td>0</td><td>1</td></tr><tr><th className="px-3 py-2 text-left font-medium">Allowed actions</th><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td></tr></tbody></table>
+              </div>
+              <p className="mt-3 text-xs leading-5 text-slate-600"><code>NO_OFFER</code> ไม่ใช่สินค้า จึงมี purchase eligibility = 0 แต่เป็น action ที่เลือกได้เสมอ.</p>
+            </div>
+
+            <div className="mt-5 rounded-lg border border-amber-200 bg-amber-50 p-4 text-sm leading-6 text-slate-700">
+              <p className="font-semibold text-amber-900">ขอบเขตหลักฐาน / Evidence boundary</p>
+              <ul className="mt-2 list-disc space-y-1 pl-5"><li>ลำดับและ wiring ของ 38 features ผ่าน bounded integration fixtures และ G3 smoke read-back แล้ว แต่ยังไม่รับประกันว่า representation นี้เพียงพอให้โมเดลเรียนรู้ได้ดี.</li><li>Candidate benefit และ unused quota มาจาก forecast ภายใต้สมมติฐานเปิดใช้ทันที ไม่ใช่การใช้จริงในอนาคต.</li><li>ราคา ต้นทุน และพฤติกรรมซื้อเป็นสมมติฐานจำลอง ไม่ใช่ข้อมูลจริงของผู้ให้บริการ.</li><li>Synthetic evaluation ไม่พิสูจน์ production uplift.</li></ul>
+            </div>
+          </details>
           </details>
           <details id="exp4-g3-closeout" className="group/g3 mt-6 rounded-xl border border-emerald-200 bg-emerald-50/60 p-5">
             <summary className="cursor-pointer rounded-md focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-emerald-700">
@@ -199,15 +266,15 @@ export default async function LearningJournal({searchParams}:{searchParams:Promi
           </details>
           <details id="exp4-g5-closeout" className="group/g5 mt-6 rounded-xl border border-emerald-200 bg-emerald-50/60 p-5">
             <summary className="cursor-pointer rounded-md focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-emerald-700">
-              <p className="text-xs font-semibold uppercase tracking-widest text-emerald-800">G5 COMPLETE · six fixed models and reviewed custody · 23 October 2026</p>
-              <h2 className="mt-2 text-xl font-semibold text-slate-900">G5 สำเร็จ — ฝึกและบันทึกโมเดลค่าคงที่ครบ 6 โมเดล</h2>
-              <p className="mt-1 text-sm font-medium text-slate-600">G5 complete — Six fixed-configuration models trained and saved</p>
-              <p className="mt-3 text-sm leading-6 text-slate-700">ฝึก RandomForest จาก 38 decision-time features ครบ PRIMARY/NULL × 3 seeds ตรวจ prediction error บน TRAIN/VALIDATION บันทึก pipeline และโหลดกลับใน process เดียวกันได้ผลตรงเดิม เก็บหลักฐาน PASS และ FAIL แล้ว โดยยังไม่ประเมินการเลือกแพ็กเกจบน EVALUATION / Six fixed forests trained and saved, with prediction diagnostics and matching same-process reloads. PASS and FAIL evidence retained; held-out policy evaluation remains for G6.</p>
+              <p className="text-xs font-semibold uppercase tracking-widest text-emerald-800">G5 COMPLETE · six Random Forest runs and reviewed custody · 23 October 2026</p>
+              <h2 className="mt-2 text-xl font-semibold text-slate-900">G5 สำเร็จ — ฝึก Random Forest ครบ 6 รอบ และบันทึกโมเดลแต่ละรอบแล้ว</h2>
+              <p className="mt-1 text-sm font-medium text-slate-600">G5 complete — Six Random Forest training runs completed, with each model saved</p>
+              <p className="mt-3 text-sm leading-6 text-slate-700">ใช้ Random Forest ชนิดเดียว ฝึกแยก 6 รอบตาม PRIMARY/NULL × seeds 101, 202, 303 จาก 38 decision-time features ตรวจ prediction error บน TRAIN/VALIDATION บันทึก pipeline และโหลดกลับใน process เดียวกันได้ผลตรงเดิม เก็บหลักฐาน PASS และ FAIL แล้ว โดยยังไม่ประเมินการเลือกแพ็กเกจบน EVALUATION / One algorithm, Random Forest, trained separately for six scenario/seed combinations; each resulting model is saved, with prediction diagnostics and matching same-process reloads. PASS and FAIL evidence retained; held-out policy evaluation remains for G6.</p>
               <span className="mt-2 block text-xs font-medium text-emerald-800"><span className="group-open/g5:hidden">ขยายรายละเอียด / Expand details</span><span className="hidden group-open/g5:inline">พับรายละเอียด / Collapse details</span></span>
             </summary>
             <div className="mt-4 grid gap-4 lg:grid-cols-2">
               <section className="min-w-0 rounded-lg bg-white p-4 text-sm leading-7 text-slate-700"><h3 className="font-semibold text-slate-900">โมเดลเรียนรู้อะไร / What the model learns</h3><p className="mt-2">ทำนาย <code>observed_reward</code> ของ action ที่ถูกเลือก จาก 38 features ที่รู้ก่อนตัดสินใจตาม allowlist โดย reward เป็น label / Predict the observed reward of the logged action using 38 allowlisted decision-time features; reward is the label.</p><p className="mt-2">ไม่ใช้ purchased product, oracle q หรือ latent variables เป็น features โหลดเฉพาะ learner TRAIN/VALIDATION ไม่โหลด oracle/latent/outcomes tables / Outcome and privileged variables stay outside features; only saved learner tables are loaded.</p><p className="mt-2">ฝึกเฉพาะ TRAIN; VALIDATION ใช้ตรวจผล ไม่ใช้ tuning / TRAIN-only fitting; VALIDATION diagnostics without tuning.</p></section>
-              <section className="min-w-0 rounded-lg bg-white p-4 text-sm leading-7 text-slate-700"><h3 className="font-semibold text-slate-900">วิธีฝึกที่กำหนดล่วงหน้า / Fixed training design</h3><p className="mt-2">PRIMARY/NULL × seeds 101, 202, 303 = 6 models. ต่อโมเดล / per model: TRAIN 12,000 + VALIDATION 3,000 customers.</p><p className="mt-2">RandomForestRegressor: 100 trees, maxDepth 8, maxBins 64, featureSubsetStrategy <code>all</code>, seed ตาม run / per-run seed. Fixed VectorAssembler; ไม่มี hyperparameter search / no search.</p><p className="mt-2">Owner Mac · Spark <code>local[2]</code> · Python 3.12.15 · PySpark 4.1.0 · Java 17.0.20.1. Environment check แยกบันทึก / separately records NumPy 2.5.4 and arm64; this is a version record, not a complete dependency lock.</p></section>
+              <section className="min-w-0 rounded-lg bg-white p-4 text-sm leading-7 text-slate-700"><h3 className="font-semibold text-slate-900">วิธีฝึกที่กำหนดล่วงหน้า / Fixed training design</h3><p className="mt-2">PRIMARY 3 รอบ + NULL 3 รอบ ตาม seeds 101, 202, 303 รวม 6 รอบ ได้โมเดลที่ฝึกแล้ว 6 ตัว / Three runs per scenario produce six separately fitted Random Forest models. ต่อรอบ / per run: TRAIN 12,000 + VALIDATION 3,000 customers.</p><p className="mt-2">RandomForestRegressor: 100 trees, maxDepth 8, maxBins 64, featureSubsetStrategy <code>all</code>, seed ตาม run / per-run seed. กำหนดค่าการฝึกไว้ล่วงหน้าและใช้เหมือนกันทุกรอบ ยกเว้น seed ตามรอบ; ค่าที่โมเดลเรียนรู้ยังขึ้นกับข้อมูลของแต่ละรอบ / Training settings are predetermined and shared except for each run’s seed; learned values depend on that run’s data. Fixed VectorAssembler; ไม่มี hyperparameter search / no search.</p><p className="mt-2">Owner Mac · Spark <code>local[2]</code> · Python 3.12.15 · PySpark 4.1.0 · Java 17.0.20.1. Environment check แยกบันทึก / separately records NumPy 2.5.4 and arm64; this is a version record, not a complete dependency lock.</p></section>
             </div>
             <div className="mt-4 overflow-x-auto rounded-lg border border-emerald-200 bg-white" tabIndex={0} role="region" aria-label="G5 prediction error diagnostics table">
               <table className="min-w-[730px] w-full text-left text-sm tabular-nums">
@@ -243,74 +310,7 @@ export default async function LearningJournal({searchParams}:{searchParams:Promi
               <a className="underline text-teal-800" href="https://github.com/msararin/nbo-nrt-mlops-usecase/blob/1ce437f59a51ef2981ff1c1b53cd299a6b3f1961/docs/experiments/exp4/G5_IMPLEMENTATION_REVIEW_2026-10-23.md" target="_blank" rel="noreferrer">G5 implementation review · before runtime ↗</a>
             </div>
           </details>
-          <details id="exp4-business-to-features" className="group/features mt-6 rounded-xl border border-teal-200 bg-teal-50/60 p-5">
-            <summary className="cursor-pointer rounded-md focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-teal-700">
-            <p className="text-xs font-semibold uppercase tracking-widest text-teal-700">Feature design journal · 21 October 2026</p>
-            <h2 className="mt-2 text-xl font-semibold text-slate-900">จากโจทย์ธุรกิจสู่ 38 Features</h2>
-            <p className="mt-1 text-sm font-medium text-slate-600">From Business Decisions to 38 Model Features</p>
-              <span className="mt-2 block text-xs font-medium text-teal-800"><span className="group-open/features:hidden">ขยายรายละเอียด / Expand details</span><span className="hidden group-open/features:inline">พับรายละเอียด / Collapse details</span></span>
-            </summary>
-            <p className="mt-3 leading-7 text-slate-700">หนึ่งแถวแทน <strong>ลูกค้าหนึ่งคน × action หนึ่งรายการ</strong> ตอนฝึก แถวนั้นใช้ action ที่เสนอจริงและ <code>observed_reward</code> ของเหตุการณ์นั้นเป็น label; ตอนเลือกข้อเสนอ ระบบสร้าง representation เดียวกันเพื่อประเมินแต่ละ action ที่ผ่านข้อจำกัดแล้ว โดยไม่ส่ง oracle หรือผลลัพธ์ในอนาคตให้ learner.</p>
-
-            <div className="mt-5 overflow-x-auto rounded-lg border border-slate-200 bg-white">
-              <table className="min-w-[760px] w-full text-left text-sm">
-                <thead className="bg-slate-50 text-slate-800"><tr><th className="px-4 py-3 font-semibold">ช่อง / Fields</th><th className="px-4 py-3 font-semibold">กลุ่ม / Group</th><th className="px-4 py-3 text-right font-semibold">จำนวน / Count</th></tr></thead>
-                <tbody className="divide-y divide-slate-200 text-slate-600">{exp4FeatureGroups.map(([range,th,en,count])=><tr key={range}><th className="whitespace-nowrap px-4 py-3 font-semibold text-slate-800">{range}</th><td className="px-4 py-3"><span className="block">{th}</span><span className="mt-1 block text-xs text-slate-500">{en}</span></td><td className="px-4 py-3 text-right tabular-nums">{count}</td></tr>)}</tbody>
-              </table>
-            </div>
-
-            <div className="mt-5 grid gap-4 lg:grid-cols-2">
-              <div className="rounded-lg border border-slate-200 bg-white p-4">
-                <h3 className="font-semibold text-slate-900">เกณฑ์การเลือก / Selection criteria</h3>
-                <ol className="mt-3 list-decimal space-y-2 pl-5 text-sm leading-6 text-slate-700">
-                  <li>รู้ได้ ณ เวลาตัดสินใจ / available at decision time.</li>
-                  <li>เกี่ยวข้องกับ customer need, offer attributes หรือ business constraints.</li>
-                  <li>ใช้นิยามเดียวกันตอนฝึกและตอนประเมิน action.</li>
-                  <li>ลำดับคงที่ เป็น finite numeric และ non-null ตาม contract.</li>
-                  <li>ไม่ใช้ผลหลังการเสนอหรือ simulator truth เป็นตัวทำนาย.</li>
-                </ol>
-              </div>
-              <div className="rounded-lg border border-slate-200 bg-white p-4">
-                <h3 className="font-semibold text-slate-900">สิ่งที่แยกออก / Kept outside features</h3>
-                <ul className="mt-3 list-disc space-y-2 pl-5 text-sm leading-6 text-slate-700">
-                  <li><code>observed_reward</code> คือ label ไม่ใช่ feature.</li>
-                  <li>สินค้าที่ซื้อจริงและเวลาซื้อเป็น outcomes.</li>
-                  <li>Hidden price sensitivity และ oracle expected reward เป็นเฉลยที่แยกจาก learner.</li>
-                  <li>Customer ID และ split ใช้จัดการ/เชื่อมแถว ไม่เข้า feature vector.</li>
-                </ul>
-              </div>
-            </div>
-
-            <details className="mt-5 rounded-lg border border-slate-200 bg-white p-4">
-              <summary className="cursor-pointer font-semibold text-slate-900">ดูรายชื่อ 38 features ตามลำดับ contract / View the ordered 38-feature schema</summary>
-              <p className="mt-2 text-xs leading-5 text-slate-500">Fields 24–38 use the contract’s fixed indicator order: COMBO, DATA_LONG, DATA_SHORT, NO_OFFER, VOICE.</p>
-              <div className="mt-3 overflow-x-auto">
-                <table className="min-w-[620px] w-full text-left text-sm"><thead className="border-b border-slate-200 text-slate-700"><tr><th className="px-3 py-2 font-semibold">#</th><th className="px-3 py-2 font-semibold">Contract field</th></tr></thead><tbody className="divide-y divide-slate-100">{exp4Features.map((feature,index)=><tr key={feature}><td className="w-16 px-3 py-2 tabular-nums text-slate-500">{index+1}</td><td className="px-3 py-2 font-mono text-xs text-slate-700">{feature}</td></tr>)}</tbody></table>
-              </div>
-            </details>
-
-            <div className="mt-5 rounded-lg border border-teal-200 bg-teal-50/60 p-4">
-              <p className="text-xs font-semibold uppercase tracking-widest text-teal-800">ตัวอย่างคำนวณเท่านั้น · Worked example, not a dataset result</p>
-              <p className="mt-3 text-sm leading-6 text-slate-700">ลูกค้าใช้ย้อนหลัง 7 วัน: เน็ต 7 GB / โทร 70 นาที; แพ็กเกจหลักเหลือ 3 GB / 20 นาทีและหมดอายุใน 7 วัน; ไม่มีแพ็กเกจเสริม; เคยได้รับข้อเสนอหนึ่งครั้งเมื่อ 72 ชั่วโมงก่อน; สมมติว่าผ่านสิทธิ์ซื้อและเงื่อนไขเสนอทุกสินค้า.</p>
-              <div className="mt-4 grid gap-3 md:grid-cols-2">
-                <div className="rounded-lg bg-white p-3 text-sm leading-6 text-slate-700"><strong className="text-slate-900">Forecast gap</strong><br/>4 GB / 50 minutes</div>
-                <div className="rounded-lg bg-white p-3 text-sm leading-6 text-slate-700"><strong className="text-slate-900">DATA_LONG candidate</strong><br/>8 GB · 14 days · THB 119 · cost THB 35</div>
-                <div className="rounded-lg bg-white p-3 text-sm leading-6 text-slate-700"><strong className="text-slate-900">Immediate-activation benefit</strong><br/>ลด data gap 4 GB; ไม่ลด voice gap</div>
-                <div className="rounded-lg bg-white p-3 text-sm leading-6 text-slate-700"><strong className="text-slate-900">Bounded-horizon remainder</strong><br/>คาดว่าเหลือ 4 GB ณ สิ้นวันที่ 7—ยังไม่เรียกว่าโควตาสูญเปล่า เพราะแพ็กเกจยังไม่หมดอายุ</div>
-              </div>
-              <p className="mt-3 text-sm text-slate-700"><code>allowed_action_count = 5</code> รวม <code>NO_OFFER</code>.</p>
-              <div className="mt-3 overflow-x-auto rounded-lg bg-white">
-                <table className="min-w-[700px] w-full text-center text-xs"><thead className="border-b border-slate-200 text-slate-700"><tr><th className="px-3 py-2 text-left">Indicator order</th><th className="px-3 py-2">COMBO</th><th className="px-3 py-2">DATA_LONG</th><th className="px-3 py-2">DATA_SHORT</th><th className="px-3 py-2">NO_OFFER</th><th className="px-3 py-2">VOICE</th></tr></thead><tbody className="divide-y divide-slate-100 text-slate-700"><tr><th className="px-3 py-2 text-left font-medium">Action</th><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td></tr><tr><th className="px-3 py-2 text-left font-medium">Purchase eligibility</th><td>1</td><td>1</td><td>1</td><td>0</td><td>1</td></tr><tr><th className="px-3 py-2 text-left font-medium">Allowed actions</th><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td></tr></tbody></table>
-              </div>
-              <p className="mt-3 text-xs leading-5 text-slate-600"><code>NO_OFFER</code> ไม่ใช่สินค้า จึงมี purchase eligibility = 0 แต่เป็น action ที่เลือกได้เสมอ.</p>
-            </div>
-
-            <div className="mt-5 rounded-lg border border-amber-200 bg-amber-50 p-4 text-sm leading-6 text-slate-700">
-              <p className="font-semibold text-amber-900">ขอบเขตหลักฐาน / Evidence boundary</p>
-              <ul className="mt-2 list-disc space-y-1 pl-5"><li>ลำดับและ wiring ของ 38 features ผ่าน bounded integration fixtures และ G3 smoke read-back แล้ว แต่ยังไม่รับประกันว่า representation นี้เพียงพอให้โมเดลเรียนรู้ได้ดี.</li><li>Candidate benefit และ unused quota มาจาก forecast ภายใต้สมมติฐานเปิดใช้ทันที ไม่ใช่การใช้จริงในอนาคต.</li><li>ราคา ต้นทุน และพฤติกรรมซื้อเป็นสมมติฐานจำลอง ไม่ใช่ข้อมูลจริงของผู้ให้บริการ.</li><li>Synthetic evaluation ไม่พิสูจน์ production uplift.</li></ul>
-            </div>
-          </details>
-          <p id="exp4-current-evidence" className="mt-5 text-xs leading-6 text-slate-600"><strong>Current evidence · 23 October 2026 / หลักฐานปัจจุบัน:</strong> G1/G2/G3/G4/G5 COMPLETE under <code>EXP4_FREEZE:v1</code>; G2 is bounded component validation. G3 review <code>27638db</code>; G4 review <code>78254c3</code>; G5 review <code>b5774c2</code> accepts six saved fixed models and custody of 234 files. G6 <code>NOT_STARTED</code>; G7 recovery/reproduction/closeout is <code>NOT_COMPLETE</code>. ณ G3 fresh-process resume ยัง NOT_PERFORMED; G4 ผ่านเฉพาะ PASS_BOUNDED_G4_INPUTS_ONLY; G5 ผ่าน same-process model reload เท่านั้น / Historical recovery boundaries remain distinct; fresh-process model reload and clean remote restore remain unverified. Experiment 4 remains <strong>IN PROGRESS</strong>. Freeze supersedes historical NOT_FROZEN wording; earlier dated receipts retain their original status. Experiment 3 remains <code>PAUSED_SAFE</code>; <code>B1_COMPLETE=NO</code>.</p>
+          <p id="exp4-current-evidence" className="mt-5 text-xs leading-6 text-slate-600"><strong>Current evidence · 23 October 2026 / หลักฐานปัจจุบัน:</strong> G1/G2/G3/G4/G5 COMPLETE under <code>EXP4_FREEZE:v1</code>; G2 is bounded component validation. G3 review <code>27638db</code>; G4 review <code>78254c3</code>; G5 review <code>b5774c2</code> accepts six separately trained and saved Random Forest models and custody of 234 files. G6 <code>NOT_STARTED</code>; G7 recovery/reproduction/closeout is <code>NOT_COMPLETE</code>. ณ G3 fresh-process resume ยัง NOT_PERFORMED; G4 ผ่านเฉพาะ PASS_BOUNDED_G4_INPUTS_ONLY; G5 ผ่าน same-process model reload เท่านั้น / Historical recovery boundaries remain distinct; fresh-process model reload and clean remote restore remain unverified. Experiment 4 remains <strong>IN PROGRESS</strong>. Freeze supersedes historical NOT_FROZEN wording; earlier dated receipts retain their original status. Experiment 3 remains <code>PAUSED_SAFE</code>; <code>B1_COMPLETE=NO</code>.</p>
         <p className="mt-4 text-sm leading-6 text-slate-600"><strong>Simulation boundary:</strong> prices, costs and behavior are assumptions—not actual operator outcomes.</p>
       </Panel>
     </div>}
