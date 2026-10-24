@@ -42,19 +42,7 @@ const caseStudies = [
     cta: "View results and learning",
     href: "/case-studies/nbo-nrt-azure-databricks",
   },
-  {
-    title: "Telco Churn MLOps Learning Use Case",
-    status: "Parked",
-    statusTone: "parked",
-    category: "MLOps learning",
-    flagship: false,
-    summary:
-      "A time-boxed learning and demonstration use case for a governed customer-churn retention decision-support workflow.",
-    boundary:
-      "Sample data only. No production accuracy, causal impact, campaign uplift, or real-operator validity claim.",
-    cta: "View parked status",
-    href: "/case-studies/telco-churn-mlops",
-  },
+
   {
     title: "Company M AI Adoption Measurement Study",
     status: "Bounded evidence",

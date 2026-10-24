@@ -1,6 +1,6 @@
 import Link from "next/link"
 import type { Metadata } from "next"
-import { PageLayout } from "@/components/page-layout"
+import { requireOwner } from "@/lib/owner-access"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -55,16 +55,18 @@ export const metadata: Metadata = {
     "Parked view of a governed IBM Telco Customer Churn MLOps learning and demonstration use case.",
 }
 
-export default function TelcoChurnMLOpsCaseStudyPage() {
+export default async function TelcoChurnMLOpsArchivePage() {
+  await requireOwner()
   return (
-    <PageLayout>
+    <div className="min-w-0 [overflow-wrap:anywhere]">
+      <p className="mb-4 rounded-lg border border-slate-200 bg-white p-4 text-sm leading-6">Telco Churn — Internal archive · เก็บฉบับเดิมเป็นหลักฐานภายใน / Former public reading copy retained internally on 24 October 2026. Historical claims and parked status are preserved; this archive does not add new validation.</p>
       <section className="border-b border-border bg-background">
         <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
           <Link
-            href="/case-studies"
+            href="/cockpit/experiments"
             className="mb-5 inline-flex text-sm font-medium text-primary hover:underline"
           >
-            Back to Case Studies
+            Back to Internal Experiments
           </Link>
           <div className="flex flex-wrap gap-2">
             <Badge variant="outline">IBM Telco Customer Churn</Badge>
@@ -118,7 +120,7 @@ export default function TelcoChurnMLOpsCaseStudyPage() {
 
             <Card>
               <CardHeader>
-                <CardTitle>Current public status</CardTitle>
+                <CardTitle>Archived status</CardTitle>
               </CardHeader>
               <CardContent className="space-y-3 text-sm leading-6 text-muted-foreground">
                 <div className="rounded-md border border-primary/25 bg-primary/5 px-4 py-3">
@@ -335,6 +337,6 @@ export default function TelcoChurnMLOpsCaseStudyPage() {
           </Card>
         </div>
       </section>
-    </PageLayout>
+    </div>
   )
 }
