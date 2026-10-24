@@ -48,21 +48,21 @@ export default async function LearningJournal({searchParams}:{searchParams:Promi
     {selected.key==="four"&&<div id="exp4-roadmap">
       <Panel title="Experiment 4 — Business-grounded Package-fit Learning">
         <div id="exp4-current-status" className="mb-5 rounded-xl border border-teal-200 bg-teal-50 p-4">
-          <p className="text-sm font-semibold text-teal-900">Experiment 4 — IN PROGRESS / อยู่ระหว่างดำเนินการ</p>
-          <p className="mt-1 text-xs text-slate-600">สถานะปัจจุบัน ณ 23 ตุลาคม 2026 / Current checkpoint · 23 October 2026</p>
+          <p className="text-sm font-semibold text-teal-900">Experiment 4 — COMPLETE / จบตามขอบเขตจำลองบนเครื่อง local ที่ freeze ไว้</p>
+          <p className="mt-1 text-xs text-slate-600">สถานะปัจจุบัน ณ 24 ตุลาคม 2026 / Final checkpoint · 24 October 2026</p>
           <div className="mt-3 flex flex-wrap gap-2 text-xs font-semibold">
             <span className="rounded-full bg-emerald-100 px-3 py-1 text-emerald-900">G1 · Complete</span>
             <span className="rounded-full bg-emerald-100 px-3 py-1 text-emerald-900">G2 · Complete — bounded validation</span>
             <span className="rounded-full bg-emerald-100 px-3 py-1 text-emerald-900">G3 · Complete — data and custody</span>
             <span className="rounded-full bg-emerald-100 px-3 py-1 text-emerald-900">G4 · Complete — business baselines</span>
             <span className="rounded-full bg-emerald-100 px-3 py-1 text-emerald-900">G5 · Complete — 6 Random Forest runs</span>
-            <span className="rounded-full bg-slate-200 px-3 py-1 text-slate-800">G6 · Not started; G7 · Not complete</span>
+            <span className="rounded-full bg-slate-200 px-3 py-1 text-slate-800">G6 · Complete; G7 · Complete</span>
           </div>
-          <p className="mt-3 text-sm leading-6 text-slate-700">G3/G4/G5 สำเร็จพร้อมหลักฐาน ฝึก Random Forest แยก 6 รอบและบันทึกโมเดลของแต่ละรอบแล้ว ยังไม่ประเมินว่า ML เลือกแพ็กเกจได้ดีกว่า baseline / Data, baselines and six Random Forest training runs are complete with reviewed custody; policy merit remains for G6 and recovery/reproduction for G7.</p>
+          <p className="mt-3 text-sm leading-6 text-slate-700">G1–G7 COMPLETE — ปิดวงจรวิศวกรรมและการเรียนรู้แล้ว ML ยังไม่ชนะกฎธุรกิจอย่างสม่ำเสมอ / Engineering and learning complete within frozen local synthetic scope; consistent ML superiority and production readiness are not established.</p>
         </div>
         <details id="exp4-overview" className="group/overview rounded-xl border border-slate-200 bg-slate-50/60 p-5">
           <summary className="cursor-pointer rounded-md focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-teal-700">
-        <p className="text-xs font-semibold uppercase tracking-widest text-teal-700">Backward-design roadmap · G1/G2/G3/G4/G5 complete · Experiment in progress</p>
+        <p className="text-xs font-semibold uppercase tracking-widest text-teal-700">Backward-design roadmap · G1–G7 complete · Frozen local synthetic scope</p>
         <h2 className="mt-3 text-xl font-semibold text-slate-900">เรียนรู้ว่าแพ็กเกจเสริมใดเหมาะกับ context นี้—or NO_OFFER</h2>
             <span className="mt-2 block text-xs font-medium text-teal-800"><span className="group-open/overview:hidden">ขยายรายละเอียด / Expand details</span><span className="hidden group-open/overview:inline">พับรายละเอียด / Collapse details</span></span>
           </summary>
@@ -81,8 +81,8 @@ export default async function LearningJournal({searchParams}:{searchParams:Promi
                 <tr><th className="px-4 py-3 font-semibold text-slate-800">E4-G3</th><td className="px-4 py-3">สร้างและตรวจข้อมูล / Generate and validate data</td><td className="px-4 py-3">COMPLETE — data generation/validation and reviewed custody · 120,000 customers / สร้าง ตรวจ และทบทวนการเก็บหลักฐานครบ</td></tr>
                 <tr><th className="px-4 py-3 font-semibold text-slate-800">E4-G4</th><td className="px-4 py-3">สร้างตัวเปรียบเทียบ / Establish baselines</td><td className="px-4 py-3">COMPLETE — 12 TRAIN/VALIDATION splits; 90,000 customers; reviewed baseline evidence</td></tr>
                 <tr><th className="px-4 py-3 font-semibold text-slate-800">E4-G5</th><td className="px-4 py-3">ฝึกโมเดลและสร้างวิธีเลือก offer / Train model and derive policy</td><td className="px-4 py-3">COMPLETE — six Random Forest runs completed; each trained model saved; reviewed diagnostics and custody</td></tr>
-                <tr><th className="px-4 py-3 font-semibold text-slate-800">E4-G6</th><td className="px-4 py-3">ประเมินผลบนข้อมูลที่กันไว้ / Evaluate frozen policies</td><td className="px-4 py-3">NOT_STARTED</td></tr>
-                <tr><th className="px-4 py-3 font-semibold text-slate-800">E4-G7</th><td className="px-4 py-3">โหลดกลับ ทำซ้ำ และปิดการทดลอง / Reload, reproduce and close out</td><td className="px-4 py-3">NOT_COMPLETE — recovery/reproduction pending</td></tr>
+                <tr><th className="px-4 py-3 font-semibold text-slate-800">E4-G6</th><td className="px-4 py-3">ประเมินผลบนข้อมูลที่กันไว้ / Evaluate frozen policies</td><td className="px-4 py-3">COMPLETE — held-out evaluation; 30,000 customers</td></tr>
+                <tr><th className="px-4 py-3 font-semibold text-slate-800">E4-G7</th><td className="px-4 py-3">โหลดกลับ ทำซ้ำ และปิดการทดลอง / Reload, reproduce and close out</td><td className="px-4 py-3">COMPLETE — fresh-process reload, PRIMARY/101 reproduction and six sensitivities</td></tr>
               </tbody>
             </table>
           </div>
@@ -216,7 +216,7 @@ export default async function LearningJournal({searchParams}:{searchParams:Promi
             </div>
             <p className="mt-4 text-sm leading-6 text-slate-700"><strong>ขอบเขตการพิสูจน์ / Verification boundary:</strong> ไม่ใช่ clean remote restore หรือ fresh-process Spark recovery; ณ checkpoint G3 fresh-process resume ยัง <code>NOT_PERFORMED</code>. ณ G3 ยังไม่ได้ฝึกโมเดล และไม่เปิด EVALUATION performance / At G3 no model was trained and no EVALUATION performance was inspected. ข้อมูลผ่าน validation ไม่รับประกันการเรียนรู้; พฤติกรรมซื้อและเศรษฐศาสตร์เป็นสมมติฐานที่ยังไม่สอบเทียบกับลูกค้าจริง / Validated data does not guarantee learnability; purchase behavior and economics are uncalibrated assumptions, not evidence of real business uplift.</p>
             <p className="mt-3 text-sm leading-6 text-slate-700"><strong>ประวัติ / History:</strong> G3 smoke เดิมผ่าน 200 customers / 410 candidate rows ที่ checkpoint <code>47776f3</code>; สถานะ full data ที่ยังไม่ครบในบันทึก 21 October เป็นประวัติเดิม ปัจจุบันเลื่อนเป็น G3 COMPLETE ตาม review วันที่ 23 October / Historical receipts retain their original run-time statuses; this later review advances G3 only.</p>
-            <p className="mt-3 text-sm leading-6 text-slate-700"><strong>ประวัติ ณ G4 review / Historical G4 checkpoint:</strong> ณ G3 ยังรอ G4 runtime; review ถัดไปยืนยัน G4 COMPLETE แล้ว ส่วน G5 ยัง IN_PROGRESS_NOT_COMPLETE / The earlier G3 checkpoint awaited G4; the later review closes G4. G5 was incomplete at that checkpoint. ปัจจุบัน G5 COMPLETE ตาม review ถัดไป / The later G5 review now closes training; Experiment 4 remains IN PROGRESS.</p>
+            <p className="mt-3 text-sm leading-6 text-slate-700"><strong>ประวัติ ณ G4 review / Historical G4 checkpoint:</strong> ณ G3 ยังรอ G4 runtime; review ถัดไปยืนยัน G4 COMPLETE แล้ว ส่วน G5 ยัง IN_PROGRESS_NOT_COMPLETE / The earlier G3 checkpoint awaited G4; the later review closes G4. G5 was incomplete at that checkpoint. ปัจจุบัน G5 COMPLETE ตาม review ถัดไป / The later G5 review closes training. ปัจจุบัน G1–G7 COMPLETE ตาม final closeout / Current final closeout completes G1–G7.</p>
             <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-sm">
               <a className="underline text-teal-800" href="https://github.com/msararin/nbo-nrt-mlops-usecase/blob/27638db0f0e325072cac933230ef89d9992979df/docs/experiments/exp4/G3_FULL_DATA_REVIEW_2026-10-23.md" target="_blank" rel="noreferrer">G3 review · 27638db ↗</a>
               <a className="underline text-teal-800" href="https://github.com/msararin/nbo-nrt-mlops-usecase/tree/fbe5eb31637b3b159dc101063278fff1d8237851/evidence/exp4/full_data" target="_blank" rel="noreferrer">G3 evidence snapshot · fbe5eb3 ↗</a>
@@ -255,7 +255,7 @@ export default async function LearningJournal({searchParams}:{searchParams:Promi
             <p className="mt-3 text-sm leading-7 text-slate-700">กลุ่มมีหลายทางเลือกใน VALIDATION: cheapest gap from oracle ประมาณ 0.80–0.85 บาท/ลูกค้า / MULTIPLE_ACTIONS validation gap is approximately 0.80–0.85 THB/customer. NULL ทั้งสามวิธีมี expected reward เท่ากันภายใน tolerance; <code>-0.00000000</code> เป็น floating-point rounding ไม่ใช่ความได้เปรียบที่มีความหมาย / Rounded negative zero is not meaningful superiority.</p>
             <div className="mt-4 grid gap-4 lg:grid-cols-2">
               <div className="min-w-0 rounded-lg bg-white p-4 text-sm leading-7 text-slate-700"><h3 className="font-semibold text-slate-900">หลักฐาน / Evidence custody</h3><p className="mt-2 break-words">Run: <code>exp4-g4-baselines-b4a3b8b639e74887a948319498875c57</code><br/>Runtime code: <code>8d0fb2f</code> · Evidence: <code>f506586</code> · Checkpoint: <code>78254c3</code></p><p className="mt-2">99 files / 1,093,420 bytes: policy-weight Parquet, schemas, reports, logs, receipt และ manifest ใน <code className="break-all">evidence/exp4/baselines/&lt;run&gt;/</code>. ผู้ใช้ตรวจ committed hashes ทั้ง 99 ไฟล์และ remote reachability ผ่าน ต้นฉบับยังอยู่บน Mac / Owner verified committed bytes and remote reachability; originals retained. Assistant reviewed remote receipt and combined reports.</p><p className="mt-2 break-all">Receipt SHA-256: <code>6c6aa545b598e9582cd43a3f556d0570e07e9e336758534bab8190a3d590e19a</code></p></div>
-              <div className="min-w-0 rounded-lg bg-white p-4 text-sm leading-7 text-slate-700"><h3 className="font-semibold text-slate-900">การกู้คืนและขอบเขต / Recovery boundary</h3><p className="mt-2 break-words"><strong>Fresh-process Spark resume: <code>PASS_BOUNDED_G4_INPUTS_ONLY</code></strong></p><p className="mt-2">อ่านและตรวจ saved TRAIN/VALIDATION contexts/candidates/oracle ใน process ใหม่ผ่านเท่านั้น / Passed reading and validation of these selected inputs in a new process.</p><p className="mt-2">ยังไม่ใช่ clean remote restore, all-table recovery หรือ saved-model reload / These broader recovery claims remain unverified.</p><p className="mt-2">Receipt เดิมเก็บสถานะ pending custody; additive review ภายหลังปิด G4 โดยไม่แก้ประวัติ / The immutable runtime receipt retains pending custody; the later review closes G4.</p></div>
+              <div className="min-w-0 rounded-lg bg-white p-4 text-sm leading-7 text-slate-700"><h3 className="font-semibold text-slate-900">การกู้คืนและขอบเขต / Recovery boundary</h3><p className="mt-2 break-words"><strong>Fresh-process Spark resume: <code>PASS_BOUNDED_G4_INPUTS_ONLY</code></strong></p><p className="mt-2">อ่านและตรวจ saved TRAIN/VALIDATION contexts/candidates/oracle ใน process ใหม่ผ่านเท่านั้น / Passed reading and validation of these selected inputs in a new process.</p><p className="mt-2">ยังไม่ใช่ clean remote restore, all-table recovery หรือ saved-model reload / This describes the G4 checkpoint; G7 later verifies saved-model reload. Clean remote restore remains unperformed.</p><p className="mt-2">Receipt เดิมเก็บสถานะ pending custody; additive review ภายหลังปิด G4 โดยไม่แก้ประวัติ / The immutable runtime receipt retains pending custody; the later review closes G4.</p></div>
             </div>
             <div className="mt-4 rounded-lg bg-white p-4 text-sm leading-7 text-slate-700"><h3 className="font-semibold text-slate-900">บทเรียนและข้อจำกัด / Learning and limits</h3><ul className="mt-2 list-disc space-y-2 pl-5"><li>กฎธุรกิจเป็นคู่เปรียบเทียบที่สำคัญ ML ต้องแสดงคุณค่าเพิ่มเหนือวิธีเดิม / A strong business rule is the comparator for added ML value.</li><li>Baseline ใกล้ oracle ทำให้พื้นที่ปรับปรุงเหลือน้อย การเสมอหรือแพ้เป็นผลที่ยอมรับได้ / Limited oracle headroom makes tied or losing ML outcomes valid.</li><li>ความเหมาะสมไม่รับประกันการซื้อ แยก engineering correctness จาก learning performance และผลธุรกิจจริง / Suitability does not guarantee purchase; engineering, learning and real business outcomes are distinct.</li><li>Simulator และ baseline ใช้สมมติฐานประโยชน์ที่สัมพันธ์กัน จึงยังสรุปไม่ได้ว่า baseline นี้ดีที่สุดกับลูกค้าจริง / Shared benefit assumptions may favor this baseline; real-customer superiority is not established.</li></ul></div>
             <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-sm">
@@ -269,7 +269,7 @@ export default async function LearningJournal({searchParams}:{searchParams:Promi
               <p className="text-xs font-semibold uppercase tracking-widest text-emerald-800">G5 COMPLETE · six Random Forest runs and reviewed custody · 23 October 2026</p>
               <h2 className="mt-2 text-xl font-semibold text-slate-900">G5 สำเร็จ — ฝึก Random Forest ครบ 6 รอบ และบันทึกโมเดลแต่ละรอบแล้ว</h2>
               <p className="mt-1 text-sm font-medium text-slate-600">G5 complete — Six Random Forest training runs completed, with each model saved</p>
-              <p className="mt-3 text-sm leading-6 text-slate-700">ใช้ Random Forest ชนิดเดียว ฝึกแยก 6 รอบตาม PRIMARY/NULL × seeds 101, 202, 303 จาก 38 decision-time features ตรวจ prediction error บน TRAIN/VALIDATION บันทึก pipeline และโหลดกลับใน process เดียวกันได้ผลตรงเดิม เก็บหลักฐาน PASS และ FAIL แล้ว โดยยังไม่ประเมินการเลือกแพ็กเกจบน EVALUATION / One algorithm, Random Forest, trained separately for six scenario/seed combinations; each resulting model is saved, with prediction diagnostics and matching same-process reloads. PASS and FAIL evidence retained; held-out policy evaluation remains for G6.</p>
+              <p className="mt-3 text-sm leading-6 text-slate-700">ใช้ Random Forest ชนิดเดียว ฝึกแยก 6 รอบตาม PRIMARY/NULL × seeds 101, 202, 303 จาก 38 decision-time features ตรวจ prediction error บน TRAIN/VALIDATION บันทึก pipeline และโหลดกลับใน process เดียวกันได้ผลตรงเดิม เก็บหลักฐาน PASS และ FAIL แล้ว ณ checkpoint G5 ยังไม่ประเมินการเลือกแพ็กเกจบน EVALUATION / One algorithm, Random Forest, trained separately for six scenario/seed combinations; each resulting model is saved, with prediction diagnostics and matching same-process reloads. PASS and FAIL evidence retained; held-out policy evaluation was reserved for G6 at this checkpoint; see the completed G6 journal below.</p>
               <span className="mt-2 block text-xs font-medium text-emerald-800"><span className="group-open/g5:hidden">ขยายรายละเอียด / Expand details</span><span className="hidden group-open/g5:inline">พับรายละเอียด / Collapse details</span></span>
             </summary>
             <div className="mt-4 grid gap-4 lg:grid-cols-2">
@@ -293,7 +293,7 @@ export default async function LearningJournal({searchParams}:{searchParams:Promi
               </table>
             </div>
             <section className="mt-4 rounded-lg bg-white p-4 text-sm leading-7 text-slate-700"><h3 className="font-semibold text-slate-900">อ่านค่า error อย่างไร / Interpreting the errors</h3><p className="mt-2">MAE คือค่าเฉลี่ยขนาดความคลาดเคลื่อนโดยไม่ให้บวก/ลบหักล้างกัน ส่วน RMSE ให้น้ำหนัก error ขนาดใหญ่มากขึ้น / MAE averages absolute errors; RMSE weights larger errors more heavily.</p><p className="mt-2">PRIMARY VALIDATION MAE เฉลี่ย 3 seeds = <strong>21.1412 บาท</strong>. แต่ละ seed มี 3,000 รายเท่ากัน จึงเท่ากับ pooled MAE ของ 9,000 รายที่ใช้โมเดลของแต่ละ seed / Equal-sized seeds make this the pooled MAE for 9,000 observations scored by their respective models, not one model tested on all 9,000. An arithmetic average of RMSE is not pooled RMSE.</p><p className="mt-2">Error ไม่ใช่ธุรกิจขาดทุน และยังไม่บอกว่า ML เลือกแพ็กเกจดีกว่า baseline ไม่มี prediction-error baseline ให้ตัดสินว่าระดับนี้ดีหรือแย่ / Reward prediction error is not business loss or policy superiority; no prediction-error comparator was evaluated.</p><p className="mt-2">NULL มี expected reward เท่ากันระหว่าง actions ใน context เดียวกัน แต่ต่างกันระหว่างลูกค้าได้ และ observed outcomes มีความสุ่ม จึงไม่จำเป็นต้องมี RMSE/MAE เป็นศูนย์ / Within-context action equality does not imply identical rewards across customers or zero observed-label error.</p></section>
-            <section className="mt-4 rounded-lg bg-white p-4 text-sm leading-7 text-slate-700"><h3 className="font-semibold text-slate-900">บันทึกและโหลดกลับ / Persistence and reload</h3><p className="mt-2">เก็บ native pipelines ทั้ง 6 รวม VectorAssembler + RandomForest พร้อม metadata, parameters, feature order, input identities, predictions, schemas, reports, logs และ manifest / Six native pipelines and their model/input/diagnostic evidence are saved.</p><p className="mt-2"><strong>Same-process reload: maximum prediction difference = 0.0</strong> ทั้ง 12 TRAIN/VALIDATION prediction sets; prediction Parquet count และ bidirectional <code>exceptAll</code> read-back ผ่าน / All twelve prediction sets agree exactly after same-process reload and pass Parquet semantic read-back.</p><p className="mt-2">ยังไม่ใช่ fresh-process model reload, clean remote restore หรือการฝึกซ้ำเพื่อพิสูจน์ reproducibility; G7 ยัง NOT_COMPLETE / These broader recovery and reproduction checks remain open in G7.</p></section>
+            <section className="mt-4 rounded-lg bg-white p-4 text-sm leading-7 text-slate-700"><h3 className="font-semibold text-slate-900">บันทึกและโหลดกลับ / Persistence and reload</h3><p className="mt-2">เก็บ native pipelines ทั้ง 6 รวม VectorAssembler + RandomForest พร้อม metadata, parameters, feature order, input identities, predictions, schemas, reports, logs และ manifest / Six native pipelines and their model/input/diagnostic evidence are saved.</p><p className="mt-2"><strong>Same-process reload: maximum prediction difference = 0.0</strong> ทั้ง 12 TRAIN/VALIDATION prediction sets; prediction Parquet count และ bidirectional <code>exceptAll</code> read-back ผ่าน / All twelve prediction sets agree exactly after same-process reload and pass Parquet semantic read-back.</p><p className="mt-2">ณ G5 ยังไม่ใช่ fresh-process model reload หรือ reproduction / At the G5 checkpoint these checks were pending. G7 ยืนยัน reload/reproduction ภายหลังแล้ว แต่ clean remote restore ยัง NOT_PERFORMED / G7 later completes those checks; clean remote restore remains unperformed.</p></section>
             <section className="mt-4 rounded-lg bg-white p-4 text-sm leading-7 text-slate-700"><h3 className="font-semibold text-slate-900">FAIL ที่เก็บไว้และบทเรียน / Preserved failure and learning</h3><p className="mt-2">ครั้งแรกหยุดก่อนฝึก: <code className="break-words">ModuleNotFoundError: No module named &apos;numpy&apos;</code>. Spark SQL ก่อนหน้านี้ทำงานได้ แต่ PySpark ML ต้องมี NumPy เพิ่ม / The first attempt stopped before training: working Spark SQL did not establish readiness of ML dependencies.</p><p className="mt-2">ติดตั้ง <code>pyspark[ml]==4.1.0</code> ตรวจ ML import ผ่าน แล้วรันใหม่ด้วย source และ model configuration เดิม ไม่เปลี่ยนสูตรหรือ thresholds เก็บ FAIL รอบแรกไว้ครบ / Installed the ML extra, verified imports and reran unchanged code/configuration; the failed attempt remains preserved.</p><p className="mt-2">บทเรียน: environment preflight ต้องครอบคลุม dependency ของขั้นงานจริง การผ่าน data pipeline ยังไม่ยืนยันว่า ML พร้อม / Check the dependencies required by the next stage; successful data processing alone is insufficient.</p></section>
             <section className="mt-4 min-w-0 rounded-lg bg-white p-4 text-sm leading-7 text-slate-700"><h3 className="font-semibold text-slate-900">หลักฐานและ custody / Evidence and custody</h3>
               <div className="mt-3 overflow-x-auto"><table className="min-w-[500px] w-full text-left text-sm tabular-nums"><thead><tr><th className="px-3 py-2">Evidence set</th><th className="px-3 py-2">Files</th><th className="px-3 py-2">Bytes</th></tr></thead><tbody className="divide-y divide-slate-200"><tr><td className="px-3 py-2">PASS · models and diagnostics</td><td className="px-3 py-2">231</td><td className="px-3 py-2">8,999,779</td></tr><tr><td className="px-3 py-2">FAIL · missing NumPy before training</td><td className="px-3 py-2">2</td><td className="px-3 py-2">5,128</td></tr><tr><td className="px-3 py-2">Environment import check</td><td className="px-3 py-2">1</td><td className="px-3 py-2">342</td></tr><tr className="font-semibold"><td className="px-3 py-2">รวม / Total</td><td className="px-3 py-2">234</td><td className="px-3 py-2">9,005,249</td></tr></tbody></table></div>
@@ -302,7 +302,7 @@ export default async function LearningJournal({searchParams}:{searchParams:Promi
               <p className="mt-2">ผู้ใช้ตรวจ output hashes, source→copy, committed hashes ทั้ง 234 ไฟล์ และ remote reachability ผ่าน; ต้นฉบับ outputs บน Mac ยังคงอยู่ / Owner verified output/copy/committed bytes and remote reachability; original outputs retained. Assistant อ่าน remote receipts ทั้งสามชุดและ combined reports / reviewed all three remote receipts and combined reports.</p><p className="mt-2">ตาม owner handoff: sync G5 checkpoint ลง Mac แล้วและ worktree สะอาด / Owner handoff confirms checkpoint sync and a clean Mac worktree. ไม่มี independent reviewer หรือ independent clean restore / No independent reviewer or clean-restore claim.</p>
               <p className="mt-2">Receipt เดิมยังระบุ pending custody ตามเวลารัน; additive review ภายหลังปิด G5 โดยไม่แก้ bytes เดิม / The runtime receipt retains its historical pending status; the later review closes the gate.</p>
             </section>
-            <p className="mt-4 text-sm leading-7 text-slate-700"><strong>ขั้นต่อไป / Next:</strong> G6 จะใช้ saved models เปรียบเทียบ NO_OFFER, UNIFORM และ CHEAPEST_SUITABLE บน EVALUATION โดยไม่ retrain/tune; G7 ตรวจ reload/reproduction และ sensitivity ตาม frozen contract / G6 compares frozen policies on held-out data without retraining or tuning; G7 covers fresh-process reload, reproduction and contracted sensitivity checks.</p>
+            <p className="mt-4 text-sm leading-7 text-slate-700"><strong>ขั้นถัดไป ณ G5 checkpoint / Historical next step (now completed in G6/G7):</strong> G6 จะใช้ saved models เปรียบเทียบ NO_OFFER, UNIFORM และ CHEAPEST_SUITABLE บน EVALUATION โดยไม่ retrain/tune; G7 ตรวจ reload/reproduction และ sensitivity ตาม frozen contract / G6 compares frozen policies on held-out data without retraining or tuning; G7 covers fresh-process reload, reproduction and contracted sensitivity checks.</p>
             <p className="mt-3 text-sm leading-7 text-slate-700"><strong>ข้อจำกัด / Claim boundary:</strong> Training PASS ไม่เท่ากับ ML superiority; same-process reload ไม่ปิด G7; synthetic results ไม่พิสูจน์ real-world uplift ไม่มีการเปลี่ยนเกณฑ์ย้อนหลังเพื่อให้ ML ชนะ / Training, recovery and business performance are distinct claims; no retrospective rule changes. ML ชนะ เสมอ หรือแพ้ baseline ก็ปิด learning loop อย่างซื่อสัตย์ได้ / Winning, tied or losing outcomes can all complete an honest learning loop.</p>
             <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-sm">
               <a className="underline text-teal-800" href="https://github.com/msararin/nbo-nrt-mlops-usecase/blob/b5774c282d42077eb85b99fe608a0fe5ff4efead/docs/experiments/exp4/G5_TRAINING_REVIEW_2026-10-23.md" target="_blank" rel="noreferrer">G5 review · b5774c2 ↗</a>
@@ -310,7 +310,151 @@ export default async function LearningJournal({searchParams}:{searchParams:Promi
               <a className="underline text-teal-800" href="https://github.com/msararin/nbo-nrt-mlops-usecase/blob/1ce437f59a51ef2981ff1c1b53cd299a6b3f1961/docs/experiments/exp4/G5_IMPLEMENTATION_REVIEW_2026-10-23.md" target="_blank" rel="noreferrer">G5 implementation review · before runtime ↗</a>
             </div>
           </details>
-          <p id="exp4-current-evidence" className="mt-5 text-xs leading-6 text-slate-600"><strong>Current evidence · 23 October 2026 / หลักฐานปัจจุบัน:</strong> G1/G2/G3/G4/G5 COMPLETE under <code>EXP4_FREEZE:v1</code>; G2 is bounded component validation. G3 review <code>27638db</code>; G4 review <code>78254c3</code>; G5 review <code>b5774c2</code> accepts six separately trained and saved Random Forest models and custody of 234 files. G6 <code>NOT_STARTED</code>; G7 recovery/reproduction/closeout is <code>NOT_COMPLETE</code>. ณ G3 fresh-process resume ยัง NOT_PERFORMED; G4 ผ่านเฉพาะ PASS_BOUNDED_G4_INPUTS_ONLY; G5 ผ่าน same-process model reload เท่านั้น / Historical recovery boundaries remain distinct; fresh-process model reload and clean remote restore remain unverified. Experiment 4 remains <strong>IN PROGRESS</strong>. Freeze supersedes historical NOT_FROZEN wording; earlier dated receipts retain their original status. Experiment 3 remains <code>PAUSED_SAFE</code>; <code>B1_COMPLETE=NO</code>.</p>
+<details id="exp4-g6-closeout" className="group/g6 mt-6 rounded-xl border border-emerald-200 bg-emerald-50/60 p-5">
+            <summary className="cursor-pointer rounded-md focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-emerald-700">
+            <p className="text-xs font-semibold uppercase tracking-widest text-emerald-800">G6 · COMPLETE · 24 October 2026</p>
+            <h2 className="mt-2 text-xl font-semibold text-slate-900">ML ดีกว่าไม่เสนอและสุ่มเสนอ แต่ยังไม่ชนะกฎธุรกิจอย่างสม่ำเสมอ</h2>
+            <p className="mt-1 text-sm font-medium text-slate-600">ML beats no offer and uniform offers, but not the business rule consistently.</p>
+            <p className="mt-3 break-words text-sm leading-7 text-slate-700">ประเมิน held-out PRIMARY/NULL × 3 seeds ครบ 30,000 คน เทียบ cheapest ชนะ 2 seeds แพ้ 1 seed / Held-out evaluation complete; mixed results against CHEAPEST_SUITABLE.</p>
+            <span className="mt-2 block text-xs font-medium text-emerald-800">
+            <span className="group-open/g6:hidden">ขยายรายละเอียด / Expand details</span>
+            <span className="hidden group-open/g6:inline">พับรายละเอียด / Collapse details</span>
+            </span>
+            </summary>
+            <section className="mt-4 rounded-lg bg-white p-4">
+            <h3 className="font-semibold text-slate-900">ผล PRIMARY ALL / Held-out results</h3>
+            <p className="mt-3 break-words text-sm leading-7 text-slate-700">PRIMARY ALL 15,000 คน: ML expected contribution <strong>31.72992953 บาท/คน</strong>; ML − NO_OFFER = <strong>+2.25837166</strong>; ML − UNIFORM = <strong>+1.46933900</strong>; ML − CHEAPEST_SUITABLE = <strong>+0.02684681</strong> บาท/คน (ประมาณ 2.68 สตางค์). / Simulated expected contribution in THB/customer, not actual profit or real-world uplift. Cheapest deltas by seed 101/202/303: +0.03479595 / +0.06941703 / −0.02367257.</p>
+            </section>
+            <section className="mt-4 rounded-lg bg-white p-4">
+            <h3 className="font-semibold text-slate-900">วิธีและ control / Method and control</h3>
+            <p className="mt-3 break-words text-sm leading-7 text-slate-700">ใช้ Random Forest หนึ่ง algorithm/configuration ที่ฝึกแยกเป็น 6 fitted instances ตาม scenario/seed ไม่มี retrain/tune / One RF algorithm with six fitted instances; no retraining or tuning. NULL equal-reward control ผ่านภายใน tolerance; forbidden actions = 0 / NULL passes within tolerance, with zero forbidden actions. MULTIPLE_ACTIONS 5,237 คนเป็น subset ของ PRIMARY ALL; ML reward 40.66516777 และ delta cheapest +0.07689557 บาท/คน / This subset is not an additional population.</p>
+            </section>
+            <section className="mt-4 rounded-lg bg-white p-4">
+            <h3 className="font-semibold text-slate-900">FAIL ที่รักษาไว้ / Retained failure</h3>
+            <p className="mt-3 break-words text-sm leading-7 text-slate-700">macOS path-alias guard เปรียบเทียบ /var กับ /private/var แล้วล้มเหลวก่อน Spark evaluation แก้ด้วย canonical root พร้อม regression test; 12 guards ผ่าน โดยไม่เปลี่ยนกฎหรือ thresholds / The initial guard failure is retained; canonicalizing the root fixes the alias case without changing business rules or thresholds. หลักฐาน 230 ไฟล์ / 3,830,521 bytes; evidence commit 5cab37e0c5729ef44066bfcf0a0367d5bbeb1746.</p>
+            </section>
+            <p className="mt-3 break-words text-sm leading-7 text-slate-700">
+            <a className="underline text-teal-800" href="https://github.com/msararin/nbo-nrt-mlops-usecase/blob/36013147ac26ebfb49924e4b822ad028df8a9b78/docs/experiments/exp4/G6_EVALUATION_REVIEW_2026-10-24.md" target="_blank" rel="noreferrer">G6 evaluation review ↗</a>
+            </p>
+            </details>
+<details id="exp4-g7-closeout" className="group/g7 mt-6 rounded-xl border border-emerald-200 bg-emerald-50/60 p-5">
+            <summary className="cursor-pointer rounded-md focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-emerald-700">
+            <p className="text-xs font-semibold uppercase tracking-widest text-emerald-800">G7 · COMPLETE · 24 October 2026</p>
+            <h2 className="mt-2 text-xl font-semibold text-slate-900">ทำซ้ำได้ แต่ความได้เปรียบทางธุรกิจเปลี่ยนตามสมมติฐาน</h2>
+            <p className="mt-1 text-sm font-medium text-slate-600">Reproducible results, assumption-dependent business advantage.</p>
+            <p className="mt-3 break-words text-sm leading-7 text-slate-700">Reload, reproduction และ sensitivity ครบตาม frozen scope ผลทางวิศวกรรมตรงเดิม แต่ consumption ×0.8 ทำให้ค่าเฉลี่ย ML กลับมาแพ้ cheapest / All three substeps complete; reproducibility does not establish a stable business advantage.</p>
+            <span className="mt-2 block text-xs font-medium text-emerald-800">
+            <span className="group-open/g7:hidden">ขยายรายละเอียด / Expand details</span>
+            <span className="hidden group-open/g7:inline">พับรายละเอียด / Collapse details</span>
+            </span>
+            </summary>
+            <section className="mt-4 rounded-lg bg-white p-4">
+            <h3 className="font-semibold text-slate-900">1. Fresh-process reload</h3>
+            <p className="mt-3 break-words text-sm leading-7 text-slate-700">โหลดครบ 6 instances ใน process ใหม่บน Mac เดิม ตรวจ 30,000 คน / 60,321 candidate predictions. Maximum prediction difference = <strong>0.0</strong>; action และ top-set mismatches = <strong>0</strong>; ตรวจ exact-tie customers ครบ <strong>34 คน</strong> / Six saved instances agree exactly, including all ties. ไม่ใช่ clean remote restore / This is same-Mac recovery, not a clean remote restore.</p>
+            </section>
+            <p className="mt-3 break-words text-sm leading-7 text-slate-700">
+            <a className="underline text-teal-800" href="https://github.com/msararin/nbo-nrt-mlops-usecase/blob/36013147ac26ebfb49924e4b822ad028df8a9b78/docs/experiments/exp4/G7_RELOAD_REVIEW_2026-10-24.md" target="_blank" rel="noreferrer">G7 reload review ↗</a>
+            </p>
+            <section className="mt-4 rounded-lg bg-white p-4">
+            <h3 className="font-semibold text-slate-900">2. PRIMARY/101 reproduction</h3>
+            <p className="mt-3 break-words text-sm leading-7 text-slate-700">สร้างประชากรเดิมซ้ำด้วย deterministic generator: semantic equality ครบ <strong>18 ตาราง</strong> แล้วฝึกซ้ำหนึ่งครั้งด้วย configuration เดิม / Regenerate the same population and perform one fixed refit. TRAIN/VALIDATION/EVALUATION prediction difference = <strong>0.0</strong>; EVALUATION action mismatches = <strong>0</strong>. ไม่ใช่ลูกค้าอิสระเพิ่มหรือการเลือกโมเดลที่คะแนนสูงกว่า / No additional independent customers or model reselection; semantic equality does not require byte-identical Parquet.</p>
+            </section>
+            <p className="mt-3 break-words text-sm leading-7 text-slate-700">
+            <a className="underline text-teal-800" href="https://github.com/msararin/nbo-nrt-mlops-usecase/blob/36013147ac26ebfb49924e4b822ad028df8a9b78/docs/experiments/exp4/G7_REPRODUCTION_REVIEW_2026-10-24.md" target="_blank" rel="noreferrer">G7 reproduction review ↗</a>
+            </p>
+            <section className="mt-4 rounded-lg bg-white p-4">
+            <h3 className="font-semibold text-slate-900">3. Business sensitivity</h3>
+            <p className="mt-3 break-words text-sm leading-7 text-slate-700">PRIMARY EVALUATION เดิม 15,000 คน; 6 settings × 3 seeds โดยคง policy weights, features และ constraints ไม่มี retraining/reselection / Six evaluator-only settings on fixed customers and policies. MAIN เป็น reference ไม่ใช่ setting ที่เจ็ด / MAIN verifies formula parity; it is not a seventh stress setting.</p>
+            </section>
+            <div className="mt-4 overflow-x-auto">
+            <table className="min-w-[620px] w-full text-left text-sm">
+            <caption className="mb-2 text-left">PRIMARY ALL · 15,000 customers · simulated expected THB/customer / บาทต่อคน</caption>
+            <thead>
+            <tr>
+            <th className="p-3">Setting</th>
+            <th className="p-3">ML reward</th>
+            <th className="p-3">ML − CHEAPEST</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+            <td className="border-t p-3">MAIN (reference)</td>
+            <td className="border-t p-3">31.72992953</td>
+            <td className="border-t p-3">+0.02684681</td>
+            </tr>
+            <tr>
+            <td className="border-t p-3">Cost ×0.8</td>
+            <td className="border-t p-3">34.58229315</td>
+            <td className="border-t p-3">+0.02796205</td>
+            </tr>
+            <tr>
+            <td className="border-t p-3">Cost ×1.2</td>
+            <td className="border-t p-3">28.87756591</td>
+            <td className="border-t p-3">+0.02573156</td>
+            </tr>
+            <tr>
+            <td className="border-t p-3">Recommendation 0.6</td>
+            <td className="border-t p-3">30.63095200</td>
+            <td className="border-t p-3">+0.00425835</td>
+            </tr>
+            <tr>
+            <td className="border-t p-3">Recommendation 1.8</td>
+            <td className="border-t p-3">32.68753215</td>
+            <td className="border-t p-3">+0.07453208</td>
+            </tr>
+            <tr>
+            <td className="border-t p-3">Consumption ×0.8</td>
+            <td className="border-t p-3">30.45923561</td>
+            <td className="border-t p-3">−0.02226381</td>
+            </tr>
+            <tr>
+            <td className="border-t p-3">Consumption ×1.2</td>
+            <td className="border-t p-3">32.38259498</td>
+            <td className="border-t p-3">+0.06649035</td>
+            </tr>
+            </tbody>
+            </table>
+            </div>
+            <section className="mt-4 rounded-lg bg-white p-4">
+            <h3 className="font-semibold text-slate-900">ตีความผล / Interpretation</h3>
+            <p className="mt-3 break-words text-sm leading-7 text-slate-700">ต้นทุนกระทบระดับ reward มากที่สุดในช่วงที่ทดสอบ แต่แทบไม่เปลี่ยนความได้เปรียบเทียบ cheapest / Costs shift reward most within the tested ranges, with little change in relative advantage. Recommendation 0.6 ทำให้ความได้เปรียบเฉลี่ยเกือบหายไป / Lower recommendation effect nearly removes the mean advantage. Consumption ×0.8 กลับมาแพ้เฉพาะค่าเฉลี่ยรวม: seed 303 −0.09277833 มากกว่าผลบวก 101 +0.00777956 และ 202 +0.01820735 รวมกัน / The pooled ranking reverses, not all three seeds. Recommendation 1.8 และ consumption ×1.2 ชนะ cheapest ครบ 3 seeds; ML ชนะ NO_OFFER/UNIFORM ทุก PRIMARY seed/setting ที่ทดสอบ / Both high settings beat cheapest in all seeds; ML beats no offer and uniform in every tested PRIMARY seed/setting.</p>
+            </section>
+            <section className="mt-4 rounded-lg bg-white p-4">
+            <h3 className="font-semibold text-slate-900">ประชากรย่อยและข้อจำกัด / Subset and limits</h3>
+            <p className="mt-3 break-words text-sm leading-7 text-slate-700">MULTIPLE_ACTIONS <strong>5,237 คน</strong> เป็น subset ของ ALL. Consumption ×1.2: ML reward ลด 0.38483082 แต่ delta cheapest เพิ่มเป็น +0.19044400 บาท/คน เพราะ baseline ลดมากกว่า / Relative advantage can rise while absolute reward falls. Consumption ×0.8 subset delta = −0.06376879. ไม่จัดอันดับความสำคัญสากล: perturbation ต่างขนาดและไม่ได้ทดสอบ interactions / Different perturbation sizes and untested interactions prevent a universal importance ranking.</p>
+            </section>
+            <p className="mt-3 break-words text-sm leading-7 text-slate-700">
+            <a className="underline text-teal-800" href="https://github.com/msararin/nbo-nrt-mlops-usecase/blob/36013147ac26ebfb49924e4b822ad028df8a9b78/docs/experiments/exp4/G7_SENSITIVITY_REVIEW_2026-10-24.md" target="_blank" rel="noreferrer">G7 sensitivity review ↗</a>
+            </p>
+            </details>
+<details id="exp4-final-closeout" className="group/final mt-6 rounded-xl border border-emerald-200 bg-emerald-50/60 p-5">
+            <summary className="cursor-pointer rounded-md focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-emerald-700">
+            <p className="text-xs font-semibold uppercase tracking-widest text-emerald-800">FINAL · COMPLETE · 24 October 2026</p>
+            <h2 className="mt-2 text-xl font-semibold text-slate-900">ปิดวงจรการทดลองได้ โดยไม่บังคับให้ ML ชนะ</h2>
+            <p className="mt-1 text-sm font-medium text-slate-600">Experiment 4 complete within frozen local synthetic scope.</p>
+            <p className="mt-3 break-words text-sm leading-7 text-slate-700">G1–G7 COMPLETE — ระบบตรวจสอบ ทำซ้ำ และอธิบายข้อจำกัดได้ โดยไม่เปลี่ยนเกณฑ์ย้อนหลังเพื่อให้โมเดลชนะ / The engineering and learning loop is complete; consistent ML superiority and production readiness are not established.</p>
+            <span className="mt-2 block text-xs font-medium text-emerald-800">
+            <span className="group-open/final:hidden">ขยายรายละเอียด / Expand details</span>
+            <span className="hidden group-open/final:inline">พับรายละเอียด / Collapse details</span>
+            </span>
+            </summary>
+            <section className="mt-4 rounded-lg bg-white p-4">
+            <h3 className="font-semibold text-slate-900">หลักฐานและประวัติ / Evidence and history</h3>
+            <p className="mt-3 break-words text-sm leading-7 text-slate-700">เก็บ PASS/FAIL, scripts, schemas, logs, receipts และ hashes รวมความล้มเหลว missing NumPy และ macOS path-alias guard พร้อมการแก้ไข / Both failures and fixes remain in the record. Sensitivity custody: <strong>321 files / 15,530,074 bytes</strong>; evidence commit <span className="break-all">34dc29a76014f932fef872f67487c9fe375f2dad</span>. ผู้ใช้ตรวจ hashes และ remote reachability แล้ว ต้นฉบับ outputs บน Mac ยังอยู่ / Owner verified committed hashes and remote ancestry; original outputs retained. CODEX_LOCAL_ROLE_LENS_ONLY; no independent reviewer.</p>
+            </section>
+            <section className="mt-4 rounded-lg bg-white p-4">
+            <h3 className="font-semibold text-slate-900">สถานะปัจจุบันและขั้นถัดไป / Current status and next step</h3>
+            <p className="mt-3 break-words text-sm leading-7 text-slate-700">ผู้ใช้ยืนยัน fast-forward ถึง <span className="break-all">36013147ac26ebfb49924e4b822ad028df8a9b78</span> และ clean worktree แล้ว; FINAL_CLOSEOUT_SYNCED_TO_MAC = YES / Owner confirms final checkpoint synchronized and clean. ไม่มีงานทดลองค้างใน frozen scope / No experimental work remains in this frozen scope. ไม่เพิ่ม RL, Experiment 5 หรือ scheduler เป็นงานค้าง / No new experiment or scheduler is required for closure.</p>
+            </section>
+            <section className="mt-4 rounded-lg bg-white p-4">
+            <h3 className="font-semibold text-slate-900">ขอบเขตข้อสรุป / Claim boundary</h3>
+            <p className="mt-3 break-words text-sm leading-7 text-slate-700">CLEAN_REMOTE_RESTORE = NOT_PERFORMED; PRODUCTION_UPLIFT = NOT_ESTABLISHED. การทำซ้ำบน Mac เดิมไม่ใช่ independent clean-room rebuild และ synthetic results ไม่รับรอง production readiness / Same-Mac reproduction is not independent recovery or production proof. ไม่รับประกันว่าข้อมูลเพิ่มแล้วโมเดลจะดีขึ้น / No learning curve or guarantee of improvement with more data. Experiment 3: PAUSED_SAFE; B1_COMPLETE=NO.</p>
+            </section>
+            <p className="mt-3 break-words text-sm leading-7 text-slate-700">
+            <a className="underline text-teal-800" href="https://github.com/msararin/nbo-nrt-mlops-usecase/blob/36013147ac26ebfb49924e4b822ad028df8a9b78/docs/experiments/exp4/EXP4_FINAL_CLOSEOUT_2026-10-24.md" target="_blank" rel="noreferrer">Final closeout · 36013147 ↗</a>
+            </p>
+            </details>
+          <p id="exp4-current-evidence" className="mt-5 break-words text-xs leading-6 text-slate-600"><strong>Current evidence · 24 October 2026:</strong> G1–G7 COMPLETE under EXP4_FREEZE:v1. EXPERIMENT_4 = COMPLETE_WITHIN_FROZEN_LOCAL_SYNTHETIC_SCOPE. Final review 36013147; historical pending receipts are superseded by additive reviews, not rewritten. G2 remains bounded component validation. ผู้ใช้ยืนยัน final closeout sync ลง Mac และ worktree สะอาดแล้ว / Owner confirms final closeout synced to Mac, HEAD 36013147, worktree CLEAN. CLEAN_REMOTE_RESTORE = NOT_PERFORMED; PRODUCTION_UPLIFT = NOT_ESTABLISHED. Experiment 3 remains PAUSED_SAFE; B1_COMPLETE=NO.</p>
         <p className="mt-4 text-sm leading-6 text-slate-600"><strong>Simulation boundary:</strong> prices, costs and behavior are assumptions—not actual operator outcomes.</p>
       </Panel>
     </div>}
