@@ -30,17 +30,16 @@ const caseStudies = [
     reportHref: "/case-studies/txttoaudio#report",
   },
   {
-    // Claims: CL-001, CL-003, CL-012, CL-016, CL-017
-    title: "NBO–NRT Telco on Azure Databricks",
-    status: "In Progress",
-    statusTone: "active",
+    title: "NBO / NRT — Azure to Local PySpark",
+    status: "Completed",
+    statusTone: "complete",
     category: "Decision intelligence",
     flagship: true,
     summary:
-      "Local composite implementation proven across 11 tables and 805 bounded rows; modeling and Azure Databricks implementation not started.",
+      "Four experiments connecting business decisions, data, and ML. Experiment 4 completed G1–G7: validated synthetic data, business baselines, training, held-out evaluation, reload, reproduction, and sensitivity.",
     boundary:
-      "Local composite evidence only. No real Telco customer data, model, Azure Databricks, production latency, operator validity, or production-readiness claim.",
-    cta: "View use-case design",
+      "Completed within the frozen local synthetic scope. ML did not consistently beat the business-rule baseline. Experiment 3 remains paused with B1 incomplete; no production uplift or readiness is claimed.",
+    cta: "View results and learning",
     href: "/case-studies/nbo-nrt-azure-databricks",
   },
   {
