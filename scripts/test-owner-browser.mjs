@@ -34,10 +34,27 @@ try {
   for(let i=0;i<100;i++){try{if((await request('/login')).status===200){ready=true;break}}catch{}await new Promise(r=>setTimeout(r,100))}
   assert(ready,'test server started')
   const ownerCookie=await cookie(),wrongCookie=await cookie('wrong-sub'),expiredCookie=await cookie(owner,Date.now()-1000)
-  const pages=['/cockpit/learning/telco-churn','/cockpit/learning/nbo-nrt','/cockpit','/cockpit/workstreams','/cockpit/telemetry','/cockpit/telemetry?view=history','/cockpit/telemetry/history/'+'f'.repeat(24),'/cockpit/evidence','/cockpit/methodology','/cockpit/experiments','/cockpit/experiments?q=engineering','/cockpit/deployments','/cockpit/security','/cockpit/evidence/'+artifactId,'/cockpit/telemetry/runs/fixture-run-1','/internal/telemetry','/internal/telemetry/operator']
+  const pages=['/cockpit/aios','/cockpit/aios/org-roles','/cockpit/aios/architecture','/cockpit/aios/architecture/system-health','/cockpit/aios/org-roles/big-crew-architecture-gate','/cockpit/aios/architecture/system-health/monitoring','/cockpit/learning/telco-churn','/cockpit/learning/nbo-nrt','/cockpit','/cockpit/workstreams','/cockpit/telemetry','/cockpit/telemetry?view=history','/cockpit/telemetry/history/'+'f'.repeat(24),'/cockpit/evidence','/cockpit/methodology','/cockpit/experiments','/cockpit/experiments?q=engineering','/cockpit/deployments','/cockpit/security','/cockpit/evidence/'+artifactId,'/cockpit/telemetry/runs/fixture-run-1','/internal/telemetry','/internal/telemetry/operator']
   await check('all private pages: anonymous redirect; wrong-sub 403; expired/invalid denied',async()=>{
     for(const route of pages){const response=await request(route);assert.equal(response.status,307,route);assert((response.headers.get('location')??'').endsWith('/login'));assert(!(await response.text()).includes('OWNER-PRIVATE-CANARY'))}
     for(const [value,status] of [[wrongCookie,403],[expiredCookie,307],[`${salt}=tampered`,307]]) assert.equal((await request('/cockpit',{headers:{cookie:value}})).status,status)
+  })
+  await check('restored AIOS diagrams and health remain owner-only and navigable',async()=>{
+    for (const [route,terms] of [
+      ['/cockpit/aios',['Architecture Summary','Supernova','Big Crew']],
+      ['/cockpit/aios/org-roles',['Robert / GPT','Super Runner','Big Crew','Supernova']],
+      ['/cockpit/aios/architecture',['Executive &amp; Intent','Routing &amp; Governance']],
+      ['/cockpit/aios/architecture/system-health',['System Health','AIOS Monitoring','Runtime Authority Evidence']],
+    ]) {
+      for(const [value,status] of [[wrongCookie,403],[expiredCookie,307]]) assert.equal((await request(route,{headers:{cookie:value}})).status,status,route)
+      const response=await request(route,{headers:{cookie:ownerCookie}})
+      assert.equal(response.status,200,route)
+      assert(response.headers.get('cache-control').includes('no-store'))
+      const html=await response.text()
+      for(const term of terms) assert(html.includes(term),`${route}: ${term}`)
+      assert(html.includes('/cockpit/aios/org-roles'))
+      assert(html.includes('/cockpit/aios/architecture/system-health'))
+    }
   })
   await check('churn archive is owner-only and removed from public discovery',async()=>{
     const route='/cockpit/learning/telco-churn'
